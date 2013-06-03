@@ -1,6 +1,6 @@
 # Roadmap (draft)
 
-This document describes what we want to achieve in the first version of ROM. Please note that most of the described functionality is already done however some parts need to be refactored or slightly improved.
+This page describes what we want to achieve in the first version of ROM. Please note that most of the described functionality is already done however some parts need to be refactored or slightly improved.
 
 The plan is to finalize the described features and release an early version of ROM and then continue releasing new versions after short iterations with smaller refactors and bug fixes. Early user feedback will be highly appreciated.
 
