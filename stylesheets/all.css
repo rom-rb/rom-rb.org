@@ -5815,16 +5815,16 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* line 4, /Users/solnic/Workspace/rom-rb.github.io/source/stylesheets/all.sass */
+/* line 4, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
 body > .container {
   margin-top: 20px; }
-  /* line 7, /Users/solnic/Workspace/rom-rb.github.io/source/stylesheets/all.sass */
+  /* line 7, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
   body > .container > h1 {
     float: right;
     font-size: 25px;
     margin-right: 20px;
     line-height: 25px;
     color: #007197; }
-  /* line 14, /Users/solnic/Workspace/rom-rb.github.io/source/stylesheets/all.sass */
+  /* line 14, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
   body > .container .content {
     padding: 25px; }
