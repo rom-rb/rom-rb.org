@@ -1,4 +1,4 @@
-| <!doctype html>
+doctype html
 html
   head
     meta[charset="utf-8"]
@@ -8,4 +8,19 @@ html
     == stylesheet_link_tag "normalize", "all"
     == javascript_include_tag  "all"
   body class=page_classes
-    == yield
+    .container
+      h1
+        | Ruby Object Mapper
+      .navbar
+        .navbar-inner
+          ul.nav
+            li
+              a href="/" Roadmap
+            li
+              a href="/status.html" Status
+            li
+              a href="/team.html" Team
+            li
+              a href="/about.html" About
+      .content
+        == yield
