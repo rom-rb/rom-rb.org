@@ -5,9 +5,9 @@
 
 <p>The plan is to finalize the described features and release an early version of ROM and then continue releasing new versions after short iterations with smaller refactors and bug fixes. Early user feedback will be highly appreciated.</p>
 
-<p>ROM consists of four pieces: axiom (relational abstraction), rom (db interface), rom-mapper and rom-session. Database specific support is done through axiom adapters.</p>
-
-<h2 id='new_sql_generator_axiomsqlgenerator__sql'>New SQL generator (<a href='https://github.com/dkubb/axiom-sql-generator'>axiom-sql-generator</a> + <a href='https://github.com/dkubb/sql'>sql</a>)</h2>
+<p>ROM consists of three pieces: rom-relation (db interface), rom-mapper and rom-session. Under the hood it uses a powerful relation algebra library called <a href='https://github.com/dkubb/axiom'>axiom</a>. Database specific support is done through axiom adapters.</p>
+<hr />
+<h2 id='new_sql_generator'>New SQL generator</h2>
 
 <p>Main goal: complete refactor with an extraction of SQL generator itself so that axiom-sql-generator is only an integration between an abstract sql generator and axiom relations.</p>
 
@@ -21,21 +21,39 @@
 <li>Support for all types of joins</li>
 </ul>
 
-<h2 id='database_interface_rom'>Database interface (<a href='https://github.com/rom-rb/rom'>rom</a>)</h2>
+<p>Projects:</p>
 
-<p>Main goal: having a very thin wrapper around axiom relations with injectable mappers that can load axiom tuples into ruby objects and dump ruby objects back into axiom tuples. ROM provides higher-level CRUD interface on top of axiom relations. Relations are represented internally as a directed graph that you setup via a simple DSL where you define attribute mappings, associations, constraints etc.</p>
+<ul>
+<li><a href='https://github.com/dkubb/sql'>sql</a></li>
+
+<li><a href='https://github.com/dkubb/axiom-sql-generator'>axiom-sql-generator</a></li>
+</ul>
+
+<h2 id='relation'>Relation</h2>
+
+<p>Main goal: provide high-level CRUD interface on top of axiom relations.</p>
 
 <p>Key features:</p>
 
 <ul>
+<li>Provides a DSL to setup relations, associations, fk constraints etc.</li>
+
 <li>Exposes create/read/update/delete interface on top of axiom relations</li>
+
+<li>Supports injectable mappers for loading data into ruby objects and dumping them back to raw tuples</li>
 
 <li>Exposes interface for Session</li>
 </ul>
 
-<h2 id='mapper_rommapper'>Mapper (<a href='https://github.com/rom-rb/rom-mapper'>rom-mapper</a>)</h2>
+<p>Projects:</p>
 
-<p>Main goal: extract needed functionality from current rom&#8217;s codebase. Have a generic mapping interface to be able to load and dump objects. The mapper takes a tuple returned from axiom and can turn it in any data structure or rich object depending on configuration. It can also take any data structure or object and dump it back to a tuple representation digestible by axiom.</p>
+<ul>
+<li><a href='https://github.com/rom-rb/rom-relation'>rom-relation</a></li>
+</ul>
+
+<h2 id='mapper'>Mapper</h2>
+
+<p>Main goal: extract needed functionality from current rom&#8217;s codebase. Have a generic mapping interface to be able to load and dump objects. The mapper takes a tuple returned by axiom and can turn it into any data structure or rich object depending on configuration. It can also take any data structure or object and dump it back to a tuple representation digestible by axiom.</p>
 
 <p>Key features:</p>
 
@@ -45,9 +63,15 @@
 <li>Supports loading nested tuples into ruby objects with associations, embedded values or embedded collections</li>
 </ul>
 
-<h2 id='session_romsession'>Session (<a href='https://github.com/rom-rb/rom-session'>rom-session</a>)</h2>
+<p>Projects:</p>
 
-<p>Main goal: having a CRUD interface built on top of Mapper that adds Unit Of Work with dependency resolution mechanism</p>
+<ul>
+<li><a href='https://github.com/rom-rb/rom-mapper'>rom-mapper</a></li>
+</ul>
+
+<h2 id='session'>Session</h2>
+
+<p>Main goal: provide a CRUD interface built on top of rom-relation that adds Unit Of Work with dependency resolution mechanism and state tracking.</p>
 
 <p>Key features:</p>
 
@@ -61,4 +85,10 @@
 <li>Hooks into Mapper interface to finalize in-memory objects after committing changes to the db (ie setting fks in correct moment etc.)</li>
 
 <li>Unit of Work is injectable so that we can have various strategies for different dbs</li>
+</ul>
+
+<p>Projects:</p>
+
+<ul>
+<li><a href='https://github.com/rom-rb/rom-session'>rom-session</a></li>
 </ul></div></div></body></html>
