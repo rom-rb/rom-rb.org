@@ -5816,15 +5816,53 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
   box-sizing: border-box; }
 
 /* line 4, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
-body > .container {
-  margin-top: 20px; }
-  /* line 7, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
-  body > .container > h1 {
+html, body {
+  height: 100%; }
+
+/* line 7, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+body {
+  font-size: 16px; }
+  /* line 10, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  body .page-wrapper {
+    height: auto !important;
+    min-height: 100%;
+    margin: 0 auto -60px; }
+  /* line 15, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  body .content {
+    padding: 60px 0 120px; }
+  /* line 19, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  body header .navbar {
+    overflow: visible; }
+    /* line 22, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+    body header .navbar .brand {
+      color: #777777;
+      display: block;
+      float: left;
+      font-size: 20px;
+      font-weight: 200;
+      margin-left: -20px;
+      padding: 10px 20px;
+      text-shadow: 0 1px 0 white p; }
+  /* line 32, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  body footer, body .push {
+    height: 60px; }
+  /* line 35, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  body footer {
+    background-color: whitesmoke; }
+    /* line 38, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+    body footer p {
+      margin: 20px auto; }
+  /* line 41, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  body .navbar-fixed-top {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+    z-index: 1030; }
+  /* line 48, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  body > h1 {
     float: right;
     font-size: 25px;
     margin-right: 20px;
     line-height: 25px;
     color: #007197; }
-  /* line 14, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
-  body > .container .content {
-    padding: 25px; }
