@@ -8,19 +8,25 @@ html
     == stylesheet_link_tag "normalize", "all"
     == javascript_include_tag  "all"
   body class=page_classes
-    .container
-      h1
-        | Ruby Object Mapper
-      .navbar
-        .navbar-inner
-          ul.nav
-            li
-              a href="/" Roadmap
-            li
-              a href="/status.html" Status
-            li
-              a href="/team.html" Team
-            li
-              a href="/about.html" About
-      .content
-        == yield
+    .page-wrapper
+      header
+        .navbar.navbar-fixed-top
+          .navbar-inner
+            .container
+              a.brand href="/" Ruby Object Mapper
+              ul.nav
+                li
+                  a href="/" Roadmap
+                li
+                  a href="/status.html" Status
+                li
+                  a href="/team.html" Team
+                li
+                  a href="/about.html" About
+      .container
+        .content
+          == yield
+    footer
+      .container
+        p.muted
+          | Ruby Object Mapper &copy; 2013
