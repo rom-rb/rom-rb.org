@@ -5843,23 +5843,32 @@ body {
       margin-left: -20px;
       padding: 10px 20px;
       text-shadow: 0 1px 0 white p; }
-  /* line 32, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+    /* line 32, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+    body header .navbar .github-btn {
+      float: right;
+      margin-top: 10px; }
+  /* line 36, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
   body footer, body .push {
     height: 60px; }
-  /* line 35, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  /* line 39, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
   body footer {
     background-color: whitesmoke; }
-    /* line 38, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
-    body footer p {
-      margin: 20px auto; }
-  /* line 41, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+    /* line 42, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+    body footer .copyright {
+      margin: 20px auto;
+      float: left; }
+    /* line 46, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+    body footer .social {
+      margin: 18px auto;
+      float: right; }
+  /* line 50, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
   body .navbar-fixed-top {
     position: fixed;
     left: 0;
     right: 0;
     margin-bottom: 0;
     z-index: 1030; }
-  /* line 48, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
+  /* line 57, /Users/solnic/Workspace/rom-rb.org/source/stylesheets/all.sass */
   body > h1 {
     float: right;
     font-size: 25px;
