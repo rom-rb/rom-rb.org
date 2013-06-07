@@ -23,8 +23,14 @@ html
                   a href="/team.html" Team
                 li
                   a href="/about.html" About
-              .github-btn
-                iframe src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom-relation&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"
+              .social
+                .github
+                  iframe src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom-relation&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"
+                .twitter
+                  a href="https://twitter.com/rom_rb" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false"
+                   | Follow
+                  javascript:
+                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
       .container
         .content
           == yield
@@ -32,9 +38,3 @@ html
       .container
         .muted.copyright
           | Ruby Object Mapper &copy; 2013
-
-        .social
-          a href="https://twitter.com/rom_rb" class="twitter-follow-button" data-show-count="false"
-           | Follow @rom_rb
-          javascript:
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
