@@ -1,3 +1,7 @@
+Encoding.default_internal = "utf-8"
+
+require 'slim'
+
 activate :livereload
 activate :directory_indexes
 

@@ -6,6 +6,8 @@ html
     title
       = data.page.title || "The Middleman"
     == stylesheet_link_tag "normalize", "all"
+    style type="text/css"
+      == Rouge::Themes::ThankfulEyes.render(:scope => '.highlight')
     == javascript_include_tag  "all"
   body class=page_classes
     .page-wrapper
@@ -16,7 +18,7 @@ html
               a.brand href="/" Ruby Object Mapper
               ul.nav
                 li
-                  a href="/" Roadmap
+                  a href="/roadmap" Roadmap
                 li
                   a href="/status" Status
                 li
