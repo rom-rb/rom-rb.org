@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'middleman',        '~> 3.0.14'
-gem 'middleman-livereload'
-gem 'middleman-gh-pages'
-gem 'slim',             '~> 1.3'
-gem 'bootstrap-sass',   '~> 2.3.1.3'
+gem 'middleman',           '~> 3.1'
+gem 'middleman-livereload','~> 3.1'
+gem 'middleman-syntax',    '~> 1.2'
+gem 'middleman-gh-pages',  '~> 0.0.2'
+
+gem 'slim',                '~> 2.0'
+gem 'redcarpet'
+gem 'bootstrap-sass',      '~> 2.3.1.3'
