@@ -1,4 +1,5 @@
 activate :livereload
+activate :directory_indexes
 
 # syntax stuff
 activate :syntax, :linenos => 'inline', :anchorlinenos => true, :linenostart => 2
