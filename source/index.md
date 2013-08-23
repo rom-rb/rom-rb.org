@@ -9,10 +9,12 @@ title: Ruby Object Mapper
 ```ruby
   require 'rom'
 
-  env = ROM::Environment.coerce(memory: 'memory://test')
+  env = ROM::Environment.setup(memory: 'memory://test')
 
   env.schema do
     base_relation :users do
+      repository :memory
+      
       attribute :id,   Serial
       attribute :name, String
 
