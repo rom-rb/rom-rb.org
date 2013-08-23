@@ -168,10 +168,12 @@
 <h3>1. Set up environment and define schema</h3>
 <pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">&#39;rom&#39;</span>
 
-  <span class="n">env</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Environment</span><span class="nf">.coerce</span><span class="p">(</span><span class="ss">memory: </span><span class="s1">&#39;memory://test&#39;</span><span class="p">)</span>
+  <span class="n">env</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Environment</span><span class="nf">.setup</span><span class="p">(</span><span class="ss">memory: </span><span class="s1">&#39;memory://test&#39;</span><span class="p">)</span>
 
   <span class="n">env</span><span class="nf">.schema</span> <span class="k">do</span>
     <span class="n">base_relation</span> <span class="ss">:users</span> <span class="k">do</span>
+      <span class="n">repository</span> <span class="ss">:memory</span>
+
       <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span>   <span class="no">Serial</span>
       <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">String</span>
 
