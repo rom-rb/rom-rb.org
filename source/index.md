@@ -15,7 +15,7 @@ title: Ruby Object Mapper
     base_relation :users do
       repository :memory
       
-      attribute :id,   Serial
+      attribute :id,   Integer
       attribute :name, String
 
       key :id
@@ -45,7 +45,7 @@ title: Ruby Object Mapper
 ### 3. Work with Plain Old Ruby Objects
 
 ```ruby
-  env.session do |session|
+  ROM::Session.start(env).session do |session|
     session[:users].save(User.new(id: 1, name: 'Jane'))
     session.commit
   end
