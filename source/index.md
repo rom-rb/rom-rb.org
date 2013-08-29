@@ -51,11 +51,6 @@ title: Ruby Object Mapper
     user = session[:users].new(id: 1, name: 'Jane')
     session[:users].save(user)
     session.flush
-end
-
-jane = env[:users].restrict(name: 'Jane').one
-    session[:users].save(user)
-    session.flush
   end
 
   jane = env[:users].restrict(name: 'Jane').one
