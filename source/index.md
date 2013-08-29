@@ -8,13 +8,15 @@ title: Ruby Object Mapper
 
 ```ruby
   require 'rom'
+  require 'rom/support/axiom/adapter/memory'
+  require 'axiom-memory-adapter'
 
   env = ROM::Environment.setup(memory: 'memory://test')
 
   env.schema do
     base_relation :users do
       repository :memory
-      
+
       attribute :id,   Integer
       attribute :name, String
 
@@ -46,8 +48,15 @@ title: Ruby Object Mapper
 
 ```ruby
   ROM::Session.start(env) do |session|
-    session[:users].save(User.new(id: 1, name: 'Jane'))
-    session.commit
+    user = session[:users].neOM::Session.start(env) do |session|
+  user = session[:users].new(id: 1, name: 'Jane')
+  session[:users].save(user)
+  session.flush
+end
+
+jane = env[:users].restrict(name: 'Jane').one
+    session[:users].save(user)
+    session.flush
   end
 
   jane = env[:users].restrict(name: 'Jane').one
