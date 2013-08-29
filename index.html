@@ -201,10 +201,9 @@
 </pre>
 <h3>3. Work with Plain Old Ruby Objects</h3>
 <pre class="highlight ruby">  <span class="no">ROM</span><span class="o">::</span><span class="no">Session</span><span class="nf">.start</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">session</span><span class="o">|</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">session</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.neOM</span><span class="o">::</span><span class="no">Session</span><span class="nf">.start</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">session</span><span class="o">|</span>
-  <span class="n">user</span> <span class="o">=</span> <span class="n">session</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.new</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;Jane&#39;</span><span class="p">)</span>
-  <span class="n">session</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.save</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-  <span class="n">session</span><span class="nf">.flush</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">session</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.new</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;Jane&#39;</span><span class="p">)</span>
+    <span class="n">session</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.save</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+    <span class="n">session</span><span class="nf">.flush</span>
 <span class="k">end</span>
 
 <span class="n">jane</span> <span class="o">=</span> <span class="n">env</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.restrict</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;Jane&#39;</span><span class="p">)</span><span class="nf">.one</span>
