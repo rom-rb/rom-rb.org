@@ -48,10 +48,9 @@ title: Ruby Object Mapper
 
 ```ruby
   ROM::Session.start(env) do |session|
-    user = session[:users].neOM::Session.start(env) do |session|
-  user = session[:users].new(id: 1, name: 'Jane')
-  session[:users].save(user)
-  session.flush
+    user = session[:users].new(id: 1, name: 'Jane')
+    session[:users].save(user)
+    session.flush
 end
 
 jane = env[:users].restrict(name: 'Jane').one
