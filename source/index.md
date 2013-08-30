@@ -47,7 +47,7 @@ title: Ruby Object Mapper
 ### 3. Work with Plain Old Ruby Objects
 
 ```ruby
-  ROM::Session.start(env) do |session|
+  env.session do |session|
     user = session[:users].new(id: 1, name: 'Jane')
     session[:users].save(user)
     session.flush
