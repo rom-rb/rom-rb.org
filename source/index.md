@@ -8,7 +8,6 @@ title: Ruby Object Mapper
 
 ```ruby
   require 'rom'
-  require 'rom/support/axiom/adapter/memory'
   require 'axiom-memory-adapter'
 
   env = ROM::Environment.setup(memory: 'memory://test')
