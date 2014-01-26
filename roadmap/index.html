@@ -169,7 +169,7 @@
 
 <p>The plan is to finalize the described features and release an early version of ROM and then continue releasing new versions after short iterations with smaller refactors and bug fixes. Early user feedback will be highly appreciated.</p>
 
-<p>ROM consists of three pieces: rom-relation (db interface), rom-mapper and rom-session. Under the hood it uses a powerful relation algebra library called <a href="https://github.com/dkubb/axiom">axiom</a>. Database specific support is done through axiom adapters.</p>
+<p>ROM consists of three pieces: relation (db interface), mapper and session. Under the hood it uses a powerful relation algebra library called <a href="https://github.com/dkubb/axiom">axiom</a>. Database specific support is done through axiom adapters.</p>
 
 <hr/>
 
@@ -190,6 +190,7 @@
 <ul>
 <li><a href="https://github.com/dkubb/sql">sql</a></li>
 <li><a href="https://github.com/dkubb/axiom-sql-generator">axiom-sql-generator</a></li>
+<li><a href="https://github.com/dkubb/axiom-do-adapter">axiom-do-adapter</a></li>
 </ul>
 
 <h2>Relation</h2>
@@ -205,12 +206,6 @@
 <li>Exposes interface for Session</li>
 </ul>
 
-<p>Projects:</p>
-
-<ul>
-<li><a href="https://github.com/rom-rb/rom-relation">rom-relation</a></li>
-</ul>
-
 <h2>Mapper</h2>
 
 <p>Main goal: extract needed functionality from current rom&rsquo;s codebase. Have a generic mapping interface to be able to load and dump objects. The mapper takes a tuple returned by axiom and can turn it into any data structure or rich object depending on configuration. It can also take any data structure or object and dump it back to a tuple representation digestible by axiom.</p>
@@ -222,15 +217,9 @@
 <li>Supports loading nested tuples into ruby objects with associations, embedded values or embedded collections</li>
 </ul>
 
-<p>Projects:</p>
-
-<ul>
-<li><a href="https://github.com/rom-rb/rom-mapper">rom-mapper</a></li>
-</ul>
-
 <h2>Session</h2>
 
-<p>Main goal: provide a CRUD interface built on top of rom-relation that adds Unit Of Work with dependency resolution mechanism and state tracking.</p>
+<p>Main goal: provide a CRUD interface built on top of rom relation that adds Unit Of Work with dependency resolution mechanism and state tracking.</p>
 
 <p>Key features:</p>
 
@@ -240,11 +229,5 @@
 <li>Uses IdentityMap to reduce number of executed db read operations</li>
 <li>Hooks into Mapper interface to finalize in-memory objects after committing changes to the db (ie setting fks in correct moment etc.)</li>
 <li>Unit of Work is injectable so that we can have various strategies for different dbs</li>
-</ul>
-
-<p>Projects:</p>
-
-<ul>
-<li><a href="https://github.com/rom-rb/rom-session">rom-session</a></li>
 </ul>
 </div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2013</div></div></footer></body></html>
