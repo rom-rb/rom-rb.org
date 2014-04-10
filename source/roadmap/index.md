@@ -1,3 +1,6 @@
+---
+title: Ruby Object Mapper - Roadmap
+---
 # Roadmap (draft)
 
 This page describes what we want to achieve in the first version of ROM. Please note that most of the described functionality is already done however some parts need to be refactored or slightly improved.
