@@ -1,5 +1,26 @@
 ---
 title: Ruby Object Mapper - Team
 ---
-p
-  | coming soon
+
+#template
+  .member.span2
+    a(href)
+      img(src class='img-rounded')
+      h3 NAME
+
+h1 Team ROM
+
+p.lead
+  |
+    If you would like to contribute to ROM, we have a post 
+    <a href='http://solnic.eu/2014/05/17/help-us-build-rom.html'>here</a> 
+    to get you started.
+
+#team
+
+== javascript_include_tag 'vendor/jquery-2.1.1.js', 'team'
+
+javascript:
+  $(function(){
+    RomRb.renderTeam();
+  })
