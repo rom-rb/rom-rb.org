@@ -1,0 +1,1 @@
+var RomRb={renderTeam:function(){var e=$("#team"),t=$("#template").html();$.getJSON("https://api.github.com/orgs/rom-rb/public_members",function(a){for(var r=0;r<a.length;r++){var l=a[r];template=t.replace("href","href='"+l.html_url+"'"),template=template.replace("src","src='"+l.avatar_url+"'"),template=template.replace("NAME",l.login),e.append(template)}})}};

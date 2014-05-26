@@ -5899,3 +5899,11 @@ body {
 /* line 76, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
 .index h3 {
   margin: 20px 0; }
+
+/* line 80, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+.member img {
+  width: 100%; }
+
+/* line 83, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+#template {
+  display: none; }
