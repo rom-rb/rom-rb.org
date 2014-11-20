@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+@import url("//fonts.googleapis.com/css?family=Roboto:100,200,400,700");
 /* line 9, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_normalize.scss */
 html {
   font-family: sans-serif;
@@ -6719,28 +6720,30 @@ button.close {
   /* line 18, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/mixins/_responsive-visibility.scss */
   .hidden-print {
     display: none !important; } }
-/* line 4, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+/* line 6, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
 html, body {
-  height: 100%; }
+  height: 100%;
+  font-family: "Roboto", sans-serif; }
 
-/* line 7, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+/* line 10, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
 body {
-  font-size: 16px; }
-  /* line 10, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+  font-size: 18px; }
+  /* line 13, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
   body .page-wrapper {
     height: auto !important;
     min-height: 100%;
     margin: 0 auto -60px; }
-  /* line 15, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+  /* line 18, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
   body .content {
     padding: 60px 0 120px; }
-  /* line 19, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+  /* line 22, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
   body header .navbar {
     overflow: visible; }
-    /* line 22, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+    /* line 25, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
     body header .navbar .navbar-inner {
-      padding: 5px 0; }
-      /* line 25, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+      padding: 5px 0;
+      background-color: #f5f5f5; }
+      /* line 29, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
       body header .navbar .navbar-inner .brand {
         color: #777777;
         display: block;
@@ -6753,31 +6756,31 @@ body {
         background: url("/images/logo-nav.png") center no-repeat;
         width: 277px;
         text-indent: -1000px; }
-      /* line 38, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+      /* line 42, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
       body header .navbar .navbar-inner .social {
         margin-top: 10px;
         float: right; }
-        /* line 42, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+        /* line 46, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
         body header .navbar .navbar-inner .social .twitter, body header .navbar .navbar-inner .social .github {
           float: left; }
-  /* line 45, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+  /* line 49, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
   body footer, body .push {
     height: 60px; }
-  /* line 48, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+  /* line 52, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
   body footer {
     background-color: #f5f5f5; }
-    /* line 51, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+    /* line 55, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
     body footer .copyright {
       margin: 20px auto;
       text-align: center; }
-  /* line 55, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+  /* line 59, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
   body .navbar-fixed-top {
     position: fixed;
     left: 0;
     right: 0;
     margin-bottom: 0;
     z-index: 1030; }
-  /* line 62, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+  /* line 66, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
   body > h1 {
     float: right;
     font-size: 25px;
@@ -6785,24 +6788,24 @@ body {
     line-height: 25px;
     color: #007197; }
 
-/* line 70, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+/* line 74, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
 .index h1 {
   margin: 40px auto;
   width: 50%;
   font-weight: normal;
   text-align: center; }
-/* line 76, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+/* line 80, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
 .index h3 {
   margin: 20px 0; }
 
-/* line 80, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+/* line 84, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
 .member img {
   width: 100%; }
 
-/* line 83, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+/* line 87, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
 #template {
   display: none; }
 
-/* line 86, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
+/* line 90, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/all.sass */
 pre {
   background-color: #122b3b; }
