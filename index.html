@@ -1,7 +1,5 @@
-<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><title>Ruby Object Mapper</title><link href="stylesheets/normalize.css" media="screen" rel="stylesheet" type="text/css" />
-<link href="stylesheets/all.css" media="screen" rel="stylesheet" type="text/css" /><style type="text/css">.highlight table { border-spacing: 0; }
-.highlight table td { padding: 5px; }
-.highlight table .gutter { text-align: right; }
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><title>Ruby Object Mapper</title><link href="stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="stylesheets/all.css" rel="stylesheet" type="text/css" /><style type="text/css">.highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
 .highlight {
   color: #faf6e4;
   background-color: #122b3b;
@@ -10,7 +8,7 @@
   color: #dee5e7;
   background-color: #4e5d62;
 }
-.highlight .c, .highlight .cm, .highlight .c1, .highlight .cs {
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
   color: #6c8b9f;
   font-style: italic;
 }
@@ -27,14 +25,14 @@
   color: #fefeec;
   background-color: #cc0000;
 }
-.highlight .k, .highlight .kd {
+.highlight .k, .highlight .kd, .highlight .kv {
   color: #f6dd62;
   font-weight: bold;
 }
 .highlight .o, .highlight .ow {
   color: #4df4ff;
 }
-.highlight .p {
+.highlight .p, .highlight .pi {
   color: #4df4ff;
 }
 .highlight .gd {
@@ -113,7 +111,7 @@
   color: #ffb000;
   font-weight: bold;
 }
-.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo {
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
   color: #f696db;
   font-weight: bold;
 }
@@ -163,47 +161,89 @@
 .highlight .nv, .highlight .vc, .highlight .vg, .highlight .vi {
   color: #a8e1fe;
   font-weight: bold;
-}</style><script src="javascripts/all.js" type="text/javascript"></script></head><body class="index"><div class="page-wrapper"><header><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="brand" href="/">Ruby Object Mapper</a><ul class="nav"><li><a href="/roadmap">Roadmap</a></li><li><a href="/status">Status</a></li><li><a href="/team">Team</a></li><li><a href="/about">About</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></div></header><div class="container"><div class="content"><h1>Ruby Object Mapper</h1>
+}</style><script src="javascripts/all.js" type="text/javascript"></script></head><body class="index"><div class="page-wrapper"><header><div class="navbar navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="brand" href="/">Ruby Object Mapper</a><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></div></header><div class="container"><div class="content"><h1>Ruby Object Mapper</h1>
 
-<h3>1. Set up environment and define schema</h3>
-<pre class="highlight ruby">  <span class="nb">require</span> <span class="s1">&#39;rom&#39;</span>
-  <span class="nb">require</span> <span class="s1">&#39;axiom-memory-adapter&#39;</span>
+<p>ROM is an experimental Ruby ORM that aims to bring powerful object mapping
+capabilities and give you back the full power of your database. It is based on
+a couple of core concepts which makes it different from a typical ORM:</p>
 
-  <span class="n">env</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Environment</span><span class="nf">.setup</span><span class="p">(</span><span class="ss">memory: </span><span class="s1">&#39;memory://test&#39;</span><span class="p">)</span>
+<ul>
+<li>Quering a database is considered as a private implementation detail</li>
+<li>Abstract query interfaces are evil and a source of unnecessary complexity</li>
+<li>Reading and mutating data are 2 distinct concerns and should be treated separately</li>
+<li>It must be <strong>simple</strong> to use the full power of your database</li>
+</ul>
 
-  <span class="n">env</span><span class="nf">.schema</span> <span class="k">do</span>
-    <span class="n">base_relation</span> <span class="ss">:users</span> <span class="k">do</span>
-      <span class="n">repository</span> <span class="ss">:memory</span>
+<p>With that in mind ROM ships with adapters that allow you to connect to any
+database and exposes a DSL to define <strong>relations</strong> and <strong>mappers</strong> to simplify
+accessing the data.</p>
 
-      <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span>   <span class="nb">Integer</span>
-      <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="nb">String</span>
+<h2>Synopsis</h2>
+<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'rom-sql'</span>
 
-      <span class="n">key</span> <span class="ss">:id</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-</pre>
-<h3>2. Set up mapping</h3>
-<pre class="highlight ruby">  <span class="k">class </span><span class="nc">User</span>
-    <span class="kp">attr_reader</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span>
+<span class="n">setup</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">sqlite: </span><span class="s2">"sqlite::memory"</span><span class="p">)</span>
 
-    <span class="k">def </span><span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
-      <span class="vi">@id</span><span class="p">,</span> <span class="vi">@name</span> <span class="o">=</span> <span class="n">attributes</span><span class="nf">.values_at</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
+<span class="n">setup</span><span class="p">.</span><span class="nf">sqlite</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">create_table</span> <span class="ss">:users</span> <span class="k">do</span>
+  <span class="n">primary_key</span> <span class="ss">:id</span>
+  <span class="no">String</span> <span class="ss">:name</span>
+  <span class="no">Integer</span> <span class="ss">:age</span>
+<span class="k">end</span>
 
-  <span class="n">env</span><span class="nf">.mapping</span> <span class="k">do</span>
-    <span class="n">users</span> <span class="k">do</span>
-      <span class="n">map</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span>
-      <span class="n">model</span> <span class="no">User</span>
-    <span class="k">end</span>
-  <span class="k">end</span>
-</pre>
-<h3>3. Work with Plain Old Ruby Objects</h3>
-<pre class="highlight ruby">  <span class="n">env</span><span class="nf">.session</span> <span class="k">do</span> <span class="o">|</span><span class="n">session</span><span class="o">|</span>
-    <span class="n">user</span> <span class="o">=</span> <span class="n">session</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.new</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;Jane&#39;</span><span class="p">)</span>
-    <span class="n">session</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.save</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
-    <span class="n">session</span><span class="nf">.flush</span>
+<span class="n">setup</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="nf">by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">)</span>
   <span class="k">end</span>
 
-  <span class="n">jane</span> <span class="o">=</span> <span class="n">env</span><span class="o">[</span><span class="ss">:users</span><span class="o">]</span><span class="nf">.restrict</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s1">&#39;Jane&#39;</span><span class="p">)</span><span class="nf">.one</span>
-</pre></div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
+  <span class="k">def</span> <span class="nf">adults</span>
+    <span class="n">where</span> <span class="p">{</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">18</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">setup</span><span class="p">.</span><span class="nf">mappers</span> <span class="k">do</span>
+  <span class="n">define</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">model</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'User'</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="n">setup</span><span class="p">.</span><span class="nf">finalize</span>
+
+<span class="c1"># accessing registered relations</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">.</span><span class="nf">users</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Joe"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">17</span><span class="p">)</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">18</span><span class="p">)</span>
+
+<span class="nb">puts</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_name</span><span class="p">(</span><span class="s2">"Jane"</span><span class="p">).</span><span class="nf">adults</span><span class="p">.</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># =&gt; [{:id=&gt;2, :name=&gt;"Jane", :age=&gt;18}]</span>
+
+<span class="c1"># reading relations using defined mappers</span>
+<span class="nb">puts</span> <span class="n">rom</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">by_name</span><span class="p">(</span><span class="s2">"Jane"</span><span class="p">).</span><span class="nf">adults</span><span class="p">.</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># =&gt; [#&lt;User:0x007fdba161cc48 @id=2, @name="Jane", @age=18&gt;]</span>
+</code></pre>
+
+<h2>ROADMAP</h2>
+
+<p>ROM is on its way towards 1.0.0. Please refer to <a href="https://github.com/rom-rb/rom/issues">issues</a>
+for details.</p>
+
+<h2>Community</h2>
+
+<ul>
+<li><a href="https://gitter.im/rom-rb/chat"><img alt="Gitter chat" src="https://badges.gitter.im/rom-rb/chat.png" /></a></li>
+<li><a href="https://groups.google.com/forum/#!forum/rom-rb">Ruby Object Mapper</a> mailing list</li>
+</ul>
+
+<h2>Credits</h2>
+
+<p>This project has a long history and wouldn&rsquo;t exist without following people:</p>
+
+<ul>
+<li><a href="https://github.com/dkubb">Dan Kubb</a></li>
+<li><a href="https://github.com/mbj">Markus Schirp</a></li>
+<li><a href="https://github.com/snusnu">Martin Gamsjaeger</a></li>
+</ul>
+
+<h2>License</h2>
+
+<p>See <code>LICENSE</code> file.</p>
+</div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
