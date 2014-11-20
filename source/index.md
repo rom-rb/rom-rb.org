@@ -1,56 +1,81 @@
----
-title: Ruby Object Mapper
----
-
 # Ruby Object Mapper
 
-### 1. Set up environment and define schema
+ROM is an experimental Ruby ORM that aims to bring powerful object mapping
+capabilities and give you back the full power of your database. It is based on
+a couple of core concepts which makes it different from a typical ORM:
 
-```ruby
-  require 'rom'
-  require 'axiom-memory-adapter'
+  * Quering a database is considered as a private implementation detail
+  * Abstract query interfaces are evil and a source of unnecessary complexity
+  * Reading and mutating data are 2 distinct concerns and should be treated separately
+  * It must be **simple** to use the full power of your database
 
-  env = ROM::Environment.setup(memory: 'memory://test')
+With that in mind ROM ships with adapters that allow you to connect to any
+database and exposes a DSL to define **relations** and **mappers** to simplify
+accessing the data.
 
-  env.schema do
-    base_relation :users do
-      repository :memory
+## Synopsis
 
-      attribute :id,   Integer
-      attribute :name, String
+``` ruby
+require 'rom-sql'
 
-      key :id
-    end
+setup = ROM.setup(sqlite: "sqlite::memory")
+
+setup.sqlite.connection.create_table :users do
+  primary_key :id
+  String :name
+  Integer :age
+end
+
+setup.relation(:users) do
+  def by_name(name)
+    where(name: name)
   end
+
+  def adults
+    where { age >= 18 }
+  end
+end
+
+setup.mappers do
+  define(:users) do
+    model(name: 'User')
+  end
+end
+
+rom = setup.finalize
+
+# accessing registered relations
+users = rom.relations.users
+
+users.insert(name: "Joe", age: 17)
+users.insert(name: "Jane", age: 18)
+
+puts users.by_name("Jane").adults.to_a.inspect
+# => [{:id=>2, :name=>"Jane", :age=>18}]
+
+# reading relations using defined mappers
+puts rom.read(:users).by_name("Jane").adults.to_a.inspect
+# => [#<User:0x007fdba161cc48 @id=2, @name="Jane", @age=18>]
 ```
 
-### 2. Set up mapping
+## ROADMAP
 
-```ruby
-  class User
-    attr_reader :id, :name
+ROM is on its way towards 1.0.0. Please refer to [issues](https://github.com/rom-rb/rom/issues)
+for details.
 
-    def initialize(attributes)
-      @id, @name = attributes.values_at(:id, :name)
-    end
-  end
+## Community
 
-  env.mapping do
-    users do
-      map :id, :name
-      model User
-    end
-  end
-```
+* [![Gitter chat](https://badges.gitter.im/rom-rb/chat.png)](https://gitter.im/rom-rb/chat)
+* [Ruby Object Mapper](https://groups.google.com/forum/#!forum/rom-rb) mailing list
 
-### 3. Work with Plain Old Ruby Objects
+## Credits
 
-```ruby
-  env.session do |session|
-    user = session[:users].new(id: 1, name: 'Jane')
-    session[:users].save(user)
-    session.flush
-  end
+This project has a long history and wouldn't exist without following people:
 
-  jane = env[:users].restrict(name: 'Jane').one
-```
+ * [Dan Kubb](https://github.com/dkubb)
+ * [Markus Schirp](https://github.com/mbj)
+ * [Martin Gamsjaeger](https://github.com/snusnu)
+
+## License
+
+See `LICENSE` file.

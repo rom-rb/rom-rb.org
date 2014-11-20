@@ -6,7 +6,7 @@ activate :livereload
 activate :directory_indexes
 
 # syntax stuff
-activate :syntax, :linenos => 'inline', :anchorlinenos => true, :linenostart => 2
+activate :syntax
 
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :smartypants => true
