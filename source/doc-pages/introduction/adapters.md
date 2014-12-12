@@ -1,0 +1,1 @@
+Adapters intro coming soon

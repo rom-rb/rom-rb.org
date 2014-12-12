@@ -37,3 +37,22 @@ configure :build do
   # Or use a different image path
   # set :http_path, "/Content/images/"
 end
+
+helpers do
+
+  def nav_link(slug, title)
+    current = current_page.data.slug
+
+    class_names = []
+    class_names << 'active' if slug == current
+
+    content_tag(:li, class: class_names.join(' ')) do
+      link_to(title, slug, class: class_names.join(' '))
+    end
+  end
+
+  def introduction_layout(&block)
+    partial "layouts/introduction", locals: { content: capture_html(&block) }
+  end
+
+end

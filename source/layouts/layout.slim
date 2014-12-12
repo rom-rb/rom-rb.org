@@ -12,10 +12,14 @@ html
   body class=page_classes
     .page-wrapper
       header
-        .navbar.navbar-fixed-top
+        nav.navbar.navbar-fixed-top
           .navbar-inner
             .container
-              a.brand href="/" Ruby Object Mapper
+              a.navbar-brand href="/" Ruby Object Mapper
+              ul.nav.navbar-nav
+                = nav_link("/introduction", "Introduction")
+                = nav_link("/tutorials", "Tutorials")
+                = nav_link("/api-docs", "API Docs")
               .social
                 .github
                   iframe src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"
