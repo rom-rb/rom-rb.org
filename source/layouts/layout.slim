@@ -8,7 +8,8 @@ html
     == stylesheet_link_tag "normalize", "all"
     style type="text/css"
       == Rouge::Themes::ThankfulEyes.render(:scope => '.highlight')
-    == javascript_include_tag  "all"
+    == javascript_include_tag "all"
+    == javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
   body class=page_classes
     .page-wrapper
       header

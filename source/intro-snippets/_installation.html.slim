@@ -1,0 +1,15 @@
+.installation
+  .row
+    .col-md-2.col-md-offset-3
+      .dropdown id="db-dropdown"
+        button class="btn btn-default dropdown-toggle" type="button" id="db-select" data-toggle="dropdown" aria-expanded="true"
+          span class="value" Select database
+          span class="caret"
+        ul.dropdown-menu role="menu" aria-labelledby="db-select"
+          li role="presentation"
+            a role="menutime" tabindex="-1" href="#" SQL
+            a role="menutime" tabindex="-1" href="#" MongoDB
+    .col-md-4
+      <pre><code id="gem-install-code" class="highlight shell">$ gem install rom</code></pre>
+
+script src="/javascripts/gem-select.js"
