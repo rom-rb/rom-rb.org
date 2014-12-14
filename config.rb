@@ -40,10 +40,14 @@ end
 
 helpers do
 
-  def nav_link(slug, title)
+  def nav_heading(slug, title)
+    nav_link(slug, title, "nav-heading")
+  end
+
+  def nav_link(slug, title, class_names = [])
     current = current_page.data.slug
 
-    class_names = []
+    class_names = Array(class_names)
     class_names << 'active' if slug == current
 
     content_tag(:li, class: class_names.join(' ')) do
