@@ -32,8 +32,9 @@ libraries.
 
 Here's a simple diagram showing the architecture:
 
-<img src="/images/rom-design-overview.png"/>
-
+<p class="text-center">
+  <img src="/images/rom-design-overview.png"/>
+</p>
 
 ### Differences between ROM and ActiveRecord
 
