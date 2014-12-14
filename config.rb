@@ -9,7 +9,7 @@ activate :directory_indexes
 activate :syntax
 
 set :markdown_engine, :redcarpet
-set :markdown, :fenced_code_blocks => true, :smartypants => true
+set :markdown, fenced_code_blocks: true, smartypants: true
 
 set :css_dir,    'stylesheets'
 set :js_dir,     'javascripts'
@@ -56,10 +56,29 @@ helpers do
   end
 
   DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
+  GEMS = %w(rom rom-sql rom-mongo rom-rails)
 
   def edit_article_link(title = 'Edit')
     slug = current_page.data.slug
     link_to title, DOC_PAGES_ROOT % { slug: slug }
+  end
+
+  def api_docs_link(gem)
+    link_to gem, "http://www.rubydoc.info/gems/#{gem}"
+  end
+
+  def api_docs_nav
+    html = ""
+
+    html << link_to("API Docs <span class='caret'/>", "#",
+                    class: "dropdown-toggle",
+                    role: "button", data: { toggle: "dropdown" })
+
+    html << content_tag(:ul, class: "dropdown-menu", role: "menu") do
+      GEMS.map { |name| content_tag(:li, api_docs_link(name)) }.join
+    end
+
+    html
   end
 
 end

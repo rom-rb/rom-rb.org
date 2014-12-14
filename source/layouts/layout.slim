@@ -20,7 +20,7 @@ html
               ul.nav.navbar-nav
                 = nav_link("/introduction", "Introduction")
                 = nav_link("/tutorials", "Tutorials")
-                = nav_link("/api-docs", "API Docs")
+                li.dropdown == api_docs_nav
               .social
                 .github
                   iframe src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"
