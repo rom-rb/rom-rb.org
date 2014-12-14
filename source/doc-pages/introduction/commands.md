@@ -4,9 +4,10 @@ boundaries of our application. We need to sanitize, often coerce and validate
 that input and decide what to do with it.
 
 This can, in fact, be so complex that having it handled on the same layer where
-data access happens is not reasonable. ROM follows the idea of [CQRS](http://martinfowler.com/bliki/CQRS.html)
-which may sound overly complicated but it's really a simple concept - querying
-data is separated from changing the data.
+data access happens is not reasonable. ROM follows the idea of
+[CQRS](http://martinfowler.com/bliki/CQRS.html) which may sound overly
+complicated but it's really a simple concept - querying data is separated from
+changing the data.
 
 It's the most experimental part of ROM; however, it is based on what many of us
 in the Rails community have been doing for years. Let's talk about form objects.
