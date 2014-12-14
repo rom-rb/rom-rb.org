@@ -55,4 +55,11 @@ helpers do
     partial "layouts/introduction", locals: { content: capture_html(&block) }
   end
 
+  DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
+
+  def edit_article_link(title = 'Edit')
+    slug = current_page.data.slug
+    link_to title, DOC_PAGES_ROOT % { slug: slug }
+  end
+
 end

@@ -5,15 +5,15 @@ html
     meta[content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"]
     title
       = data.page.title || "Ruby Object Mapper"
-    == stylesheet_link_tag "normalize", "all"
+    == stylesheet_link_tag "all"
     style type="text/css"
-      == Rouge::Themes::ThankfulEyes.render(:scope => '.highlight')
+      == Rouge::Theme.find('github').render(scope: '.highlight')
     == javascript_include_tag "all"
     == javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
   body class=page_classes
     .page-wrapper
       header
-        nav.navbar.navbar-fixed-top
+        nav.navbar.navbar-default.navbar-fixed-top
           .navbar-inner
             .container
               a.navbar-brand href="/" Ruby Object Mapper
