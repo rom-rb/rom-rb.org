@@ -1,4 +1,10 @@
-ROM is an experimental Ruby ORM that aims to bring powerful object mapping
+This is a small series of introductory articles that explain ROM architecture
+and reasons for the existance of this project. It is divided into 4 sections
+each explaining the core parts of ROM.
+
+### What is ROM?
+
+ROM is an experimental Ruby library that aims to bring powerful object mapping
 capabilities and give you back the full power of your database. It is based on a
 couple of core concepts which makes it different from a typical ORM:
 
