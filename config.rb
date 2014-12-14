@@ -55,6 +55,10 @@ helpers do
     partial "layouts/introduction", locals: { content: capture_html(&block) }
   end
 
+  def tutorials_layout(&block)
+    partial "layouts/tutorials", locals: { content: capture_html(&block) }
+  end
+
   DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
   GEMS = %w(rom rom-sql rom-mongo rom-rails)
 
