@@ -1,18 +1,32 @@
-### Differences between ROM and ActiveRecord
+Many Rubyists start their journey being exposed to Rails and its favored
+object relational mapping (ORM) library, `Active Record`. `Active Record` is an
+implementation of the **Active Record** pattern. In this pattern, objects carry
+the data *and* the behavior that operates on that data.
 
-For starters - ROM doesn't implement the Active Record pattern. This means that
-objects instantiated by the mappers have no knowledge about persistence. ROM
-favors explicit definitions of every relation that your application is going to
-use as opposed to dynamic retrieval of active records using a wide query api.
-ROM relations expose a powerful query APIs that you can use internally to expose
-publicly acessible relations which are results of those queries.
+### Data Access
+**Active Record**: Data access logic is part of the object and controls all
+reading and writing to the database. You use the same objects to create, read,
+update, and delete data. These objects are the models in traditional Rails
+applications.
 
-You can say that relations in ROM are like ActiveRecord relations where the only
-public methods are the ones you defined as "scopes". It's a subtle but significant
-difference.
+**ROM**: Data manipulation is handled by a separate interface with user defined
+commands. Every relation that your application is going to use is explicitly
+defined. The ROM relations expose powerful internal query APIs that you use to
+create publicly accessible relation methods to return query results.
 
-Another difference is how data manipulation is handled. In case of ActiveRecord
-you use the same objects to read as well as create, update and delete data. In
-ROM data manipulation is handled by a separate interface using commands that
-you define. It's a simple infrastructure that helps in a structured and explicit
-approach to data manipulation which requires special care.
+Imagine your `ActiveRecord` models only exposed the scopes and scope methods to
+the rest of the application. This is what ROM relations are like.
+
+### Models
+**Active Record**: Models are at the heart of the pattern, and the library.
+As mentioned before, all data access is via the model. The assumption is
+that your application will only ever need a data representation that matches
+your database exactly. As the application grows, so does the likelihood that
+you need other ways to represent your data. In the Rails community this
+manifests as presenters, formatters, renderers, serializers, and so on.
+
+All those objects that you create are nothing more than mapping. They take
+`ActiveRecord` objects and represent them in a context sensitive way.
+
+**ROM**: There is no single "model" object in ROM. ROM objects that are
+instantiated by the mappers have no knowledge about persistence.

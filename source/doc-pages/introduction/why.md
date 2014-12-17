@@ -1,9 +1,26 @@
-If you care about clarity, explicitness and structured approach to handling data
-and persistence you probably want to give ROM a try. With ROM you design your
-domain layer like you want, it's not coupled to the structure of your database.
-It also makes it easy to work with different datasources by giving you a minimum
-infrastructure to support it. It avoids high-level abstractions that are great
-in the beginning and a horror later on. Its adapters are based on battle-tested
-and powerful libraries like `Sequel` giving you a very stable foundation. It can
-be easily integrated with full-stack frameworks like Rails or used "standalone"
-in other use cases. Oh, it's fast too and highly optimizable.
+### Flexibile
+The single biggest reason to use ROM is to have the freedom to design the domain
+layer however you like -- you aren't tied to the structure of your database. This
+flexibility is of primary concern to ROM.
+
+### Powerful
+ROM makes it easy to work with different datasources. A minimum structure is
+provided with more adapters being created every day. The primary adapter,
+[`rom-sql`](https://github.com/rom-rb/rom-sql), is built on the battle-tested
+[`Sequel`](https://github.com/jeremyevans/sequel) library which is stable and
+brings with it immediate support for many different types of databases.
+
+### Small
+Each piece of ROM is small and understandable making it easier to find what you
+need when adding the library to your project.
+
+### Explicit
+ROM favors explicit definition of components using the included DSL.
+
+### Usable
+Small, explicit objects make it easy to use ROM objects as dependencies of your
+objects. The interfaces are kept simple to encourage reuse and encapsulation.
+
+### Fast
+It's early for ROM yet, but initial benchmarks show promising performance when
+compared to other data access libraries.
