@@ -1,5 +1,5 @@
 Many Rubyists start their journey being exposed to Rails and its favored
-object relational mapping (ORM) library, `Active Record`. `Active Record` is an
+object relational mapping (ORM) library, `ActiveRecord`. `ActiveRecord` is an
 implementation of the **Active Record** pattern. In this pattern, objects carry
 the data *and* the behavior that operates on that data.
 
