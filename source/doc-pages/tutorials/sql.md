@@ -9,7 +9,8 @@ setup = ROM.setup(my_db: 'sqlite::memory')
 
 ### Migrations
 
-Sequel migration interface is available:
+For schema migrations you can use Sequel's
+[Migration API](http://sequel.jeremyevans.net/rdoc/files/doc/migration_rdoc.html).
 
 ``` ruby
 setup.sqlite.connection.create_table(:users) do
@@ -29,7 +30,10 @@ end
 ### Relations
 
 You can define relations for every database table and extend them with custom
-methods and association definitions:
+methods and association definitions.
+
+[Sequel Dataset API](http://sequel.jeremyevans.net/rdoc/files/doc/dataset_basics_rdoc.html)
+is available inside relations.
 
 ``` ruby
 ROM.relation(:users) do
