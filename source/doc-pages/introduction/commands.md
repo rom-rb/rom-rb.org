@@ -14,12 +14,12 @@ The main goals of the command api are:
 * an explicit way to define how you change your data
 * convention for dealing with the input
 * simple error handling
-* ability to levarage database features to ensure data integrity
+* ability to leverage database features to ensure data integrity
 
 The last goal is probably the most crucial one. The database can, quite often,
 be used to make sure our data are in  Many SQL databases support setting
 constraints like "not-null", or "unique" on specific columns. We can and should
-levarage those features.
+leverage those features.
 
 With the command api, you can inject your own input handlers and validators for
 every command. Adapters implement commands which is why we can support database
