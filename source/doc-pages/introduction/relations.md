@@ -14,7 +14,7 @@ Every detail about how data is being retrieved from data sources is
 contained in the relation layer. Your application sees only the relations, it
 doesn't have to care about the databases, queries, column names, limits, etc.
 
-A relation is a lightweight layer that give you a lot of flexibility when it
+A relation is a lightweight layer that gives you a lot of flexibility when it
 comes to fetching data and building complex queries. ROM builds relation
 objects based on the schema and extends them with adapter-specific
 functionality. _(This feature is already used by `rom-sql` to extend
