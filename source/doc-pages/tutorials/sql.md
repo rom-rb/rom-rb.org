@@ -1,10 +1,10 @@
 ### Setup
 
-To configure database connection you pass in a hash with connection identifiers
+To configure a database connection you pass in a hash with connection identifiers
 and URIs. Any URI that's supported by Sequel can be used here:
 
 ``` ruby
-setup = ROM.setup(my_db: 'sqlite::memory')
+setup = ROM.setup(sqlite: 'sqlite::memory')
 ```
 
 ### Migrations
