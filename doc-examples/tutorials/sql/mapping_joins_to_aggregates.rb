@@ -1,27 +1,4 @@
-require 'rom-sql'
-
-# Setup
-setup = ROM.setup(sqlite: 'sqlite::memory')
-
-conn = setup.sqlite.connection
-conn.drop_table?(:users)
-conn.drop_table?(:tasks)
-
-# Migrations
-setup.sqlite.connection.create_table(:users) do
-  primary_key :id
-  String :name
-end
-
-setup.sqlite.connection.create_table(:tasks) do
-  primary_key :id
-  Integer :user_id
-  String :title
-  Integer :priority
-end
-
-conn[:users].insert(id: 1, name: 'Jane')
-conn[:tasks].insert(user_id: 1, title: 'Have fun', priority: 1)
+require_relative 'setup'
 
 ROM.relation(:users) do
 
@@ -67,8 +44,8 @@ end
 
 rom = ROM.finalize.env
 
-puts rom.read(:users).with_tasks.to_a
+puts rom.read(:users).with_tasks.to_a.inspect
 # => [#<Entities::User:0x007f88799149f8 @id=1, @name="Jane", @tasks=[#<Entities::UserTask:0x007f8879914ae8 @title="Have fun">]>]
 
-rom.read(:tasks).with_user.to_a
+puts rom.read(:tasks).with_user.to_a.inspect
 # => [#<Entities::Task:0x007f887a3d11c0 @id=1, @user_id=1, @title="Have fun", @priority=1, @user=#<Entities::TaskUser:0x007f887a3d13f0 @name="Jane">>]

@@ -131,3 +131,112 @@ rom.read(:users).with_tasks.to_a
 rom.read(:tasks).with_user.to_a
 # => [#<Entities::Task:0x007f887a3d11c0 @id=1, @user_id=1, @title="Have fun", @priority=1, @user=#<Entities::TaskUser:0x007f887a3d13f0 @name="Jane">>]
 ```
+
+### Commands
+
+To create, update and delete tuples you can define commands:
+
+``` ruby
+ROM.relation(:users) do
+
+  def by_id(id)
+    where(id: id)
+  end
+
+  def by_name(name)
+    where(name: name)
+  end
+
+end
+
+ROM.commands(:users) do
+  define(:create) do
+    result :one
+  end
+
+  define(:update) do
+    result :one
+  end
+
+  define(:delete) do
+    result :many
+  end
+end
+
+rom = ROM.finalize.env
+
+user_commands = rom.command(:users)
+
+result = user_commands.try { create(name: 'Jade') }
+
+puts result.inspect
+# => #<ROM::Result::Success:0x007fde43188200 @value={:id=>2, :name=>"Jade"}>
+
+result = user_commands.try { update(:by_id, 2).set(name: 'Jade Doe') }
+
+puts result.inspect
+# => #<ROM::Result::Success:0x007fcf214a8b78 @value={:id=>1, :name=>"Jane Doe"}>
+
+result = user_commands.try { delete(:by_name, 'Jade Doe').execute }
+
+puts result.inspect
+# => #<ROM::Result::Success:0x007fb07a15cc00 @value=[{:id=>2, :name=>"Jade Doe"}]>
+```
+
+### Handling input, validation and errors
+
+When defining commands you can provide external input handlers and validators:
+
+``` ruby
+require 'virtus'
+
+ROM.relation(:users) do
+
+  def by_id(id)
+    where(id: id)
+  end
+
+  def by_name(name)
+    where(name: name)
+  end
+
+end
+
+class NewUserInput
+  include Virtus.model
+
+  attribute :name, String
+
+  def self.[](input)
+    new(input)
+  end
+end
+
+class NewUserValidator
+  InvalidInputError = Class.new(ROM::CommandError)
+
+  # Required by ROM
+  def self.call(input)
+    errors = []
+    errors << "name cannot be blank" if input.name == ''
+    raise InvalidInputError, errors if errors.any?
+  end
+end
+
+ROM.commands(:users) do
+  define(:create) do
+    input NewUserInput
+    validator NewUserValidator
+    result :one
+  end
+end
+
+rom = ROM.finalize.env
+
+user_commands = rom.command(:users)
+
+result = user_commands.try { create(name: '') }
+
+puts result.inspect
+# => #<ROM::Result::Failure:0x007f91b38f95e8 @error=#<NewUserValidator::InvalidInputError: ["name cannot be blank"]>>
+```
