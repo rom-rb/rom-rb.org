@@ -9,3 +9,8 @@ gem 'slim'
 gem 'redcarpet'
 gem 'bootstrap-sass'
 gem 'therubyracer'
+
+gem 'rom', github: 'rom-rb/rom', branch: 'master'
+gem 'rom-sql', github: 'rom-rb/rom-sql', branch: 'master'
+gem 'sqlite3'
+gem 'pg'
