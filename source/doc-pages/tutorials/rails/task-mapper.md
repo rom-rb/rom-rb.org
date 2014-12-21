@@ -15,8 +15,8 @@ describe 'Task relation' do
   fixtures :tasks
 
   describe 'index_view' do
-    let(:task_one) { Task.new(title: 'Task One') }
-    let(:task_two) { Task.new(title: 'Task Two') }
+    let(:task_one) { Task.new(id: 1, title: 'Task One') }
+    let(:task_two) { Task.new(id: 2, title: 'Task Two') }
 
     it 'returns task objects sorted by name' do
       tasks = ROM.env.read(:tasks).index_view
