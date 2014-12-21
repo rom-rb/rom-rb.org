@@ -4,7 +4,7 @@ To get up and running quickly you can generate the app skeleton using a special
 template:
 
 ``` shell
-rails new rom-todo-app -JTS -m http://rom-rb.org/doc-examples/rails-template.rb
+rails new rom-todo-app -JTS -m https://gist.githubusercontent.com/solnic/adb4de6baaa5b27d9502/raw/a98bec94a754173378f4129900ca5affa17c427b/gistfile1.rb
 ```
 
 The template does a couple of things for us:
