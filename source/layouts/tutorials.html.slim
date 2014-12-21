@@ -1,8 +1,12 @@
 .row
   .col-md-2
     ul.nav.nav-pills.nav-stacked
-      = nav_link("/tutorials/sql", "SQL")
-      = nav_link("/tutorials/rails", "Rails")
+      = nav_heading("/tutorials/rails", "Rails")
+      = nav_link("/tutorials/rails/getting-started", "Getting started")
+      = nav_link("/tutorials/rails/tasks-index", "Tasks index")
+      = nav_link("/tutorials/rails/task-mapper", "Task mapper")
+      = nav_link("/tutorials/rails/managing-tasks", "Managing tasks")
+      = nav_heading("/tutorials/sql", "SQL")
   .col-md-10
     .page-header
       h1 = current_page.data.title
