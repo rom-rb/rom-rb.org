@@ -1,19 +1,19 @@
 GIT
   remote: git://github.com/rom-rb/rom-sql.git
-  revision: d329abc77eb7f4a33fc6f8312e8d8fd07d47a2db
+  revision: 8c7f7bf8a302eaaff8ff3b570631395aa5cb0cc6
   branch: master
   specs:
-    rom-sql (0.2.0)
+    rom-sql (0.3.1)
       equalizer (~> 0.0, >= 0.0.9)
       rom (~> 0.4, >= 0.4.0)
       sequel (~> 4.17)
 
 GIT
   remote: git://github.com/rom-rb/rom.git
-  revision: 40b7aa35f3b67e6c1092f338bc936b716d1ab905
+  revision: 348b9c51805eb8c5861c923510d6ceb87c0ba53f
   branch: master
   specs:
-    rom (0.4.1)
+    rom (0.4.3)
       addressable (~> 2.3)
       charlatan (~> 0.1, >= 0.1)
       concord (~> 0.1, >= 0.1.4)
