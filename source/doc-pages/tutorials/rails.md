@@ -14,4 +14,4 @@ The tutorial is divided into 5 sections:
 * [Tasks index](/tutorials/rails/tasks-index) - shows how to display a list of tasks using generated relation
 * [Task mapper](/tutorials/rails/task-mapper) - shows how to extend tasks relation and define a dedicated mapper
 * [Managing tasks](/tutorials/rails/managing-tasks) - shows how to implement create/update/delete actions with commands
-* [Managing tasks](/tutorials/validations) - shows how to use validators
+* [Validations](/tutorials/validations) - shows how to use validators
