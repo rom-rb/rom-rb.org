@@ -13,7 +13,7 @@ The template does a couple of things for us:
 * Generates a migration that creates `tasks` table
 * Generates `app/relations` with tasks relation
 * Generates `app/mappers` with default definition for `tasks`
-* Generates `app/commands` with default set of create/update/delete commands
+* Generates `app/commands` with default set of create/update/delete commands for
   `tasks`
 * Creates `spec/fixtures` with basic test data for our specs
 
