@@ -35,7 +35,7 @@ We can add task parameters validation by creating `TaskParams` and `TaskValidato
 classes and configuring commands to use them:
 
 ``` ruby
-# app/params
+# app/models/task_params.rb
 class TaskParams
   include ROM::Model::Params
 
@@ -46,7 +46,7 @@ class TaskParams
   validates :title, presence: true
 end
 
-# app/validators/task_validator.rb
+# app/models/task_validator.rb
 class TaskValidator
   include ROM::Model::Validator
 end
@@ -68,6 +68,9 @@ Now it's time to tweak our controller actions and views a little bit:
 ``` ruby
 # app/controllers/tasks_controller.rb
 class TasksController < ApplicationController
+
+  # ...
+
   def new
     render :new, locals: { task: TaskParams.new }
   end

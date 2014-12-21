@@ -46,9 +46,10 @@ end
 And ERB template for the new action:
 
 ``` erb
+# app/views/tasks/new.html.erb
 <%= form_for :task, url: tasks_path do |f| %>
-  <%= f.text_feld :title %>
-  <%= f.submt 'Save' %>
+  <%= f.text_field :title %>
+  <%= f.submit 'Save' %>
 <% end %>
 ```
 
@@ -71,6 +72,8 @@ We can easily implement edit/update actions in the similar fashion now:
 
 feature 'Tasks' do
   fixtures :all
+
+  # ...
 
   scenario 'I can edit a task' do
     visit tasks_path
@@ -106,6 +109,9 @@ Now we can implement actions in the controller and add the views:
 
 ``` ruby
 class TasksController < ApplicationController
+
+  # ...
+
   def edit
     task = rom.read(:tasks).by_id(params[:id]).first
     render :edit, locals: { task: task }
@@ -122,13 +128,29 @@ class TasksController < ApplicationController
 end
 ```
 
-Edit ERB template can look like that:
+ERB template for edit action can look like that:
 
 ``` erb
+# app/views/tasks/edit.html.erb
 <%= form_for :task, url: task_path(id: task.id), method: :put do |f| %>
   <%= f.text_field :title %>
   <%= f.submit 'Save' %>
 <% end %>
+```
+
+We also need to turn task titles into links in the index view:
+
+``` erb
+# app/views/tasks/index.html.erb
+<h1>Tasks#index</h1>
+
+<ul>
+  <% tasks.each do |task| %>
+    <li>
+      <%= link_to task.title, edit_task_path(id: task.id) %>
+    </li>
+  <% end %>
+</ul>
 ```
 
 Now our tests should pass:

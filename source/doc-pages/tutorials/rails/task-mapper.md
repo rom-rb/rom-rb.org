@@ -9,6 +9,8 @@ We're going to start by specifying how task objects should look like:
 ``` ruby
 # spec/relations/task_spec.rb
 
+require 'rails_helper'
+
 describe 'Task relation' do
   fixtures :tasks
 
@@ -54,7 +56,7 @@ Let's define our missing relation:
 # app/relations/tasks.rb
 ROM.relation(:tasks) do
   def index_view
-    select(:title).order(:title)
+    select(:id, :title).order(:title)
   end
 end
 ```
@@ -63,12 +65,13 @@ We also would like to use our own domain objects, let's define them as Virtus
 value objects:
 
 ``` ruby
-# app/entities/task.rb
+# app/models/task.rb
 
 class Task
   include Virtus.value_object(coerce: false)
 
   values do
+    attribute :id, Integer
     attribute :title, String
   end
 end
@@ -79,11 +82,8 @@ With an entity class defined we can simply instruct the task mapper to use it:
 ``` ruby
 # app/mappers/tasks.rb
 ROM.mappers do
-  define(:tasks)
-
-  define(:index_view, parent: :tasks, inherit_header: false) do
+  define(:tasks) do
     model Task
-    attribute :name
   end
 end
 ```
@@ -125,9 +125,9 @@ and the view:
 <h1>Tasks#index</h1>
 
 <ul>
-  <%= tasks.each do |task| %>
+  <% tasks.each do |task| %>
     <li>
-      <%= task.name %>
+      <%= task.title %>
     </li>
   <% end %>
 </ul>
@@ -155,5 +155,5 @@ just the title attribute. Nothing else, nothing more. Consider this:
 * We don't have an object that exposes database query DSL, because we don't need it
 * We don't have an object that can serialize itself, because we don't need it
 
-In the next part we will see how to change the data and deal with params and
-validations.
+In the [next part](/tutorials/rails/managing-tasks) we will see how to implement
+create and update actions.

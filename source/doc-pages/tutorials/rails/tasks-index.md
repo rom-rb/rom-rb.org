@@ -11,7 +11,7 @@ feature 'Tasks' do
   fixtures :all
 
   scenario 'I can see a list of my tasks' do
-    visit '/tasks/index'
+    visit tasks_path
 
     expect(page).to have_content('Task One')
   end
@@ -22,7 +22,7 @@ Now let's make it pass. First we will generate tasks controller with an index
 action:
 
 ``` shell
-bin/rails g controller tasks index
+bin/rails g controller tasks
 ```
 
 Here's the simplest implementation of `TasksController#index`:
@@ -41,9 +41,9 @@ And here's an erb template for the index action:
 <h1>Tasks#index</h1>
 
 <ul>
-  <%= tasks.each do |task| %>
+  <% tasks.each do |task| %>
     <li>
-      <%= task[:name] %>
+      <%= task[:title] %>
     </li>
   <% end %>
 </ul>
