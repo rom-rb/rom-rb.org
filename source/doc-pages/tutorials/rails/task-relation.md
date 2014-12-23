@@ -97,4 +97,4 @@ the details.
 
 We've got an array of hashes orderd according to our specifications. What about
 getting this data into our own Domain Objects? That's where we're going
-[next](/tutorials/rails/task-mappers).
+[next](/tutorials/rails/task-mapper).
