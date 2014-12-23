@@ -35,7 +35,30 @@ constructor.
 We're using virtus value objects because they give us nice features out-of-the-box
 like equality methods.
 
-Now our test will pass:
+The task relation spec is now failing as it expects hashes so let's update it
+to reflect the changes we made:
+
+```ruby
+# spec/relations/task_spec.rb
+
+require 'rails_helper'
+
+describe 'Tasks relation' do
+  fixtures :tasks
+
+  describe 'index_view' do
+    it 'returns tasks sorted by name' do
+      tasks = ROM.env.read(:tasks).index_view
+      task_one = Task.new(id: 1, title: "Task One")
+      task_two = Task.new(id: 2, title: "Task Two")
+
+      expect(tasks.to_a).to eql([task_one, task_two])
+    end
+  end
+end
+```
+
+Now it'll pass:
 
 ``` ruby
 $ bin/rspec spec/relations/tasks_spec.rb
