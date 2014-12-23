@@ -23,7 +23,7 @@ require 'rails_helper'
 describe 'Tasks relation' do
   fixtures :tasks
 
-  describe 'index_view` do
+  describe 'index_view' do
     it 'returns tasks sorted by name' do
       tasks = ROM.env.read(:tasks).index_view
 
