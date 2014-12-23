@@ -1,17 +1,26 @@
-Welcome in ROM on Rails tutorial.
+Welcome to the ROM on Rails tutorial.
 
-This tutorial is intended for people familiar with Rails who would like to learn
-about ROM. The main goal is to explain basic concepts behind ROM by showing real
-code.
+This tutorial will help to explain some of the basic concepts behind ROM
+by building a simple Rails application to manage tasks. You will extend
+[relations](/introduction/relations), define [mappers](/introduction/mappers),
+and use [commands](/introduction/commands) to modify data. It is primarily
+intended for those familiar with Rails who want to learn more about ROM.
 
-By following the tutorial you will build a simple application that allows to
-manage tasks. It will show you how to extend relations, define mappers and use
-commands.
+* [Getting started](/tutorials/rails/getting-started) - quickly initialize an application with a ROM-based template
+* [Tasks index](/tutorials/rails/tasks-index) - display a list of tasks using a generated relation
+* [Task mapper](/tutorials/rails/task-mapper) - extend the tasks relation and define a dedicated mapper
+* [Managing tasks](/tutorials/rails/managing-tasks) - implement create/update/delete actions with commands
+* [Validations](/tutorials/validations) - use validators
 
-The tutorial is divided into 5 sections:
+The following libraries are used throughout:
 
-* [Getting started](/tutorials/rails/getting-started) - shows how to quickly generate app skeleton using a template
-* [Tasks index](/tutorials/rails/tasks-index) - shows how to display a list of tasks using generated relation
-* [Task mapper](/tutorials/rails/task-mapper) - shows how to extend tasks relation and define a dedicated mapper
-* [Managing tasks](/tutorials/rails/managing-tasks) - shows how to implement create/update/delete actions with commands
-* [Validations](/tutorials/validations) - shows how to use validators
+* [rom](https://github.com/rom-rb/rom) - main gem for the ROM project
+* [rom-sql](https://github.com/rom-rb/rom-sql) - database adapter based on [Sequel](https://github.com/jeremyevans/sequel)
+* [rom-rails](https://github.com/rom-rb/rom-rails) - Rails integration for ROM
+
+Of note is the [rom-rails](https://github.com/rom-rb/rom-rails) library, which
+is essentially a Railtie and some generators. The Railtie allows you to place
+[relations](/introduction/relations), [mappers](/introduction/mappers), and
+[commands](/introduction/commands) in directories similar to how Rails
+places models, controllers, and mailers under the `app` directory. The
+integration makes ROM feel right at home in youru Rails application.
