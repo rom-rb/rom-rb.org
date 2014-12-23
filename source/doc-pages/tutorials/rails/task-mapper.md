@@ -1,68 +1,8 @@
 ### Setting up Task mapper
 
-ROM splits data access into two parts: relations and mappers. Inside relations
-we define how we fetch the data. Mappers define how the data is presented to
-our application layer.
-
-We're going to start by specifying how task objects should look like:
-
-``` ruby
-# spec/relations/task_spec.rb
-
-require 'rails_helper'
-
-describe 'Task relation' do
-  fixtures :tasks
-
-  describe 'index_view' do
-    let(:task_one) { Task.new(id: 1, title: 'Task One') }
-    let(:task_two) { Task.new(id: 2, title: 'Task Two') }
-
-    it 'returns task objects sorted by name' do
-      tasks = ROM.env.read(:tasks).index_view
-
-      expect(tasks.to_a).to eql([task_one, task_two])
-    end
-  end
-end
-```
-
-This test fails telling us there's no relation called :index_view defined within
-the tasks relation:
-
-``` shell
-$ bin/rspec spec/relations/tasks_spec.rb
-F
-
-Failures:
-
-  1) Task relation index_view returns task objects sorted by name
-     Failure/Error: tasks = ROM.env.read(:tasks).index_view
-     ROM::NoRelationError:
-       undefined relation :index_view within "tasks"
-       # backtrace...
-
-Finished in 0.00663 seconds (files took 0.2345 seconds to load)
-1 example, 1 failure
-
-Failed examples:
-
-rspec ./spec/relations/tasks_spec.rb:10 # Task relation index_view returns task objects sorted by name
-```
-
-Let's define our missing relation:
-
-``` ruby
-# app/relations/tasks.rb
-ROM.relation(:tasks) do
-  def index_view
-    select(:id, :title).order(:title)
-  end
-end
-```
-
-We also would like to use our own domain objects, let's define them as Virtus
-value objects:
+You may discover that using hashes is really all you need but in this case it
+doesn't feel right - we would like to use our own domain objects, so let's
+define them as [Virtus value objects](https://github.com/solnic/virtus/#value-objects):
 
 ``` ruby
 # app/models/task.rb
