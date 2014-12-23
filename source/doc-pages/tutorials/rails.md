@@ -24,4 +24,4 @@ is essentially a Railtie and some generators. The Railtie allows you to place
 [relations](/introduction/relations), [mappers](/introduction/mappers), and
 [commands](/introduction/commands) in directories similar to how Rails
 places models, controllers, and mailers under the `app` directory. The
-integration makes ROM feel right at home in youru Rails application.
+integration makes ROM feel right at home in your Rails application.
