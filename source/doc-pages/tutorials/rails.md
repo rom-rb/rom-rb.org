@@ -8,7 +8,8 @@ intended for those familiar with Rails who want to learn more about ROM.
 
 * [Getting started](/tutorials/rails/getting-started) - quickly initialize an application with a ROM-based template
 * [Tasks index](/tutorials/rails/tasks-index) - display a list of tasks using a generated relation
-* [Task mapper](/tutorials/rails/task-mapper) - extend the tasks relation and define a dedicated mapper
+* [Task relation](/tutorials/rails/task-relation) - extend the tasks relation to order results
+* [Task mapper](/tutorials/rails/task-mapper) - define a dedicated mapper for domain objects
 * [Managing tasks](/tutorials/rails/managing-tasks) - implement create/update/delete actions with commands
 * [Validations](/tutorials/validations) - use validators
 

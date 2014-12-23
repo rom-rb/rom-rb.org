@@ -80,6 +80,6 @@ humble little `tasks` relation tucked into that controller up there. It's
 happily returning data just as our ActiveRecord model might in a typical
 Rails application.
 
-[Next up](/tutorials/rails/task-mapper) we're going to fine-tune our index
+[Next up](/tutorials/rails/task-relation) we're going to fine-tune our index
 page and configure a task maper so we can have convenient data-access objects
 in our views rather than the plain hashes.
