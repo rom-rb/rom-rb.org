@@ -81,8 +81,10 @@ Finished in 0.0127 seconds (files took 0.23984 seconds to load)
 1 example, 0 failures
 ```
 
-We added a method to our relation and it ordered our results. Why is that
-important?
+### What have we done?
+
+We added a dedicated method to our relation and it ordered our results. Why is
+that important?
 
 To make `index_view` work, we used methods on the
 [adapter](/introduction/adapters) to access and order the data. In fact, if
@@ -93,7 +95,10 @@ methods and they're the reason the adapter + relation concept is so powerful.
 Using methods like this on relations prevents the rest of our application from
 knowing how data is retreived from the datastore. We're able to use the full
 capabilities of Sequel here while keeping our application blissfully unaware of
-the details.
+the details. In addition, our data access is **explicit**. This isn't a query
+interface that can perform arbitrary actions on our data. The methods are
+methods we define, named for the use-case (we hope!), and they are chainable as
+we would expect.
 
 We've got an array of hashes orderd according to our specifications. What about
 getting this data into our own Domain Objects? That's where we're going
