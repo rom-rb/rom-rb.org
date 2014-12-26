@@ -1,8 +1,22 @@
-### Setting up Task mapper
+## Setting up Task mapper
 
-You may discover that using hashes is really all you need but in this case it
-doesn't feel right - we would like to use our own domain objects, so let's
-define them as [Virtus value objects](https://github.com/solnic/virtus/#value-objects):
+We just extended our task relation with a method for the index view. The data
+return from this method is an array of hashes -- the most basic representation
+of data in ROM.
+
+These hashes may be all you need but, more often than, not you'll want to use a
+proper domain object. The "M" in ROM stands for **M**apper and it is through a
+mapper that we'll transform our hashes into something a little more useful.
+
+To start, we'll need to define an object for the mapper to use. It can be
+whatever kind of object you like. Be it a plain PORO or something more
+sophisticated. The only contract is that it must accept an attribute hash in the
+constructor.
+
+We're using
+[Virtus value objects](https://github.com/solnic/virtus/#value-objects)
+because they already support the required attribute hash construction and nice
+bonus features out-of-the-box like equality methods.
 
 ``` ruby
 # app/models/task.rb
@@ -17,10 +31,11 @@ class Task
 end
 ```
 
-With an entity class defined we can simply instruct the task mapper to use it:
+With an entity class defined we can simply instruct the task mapper to use it.
 
 ``` ruby
 # app/mappers/tasks.rb
+
 ROM.mappers do
   define(:tasks) do
     model Task
@@ -28,17 +43,24 @@ ROM.mappers do
 end
 ```
 
-You can use whatever object you like. Be it a plain PORO or something more
-sophisticated. The only contract is that it must accept attribute hash in the
-constructor.
+Notice how little we have add to the mapper definition. Running the specs again
+will illustrate how this change impacts our application:
 
-We're using virtus value objects because they give us nice features out-of-the-box
-like equality methods.
+``` shell
+$ bin/rspec
 
-The task relation spec is now failing as it expects hashes so let's update it
-to reflect the changes we made:
+  # ...
 
-```ruby
+  expected: [{:id=>1, :title=>"Task One"}, {:id=>2, :title=>"Task Two"}]
+       got: [#<Task id=1 title="Task One">, #<Task id=2 title="Task Two">]
+
+  # ...
+```
+
+The task relation spec is now failing as it expects hashes. Update it to
+reflect the changes we made:
+
+``` ruby
 # spec/relations/task_spec.rb
 
 require 'rails_helper'
@@ -58,7 +80,7 @@ describe 'Tasks relation' do
 end
 ```
 
-Now it'll pass:
+And we're green!
 
 ``` ruby
 $ bin/rspec spec/relations/tasks_spec.rb
@@ -70,11 +92,16 @@ Finished in 0.00746 seconds (files took 0.22541 seconds to load)
 
 ### Using dedicated task relation for index view
 
-Now that we defined relation and mapping for the index view we can update the
-controller and index erb template to use them:
+We've defined the relation for the index view and a mapping to return a `Task`
+instead of hashes. It's time to update the controller and the index template
+for the changes.
+
+If you remember, our goal was that the list of tasks was ordered by the task
+title. We created the `index_view` relation method for tasks.
 
 ``` ruby
 # app/controllers/tasks_controller.rb
+
 class TasksController < ApplicationController
   def index
     render locals: { tasks: rom.read(:tasks).index_view }
@@ -82,9 +109,12 @@ class TasksController < ApplicationController
 end
 ```
 
-and the view:
+The view is now getting a list of `Task` objects so we want to use the accessor
+method instead of `[]`.
 
 ``` erb
+<%# app/views/tasks/index.html.erb %>
+
 <h1>Tasks#index</h1>
 
 <ul>
@@ -98,25 +128,29 @@ and the view:
 
 ### Summing up
 
-Let's sum up what we've done so far:
+We "graduated" from simple hashes to a rich entity object to ease data access
+in the views. The `Task` entity looks similar to the standard `ActiveRecord`
+objects we normally see in a Rails project. There are some important differences
+however. Our `Task`:
 
-* We defined a dedicated relation for "tasks index" view
-* We defined a mapping for our "tasks index"
-* We introduced `Task` entity to ease data access in the views
+* is a [value object](http://www.c2.com/cgi/wiki?ValueObject). __(Remember that
+ROM can use any object that accepts a hash of attributes.)__
+* exposes only required information -- the title attribute
+* doesn't support validation
+* doesn't support persistance
+* can't be changed
+* has no database query DSL
+* doesn't support serialization
 
-This is obviously quite a lot of work to build a simple feature, however its
-purpose is to explain individual pieces of ROM and the philosophy behind it.
+The above features aren't needed to meet our design goals. The ROM team
+believes that each layer of an application should only have the data, and data
+access, it requires, and no more. Looking at the controller above, the action is
+still expressive -- we know what data is being passed to the view. We still have
+the attribute accessor in the view so no surprises there.
 
-First of all we don't access query interface in the controller - we simply refer
-to the relation that *we defined*. Secondly to display a list of tasks we use
-a simple value object that exposes the required information - in our case it's
-just the title attribute. Nothing else, nothing more. Consider this:
+We don't need to understand a large amount of unrelated and unneccessary
+features in a context where they're not required.
 
-* We don't use an object that can be validated, because we don't need it
-* We don't use an object that can be peristed, because we don't need it
-* We don't have an object that can be changed, because we don't need it
-* We don't have an object that exposes database query DSL, because we don't need it
-* We don't have an object that can serialize itself, because we don't need it
-
-In the [next part](/tutorials/rails/managing-tasks) we will see how to implement
-create and update actions.
+Okay, only include what we need, sounds great. Now we need to create and update
+tasks. In [managing tasks](/tutorials/rails/managing-tasks) we will see how to
+implement these actions.
