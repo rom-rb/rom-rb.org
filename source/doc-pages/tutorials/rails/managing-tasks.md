@@ -243,9 +243,9 @@ class TasksController < ApplicationController
   def update
     # Rails 'strong parameters'
     attributes = params.require(:task).permit(:title)
-    user_id = params[:id]
+    task_id = params[:id]
 
-    rom.command(:tasks).try { update(:by_id, user_id).set(attributes) }
+    rom.command(:tasks).try { update(:by_id, task_id).set(attributes) }
 
     redirect_to :tasks
   end
