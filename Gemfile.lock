@@ -1,3 +1,25 @@
+GIT
+  remote: git://github.com/rom-rb/rom-sql.git
+  revision: 8c7f7bf8a302eaaff8ff3b570631395aa5cb0cc6
+  branch: master
+  specs:
+    rom-sql (0.3.1)
+      equalizer (~> 0.0, >= 0.0.9)
+      rom (~> 0.4, >= 0.4.0)
+      sequel (~> 4.17)
+
+GIT
+  remote: git://github.com/rom-rb/rom.git
+  revision: 348b9c51805eb8c5861c923510d6ceb87c0ba53f
+  branch: master
+  specs:
+    rom (0.4.3)
+      addressable (~> 2.3)
+      charlatan (~> 0.1, >= 0.1)
+      concord (~> 0.1, >= 0.1.4)
+      equalizer (~> 0.0, >= 0.0.9)
+      inflecto (~> 0.0, >= 0.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -7,11 +29,22 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    adamantium (0.2.0)
+      ice_nine (~> 0.11.0)
+      memoizable (~> 0.4.0)
+    addressable (2.3.6)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
+    charlatan (0.1.0)
     chunky_png (1.3.3)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-script (2.3.0)
       coffee-script-source
       execjs
@@ -28,9 +61,15 @@ GEM
       sass (>= 3.3.0, < 3.5)
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
+    concord (0.1.5)
+      adamantium (~> 0.2.0)
+      equalizer (~> 0.0.9)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     em-websocket (0.5.1)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
+    equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.2)
@@ -43,6 +82,8 @@ GEM
       uber (~> 0.0.4)
     http_parser.rb (0.6.0)
     i18n (0.6.11)
+    ice_nine (0.11.1)
+    inflecto (0.0.2)
     json (1.8.1)
     kramdown (1.5.0)
     libv8 (3.16.14.7)
@@ -50,6 +91,8 @@ GEM
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
+    memoizable (0.4.2)
+      thread_safe (~> 0.3, >= 0.3.1)
     middleman (3.3.7)
       coffee-script (~> 2.2)
       compass (>= 1.0.0, < 2.0.0)
@@ -95,6 +138,7 @@ GEM
       tilt (~> 1.4.1)
     padrino-support (0.12.4)
       activesupport (>= 3.1)
+    pg (0.17.1)
     rack (1.5.2)
     rack-livereload (0.3.15)
       rack
@@ -108,6 +152,7 @@ GEM
     ref (1.0.5)
     rouge (1.7.4)
     sass (3.4.8)
+    sequel (4.17.0)
     slim (2.1.0)
       temple (~> 0.6.9)
       tilt (>= 1.3.3, < 2.1)
@@ -121,6 +166,7 @@ GEM
     sprockets-sass (1.2.0)
       sprockets (~> 2.0)
       tilt (~> 1.1)
+    sqlite3 (1.3.10)
     temple (0.6.10)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
@@ -136,6 +182,11 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    virtus (1.0.3)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
 
 PLATFORMS
   ruby
@@ -146,6 +197,11 @@ DEPENDENCIES
   middleman-gh-pages
   middleman-livereload
   middleman-syntax
+  pg
   redcarpet
+  rom!
+  rom-sql!
   slim
+  sqlite3
   therubyracer
+  virtus
