@@ -16,8 +16,7 @@ The main goals of the command api are:
 * simple error handling
 * ability to leverage database features to ensure data integrity
 
-The last goal is probably the most crucial one. The database can, quite often,
-be used to make sure our data are in  Many SQL databases support setting
+The last goal is probably the most crucial one. Many SQL databases support setting
 constraints like "not-null", or "unique" on specific columns. We can and should
 leverage those features.
 
