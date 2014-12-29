@@ -4,7 +4,7 @@ We just extended our task relation with a method for the index view. The data
 return from this method is an array of hashes -- the most basic representation
 of data in ROM.
 
-These hashes may be all you need but, more often than, not you'll want to use a
+These hashes may be all you need but, more often than not, you'll want to use a
 proper domain object. The "M" in ROM stands for **M**apper and it is through a
 mapper that we'll transform our hashes into something a little more useful.
 
