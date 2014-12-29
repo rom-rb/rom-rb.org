@@ -86,6 +86,8 @@ _No need to add the route since our application template added `resources
 ``` erb
 <%# app/views/tasks/new.html.erb %>
 
+<h1>Tasks#new</h1>
+
 <%= form_for :task, url: tasks_path do |f| %>
   <%= f.text_field :title %>
   <%= f.submit 'Save' %>
@@ -168,6 +170,8 @@ end
 
 ``` erb
 <%# app/views/tasks/edit.html.erb %>
+
+<h1>Tasks#edit</h1>
 
 <%= form_for :task, url: task_path(id: task.id), method: :put do |f| %>
   <%= f.text_field :title %>
