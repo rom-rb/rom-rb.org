@@ -169,7 +169,7 @@ end
 ``` erb
 <%# app/views/tasks/edit.html.erb %>
 
-<%= form_for :task, url: task_path(id: task.id), method: :post do |f| %>
+<%= form_for :task, url: task_path(id: task.id), method: :put do |f| %>
   <%= f.text_field :title %>
   <%= f.submit 'Save' %>
 <% end %>
