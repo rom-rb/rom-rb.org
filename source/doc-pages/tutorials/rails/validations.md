@@ -210,7 +210,7 @@ end
 And we can add these messages to our template:
 
 ``` erb
-<%# app/views/tasks/new.html.erb %>
+# app/views/tasks/new.html.erb
 
 <h1>Tasks#new</h1>
 

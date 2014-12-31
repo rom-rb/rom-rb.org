@@ -113,7 +113,7 @@ The view is now getting a list of `Task` objects so we want to use the accessor
 method instead of `[]`.
 
 ``` erb
-<%# app/views/tasks/index.html.erb %>
+# app/views/tasks/index.html.erb
 
 <h1>Tasks#index</h1>
 

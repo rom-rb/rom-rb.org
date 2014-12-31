@@ -50,7 +50,7 @@ read all the tasks from the `tasks` relation and hand them off to the view.
 And lastly, you'll need an erb template for the index action:
 
 ``` erb
-<%# app/views/tasks/index.html.erb %>
+# app/views/tasks/index.html.erb
 
 <h1>Tasks#index</h1>
 

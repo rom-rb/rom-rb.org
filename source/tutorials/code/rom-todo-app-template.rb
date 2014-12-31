@@ -1,6 +1,6 @@
-gem "rom", github: 'rom-rb/rom', branch: 'master'
-gem "rom-sql", github: 'rom-rb/rom-sql', branch: 'master'
-gem "rom-rails", github: 'rom-rb/rom-rails', branch: 'master'
+gem "rom", '~> 0.5'
+gem "rom-sql", '~> 0.3.1'
+gem "rom-rails", '~> 0.2'
 
 gem_group(:test) do
   gem "rspec"

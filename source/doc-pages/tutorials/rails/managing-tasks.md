@@ -84,7 +84,7 @@ _No need to add the route since our application template added `resources
 ##### Add the `new` template
 
 ``` erb
-<%# app/views/tasks/new.html.erb %>
+# app/views/tasks/new.html.erb
 
 <h1>Tasks#new</h1>
 
@@ -169,7 +169,7 @@ end
 #### Add the `edit` template
 
 ``` erb
-<%# app/views/tasks/edit.html.erb %>
+# app/views/tasks/edit.html.erb
 
 <h1>Tasks#edit</h1>
 
