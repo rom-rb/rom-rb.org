@@ -100,7 +100,7 @@ helpers do
 
   def page_title
     if is_blog_article?
-      "Powow Blog &raquo; #{current_article.title}"
+      "ROM Blog &raquo; #{current_article.title}"
     else
       yield_content(:page_title) || config.page_title
     end
