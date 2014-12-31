@@ -1,25 +1,221 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>ROM Blog</title>
-  <subtitle>News from the ROM team and more</subtitle>
-  <id>http://rom-rb.org/blog/</id>
-  <link href="http://rom-rb.org"/>
-  <link href="http://rom-rb.org/feed.xml" rel="self"/>
-  <updated>2014-12-31T22:02:00+01:00</updated>
-  <author>
-    <name>ROM team</name>
-  </author>
-  <entry>
-    <title>ROM 0.5.0 Released</title>
-    <link rel="alternate" href="http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released"/>
-    <id>http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released</id>
-    <published>2014-12-31T22:02:00+01:00</published>
-    <updated>2014-12-31T22:02:00+01:00</updated>
-    <author>
-      <name>Don Morrison</name>
-    </author>
-    <content type="html">
-      <![CDATA[<p>Today we&rsquo;re happy to announce the release of ROM version 0.5.0. It is the
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="ROM &raquo; Blog &raquo; ROM 0.5.0 Released via @rom_rb" name="twitter:description" /><meta content="ROM &raquo; Blog &raquo; ROM 0.5.0 Released" name="description" /><title>ROM &raquo; Blog &raquo; ROM 0.5.0 Released</title><link href="../../../../../stylesheets/all.css" rel="stylesheet" type="text/css" /><style type="text/css">.highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .cm {
+  color: #999988;
+  font-style: italic;
+}
+.highlight .cp {
+  color: #999999;
+  font-weight: bold;
+}
+.highlight .c1 {
+  color: #999988;
+  font-style: italic;
+}
+.highlight .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+.highlight .c, .highlight .cd {
+  color: #999988;
+  font-style: italic;
+}
+.highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+.highlight .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+.highlight .ge {
+  color: #000000;
+  font-style: italic;
+}
+.highlight .gr {
+  color: #aa0000;
+}
+.highlight .gh {
+  color: #999999;
+}
+.highlight .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+  font-weight: bold;
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .gt {
+  color: #aa0000;
+}
+.highlight .kc {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kd {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kn {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kp {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kr {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .kt {
+  color: #445588;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kv {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .mf {
+  color: #009999;
+}
+.highlight .mh {
+  color: #009999;
+}
+.highlight .il {
+  color: #009999;
+}
+.highlight .mi {
+  color: #009999;
+}
+.highlight .mo {
+  color: #009999;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #009999;
+}
+.highlight .sb {
+  color: #d14;
+}
+.highlight .sc {
+  color: #d14;
+}
+.highlight .sd {
+  color: #d14;
+}
+.highlight .s2 {
+  color: #d14;
+}
+.highlight .se {
+  color: #d14;
+}
+.highlight .sh {
+  color: #d14;
+}
+.highlight .si {
+  color: #d14;
+}
+.highlight .sx {
+  color: #d14;
+}
+.highlight .sr {
+  color: #009926;
+}
+.highlight .s1 {
+  color: #d14;
+}
+.highlight .ss {
+  color: #990073;
+}
+.highlight .s {
+  color: #d14;
+}
+.highlight .na {
+  color: #008080;
+}
+.highlight .bp {
+  color: #999999;
+}
+.highlight .nb {
+  color: #0086B3;
+}
+.highlight .nc {
+  color: #445588;
+  font-weight: bold;
+}
+.highlight .no {
+  color: #008080;
+}
+.highlight .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+.highlight .ni {
+  color: #800080;
+}
+.highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+.highlight .nf {
+  color: #990000;
+  font-weight: bold;
+}
+.highlight .nl {
+  color: #990000;
+  font-weight: bold;
+}
+.highlight .nn {
+  color: #555555;
+}
+.highlight .nt {
+  color: #000080;
+}
+.highlight .vc {
+  color: #008080;
+}
+.highlight .vg {
+  color: #008080;
+}
+.highlight .vi {
+  color: #008080;
+}
+.highlight .nv {
+  color: #008080;
+}
+.highlight .ow {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .o {
+  color: #000000;
+  font-weight: bold;
+}
+.highlight .w {
+  color: #bbbbbb;
+}
+.highlight {
+  background-color: #f8f8f8;
+}</style><script src="../../../../../javascripts/all.js" type="text/javascript"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script><script type="text/javascript">$(function() {
+  var share = new Share(".share")
+});
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_2014 blog_2014_12 blog_2014_12_31 blog_2014_12_31_rom-0-5-0-released blog_2014_12_31_rom-0-5-0-released_index"><div class="page-wrapper"><header><nav class="navbar navbar-default navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Docs <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></nav></header><div class="container"><div class="content"><div class="blog"><div class="row"><div class="col-md-8"><section class="articles"></section><article><header class="page-header"><h1>ROM 0.5.0 Released</h1><div class="article-author">Published on<em class="timestamp">Dec 31</em> by<em class="author">Don Morrison</em></div><div class="info"><div class="article-tags"><ul></ul></div></div></header><div class="article-body"><p>Today we&rsquo;re happy to announce the release of ROM version 0.5.0. It is the
 culmination of months of hard work from a growing
 <a href="https://github.com/rom-rb/rom/network/members">team of contributors</a>.</p>
 
@@ -196,7 +392,12 @@ We can help with this as well. Get it started and we&rsquo;ll all chip in.</p>
 around, chat with us on <a href="https://gitter.im/rom-rb/chat">Gitter</a> and get to it.</p>
 
 <p><strong>Thanks for reading and here&rsquo;s to a great 2015!</strong></p>
-]]>
-    </content>
-  </entry>
-</feed>
+</div><div class="article-footer"><hr /><div class="article-social"><ul class="list-inline clearfix"><li class="share-buttons pull-left"><div class="share"></div></li><li class="comment-link pull-right"><a href="/blog/2014/12/31/rom-0-5-0-released#disqus_thread">Leave a comment</a></li></ul></div><hr /><div class="article-comments"><div id="disqus_thread"><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'rom-rb-blog'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script></div></div></div></article></div><div class="col-md-4"><aside><div class="blog-sidebar panel panel-default"><div class="panel-heading"><div class="panel-title">Welcome on ROM's blog</div></div><div class="panel-body"><a class="btn btn-info" href="http://rom-rb.org/blog/feed.xml">Subscribe</a></div></div></aside></div></div></div></div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
