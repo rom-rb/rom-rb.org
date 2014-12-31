@@ -9,7 +9,7 @@ Today we're happy to announce the release of ROM version 0.5.0. It is the
 culmination of months of hard work from a growing
 [team of contributors](https://github.com/rom-rb/rom/network/members).
 
-It's exciting to end the year with such a large and meaningul release.
+It's exciting to end the year with such a large and meaningful release.
 
 ## How We Got Here
 
@@ -27,7 +27,7 @@ will emerge with more real world use.
 
 Many of the features and much of the polishing found in this release happened
 as a direct result of ROM being used in production projects. In fact, one of
-the larger realizations over the last several months of has been that **ROM is
+the larger realizations over the last several months has been that **ROM is
 not an ORM**. I know. We were as surprised as you. Take some time to use it
 and you'll see what we mean. The [Rails Tutorial](/tutorials/rails) outlined
 below is a great place to start.
@@ -35,14 +35,14 @@ below is a great place to start.
 There were so many things added, improved, replaced, refactored, and considered
 both in the core of ROM and in libraries like
 [`rom-rails`](https://github.com/rom-rb/rom-rails) and
-[`rom-sql`](https://github.com/rom-rb/rom-sql) that we can't cover them here.
-See the changelog section below for an overview of the changes and a link to
-the changelogs for each project.
+[`rom-sql`](https://github.com/rom-rb/rom-sql) that we can't cover them all
+here. See the changelog section below for an overview of the changes and a
+link to the changelogs for each project.
 
 ## rom-rb.org
 
-If you're reading this, it's probably because of the work we've done updating
-the website. Alongside the obvious layout and style changes we've also spent
+If you're reading this, it's because of the work we've done updating the
+website. Alongside the obvious layout and style changes we've also spent
 time on [introductions](/introdctions) and [tutorials](/tutorials).
 
 ### Introductions
