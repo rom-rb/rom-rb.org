@@ -4,7 +4,7 @@ html
     meta[charset="utf-8"]
     meta[content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"]
     title
-      = data.page.title || "Ruby Object Mapper"
+      = "ROM &raquo; #{data.page.title}" || "Ruby Object Mapper"
     == stylesheet_link_tag "all"
     style type="text/css"
       == Rouge::Theme.find('github').render(scope: '.highlight')
@@ -32,6 +32,7 @@ html
                 = nav_link("/introduction", "Introduction")
                 = nav_link("/tutorials", "Tutorials")
                 li.dropdown == api_docs_nav
+                = nav_link("/blog", "Blog")
               .social
                 .github
                   iframe src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"

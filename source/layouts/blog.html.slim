@@ -1,0 +1,9 @@
+= wrap_layout :layout do
+  .blog
+    .row
+      .col-md-8
+        section.articles
+        == yield
+      .col-md-4
+        aside
+          == partial "blog/sidebar"

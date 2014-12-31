@@ -2,41 +2,34 @@ Encoding.default_internal = "utf-8"
 
 require 'slim'
 
-activate :livereload
-activate :directory_indexes
+set :markdown_engine, :redcarpet
+set :markdown, fenced_code_blocks: true, smartypants: true
+
+# blog config
+activate :blog do |blog|
+  blog.prefix = 'blog'
+  blog.layout = 'blog'
+  blog.permalink = '{year}/{month}/{day}/{title}'
+  blog.paginate = true
+end
+
+page 'blog/*', layout: 'blog_article'
+page 'blog/feed.xml', layout: false
+
+configure :build do
+  activate :minify_javascript
+  activate :relative_assets
+end
 
 # syntax stuff
 activate :syntax
-
-set :markdown_engine, :redcarpet
-set :markdown, fenced_code_blocks: true, smartypants: true
 
 set :css_dir,    'stylesheets'
 set :js_dir,     'javascripts'
 set :images_dir, 'images'
 
-# Build-specific configuration
-configure :build do
-  # For example, change the Compass output style for deployment
-  # activate :minify_css
-
-  # Minify Javascript on build
-  activate :minify_javascript
-
-  # Enable cache buster
-  # activate :cache_buster
-
-  # Use relative URLs
-  activate :relative_assets
-
-  # Compress PNGs after build
-  # First: gem install middleman-smusher
-  # require "middleman-smusher"
-  # activate :smusher
-
-  # Or use a different image path
-  # set :http_path, "/Content/images/"
-end
+activate :livereload
+activate :directory_indexes
 
 helpers do
 
@@ -89,4 +82,27 @@ helpers do
     html
   end
 
+  def article_permalink(article)
+    date  = article.date
+    parts = ['/blog']
+
+    parts << date.year
+    parts << date.month.to_s.rjust(2, '0')
+    parts << date.day.to_s.rjust(2, '0')
+    parts << article.slug
+
+    parts.join('/')
+  end
+
+  def article_url(article)
+    "#{config.site_url}#{article_permalink(article)}"
+  end
+
+  def page_title
+    if is_blog_article?
+      "Powow Blog &raquo; #{current_article.title}"
+    else
+      yield_content(:page_title) || config.page_title
+    end
+  end
 end
