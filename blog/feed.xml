@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ROM Blog</title>
+  <subtitle>News from the ROM team and more</subtitle>
+  <id>http://rom-rb.org/blog/</id>
+  <link href="http://rom-rb.org"/>
+  <link href="http://rom-rb.org/feed.xml" rel="self"/>
+  <author>
+    <name>ROM team</name>
+  </author>
+</feed>

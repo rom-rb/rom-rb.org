@@ -215,42 +215,35 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-2573270-5', 'auto');
-ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_introduction doc-pages_introduction_overview doc-pages_introduction_overview_index"><div class="page-wrapper"><header><nav class="navbar navbar-default navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Docs <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></nav></header><div class="container"><div class="content"><p>ROM encourages a clear separation between your application domain and the data
-access layer. This is more than just hiding access behind methods. Your
-application is not coupled to the details of data retrieval or manipulation.</p>
+ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_tutorials doc-pages_tutorials_rails doc-pages_tutorials_rails_index"><div class="page-wrapper"><header><nav class="navbar navbar-default navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Docs <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></nav></header><div class="container"><div class="content"><p>Welcome to the ROM on Rails tutorial.</p>
 
-<p>The figure below represents how data flows through an application using ROM:</p>
+<p>This tutorial will help to explain some of the basic concepts behind ROM
+by building a simple Rails application to manage tasks. You will extend
+<a href="/introduction/relations">relations</a>, define <a href="/introduction/mappers">mappers</a>,
+and use <a href="/introduction/commands">commands</a> to modify data. It is primarily
+intended for those familiar with Rails who want to learn more about ROM.</p>
 
-<p>The data flows from the <mark>database/datastore</mark>, through the
-<mark>adapter</mark>, to be accessed by <mark>relations</mark>, and then
-optionally mapped to domain objects by <mark>mappers</mark>. Modifying data
-requires the use of <mark>commands</mark> that use the <mark>adapter</mark>
-to persist changes.</p>
+<ul>
+<li><a href="/tutorials/rails/getting-started">Getting started</a> - quickly initialize an application with a ROM-based template</li>
+<li><a href="/tutorials/rails/tasks-index">Tasks index</a> - display a list of tasks using a generated relation</li>
+<li><a href="/tutorials/rails/task-relation">Task relation</a> - extend the tasks relation to order results</li>
+<li><a href="/tutorials/rails/task-mapper">Task mapper</a> - define a dedicated mapper for domain objects</li>
+<li><a href="/tutorials/rails/managing-tasks">Managing tasks</a> - implement create/update/delete actions with commands</li>
+<li><a href="/tutorials/validations">Validations</a> - use validators</li>
+</ul>
 
-<p><img src="/images/rom-design-overview.png"/></p>
+<p>The following libraries are used throughout:</p>
 
-<p>The core of ROM is divided up into four high-level concerns as you can see
-above:</p>
+<ul>
+<li><a href="https://github.com/rom-rb/rom">rom</a> - main gem for the ROM project</li>
+<li><a href="https://github.com/rom-rb/rom-sql">rom-sql</a> - database adapter based on <a href="https://github.com/jeremyevans/sequel">Sequel</a></li>
+<li><a href="https://github.com/rom-rb/rom-rails">rom-rails</a> - Rails integration for ROM</li>
+</ul>
 
-<h3><a href="/introduction/adapters"><strong>Adapters</strong></a></h3>
-
-<p>ROM uses adapters to connect to different data sources (a database, a csv file -
-it doesn&rsquo;t matter) and exposes a native CRUD interface to its relations.</p>
-
-<h3><a href="/introduction/relations"><strong>Relations</strong></a></h3>
-
-<p>A relation is defined as a set of tuples identified by unique pairs of attributes
-and their values. In ROM it is an object that responds to <code>#each</code> which yields hashes. It
-is backed by <mark>a dataset object</mark> provided by the adapter.</p>
-
-<h3><a href="/introduction/mappers"><strong>Mappers</strong></a></h3>
-
-<p>A mapper is an object that takes a tuple and turns it into a domain object. ROM
-provides a DSL to define mappers which can be integrated with 3rd-party mapping
-libraries.</p>
-
-<h3><a href="/introduction/commands"><strong>Commands</strong></a></h3>
-
-<p>Commands in ROM are intended to safely modify data. Commands can be used to create,
-update and delete.</p>
+<p>Of note is the <a href="https://github.com/rom-rb/rom-rails">rom-rails</a> library, which
+is essentially a Railtie and some generators. The Railtie allows you to place
+<a href="/introduction/relations">relations</a>, <a href="/introduction/mappers">mappers</a>, and
+<a href="/introduction/commands">commands</a> in directories similar to how Rails
+places models, controllers, and mailers under the <code>app</code> directory. The
+integration makes ROM feel right at home in your Rails application.</p>
 </div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
