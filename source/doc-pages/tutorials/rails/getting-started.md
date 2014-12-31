@@ -8,7 +8,7 @@ all work._
 Create the new application by running the following command:
 
 ``` shell
-rails new rom-todo-app -JTS -m https://gist.githubusercontent.com/solnic/adb4de6baaa5b27d9502/raw/a98bec94a754173378f4129900ca5affa17c427b/gistfile1.rb
+rails new rom-todo-app -JTS -m http://rom-rb.org/tutorials/code/rom-todo-app-template.rb
 ```
 
 This likely take a little while to run. While you're waiting you can read about
