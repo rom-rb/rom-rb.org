@@ -4,6 +4,8 @@ require 'slim'
 require 'builder'
 
 set :site_url, 'http://rom-rb.org'
+set :page_title, 'Ruby Object Mapper'
+set :twitter_handle, '@rom_rb'
 
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true
@@ -103,9 +105,17 @@ helpers do
 
   def page_title
     if is_blog_article?
-      "ROM Blog &raquo; #{current_article.title}"
+      "ROM &raquo; Blog &raquo; #{current_article.title}"
     else
-      yield_content(:page_title) || config.page_title
+      if yield_content(:page_title)
+        "ROM &raquo; #{yield_content(:page_title)}"
+      else
+        "ROM &raquo; #{data.page.title}"
+      end
     end
+  end
+
+  def twitter_page_title
+    "#{page_title} via #{config.twitter_handle}"
   end
 end
