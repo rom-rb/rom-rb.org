@@ -8,6 +8,7 @@ gem 'middleman-blog'
 
 gem 'slim'
 gem 'redcarpet'
+gem 'builder'
 gem 'bootstrap-sass'
 gem 'therubyracer'
 

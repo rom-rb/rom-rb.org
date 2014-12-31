@@ -1,6 +1,9 @@
 Encoding.default_internal = "utf-8"
 
 require 'slim'
+require 'builder'
+
+set :site_url, 'http://rom-rb.org'
 
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true
