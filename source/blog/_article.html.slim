@@ -18,8 +18,8 @@ article
     hr
     .article-social
       ul.list-inline.clearfix
-        li.comment-link.pull-left = link_to "Leave a comment", "#{article_permalink(article)}#disqus_thread"
-        li.share-buttons.pull-right = partial 'blog/article_sharebar', locals: { article: article }
+        li.share-buttons.pull-left = partial 'blog/article_sharebar', locals: { article: article }
+        li.comment-link.pull-right = link_to "Leave a comment", "#{article_permalink(article)}#disqus_thread"
     hr
     - if comments
       .article-comments
