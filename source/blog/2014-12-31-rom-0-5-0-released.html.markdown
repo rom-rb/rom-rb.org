@@ -65,8 +65,8 @@ There will be more [tutorials](/introduction/tutorials) in the coming weeks.
 
 * Major milestone of putting together relation and mapping layers is done.
   ROM runs on a pluggable data mapping backends now. The first one is built-in
-  and is based on a new library transproc. More will come soon as the need
-  arises.
+  and is based on a new library called [transproc](https://github.com/solnic/transproc).
+  More will come soon as the need arises.
 
 * Mapping is much more powerful now, support for prefixing keys, symbolizing
   keys, wrapping, grouping, embeddeding and coercions was added. In addition to
