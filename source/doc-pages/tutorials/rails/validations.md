@@ -30,7 +30,7 @@ to a blank title:
 ``` ruby
 # spec/features/tasks_spec.rb
 
-features 'Tasks do
+features 'Tasks' do
   # ...
 
   scenario 'I cannot save a task without providing title' do
