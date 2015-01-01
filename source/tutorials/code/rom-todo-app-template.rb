@@ -1,5 +1,5 @@
 gem "rom", '~> 0.5'
-gem "rom-sql", '~> 0.3.1'
+gem "rom-sql", '~> 0.3.2'
 gem "rom-rails", '~> 0.2'
 
 gem_group(:test) do
