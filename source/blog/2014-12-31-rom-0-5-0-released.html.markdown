@@ -43,7 +43,7 @@ link to the changelogs for each project.
 
 If you're reading this, it's because of the work we've done updating the
 website. Alongside the obvious layout and style changes we've also spent
-time on [introductions](/introdction) and [tutorials](/tutorials).
+time on [introductions](/introduction) and [tutorials](/tutorials).
 
 ### Introductions
 
