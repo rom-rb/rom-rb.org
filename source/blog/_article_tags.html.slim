@@ -1,4 +1,0 @@
-- content_for(:sidebar_tags) do
-  .article-tags
-    - article.tags.each do |tag|
-      = link_to tag, tag_path(tag), class: 'btn btn-default btn-xs'

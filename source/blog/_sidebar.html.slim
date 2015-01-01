@@ -5,12 +5,8 @@
   .panel-body
     a.subscribe.btn.btn-info href="#{config.site_url}/blog/feed.xml"
       | Subscribe
-
-    - if content_for?(:sidebar_tags)
-      .sidebar-tags
-        | Published under:
-        == yield_content :sidebar_tags
-
-    - if content_for?(:sidebar)
-      .article-sidebar
-        == yield_content :sidebar
+.tag-sidebar.panel.panel-default
+  .panel-heading
+    .panel-title
+      | Browse tags
+  == partial "blog/tags"
