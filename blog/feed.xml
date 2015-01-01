@@ -5,7 +5,7 @@
   <id>http://rom-rb.org/blog/</id>
   <link href="http://rom-rb.org"/>
   <link href="http://rom-rb.org/feed.xml" rel="self"/>
-  <updated>2014-12-31T21:02:00+00:00</updated>
+  <updated>2014-12-31T22:02:00+01:00</updated>
   <author>
     <name>ROM team</name>
   </author>
@@ -13,8 +13,8 @@
     <title>ROM 0.5.0 Released</title>
     <link rel="alternate" href="http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released"/>
     <id>http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released</id>
-    <published>2014-12-31T21:02:00+00:00</published>
-    <updated>2014-12-31T21:02:00+00:00</updated>
+    <published>2014-12-31T22:02:00+01:00</published>
+    <updated>2014-12-31T22:02:00+01:00</updated>
     <author>
       <name>Don Morrison</name>
     </author>
@@ -80,8 +80,8 @@ in ROM come together to create powerful ways of working with data.</p>
 <ul>
 <li><p>Major milestone of putting together relation and mapping layers is done.
 ROM runs on a pluggable data mapping backends now. The first one is built-in
-and is based on a new library transproc. More will come soon as the need
-arises.</p></li>
+and is based on a new library called <a href="https://github.com/solnic/transproc">transproc</a>.
+More will come soon as the need arises.</p></li>
 <li><p>Mapping is much more powerful now, support for prefixing keys, symbolizing
 keys, wrapping, grouping, embeddeding and coercions was added. In addition to
 that wrap, group and embedded can be nested which allows you to build very rich
