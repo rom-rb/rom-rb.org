@@ -16,6 +16,7 @@ activate :blog do |blog|
   blog.layout = 'blog'
   blog.permalink = '{year}/{month}/{day}/{title}'
   blog.paginate = true
+  blog.tag_template = "blog/tag.html"
 end
 
 page 'blog/*', layout: 'blog_article'
