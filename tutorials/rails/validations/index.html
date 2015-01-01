@@ -245,13 +245,13 @@ classes and simply include <code>ROM::Model::Validator</code>.</p>
 to a blank title:</p>
 <pre class="highlight ruby"><code><span class="c1"># spec/features/tasks_spec.rb</span>
 
-<span class="n">features</span> <span class="s1">'Tasks do
-  # ...
+<span class="n">features</span> <span class="s1">'Tasks'</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
 
-  scenario '</span><span class="no">I</span> <span class="n">cannot</span> <span class="n">save</span> <span class="n">a</span> <span class="n">task</span> <span class="n">without</span> <span class="n">providing</span> <span class="n">title</span><span class="s1">' do
-    visit new_task_path
+  <span class="n">scenario</span> <span class="s1">'I cannot save a task without providing title'</span> <span class="k">do</span>
+    <span class="n">visit</span> <span class="n">new_task_path</span>
 
-    find('</span><span class="c1">#task_title').set('')</span>
+    <span class="n">find</span><span class="p">(</span><span class="s1">'#task_title'</span><span class="p">).</span><span class="nf">set</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
     <span class="n">click_on</span> <span class="s1">'Save'</span>
 
     <span class="n">expect</span><span class="p">(</span><span class="n">page</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_content</span><span class="p">(</span><span class="s1">'Tasks#new'</span><span class="p">)</span>
