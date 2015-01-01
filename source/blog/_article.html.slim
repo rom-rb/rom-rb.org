@@ -8,7 +8,7 @@ article
     .article-author
       | Published on
       em.timestamp = I18n.l(article.date.to_date, format: :short)
-      |  by
+      | by
       em.author = article.data['author']
     .info
       == partial 'blog/article_tags.html', locals: { article: article }
