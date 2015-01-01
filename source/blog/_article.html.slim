@@ -10,7 +10,8 @@ article
       em.timestamp = I18n.l(article.date.to_date, format: :short)
       | by
       em.author = article.data['author']
-    == partial 'blog/article_tags.html', locals: { article: article }
+    - unless header_link
+      == partial 'blog/article_tags.html', locals: { article: article }
   .article-body
     = article.body
   .article-footer
