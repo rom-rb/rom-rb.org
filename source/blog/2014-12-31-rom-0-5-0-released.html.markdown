@@ -43,11 +43,11 @@ link to the changelogs for each project.
 
 If you're reading this, it's because of the work we've done updating the
 website. Alongside the obvious layout and style changes we've also spent
-time on [introductions](/introdctions) and [tutorials](/tutorials).
+time on [introductions](/introdction) and [tutorials](/tutorials).
 
 ### Introductions
 
-The [introductions](/introductions) are here to help you get accustomed to the
+The [introductions](/introduction) are here to help you get accustomed to the
 terms and concepts used throughout ROM. You'll also find a brief article on
 [Why ROM](/introduction/why) and a short comparision with
 [ActiveRecord](/introduction/activerecord).
@@ -59,7 +59,7 @@ We've put together a fairly thorough tutorial for getting started with
 don't use Rails, this tutorial can help you understand how many of the ideas
 in ROM come together to create powerful ways of working with data.
 
-There will be more [tutorials](/introduction/tutorials) in the coming weeks.
+There will be more [tutorials](/tutorials) in the coming weeks.
 
 ## [rom] v0.5.0 Changelog summary:
 
