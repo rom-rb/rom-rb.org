@@ -1,10 +1,10 @@
 article
   header
     h1
-      - if header_link
-        = link_to article.title, article_permalink(article)
-      - else
+      - if current_article
         = article.title
+      - else
+        = link_to article.title, article_permalink(article)
     .article-meta
       = article_meta(article)
   hr
@@ -15,10 +15,10 @@ article
     .article-social
       ul.list-inline.clearfix
         li.share-buttons.pull-left
-          = partial 'blog/article_sharebar', locals: { article: article }
+          .share
         li.comment-link.pull-right
           = link_to "Leave a comment", "#{article_permalink(article)}#disqus_thread"
     hr
-    - if comments
+    - if current_article
       .article-comments
         == partial 'blog/disqus'
