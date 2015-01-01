@@ -3,6 +3,17 @@
     header
       @extend .page-header
 
+  .article-social
+    ul
+      @extend .list-inline
+      @extend .clearfix
+
+      li
+        &:first-child
+          @extend .pull-left
+        &:last-child
+          @extend .pull-right
+
   aside
     margin-top: 42px
 
