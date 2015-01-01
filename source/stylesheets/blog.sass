@@ -2,8 +2,35 @@
   aside
     margin-top: 20px
 
-  .article-author
+  .article-meta
     font-size: 14px
 
-    em
-      margin: 0 5px
+  .article-tags
+    a
+      margin: 5px
+
+  .blog-sidebar
+    .article-sidebar
+      margin-top: 1em
+    .subscribe
+      margin-bottom: 1em
+
+  ul.posts
+    a
+      margin-right: 0.25em
+    span
+      margin: 0.25em
+
+.tag
+  @extend .btn
+  @extend .btn-default
+  @extend .btn-xs
+
+.tag + .tag
+  margin-left: 5px
+
+.blog-tags
+  @extend .list-group
+
+  li
+    @extend .list-group-item

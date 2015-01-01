@@ -7,6 +7,11 @@ set :site_url, 'http://rom-rb.org'
 set :page_title, 'Ruby Object Mapper'
 set :twitter_handle, '@rom_rb'
 
+set :people, {
+  'Don Morrison' => 'https://twitter.com/elskwid',
+  'Piotr Solnica' => 'https://twitter.com/_solnic_'
+}
+
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true
 
@@ -16,6 +21,7 @@ activate :blog do |blog|
   blog.layout = 'blog'
   blog.permalink = '{year}/{month}/{day}/{title}'
   blog.paginate = true
+  blog.tag_template = "blog/tag.html"
 end
 
 page 'blog/*', layout: 'blog_article'
@@ -117,5 +123,33 @@ helpers do
 
   def twitter_page_title
     "#{page_title} via #{config.twitter_handle}"
+  end
+
+  def article_meta(article)
+    "Published on %{date} by %{author} under %{tags}" % {
+      date: article_date(article),
+      author: article_author(article),
+      tags: article_tags(article)
+    }
+  end
+
+  def article_date(article)
+    I18n.l(article.date.to_date, format: :long)
+  end
+
+  def article_author(article)
+    author_link(article.data['author'])
+  end
+
+  def article_tags(article)
+    article.tags.map { |tag| tag_link(tag) }.join(' ')
+  end
+
+  def tag_link(tag)
+    link_to(tag, tag_path(tag), class: 'tag')
+  end
+
+  def author_link(author)
+    link_to(author, config.people[author])
   end
 end

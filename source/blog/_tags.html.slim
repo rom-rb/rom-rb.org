@@ -1,0 +1,5 @@
+ul.blog-tags
+  - blog.tags.each do |tag, articles|
+    li
+      span class="badge" = articles.size
+      = link_to(tag, tag_path(tag))
