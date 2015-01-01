@@ -1,7 +1,7 @@
 ---
 title: ROM 0.5.0 Released
 date: 2014-12-31 21:02 UTC
-tags:
+tags: release,announcement
 author: Don Morrison
 ---
 
