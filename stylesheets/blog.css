@@ -1,9 +1,0 @@
-/* line 2, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/blog.sass */
-.blog aside {
-  margin-top: 20px; }
-/* line 5, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/blog.sass */
-.blog .article-author {
-  font-size: 14px; }
-  /* line 8, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/blog.sass */
-  .blog .article-author em {
-    margin: 0 5px; }
