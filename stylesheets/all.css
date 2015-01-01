@@ -1762,12 +1762,12 @@ ol {
   list-style: none; }
 
 /* line 173, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_type.scss */
-.list-inline {
+.list-inline, .blog .article-social ul {
   padding-left: 0;
   list-style: none;
   margin-left: -5px; }
   /* line 177, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_type.scss */
-  .list-inline > li {
+  .list-inline > li, .blog .article-social ul > li {
     display: inline-block;
     padding-left: 5px;
     padding-right: 5px; }
@@ -3915,7 +3915,7 @@ tbody.collapse.in {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box; }
   /* line 52, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_dropdowns.scss */
-  .dropdown-menu.pull-right {
+  .dropdown-menu.pull-right, .blog .article-social ul li.dropdown-menu:last-child {
     right: 0;
     left: auto; }
   /* line 58, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_dropdowns.scss */
@@ -3994,7 +3994,7 @@ tbody.collapse.in {
   z-index: 990; }
 
 /* line 171, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_dropdowns.scss */
-.pull-right > .dropdown-menu {
+.pull-right > .dropdown-menu, .blog .article-social ul li:last-child > .dropdown-menu {
   right: 0;
   left: auto; }
 
@@ -5546,12 +5546,14 @@ a.thumbnail.active {
 
 /* line 10, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_media.scss */
 .media-right,
-.media > .pull-right {
+.media > .pull-right,
+.blog .article-social ul .media > li:last-child {
   padding-left: 10px; }
 
 /* line 15, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_media.scss */
 .media-left,
-.media > .pull-left {
+.media > .pull-left,
+.blog .article-social ul .media > li:first-child {
   padding-right: 10px; }
 
 /* line 20, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_media.scss */
@@ -6786,11 +6788,11 @@ button.close {
   .carousel-indicators {
     bottom: 20px; } }
 /* line 14, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.clearfix:before, .clearfix:after {
+.clearfix:before, .blog .article-social ul:before, .clearfix:after, .blog .article-social ul:after {
   content: " ";
   display: table; }
 /* line 19, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
-.clearfix:after {
+.clearfix:after, .blog .article-social ul:after {
   clear: both; }
 
 /* line 12, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_utilities.scss */
@@ -6800,11 +6802,11 @@ button.close {
   margin-right: auto; }
 
 /* line 15, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_utilities.scss */
-.pull-right {
+.pull-right, .blog .article-social ul li:last-child {
   float: right !important; }
 
 /* line 18, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_utilities.scss */
-.pull-left {
+.pull-left, .blog .article-social ul li:first-child {
   float: left !important; }
 
 /* line 27, /Users/solnic/.gem/ruby/2.1.5/gems/bootstrap-sass-3.3.1.0/assets/stylesheets/bootstrap/_utilities.scss */
@@ -7430,28 +7432,28 @@ body {
 .page-article p img {
   margin: 15px 0; }
 
-/* line 6, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
+/* line 17, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
 .blog aside {
   margin-top: 42px; }
-/* line 9, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
+/* line 20, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
 .blog .article-meta {
   font-size: 14px; }
-/* line 13, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
+/* line 24, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
 .blog .article-tags a {
   margin: 5px; }
-/* line 17, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
+/* line 28, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
 .blog .blog-sidebar .article-sidebar {
   margin-top: 1em; }
-/* line 19, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
+/* line 30, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
 .blog .blog-sidebar .subscribe {
   margin-bottom: 1em; }
-/* line 23, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
+/* line 34, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
 .blog ul.posts a {
   margin-right: 0.25em; }
-/* line 25, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
+/* line 36, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
 .blog ul.posts span {
   margin: 0.25em; }
 
-/* line 33, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
+/* line 44, /Users/solnic/Workspace/rom-rb/rom-rb.org/source/stylesheets/components/_blog.sass */
 .tag + .tag {
   margin-left: 5px; }
