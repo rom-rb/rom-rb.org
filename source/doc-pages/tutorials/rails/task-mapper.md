@@ -43,7 +43,7 @@ ROM.mappers do
 end
 ```
 
-Notice how little we have add to the mapper definition. Running the specs again
+Notice how little we've had to add to the mapper definition. Running the specs again
 will illustrate how this change impacts our application:
 
 ``` shell
