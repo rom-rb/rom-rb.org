@@ -5,7 +5,7 @@
   <id>http://rom-rb.org/blog/</id>
   <link href="http://rom-rb.org"/>
   <link href="http://rom-rb.org/feed.xml" rel="self"/>
-  <updated>2014-12-31T22:02:00+01:00</updated>
+  <updated>2014-12-31T21:02:00+00:00</updated>
   <author>
     <name>ROM team</name>
   </author>
@@ -13,15 +13,14 @@
     <title>ROM 0.5.0 Released</title>
     <link rel="alternate" href="http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released"/>
     <id>http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released</id>
-    <published>2014-12-31T22:02:00+01:00</published>
-    <updated>2014-12-31T22:02:00+01:00</updated>
+    <published>2014-12-31T21:02:00+00:00</published>
+    <updated>2014-12-31T21:02:00+00:00</updated>
     <author>
       <name>Don Morrison</name>
     </author>
     <content type="html">
       <![CDATA[<p>Today we&rsquo;re happy to announce the release of ROM version 0.5.0. It is the
-culmination of months of hard work from a growing
-<a href="https://github.com/rom-rb/rom/network/members">team of contributors</a>.</p>
+culmination of months of hard work from a growing <a href="https://github.com/rom-rb/rom/network/members">team of contributors</a>.</p>
 
 <p>It&rsquo;s exciting to end the year with such a large and meaningful release.</p>
 
@@ -47,11 +46,10 @@ and you&rsquo;ll see what we mean. The <a href="/tutorials/rails">Rails Tutorial
 below is a great place to start.</p>
 
 <p>There were so many things added, improved, replaced, refactored, and considered
-both in the core of ROM and in libraries like
-<a href="https://github.com/rom-rb/rom-rails"><code>rom-rails</code></a> and
-<a href="https://github.com/rom-rb/rom-sql"><code>rom-sql</code></a> that we can&rsquo;t cover them all
-here. See the changelog section below for an overview of the changes and a
-link to the changelogs for each project.</p>
+both in the core of ROM and in libraries like <a href="https://github.com/rom-rb/rom-rails"><code>rom-rails</code></a> and
+<a href="https://github.com/rom-rb/rom-sql"><code>rom-sql</code></a> that we can&rsquo;t cover them all here. See the changelog
+section below for an overview of the changes and a link to the changelogs for
+each project.</p>
 
 <h2>rom-rb.org</h2>
 
@@ -63,8 +61,7 @@ time on <a href="/introduction">introductions</a> and <a href="/tutorials">tutor
 
 <p>The <a href="/introduction">introductions</a> are here to help you get accustomed to the
 terms and concepts used throughout ROM. You&rsquo;ll also find a brief article on
-<a href="/introduction/why">Why ROM</a> and a short comparision with
-<a href="/introduction/activerecord">ActiveRecord</a>.</p>
+<a href="/introduction/why">Why ROM</a> and a short comparision with <a href="/introduction/activerecord">ActiveRecord</a>.</p>
 
 <h3>Tutorials</h3>
 
@@ -80,8 +77,8 @@ in ROM come together to create powerful ways of working with data.</p>
 <ul>
 <li><p>Major milestone of putting together relation and mapping layers is done.
 ROM runs on a pluggable data mapping backends now. The first one is built-in
-and is based on a new library called <a href="https://github.com/solnic/transproc">transproc</a>.
-More will come soon as the need arises.</p></li>
+and is based on a new library called <a href="https://github.com/solnic/transproc">transproc</a>. More will
+come soon as the need arises.</p></li>
 <li><p>Mapping is much more powerful now, support for prefixing keys, symbolizing
 keys, wrapping, grouping, embeddeding and coercions was added. In addition to
 that wrap, group and embedded can be nested which allows you to build very rich
@@ -137,7 +134,7 @@ some advanced mapping.</li>
 <h2>New adapters:</h2>
 
 <p>As mentioned before there are a couple of small adapters in the works:
-<code>rom-yaml</code> and <code>rom-csv</code> with more planned.</p>
+<a href="https://github.com/rom-rb/rom-yaml"><code>rom-yaml</code></a> and <a href="https://github.com/rom-rb/rom-csv"><code>rom-csv</code></a> with more planned.</p>
 
 <h2>Onward towards ROM 1.0.0</h2>
 
@@ -145,10 +142,11 @@ some advanced mapping.</li>
 about a one-dot-oh but wouldn&rsquo;t it be nice?</p>
 
 <p>For 1.0.0 there are no major changes planned. We will focus on polishing and new
-features like transactions in <code>rom-sql</code> and an extended command interface. There
-will be lots of internal small refactorings, improvements in the spec suite to
-bring a more unit-based approach now that interfaces are stabilizing, features
-based on feedback, and fixes for any bugs that come our way.</p>
+features like transactions in <a href="https://github.com/rom-rb/rom-sql"><code>rom-sql</code></a> and an extended command
+interface. There will be lots of internal small refactorings, improvements in
+the spec suite to bring a more unit-based approach now that interfaces are
+stabilizing, features based on feedback, and fixes for any bugs that come our
+way.</p>
 
 <h3>You can help</h3>
 
@@ -186,9 +184,10 @@ it.</p>
 
 <h4>Write adapters</h4>
 
-<p>There are a couple of simple adapters in progress. Both <code>rom-yaml</code> and <code>rom-csv</code>
-are about as easy as they get. Maybe you could write <code>rom-json</code> or <code>rom-NEWDB</code>.
-We can help with this as well. Get it started and we&rsquo;ll all chip in.</p>
+<p>There are a couple of simple adapters in progress. Both
+<a href="https://github.com/rom-rb/rom-yaml"><code>rom-yaml</code></a> and <a href="https://github.com/rom-rb/rom-csv"><code>rom-csv</code></a> are about as easy as
+they get. Maybe you could write <code>rom-json</code> or <code>rom-NEWDB</code>. We can help with this
+as well. Get it started and we&rsquo;ll all chip in.</p>
 
 <h4>Find your own way</h4>
 
