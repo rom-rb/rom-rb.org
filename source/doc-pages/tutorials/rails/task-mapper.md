@@ -1,7 +1,7 @@
 ## Setting up Task mapper
 
 We just extended our task relation with a method for the index view. The data
-return from this method is an array of hashes -- the most basic representation
+returned from this method is an array of hashes -- the most basic representation
 of data in ROM.
 
 These hashes may be all you need but, more often than not, you'll want to use a
