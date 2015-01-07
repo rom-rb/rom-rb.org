@@ -29,8 +29,6 @@ pass.
 First we will generate tasks controller:
 
 ``` shell
-# for some reason we need to stop spring before proceeding
-bin/spring stop
 bin/rails g controller tasks
 ```
 
