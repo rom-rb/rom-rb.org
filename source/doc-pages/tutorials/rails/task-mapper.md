@@ -137,7 +137,7 @@ however. Our `Task`:
 ROM can use any object that accepts a hash of attributes.)__
 * exposes only required information -- the title attribute
 * doesn't support validation
-* doesn't support persistance
+* doesn't support persistence
 * can't be changed
 * has no database query DSL
 * doesn't support serialization
@@ -148,7 +148,7 @@ access, it requires, and no more. Looking at the controller above, the action is
 still expressive -- we know what data is being passed to the view. We still have
 the attribute accessor in the view so no surprises there.
 
-We don't need to understand a large amount of unrelated and unneccessary
+We don't need to understand a large amount of unrelated and unnecessary
 features in a context where they're not required.
 
 Okay, only include what we need, sounds great. Now we need to create and update
