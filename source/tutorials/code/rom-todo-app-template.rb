@@ -1,6 +1,6 @@
-gem "rom", '~> 0.5'
+gem "rom", '~> 0.5.0'
 gem "rom-sql", '~> 0.3.2'
-gem "rom-rails", '~> 0.2'
+gem "rom-rails", '~> 0.2.1'
 
 gem_group(:test) do
   gem "rspec"
