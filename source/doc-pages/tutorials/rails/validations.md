@@ -8,7 +8,7 @@ they are _valid_ or not.
 
 Since we can't validate a `Task` we'll need to provide something that knows how
 to define what a valid task looks like. That will be a `TaskParams` object. The
-`rom-rails` gem provides an ActiveModel-complaint extension that you can use
+`rom-rails` gem provides an ActiveModel-compliant extension that you can use
 for validatable parameters. To use it you can simply include
 `ROM::Model::Params` into a class and define the attributes, types and
 validation rules.
