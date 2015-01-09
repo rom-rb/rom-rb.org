@@ -1,4 +1,4 @@
-### Flexibile
+### Flexible
 The single biggest reason to use ROM is to have the freedom to design the domain
 layer however you like -- you aren't tied to the structure of your database. This
 flexibility is of primary concern to ROM.
