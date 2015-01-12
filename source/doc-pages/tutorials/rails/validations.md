@@ -121,7 +121,7 @@ Last but not least, we add the validation line:
 That last bit should look familiar. It's straight out of Rails. In fact,
 `rom-rails` uses `ActiveModel::Validations`. (If you're interested in how this
 all fits together you can puruse the small implementation of
-[`ROM::Model`](https://github.com/rom-rb/rom-rails/blob/master/lib/rom/model.rb)
+[`ROM::Model`](https://github.com/rom-rb/rom-rails/blob/master/lib/rom/model.rb))
 
 
 We can add task parameters validation by creating `TaskParams` and `TaskValidator`
