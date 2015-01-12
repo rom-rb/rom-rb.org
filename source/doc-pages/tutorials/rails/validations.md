@@ -112,7 +112,7 @@ Next, we tell the object what our `param_key` is:
 
 Then, what attributes should be included and their type:
 
-  `attribute :title, Sting`
+  `attribute :title, String`
 
 Last but not least, we add the validation line:
 
