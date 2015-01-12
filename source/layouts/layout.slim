@@ -7,9 +7,9 @@ html
     meta[content="#{twitter_page_title}" name="twitter:description"]
     meta[content="#{page_title}" name="description"]
     title = page_title
-    == stylesheet_link_tag "all"
     style type="text/css"
-      == Rouge::Theme.find('github').render(scope: '.highlight')
+      == Rouge::Themes::Base16.mode(:dark).render(scope: '.highlight')
+    == stylesheet_link_tag "all"
     == javascript_include_tag "all"
     == javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
     javascript:
