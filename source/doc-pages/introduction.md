@@ -4,7 +4,7 @@ of your datastore. ROM is based on several concepts and decisions that
 differentiate it from your normal Ruby ORM:
 
 * Be kind to the runtime environment
-* Provide minimum infrastructre to handle mapping and persistence
+* Provide minimum infrastructure to handle mapping and persistence
 * Querying the datastore is considered a private implementation detail
 * Abstract query interfaces are sources of unnecessary complexity
 * Reading and mutating data are distinct concerns
