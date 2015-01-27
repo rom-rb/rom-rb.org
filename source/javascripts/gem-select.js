@@ -1,5 +1,10 @@
 $(function() {
-  var gemMap = { 'SQL' : 'rom-sql', 'MongoDB' : 'rom-mongo' };
+  var gemMap = {
+    'SQL' : 'rom-sql',
+    'MongoDB' : 'rom-mongo',
+    'YAML' : 'rom-yaml',
+    'CSV' : 'rom-csv'
+  };
 
   var $code = $('#gem-install-code');
   var $label = $('#db-select .value');
