@@ -1,0 +1,32 @@
+---
+title: Ruby Object Mapper - Status
+---
+
+h1 ROM Project Status
+
+p
+  | ROM consists of the core rom gem along with rom-rails, for Rails integration,
+    and several adapter gems.
+
+p
+  | With all these projects it can be difficult to keep up on the status of
+    each one. Below is a break-down for each rom-related project, the current
+    stable released version, and the build status for the master branch.
+
+table.table.table-striped
+  thead
+    tr
+      th Project
+      th Released Version
+      th Master Build Status
+  tbody
+    - for project in projects
+      tr
+        td
+          a href="https://github.com/rom-rb/#{project}" #{project}
+        td
+          a href="https://rubygems.org/gems/#{project}"
+            img src="https://img.shields.io/gem/v/#{project}.svg?style=flat"
+        td
+          a href="https://github.com/rom-rb/#{project}"
+            img src="https://img.shields.io/travis/rom-rb/#{project}/master.svg?style=flat"

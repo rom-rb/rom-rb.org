@@ -12,6 +12,15 @@ set :people, {
   'Piotr Solnica' => 'https://twitter.com/_solnic_'
 }
 
+set :projects, %w[
+  rom
+  rom-csv
+  rom-mongo
+  rom-rails
+  rom-sql
+  rom-yaml
+]
+
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true, smartypants: true
 

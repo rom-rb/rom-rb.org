@@ -31,6 +31,7 @@ html
             .container
               a.navbar-brand href="/" Ruby Object Mapper
               ul.nav.navbar-nav
+                = nav_link("/status", "Status")
                 = nav_link("/introduction", "Introduction")
                 = nav_link("/tutorials", "Tutorials")
                 li.dropdown == api_docs_nav
