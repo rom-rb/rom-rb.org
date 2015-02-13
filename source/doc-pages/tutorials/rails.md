@@ -1,10 +1,9 @@
-Welcome to the ROM on Rails tutorial.
+This tutorial explains how to make ROM feel right at home in your Rails application. It is primarily intended for those familiar with Rails who want to learn more about ROM.
 
-This tutorial will help to explain some of the basic concepts behind ROM
-by building a simple Rails application to manage tasks. You will extend
-[relations](/introduction/relations), define [mappers](/introduction/mappers),
-and use [commands](/introduction/commands) to modify data. It is primarily
-intended for those familiar with Rails who want to learn more about ROM.
+To understand the core concepts behind ROM, we will work through the steps required to build
+a simple task management application.
+
+### Contents
 
 * [Getting started](/tutorials/rails/getting-started) - quickly initialize an application with a ROM-based template
 * [Tasks index](/tutorials/rails/tasks-index) - display a list of tasks using a generated relation
@@ -23,5 +22,4 @@ Of note is the [rom-rails](https://github.com/rom-rb/rom-rails) library, which
 is essentially a Railtie and some generators. The Railtie allows you to place
 [relations](/introduction/relations), [mappers](/introduction/mappers), and
 [commands](/introduction/commands) in directories similar to how Rails
-places models, controllers, and mailers under the `app` directory. The
-integration makes ROM feel right at home in your Rails application.
+places models, controllers, and mailers under the `app` directory. 
