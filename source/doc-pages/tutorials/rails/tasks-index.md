@@ -1,5 +1,7 @@
 ## Displaying tasks
 
+
+
 We know from [getting started](/tutorials/rails/getting-started) that we
 can add tasks and read them out. It turns out that displaying tasks provides
 a nice way to begin to see ROM and Rails working together.

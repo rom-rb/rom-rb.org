@@ -64,10 +64,10 @@ rom.relations
 
 ### Get the list of tasks
 
-To get the list of tasks, we go through the reader API and call `to_a`, which executes the query and returns an array of results:
+To get the list of tasks, we go through the relation API and call `to_a`, which executes the query and returns an array of results:
 
 ```ruby
-rom.read(:tasks).to_a
+rom.relation(:tasks).to_a
 ```
 
 We should get back an empty array because there are currently no tasks in the database.
@@ -89,26 +89,26 @@ The `create` method accepts a hash of attributes to be saved, and returns a resu
 Look up the tasks reader again, and materialize its relation:
 
 ```ruby
-rom.read(:tasks).to_a
+rom.relation(:tasks).to_a
 ```
 
 We haven’t yet defined a mapper or added any queries to the relation so all we can do at this point is read back the entire set of tasks as an array of hashes.
 
-Readers and relations always return immutable collections supporting Ruby’s [Enumerable](http://ruby-doc.org/core-2.2.0/Enumerable.html) interface:
+Relations always return immutable collections supporting Ruby’s [Enumerable](http://ruby-doc.org/core-2.2.0/Enumerable.html) interface:
 
 ```ruby
-rom.read(:tasks).first
+rom.relation(:tasks).first
 
-rom.read(:tasks).count
+rom.relation(:tasks).count
 
-rom.read(:tasks).each { |t| puts t[:title] }
+rom.relation(:tasks).each { |t| puts t[:title] }
 
-rom.read(:tasks).map { |t| t[:id] }
+rom.relation(:tasks).map { |t| t[:id] }
 
-rom.read(:tasks).detect { |t| t[:title].match(/ROM/) }
+rom.relation(:tasks).detect { |t| t[:title].match(/ROM/) }
 ```
 
 But with nothing more than an empty relation defined, there’s not a lot we can do in terms of querying this data.
 
-Let’s look at ROM’s relation API in more detail by moving on to [building a tasks index](/tutorials/rails/tasks-index).
+Let’s look at ROM’s relation API in more detail by moving on to [displaying tasks](/tutorials/rails/displaying-tasks).
 

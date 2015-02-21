@@ -20,9 +20,11 @@ bonus features out-of-the-box like equality methods.
 
 ``` ruby
 # app/models/task.rb
+# Alias to a domain-specific module in our app
+ValueObject = Virtus.value_object(coerce: false)
 
 class Task
-  include Virtus.value_object(coerce: false)
+  include ValueObject
 
   values do
     attribute :id, Integer
