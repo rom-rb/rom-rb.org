@@ -94,7 +94,7 @@ helpers do
   def api_docs_nav
     html = ""
 
-    html << link_to("API Docs <span class='caret'/>", "#",
+    html << link_to("API Reference <span class='caret'/>", "#",
                     class: "dropdown-toggle",
                     role: "button", data: { toggle: "dropdown" })
 
