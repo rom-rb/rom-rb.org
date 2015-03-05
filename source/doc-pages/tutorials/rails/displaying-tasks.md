@@ -18,7 +18,7 @@ To read data from the tasks relation that we set up previously, make a route to 
 If you don’t want to do this manually, you can generate the controller with the following command:
 
 ```shell
-bin/rails g controller tasks
+bin/rails generate controller tasks
 ```
 
 Hook in the tasks relation to the index action of the controller:
@@ -33,7 +33,13 @@ class TasksController < ApplicationController
 end
 ```
 
-Sending a request to this action will give us an error due to a missing template. So let’s fill that in now:
+To run this, start the Rails server with the following command:
+
+```shell
+bin/rails server
+```
+
+Sending a request to this action at `http://localhost:3000/tasks` will give us an error due to a missing template. So let’s fill that in now:
 
 ``` erb
 # app/views/tasks/index.html.erb
@@ -43,7 +49,7 @@ Sending a request to this action will give us an error due to a missing template
 <ul>
   <% tasks.each do |task| %>
     <li>
-      <%= task[:title] %>
+      <%= task[:text] %>
     </li>
   <% end %>
 </ul>
@@ -51,7 +57,7 @@ Sending a request to this action will give us an error due to a missing template
 
 And just like that, we’re listing tasks!
 
-Notice that we’re using raw hash keys to access the task attributes in the template. This is because the relation doesn’t know how to map the list of tasks to a particular model.
+Notice that we’re using raw hash keys to access the task attributes in the template. This is because the relation doesn’t yet know how to map the list of tasks to a particular model.
 
 Before addressing this, let’s first explore how to set up more granular queries on the relation.
 
@@ -59,12 +65,14 @@ Before addressing this, let’s first explore how to set up more granular querie
 
 The specific capabilities of a relation depend on the dataset adapter it’s configured with. Here, we’re using [rom-sql](https://github.com/rom-rb/rom-sql), which gives us access to the [Sequel Dataset API](http://sequel.jeremyevans.net/rdoc/classes/Sequel/Dataset.html).
 
-To filter the list of tasks based on whether or not the tasks are complete, add the following
+To filter the list of tasks based on whether or not the tasks are complete, add the following methods `by_complete` and `by_incomplete` to the relation:
 
 ```ruby
 # app/relations/tasks.rb
 
 class Tasks < ROM::Relation[:sql]
+  dataset :tasks
+
   def by_complete
     where(is_complete: true)
   end
@@ -75,7 +83,7 @@ class Tasks < ROM::Relation[:sql]
 end
 ```
 
-Note that in Sequel, `filter` can also be used as an alias for `where`. Use whichever style you prefer.
+Note that in Sequel, `filter` can also be used as an alias for `where`. Use whatever style you prefer.
 
 To render these filtered lists in the index template, we’ll introduce the new concept of a task status.
 

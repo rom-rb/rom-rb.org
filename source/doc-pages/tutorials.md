@@ -1,3 +1,1 @@
-Welcome in ROM Tutorials. You can find here intructions with code examples
-showing how to accomplish specific tasks and how to use ROM with other libraries
-and frameworks.
+This is a selection of step-by-step tutorials targeting the ROM **0.6** API. If you’re unfamiliar with ROM and want to try it out, you’ve come to the right place. These tutorials will help you to get started quickly.

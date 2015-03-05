@@ -6,11 +6,12 @@ a simple task management application.
 ### Contents
 
 * [Getting started](/tutorials/rails/getting-started) - quickly initialize an application with a ROM-based template
-* [Tasks index](/tutorials/rails/tasks-index) - display a list of tasks using a generated relation
-* [Task relation](/tutorials/rails/task-relation) - extend the tasks relation to order results
+* [Displaying tasks](/tutorials/rails/tasks-index) - understand ROM’s read model by displaying a list of tasks
+* [Managing tasks](/tutorials/rails/task-relation) - 
 * [Task mapper](/tutorials/rails/task-mapper) - define a dedicated mapper for domain objects
 * [Managing tasks](/tutorials/rails/managing-tasks) - implement create/update/delete actions with commands
 * [Validations](/tutorials/rails/validations) - use validators
+
 
 The following libraries are used throughout:
 
