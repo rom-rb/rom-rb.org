@@ -6,14 +6,11 @@ slug: "/tutorials"
 .row
   .col-md-3
     ul.nav.nav-pills.nav-stacked
-      = nav_heading("/tutorials/rails", "Rails")
-      = nav_link("/tutorials/rails/getting-started", "Getting started")
-      = nav_link("/tutorials/rails/tasks-index", "Tasks index")
-      = nav_link("/tutorials/rails/task-relation", "Task relation")
-      = nav_link("/tutorials/rails/task-mapper", "Task mapper")
-      = nav_link("/tutorials/rails/managing-tasks", "Managing tasks")
-      = nav_link("/tutorials/rails/validations", "Validations")
-      = nav_link("/tutorials/rails/the-end", "The end")
+      = nav_heading("/tutorials/rails", "Rails Tutorial")
+      = nav_link("/tutorials/rails/getting-started", "Part 1: Getting Started")
+      = nav_link("/tutorials/rails/relations-mappers", "Part 2: Relations &amp; Mappers")
+      = nav_link("/tutorials/rails/forms-commands", "Part 3: Forms &amp; Commands")
+      = nav_heading("/tutorials/sinatra", "Sinatra Tutorial")
   .col-md-9
     .page-header
       h1 = current_page.data.title

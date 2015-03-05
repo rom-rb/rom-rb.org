@@ -1,6 +1,6 @@
 ## Displaying Tasks
 
-Now that we’ve [integrated ROM with Rails](/tutorials/rails/getting-started) and briefly visited ROM’s high level API for relations and commands, it’s time to dive a little deeper into the capabilities of ROM.
+Now that we’ve [integrated ROM with Rails](/tutorials/rails/getting-started) and briefly visited ROM’s high level API for relations and commands, it’s time to dive a little deeper into .
 
 This section is focused on how to select data using ROM relations and construct model objects using ROM mappers. After reading this, you’ll have an understanding of:
 

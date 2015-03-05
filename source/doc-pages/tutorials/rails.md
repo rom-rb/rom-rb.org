@@ -1,9 +1,8 @@
 This tutorial explains how to make ROM feel right at home in your Rails application. It is primarily intended for those familiar with Rails who want to learn more about ROM.
 
-To understand the core concepts behind ROM, we will work through the steps required to build
-a simple task management application.
+To understand how ROM integrates with Rails, we will work through the steps required to build a simple todo list application.
 
-### Contents
+The application will have the following capabilities:
 
 * [Getting started](/tutorials/rails/getting-started) - quickly initialize an application with a ROM-based template
 * [Displaying tasks](/tutorials/rails/tasks-index) - understand ROM’s read model by displaying a list of tasks
@@ -11,16 +10,20 @@ a simple task management application.
 * [Task mapper](/tutorials/rails/task-mapper) - define a dedicated mapper for domain objects
 * [Managing tasks](/tutorials/rails/managing-tasks) - implement create/update/delete actions with commands
 * [Validations](/tutorials/rails/validations) - use validators
+- Displaying the list of tasks
+- Filtering and ordering the list of tasks
+- Creating new tasks
+- Updating, re-prioritizing and completing tasks
+- Deleting tasks
 
+By the end of this tutorial, you’ll have learned the following:
 
-The following libraries are used throughout:
+- How ROM integrates with Rails
+- How to use ROM to build basic CRUD applications
+- How to test Rails apps that depend on ROM
 
-* [rom](https://github.com/rom-rb/rom) - main gem for the ROM project
-* [rom-sql](https://github.com/rom-rb/rom-sql) - database adapter based on [Sequel](https://github.com/jeremyevans/sequel)
-* [rom-rails](https://github.com/rom-rb/rom-rails) - Rails integration for ROM
+If that sounds good, then let’s get started!
 
-Of note is the [rom-rails](https://github.com/rom-rb/rom-rails) library, which
-is essentially a Railtie and some generators. The Railtie allows you to place
-[relations](/introduction/relations), [mappers](/introduction/mappers), and
-[commands](/introduction/commands) in directories similar to how Rails
-places models, controllers, and mailers under the `app` directory. 
+### Next Steps
+
+When you’re ready, read [part 1 of this tutorial](/tutorials/rails/getting-started) and learn how to quickly initialize a Rails application with a ROM-based template.
