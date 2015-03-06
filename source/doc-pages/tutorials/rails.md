@@ -11,7 +11,7 @@ intended for those familiar with Rails who want to learn more about ROM.
 * [Task relation](/tutorials/rails/task-relation) - extend the tasks relation to order results
 * [Task mapper](/tutorials/rails/task-mapper) - define a dedicated mapper for domain objects
 * [Managing tasks](/tutorials/rails/managing-tasks) - implement create/update/delete actions with commands
-* [Validations](/tutorials/validations) - use validators
+* [Validations](/tutorials/rails/validations) - use validators
 
 The following libraries are used throughout:
 
