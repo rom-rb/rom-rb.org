@@ -5,7 +5,7 @@
   <id>http://rom-rb.org/blog/</id>
   <link href="http://rom-rb.org"/>
   <link href="http://rom-rb.org/feed.xml" rel="self"/>
-  <updated>2014-12-31T22:02:00+01:00</updated>
+  <updated>2015-01-01T08:02:00+11:00</updated>
   <author>
     <name>ROM team</name>
   </author>
@@ -13,8 +13,8 @@
     <title>ROM 0.5.0 Released</title>
     <link rel="alternate" href="http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released"/>
     <id>http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released</id>
-    <published>2014-12-31T22:02:00+01:00</published>
-    <updated>2014-12-31T22:02:00+01:00</updated>
+    <published>2015-01-01T08:02:00+11:00</published>
+    <updated>2015-01-01T08:02:00+11:00</updated>
     <author>
       <name>Don Morrison</name>
     </author>
