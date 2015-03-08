@@ -42,12 +42,13 @@ insert_into_file "spec/rails_helper.rb",
   CONTENT
 end
 
-generate "migration", "create_tasks", "title:string"
+generate "migration", "create_tasks", "title:string", "is_completed:boolean"
 
 generate "rom:relation", "tasks"
 generate "rom:mapper", "tasks"
 generate "rom:commands", "tasks"
 
+route "root to: 'tasks#index'"
 route "resources :tasks"
 
 rake "db:migrate"
