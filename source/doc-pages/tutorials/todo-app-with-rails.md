@@ -1,3 +1,4 @@
+
 This tutorial explains how to make ROM feel right at home in your Rails application. It is primarily intended for those familiar with Rails who want to learn more about ROM.
 
 To understand how ROM integrates with Rails, we will work through the steps required to build a simple todo list application.
