@@ -1,12 +1,12 @@
-# ROM Sinatra Tutorial
+In this tutorial, we’ll walk through the steps required to build a web API for managing a todo list.
 
-In this tutorial, we’ll walk through the steps required to build a web API for managing a todo list. Each example builds on the last, showing how ROM and Sinatra can work together to provide an effective toolkit for rapid prototyping microservices and REST APIs. 
+Each example builds on the last, showing how ROM and Sinatra can work together to provide an effective toolkit for rapid prototyping microservices and REST APIs. 
 
 For simplicity and clarity, this tutorial uses ROM’s setup DSL, though in larger apps, we recommend configuring ROM with explicit class definitions. This is analogous to the difference between Sinatra’s routing DSL and its modular application style.
 
 If you’re looking for a more robust and intricate example of ROM integrated with a modular Sinatra application, see the [rom-sinatra sample app](https://github.com/gotar/sinatra-rom).
 
-## Setup
+## Setup from Scratch
 
 Create a new app directory, add a `Gemfile` with the following dependencies, and run `bundle` to install them:
 
@@ -40,6 +40,7 @@ Or provide a `config.ru` like the following, which can be used with `rackup`:
 
 ```ruby
 require './todo_api'
+
 run Sinatra::Application
 ```
 
@@ -51,7 +52,7 @@ web: bundle exec rackup -p $PORT
 
 With all the housekeeping and boilerplate out of the way, we can start looking at the todo API itself.
 
-## Setup the tasks model
+## Define the tasks model
 
 To load ROM into this app, we need to set up the SQL adapter and provide a connection string. Do this at the top of the Sinatra app file:
 
