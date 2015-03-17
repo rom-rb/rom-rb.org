@@ -1,66 +1,110 @@
-## Getting started
+After reading this, you’ll know how to integrate ROM with Rails
 
-We need to create a new Rails application. To get up and running quickly
-we've provided a small application template which takes care of a few details.
-_You'll need a newish version of Rails installed and available to make this
+_Note: You'll need a newish version of Rails installed and available to make this
 all work._
 
-Create the new application by running the following command:
+### Creating the application
+
+First, we need to create a new Rails application. To get up and running quickly
+we've provided a small [application template](https://github.com/rom-rb/rom-rb.org/blob/master/source/tutorials/code/rom-todo-app-template.rb) which takes care of a few minor setup details.
+
+Open up a terminal and create a new Rails application with the following commands:
 
 ``` shell
-rails new rom-todo-app -JTS -m http://rom-rb.org/tutorials/code/rom-todo-app-template.rb
+wget http://rom-rb.org/tutorials/code/rom-todo-app-template.rb
+rails new rom-todo-app -JTS -m rom-todo-app-template.rb
 ```
 
-This likely take a little while to run. While you're waiting you can read about
-what the template is doing for us. It:
+Watch the logs fly by as your new Rails app is created.
 
-* Adds required gems to Gemfile
-* Generates a migration that creates `tasks` table
-* Generates `app/relations` with tasks relation
-* Generates `app/mappers` with default definition for `tasks`
-* Generates `app/commands` with default set of create/update/delete commands for
-  `tasks`
-* Creates `spec/fixtures` with basic test data for our specs
+In addition to the normal Rails installation, the application template includes the following extra steps:
 
-Once the `rails new` command and the template have completed you can change to
-the app directory and open a Rails console:
+- Adding `rom`, `rom-sql`, and `rom-rails` dependencies to the `Gemfile`
+- Replacing the Rails test defaults with `rspec` and `capybara`
+- Adding `require 'rom-rails'` to `config/application.rb`
+- Adding a `tasks` table to the database and running `db:migrate`
+- Adding a `tasks` resource route
+- Adding relation, mapper and command classes for `tasks` 
 
-``` shell
+Once this is finished, change to the new application directory and open a Rails console:
+
+```shell
 cd rom-todo-app
-bin/rails c
+bin/rails console
 ```
 
-Hooray! It worked! This is progress.
+Hooray! You’ve now got a working Rails app with an integration to ROM.
 
-Now let's use ROM to create a new task. In the Rails console:
-_(You don't have to type in the comments, they're just for us.)_
+Before diving into the structure of the app itself, let’s start by exploring the different parts of the ROM API from within the Rails console.
+
+### Access the ROM environment
+
+The ROM environment is provided specifically for frameworks like Rails where you need global access to the configured object graph.
+
+To access the environment, type the following line into the Rails console:
 
 ```ruby
-# access the ROM environment
 rom = ROM.env
-
-# use a command to create a task
-rom.command(:tasks).try { create(title: 'Try out ROM') }
-=> #<ROM::Result::Success:0x007fb148755d90 @value={:id=>1, :title=>"Try out ROM"}>
-
-# use the tasks relation to access the task we just created
-rom.read(:tasks).to_a
-=> [{:id=>1, :title=>"Try out ROM"}]
 ```
 
-In this short bit of code we've already used three bits of ROM:
+By default, the ROM environment is configured with an SQLite repository and the registry of relations, mappers and commands.
 
-**Environment**
-The first thing we did was access something called `ROM.env`. This environment
-is a convention built specifically for frameworks like Rails where you need
-global access to the ROM registry.
+### Working with ROM objects
 
-**Commands**
-We'll cover these in more detail, but [commands](/introduction/commands) are
-the way we create or modify data in our relations.
+The Rails template introduces a convention for managing objects provided by ROM alongside the familiar Rails conventions.
 
-**Relations**
-[Relations](/introduction/relations) provide a way to access our data. We're
-just reading all the data from `tasks` and converting it into an array. We
-haven't defined any [mappers](/introduction/mappers) yet so our read simply
-returns hashes. We'll get to mappers soon enough though, don't you worry.
+Commands, mappers, and relations are autoloaded and registered with the ROM environment when placed in the following locations:
+
+- `app/commands`
+- `app/mappers`
+- `app/relations`
+
+If you look inside these paths in the Rails app, you’ll see that the application template generated a `tasks.rb` file in each of these paths as well as a `*_create_tasks.rb` migration in `db/migrations`.
+
+Use the following methods to look up the registered task objects on the environment:
+
+```ruby
+rom.commands
+rom.mappers
+rom.relations
+```
+
+### Get the list of tasks
+
+To get the list of tasks, we get the relation from the registry and call `to_a`, which executes the query and returns an array of results:
+
+```ruby
+rom.relation(:tasks).to_a
+```
+
+We should get back an empty array here, because the database is currently empty.
+
+### Use a command to create a task
+
+Create a new task by getting the create command from the registry and calling it with a hash of attributes to save:
+
+```ruby
+rom.command(:tasks).create.call(text: 'finish the tutorial', priority: 1)
+```
+
+The `create` method accepts a hash of attributes to be saved, and returns a result object representing the created task.
+
+### Read back the task we just created
+
+Look up the tasks relation again, and materialize it to an array:
+
+```ruby
+rom.relation(:tasks).to_a
+```
+
+Or get at the task directly:
+
+```ruby
+rom.relation(:tasks).first
+```
+
+With nothing more than an empty `TasksRelation` class defined, all we can do at this point is read back the list of tasks as hashes.
+
+### Next Steps
+
+Let’s look at ROM’s read capabilities in more detail by moving on to [part 2 of this tutorial](/tutorials/rails/relations-and-mappers) where we explore relations and mappers.

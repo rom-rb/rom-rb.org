@@ -1,3 +1,6 @@
-Welcome in ROM Tutorials. You can find here intructions with code examples
-showing how to accomplish specific tasks and how to use ROM with other libraries
-and frameworks.
+This is a selection of step-by-step tutorials targeting the ROM **0.6** API. If you’re unfamiliar with ROM and want to try it out, you’ve come to the right place. These tutorials will help you to learn by example.
+
+### [Todo App with Rails](/tutorials/todo-app-with-rails)
+
+Learn how ROM integrates with Rails with this step by step guide to building a simple Todo list manager.
+

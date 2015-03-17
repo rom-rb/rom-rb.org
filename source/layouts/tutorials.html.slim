@@ -6,14 +6,14 @@ slug: "/tutorials"
 .row
   .col-md-3
     ul.nav.nav-pills.nav-stacked
-      = nav_heading("/tutorials/rails", "Rails")
-      = nav_link("/tutorials/rails/getting-started", "Getting started")
-      = nav_link("/tutorials/rails/tasks-index", "Tasks index")
-      = nav_link("/tutorials/rails/task-relation", "Task relation")
-      = nav_link("/tutorials/rails/task-mapper", "Task mapper")
-      = nav_link("/tutorials/rails/managing-tasks", "Managing tasks")
-      = nav_link("/tutorials/rails/validations", "Validations")
-      = nav_link("/tutorials/rails/the-end", "The end")
+      = nav_heading("/tutorials/todo-app-with-rails", "Todo App with Rails")
+      - if current_page.data.slug == "/tutorials/todo-app-with-rails"
+        = nav_link("#{current_page.data.slug}#getting-started", "Getting Started")
+        = nav_link("#{current_page.data.slug}#relations-and-mappers", "Relations and Mappers")
+        = nav_link("#{current_page.data.slug}#forms-and-validation", "Forms and Validation")
+        = nav_link("#{current_page.data.slug}#testing", "Testing")
+        = nav_link("#{current_page.data.slug}#migrations", "Migrations")
+        = nav_link("#{current_page.data.slug}#summary", "Summary")
   .col-md-9
     .page-header
       h1 = current_page.data.title
