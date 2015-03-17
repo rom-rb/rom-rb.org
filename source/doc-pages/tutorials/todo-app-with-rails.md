@@ -5,17 +5,9 @@ To understand how ROM integrates with Rails, we will work through the steps requ
 
 The application will have the following capabilities:
 
-* [Getting started](/tutorials/rails/getting-started) - quickly initialize an application with a ROM-based template
-* [Displaying tasks](/tutorials/rails/tasks-index) - understand ROM’s read model by displaying a list of tasks
-* [Managing tasks](/tutorials/rails/task-relation) - 
-* [Task mapper](/tutorials/rails/task-mapper) - define a dedicated mapper for domain objects
-* [Managing tasks](/tutorials/rails/managing-tasks) - implement create/update/delete actions with commands
-* [Validations](/tutorials/rails/validations) - use validators
 - Displaying the list of tasks
 - Filtering and ordering the list of tasks
-- Creating new tasks
-- Updating, re-prioritizing and completing tasks
-- Deleting tasks
+- Creating, updating and deleting tasks
 
 By the end of this tutorial, you’ll have learned the following:
 
