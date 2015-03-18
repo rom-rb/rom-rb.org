@@ -252,13 +252,14 @@ class TasksController < ApplicationController
   private
 
   def by_status(status)
-  	if status == 'active'
-  	  tasks.active
-  	elsif status == 'completed'
-  	  tasks.active
-  	else
-  	 tasks
-  	end
+    case status
+    when 'active'
+      tasks.active
+    when 'completed'
+      tasks.completed
+    else
+      tasks
+    end
   end
 
   def tasks
@@ -280,12 +281,13 @@ class Tasks < ROM::Relation[:sql]
   dataset :tasks
 
   def index_view(status)
-    if status == 'active'
-      self.active
-    elsif status == 'completed'
-      self.completed
+    case status
+    when 'active'
+      active
+    when 'completed'
+      completed
     else
-     self
+      self
     end
   end
 
@@ -418,7 +420,7 @@ class TasksController < ApplicationController
   private
 
   def tasks
-	  rom.relation(:tasks)
+    rom.relation(:tasks)
   end
 end
 ```
@@ -445,11 +447,11 @@ class Task
   end
 
   def status
-  	if is_completed
-  	  :completed
-  	else
+    if is_completed
+      :completed
+    else
       :active
-  	end
+    end
   end
 
   def status_label
