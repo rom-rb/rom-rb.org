@@ -14,14 +14,9 @@ These [core concepts](/introduction/overview) are implemented in ROM with
 [**adapters**](/introduction/adapters), [**relations**](/introduction/relations),
 [**mappers**](/introduction/mappers), and [**commands**](/introduction/commands).
 
-### ROM code looks weird
+### ROM philosophy
 
-ROM is not implemented in the typical Ruby fashion. As mentioned above, ROM
-provides minimum infrastructure to accomplish its goals. The code in
-ROM looks weird because there are no "base" classes to inherit from and no
-modules to include. Avoiding the typical class-orientation and module constants
-lowers coupling and removes layers of complexity.
+ROM is not implemented in the typical Ruby fashion. As mentioned above, ROM provides minimum infrastructure to accomplish its goals, it is designed with ease-of-use in mind - so although the convenience class methods you usually see in Rubyland are avoided, classes are instantiated for you, and can be accessed via the ROM environment, this means that the only class that you need to interface with is ROM and simple dependency-injection is encouraged.
 
-ROM is a DSL used to define relations, mappers, and commands, giving you back
-a registry of everything you defined. The only constant you reference in your
-code is `ROM`.
+
+All ROM components are built to be stand-alone, they can be used independently of each other, are loosely coupled and follow the single responsibility principle, rather than having a single object that handles coercion, state, persistence, validation and your all-important business logic, ROM provides the infrastructure to allow you to easily create small dedicated classes for handling each of these concerns individually, and tie it all together in a simple, manageable fashion.
