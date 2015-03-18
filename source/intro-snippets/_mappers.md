@@ -1,9 +1,9 @@
 ``` ruby
-ROM.mappers do
-  define(:users) do
-    model User
-    attribute :id
-    attribute :name
-  end
+class UserEntityMapper < ROM::Mapper
+  relation :users
+  register_as :entity
+  model User
+  attribute :id
+  attribute :name
 end
 ```
