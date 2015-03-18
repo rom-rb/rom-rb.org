@@ -35,19 +35,20 @@ html
                 = nav_link("/tutorials", "Tutorials")
                 li.dropdown == api_docs_nav
                 = nav_link("/blog", "Blog")
+                = nav_link("/contribute", "Contribute")
                 = nav_link("/status", "Status")
-              .social
-                .github
-                  iframe src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"
-                .twitter
-                  a href="https://twitter.com/rom_rb" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false"
-                   | Follow
-                  javascript:
-                    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
       .container
         .content
           == yield
     footer
       .container
+        .social
+          .github
+            iframe src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"
+          .twitter
+            a href="https://twitter.com/rom_rb" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false"
+             | Follow
+            javascript:
+              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
         .muted.copyright
-          | Ruby Object Mapper &copy; 2014
+          | Ruby Object Mapper &copy; 2014-2015
