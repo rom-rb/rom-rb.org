@@ -5,7 +5,7 @@
   <id>http://rom-rb.org/blog/</id>
   <link href="http://rom-rb.org"/>
   <link href="http://rom-rb.org/feed.xml" rel="self"/>
-  <updated>2015-01-01T08:02:00+11:00</updated>
+  <updated>2014-12-31T22:02:00+01:00</updated>
   <author>
     <name>ROM team</name>
   </author>
@@ -13,8 +13,8 @@
     <title>ROM 0.5.0 Released</title>
     <link rel="alternate" href="http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released"/>
     <id>http://rom-rb.org/blog/2014/12/31/rom-0-5-0-released</id>
-    <published>2015-01-01T08:02:00+11:00</published>
-    <updated>2015-01-01T08:02:00+11:00</updated>
+    <published>2014-12-31T22:02:00+01:00</published>
+    <updated>2014-12-31T22:02:00+01:00</updated>
     <author>
       <name>Don Morrison</name>
     </author>
@@ -24,14 +24,14 @@ culmination of months of hard work from a growing <a href="https://github.com/ro
 
 <p>It&rsquo;s exciting to end the year with such a large and meaningful release.</p>
 
-<h2>How We Got Here</h2>
+<h2 id="how-we-got-here">How We Got Here</h2>
 
 <p>There were some twists and turns along the way, not the least of which was
 a reboot of the project with all new internals in November. The reboot was a
 turning point that has allowed us to accelerate development while cementing
 the core of ROM and surrounding libraries.</p>
 
-<h2>Version 0.5.0</h2>
+<h2 id="version-0.5.0">Version 0.5.0</h2>
 
 <p>The emphasis thus far has been on powerful mapping features and speed. This
 has resulted in an interface that looks <em>lower-level</em> than the other projects
@@ -51,19 +51,19 @@ both in the core of ROM and in libraries like <a href="https://github.com/rom-rb
 section below for an overview of the changes and a link to the changelogs for
 each project.</p>
 
-<h2>rom-rb.org</h2>
+<h2 id="rom-rb.org">rom-rb.org</h2>
 
 <p>If you&rsquo;re reading this, it&rsquo;s because of the work we&rsquo;ve done updating the
 website. Alongside the obvious layout and style changes we&rsquo;ve also spent
 time on <a href="/introduction">introductions</a> and <a href="/tutorials">tutorials</a>.</p>
 
-<h3>Introductions</h3>
+<h3 id="introductions">Introductions</h3>
 
 <p>The <a href="/introduction">introductions</a> are here to help you get accustomed to the
 terms and concepts used throughout ROM. You&rsquo;ll also find a brief article on
 <a href="/introduction/why">Why ROM</a> and a short comparision with <a href="/introduction/activerecord">ActiveRecord</a>.</p>
 
-<h3>Tutorials</h3>
+<h3 id="tutorials">Tutorials</h3>
 
 <p>We&rsquo;ve put together a fairly thorough tutorial for getting started with
 <a href="/tutorials/rails">ROM and Rails</a> and have several more planned. Even if you
@@ -72,7 +72,7 @@ in ROM come together to create powerful ways of working with data.</p>
 
 <p>There will be more <a href="/tutorials">tutorials</a> in the coming weeks.</p>
 
-<h2>[rom] v0.5.0 Changelog summary:</h2>
+<h2 id="[rom]-v0.5.0-changelog-summary:">[rom] v0.5.0 Changelog summary:</h2>
 
 <ul>
 <li><p>Major milestone of putting together relation and mapping layers is done.
@@ -101,7 +101,7 @@ priority right now.</p></li>
 
 <p><a href="https://github.com/rom-rb/rom/blob/v0.5.0/CHANGELOG.md">Full changelog</a></p>
 
-<h2>[rom-rails] v0.2.0 Changelog summary:</h2>
+<h2 id="[rom-rails]-v0.2.0-changelog-summary:">[rom-rails] v0.2.0 Changelog summary:</h2>
 
 <ul>
 <li><p>We have now generators for relations, mappers and commands!</p></li>
@@ -114,7 +114,7 @@ in adapter interface)</p></li>
 
 <p><a href="https://github.com/rom-rb/rom-rails/blob/v0.2.0/CHANGELOG.md">Full changelog</a></p>
 
-<h2>[rom-demo] Updated:</h2>
+<h2 id="[rom-demo]-updated:">[rom-demo] Updated:</h2>
 
 <ul>
 <li>Was updated to work with the latest ROM. You can see a GitHub adapter with
@@ -123,7 +123,7 @@ some advanced mapping.</li>
 
 <p><a href="https://github.com/solnic/rom-demo">Latest rom-demo</a></p>
 
-<h2>[rom-sql] v0.3.1 Changelog summary:</h2>
+<h2 id="[rom-sql]-v0.3.1-changelog-summary:">[rom-sql] v0.3.1 Changelog summary:</h2>
 
 <ul>
 <li>Support for changes to ROM options and Rails reloading.</li>
@@ -131,12 +131,12 @@ some advanced mapping.</li>
 
 <p><a href="https://github.com/rom-rb/rom-sql/blob/v0.3.1/CHANGELOG.md">Full changelog</a></p>
 
-<h2>New adapters:</h2>
+<h2 id="new-adapters:">New adapters:</h2>
 
 <p>As mentioned before there are a couple of small adapters in the works:
 <a href="https://github.com/rom-rb/rom-yaml"><code>rom-yaml</code></a> and <a href="https://github.com/rom-rb/rom-csv"><code>rom-csv</code></a> with more planned.</p>
 
-<h2>Onward towards ROM 1.0.0</h2>
+<h2 id="onward-towards-rom-1.0.0">Onward towards ROM 1.0.0</h2>
 
 <p>Version 0.5.0 is a milestone on the journey to 1.0.0. There&rsquo;s nothing magical
 about a one-dot-oh but wouldn&rsquo;t it be nice?</p>
@@ -148,33 +148,33 @@ the spec suite to bring a more unit-based approach now that interfaces are
 stabilizing, features based on feedback, and fixes for any bugs that come our
 way.</p>
 
-<h3>You can help</h3>
+<h3 id="you-can-help">You can help</h3>
 
 <p>Yes, you can! As with all projects <em>&ldquo;many hands make light work&rdquo;</em>. You don&rsquo;t
 have to jump in and tackle core issues, of course you can, but there are many
 ways you can help us out:</p>
 
-<h4>Try it out</h4>
+<h4 id="try-it-out">Try it out</h4>
 
 <p>Take it for a test drive. Drop it in to an existing project or create a new
 special little place just for ROM to live. The only requirement is that you come
 back and tell us what you think. Like. Dislike. We want to hear it all.</p>
 
-<h4>Tell us how you&rsquo;re using ROM</h4>
+<h4 id="tell-us-how-you&#39;re-using-rom">Tell us how you&rsquo;re using ROM</h4>
 
 <p>You may already be building things with ROM and we&rsquo;d love to hear about it. What
 are you making? How is it working for you?  What interfaces have you created to
 make common work easier? This feedback can greatly improve the project for
 everyone.</p>
 
-<h4>Documentation</h4>
+<h4 id="documentation">Documentation</h4>
 
 <p>[dramatic pause] We all love it when it&rsquo;s written but who writes it? We do. When
 you&rsquo;re trying out ROM and you find something doesn&rsquo;t make sense &ndash; just create an
 issue on the repo. You could even assign it to yourself and make it better.
 (Imagine the satisfaction&hellip;)</p>
 
-<h4>Tutorials</h4>
+<h4 id="tutorials">Tutorials</h4>
 
 <p>Follow a tutorial. Well, since there is only one at the time of this announcement
 perhaps we should say &ldquo;follow THE tutorial&rdquo;. Go through it and see what you make
@@ -182,14 +182,14 @@ of it. If you find yourself using ROM differently, like in another framework,
 create a short tutorial about it. We can even help with the writing if you need
 it.</p>
 
-<h4>Write adapters</h4>
+<h4 id="write-adapters">Write adapters</h4>
 
 <p>There are a couple of simple adapters in progress. Both
 <a href="https://github.com/rom-rb/rom-yaml"><code>rom-yaml</code></a> and <a href="https://github.com/rom-rb/rom-csv"><code>rom-csv</code></a> are about as easy as
 they get. Maybe you could write <code>rom-json</code> or <code>rom-NEWDB</code>. We can help with this
 as well. Get it started and we&rsquo;ll all chip in.</p>
 
-<h4>Find your own way</h4>
+<h4 id="find-your-own-way">Find your own way</h4>
 
 <p>We truly believe there are as many ways to help as there people. Take a look
 around, chat with us on <a href="https://gitter.im/rom-rb/chat">Gitter</a> and get to it.</p>

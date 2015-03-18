@@ -84,14 +84,14 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-2573270-5', 'auto');
-ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_tutorials doc-pages_tutorials_sql doc-pages_tutorials_sql_index"><div class="page-wrapper"><header><nav class="navbar navbar-default navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/status">Status</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></nav></header><div class="container"><div class="content"><h3>Setup</h3>
+ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_tutorials doc-pages_tutorials_sql doc-pages_tutorials_sql_index"><div class="page-wrapper"><div class="info-alert-top" role="alert">Content based on ROM 0.6.0.rc1, expect final release in the upcoming days</div><header><nav class="navbar navbar-default navbar-static-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/contribute">Contribute</a></li><li class=""><a class="" href="/status">Status</a></li></ul></div></div></nav></header><div class="container"><div class="content"><h3 id="setup">Setup</h3>
 
 <p>To configure a database connection you pass in a hash with connection identifiers
 and URIs. Any URI that&rsquo;s supported by Sequel can be used here:</p>
 <pre class="highlight ruby"><code><span class="n">setup</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">sqlite: </span><span class="s1">'sqlite::memory'</span><span class="p">)</span>
 </code></pre>
 
-<h3>Migrations</h3>
+<h3 id="migrations">Migrations</h3>
 
 <p>For schema migrations you can use Sequel&rsquo;s
 <a href="http://sequel.jeremyevans.net/rdoc/files/doc/migration_rdoc.html">Migration API</a>.</p>
@@ -109,7 +109,7 @@ and URIs. Any URI that&rsquo;s supported by Sequel can be used here:</p>
 <span class="k">end</span>
 </code></pre>
 
-<h3>Relations</h3>
+<h3 id="relations">Relations</h3>
 
 <p>You can define relations for every database table and extend them with custom
 methods and association definitions.</p>
@@ -146,7 +146,7 @@ is available inside relations.</p>
 <span class="n">rom</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">high_priority</span>
 </code></pre>
 
-<h3>Mapping joins to aggregates</h3>
+<h3 id="mapping-joins-to-aggregates">Mapping joins to aggregates</h3>
 
 <p>ROM doesn&rsquo;t have a relationship concept like in ActiveRecord or Sequel. Instead
 it provides a convenient interface for building joined relations that can be
@@ -210,7 +210,7 @@ aggregate objects <code>wrap</code> and <code>group</code> mapping transformatio
 <span class="c1"># =&gt; [#&lt;Entities::Task:0x007f887a3d11c0 @id=1, @user_id=1, @title="Have fun", @priority=1, @user=#&lt;Entities::TaskUser:0x007f887a3d13f0 @name="Jane"&gt;&gt;]</span>
 </code></pre>
 
-<h3>Commands</h3>
+<h3 id="commands">Commands</h3>
 
 <p>To create, update and delete tuples you can define commands:</p>
 <pre class="highlight ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
@@ -259,7 +259,7 @@ aggregate objects <code>wrap</code> and <code>group</code> mapping transformatio
 <span class="c1"># =&gt; #&lt;ROM::Result::Success:0x007fb07a15cc00 @value=[{:id=&gt;2, :name=&gt;"Jade Doe"}]&gt;</span>
 </code></pre>
 
-<h3>Handling input, validation and errors</h3>
+<h3 id="handling-input,-validation-and-errors">Handling input, validation and errors</h3>
 
 <p>When defining commands you can provide external input handlers and validators:</p>
 <pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'virtus'</span>
@@ -314,4 +314,4 @@ aggregate objects <code>wrap</code> and <code>group</code> mapping transformatio
 <span class="nb">puts</span> <span class="n">result</span><span class="p">.</span><span class="nf">inspect</span>
 <span class="c1"># =&gt; #&lt;ROM::Result::Failure:0x007f91b38f95e8 @error=#&lt;NewUserValidator::InvalidInputError: ["name cannot be blank"]&gt;&gt;</span>
 </code></pre>
-</div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
+</div></div></div><footer><div class="container"><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div><div class="muted copyright">Ruby Object Mapper &copy; 2014-2015</div></div></footer></body></html>

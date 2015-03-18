@@ -84,7 +84,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-2573270-5', 'auto');
-ga('send', 'pageview');</script></head><body class="tutorials tutorials_rails tutorials_rails_managing-tasks tutorials_rails_managing-tasks_index"><div class="page-wrapper"><header><nav class="navbar navbar-default navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/status">Status</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></nav></header><div class="container"><div class="content"><div class="row"><div class="col-md-3"><ul class="nav nav-pills nav-stacked"><li class="nav-heading"><a class="nav-heading" href="/tutorials/rails">Rails</a></li><li class=""><a class="" href="/tutorials/rails/getting-started">Getting started</a></li><li class=""><a class="" href="/tutorials/rails/tasks-index">Tasks index</a></li><li class=""><a class="" href="/tutorials/rails/task-relation">Task relation</a></li><li class=""><a class="" href="/tutorials/rails/task-mapper">Task mapper</a></li><li class="active"><a class="active" href="/tutorials/rails/managing-tasks">Managing tasks</a></li><li class=""><a class="" href="/tutorials/rails/validations">Validations</a></li><li class=""><a class="" href="/tutorials/rails/the-end">The end</a></li></ul></div><div class="col-md-9"><div class="page-header"><h1>Tutorials &raquo; Rails &raquo; Managing tasks</h1></div><div class="page-article"><h2>Managing tasks</h2>
+ga('send', 'pageview');</script></head><body class="tutorials tutorials_rails tutorials_rails_managing-tasks tutorials_rails_managing-tasks_index"><div class="page-wrapper"><div class="info-alert-top" role="alert">Content based on ROM 0.6.0.rc1, expect final release in the upcoming days</div><header><nav class="navbar navbar-default navbar-static-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/contribute">Contribute</a></li><li class=""><a class="" href="/status">Status</a></li></ul></div></div></nav></header><div class="container"><div class="content"><div class="row"><div class="col-md-3"><ul class="nav nav-pills nav-stacked"><li class="nav-heading"><a class="nav-heading" href="/tutorials/todo-app-with-rails">Todo App with Rails</a></li></ul></div><div class="col-md-9"><div class="page-header"><h1>Tutorials &raquo; Rails &raquo; Managing tasks</h1></div><div class="page-article"><h2 id="managing-tasks">Managing tasks</h2>
 
 <p>In this section you will learn how to implement create &amp; update actions in
 tasks controller using ROM <a href="/introduction/commands">commands</a>. Along the way
@@ -120,7 +120,7 @@ Querying data and changing data are often mixed together in ORMs. Keep in mind
 that ROM wants these things pulled apart. Let&rsquo;s see how our application looks
 when we use these commands.</p>
 
-<h3>Creating tasks</h3>
+<h3 id="creating-tasks">Creating tasks</h3>
 
 <p>We will need a view and a controller action to take advantage of the create
 command. As a reminder, the <code>create</code> command is implemented like this (from
@@ -134,7 +134,7 @@ above):</p>
 <span class="k">end</span>
 </code></pre>
 
-<h4>Add the &ldquo;new&rdquo; scenario</h4>
+<h4 id="add-the-&quot;new&quot;-scenario">Add the &ldquo;new&rdquo; scenario</h4>
 
 <p>Add a new scenario to the tasks feature spec for adding tasks:</p>
 <pre class="highlight ruby"><code><span class="c1"># spec/features/tasks_spec.rb</span>
@@ -159,9 +159,9 @@ above):</p>
 <p><em>No need to add the route since our application template added <code>resources
 :tasks</code> to our routes.rb file.</em></p>
 
-<h4>Make it pass</h4>
+<h4 id="make-it-pass">Make it pass</h4>
 
-<h5>Add the <code>new</code> template</h5>
+<h5 id="add-the-new-template">Add the <code>new</code> template</h5>
 <pre class="highlight erb"><code># app/views/tasks/new.html.erb
 
 <span class="nt">&lt;h1&gt;</span>Tasks#new<span class="nt">&lt;/h1&gt;</span>
@@ -172,7 +172,7 @@ above):</p>
 <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
 </code></pre>
 
-<h5>Add the <code>create</code> action</h5>
+<h5 id="add-the-create-action">Add the <code>create</code> action</h5>
 <pre class="highlight ruby"><code><span class="c1"># app/controllers/tasks_controller.rb</span>
 
 <span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
@@ -199,7 +199,7 @@ Finished <span class="k">in </span>0.13225 seconds <span class="o">(</span>files
 <p>Now we have an interface for creating new tasks. It doesn&rsquo;t look all that
 different from what we&rsquo;re used to outside of the usage of <code>rom.command</code>.</p>
 
-<h3>Updating tasks</h3>
+<h3 id="updating-tasks">Updating tasks</h3>
 
 <p>The command for updating looks like this:</p>
 <pre class="highlight ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">commands</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span> <span class="k">do</span>
@@ -216,7 +216,7 @@ different from what we&rsquo;re used to outside of the usage of <code>rom.comman
 <p>To update tasks we&rsquo;ll need a view and controller action for <code>edit</code> along with
 an action for <code>update</code>.</p>
 
-<h4>Add the &ldquo;edit&rdquo; scenario</h4>
+<h4 id="add-the-&quot;edit&quot;-scenario">Add the &ldquo;edit&rdquo; scenario</h4>
 <pre class="highlight ruby"><code><span class="c1"># spec/features/tasks_spec.rb</span>
 
 <span class="n">feature</span> <span class="s1">'Tasks'</span> <span class="k">do</span>
@@ -236,7 +236,7 @@ an action for <code>update</code>.</p>
 <span class="k">end</span>
 </code></pre>
 
-<h4>Add the <code>edit</code> template</h4>
+<h4 id="add-the-edit-template">Add the <code>edit</code> template</h4>
 <pre class="highlight erb"><code># app/views/tasks/edit.html.erb
 
 <span class="nt">&lt;h1&gt;</span>Tasks#edit<span class="nt">&lt;/h1&gt;</span>
@@ -247,7 +247,7 @@ an action for <code>update</code>.</p>
 <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
 </code></pre>
 
-<h4>Add the <code>edit</code> action</h4>
+<h4 id="add-the-edit-action">Add the <code>edit</code> action</h4>
 <pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="c1"># ...</span>
 
@@ -262,7 +262,7 @@ an action for <code>update</code>.</p>
 add it. If you remember, we can create new methods on a relation quite easily.
 Let&rsquo;s take a short detour and take care of that.</p>
 
-<h4>Specify <code>by_id</code></h4>
+<h4 id="specify-by_id">Specify <code>by_id</code></h4>
 <pre class="highlight ruby"><code><span class="c1"># spec/relations/tasks_spec.rb</span>
 
 <span class="n">describe</span> <span class="s1">'Tasks relation'</span> <span class="k">do</span>
@@ -281,7 +281,7 @@ Let&rsquo;s take a short detour and take care of that.</p>
 <p>Currently ROM relations are all enumerable so we need to add <code>#first</code> to get
 the single object.</p>
 
-<h4>Implement <code>by_id</code></h4>
+<h4 id="implement-by_id">Implement <code>by_id</code></h4>
 <pre class="highlight ruby"><code><span class="c1"># app/relations/tasks.rb</span>
 
 <span class="no">ROM</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span> <span class="k">do</span>
@@ -300,7 +300,7 @@ instance of the <code>Task</code> value object.</p>
 
 <p>We&rsquo;re close but we need a way to update the task.</p>
 
-<h4>Add the <code>update</code> action</h4>
+<h4 id="add-the-update-action">Add the <code>update</code> action</h4>
 <pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="c1"># ...</span>
 
@@ -316,7 +316,7 @@ instance of the <code>Task</code> value object.</p>
 <span class="k">end</span>
 </code></pre>
 
-<h4>Small update to <code>index</code> view</h4>
+<h4 id="small-update-to-index-view">Small update to <code>index</code> view</h4>
 
 <p>And our scenario requires that task titles be links in the index view:</p>
 <pre class="highlight erb"><code># app/views/tasks/index.html.erb
@@ -332,7 +332,7 @@ instance of the <code>Task</code> value object.</p>
 <span class="nt">&lt;/ul&gt;</span>
 </code></pre>
 
-<h4>Passing tests!</h4>
+<h4 id="passing-tests!">Passing tests!</h4>
 
 <p>Just like that, our tests should pass:</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>bin/rspec spec/features/tasks_spec.rb
@@ -342,7 +342,7 @@ Finished <span class="k">in </span>0.17617 seconds <span class="o">(</span>files
 3 examples, 0 failures
 </code></pre>
 
-<h4>What&rsquo;s next?</h4>
+<h4 id="what&#39;s-next?">What&rsquo;s next?</h4>
 
 <p>We don&rsquo;t have a way to delete tasks so our management is incomplete. It turns
 out that the delete action is so trivial you should be able to do it on your
@@ -350,4 +350,4 @@ own. Start with that scenario and work inward toward the command.</p>
 
 <p>Validations and error handling are sorely lacking in our implementation. That
 seems like a good thing to cover <a href="/tutorials/rails/validations">next</a>.</p>
-<div class="page-article-edit"><hr /><div class="share pull-left"></div><p class="pull-right">Edit this article on <a href="https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages/tutorials/rails/managing-tasks.md">GitHub</a></p></div></div></div></div></div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
+<div class="page-article-edit"><hr /><div class="share pull-left"></div><p class="pull-right">Edit this article on <a href="https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages/tutorials/rails/managing-tasks.md">GitHub</a></p></div></div></div></div></div></div></div><footer><div class="container"><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div><div class="muted copyright">Ruby Object Mapper &copy; 2014-2015</div></div></footer></body></html>

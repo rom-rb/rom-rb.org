@@ -1,0 +1,844 @@
+<!DOCTYPE html><html><head><link href="/images/favicon.png" rel="icon" type="image/png" /><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="ROM &raquo; Tutorials &raquo; Todo App with Rails via @rom_rb" name="twitter:description" /><meta content="ROM &raquo; Tutorials &raquo; Todo App with Rails" name="description" /><title>ROM &raquo; Tutorials &raquo; Todo App with Rails</title><style type="text/css">.highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #d0d0d0;
+  background-color: #151515;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}</style><link href="../../stylesheets/all.css" rel="stylesheet" type="text/css" /><script src="../../javascripts/all.js" type="text/javascript"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script><script type="text/javascript">$(function() {
+  var share = new Share(".share")
+});
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="tutorials tutorials_todo-app-with-rails tutorials_todo-app-with-rails_index"><div class="page-wrapper"><div class="info-alert-top" role="alert">Content based on ROM 0.6.0.rc1, expect final release in the upcoming days</div><header><nav class="navbar navbar-default navbar-static-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/contribute">Contribute</a></li><li class=""><a class="" href="/status">Status</a></li></ul></div></div></nav></header><div class="container"><div class="content"><div class="row"><div class="col-md-3"><ul class="nav nav-pills nav-stacked"><li class="nav-heading active"><a class="nav-heading active" href="/tutorials/todo-app-with-rails">Todo App with Rails</a></li><li class=""><a class="" href="/tutorials/todo-app-with-rails#getting-started">Getting Started</a></li><li class=""><a class="" href="/tutorials/todo-app-with-rails#relations-and-mappers">Relations and Mappers</a></li><li class=""><a class="" href="/tutorials/todo-app-with-rails#forms-and-validation">Forms and Validation</a></li><li class=""><a class="" href="/tutorials/todo-app-with-rails#testing">Testing</a></li><li class=""><a class="" href="/tutorials/todo-app-with-rails#migrations">Migrations</a></li><li class=""><a class="" href="/tutorials/todo-app-with-rails#summary">Summary</a></li></ul></div><div class="col-md-9"><div class="page-header"><h1>Tutorials &raquo; Todo App with Rails</h1></div><div class="page-article"><p>This tutorial explains how to make ROM feel right at home in your Rails application. It is primarily intended for those familiar with Rails who want to learn more about ROM.</p>
+
+<p>To understand how ROM integrates with Rails, we will work through the steps required to build a simple todo list application.</p>
+
+<p>The application will have the following capabilities:</p>
+
+<ul>
+<li>Displaying the list of tasks</li>
+<li>Filtering and ordering the list of tasks</li>
+<li>Creating, updating and deleting tasks</li>
+</ul>
+
+<p>By the end of this tutorial, you’ll have learned the following:</p>
+
+<ul>
+<li>How ROM integrates with Rails</li>
+<li>How to use ROM to build basic CRUD applications</li>
+<li>How to test Rails apps that depend on ROM</li>
+</ul>
+
+<p>If that sounds good, then let’s get started!</p>
+
+<p><em>Note: You&rsquo;ll need a newish version of Rails installed and available to make this all work.</em></p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p>First, we need to create a new Rails application. To get up and running quickly
+we&rsquo;ve provided a small <a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/tutorials/code/rom-todo-app-template.rb">application template</a> which takes care of a few minor setup details.</p>
+
+<p>Open up a terminal and create a new Rails application with the following commands:</p>
+<pre class="highlight shell"><code>wget http://rom-rb.org/tutorials/code/rom-todo-app-template.rb
+rails new rom-todo-app -JTS -m rom-todo-app-template.rb
+</code></pre>
+
+<p>Watch the logs fly by as your new Rails app is created.</p>
+
+<h3 id="what’s-happening-here?">What’s happening here?</h3>
+
+<p>In addition to the normal Rails installation, the application template includes the following extra steps:</p>
+
+<ul>
+<li>Adding <code>rom</code>, <code>rom-sql</code>, and <code>rom-rails</code> dependencies to the <code>Gemfile</code></li>
+<li>Replacing the Rails test defaults with <code>rspec</code> and <code>capybara</code></li>
+<li>Adding <code>require &#39;rom-rails&#39;</code> to <code>config/application.rb</code></li>
+<li>Adding a <code>tasks</code> table to the database and running <code>db:migrate</code></li>
+<li>Adding a <code>tasks</code> resource route</li>
+<li>Adding relation, mapper and command classes for <code>tasks</code> </li>
+</ul>
+
+<h3 id="open-the-rails-console">Open the Rails console</h3>
+
+<p>Once this is finished, change to the new application directory and open a Rails console:</p>
+<pre class="highlight shell"><code><span class="nb">cd </span>rom-todo-app
+bin/rails console
+</code></pre>
+
+<p>Hooray! You’ve now got a working Rails app with an integration to ROM.</p>
+
+<p>Before diving into the structure of the app itself, let’s start by exploring the different parts of the ROM API from within the Rails console.</p>
+
+<h3 id="access-the-rom-environment">Access the ROM environment</h3>
+
+<p>The ROM environment is provided specifically for frameworks like Rails where you need global access to the configured object graph.</p>
+
+<p>To access the environment, type the following line into the Rails console:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span>
+</code></pre>
+
+<p>In a default Rails setup, the ROM environment is loaded from the standard <a href="http://guides.rubyonrails.org/configuring.html#configuring-active-record">ActiveRecord  configuration</a>. As long as the database specified there is supported by ROM SQL, no additional setup is necessary.</p>
+
+<h3 id="working-with-rom-objects">Working with ROM objects</h3>
+
+<p>The Rails template introduces a convention for managing objects provided by ROM alongside the familiar Rails conventions.</p>
+
+<p>Commands, mappers, and relations are autoloaded and registered with the ROM environment when placed in the following locations:</p>
+
+<ul>
+<li><code>app/commands</code></li>
+<li><code>app/mappers</code></li>
+<li><code>app/relations</code></li>
+</ul>
+
+<p>If you look inside these paths in the Rails app, you’ll see that the application template generated a <code>tasks.rb</code> file in each of these paths as well as a <code>*_create_tasks.rb</code> migration in <code>db/migrations</code>.</p>
+
+<p>Use the following methods to look up the registered task objects on the environment:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">commands</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">mappers</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">relations</span>
+</code></pre>
+
+<h3 id="get-the-list-of-tasks">Get the list of tasks</h3>
+
+<p>To retrieve all the tasks in the todo list, we get the relation from the registry and call <code>to_a</code> on it. This executes the query and returns an array of results:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">to_a</span>
+</code></pre>
+
+<p>We should get back an empty array here, because the database is currently empty.</p>
+
+<h3 id="use-a-command-to-create-a-task">Use a command to create a task</h3>
+
+<p>Create a new todo task by getting the create command from the registry and calling it with a hash of attributes to save:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">create</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">title: </span><span class="s1">'finish the tutorial'</span><span class="p">)</span>
+</code></pre>
+
+<p>The <code>create</code> command is called with a hash of attributes to be saved, and returns a result object representing the created task.</p>
+
+<h3 id="read-back-the-task-we-just-created">Read back the task we just created</h3>
+
+<p>Look up the tasks relation again, and materialize it to an array:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">to_a</span>
+</code></pre>
+
+<p>Or get at the task directly:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">first</span>
+</code></pre>
+
+<p>Now that we’ve got the basic database and ROM integration up and running, let’s get the app working end-to-end by connecting the tasks relation to a controller and a view template.</p>
+
+<h2 id="relations-and-mappers">Relations and Mappers</h2>
+
+<p>We’ll start by building an index page to display all the tasks in our todo list.</p>
+
+<h3 id="an-index-action">An Index Action</h3>
+
+<p>To read data from the tasks relation that we set up previously, make a route to a new controller in <code>app/controllers/tasks_controller.rb</code>.</p>
+
+<p>If you don’t want to do this manually, you can generate the controller with the following command:</p>
+<pre class="highlight shell"><code>bin/rails generate controller tasks
+</code></pre>
+
+<p>Hook in the tasks relation to the index action of the controller:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/tasks_controller.rb</span>
+
+<span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">render</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">tasks: </span><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>To run this, start the Rails server with the following command:</p>
+<pre class="highlight shell"><code>bin/rails server
+</code></pre>
+
+<p>Sending a request to this action at <code>http://localhost:3000/tasks</code> will give us an error due to a missing template. So let’s fill that in now:</p>
+<pre class="highlight erb"><code># app/views/tasks/index.html.erb
+
+<span class="nt">&lt;ul&gt;</span>
+  <span class="cp">&lt;%</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">task</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+      <span class="cp">&lt;%=</span> <span class="n">task</span><span class="p">[</span><span class="ss">:title</span><span class="p">]</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre>
+
+<p>And just like that, we’re listing tasks!</p>
+
+<p>Notice that we’re using raw hash keys to access the task attributes in the template. This is because the relation doesn’t yet know how to map the list of tasks to a particular model.</p>
+
+<p>Before addressing this, let’s first explore how to set up more granular queries on the relation.</p>
+
+<p>As well as displaying the full list of tasks, the requirements of our app call for us to be able to filter the tasks by their status (active and completed) and order them by priority.</p>
+
+<h3 id="filtering-with-relations">Filtering with Relations</h3>
+
+<p>The specific capabilities of a relation depend on the dataset adapter it’s configured with. Here, we’re using <a href="https://github.com/rom-rb/rom-sql">rom-sql</a>, which gives us access to the <a href="http://sequel.jeremyevans.net/rdoc/classes/Sequel/Dataset.html">Sequel Dataset API</a>.</p>
+
+<p>The tasks table generated by the application template has a boolean <code>done</code> column which represents the status of each task. To filter the list of tasks based on this status, add <code>active</code> and <code>completed</code> methods to the relation, like this:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/relations/tasks.rb</span>
+
+<span class="k">class</span> <span class="nc">Tasks</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">dataset</span> <span class="ss">:tasks</span>
+
+  <span class="k">def</span> <span class="nf">active</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">is_completed: </span><span class="kp">true</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">completed</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">is_completed: </span><span class="kp">false</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Note that in Sequel, <code>filter</code> can be used as an alias for <code>where</code>. Use whatever style you prefer.</p>
+
+<p>To display the lists from this relation, we’ll need to make changes to the controller and view.</p>
+
+<h3 id="queries-from-the-controller">Queries from the controller</h3>
+
+<p>One approach we could take is a one-to-one mapping between the relation queries and controller actions.</p>
+
+<p>That would lead to something like the following:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/tasks_controller.rb</span>
+
+<span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">render_with_index</span> <span class="ss">tasks: </span><span class="n">tasks</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">active</span>
+    <span class="n">render_with_index</span> <span class="ss">tasks: </span><span class="n">tasks</span><span class="p">.</span><span class="nf">active</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">completed</span>
+    <span class="n">render_with_index</span> <span class="ss">tasks: </span><span class="n">tasks</span><span class="p">.</span><span class="nf">completed</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">render_with_index</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+    <span class="n">render</span> <span class="ss">:index</span><span class="p">,</span> <span class="ss">locals: </span><span class="n">context</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">tasks</span>
+    <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Or we could stick to the resource routing style, using a single action to delegate to the various filters.</p>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/tasks_controller.rb</span>
+
+<span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">render</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">tasks: </span><span class="n">by_status</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:status</span><span class="p">])</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">by_status</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">status</span>
+    <span class="k">when</span> <span class="s1">'active'</span>
+      <span class="n">tasks</span><span class="p">.</span><span class="nf">active</span>
+    <span class="k">when</span> <span class="s1">'completed'</span>
+      <span class="n">tasks</span><span class="p">.</span><span class="nf">completed</span>
+    <span class="k">else</span>
+      <span class="n">tasks</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">tasks</span>
+    <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Should <code>by_status</code> be a private method on the controller, or extracted to the relation itself? As always in software development, the best answer is “it depends”.</p>
+
+<p>From the perspective of encapsulating data access, this behaviour does make more sense in the relation. A counter argument is that the <code>status</code> concept is part of the user interface and the data model shouldn’t need to know about it directly.</p>
+
+<p>One way of clarifying this is to reconsider the role of the relation in the controller. Rather than just exposing the query scopes directly, we could use it to expose a specific view into the encapsulated dataset, an approach which becomes more clear if we rename <code>by_status</code> to <code>index_view</code>:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/relations/tasks.rb</span>
+
+<span class="k">class</span> <span class="nc">Tasks</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">dataset</span> <span class="ss">:tasks</span>
+
+  <span class="k">def</span> <span class="nf">index_view</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+    <span class="k">case</span> <span class="n">status</span>
+    <span class="k">when</span> <span class="s1">'active'</span>
+      <span class="n">active</span>
+    <span class="k">when</span> <span class="s1">'completed'</span>
+      <span class="n">completed</span>
+    <span class="k">else</span>
+      <span class="nb">self</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">active</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">is_completed: </span><span class="kp">true</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">completed</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">is_completed: </span><span class="kp">false</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>If you prefer the more explicit style of calling query methods with prepositional phrases, you can keep <code>by_status</code> as the name of the method here.</p>
+
+<p>Our app here is little more than a toy, so it’s not going to make much difference whether you put this logic in the relation or controller. But in a larger app, the approach you choose could have a significant effect on the resulting code, so it’s worth thinking carefully about.</p>
+
+<h3 id="adding-status-navigation">Adding status navigation</h3>
+
+<p>Let’s start wiring this thing together. In order to see items filtered by active and completed status, we need to be able to navigate between them from UI.</p>
+
+<p>Add the following partial to the view path for tasks:</p>
+<pre class="highlight erb"><code># app/views/tasks/_filter_nav.html.erb
+
+<span class="nt">&lt;nav&gt;</span>
+    <span class="nt">&lt;ul&gt;</span>
+        <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s1">'All'</span><span class="p">,</span> <span class="n">tasks_path</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s1">'Active'</span><span class="p">,</span> <span class="n">tasks_path</span><span class="p">(</span><span class="ss">status: :active</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+        <span class="nt">&lt;li&gt;</span><span class="cp">&lt;%=</span> <span class="n">link_to</span> <span class="s1">'Completed'</span><span class="p">,</span> <span class="n">tasks_path</span><span class="p">(</span><span class="ss">status: :completed</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/nav&gt;</span>
+
+</code></pre>
+
+<p>Now we can render this partial from the index view. While we’re here, we can also render the status for each task as well.</p>
+<pre class="highlight erb"><code># app/views/tasks/_filter_nav.html.erb
+
+<span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">'filter_nav'</span> <span class="cp">%&gt;</span>
+
+<span class="nt">&lt;ul&gt;</span>
+  <span class="cp">&lt;%</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">task</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+      <span class="nt">&lt;span&gt;</span><span class="cp">&lt;%=</span> <span class="n">task</span><span class="p">[</span><span class="ss">:title</span><span class="p">]</span> <span class="cp">%&gt;</span><span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span&gt;</span><span class="cp">&lt;%=</span> <span class="n">status_label</span><span class="p">(</span><span class="n">task</span><span class="p">[</span><span class="ss">:is_complete</span><span class="p">])</span> <span class="cp">%&gt;</span><span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre>
+
+<p>Rather than inlining logic in the ERB template, we’ll flip the <code>status_label</code> with a pure Ruby helper:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/helpers/tasks_helper.rb</span>
+
+<span class="k">module</span> <span class="nn">TasksHelper</span>
+  <span class="k">def</span> <span class="nf">status_label</span><span class="p">(</span><span class="n">is_completed</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">is_completed</span> <span class="k">then</span> <span class="s1">'Completed'</span> <span class="k">else</span> <span class="s1">'Active'</span><span class="p">;</span> <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>If this extra view complexity seems a little off to you, you’ve got the right idea.</p>
+
+<p>Not only is the helper adding an extra layer of indirection, it also introduces a subtle bit of duplicate logic. We’re now conditionally checking the value of <code>status</code> in two different places.</p>
+
+<p>That’s a sign we’re missing a unifying concept, and in fact we are. In some situations hashes may be all you need, but more often than not, you&rsquo;ll want to represent your data with a proper domain object.</p>
+
+<p>The <strong>M</strong> in ROM stands for <strong>Mapper</strong> and it is through a mapper that we&rsquo;ll transform our hashes into something a little more useful.</p>
+
+<h2 id="mapping-to-a-model">Mapping to a model</h2>
+
+<p>To start, we&rsquo;ll need to define a model for the mapper to use. This can be
+whatever kind of object you like—either a plain old Ruby object or something more sophisticated. The only required contract is that its constructor must accept the hash of attributes passed to it by the mapper.</p>
+
+<p>Here we’ll use
+<a href="https://github.com/solnic/virtus/#value-objects">Virtus value objects</a>
+to define the <code>Task</code> class because they come out-of-the-box with the required attribute hash construction, as well as various other useful features.</p>
+
+<p>Create a new model class called <code>Task</code> in the <code>app/models</code> path, and mix in the value object behaviour:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/models/task.rb</span>
+
+<span class="c1"># Isolate the Virtus API behind a domain-specific object</span>
+<span class="no">ValueObject</span> <span class="o">=</span> <span class="no">Virtus</span><span class="p">.</span><span class="nf">value_object</span><span class="p">(</span><span class="ss">coerce: </span><span class="kp">false</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Task</span>
+  <span class="kp">include</span> <span class="no">ValueObject</span>
+
+  <span class="n">values</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Integer</span>
+    <span class="n">attribute</span> <span class="ss">:title</span><span class="p">,</span> <span class="no">String</span>
+    <span class="n">attribute</span> <span class="ss">:is_completed</span><span class="p">,</span> <span class="no">Boolean</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>With our value object defined, we can simply instruct the task mapper to use it directly, providing the list of attributes we want to map:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/mappers/tasks.rb</span>
+
+<span class="k">class</span> <span class="nc">TaskMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">relation</span> <span class="ss">:tasks</span>
+
+  <span class="n">model</span> <span class="no">Task</span>
+
+  <span class="n">attribute</span> <span class="ss">:id</span>
+  <span class="n">attribute</span> <span class="ss">:title</span>
+  <span class="n">attribute</span> <span class="ss">:is_completed</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>By default, ROM does not implicitly trigger mappers on relations. Pass the name of the mapper to the <code>as</code> method on the relation to map hash results into models:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/tasks_controller.rb</span>
+
+<span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">render</span> <span class="ss">locals: </span><span class="p">{</span> 
+      <span class="ss">tasks: </span><span class="n">tasks</span><span class="p">.</span><span class="nf">index_view</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:status</span><span class="p">]).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">tasks</span>
+    <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>This will work immediately, without requiring changes to the template because Virtus supports access to attributes via the <code>[]</code> method.</p>
+
+<p>But we don’t want the appearance of hash-like objects propagating through our app, so we’ll change it now.</p>
+
+<p>With the object mapping in place, we can blow away the ad-hoc helper by providing <code>status</code> and <code>status_label</code> methods directly on the model:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/models/task.rb</span>
+
+<span class="c1"># Isolate the Virtus API behind a domain-specific object</span>
+<span class="no">ValueObject</span> <span class="o">=</span> <span class="no">Virtus</span><span class="p">.</span><span class="nf">value_object</span><span class="p">(</span><span class="ss">coerce: </span><span class="kp">false</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Task</span>
+  <span class="kp">include</span> <span class="no">ValueObject</span>
+
+  <span class="n">values</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Integer</span>
+    <span class="n">attribute</span> <span class="ss">:title</span><span class="p">,</span> <span class="no">String</span>
+    <span class="n">attribute</span> <span class="ss">:is_completed</span><span class="p">,</span> <span class="no">Boolean</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">status</span>
+    <span class="k">if</span> <span class="n">is_completed</span>
+      <span class="ss">:completed</span>
+    <span class="k">else</span>
+      <span class="ss">:active</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">status_label</span>
+    <span class="n">status</span><span class="p">.</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">capitalize</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Update the template to replace the hash-style lookups with model attributes:</p>
+<pre class="highlight erb"><code># app/views/tasks/index.html.erb
+
+<span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">'filter_nav'</span> <span class="cp">%&gt;</span>
+
+<span class="nt">&lt;ul&gt;</span>
+  <span class="cp">&lt;%</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">task</span><span class="o">|</span> <span class="cp">%&gt;</span>
+    <span class="nt">&lt;li&gt;</span>
+      <span class="nt">&lt;span&gt;</span><span class="cp">&lt;%=</span> <span class="n">task</span><span class="p">.</span><span class="nf">title</span> <span class="cp">%&gt;</span><span class="nt">&lt;/span&gt;</span>
+      <span class="nt">&lt;span&gt;</span><span class="cp">&lt;%=</span> <span class="n">task</span><span class="p">.</span><span class="nf">status_label</span> <span class="cp">%&gt;</span><span class="nt">&lt;/span&gt;</span>
+    <span class="nt">&lt;/li&gt;</span>
+  <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+<span class="nt">&lt;/ul&gt;</span>
+</code></pre>
+
+<p>At this point, we have a much cleaner controller, the <code>status</code> concept is a fully formed part of our model, and the relation provides a cohesive API that encapsulates the dataset.</p>
+
+<h3 id="declarative-relations-in-controller-actions">Declarative Relations in Controller Actions</h3>
+
+<p>Many simple relations are accessed the same way in controllers. To tidy up the repetition of injecting relation results into actions, ROM Rails offers a class level controller hook for declaratively defining relation queries and required filter parameters:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/tasks_controller.rb</span>
+
+<span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">rescue_from</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">RelationParamsMissingError</span> <span class="k">do</span>
+    <span class="n">head</span> <span class="ss">:bad_request</span>
+  <span class="k">end</span>
+
+  <span class="n">relation</span> <span class="s1">'tasks.index'</span><span class="p">,</span> <span class="ss">only: :index</span>
+  <span class="n">relation</span> <span class="s1">'tasks.by_status'</span><span class="p">,</span> <span class="ss">only: :filter</span><span class="p">,</span> <span class="ss">requires: :status</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="n">render</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">filter</span>
+    <span class="n">render</span> <span class="ss">:index</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Note the <code>rescue_from</code> block here, which sends a bad request to the client if the required <code>status</code> parameter isn’t present in the request.</p>
+
+<h3 id="making-sense-of-relations-and-mappers">Making Sense of Relations and Mappers</h3>
+
+<p>In just a few lines of code, we’ve encountered a number of differences between the ROM Rails and an “omakase” Rails app with ActiveRecord:</p>
+
+<ul>
+<li>Plural relations and singular models are separate classes</li>
+<li>The model is a <a href="http://www.c2.com/cgi/wiki?ValueObject">value object</a></li>
+<li>The relation and model are read-only</li>
+<li>Mapping the dataset to the model is an explicit step</li>
+</ul>
+
+<p>These differences reflect the core philosophy of ROM. Each layer of an application should only have access to the data and behaviour it requires and no more. There’s no reason to plug a larger set of ORM features into a context where they’re not required.</p>
+
+<p>Despite being in contrast to the Rails style of a <a href="http://martinfowler.com/bliki/HumaneInterface.html">maximalist interface</a>, the more restrictive approach is equally expressive and understandable at a glance. We know what data is being passed to the view and we have attribute accessors on the model reflecting the principle of least astonishment (<code>task.title</code> just works).</p>
+
+<p>For now, that’s all you need to know about relations and mappers.</p>
+
+<p><em>It’s worth noting that many of the explicit steps and manual wiring demonstrated here can be automatically configured when the ROM objects are registered. In the interim, we’re focusing on the lower level building blocks of our APIs and ensuring that we have a solid foundation in place for these higher levels of abstraction in future.</em></p>
+
+<h2 id="forms-and-validation">Forms and Validation</h2>
+
+<p>Instead of mixing together the parts of an applicaton that query data and the parts that change data, ROM’s API splits these out into separate responsibilities.</p>
+
+<p>This might be disorienting at first if you’re used to ActiveRecord. Once you grok <a href="http://martinfowler.com/bliki/CQRS.html">CQRS</a>, the concept makes a whole lot more sense.</p>
+
+<h3 id="a-higher-level-of-abstraction">A Higher Level of Abstraction</h3>
+
+<p>In <a href="#getting-started">Getting Started</a>, you saw how to use a command to create a task in the Rails console:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">create</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">title: </span><span class="s1">'finish the tutorial'</span><span class="p">)</span>
+</code></pre>
+
+<p>Here’s how this command is registered and set up behind the scenes:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/commands/tasks/create.rb</span>
+
+<span class="k">module</span> <span class="nn">TaskCommands</span>
+  <span class="k">class</span> <span class="nc">Create</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+    <span class="n">relation</span> <span class="ss">:tasks</span>
+    <span class="n">register_as</span> <span class="ss">:create</span>
+    <span class="n">result</span> <span class="ss">:one</span>
+
+    <span class="c1"># define a validator to use</span>
+    <span class="c1"># validator TaskValidator</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>By convention, the command class is wrapped in a module namespace, which is used to . If you want to create a new command, you can do it manually in <code>app/commands</code> or use the provided generator:</p>
+<pre class="highlight plaintext"><code>rails generate rom:commands tasks --adapter sql
+</code></pre>
+
+<p>Commands are the basic method by which ROM sends write commands to a data source. Commands come into their own when there are complex data integrity rules and error handling at play.</p>
+
+<p>But in the context of Rails, we’re not always dealing with rich and complex write logic. Famously, Rails is all about the CRUD. ROM goes with this flow by providing <code>Rom::Model::Form</code> utility for handling input mapping and validation.</p>
+
+<p>Forms are a higher level abstraction built on top of commands to help simplify the boilerplate process of creating administration and CRUD apps.</p>
+
+<h3 id="a-base-form-for-managing-tasks">A Base Form for Managing Tasks</h3>
+
+<p>Forms are constructed by inheriting from <code>ROM::Model::Form</code> and declaring <code>input</code> and <code>validation</code> blocks.</p>
+
+<p>There will be a lot of behaviour shared between the <code>create</code> and <code>update</code> forms, so we’ll create a base class that generalizes this:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/forms/task_form.rb</span>
+
+<span class="k">class</span> <span class="nc">TaskForm</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Form</span>
+  <span class="n">input</span> <span class="k">do</span>
+    <span class="n">set_model_name</span> <span class="s1">'Task'</span>
+
+    <span class="n">attribute</span> <span class="ss">:title</span><span class="p">,</span> <span class="no">String</span>
+    <span class="n">attribute</span> <span class="ss">:is_completed</span><span class="p">,</span> <span class="no">Boolean</span>
+  <span class="k">end</span>
+
+  <span class="n">validations</span> <span class="k">do</span>
+    <span class="n">relation</span> <span class="ss">:tasks</span>
+
+    <span class="n">validates</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Notice that we also need to slot in references to the model and relation here, in order to connect this form to our existing ROM objects.</p>
+
+<p>In order to select and operate on individual objects, we also need to add a new method to the relation to access tasks by their given ID:</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">Tasks</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</code></pre>
+
+<h3 id="creating-a-new-task">Creating a New Task</h3>
+
+<p>Now that the base <code>TaskForm</code> is set up, we can inherit from it to build specialized forms for each write operation.</p>
+
+<p>The form to create a new task requires a mapping to the <code>create</code> command and a <code>commit!</code> method which executes this command on the attributes passed through from the input parameters.</p>
+<pre class="highlight ruby"><code><span class="c1"># app/forms/new_task_form.rb</span>
+
+<span class="k">class</span> <span class="nc">NewTaskForm</span> <span class="o">&lt;</span> <span class="no">TaskForm</span>
+  <span class="n">commands</span> <span class="ss">tasks: :create</span>
+
+  <span class="k">def</span> <span class="nf">commit!</span>
+    <span class="n">tasks</span><span class="p">.</span><span class="nf">try</span> <span class="p">{</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">create</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>If you don’t want to wrangle all this manually, you can also use the provided Rails generator:</p>
+<pre class="highlight plaintext"><code>rails generate rom:form tasks --command create
+</code></pre>
+
+<p>Creating a view template for this form is easily done with the built-in Rails tag helpers:</p>
+<pre class="highlight erb"><code># app/views/tasks/new.html.erb
+
+<span class="cp">&lt;%=</span> <span class="n">form_for</span> <span class="n">task</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">task</span><span class="p">.</span><span class="nf">errors</span><span class="p">.</span><span class="nf">full_messages</span> <span class="k">if</span> <span class="n">task</span><span class="p">.</span><span class="nf">errors</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">t</span><span class="p">.</span><span class="nf">text_field</span> <span class="ss">:title</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">t</span><span class="p">.</span><span class="nf">select</span> <span class="ss">:is_completed</span><span class="p">,</span> <span class="p">[[</span><span class="s1">'Completed'</span><span class="p">,</span> <span class="kp">true</span><span class="p">],</span> <span class="p">[</span><span class="s1">'Active'</span><span class="p">,</span> <span class="kp">false</span><span class="p">]]</span> <span class="cp">%&gt;</span>
+  <span class="cp">&lt;%=</span> <span class="n">t</span><span class="p">.</span><span class="nf">submit</span> <span class="cp">%&gt;</span>
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre>
+
+<p>The form for handling updates looks very similar to the form for creating new tasks:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/forms/update_task_form.rb</span>
+
+<span class="k">class</span> <span class="nc">UpdateTaskForm</span> <span class="o">&lt;</span> <span class="no">TaskForm</span>
+  <span class="n">commands</span> <span class="ss">tasks: :update</span>
+
+  <span class="k">def</span> <span class="nf">commit!</span>
+    <span class="n">tasks</span><span class="p">.</span><span class="nf">try</span> <span class="p">{</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">update</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">set</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>The main thing to pay attention to here is the <code>by_id</code> method used to select the task that’s being edited. To set this up according to Rails conventions, we’ll need an <code>edit.html.erb</code> template as well.</p>
+
+<h3 id="managing-tasks-from-the-controller">Managing Tasks from the Controller</h3>
+
+<p>Now that we have the components in place to handle creating and updating tasks, we can put these forms to use in the controller, mapping form commands to the <code>create</code> and <code>update</code> actions and template views to the <code>new</code> and <code>edit</code> actions:</p>
+<pre class="highlight ruby"><code><span class="c1"># app/controllers/tasks_controller.rb</span>
+
+<span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="c1"># ...</span>
+
+  <span class="k">def</span> <span class="nf">new</span>
+    <span class="n">render</span> <span class="ss">:new</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="no">NewTaskForm</span><span class="p">.</span><span class="nf">build</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="n">task_form</span> <span class="o">=</span> <span class="no">NewTaskForm</span><span class="p">.</span><span class="nf">build</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:task</span><span class="p">]).</span><span class="nf">save</span>
+
+    <span class="k">if</span> <span class="n">task_form</span><span class="p">.</span><span class="nf">success?</span>
+      <span class="n">redirect_to</span> <span class="ss">:tasks</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:new</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="n">task_form</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">edit</span>
+    <span class="n">task_form</span> <span class="o">=</span> <span class="no">UpdateTaskForm</span><span class="p">.</span><span class="nf">build</span><span class="p">({},</span> <span class="p">{</span> <span class="ss">id: </span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]</span> <span class="p">})</span>
+
+    <span class="n">render</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="n">task_form</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">update</span>
+    <span class="n">task_form</span> <span class="o">=</span> <span class="no">UpdateTaskForm</span><span class="p">.</span><span class="nf">build</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:user</span><span class="p">],</span> <span class="ss">id: </span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]).</span><span class="nf">save</span>
+
+    <span class="k">if</span> <span class="n">task_form</span><span class="p">.</span><span class="nf">success?</span>
+      <span class="n">redirect_to</span> <span class="ss">:tasks</span>
+    <span class="k">else</span>
+      <span class="n">render</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">locals: </span><span class="p">{</span> <span class="ss">task: </span><span class="n">task_form</span> <span class="p">}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</code></pre>
+
+<p>Use the <code>form.success?</code> method to check the result of the form commands. When it returns false, we return to the template where we came from and let the form object provide its list of validation errors, based on rules declared in the form’s <code>validations</code> block.</p>
+
+<h3 id="don’t-forget-to-delete-tasks">Don’t Forget to Delete Tasks</h3>
+
+<p>Deletion of individual tasks can be handled in a similar way to creating and updating, except that you don’t need to set up a form or template.</p>
+<pre class="highlight ruby"><code><span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="c1"># ...</span>
+
+  <span class="k">def</span> <span class="nf">delete</span>
+    <span class="n">tasks_command</span><span class="p">.</span><span class="nf">try</span> <span class="k">do</span>
+      <span class="n">tasks_command</span><span class="p">.</span><span class="nf">delete</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">tasks_command</span>
+    <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre>
+
+<p><strong>Error handling in the Rails controller context, along with an explanation of how to use commands directly in actions would be extremely helpful for people to take this example and run with it (for more than just deletes). Also, a clarification of how <code>try</code> works is needed.</strong></p>
+
+<h3 id="separating-write-commands">Separating Write Commands</h3>
+
+<p>The sharp division of responsibility between relations and commands comes into its own for apps that use multiple data sources or a database cluster with primary and replica nodes.</p>
+
+<p>Even in a smaller, contained context where both relations and commands are pointing to the same data source, there are various design benefits that emerge when commands and queries are kept separate:</p>
+
+<ul>
+<li>No need for concepts like “presenters” or “view models”. Mappers can transform the same data into different value objects, regardless of what the primary model looks like.</li>
+<li>Validation and transactional error handling is easier to treat as a first-class concern when it’s not coupled to the parts of the app that don’t need it.</li>
+<li>Avoiding the complexity of associations in an ORM model. Precision modelling of relationships between entities is less significant when there’s no need to traverse the same object graph in both read and write contexts.</li>
+</ul>
+
+<p>Oftentimes, Rails developers end up building apps that are larger and more complex than the defaults of Rails are set up to support. With Rails, ROM aims to fulfil this specific need.</p>
+
+<h2 id="testing-rom-with-rails">Testing ROM with Rails</h2>
+
+<p>Testing ROM with Rails is fairly straightforward.</p>
+
+<h3 id="testing-relations">Testing Relations</h3>
+
+<p>You can run full integration tests on relations in the same way that you’d test any other data access object:</p>
+<pre class="highlight ruby"><code><span class="c1"># spec/relations/task_spec.rb</span>
+
+<span class="nb">require</span> <span class="s1">'rails_helper'</span>
+
+<span class="n">describe</span> <span class="s1">'Tasks relation'</span> <span class="k">do</span>
+  <span class="n">fixtures</span> <span class="ss">:tasks</span>
+
+  <span class="n">describe</span> <span class="s1">'#by_status'</span> <span class="k">do</span>
+    <span class="n">let</span><span class="p">(</span><span class="ss">:tasks_relation</span><span class="p">)</span> <span class="p">{</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span> <span class="p">}</span>
+
+    <span class="n">it</span> <span class="s1">'filters tasks by completed'</span> <span class="k">do</span>
+      <span class="n">tasks</span> <span class="o">=</span> <span class="n">tasks_relation</span><span class="p">.</span><span class="nf">by_status</span><span class="p">(</span><span class="ss">:completed</span><span class="p">)</span>
+
+      <span class="n">expect</span><span class="p">(</span><span class="n">tasks</span><span class="p">.</span><span class="nf">to_a</span><span class="p">).</span><span class="nf">to</span> <span class="n">eql</span><span class="p">(</span>
+        <span class="p">[{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:title</span><span class="o">=&gt;</span><span class="s2">"start the tutorial"</span><span class="p">}]</span>
+      <span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="n">it</span> <span class="s1">'filters tasks by active'</span> <span class="k">do</span>
+      <span class="n">tasks</span> <span class="o">=</span> <span class="n">tasks_relation</span><span class="p">.</span><span class="nf">by_status</span><span class="p">(</span><span class="ss">:active</span><span class="p">)</span>
+
+      <span class="n">expect</span><span class="p">(</span><span class="n">tasks</span><span class="p">.</span><span class="nf">to_a</span><span class="p">).</span><span class="nf">to</span> <span class="n">eql</span><span class="p">(</span>
+        <span class="p">[{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="ss">:title</span><span class="o">=&gt;</span><span class="s2">"finish the tutorial"</span><span class="p">}]</span>
+      <span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2 id="migrations">Migrations</h2>
+
+<p>ROM doesn’t yet have a native concept of schema migrations.</p>
+
+<h3 id="activerecord">ActiveRecord</h3>
+
+<p>One approach is to use the Rails defaults for ActiveRecord migrations as you normally would, and just replace the use of ActiveRecord models in your app with ROM components.</p>
+
+<h3 id="sequel">Sequel</h3>
+
+<p>Alternatively you can use Sequel&rsquo;s
+<a href="http://sequel.jeremyevans.net/rdoc/files/doc/migration_rdoc.html">Migration API</a>.</p>
+<pre class="highlight ruby"><code><span class="n">setup</span><span class="p">.</span><span class="nf">sqlite</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">create_table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">primary_key</span> <span class="ss">:id</span>
+  <span class="no">String</span> <span class="ss">:name</span>
+  <span class="no">Boolean</span> <span class="ss">:admin</span>
+<span class="k">end</span>
+
+<span class="n">setup</span><span class="p">.</span><span class="nf">sqlite</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">create_table</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">primary_key</span> <span class="ss">:id</span>
+  <span class="no">Integer</span> <span class="ss">:user_id</span>
+  <span class="no">String</span> <span class="ss">:title</span>
+  <span class="no">Integer</span> <span class="ss">:priority</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2 id="summary">Summary</h2>
+
+<p>In this tutorial we’ve taken a walk through a simple integration of ROM concepts into a very basic Rails application.</p>
+
+<ul>
+<li>We got up and running quickly with an application template and a brief disucussion of the rom-rails integration.</li>
+<li>Next we displayed a list of tasks on the index page of our new application. This showed us the basics of a ROM relation.</li>
+<li>A simple list of tasks wasn’t enough so we explored extending the tasks relation to give us a sorted list of tasks and use it in our views.</li>
+<li>Still not satisified we realized that our array of hashes returned from relations didn’t cut it. We set up a task mapper and a value object to give us a richer representation of data.</li>
+<li>All of that would be greate if we needed a read-only application. Managing tasks was next for us and there we learned about ROM commands and ROM command/query separation.</li>
+<li>Taking the command/query separation a little further helped us understand the ROM way of handling validations and errors.</li>
+</ul>
+
+<p>We hope that what we’ve presented here helps you to better understand how ROM can be used in your Rails applications and beyond.</p>
+
+<p>As always, you can fork the website, and help others by making this tutorial better.</p>
+<div class="page-article-edit"><hr /><div class="share pull-left"></div><p class="pull-right">Edit this article on <a href="https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages/tutorials/todo-app-with-rails.md">GitHub</a></p></div></div></div></div></div></div></div><footer><div class="container"><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div><div class="muted copyright">Ruby Object Mapper &copy; 2014-2015</div></div></footer></body></html>

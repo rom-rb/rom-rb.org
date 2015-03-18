@@ -84,7 +84,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-2573270-5', 'auto');
-ga('send', 'pageview');</script></head><body class="tutorials tutorials_rails tutorials_rails_validations tutorials_rails_validations_index"><div class="page-wrapper"><header><nav class="navbar navbar-default navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/status">Status</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></nav></header><div class="container"><div class="content"><div class="row"><div class="col-md-3"><ul class="nav nav-pills nav-stacked"><li class="nav-heading"><a class="nav-heading" href="/tutorials/rails">Rails</a></li><li class=""><a class="" href="/tutorials/rails/getting-started">Getting started</a></li><li class=""><a class="" href="/tutorials/rails/tasks-index">Tasks index</a></li><li class=""><a class="" href="/tutorials/rails/task-relation">Task relation</a></li><li class=""><a class="" href="/tutorials/rails/task-mapper">Task mapper</a></li><li class=""><a class="" href="/tutorials/rails/managing-tasks">Managing tasks</a></li><li class="active"><a class="active" href="/tutorials/rails/validations">Validations</a></li><li class=""><a class="" href="/tutorials/rails/the-end">The end</a></li></ul></div><div class="col-md-9"><div class="page-header"><h1>Tutorials &raquo; Rails &raquo; Validations</h1></div><div class="page-article"><h2>Validations and error handling</h2>
+ga('send', 'pageview');</script></head><body class="tutorials tutorials_rails tutorials_rails_validations tutorials_rails_validations_index"><div class="page-wrapper"><div class="info-alert-top" role="alert">Content based on ROM 0.6.0.rc1, expect final release in the upcoming days</div><header><nav class="navbar navbar-default navbar-static-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/contribute">Contribute</a></li><li class=""><a class="" href="/status">Status</a></li></ul></div></div></nav></header><div class="container"><div class="content"><div class="row"><div class="col-md-3"><ul class="nav nav-pills nav-stacked"><li class="nav-heading"><a class="nav-heading" href="/tutorials/todo-app-with-rails">Todo App with Rails</a></li></ul></div><div class="col-md-9"><div class="page-header"><h1>Tutorials &raquo; Rails &raquo; Validations</h1></div><div class="page-article"><h2 id="validations-and-error-handling">Validations and error handling</h2>
 
 <p>ROM doesn&rsquo;t have validations built-in. In contrast to the all-in-one approach
 commonly found in Rails projects, we&rsquo;re going to handle validation a little
@@ -106,9 +106,9 @@ classes and simply include <code>ROM::Model::Validator</code>.</p>
 
 <p>Let&rsquo;s see how we do this for tasks.</p>
 
-<h3>Task validations</h3>
+<h3 id="task-validations">Task validations</h3>
 
-<h4>Specify how the validations should behave</h4>
+<h4 id="specify-how-the-validations-should-behave">Specify how the validations should behave</h4>
 
 <p>Extend the task creation scenario to also check for validation errors related
 to a blank title:</p>
@@ -150,7 +150,7 @@ rspec ./spec/features/tasks_spec.rb:34 <span class="c"># Tasks I cannot save a t
 
 <p>The application is happily creating a task with a blank title! That&rsquo;s no good.</p>
 
-<h4>TaskParams</h4>
+<h4 id="taskparams">TaskParams</h4>
 
 <p>We have already mentioned a params object and as you know params are handled in
 our controllers. While we haven&rsquo;t created the <code>TaskParams</code> object yet let&rsquo;s see
@@ -204,7 +204,7 @@ all fits together you can peruse the small implementation of
 <p>We can add task parameters validation by creating <code>TaskParams</code> and <code>TaskValidator</code>
 classes and configuring commands to use them:</p>
 
-<h4>TaskValidator</h4>
+<h4 id="taskvalidator">TaskValidator</h4>
 
 <p>While our new params object helps us understand what a valid task looks like, it
 doesn&rsquo;t actually <strong>run</strong> those validations. In keeping with ROMs ideas of
@@ -220,7 +220,7 @@ Validator.</p>
 <p>All this does is raise validation errors unless the validatable object passed in
 is valid.</p>
 
-<h4>Putting it all together in a command</h4>
+<h4 id="putting-it-all-together-in-a-command">Putting it all together in a command</h4>
 
 <p>The Params and Validator objects are nice but they don&rsquo;t do anything for our
 application until composed together. <a href="/introduction/commands">Commands</a> give
@@ -251,7 +251,7 @@ the data.</p>
 validation errors in our controller nor are we providing any feedback to the
 user.</p>
 
-<h3>Handling errors</h3>
+<h3 id="handling-errors">Handling errors</h3>
 
 <p>The <code>TaskValidator</code> will raise errors inside our <code>create</code> command when there are
 validation problems. That means we will see those errors in the result object
@@ -288,7 +288,7 @@ that is returned from the command.</p>
 <span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
 </code></pre>
 
-<h4>Passing tests!</h4>
+<h4 id="passing-tests!">Passing tests!</h4>
 <pre class="highlight plaintext"><code>$ bin/rspec spec/features/tasks_spec.rb
 ....
 
@@ -296,7 +296,7 @@ Finished in 0.14805 seconds (files took 0.3423 seconds to load)
 4 examples, 0 failures
 </code></pre>
 
-<h3>Keep it separated</h3>
+<h3 id="keep-it-separated">Keep it separated</h3>
 
 <p>This section on validations and errors serves to further drive home the point
 that our ROM-based applications are composed of lots of small pieces working
@@ -314,4 +314,4 @@ is so much less to understand <em>for a single feature</em> than our typical Rai
 model.</p>
 
 <p>Is this <a href="/tutorials/rails/the-end">the end</a>?</p>
-<div class="page-article-edit"><hr /><div class="share pull-left"></div><p class="pull-right">Edit this article on <a href="https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages/tutorials/rails/validations.md">GitHub</a></p></div></div></div></div></div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
+<div class="page-article-edit"><hr /><div class="share pull-left"></div><p class="pull-right">Edit this article on <a href="https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages/tutorials/rails/validations.md">GitHub</a></p></div></div></div></div></div></div></div><footer><div class="container"><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div><div class="muted copyright">Ruby Object Mapper &copy; 2014-2015</div></div></footer></body></html>

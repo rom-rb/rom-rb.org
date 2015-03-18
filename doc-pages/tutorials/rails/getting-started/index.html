@@ -84,66 +84,102 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-2573270-5', 'auto');
-ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_tutorials doc-pages_tutorials_rails doc-pages_tutorials_rails_getting-started doc-pages_tutorials_rails_getting-started_index"><div class="page-wrapper"><header><nav class="navbar navbar-default navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/status">Status</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></nav></header><div class="container"><div class="content"><h2>Getting started</h2>
+ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_tutorials doc-pages_tutorials_rails doc-pages_tutorials_rails_getting-started doc-pages_tutorials_rails_getting-started_index"><div class="page-wrapper"><div class="info-alert-top" role="alert">Content based on ROM 0.6.0.rc1, expect final release in the upcoming days</div><header><nav class="navbar navbar-default navbar-static-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/contribute">Contribute</a></li><li class=""><a class="" href="/status">Status</a></li></ul></div></div></nav></header><div class="container"><div class="content"><p>After reading this, you’ll know how to integrate ROM with Rails</p>
 
-<p>We need to create a new Rails application. To get up and running quickly
-we&rsquo;ve provided a small application template which takes care of a few details.
-<em>You&rsquo;ll need a newish version of Rails installed and available to make this
+<p><em>Note: You&rsquo;ll need a newish version of Rails installed and available to make this
 all work.</em></p>
 
-<p>Create the new application by running the following command:</p>
-<pre class="highlight shell"><code>rails new rom-todo-app -JTS -m http://rom-rb.org/tutorials/code/rom-todo-app-template.rb
+<h3 id="creating-the-application">Creating the application</h3>
+
+<p>First, we need to create a new Rails application. To get up and running quickly
+we&rsquo;ve provided a small <a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/tutorials/code/rom-todo-app-template.rb">application template</a> which takes care of a few minor setup details.</p>
+
+<p>Open up a terminal and create a new Rails application with the following commands:</p>
+<pre class="highlight shell"><code>wget http://rom-rb.org/tutorials/code/rom-todo-app-template.rb
+rails new rom-todo-app -JTS -m rom-todo-app-template.rb
 </code></pre>
 
-<p>This likely take a little while to run. While you&rsquo;re waiting you can read about
-what the template is doing for us. It:</p>
+<p>Watch the logs fly by as your new Rails app is created.</p>
+
+<p>In addition to the normal Rails installation, the application template includes the following extra steps:</p>
 
 <ul>
-<li>Adds required gems to Gemfile</li>
-<li>Generates a migration that creates <code>tasks</code> table</li>
-<li>Generates <code>app/relations</code> with tasks relation</li>
-<li>Generates <code>app/mappers</code> with default definition for <code>tasks</code></li>
-<li>Generates <code>app/commands</code> with default set of create/update/delete commands for
-<code>tasks</code></li>
-<li>Creates <code>spec/fixtures</code> with basic test data for our specs</li>
+<li>Adding <code>rom</code>, <code>rom-sql</code>, and <code>rom-rails</code> dependencies to the <code>Gemfile</code></li>
+<li>Replacing the Rails test defaults with <code>rspec</code> and <code>capybara</code></li>
+<li>Adding <code>require &#39;rom-rails&#39;</code> to <code>config/application.rb</code></li>
+<li>Adding a <code>tasks</code> table to the database and running <code>db:migrate</code></li>
+<li>Adding a <code>tasks</code> resource route</li>
+<li>Adding relation, mapper and command classes for <code>tasks</code> </li>
 </ul>
 
-<p>Once the <code>rails new</code> command and the template have completed you can change to
-the app directory and open a Rails console:</p>
+<p>Once this is finished, change to the new application directory and open a Rails console:</p>
 <pre class="highlight shell"><code><span class="nb">cd </span>rom-todo-app
-bin/rails c
+bin/rails console
 </code></pre>
 
-<p>Hooray! It worked! This is progress.</p>
+<p>Hooray! You’ve now got a working Rails app with an integration to ROM.</p>
 
-<p>Now let&rsquo;s use ROM to create a new task. In the Rails console:
-<em>(You don&rsquo;t have to type in the comments, they&rsquo;re just for us.)</em></p>
-<pre class="highlight ruby"><code><span class="c1"># access the ROM environment</span>
-<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span>
+<p>Before diving into the structure of the app itself, let’s start by exploring the different parts of the ROM API from within the Rails console.</p>
 
-<span class="c1"># use a command to create a task</span>
-<span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">try</span> <span class="p">{</span> <span class="n">create</span><span class="p">(</span><span class="ss">title: </span><span class="s1">'Try out ROM'</span><span class="p">)</span> <span class="p">}</span>
-<span class="o">=&gt;</span> <span class="c1">#&lt;ROM::Result::Success:0x007fb148755d90 @value={:id=&gt;1, :title=&gt;"Try out ROM"}&gt;</span>
+<h3 id="access-the-rom-environment">Access the ROM environment</h3>
 
-<span class="c1"># use the tasks relation to access the task we just created</span>
-<span class="n">rom</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">to_a</span>
-<span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:title</span><span class="o">=&gt;</span><span class="s2">"Try out ROM"</span><span class="p">}]</span>
+<p>The ROM environment is provided specifically for frameworks like Rails where you need global access to the configured object graph.</p>
+
+<p>To access the environment, type the following line into the Rails console:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span>
 </code></pre>
 
-<p>In this short bit of code we&rsquo;ve already used three bits of ROM:</p>
+<p>By default, the ROM environment is configured with an SQLite repository and the registry of relations, mappers and commands.</p>
 
-<p><strong>Environment</strong>
-The first thing we did was access something called <code>ROM.env</code>. This environment
-is a convention built specifically for frameworks like Rails where you need
-global access to the ROM registry.</p>
+<h3 id="working-with-rom-objects">Working with ROM objects</h3>
 
-<p><strong>Commands</strong>
-We&rsquo;ll cover these in more detail, but <a href="/introduction/commands">commands</a> are
-the way we create or modify data in our relations.</p>
+<p>The Rails template introduces a convention for managing objects provided by ROM alongside the familiar Rails conventions.</p>
 
-<p><strong>Relations</strong>
-<a href="/introduction/relations">Relations</a> provide a way to access our data. We&rsquo;re
-just reading all the data from <code>tasks</code> and converting it into an array. We
-haven&rsquo;t defined any <a href="/introduction/mappers">mappers</a> yet so our read simply
-returns hashes. We&rsquo;ll get to mappers soon enough though, don&rsquo;t you worry.</p>
-</div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
+<p>Commands, mappers, and relations are autoloaded and registered with the ROM environment when placed in the following locations:</p>
+
+<ul>
+<li><code>app/commands</code></li>
+<li><code>app/mappers</code></li>
+<li><code>app/relations</code></li>
+</ul>
+
+<p>If you look inside these paths in the Rails app, you’ll see that the application template generated a <code>tasks.rb</code> file in each of these paths as well as a <code>*_create_tasks.rb</code> migration in <code>db/migrations</code>.</p>
+
+<p>Use the following methods to look up the registered task objects on the environment:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">commands</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">mappers</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">relations</span>
+</code></pre>
+
+<h3 id="get-the-list-of-tasks">Get the list of tasks</h3>
+
+<p>To get the list of tasks, we get the relation from the registry and call <code>to_a</code>, which executes the query and returns an array of results:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">to_a</span>
+</code></pre>
+
+<p>We should get back an empty array here, because the database is currently empty.</p>
+
+<h3 id="use-a-command-to-create-a-task">Use a command to create a task</h3>
+
+<p>Create a new task by getting the create command from the registry and calling it with a hash of attributes to save:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">create</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">text: </span><span class="s1">'finish the tutorial'</span><span class="p">,</span> <span class="ss">priority: </span><span class="mi">1</span><span class="p">)</span>
+</code></pre>
+
+<p>The <code>create</code> method accepts a hash of attributes to be saved, and returns a result object representing the created task.</p>
+
+<h3 id="read-back-the-task-we-just-created">Read back the task we just created</h3>
+
+<p>Look up the tasks relation again, and materialize it to an array:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">to_a</span>
+</code></pre>
+
+<p>Or get at the task directly:</p>
+<pre class="highlight ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">first</span>
+</code></pre>
+
+<p>With nothing more than an empty <code>TasksRelation</code> class defined, all we can do at this point is read back the list of tasks as hashes.</p>
+
+<h3 id="next-steps">Next Steps</h3>
+
+<p>Let’s look at ROM’s read capabilities in more detail by moving on to <a href="/tutorials/rails/relations-and-mappers">part 2 of this tutorial</a> where we explore relations and mappers.</p>
+</div></div></div><footer><div class="container"><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div><div class="muted copyright">Ruby Object Mapper &copy; 2014-2015</div></div></footer></body></html>

@@ -84,7 +84,7 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
 ga('create', 'UA-2573270-5', 'auto');
-ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_tutorials doc-pages_tutorials_rails doc-pages_tutorials_rails_task-mapper doc-pages_tutorials_rails_task-mapper_index"><div class="page-wrapper"><header><nav class="navbar navbar-default navbar-fixed-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/status">Status</a></li></ul><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div></div></div></nav></header><div class="container"><div class="content"><h2>Setting up Task mapper</h2>
+ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_tutorials doc-pages_tutorials_rails doc-pages_tutorials_rails_task-mapper doc-pages_tutorials_rails_task-mapper_index"><div class="page-wrapper"><div class="info-alert-top" role="alert">Content based on ROM 0.6.0.rc1, expect final release in the upcoming days</div><header><nav class="navbar navbar-default navbar-static-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/contribute">Contribute</a></li><li class=""><a class="" href="/status">Status</a></li></ul></div></div></nav></header><div class="container"><div class="content"><h2 id="setting-up-task-mapper">Setting up Task mapper</h2>
 
 <p>We just extended our task relation with a method for the index view. The data
 returned from this method is an array of hashes &ndash; the most basic representation
@@ -104,9 +104,11 @@ constructor.</p>
 because they already support the required attribute hash construction and nice
 bonus features out-of-the-box like equality methods.</p>
 <pre class="highlight ruby"><code><span class="c1"># app/models/task.rb</span>
+<span class="c1"># Alias to a domain-specific module in our app</span>
+<span class="no">ValueObject</span> <span class="o">=</span> <span class="no">Virtus</span><span class="p">.</span><span class="nf">value_object</span><span class="p">(</span><span class="ss">coerce: </span><span class="kp">false</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">Task</span>
-  <span class="kp">include</span> <span class="no">Virtus</span><span class="p">.</span><span class="nf">value_object</span><span class="p">(</span><span class="ss">coerce: </span><span class="kp">false</span><span class="p">)</span>
+  <span class="kp">include</span> <span class="no">ValueObject</span>
 
   <span class="n">values</span> <span class="k">do</span>
     <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Integer</span>
@@ -166,7 +168,7 @@ reflect the changes we made:</p>
 <span class="mi">1</span> <span class="n">example</span><span class="p">,</span> <span class="mi">0</span> <span class="n">failures</span>
 </code></pre>
 
-<h3>Using dedicated task relation for index view</h3>
+<h3 id="using-dedicated-task-relation-for-index-view">Using dedicated task relation for index view</h3>
 
 <p>We&rsquo;ve defined the relation for the index view and a mapping to return a <code>Task</code>
 instead of hashes. It&rsquo;s time to update the controller and the index template
@@ -198,7 +200,7 @@ method instead of <code>[]</code>.</p>
 <span class="nt">&lt;/ul&gt;</span>
 </code></pre>
 
-<h3>Summing up</h3>
+<h3 id="summing-up">Summing up</h3>
 
 <p>We &ldquo;graduated&rdquo; from simple hashes to a rich entity object to ease data access
 in the views. The <code>Task</code> entity looks similar to the standard <code>ActiveRecord</code>
@@ -228,4 +230,4 @@ features in a context where they&rsquo;re not required.</p>
 <p>Okay, only include what we need, sounds great. Now we need to create and update
 tasks. In <a href="/tutorials/rails/managing-tasks">managing tasks</a> we will see how to
 implement these actions.</p>
-</div></div></div><footer><div class="container"><div class="muted copyright">Ruby Object Mapper &copy; 2014</div></div></footer></body></html>
+</div></div></div><footer><div class="container"><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div><div class="muted copyright">Ruby Object Mapper &copy; 2014-2015</div></div></footer></body></html>

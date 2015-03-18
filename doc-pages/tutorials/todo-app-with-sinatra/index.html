@@ -1,0 +1,284 @@
+<!DOCTYPE html><html><head><link href="/images/favicon.png" rel="icon" type="image/png" /><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="ROM &raquo;  via @rom_rb" name="twitter:description" /><meta content="ROM &raquo; " name="description" /><title>ROM &raquo; </title><style type="text/css">.highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #d0d0d0;
+  background-color: #151515;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}</style><link href="../../../stylesheets/all.css" rel="stylesheet" type="text/css" /><script src="../../../javascripts/all.js" type="text/javascript"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" type="text/javascript"></script><script type="text/javascript">$(function() {
+  var share = new Share(".share")
+});
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="doc-pages doc-pages_tutorials doc-pages_tutorials_todo-app-with-sinatra doc-pages_tutorials_todo-app-with-sinatra_index"><div class="page-wrapper"><div class="info-alert-top" role="alert">Content based on ROM 0.6.0.rc1, expect final release in the upcoming days</div><header><nav class="navbar navbar-default navbar-static-top"><div class="navbar-inner"><div class="container"><a class="navbar-brand" href="/">Ruby Object Mapper</a><ul class="nav navbar-nav"><li class=""><a class="" href="/introduction">Introduction</a></li><li class=""><a class="" href="/tutorials">Tutorials</a></li><li class="dropdown"><a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">API Reference <span class='caret'/></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.rubydoc.info/gems/rom">rom</a></li><li><a href="http://www.rubydoc.info/gems/rom-sql">rom-sql</a></li><li><a href="http://www.rubydoc.info/gems/rom-mongo">rom-mongo</a></li><li><a href="http://www.rubydoc.info/gems/rom-rails">rom-rails</a></li></ul></li><li class=""><a class="" href="/blog">Blog</a></li><li class=""><a class="" href="/contribute">Contribute</a></li><li class=""><a class="" href="/status">Status</a></li></ul></div></div></nav></header><div class="container"><div class="content"><p>In this tutorial, we’ll walk through the steps required to build a web API for managing a todo list.</p>
+
+<p>Each example builds on the last, showing how ROM and Sinatra can work together to provide an effective toolkit for rapid prototyping microservices and REST APIs. </p>
+
+<p>For simplicity and clarity, this tutorial uses ROM’s setup DSL, though in larger apps, we recommend configuring ROM with explicit class definitions. This is analogous to the difference between Sinatra’s routing DSL and its modular application style.</p>
+
+<p>If you’re looking for a more robust and intricate example of ROM integrated with a modular Sinatra application, see the <a href="https://github.com/gotar/sinatra-rom">rom-sinatra sample app</a>.</p>
+
+<h2 id="setup-from-scratch">Setup from Scratch</h2>
+
+<p>Create a new app directory, add a <code>Gemfile</code> with the following dependencies, and run <code>bundle</code> to install them:</p>
+<pre class="highlight ruby"><code><span class="n">source</span> <span class="s1">'https://rubygems.org'</span>
+
+<span class="n">gem</span> <span class="s1">'sinatra'</span>
+<span class="n">gem</span> <span class="s1">'sinatra-contrib'</span>
+<span class="n">gem</span> <span class="s1">'rom-sql'</span>
+</code></pre>
+
+<p>Then create a basic hello world app in <code>todo_api.rb</code>:</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'sinatra'</span>
+<span class="nb">require</span> <span class="s1">'sinatra/json'</span>
+<span class="nb">require</span> <span class="s1">'rom-sql'</span>
+
+<span class="n">get</span> <span class="s1">'/tasks'</span> <span class="k">do</span>
+  <span class="n">json</span> <span class="ss">todo: </span><span class="s1">'Finish the ROM Sinatra tutorial'</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>You can run this app from the Ruby interpreter directly with the following command:</p>
+<pre class="highlight plaintext"><code>ruby todo_api.rb
+</code></pre>
+
+<p>Or provide a <code>config.ru</code> like the following, which can be used with <code>rackup</code>:</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'./todo_api'</span>
+
+<span class="n">run</span> <span class="no">Sinatra</span><span class="o">::</span><span class="no">Application</span>
+</code></pre>
+
+<p>If you want to run the app with a tool like <code>foreman</code>, you’ll need a <code>Procfile</code>:</p>
+<pre class="highlight plaintext"><code>web: bundle exec rackup -p $PORT
+</code></pre>
+
+<p>With all the housekeeping and boilerplate out of the way, we can start looking at the todo API itself.</p>
+
+<h2 id="define-the-tasks-model">Define the tasks model</h2>
+
+<p>To load ROM into this app, we need to set up the SQL adapter and provide a connection string. Do this at the top of the Sinatra app file:</p>
+<pre class="highlight ruby"><code><span class="n">setup</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span>
+</code></pre>
+
+<p>This gives us an object we can use to configure a tasks relation and mapper.</p>
+
+<p>For starters, we’ll provide a way of finding tasks by <code>id</code>, using the <a href="http://sequel.jeremyevans.net/rdoc/classes/Sequel/Dataset.html#method-i-where">where method</a> of the underlying Dataset:</p>
+<pre class="highlight ruby"><code><span class="n">setup</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">do</span>
+  <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>With this relation in place, we can set up a mapper to convert these tasks into plain Ruby objects:</p>
+<pre class="highlight ruby"><code><span class="n">setup</span><span class="p">.</span><span class="nf">mapper</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">relation</span> <span class="ss">:tasks</span>
+  <span class="n">model</span> <span class="ss">name: </span><span class="s1">'Task'</span>
+  <span class="n">attribute</span> <span class="ss">:id</span>
+  <span class="n">attribute</span> <span class="ss">:title</span>
+  <span class="n">attribute</span> <span class="ss">:priority</span>
+  <span class="n">attribute</span> <span class="ss">:is_complete</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Next, we’ll define a little helper method to look up the ROM environment from inside the routes:</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">rom</span>
+  <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2 id="implementing-the-read-api">Implementing the read API</h2>
+
+<p>The primary resource in the API is <code>/tasks</code>. Rather than use the standard nested URL pattern that many CRUD-oriented frameworks use, we’ll separate actions on the resource into singular and plural URIs. This will better emphasise ROM’s concept of command/query separation. You’ll see why soon.</p>
+
+<p>Now we have the ROM environment set up, we can add real data to the <code>GET</code> methods. Use <code>rom.read(:tasks)</code> to access the tasks relation and return enumerable query results to the JSON encoder:</p>
+<pre class="highlight ruby"><code><span class="n">get</span> <span class="s1">'/tasks'</span> <span class="k">do</span>
+  <span class="n">json</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">all</span>
+<span class="k">end</span>
+
+<span class="n">get</span> <span class="s1">'/task/:id'</span> <span class="k">do</span>
+  <span class="n">json</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">by_id</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]).</span><span class="nf">first</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Did you spot the problem here?</p>
+
+<p>In the case of the collection query, the empty enumerable will encode to an empty JSON type which is probably what consumers of the API will expect.</p>
+
+<p>But what happens when finding tasks <code>by_id</code> returns <code>nil</code>? This is a classic example of code that assumes the ‘happy path’.</p>
+
+<p>We probably want to return a <code>404</code> when the given ID doesn’t match any tasks, so let’s amend the code to do that using Sinatra’s <code>halt</code>:</p>
+<pre class="highlight ruby"><code><span class="n">get</span> <span class="s1">'/task/:id'</span> <span class="k">do</span>
+  <span class="n">task</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">by_id</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]).</span><span class="nf">first</span>
+  <span class="n">halt</span> <span class="mi">404</span> <span class="k">if</span> <span class="n">task</span><span class="p">.</span><span class="nf">nil?</span>
+  <span class="n">json</span> <span class="n">task</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>With more lines in the method, the chained query is starting to look a little verbose. Let’s change the <code>rom</code> helper function we made earlier to return the <code>:tasks</code> reader directly, rather than the entire ROM environment:</p>
+<pre class="highlight ruby"><code><span class="k">def</span> <span class="nf">tasks</span>
+  <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Now we can refactor the routes to use this new helper:</p>
+<pre class="highlight ruby"><code><span class="n">get</span> <span class="s1">'/tasks'</span> <span class="k">do</span>
+  <span class="n">json</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">all</span>
+<span class="k">end</span>
+
+<span class="n">get</span> <span class="s1">'/task/:id'</span> <span class="k">do</span>
+  <span class="n">task</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]).</span><span class="nf">first</span>
+  <span class="n">halt</span> <span class="mi">404</span> <span class="k">if</span> <span class="n">task</span><span class="p">.</span><span class="nf">nil?</span>
+  <span class="n">json</span> <span class="n">task</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>This is a good start, but we can make a much better API for listing tasks by adding more fine grained queries to the relation:</p>
+<pre class="highlight ruby"><code><span class="n">setup</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">do</span>
+  <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">incomplete</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">is_complete: </span><span class="kp">false</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">complete</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">is_complete: </span><span class="kp">true</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">urgent</span>
+    <span class="n">incomplete</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">priority: </span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">backlog</span>
+    <span class="n">incomplete</span><span class="p">.</span><span class="nf">where</span> <span class="p">{</span> <span class="ss">:priority</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>This provides us with the queries we need to add clean and intuitive views on the relation as part of the <code>/tasks</code> resource:</p>
+<pre class="highlight ruby"><code><span class="n">get</span> <span class="s1">'/tasks'</span>
+  <span class="n">json</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">all</span>
+<span class="k">end</span>
+
+<span class="n">get</span> <span class="s1">'/tasks/complete'</span> <span class="k">do</span>
+  <span class="n">json</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">complete</span>
+<span class="k">end</span>
+
+<span class="n">get</span> <span class="s1">'/tasks/incomplete'</span> <span class="k">do</span>
+  <span class="n">json</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">incomplete</span>
+<span class="k">end</span>
+
+<span class="n">get</span> <span class="s1">'/tasks/urgent'</span> <span class="k">do</span>
+  <span class="n">json</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">urgent</span>
+<span class="k">end</span>
+
+<span class="n">get</span> <span class="s1">'/tasks/backlog'</span> <span class="k">do</span>
+  <span class="n">json</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">backlog</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Sinatra is very good for quickly sketching out APIs like this, but there is a lot of repetition in what we’ve done here.</p>
+
+<p>Of course, there’s always <a href="http://www.bignerdranch.com/blog/writing-readable-ruby/">more than one way to do it</a>. The following example demonstrates how the separate routes defined above could be condensed into a single regex match:</p>
+<pre class="highlight ruby"><code><span class="n">get</span> <span class="sr">%r{/tasks/(incomplete|complete|urgent|backlog)}</span> <span class="k">do</span>
+  <span class="n">filter</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="ss">:captures</span><span class="p">].</span><span class="nf">first</span>
+  <span class="n">json</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">filter</span><span class="p">.</span><span class="nf">to_sym</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Or we could make the filter concept explicit in the resource and parameterize the relations rather than treat them as resources themselves:</p>
+<pre class="highlight plaintext"><code>get '/tasks/filter' do
+
+end
+</code></pre>
+
+<h2 id="relations-are-enumerable-and-immutable">Relations are enumerable and immutable</h2>
+
+<p>In <code>rom-sql</code>, relations are proxies to <a href="http://sequel.jeremyevans.net/rdoc/files/doc/dataset_basics_rdoc.html">Sequel Dataset</a> objects which ROM uses implicitly to build SQL statements, execute queries and return results from the underlying data store.</p>
+
+<p>The Sequel documentation has a good description of what the Dataset does:</p>
+
+<blockquote>
+<p>A Dataset can be thought of representing one of two concepts:
+- An SQL query
+- An abstract set of rows and some related behavior</p>
+</blockquote>
+
+<p>Relations always return enumerable objects. Chaining query methods together to restrict the results returns a new relation, rather than a modified copy of the original relation. Adhering to these principles allows ROM and Sequel to work together seamlessly and makes interactions between high level and low level code easier to reason about.</p>
+</div></div></div><footer><div class="container"><div class="social"><div class="github"><iframe allowtransparency="true" frameborder="0" height="20" scrolling="0" src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" width="110"></iframe></div><div class="twitter"><a class="twitter-follow-button" data-show-count="true" data-show-screen-name="false" href="https://twitter.com/rom_rb">Follow</a><script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></div></div><div class="muted copyright">Ruby Object Mapper &copy; 2014-2015</div></div></footer></body></html>
