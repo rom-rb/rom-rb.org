@@ -67,7 +67,7 @@ To access the environment, type the following line into the Rails console:
 rom = ROM.env
 ```
 
-By default, the ROM environment is configured with an SQLite repository and the registry of relations, mappers and commands.
+In a default Rails setup, the ROM environment is loaded from the provided [ActiveRecord  configuration](http://guides.rubyonrails.org/configuring.html#configuring-active-record). As long as the database specified there is supported by ROM SQL, no additional setup is necessary.
 
 ### Working with ROM objects
 
