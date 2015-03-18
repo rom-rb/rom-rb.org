@@ -192,11 +192,11 @@ class Tasks < ROM::Relation[:sql]
   dataset :tasks
 
   def active
-    where(done: true)
+    where(is_completed: true)
   end
 
   def completed
-    where(done: false)
+    where(is_completed: false)
   end
 end
 ```
@@ -292,11 +292,11 @@ class Tasks < ROM::Relation[:sql]
   end
 
   def active
-    where(done: true)
+    where(is_completed: true)
   end
 
   def completed
-    where(done: false)
+    where(is_completed: false)
   end
 end
 ```
