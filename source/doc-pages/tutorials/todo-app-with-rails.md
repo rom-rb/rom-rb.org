@@ -42,7 +42,7 @@ In addition to the normal Rails installation, the application template includes 
 - Adding `require 'rom-rails'` to `config/application.rb`
 - Adding a `tasks` table to the database and running `db:migrate`
 - Adding a `tasks` resource route
-- Adding relation, mapper and command classes for `tasks` 
+- Adding relation, mapper and command classes for `tasks`
 
 ### Open the Rails console
 
@@ -312,7 +312,7 @@ Let’s start wiring this thing together. In order to see items filtered by acti
 Add the following partial to the view path for tasks:
 
 ```erb
-# app/views/tasks/_filter_nav.html.erb
+# app/views/tasks/index.html.erb
 
 <nav>
     <ul>
@@ -327,7 +327,7 @@ Add the following partial to the view path for tasks:
 Now we can render this partial from the index view. While we’re here, we can also render the status for each task as well.
 
 ```erb
-# app/views/tasks/_filter_nav.html.erb
+# app/views/tasks/index.html.erb
 
 <%= render 'filter_nav' %>
 
@@ -412,7 +412,7 @@ By default, ROM does not implicitly trigger mappers on relations. Pass the name 
 
 class TasksController < ApplicationController
   def index
-    render locals: { 
+    render locals: {
       tasks: tasks.index_view(params[:status]).as(:tasks)
     }
   end
