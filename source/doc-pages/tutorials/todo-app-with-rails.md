@@ -554,7 +554,7 @@ module TaskCommands
 end
 ```
 
-By convention, the command class is wrapped in a module namespace, which is used to . If you want to create a new command, you can do it manually in `app/commands` or use the provided generator:
+By convention, the command class is wrapped in a module namespace. If you want to create a new command, you can do it manually in `app/commands` or use the provided generator:
 
 ```
 rails generate rom:commands tasks --adapter sql
