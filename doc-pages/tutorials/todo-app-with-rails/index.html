@@ -130,7 +130,7 @@ rails new rom-todo-app -JTS -m rom-todo-app-template.rb
 <li>Adding <code>require &#39;rom-rails&#39;</code> to <code>config/application.rb</code></li>
 <li>Adding a <code>tasks</code> table to the database and running <code>db:migrate</code></li>
 <li>Adding a <code>tasks</code> resource route</li>
-<li>Adding relation, mapper and command classes for <code>tasks</code> </li>
+<li>Adding relation, mapper and command classes for <code>tasks</code></li>
 </ul>
 
 <h3 id="open-the-rails-console">Open the Rails console</h3>
@@ -259,11 +259,11 @@ bin/rails console
   <span class="n">dataset</span> <span class="ss">:tasks</span>
 
   <span class="k">def</span> <span class="nf">active</span>
-    <span class="n">where</span><span class="p">(</span><span class="ss">is_completed: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">is_completed: </span><span class="kp">false</span><span class="p">)</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">completed</span>
-    <span class="n">where</span><span class="p">(</span><span class="ss">is_completed: </span><span class="kp">false</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">is_completed: </span><span class="kp">true</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre>
@@ -371,7 +371,7 @@ bin/rails console
 <p>Let’s start wiring this thing together. In order to see items filtered by active and completed status, we need to be able to navigate between them from UI.</p>
 
 <p>Add the following partial to the view path for tasks:</p>
-<pre class="highlight erb"><code># app/views/tasks/_filter_nav.html.erb
+<pre class="highlight erb"><code># app/views/tasks/index.html.erb
 
 <span class="nt">&lt;nav&gt;</span>
     <span class="nt">&lt;ul&gt;</span>
@@ -384,7 +384,7 @@ bin/rails console
 </code></pre>
 
 <p>Now we can render this partial from the index view. While we’re here, we can also render the status for each task as well.</p>
-<pre class="highlight erb"><code># app/views/tasks/_filter_nav.html.erb
+<pre class="highlight erb"><code># app/views/tasks/index.html.erb
 
 <span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">'filter_nav'</span> <span class="cp">%&gt;</span>
 
@@ -461,7 +461,7 @@ to define the <code>Task</code> class because they come out-of-the-box with the 
 
 <span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
   <span class="k">def</span> <span class="nf">index</span>
-    <span class="n">render</span> <span class="ss">locals: </span><span class="p">{</span> 
+    <span class="n">render</span> <span class="ss">locals: </span><span class="p">{</span>
       <span class="ss">tasks: </span><span class="n">tasks</span><span class="p">.</span><span class="nf">index_view</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:status</span><span class="p">]).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span>
     <span class="p">}</span>
   <span class="k">end</span>
@@ -595,7 +595,7 @@ to define the <code>Task</code> class because they come out-of-the-box with the 
 <span class="k">end</span>
 </code></pre>
 
-<p>By convention, the command class is wrapped in a module namespace, which is used to . If you want to create a new command, you can do it manually in <code>app/commands</code> or use the provided generator:</p>
+<p>By convention, the command class is wrapped in a module namespace. If you want to create a new command, you can do it manually in <code>app/commands</code> or use the provided generator:</p>
 <pre class="highlight plaintext"><code>rails generate rom:commands tasks --adapter sql
 </code></pre>
 
