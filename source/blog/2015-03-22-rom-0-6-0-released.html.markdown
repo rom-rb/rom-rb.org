@@ -12,6 +12,7 @@ This release includes updates of the following gems:
 * [rom 0.6.0](https://rubygems.org/gems/rom) - [changelog](https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v060-2015-03-22)
 * [rom-sql 0.4.0](https://rubygems.org/gems/rom-sql) - [changelog](https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v040-2015-03-22)
 * [rom-rails 0.3.0](https://rubygems.org/gems/rom-rails) - [changelog](https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v040-2015-03-22)
+* [rom-mongo 0.1.0](https://rubygems.org/gems/rom-mongo) - [changelog](https://github.com/rom-rb/rom-mongo/blob/master/CHANGELOG.md#v040-2015-03-23)
 
 The following new adapters have been released too:
 
