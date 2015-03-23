@@ -16,6 +16,7 @@ set :projects, %w[
   rom
   rom-csv
   rom-dm
+  rom-influxdb
   rom-mongo
   rom-rails
   rom-redis
@@ -82,7 +83,7 @@ helpers do
   end
 
   DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
-  GEMS = %w(rom rom-sql rom-mongo rom-rails)
+  GEMS = config.projects
 
   def edit_article_link(title = 'Edit')
     slug = current_page.data.slug
