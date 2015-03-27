@@ -312,7 +312,7 @@ Let’s start wiring this thing together. In order to see items filtered by acti
 Add the following partial to the view path for tasks:
 
 ```erb
-# app/views/tasks/index.html.erb
+# app/views/tasks/_filter_nav.html.erb
 
 <nav>
     <ul>
