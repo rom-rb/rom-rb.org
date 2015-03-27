@@ -479,33 +479,6 @@ Update the template to replace the hash-style lookups with model attributes:
 
 At this point, we have a much cleaner controller, the `status` concept is a fully formed part of our model, and the relation provides a cohesive API that encapsulates the dataset.
 
-### Declarative Relations in Controller Actions
-
-Many simple relations are accessed the same way in controllers. To tidy up the repetition of injecting relation results into actions, ROM Rails offers a class level controller hook for declaratively defining relation queries and required filter parameters:
-
-```ruby
-# app/controllers/tasks_controller.rb
-
-class TasksController < ApplicationController
-  rescue_from ROM::Rails::RelationParamsMissingError do
-    head :bad_request
-  end
-
-  relation 'tasks.index', only: :index
-  relation 'tasks.by_status', only: :filter, requires: :status
-
-  def index
-    render
-  end
-
-  def filter
-    render :index
-  end
-end
-```
-
-Note the `rescue_from` block here, which sends a bad request to the client if the required `status` parameter isn’t present in the request.
-
 ### Making Sense of Relations and Mappers
 
 In just a few lines of code, we’ve encountered a number of differences between the ROM Rails and an “omakase” Rails app with ActiveRecord:
