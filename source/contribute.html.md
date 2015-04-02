@@ -21,7 +21,7 @@ Dive deeper into the ROM ecosystem by writing an adapter for a new data source.
 
 Join [the conversation on Gitter](https://gitter.im/rom-rb/chat) to discuss anything related to ROM.
 
-Report bugs and offer feedback on features via [Github Issues](https://github.com/rom-rb/rom/issues).
+Report bugs and offer feedback on features via [GitHub Issues](https://github.com/rom-rb/rom/issues).
 
 ## Contribute to Core Libraries
 
