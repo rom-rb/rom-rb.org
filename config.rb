@@ -9,7 +9,8 @@ set :twitter_handle, '@rom_rb'
 
 set :people, {
   'Don Morrison' => 'https://twitter.com/elskwid',
-  'Piotr Solnica' => 'https://twitter.com/_solnic_'
+  'Piotr Solnica' => 'https://twitter.com/_solnic_',
+  'Mark Rickerby' => 'https://twitter.com/maetl'
 }
 
 set :projects, %w[
