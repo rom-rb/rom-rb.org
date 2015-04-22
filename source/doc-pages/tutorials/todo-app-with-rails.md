@@ -553,7 +553,7 @@ class TaskForm < ROM::Model::Form
     set_model_name 'Task'
 
     attribute :title, String
-    attribute :is_completed, Boolean
+    attribute :is_completed, Virtus::Attribute::Boolean
   end
 
   validations do
@@ -662,7 +662,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    task_form = UpdateTaskForm.build(params[:user], id: params[:id]).save
+    task_form = UpdateTaskForm.build(params[:task], id: params[:id]).save
 
     if task_form.success?
       redirect_to :tasks
@@ -691,7 +691,7 @@ class TasksController < ApplicationController
   private
 
   def tasks_command
-    rom.commands(:tasks)
+    rom.command(:tasks)
   end
 
 end
