@@ -553,7 +553,7 @@ class TaskForm < ROM::Model::Form
     set_model_name 'Task'
 
     attribute :title, String
-    attribute :is_completed, Boolean
+    attribute :is_completed, Virtus::Attribute::Boolean
   end
 
   validations do
@@ -566,12 +566,16 @@ end
 
 Notice that we also need to slot in references to the model and relation here, in order to connect this form to our existing ROM objects.
 
-In order to select and operate on individual objects, we also need to add a new method to the relation to access tasks by their given ID:
+In order to select and operate on individual objects, we also need to add a couple methods that access tasks by their ID:
 
 ```ruby
 class Tasks < ROM::Relation[:sql]
   def by_id(id)
     where(id: id)
+  end
+
+  def find_by_id(id)
+    by_id(id).to_a.first
   end
 
   # ...
@@ -615,7 +619,7 @@ Creating a view template for this form is easily done with the built-in Rails ta
 <% end %>
 ```
 
-The form for handling updates looks very similar to the form for creating new tasks:
+The form for handling updates looks very similar to the form for creating new tasks.  In this case, we just need to add a class method to load existing records into the form. Also note that the methods defined here use the finder methods we defined on the `Tasks` relation earlier.
 
 ```ruby
 # app/forms/update_task_form.rb
@@ -623,13 +627,18 @@ The form for handling updates looks very similar to the form for creating new ta
 class UpdateTaskForm < TaskForm
   commands tasks: :update
 
+  def self.build_from_existing(id)
+    record = rom.relation(:tasks).find_by_id(id)
+    self.build(record)
+  end
+
   def commit!
     tasks.try { tasks.update.by_id(id).set(attributes) }
   end
 end
 ```
 
-The main thing to pay attention to here is the `by_id` method used to select the task that’s being edited. To set this up according to Rails conventions, we’ll need an `edit.html.erb` template as well.
+To set up the edit functionality according to Rails conventions, we’ll need an `edit.html.erb` template as well.
 
 ### Managing Tasks from the Controller
 
@@ -656,13 +665,13 @@ class TasksController < ApplicationController
   end
 
   def edit
-    task_form = UpdateTaskForm.build({}, { id: params[:id] })
+    task_form = UpdateTaskForm.build_from_existing(params[:id])
 
     render :edit, locals: { task: task_form }
   end
 
   def update
-    task_form = UpdateTaskForm.build(params[:user], id: params[:id]).save
+    task_form = UpdateTaskForm.build(params[:task], id: params[:id]).save
 
     if task_form.success?
       redirect_to :tasks
@@ -691,7 +700,7 @@ class TasksController < ApplicationController
   private
 
   def tasks_command
-    rom.commands(:tasks)
+    rom.command(:tasks)
   end
 
 end
