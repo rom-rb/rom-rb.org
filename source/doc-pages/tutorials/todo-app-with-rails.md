@@ -556,10 +556,6 @@ class Tasks < ROM::Relation[:sql]
     where(id: id)
   end
 
-  def find_by_id(id)
-    by_id(id).to_a.first
-  end
-
   # ...
 end
 ```
@@ -610,12 +606,12 @@ class UpdateTaskForm < TaskForm
   commands tasks: :update
 
   def self.build_from_existing(id)
-    record = rom.relation(:tasks).find_by_id(id)
-    self.build(record)
+    task = rom.relation(:tasks).by_id(id).one!
+    self.build(task)
   end
 
   def commit!
-    tasks.try { tasks.update.by_id(id).set(attributes) }
+    tasks.try { tasks.update.by_id(id).call(attributes) }
   end
 end
 ```
