@@ -1,0 +1,54 @@
+doctype html
+html
+  head
+    link rel="icon" type="image/png" href="/images/favicon.png"
+    meta[charset="utf-8"]
+    meta[content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"]
+    meta[content="#{twitter_page_title}" name="twitter:description"]
+    meta[content="#{page_title}" name="description"]
+    title = page_title
+    style type="text/css"
+      == Rouge::Themes::Base16.mode(:dark).render(scope: '.highlight')
+    == stylesheet_link_tag "all"
+    == javascript_include_tag "all"
+    == javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"
+    javascript:
+      $(function() {
+        var share = new Share(".share")
+      });
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-2573270-5', 'auto');
+      ga('send', 'pageview');
+  body class=page_classes
+    .page-wrapper
+      header
+        nav.navbar.navbar-default.navbar-static-top
+          .navbar-inner
+            .container
+              a.navbar-brand href="/" Ruby Object Mapper
+              ul.nav.navbar-nav
+                = nav_link("/introduction", "Introduction")
+                = nav_link("/tutorials", "Tutorials")
+                li.dropdown == api_docs_nav
+                = nav_link("/blog", "Blog")
+                = nav_link("/contribute", "Contribute")
+                = nav_link("/status", "Status")
+      .container
+        .content
+          == yield
+    footer
+      .container
+        .social
+          .github
+            iframe src="http://ghbtns.com/github-btn.html?user=rom-rb&repo=rom&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"
+          .twitter
+            a href="https://twitter.com/rom_rb" class="twitter-follow-button" data-show-count="true" data-show-screen-name="false"
+             | Follow
+            javascript:
+              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+        .muted.copyright
+          | Ruby Object Mapper &copy; 2014-2015

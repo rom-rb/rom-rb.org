@@ -1,0 +1,1 @@
+auto-generated commands no longer use form’s input handler, so you gotta use attributes in commit! now if you want params to be pre-processed by the input handler

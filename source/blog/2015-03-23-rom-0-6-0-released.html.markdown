@@ -1,0 +1,187 @@
+---
+title: ROM 0.6.0 Released
+date: 2015-03-23
+tags: release,announcement
+author: Piotr Solnica
+---
+
+We're happy to announce the final release of ROM 0.6.0! This version brings a lot of improvements and simplifies the internal architecture of ROM. There are over 700 commits between 0.5.0 and this release which is a result of fantastic feedback that we've received from early adopters and many contributions from new people.
+
+This release includes updates of the following gems:
+
+* [rom 0.6.0](https://rubygems.org/gems/rom) - [changelog](https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v060-2015-03-22)
+* [rom-sql 0.4.0](https://rubygems.org/gems/rom-sql) - [changelog](https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v040-2015-03-22)
+* [rom-rails 0.3.0](https://rubygems.org/gems/rom-rails) - [changelog](https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v040-2015-03-22)
+* [rom-mongo 0.1.0](https://rubygems.org/gems/rom-mongo) - [changelog](https://github.com/rom-rb/rom-mongo/blob/master/CHANGELOG.md#v040-2015-03-23)
+
+The following new adapters have been released too:
+
+* [rom-yesql](https://rubygems.org/gems/rom-yesql)
+* [rom-csv](https://rubygems.org/gems/rom-csv)
+* [rom-yaml](https://rubygems.org/gems/rom-yaml)
+
+## Class-based setup
+
+The biggest change in this release is the ability to define your own relation, mapper and command subclasses that ROM will instantiate for you and expose through its registry. The DSL-based setup is still available but using classes turned out to be a better approach in bigger contexts like web-applications.
+
+Here's a simple Relation subclass definition:
+
+``` ruby
+class Users < ROM::Relation[:memory]
+  def by_name(name)
+    restrict(name: name)
+  end
+end
+```
+
+## Lazy-relations with data-pipelining
+
+Previous version of ROM had the concept of Reader which turned out to be confusing. After lots of discussions it was replaced by a new interface for accessing relations. This change makes mapping relations explicit as you need to provide the name of mapper(s) that you want to use when loading a relation.
+
+Lazy relations can be used with any object that implements mapper interface but the simplest way to levarage this feature is to register ROM mappers for quick access:
+
+``` ruby
+ROM.setup(:memory)
+
+class Users < ROM::Relation[:memory]
+  def by_name(name)
+    restrict(name: name)
+  end
+end
+
+class UserMapper < ROM::Mapper
+  relation :users
+  register_as :entity
+
+  model User
+
+  attribute :name
+end
+
+rom = ROM.finalize.env
+
+user_entites = rom.relation(:users).as(:entity)
+user_entities.by_name('Jane')
+```
+
+Thanks to data-pipelining feature you can send a relation through multiple mapping objects. This turned out to be very useful for decorating data:
+
+``` ruby
+class UserPresenterMapper < ROM::Mapper
+  relation :users
+  register_as :presenter
+
+  model UserPresenter
+end
+
+user_presenter = rom.relation(:users).as(:entity, :presenter).by_name('Jane').first
+```
+
+On top of that there's also an experimental partial-application feature where you can grab a reference to a relation with partially applied arguments:
+
+``` ruby
+users_by_name = rom.relation(:users).as(:entity).by_name
+
+users_by_name['Jane'].first
+```
+
+## Improved and simplified command interface
+
+Commands are now composable and you can access them directly and call them. This makes it more obvious what's going on. We are still working on a generalized error/success handling that will be based on a 3rd party dependency since this is really out of ROM's scope.
+
+You can define your commands using class interfaces too:
+
+``` ruby
+ROM.setup(:memory)
+
+class CreateUser < ROM::Commands::Create[:memory]
+  relation :users
+  register_as :create
+  result :one
+end
+
+rom = ROM.finalize.env
+
+create_user = rom.command(:users).create
+
+rom.command(:users).try { create_user.call(name: 'Jane') }
+```
+
+Command API is growing quickly and more database-specific features will be implemented soon on top of existing functionality.
+
+## Improved adapter infrastructure
+
+Adapter infrastructure has been simplified so now an adapter can provide its `Repository` and `Relation` subclasses and register itself under specific identifier. It means that a ROM adapter is just a couple of extensions that allow you to use ROM with various data sources. If the adapter can work in full read/write mode it can also provide its own `Command` subclasses.
+
+Setting up an adapter is now simpler too - ROM doesn't make *any assumptions* about repository instantiation and you can also instaniate it yourself and pass the instance to `ROM.setup`. This feature is already used by rom-rails where you can configure your repositories in an initializer if you don't want ROM to infer configuration from `database.yml`.
+
+Another nice addition is a set of Lint tests that are useful for adapter creators. We even made the effort to make it work with both MiniTest and RSpec. Here are a couple of linters from the new CSV adapter:
+
+``` ruby
+require 'rom/lint/spec'
+
+describe ROM::CSV::Dataset do
+  let(:data) { [{ id: 1 }, { id: 2 }] }
+  let(:dataset) { ROM::CSV::Dataset.new(data) }
+
+  it_behaves_like "a rom enumerable dataset"
+end
+
+describe ROM::CSV::Repository do
+  let(:repository) { ROM::CSV::Repository }
+  let(:uri) { File.expand_path('./spec/fixtures/users.csv') }
+
+  it_behaves_like "a rom repository" do
+    let(:identifier) { :csv }
+  end
+end
+```
+
+ROM's adapter ecosystem is growing fast - we have [Redis](https://github.com/rom-rb/rom-redis), [Neo4j](https://github.com/maetl/rom-neo4j) and [InfluxDB](https://github.com/rom-rb/rom-influxdb) in the works already and [more](https://github.com/rom-rb/rom/issues?q=is%3Aopen+is%3Aissue+label%3Aadapter+label%3Ahelp-wanted) are planned.
+
+## Form objects for Rails
+
+This release also includes updates to rom-rails - the most notable change is the addition of `ROM::Model::Form` which allows you to define form objects that work nicely with ROM. It is using `Virtus` for params handling and `ActiveModel::Validations` for validations.
+
+Our [Rails tutorial](http://rom-rb.org/tutorials/todo-app-with-rails/) was updated too and explains how to use form objects in ROM. Here's an example of a simple form object definition:
+
+``` ruby
+class NewUserForm < ROM::Model::Form
+  commands users: :create
+
+  input do
+    attribute :name, String
+
+    timestamps
+  end
+
+  validations do
+    validates :name, presence: true, uniqueness: true
+  end
+
+  def commit!
+    users.try { users.create.call(attributes) }
+  end
+end
+```
+
+## Upgrading from 0.5.0
+
+The setup DSL works the same but you probably want to switch to class-based setup as it's easier to organize your code that way.
+
+Please let us know if you have any trouble with the upgrade on our [gitter](https://gitter.im/rom-rb/chat) channel or submit an issue describing problems you're having.
+
+
+## About 1.0.0
+
+This has been amazing couple of months for ROM. The community is growing, we're seeing more and more people contributing to the project and geting great feedback from the real world usage.
+
+Even though initially we planned to release 1.0.0 as soon as ROM proves itself on production, based on feedback from the community and discussing the release process we decided to give it few more months to push the first stable release.
+
+We prefer to polish the interfaces and implement a bunch of important missing features that will make ROM simpler to use. In addition to features it's also important to provide great documentation and user guides, which is one of the priorities of 1.0.0 release.
+
+## Thank you!
+
+Thank you to all the early adopters and new contributors. This release would not be possible without your help! It's amazing to see how the project evolves thanks to you.
+
+We have more great news, so stay tuned and watch this space :)

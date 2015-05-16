@@ -1,0 +1,51 @@
+.blog
+  article
+    header
+      @extend .page-header
+
+  .article-social
+    ul
+      @extend .list-inline
+      @extend .clearfix
+
+      li
+        &:first-child
+          @extend .pull-left
+        &:last-child
+          @extend .pull-right
+
+  aside
+    margin-top: 42px
+
+  .article-meta
+    font-size: 14px
+
+  .article-tags
+    a
+      margin: 5px
+
+  .blog-sidebar
+    .article-sidebar
+      margin-top: 1em
+    .subscribe
+      margin-bottom: 1em
+
+  ul.posts
+    a
+      margin-right: 0.25em
+    span
+      margin: 0.25em
+
+.tag
+  @extend .btn
+  @extend .btn-default
+  @extend .btn-xs
+
+.tag + .tag
+  margin-left: 5px
+
+.blog-tags
+  @extend .list-group
+
+  li
+    @extend .list-group-item

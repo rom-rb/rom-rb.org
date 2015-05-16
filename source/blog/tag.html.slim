@@ -1,0 +1,13 @@
+---
+layout: "blog"
+---
+h1 #{tagname} posts
+
+ul.posts
+  - articles.each_with_index do |article, i|
+    li
+      == link_to article.title, article_permalink(article)
+      | &mdash;
+      span.date = I18n.l(article.date.to_date, format: :short)
+      | by
+      span.author = article.data['author']

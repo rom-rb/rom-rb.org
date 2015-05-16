@@ -1,0 +1,198 @@
+---
+title: ROM 0.5.0 Released
+date: 2014-12-31 21:02 UTC
+tags: release,announcement
+author: Don Morrison
+---
+
+Today we're happy to announce the release of ROM version 0.5.0. It is the
+culmination of months of hard work from a growing [team of contributors][team].
+
+It's exciting to end the year with such a large and meaningful release.
+
+## How We Got Here
+
+There were some twists and turns along the way, not the least of which was
+a reboot of the project with all new internals in November. The reboot was a
+turning point that has allowed us to accelerate development while cementing
+the core of ROM and surrounding libraries.
+
+## Version 0.5.0
+
+The emphasis thus far has been on powerful mapping features and speed. This
+has resulted in an interface that looks _lower-level_ than the other projects
+people use daily. We believe the higher-level and more convenient interfaces
+will emerge with more real world use.
+
+Many of the features and much of the polishing found in this release happened
+as a direct result of ROM being used in production projects. In fact, one of
+the larger realizations over the last several months has been that **ROM is
+not an ORM**. I know. We were as surprised as you. Take some time to use it
+and you'll see what we mean. The [Rails Tutorial][tuts-rails] outlined
+below is a great place to start.
+
+There were so many things added, improved, replaced, refactored, and considered
+both in the core of ROM and in libraries like [`rom-rails`][proj-rom-rails] and
+[`rom-sql`][proj-rom-sql] that we can't cover them all here. See the changelog
+section below for an overview of the changes and a link to the changelogs for
+each project.
+
+## rom-rb.org
+
+If you're reading this, it's because of the work we've done updating the
+website. Alongside the obvious layout and style changes we've also spent
+time on [introductions][intro] and [tutorials][tuts].
+
+### Introductions
+
+The [introductions][intro] are here to help you get accustomed to the
+terms and concepts used throughout ROM. You'll also find a brief article on
+[Why ROM][intro-why-rom] and a short comparision with [ActiveRecord][intro-ar].
+
+### Tutorials
+
+We've put together a fairly thorough tutorial for getting started with
+[ROM and Rails][tuts-rails] and have several more planned. Even if you
+don't use Rails, this tutorial can help you understand how many of the ideas
+in ROM come together to create powerful ways of working with data.
+
+There will be more [tutorials][tuts] in the coming weeks.
+
+## [rom] v0.5.0 Changelog summary:
+
+* Major milestone of putting together relation and mapping layers is done.
+  ROM runs on a pluggable data mapping backends now. The first one is built-in
+  and is based on a new library called [transproc][proj-transproc]. More will
+  come soon as the need arises.
+
+* Mapping is much more powerful now, support for prefixing keys, symbolizing
+  keys, wrapping, grouping, embeddeding and coercions was added. In addition to
+  that wrap, group and embedded can be nested which allows you to build very rich
+  aggregate objects
+
+* Reading can only be used with defined relations now, which adheres to one of
+  the core concepts in rom that data access should be restricted and encapsulated
+  in the relation layer.
+
+* Adapter interface was improved and extended with extra options that can be used
+  to build powerful adapters setup interface was improved and now accepts a
+  simple URI string or a database.yml-complaint hash, makes it easier to use
+  rom standalone and/or integrate with other libs and frameworks.
+
+* Relations that are not used by readers don't have to be defined now, it will be
+  done automatically based on schema. This simplifies setup process every relation
+  has access to all other relations (previously those were "raw" datasets from
+  adapters). This allows you to reuse your relations inside. Well, relations.
+
+* Lots of internal improvements that should make using rom a nicer experience.
+
+* It remains very fast. Still lots of opportunities to tune it but not a big
+  priority right now.
+
+  [Full changelog](https://github.com/rom-rb/rom/blob/v0.5.0/CHANGELOG.md)
+
+## [rom-rails] v0.2.0 Changelog summary:
+
+* We have now generators for relations, mappers and commands!
+
+* Convenient validation and params processing extensions were added to make it
+  easier to switch from AR to ROM in rails apps.
+
+* Support for hot-reloading in development env (works with spring!)
+
+* Support for more connection options (as a result of the general improvements
+  in adapter interface)
+
+  [Full changelog](https://github.com/rom-rb/rom-rails/blob/v0.2.0/CHANGELOG.md)
+
+## [rom-demo] Updated:
+
+* Was updated to work with the latest ROM. You can see a GitHub adapter with
+  some advanced mapping.
+
+  [Latest rom-demo](https://github.com/solnic/rom-demo)
+
+## [rom-sql] v0.3.1 Changelog summary:
+
+* Support for changes to ROM options and Rails reloading.
+
+  [Full changelog](https://github.com/rom-rb/rom-sql/blob/v0.3.1/CHANGELOG.md)
+
+## New adapters:
+
+As mentioned before there are a couple of small adapters in the works:
+[`rom-yaml`][proj-rom-yaml] and [`rom-csv`][proj-rom-csv] with more planned.
+
+## Onward towards ROM 1.0.0
+
+Version 0.5.0 is a milestone on the journey to 1.0.0. There's nothing magical
+about a one-dot-oh but wouldn't it be nice?
+
+For 1.0.0 there are no major changes planned. We will focus on polishing and new
+features like transactions in [`rom-sql`][proj-rom-sql] and an extended command
+interface. There will be lots of internal small refactorings, improvements in
+the spec suite to bring a more unit-based approach now that interfaces are
+stabilizing, features based on feedback, and fixes for any bugs that come our
+way.
+
+### You can help
+
+Yes, you can! As with all projects _"many hands make light work"_. You don't
+have to jump in and tackle core issues, of course you can, but there are many
+ways you can help us out:
+
+#### Try it out
+
+Take it for a test drive. Drop it in to an existing project or create a new
+special little place just for ROM to live. The only requirement is that you come
+back and tell us what you think. Like. Dislike. We want to hear it all.
+
+#### Tell us how you're using ROM
+
+You may already be building things with ROM and we'd love to hear about it. What
+are you making? How is it working for you?  What interfaces have you created to
+make common work easier? This feedback can greatly improve the project for
+everyone.
+
+#### Documentation
+
+[dramatic pause] We all love it when it's written but who writes it? We do. When
+you're trying out ROM and you find something doesn't make sense -- just create an
+issue on the repo. You could even assign it to yourself and make it better.
+(Imagine the satisfaction...)
+
+#### Tutorials
+
+Follow a tutorial. Well, since there is only one at the time of this announcement
+perhaps we should say "follow THE tutorial". Go through it and see what you make
+of it. If you find yourself using ROM differently, like in another framework,
+create a short tutorial about it. We can even help with the writing if you need
+it.
+
+#### Write adapters
+
+There are a couple of simple adapters in progress. Both
+[`rom-yaml`][proj-rom-yaml] and [`rom-csv`][proj-rom-csv] are about as easy as
+they get. Maybe you could write `rom-json` or `rom-NEWDB`. We can help with this
+as well. Get it started and we'll all chip in.
+
+#### Find your own way
+
+We truly believe there are as many ways to help as there people. Take a look
+around, chat with us on [Gitter][chat] and get to it.
+
+
+**Thanks for reading and here's to a great 2015!**
+
+[team]: https://github.com/rom-rb/rom/network/members
+[tuts-rails]: /tutorials/rails
+[proj-rom-rails]: https://github.com/rom-rb/rom-rails
+[proj-rom-sql]: https://github.com/rom-rb/rom-sql
+[intro]: /introduction
+[tuts]: /tutorials
+[intro-why-rom]: /introduction/why
+[intro-ar]: /introduction/activerecord
+[proj-transproc]: https://github.com/solnic/transproc
+[proj-rom-yaml]: https://github.com/rom-rb/rom-yaml
+[proj-rom-csv]: https://github.com/rom-rb/rom-csv
+[chat]: https://gitter.im/rom-rb/chat

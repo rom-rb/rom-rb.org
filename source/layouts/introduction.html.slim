@@ -1,0 +1,21 @@
+.row
+  .col-md-3
+    ul.nav.nav-pills.nav-stacked
+      = nav_heading("/introduction", "Introduction")
+      = nav_link("/introduction/why", "Why ROM?")
+      = nav_link("/introduction/activerecord", "ActiveRecord")
+      = nav_heading("/introduction/overview", "Overview")
+      = nav_link("/introduction/adapters", "Adapters")
+      = nav_link("/introduction/relations", "Relations")
+      = nav_link("/introduction/mappers", "Mappers")
+      = nav_link("/introduction/commands", "Commands")
+  .col-md-9
+    .page-header
+      h1 = current_page.data.title
+    .page-article
+      == content
+      .page-article-edit
+        hr
+        .share.pull-left
+        p class="pull-right"
+          | Edit this article on #{edit_article_link('GitHub')}

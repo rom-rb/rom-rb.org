@@ -1,0 +1,33 @@
+- content_for(:page_title) { "Home" }
+
+.jumbotron
+  h1
+    | Ruby Object Mapper
+  p
+    | ROM is an open-source <em>persistence and mapping toolkit for Ruby</em> built for speed and simplicity.
+  p
+    a href="/introduction" class="btn btn-primary btn-lg" Learn more
+
+.well.well-lg
+  = partial "intro-snippets/installation"
+
+.intro-snippets
+  .row
+    .col-md-4
+      h3
+        | Relations
+        small
+          a href="/introduction/relations" learn more
+      = partial "intro-snippets/relation"
+    .col-md-4
+      h3
+        | Mappers
+        small
+          a href="/introduction/mappers" learn more
+      = partial "intro-snippets/mappers"
+    .col-md-4
+      h3
+        | Commands
+        small
+          a href="/introduction/commands" learn more
+      = partial "intro-snippets/commands"
