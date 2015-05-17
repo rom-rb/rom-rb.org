@@ -1,8 +1,13 @@
 Wrapping
 ========
 
-The method [wrap] takes fields from the [relation](file:../relation/index.md)-provided tuple,
-and wraps them to either a tuple, or a tuple-based model.
+@todo The description supposes `reject_keys true` by default!
+
+The method [wrap] takes fields from the source tuple,
+and wraps them to either a sub-tuple, or a model.
+
+This is the extended version of the [embedded](embedded.md) method
+that allows conversion of embedded sub-tuple into a model.
 
 * [base use](#base-use)
 * [removing prefixes](#removing-prefixes)
@@ -74,8 +79,8 @@ users.as(:entity).first
 Removing Prefixes
 -----------------
 
-Use `:prefix` and `:prefix_separator` options to remove prefixes from wrapped attributes.
-The `attribute` method arguments should have no prefixes.
+Use `:prefix` to remove prefixes from wrapped
+attributes. The `attribute` method arguments should have no prefixes.
 
 ```ruby
 class UserMapper
@@ -85,10 +90,33 @@ class UserMapper
   attribute :id
   attribute :name
 
-  wrap :contacts, prefix: 'contact', prefix_separator: '_' do
-    attribute :email
-    attribute :skype
-  end
+  wrap :contacts, [:email, :skype], prefix: 'contact'
+end
+
+users.as(:entity).first
+# {
+#   id: 1, name: "Jane",
+#   contacts: { email: "jane@example.com", skype: "jane" }
+# }
+```
+
+Use `:prefix_separator` in case of a custom separator:
+
+```ruby
+user.first
+# {
+#   id: 1, name: "Jane",
+#   :"contact.email" => "jane@example.com", :"contact.skype" => "jane"
+# }
+
+class UserMapper
+  register_as :entity
+  relation :users
+
+  attribute :id
+  attribute :name
+
+  wrap :contacts, [:email, :skype], prefix: 'contact', prefix_separator: '.'
 end
 
 users.as(:entity).first
@@ -102,8 +130,9 @@ users.as(:entity).first
 
 Alternatively, use the [prefix](prefix.md) method inside the block.
 
-The method is called without attributes and cannot customize either prefix, or its separator.
-It uses the prefix from the name of the `wrap`, separated by the underscore `"_"`.
+The method is called without attributes and cannot customize either prefix,
+or its separator. It takes the prefix from the name of the `wrap`
+and separates it by the underscore `"_"`.
 
 ```ruby
 class UserMapper
@@ -130,7 +159,8 @@ users.as(:entity).first
 Renaming Attributes
 -------------------
 
-To rename wrapped attributes separately use the triple underscore `"___"` in their names:
+To rename wrapped attributes separately use the triple underscore`"___"`
+in their names:
 
 ```ruby
 class UserMapper
@@ -172,7 +202,7 @@ end
 Wrapping to Model
 -----------------
 
-Define the [model](model.md) to convert the tuple into:
+Define the [model](model.md) to instantiate with wrapped attributes:
 
 ```ruby
 require "ostruct"
@@ -201,11 +231,10 @@ users.as(:entity).first
 Nesting Wrappers
 ----------------
 
-Wrappers can be nested:
+Wrappers can be nested at many levels. You can define a corresponding model
+for any level of nesting:
 
 ```ruby
-require "ostruct"
-
 class UserMapper
   register_as :entity
   relation :users
@@ -214,11 +243,16 @@ class UserMapper
   attribute :name
 
   wrap :contacts do
-    model OpenStruct
-    attribute :email, from: :contact_email
+    model Contacts
 
-    wrap :chats do
-      attribute :skype, from: :contact_skype
+    wrap :email do
+      model Messages
+      attribute :address, from: :contact_email
+    end
+
+    wrap :skype do
+      model Skype
+      attribute :user, from: :contact_skype
     end
   end
 end
@@ -226,14 +260,18 @@ end
 users.as(:entity).first
 # {
 #   id: 1, name: "Jane",
-#   contacts: <OpenStruct email="jane@example.com", chats={:skype=>"jane"}>
+#   contacts: <Contacts
+#     @email=<Email @address="jane@example.com">,
+#     @skype=<Skype @user="jane">
+#   >
 # }
 ```
 
 Wrapping Keys
 -------------
 
-The method `wrap` can be applied to keys, that included by the [reject_keys: false](reject_keys.md) setting as well.
+The method `wrap` can be applied to keys, that included by
+the [reject_keys: false](reject_keys.md) setting as well.
 
 ```ruby
 class UserMapper
@@ -251,7 +289,7 @@ users.as(:entity).first
 ```
 
 As shown in previous sections, when a `reject_keys` is set to default (`true`),
-wrapping defaults attributes by itself:
+the `wrap` method defines attributes by itself:
 
 ```ruby
 class UserMapper
@@ -266,6 +304,9 @@ users.as(:entity).first
 
 Alternatives
 ------------
+
+Consider using [embedded](embedded.md) if you don't need to transform
+wrapped attributes to the model.
 
 Consider using [combine](combine.md)
 to join relations as *one-to-one* or *many-to-one*
