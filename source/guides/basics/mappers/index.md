@@ -99,7 +99,7 @@ users_with_roles.to_a
 # ]
 ```
 
-Suppose we need adopt it to list of domain users who has many roles each.
+Suppose we need to adopt it to list of domain users who has many roles each.
 There are two main strategies for doing this.
 
 ### Lean Interface to Domain
@@ -221,6 +221,39 @@ High-level and Low-level API
 * Describe structure of the mapper
 * Note naming conventions for relation
 
+Base Transformations
+--------------------
+
+By its very nature ROM mapper provides a set of transformation of source tuples
+into output hashes/models. This section reviews base transformations,
+allowed by Mapper DSL.
+
+* [filtering attributes](#filtering-attributes)
+* [renaming attributes](#renaming-attributes)
+* [embedding attributes](#embedding-attributes)
+* [combining relations](#combining-relations)
+* [instantiating model objects](#instantiating-model-objects)
+
+### Filtering attributes
+
+@todo reject_keys, attribute, exclude
+
+### Renaming attributes
+
+@todo attribute, symbolize_keys, prefix, prefix_separator
+
+### Embedding attributes
+
+@todo embedded, wrap, unwrap, group
+
+### Combining relations
+
+@todo combine
+
+### Instantiating models
+
+@todo model
+
 Mapper DSL
 ----------
 
@@ -233,8 +266,8 @@ It contains the following list of methods:
 * @todo [exclude](exclude.md)
 * @todo [group](group.md)
 * @todo [model](model.md)
-* [prefix](prefix.md)
-* [prefix_separator](prefix.md)
+* @todo [prefix](prefix.md)
+* @todo [prefix_separator](prefix.md)
 * [reject_keys](reject_keys.md)
 * @todo [symbolize_keys](symbolize_keys.md)
 * @todo [unwrap](unwrap.md)
