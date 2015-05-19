@@ -4,9 +4,9 @@ Mappers
 * [purpose](#purpose)
 * [base use](#base-use)
 * [mapping strategies](#mapping-strategies)
-* [high-level and low-level API](#high-level-and-low-level-api)
-* [mapper DSL](#mapper-dsl)
+* [transformations](#transformations)
 * [reusable mappers](#reusable-mappers)
+* [high-level and low-level API](#high-level-and-low-level-api)
 
 Purpose
 -------
@@ -213,6 +213,24 @@ This flexibility can simplify your domain layer quite a bit.
 You can design your domain objects exactly the way you want
 and configure mappings accordingly.
 
+Transformations
+---------------
+
+By its very nature ROM mapper provides a set of transformation of source tuples
+into output hashes/models.
+
+* [filtering attributes](filter.md) # @todo: attribute, embedded, exclude
+* [renaming attributes](rename.md)  # @todo: attribute, prefix, prefix_separator
+* [wrapping attributes](wrap.md)    # @todo: wrap, unwrap
+* [grouping tuples](group.md)       # @todo: group
+* [combining relations](combine.md) # @todo: combine
+* [instantiating models](models.md) # @todo: model, attribute
+
+Reusing Mappers
+---------------
+
+@todo
+
 High-level and Low-level API
 ----------------------------
 
@@ -220,58 +238,3 @@ High-level and Low-level API
 * Describe two APIs for mappers
 * Describe structure of the mapper
 * Note naming conventions for relation
-
-Base Transformations
---------------------
-
-By its very nature ROM mapper provides a set of transformation of source tuples
-into output hashes/models. This section reviews base transformations,
-allowed by Mapper DSL.
-
-* [filtering attributes](#filtering-attributes)
-* [renaming attributes](#renaming-attributes)
-* [embedding attributes](#embedding-attributes)
-* [combining relations](#combining-relations)
-* [instantiating model objects](#instantiating-model-objects)
-
-### Filtering attributes
-
-@todo reject_keys, attribute, exclude
-
-### Renaming attributes
-
-@todo attribute, symbolize_keys, prefix, prefix_separator
-
-### Embedding attributes
-
-@todo embedded, wrap, unwrap, group
-
-### Combining relations
-
-@todo combine
-
-### Instantiating models
-
-@todo model
-
-Mapper DSL
-----------
-
-The mapper domain-specific language is adapter-agnostic.
-It contains the following list of methods:
-
-* @todo [attribute](attribute.md)
-* @todo [combine](combine.md)
-* @todo [embedded](embedded.md)
-* @todo [exclude](exclude.md)
-* @todo [group](group.md)
-* @todo [model](model.md)
-* @todo [prefix](prefix.md)
-* @todo [prefix_separator](prefix.md)
-* [reject_keys](reject_keys.md)
-* @todo [symbolize_keys](symbolize_keys.md)
-* @todo [unwrap](unwrap.md)
-* [wrap](wrap.md)
-
-Reusable Mappers
-----------------
