@@ -1,19 +1,19 @@
 Mappers
 =======
 
-* [purpose](#purpose)
-* [base use](#base-use)
-* [mapping strategies](#mapping-strategies)
-* [transformations](#transformations)
-* [reusable mappers](#reusable-mappers)
-* [high-level and low-level API](#high-level-and-low-level-api)
+* [Purpose](#purpose)
+* [Basic Usage](#base-usage)
+* [Mapping Strategies](#mapping-strategies)
+* [Transformations](#transformations)
+* [Reusable Mappers](#reusable-mappers)
+* [High-level and Low-level API](#high-level-and-low-level-api)
 
 Purpose
 -------
 
 Every application needs different representations of the same data.
-Taking data from one representation and converting it into another is done
-by using mappers in ROM.
+Taking data from one representation and converting it into another in ROM
+is done by using mappers.
 
 A mapper is an object that takes a tuple and turns it into a [domain object](),
 or into a [nested hash](), compatible to domain interface.
@@ -30,14 +30,14 @@ Mapping is an extremely powerful concept. It can:
 
 ROM also allows you to define mappers that can be reused for many relations.
 
-Base Use
+Basic Usage
 --------
 
 With the datastore [relations](../relations/index.md) raw data are extracted
 from datasets and presented in a form of tuples:
 
 ```ruby
-users = ROM.env.relations(:users)
+users = ROM.env.relation(:users)
 users.to_a
 # [
 #   { id: 1, name: "jane", email: "jane@doo.org" },
@@ -47,7 +47,7 @@ users.to_a
 
 Mappers allows to convert tuples to the form, required by the domain.
 
-At first define the mapper for the selected relation:
+First define the mapper for a relation:
 
 ```ruby
 class UserMapper < ROM::Mapper
@@ -61,8 +61,8 @@ class UserMapper < ROM::Mapper
 end
 ```
 
-After [finalization]() apply the mapper to lazy relation with the `as` method
-and the registered name of the mapper:
+After [finalization]() apply the mapper lazily to a relation with the `as`
+method and the registered name of the mapper:
 
 ```ruby
 users_with_roles.as(:item).to_a
@@ -90,7 +90,7 @@ Consider another example, where the relation contains flat data,
 that should be mapped into nested models:
 
 ```ruby
-users_with_roles = ROM.env.relations(:users).with_roles
+users_with_roles = ROM.env.relation(:users).with_roles
 users_with_roles.to_a
 # [
 #   { name: "jane", role: "admin" },
@@ -99,16 +99,16 @@ users_with_roles.to_a
 # ]
 ```
 
-Suppose we need to adopt it to list of domain users who has many roles each.
+Suppose we need to adopt it to list of domain users who each have many roles.
 There are two main strategies for doing this.
 
-### Lean Interface to Domain
+### 1. Lean Interface to Domain
 
 Under the first approach, the responsibility of the datastore is limited.
-It should provide query result as array of hashes, recongizable by the domain.
+It should provide query result as array of hashes, recognizable by the domain.
 
 In this case the datastore is completely decoupled from the domain layer.
-It can know nothing about entities and their constructors.
+It knows nothing about entities and their constructors.
 
 ```ruby
 class UserAsHash < ROM::Mapper
@@ -122,7 +122,7 @@ class UserAsHash < ROM::Mapper
 end
 ```
 
-What the mapper does is converts tuples to entity-friendly hashes:
+The mapper then converts tuples to entity-friendly hashes:
 
 ```ruby
 options = users_with_roles.as(:hash).to_a
@@ -132,7 +132,7 @@ options = users_with_roles.as(:hash).to_a
 # ]
 ```
 
-There are domain entities that are responsible for instantiating their objects
+Domain entities are responsible for instantiating their objects
 from mapper-provided hashes:
 
 ```ruby
@@ -157,12 +157,12 @@ john = User.new options.last
 # <User @name="john", @roles=[<Role @title="user">]>
 ```
 
-### Rich Interface to Domain
+### 2. Rich Interface to Domain
 
-Under the second approach, the datastore provides query results
+Under this second approach, the datastore provides query results
 as an array of pre-initialized domain objects.
 
-By defining a mapper you are specifying which entity class
+By defining a mapper, you are specifying which entity class
 is going to be instantiated and what attributes are going to be used.
 
 ```ruby
@@ -182,14 +182,14 @@ end
 ```
 
 Entity classes can be flat objects or aggregates defined separately
-from each other if that is what you need.
+from each other (depending on what you need).
 
 ```ruby
 class User
   include Virtus.model
 
   attribute :name
-  attribute :role # no coersion needed, this work to be done by the mapper
+  attribute :role # no coersion needed, this work is done by the mapper
 end
 
 class Role
@@ -199,7 +199,7 @@ class Role
 end
 ```
 
-With the mapper the datastore adopts tuples directly to domain objects:
+With the mapper, the datastore adopts tuples directly to domain objects:
 
 ```ruby
 options = users_with_roles.as(:entity).to_a
@@ -216,15 +216,15 @@ and configure mappings accordingly.
 Transformations
 ---------------
 
-By its very nature ROM mapper provides a set of transformation of source tuples
+By its very nature, ROM mapper provides a set of transformations of source tuples
 into output hashes/models.
 
-* [filtering attributes](filter.md) # @todo: reject_keys, attribute, embedded, exclude
-* [renaming attributes](rename.md)  # @todo: attribute, prefix, prefix_separator, symbolize_keys
-* [wrapping attributes](wrap.md)    # @todo: wrap, unwrap
-* [grouping tuples](group.md)       # @todo: group
-* [combining relations](combine.md) # @todo: combine
-* [instantiating models](models.md) # @todo: model, attribute
+* [Filtering Attributes](filter.md) # @todo: reject_keys, attribute, embedded, exclude
+* [Renaming Attributes](rename.md)  # @todo: attribute, prefix, prefix_separator, symbolize_keys
+* [Wrapping Attributes](wrap.md)    # @todo: wrap, unwrap
+* [Grouping Tuples](group.md)       # @todo: group
+* [Combining Relations](combine.md) # @todo: combine
+* [Instantiating Models](models.md) # @todo: model, attribute
 
 Reusing Mappers
 ---------------
