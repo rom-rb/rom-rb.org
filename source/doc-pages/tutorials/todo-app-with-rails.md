@@ -472,7 +472,7 @@ In just a few lines of code, we’ve encountered a number of differences between
 
 These differences reflect the core philosophy of ROM. Each layer of an application should only have access to the data and behaviour it requires and no more. There’s no reason to plug a larger set of ORM features into a context where they’re not required.
 
-Despite being in contrast to the Rails style of a [maximalist interface](http://martinfowler.com/bliki/HumaneInterface.html), the more restrictive approach is equally expressive and understandable at a glance. We know what data is being passed to the view and we have attribute accessors on the model reflecting the principle of least astonishment (`task.title` just works).
+Despite being in contrast to the Rails style of a [maximalist interface](http://martinfowler.com/bliki/HumaneInterface.html), the more restrictive approach is equally expressive and understandable at a glance. We know what data is being passed to the view and we have attribute readers on the model reflecting the principle of least astonishment (`task.title` just works).
 
 For now, that’s all you need to know about relations and mappers.
 
