@@ -15,15 +15,19 @@ set :people, {
 
 set :projects, %w[
   rom
-  rom-csv
-  rom-dm
-  rom-influxdb
-  rom-mongo
-  rom-rails
-  rom-redis
   rom-sql
-  rom-yaml
   rom-yesql
+  rom-influxdb
+  rom-event_store
+  rom-rethinkdb
+  rom-mongo
+  rom-redis
+  rom-csv
+  rom-yaml
+  rom-dm
+  rom-lotus
+  rom-rails
+  rom-roda
 ]
 
 set :markdown_engine, :redcarpet
