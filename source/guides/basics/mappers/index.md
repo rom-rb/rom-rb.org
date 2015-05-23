@@ -2,7 +2,7 @@ Mappers
 =======
 
 * [Purpose](#purpose)
-* [Basic Usage](#base-usage)
+* [Basic Usage](#basic-usage)
 * [Mapping Strategies](#mapping-strategies)
 * [Transformations](#transformations)
 * [Reusable Mappers](#reusable-mappers)
@@ -31,7 +31,7 @@ Mapping is an extremely powerful concept. It can:
 ROM also allows you to define mappers that can be reused for many relations.
 
 Basic Usage
---------
+-----------
 
 With the datastore [relations](../relations/index.md) raw data are extracted
 from datasets and presented in a form of tuples:
@@ -219,12 +219,12 @@ Transformations
 By its very nature, ROM mapper provides a set of transformations of source tuples
 into output hashes/models.
 
-* [Filtering Attributes](filter.md) # @todo: reject_keys, attribute, embedded, exclude
-* [Renaming Attributes](rename.md)  # @todo: attribute, prefix, prefix_separator, symbolize_keys
-* [Wrapping Attributes](wrap.md)    # @todo: wrap, unwrap
-* [Grouping Tuples](group.md)       # @todo: group
-* [Combining Relations](combine.md) # @todo: combine
-* [Instantiating Models](models.md) # @todo: model, attribute
+* [Filtering Attributes](filtering.md)
+* [Renaming Attributes](renaming.md)
+* [Wrapping Attributes](wrapping.md) and [Unwrapping Tuples](unwrapping.md)
+* [Grouping](grouping.md) and [Splitting](splitting.md) Tuples
+* [Combining Relations](combining.md)
+* [Mapping Tuples to Models](models.md)
 
 Reusing Mappers
 ---------------
