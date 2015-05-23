@@ -141,27 +141,6 @@ users.as(:wrapped_users).first
 Renaming Attributes
 -------------------
 
-### Inline Syntax
-
-To rename wrapped attributes separately use the triple underscore`"___"` in their names:
-
-```ruby
-class WrappedUsersMapper < ROM::Mapper
-  register_as :wrapped_users
-  relation :users
-
-  wrap :contact, [:contact_email___to_write, :contact_skype___to_chat]
-end
-
-users.as(:wrapped_users).first
-# {
-#   id: 1, name: "Joe",
-#   contact: { to_write: "joe@example.com", to_chat: "joe" }
-# }
-```
-
-### Block Syntax
-
 Inside the block use the `:from` option of the [attribute](attribute.md) method:
 
 ```ruby
@@ -175,6 +154,8 @@ class WrappedUsersMapper < ROM::Mapper
   end
 end
 ```
+
+**Notice** this feature requires the block syntax. It cannot be done inline.
 
 Wrapping to Model
 -----------------
