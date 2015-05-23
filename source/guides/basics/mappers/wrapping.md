@@ -12,7 +12,7 @@ With the method [wrap] you can take some attributes from a tuple and wrap them t
 * [Nesting Wrappers](#nesting-wrappers)
 * [Edge Cases](#edge-cases)
 
-See [Unwrapping Tuples](unwrapping.md)) for the inverse transformation of data.
+See [Unwrapping Tuples](unwrapping.md) for the inverse transformation of data.
 
 Notice, mappers have [high-level and low-level API](index.md#high-level-and-low-level-api). Examples in this section use the high-level API only. The same syntax is applicable to low-level API as well.
 
