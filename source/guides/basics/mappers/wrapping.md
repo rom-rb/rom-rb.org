@@ -255,7 +255,7 @@ users.as(:entity).first
 # { id: 1, contacts: { name: "Joe" }, contact_email: "joe@doe.org", contact_skype: "joe" }
 ```
 
-Don't use block along with the `:mapper` option! All definitions that are made inside the block will be ignored:
+Don't use block along with the `:mapper` option! All definitions from inside the block will be ignored:
 
 ```ruby
 class ContactMapper < ROM::Mapper
