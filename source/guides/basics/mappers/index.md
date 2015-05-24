@@ -315,7 +315,7 @@ rom.relation(:users).as(:nested_hash).first
 
 With this feature you can *extract* common transformations, and share them between various mappers.
 
-Use it with some care! There is [an edge case you should take into account](wrapping.md#applying-another-mapper).
+Use it with some care! There are [edge cases you should take into account](wrapping.md#applying-another-mapper).
 
 Arbitrary Mappers
 -----------------
