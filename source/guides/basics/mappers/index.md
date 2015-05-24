@@ -209,7 +209,7 @@ By its very nature, ROM mapper provides a set of transformations of source tuple
 Reusing Mappers
 ---------------
 
-ROM provides two ways for reusing existing mappers:
+ROM provides various ways for reusing existing mappers:
 
 * Chaining mappers to pipeline.
 * Subclassing Mappers.
