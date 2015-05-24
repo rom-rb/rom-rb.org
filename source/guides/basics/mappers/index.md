@@ -313,7 +313,7 @@ rom.relation(:users).as(:nested_hash).first
 # { id: 1, name: "Joe", contacts: { email: "joe@email.com", skype: "joe" } }
 ```
 
-With this feature you can *extract and share* common transformations between various mappers.
+With this feature you can *extract* common transformations, and share them between various mappers.
 
 Use it with some care! There is [an edge case you should take into account](wrapping.md#applying-another-mapper).
 
