@@ -43,6 +43,24 @@ end
 page 'blog/*', layout: 'blog_article'
 page 'blog/feed.xml', layout: false
 
+# TODO: generate this dynamically from dir/file listing
+%w(todo-app-with-rails).each do |name|
+  proxy "/tutorials/#{name}", "/tutorials/page.html", locals: { layout: 'tutorials', name: name } do
+    content_for(:page_title) {
+      name.split('/').map(&:humanize).unshift('Guides').join(' &raquo; ')
+    }
+  end
+end
+
+# TODO: generate this dynamically from dir/file listing
+%w(basics/mappers basics/mappers/wrapping).each do |name|
+  proxy "/guides/#{name}", "/guides/page.html", locals: { layout: 'guides', name: name } do
+    content_for(:page_title) {
+      name.split('/').map(&:humanize).unshift('Guides').join(' &raquo; ')
+    }
+  end
+end
+
 configure :build do
   activate :minify_javascript
   activate :relative_assets
@@ -85,6 +103,10 @@ helpers do
 
   def guides_layout(&block)
     partial "layouts/guides", locals: { content: capture_html(&block) }
+  end
+
+  def within_layout(name, &block)
+    partial "layouts/#{name}", locals: { content: capture_html(&block) }
   end
 
   DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
