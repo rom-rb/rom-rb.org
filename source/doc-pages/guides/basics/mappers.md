@@ -267,7 +267,7 @@ users.as(:entity).first # the record mapped to the User model
 users.map_with(:entity).first # the alternative syntax
 ```
 
-Like relations, **mappers are applied lazily**. This means the datastore won't be touched until some "finalizing" method (`first`, `every`, `to_a` etc.) is called over the whole request. You can filter the relation results in any order, either before or after calling a mapper. All the following definitions do the same:
+Like relations, **mappers are applied lazily**. This means the datastore won't be touched until some "finalizing" method (`each`, `first`, `to_a` etc.) is called over the whole request. You can filter the relation results in any order, either before or after calling a mapper. All the following definitions do the same:
 
 ```ruby
 users.with_tasks.with_tags.as(:entity)
