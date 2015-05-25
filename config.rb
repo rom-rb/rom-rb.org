@@ -40,7 +40,8 @@ activate :blog do |blog|
   blog.tag_template = "blog/tag.html"
 end
 
-page 'doc-pages/*', ignore: true
+ignore 'doc-pages/*'
+
 page 'blog/*', layout: 'blog_article'
 page 'blog/feed.xml', layout: false
 
