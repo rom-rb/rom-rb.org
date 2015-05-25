@@ -2,6 +2,7 @@ $(function() {
   var gemMap = {
     'SQL' : 'rom-sql',
     'MongoDB' : 'rom-mongo',
+    'Event Store' : 'rom-event_store',
     'YAML' : 'rom-yaml',
     'CSV' : 'rom-csv'
   };
