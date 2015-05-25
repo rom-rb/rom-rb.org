@@ -1,0 +1,19 @@
+---
+title: Guides
+slug: /guides
+---
+
+.row
+  .col-md-3
+    ul.nav.nav-pills.nav-stacked
+      = nav_heading("/guides/basics/mappers", "Mappers")
+  .col-md-9
+    .page-header
+      h1 = current_page.data.title
+    .page-article
+      == content
+      .page-article-edit
+        hr
+        .share.pull-left
+        p class="pull-right"
+          | Edit this article on #{edit_article_link('GitHub')}
