@@ -4,10 +4,10 @@ Mappers
 * [Purpose](#purpose)
 * [Basic Usage](#basic-usage)
 * [Mapping Strategies](#mapping-strategies)
+* [Setting and Applying Mappers](#setting-and-applying-mappers)
 * [Transformations](#transformations)
 * [Reusing Mappers](#reusing-mappers)
 * [Arbitrary Mappers](#arbitrary-mappers)
-* [High-level and Low-level API](#high-level-and-low-level-api)
 
 Purpose
 -------
@@ -41,7 +41,7 @@ users.to_a
 # ]
 ```
 
-Mappers allows to convert tuples to the form, required by the domain.
+Mappers allow to convert tuples to the form, required by the domain.
 
 At first define the mapper for a relation.
 
@@ -53,7 +53,7 @@ class UserAsEntity < ROM::Mapper
 end
 ```
 
-After [finalization](../setup.md) apply the mapper lazily to a relation with the `as` method (or its alias method `map_with`) and the registered name of the mapper.
+After [finalization](../setup.md) apply the mapper:
 
 ```ruby
 users.as(:entity).to_a
@@ -194,6 +194,87 @@ options = users_with_roles.as(:entity).to_a
 
 This flexibility can simplify your domain layer quite a bit. You can design your domain objects exactly the way you want and configure mappings accordingly.
 
+Setting and Applying Mappers
+----------------------------
+
+### 1. Setting a Mapper
+
+Like repositories, mappers to be added to ROM environment during the [setup process](../setup.md). You're free to declare relations and mappers in any suitable order between invocations of `ROM.setup` and `ROM.finalize`.
+
+```ruby
+setup = ROM.setup :memory
+
+# This is when mappers should be registered in a sequence of loading
+
+rom = ROM.finalize.env
+```
+
+To register a mapper you can follow any of two styles, that are analogous to the difference between Sinatra’s routing DSL and its modular application style.
+
+In the "routing-style" DSL use the `setup.mappers` for adding a mapper:
+
+```ruby
+setup.mappers do
+  define(:users) do
+    register_as :entity
+
+    model User
+  end
+end
+```
+
+In larger apps, we recommend configuring ROM with explicit class definitions. To do this you should explicitly inherit your mapper from `ROM::Mapper` base class. The following example does the same work as the previous one.
+
+```ruby
+class EntityMapper < ROM::Mapper
+  register_as :entity
+  relation :users
+
+  model User
+end
+```
+
+As shown above, when defining a new mapper you need to set the registered name of the mapper and the name of the relation it is applicable to. The registered name of the mapper should be unique in a scope of the relation, so the following declaration is correct.
+
+```ruby
+class UserEntityMapper < ROM::Mapper
+  register_as :entity
+  relation :users
+
+  model User
+end
+
+class TaskEntityMapper < ROM::Mapper
+  register_as :entity
+  relation :tasks
+
+  model Task
+end
+```
+
+For further details and edge cases see the [Registering a Mapper](#mappers/registering.md) section.
+
+### 2. Applying a Mapper
+
+After finalizing ROM, apply the mapper to a relation with the `as` method, or its alias `map_with`, using the registered name of the mapper:
+
+```ruby
+users = ROM.env.relation(:users) # returns lazy relation
+users.first # returns the first record from the raw data
+# => { id: 1, name: "Joe" }
+users.as(:entity).first # the record mapped to the User model
+# => #<User @id=1, @name="Joe">
+users.map_with(:entity).first # the alternative syntax
+```
+
+Like relations, **mappers are applied lazily**. This means the datastore won't be touched until some "finalizing" method (`first`, `every`, `to_a` etc.) is called over the whole request. You can filter the relation results in any order, either before or after calling a mapper. All the following definitions do the same:
+
+```ruby
+users.with_tasks.with_tags.as(:entity)
+users.with_tasks.as(:entity).with_tags
+users.as(:entity).with_tasks.with_tags
+```
+
 Transformations
 ---------------
 
@@ -320,14 +401,25 @@ Use it with some care! There are [edge cases you should take into account](mappe
 Arbitrary Mappers
 -----------------
 
-ROM allows to register arbitrary coercer object as a mapper.
+ROM allows to register arbitrary coercer object as a mapper. Every object, that responds to `#call` method with one argument can be registered as the ROM mapper.
 
-@todo
+To register an arbitrary mapper, use the following syntax:
 
-High-level and Low-level API
-----------------------------
+```ruby
+arbitrary_mapper = -> users { users.select { |tuple| tuple[:id].to_i < 3 } }
 
-@todo:
-* Describe two APIs for mappers
-* Describe structure of the mapper
-* Note naming conventions for relation
+setup.mappers do
+  register(:users, external: arbitrary_mapper)
+end
+```
+
+The mapper will be applied to the whole output of a corresponding relation:
+
+```ruby
+users = ROM.env.relation(:users)
+users.to_a
+# => [{ id: 1, name: "Jane" }, { id: 2, name: "Joe" }, { id: 3, name: "John"}]
+
+users.as(:external).to_a
+# => [{ id: 1, name: "Jane" }, { id: 2, name: "Joe" }]
+```
