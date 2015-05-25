@@ -40,26 +40,9 @@ activate :blog do |blog|
   blog.tag_template = "blog/tag.html"
 end
 
+page 'doc-pages/*', ignore: true
 page 'blog/*', layout: 'blog_article'
 page 'blog/feed.xml', layout: false
-
-# TODO: generate this dynamically from dir/file listing
-%w(todo-app-with-rails).each do |name|
-  proxy "/tutorials/#{name}", "/tutorials/page.html", locals: { layout: 'tutorials', name: name } do
-    content_for(:page_title) {
-      name.split('/').map(&:humanize).unshift('Guides').join(' &raquo; ')
-    }
-  end
-end
-
-# TODO: generate this dynamically from dir/file listing
-%w(basics/mappers basics/mappers/wrapping).each do |name|
-  proxy "/guides/#{name}", "/guides/page.html", locals: { layout: 'guides', name: name } do
-    content_for(:page_title) {
-      name.split('/').map(&:humanize).unshift('Guides').join(' &raquo; ')
-    }
-  end
-end
 
 configure :build do
   activate :minify_javascript
@@ -75,6 +58,22 @@ set :images_dir, 'images'
 
 activate :livereload
 activate :directory_indexes
+
+doc_pages_root = "#{root}/source/doc-pages"
+
+%w(tutorials guides).each do |type|
+  Dir["#{doc_pages_root}/#{type}/**/*.md"].each do |full_path|
+    dir = File.dirname(full_path.gsub("#{doc_pages_root}/", ''))
+    name = File.basename(full_path, '.md')
+    path = "#{dir}/#{name}"
+
+    proxy "#{path}.html", "/#{type}/page.html", locals: { doc: path }, ignore: true do
+      content_for(:page_title) {
+        name.split('/').unshift(type).map(&:humanize).join(' &raquo; ')
+      }
+    end
+  end
+end
 
 helpers do
 
