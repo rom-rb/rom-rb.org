@@ -30,7 +30,7 @@ ROM also allows you to define mappers that can be reused for many relations.
 Basic Usage
 -----------
 
-With the datastore [relations](../relations/index.md) raw data are extracted from datasets and presented in a form of tuples.
+With the datastore [relations](../relations.md) raw data are extracted from datasets and presented in a form of tuples.
 
 ```ruby
 users = ROM.env.relation(:users)
@@ -199,12 +199,12 @@ Transformations
 
 By its very nature, ROM mapper provides a set of transformations of source tuples into output hashes/models.
 
-* [Filtering Attributes](filtering.md)
-* [Renaming Attributes](renaming.md)
-* [Wrapping Attributes](wrapping.md) and [Unwrapping Tuples](unwrapping.md)
-* [Grouping Tuples](grouping.md) and [Splitting Attributes](splitting.md)
-* [Combining Relations](combining.md)
-* [Mapping Tuples to Models](models.md)
+* [Filtering Attributes](mappers/filtering.md)
+* [Renaming Attributes](mappers/renaming.md)
+* [Wrapping Attributes](mappers/wrapping.md) and [Unwrapping Tuples](mappers/unwrapping.md)
+* [Grouping Tuples](mappers/grouping.md) and [Splitting Attributes](mappers/splitting.md)
+* [Combining Relations](mappers/combining.md)
+* [Mapping Tuples to Models](mappers/models.md)
 
 Reusing Mappers
 ---------------
@@ -213,7 +213,7 @@ ROM provides various ways for reusing existing mappers:
 
 * Chaining mappers to pipeline.
 * Subclassing Mappers.
-* Applying mappers to embedded attributes ([group](grouping.md) and [wrap](wrapping.md)).
+* Applying mappers to embedded attributes ([group](mappers/grouping.md) and [wrap](mappers/wrapping.md)).
 
 ### 1. Chaining Mappers to Pipeline
 
@@ -284,7 +284,7 @@ users.as(:second).first
 # { id: 1, name: "Joe", email: "joe@email.com", skype: "joe" }
 ```
 
-Use this feature with care. There are [some edge cases you should take into account](reusing.md).
+Use this feature with care. There are [some edge cases you should take into account](mappers/reusing.md).
 
 ### 3. Applying Mappers to Embedded Attributes
 
@@ -315,7 +315,7 @@ rom.relation(:users).as(:nested_hash).first
 
 With this feature you can *extract* common transformations, and share them between various mappers.
 
-Use it with some care! There are [edge cases you should take into account](wrapping.md#applying-another-mapper).
+Use it with some care! There are [edge cases you should take into account](mappers/wrapping.md#applying-another-mapper).
 
 Arbitrary Mappers
 -----------------

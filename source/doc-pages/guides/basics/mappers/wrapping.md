@@ -15,7 +15,7 @@ With the method [wrap] you can take some attributes from a tuple and wrap them t
 
 See [Unwrapping Tuples](unwrapping.md) for the inverse transformation of data.
 
-Notice, mappers have [high-level and low-level API](index.md#high-level-and-low-level-api). Examples in this section use the high-level API only. The same syntax is applicable to low-level API as well.
+Notice, mappers have [high-level and low-level API](../mappers.md#high-level-and-low-level-api). Examples in this section use the high-level API only. The same syntax is applicable to low-level API as well.
 
 Basic Usage
 -----------
@@ -116,7 +116,7 @@ users.as(:wrapped_users).first
 
 ### Block Syntax
 
-Alternatively, use the [prefix](prefix.md) method inside the block.
+Alternatively, use the [prefix](renaming.md) method inside the block.
 
 The method should have no attributes and cannot customize either prefix, or its separator. It takes the prefix from the name of the `wrap` and separates it by the underscore `"_"`:
 
@@ -142,7 +142,7 @@ users.as(:wrapped_users).first
 Renaming Attributes
 -------------------
 
-Inside the block use the `:from` option of the [attribute](attribute.md) method:
+Inside the block use the `:from` option of the [attribute](renaming.md) method:
 
 ```ruby
 class WrappedUsersMapper < ROM::Mapper
@@ -181,7 +181,7 @@ meetings.as(:wrapped_meetings).first
 Wrapping to Model
 -----------------
 
-Define the [model](model.md) to map wrapped tuple into:
+Define the [model](models.md) to map wrapped tuple into:
 
 ```ruby
 require "ostruct"
