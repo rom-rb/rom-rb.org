@@ -27,7 +27,7 @@ to `call`.
 
 An element in a relation. Typically represented by a hash object.
 
-### Datastore
+#### Datastore
 
 A persistence backend, typically a database but also a flat file with data like
 CSV or YAML.
