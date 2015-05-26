@@ -75,6 +75,35 @@ create_user = rom.command(:users).create
 create_user.call(name: 'Jane') # returns a single tuple
 ```
 
+### Specifying Relation For A Command
+
+You can set specific relation for a command using your own interface:
+
+``` ruby
+ROM.setup :memory
+
+class Users < ROM::Relation[:memory]
+  def by_id(id)
+    restrict(id: id)
+  end
+end
+
+class DeleteUser < ROM::Relation[:memory]
+  relation :users
+  register_as :delete
+  result :one
+end
+
+ROM.finalize
+
+rom = ROM.env
+
+delete_user = rom.command(:users).delete
+
+# narrows down the relation to users with matching id and deletes them
+delete_user.by_id(1).call
+```
+
 ## Composing Commands
 
 Multiple commands can be composed into a pipeline using common `>>` operator:
