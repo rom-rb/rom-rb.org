@@ -26,7 +26,10 @@ You are not limited to only one datastore. If you use more than one datastore yo
 can simply provide a hash with adapter configuration:
 
 ``` ruby
-ROM.setup(default: [:sql, 'sqlite::memory'], other: [:yaml, '/path/to/files'])
+ROM.setup(
+  default: [:sql, 'sqlite::memory'],
+  other: [:csv, '/path/to/files', { encoding: 'utf-8', col_sep: ';' }]
+)
 ```
 
 In this case ROM will register two datastore connections called `:default` and
@@ -55,7 +58,10 @@ it will be used in all relations. If you setup more than one datastore you can
 assign relations to individual datastores explicitly:
 
 ``` ruby
-ROM.setup(default: [:sql, 'sqlite::memory'], other: [:yaml, '/path/to/files'])
+ROM.setup(
+  default: [:sql, 'sqlite::memory'],
+  other: [:csv, '/path/to/files', { encoding: 'utf-8', col_sep: ';' }]
+)
 
 # here `:default` is used
 class Users < ROM::Relation[:sql]
