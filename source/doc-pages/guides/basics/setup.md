@@ -102,5 +102,5 @@ rom = ROM.env
 rom.relation(:users)
 
 # access user command object
-rom.commands(:users).create
+rom.command(:users).create
 ```
