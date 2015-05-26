@@ -66,7 +66,7 @@ activate :directory_indexes
 
 doc_pages_root = "#{root}/source/doc-pages"
 
-%w(tutorials guides).each do |type|
+%w(introduction guides tutorials).each do |type|
   Dir["#{doc_pages_root}/#{type}/**/*.md"].each do |full_path|
     dir = File.dirname(full_path.gsub("#{doc_pages_root}/", ''))
     name = File.basename(full_path, '.md')
