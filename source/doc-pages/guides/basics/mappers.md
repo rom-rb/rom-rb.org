@@ -4,9 +4,16 @@ Mappers
 * [Purpose](#purpose)
 * [Basic Usage](#basic-usage)
 * [Mapping Strategies](#mapping-strategies)
-* [Setting and Applying Mappers](#setting-and-applying-mappers)
-* [Transformations](#transformations)
+  - [Lean Interface to Domain](#lean-interface-to-domain)
+  - [Rich Interface to Domain](#rich-interface-to-domain)
+* [Defining and Applying Mappers](#defining-and-applying-mappers)
+  - [Defining a Mapper](#defining-a-mapper)
+  - [Data Transformations](#data-transformations)
+  - [Applying Mappers](#applying-mappers)
 * [Reusing Mappers](#reusing-mappers)
+  - [Chaining Mappers to Pipeline](#chaining-mappers-to-pipeline)
+  - [Subclassing Mappers](#subclassing-mappers)
+  - [Applying Mappers to Nested Data](#applying-mappers-to-nested-data)
 * [Arbitrary Mappers](#arbitrary-mappers)
 
 Purpose
@@ -30,7 +37,7 @@ ROM also allows you to define mappers that can be reused for many relations.
 Basic Usage
 -----------
 
-With the datastore [relations](../relations.md) raw data are extracted from datasets and presented in a form of tuples.
+With the datastore [relations](relations.md) raw data are extracted from datasets and presented in a form of tuples.
 
 ```ruby
 users = ROM.env.relation(:users)
@@ -53,7 +60,7 @@ class UserAsEntity < ROM::Mapper
 end
 ```
 
-After [finalization](../setup.md) apply the mapper:
+After [finalization](setup.md) apply the mapper:
 
 ```ruby
 users.as(:entity).to_a
@@ -194,12 +201,12 @@ options = users_with_roles.as(:entity).to_a
 
 This flexibility can simplify your domain layer quite a bit. You can design your domain objects exactly the way you want and configure mappings accordingly.
 
-Setting and Applying Mappers
-----------------------------
+Defining and Applying Mappers
+-----------------------------
 
-### 1. Setting a Mapper
+### Defining a Mapper
 
-Like repositories, mappers to be added to ROM environment during the [setup process](../setup.md). You're free to declare relations and mappers in any suitable order between invocations of `ROM.setup` and `ROM.finalize`.
+Like relations, mappers to be added to ROM environment during the [setup process](setup.md). You're free to declare relations and mappers in any suitable order between invocations of `ROM.setup` and `ROM.finalize`.
 
 ```ruby
 setup = ROM.setup :memory
@@ -234,7 +241,7 @@ class EntityMapper < ROM::Mapper
 end
 ```
 
-As shown above, when defining a new mapper you need to set the registered name of the mapper and the name of the relation it is applicable to. The registered name of the mapper should be unique in a scope of the relation, so the following declaration is correct.
+As shown above, when defining a new mapper you need to set the registered name of the mapper and the name of the relation it is applicable to. The registered name of the mapper should be unique in a scope of the relation, so the following declarations are correct.
 
 ```ruby
 class UserEntityMapper < ROM::Mapper
@@ -252,31 +259,7 @@ class TaskEntityMapper < ROM::Mapper
 end
 ```
 
-For further details and edge cases see the [Registering a Mapper](#mappers/registering.md) section.
-
-### 2. Applying a Mapper
-
-After finalizing ROM, apply the mapper to a relation with the `as` method, or its alias `map_with`, using the registered name of the mapper:
-
-```ruby
-users = ROM.env.relation(:users) # returns lazy relation
-users.first # returns the first record from the raw data
-# => { id: 1, name: "Joe" }
-users.as(:entity).first # the record mapped to the User model
-# => #<User @id=1, @name="Joe">
-users.map_with(:entity).first # the alternative syntax
-```
-
-Like relations, **mappers are applied lazily**. This means the datastore won't be touched until some "finalizing" method (`each`, `first`, `to_a` etc.) is called over the whole request. You can filter the relation results in any order, either before or after calling a mapper. All the following definitions do the same:
-
-```ruby
-users.with_tasks.with_tags.as(:entity)
-users.with_tasks.as(:entity).with_tags
-users.as(:entity).with_tasks.with_tags
-```
-
-Transformations
----------------
+### Data Transformations
 
 By its very nature, ROM mapper provides a set of transformations of source tuples into output hashes/models.
 
@@ -287,24 +270,41 @@ By its very nature, ROM mapper provides a set of transformations of source tuple
 * [Combining Relations](mappers/combining.md)
 * [Mapping Tuples to Models](mappers/models.md)
 
+### Applying a Mapper
+
+After finalizing ROM, apply the mapper to a relation with the `as` method, or its alias `map_with`, using the registered name of the mapper:
+
+```ruby
+users = ROM.env.relation(:users) # returns lazy relation
+users.first # returns the first record from the raw data
+# => { id: 1, name: "Joe" }
+
+users.as(:entity).first # the record mapped to the User model
+# => #<User @id=1, @name="Joe">
+
+users.map_with(:entity).first # the alternative syntax
+```
+
+Like [relations](relations.md#lazy-relations), **mappers are applied lazily** which allows you to compose relations and mappers together in an arbitrary order in the data pipeline. All the following definitions do the same thing:
+
+```ruby
+users.with_tasks.with_tags.as(:entity)
+users.with_tasks.as(:entity).with_tags
+users.as(:entity).with_tasks.with_tags
+```
+
 Reusing Mappers
 ---------------
 
-ROM provides various ways for reusing existing mappers:
+### The Data Pipeline
 
-* Chaining mappers to pipeline.
-* Subclassing Mappers.
-* Applying mappers to embedded attributes ([group](mappers/grouping.md) and [wrap](mappers/wrapping.md)).
-
-### 1. Chaining Mappers to Pipeline
-
-Mappers can be applied to source data one-by-one.
+Mappers can be applied to source data one-by-one. This is especially useful when you map data from various sources with different data structure. With the help of chaining you can adopt sources to common interface with adapter-specific mappers, and then apply the adapter-agnostic mapper to their outputs.
 
 ```
-db adapter -> relation(:users) -> mappers(:nested) -> mappers(:entity) -> domain
+db adapter -> relation(:users) -> mappers(:adapter_specific) -> mappers(:adapter_agnostic) -> domain
 ```
 
-Every next mapper will use the output of the previous one as its own input, just in the same way as it were the result of some relation. To do this list the mappers as arguments of `as` (or `map_with`) method call in the required order:
+To do this you can list mappers as arguments of `as` (or `map_with`) method in the required order:
 
 ```ruby
 class NestingMapper < ROM::Mapper
@@ -321,21 +321,19 @@ class EntityMapper < ROM::Mapper
   class User
 end
 
-rom = ROM.finalize.env
-users = rom.relation(:users)
+users = ROM.finalize.env.relation(:users)
 
 users.first # the raw data
 # { id: 1, name: "Joe", email: "joe@example.com", skype: "joe" }
+
 users.as(:nested).first
 # { id: 1, name: "Joe", contacts: { email: "joe@example.com", skype: "joe" } }
+
 users.as(:nested, :entity).first
 # #<User @id=1, @name="Joe" @contacts={ email: "joe@example.com", skype: "joe" }>
 ```
 
-This is especially useful when you map data from various sources, including sql database, and non-sql sources like MongoDB.
-With the help of chaining you can adopt sources to common interface using an adapter-specific mapper, and then apply the adapter-agnostic mapper to their outputs.
-
-### 2. Subclassing Mappers
+### Subclassing Mappers
 
 To DRY the code you can *subclass* a new mapper from existing one and customize it for slightly different output.
 
@@ -367,7 +365,7 @@ users.as(:second).first
 
 Use this feature with care. There are [some edge cases you should take into account](mappers/reusing.md).
 
-### 3. Applying Mappers to Embedded Attributes
+### Applying Mappers to Nested Data
 
 Another way to make the code DRY is to apply reusable mapper to nested group of fields (either `group` or `wrap`).
 
