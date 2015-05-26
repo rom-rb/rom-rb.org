@@ -72,7 +72,7 @@ doc_pages_root = "#{root}/source/doc-pages"
     name = File.basename(full_path, '.md')
     path = "#{dir}/#{name}"
 
-    proxy "#{path}.html", "/#{type}/page.html", locals: { doc: path }, ignore: true do
+    proxy "#{path}.html", "doc-page.html", locals: { type: type, doc: path }, ignore: true do
       content_for(:page_title) {
         name.split('/').unshift(type).map(&:humanize).join(' &raquo; ')
       }
