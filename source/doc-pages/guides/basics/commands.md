@@ -10,7 +10,7 @@ A command can be defined as a class that inherits from an adapter-specific class
 which is identified by adapter's name, in case of our example it's `:memory`:
 
 ``` ruby
-class CreateUser < ROM::Relation[:memory]
+class CreateUser < ROM::Commands::Create[:memory]
   relation :users
   register_as :create
 end
@@ -27,7 +27,7 @@ Every registered command is accessible through the environment:
 ``` ruby
 ROM.setup :memory
 
-class CreateUser < ROM::Relation[:memory]
+class CreateUser < ROM::Commands::Create[:memory]
   relation :users
   register_as :create
 end
@@ -60,7 +60,7 @@ just return a single tuple via `result` interface:
 ``` ruby
 ROM.setup :memory
 
-class CreateUser < ROM::Relation[:memory]
+class CreateUser < ROM::Commands::Create[:memory]
   relation :users
   register_as :create
   result :one
@@ -88,7 +88,7 @@ class Users < ROM::Relation[:memory]
   end
 end
 
-class DeleteUser < ROM::Relation[:memory]
+class DeleteUser < ROM::Commands::Delete[:memory]
   relation :users
   register_as :delete
   result :one
@@ -111,13 +111,13 @@ Multiple commands can be composed into a pipeline using common `>>` operator:
 ``` ruby
 ROM.setup :memory
 
-class CreateUser < ROM::Relation[:memory]
+class CreateUser < ROM::Commands::Create[:memory]
   relation :users
   register_as :create
   result :one
 end
 
-class CreateTask < ROM::Relation[:memory]
+class CreateTask < ROM::Commands::Create[:memory]
   relation :users
   register_as :create
 
@@ -151,7 +151,7 @@ register a mapper and refer to its name using common `as` or `map_with` interfac
 ``` ruby
 ROM.setup :memory
 
-class CreateUser < ROM::Relation[:memory]
+class CreateUser < ROM::Commands::Create[:memory]
   relation :users
   register_as :create
   result :one
