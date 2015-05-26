@@ -19,7 +19,7 @@ that responds to `call` can be a mapper in ROM.
 #### Command
 
 An object that executes a datastore-specific operation in order to create, update
-or delete tuple(s) in a relation. Commands executes operations using relation
+or delete tuples in a relation. Commands execute operations using relation
 interface which is datastore-specific; however, on the surface they simply respond
 to `call`.
 
@@ -72,7 +72,7 @@ is used to construct the pipeline.
 #### Graph
 
 A nested relation with a root relation and its nodes (child relations). It can
-be used to map multple relations into a single aggregate object through mappers.
+be used to map multiple relations into a single aggregate object through mappers.
 
 #### CQRS
 
