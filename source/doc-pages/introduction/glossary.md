@@ -27,10 +27,15 @@ to `call`.
 
 An element in a relation. Typically represented by a hash object.
 
-#### Datastore
+### Datastore
+
+A persistence backend, typically a database but also a flat file with data like
+CSV or YAML.
+
+#### Gateway
 
 An object that encapsulates access to a specific persistence backend. In example
-the SQL datastore provides access to database tables via its [datasets](#Dataset)
+the SQL gateway provides access to database tables via its [datasets](#Dataset)
 
 #### Dataset
 
@@ -42,7 +47,7 @@ available as private interface of relations.
 #### Adapter
 
 An adapter is a library providing infrastructure for ROM to support specific
-persistence backends. An adapter ships with its own `Datastore`, `Dataset` and
+persistence backends. An adapter ships with its own `Gateway`, `Dataset` and
 `Relation` classes.
 
 ## Patterns
