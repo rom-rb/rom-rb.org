@@ -4,6 +4,14 @@ In ROM commands are objects encapsulating datastore-specific create, update and
 delete operations. A command receives a relation and executes its operation against
 that relation.
 
+ROM supports three type of commands:
+
+- `ROM::Commands::Create`
+- `ROM::Commands::Update`
+- `ROM::Commands::Delete`
+
+It is possible for a given adapter to provide more types.
+
 ## Defining a command
 
 A command can be defined as a class that inherits from an adapter-specific class
