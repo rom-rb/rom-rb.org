@@ -26,7 +26,7 @@ ROM.relation(:users) do
 end
 ```
 
-In a relation you can define a specific [gateway](terms.md#gateway) and [dataset](terms.md#dataset) it takes data from, and the registered name of the relation. In the following example the default options are set explicitly:
+In a relation you can define a specific [gateway](/introduction/glossary/#gateway) and [dataset](/introduction/glossary/#dataset) it takes data from, and the registered name of the relation. In the following example the default options are set explicitly:
 
 ```ruby
 class Users < ROM::Relation[:memory]
