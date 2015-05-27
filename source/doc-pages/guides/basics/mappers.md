@@ -43,8 +43,8 @@ With the datastore [relations](relations.md) raw data are extracted from dataset
 users = ROM.env.relation(:users)
 users.to_a
 # [
-#   { id: 1, name: "jane", email: "jane@doo.org" },
-#   { id: 2, name: "john", email: "john@doo.org" }
+#   { id: 1, name: 'jane', email: 'jane@doo.org' },
+#   { id: 2, name: 'john', email: 'john@doo.org' }
 # ]
 ```
 
@@ -65,8 +65,8 @@ After [finalization](setup.md) apply the mapper:
 ```ruby
 users.as(:entity).to_a
 # [
-#   <User @id=1, @name="jane", @email="jane@doo.org">,
-#   <User @id=2, @name="john", @email="john@doo.org">
+#   <User @id=1, @name='jane', @email='jane@doo.org'>,
+#   <User @id=2, @name='john', @email='john@doo.org'>
 # ]
 
 # The same result with the `map_with` alias method
@@ -77,11 +77,11 @@ Mappers can also convert tuples returned by ROM commands.
 
 ```ruby
 create_user = ROM.env.command(:users).create
-create_user.call id: 3, name: "jack", email: "jack@doo.org"
-# { id: 3, name: "jack", email: "jack@doo.org" }
+create_user.call id: 3, name: 'jack', email: 'jack@doo.org'
+# { id: 3, name: 'jack', email: 'jack@doo.org' }
 
-create_user.as(:entity).create id: 4, name: "joffrey", email: "joffrey@doo.org"
-# <User @id=4, @name="jeff", @email="joffrey@doo.org">
+create_user.as(:entity).create id: 4, name: 'joffrey', email: 'joffrey@doo.org'
+# <User @id=4, @name='jeff', @email='joffrey@doo.org'>
 ```
 
 Mapping Strategies
@@ -93,9 +93,9 @@ Consider another example, where the relation contains flat data, that should be 
 users_with_roles = ROM.env.relation(:users).with_roles
 users_with_roles.to_a
 # [
-#   { name: "jane", role: "admin" },
-#   { name: "jane", role: "user"  },
-#   { name: "john", role: "user"  }
+#   { name: 'jane', role: 'admin' },
+#   { name: 'jane', role: 'user'  },
+#   { name: 'john', role: 'user'  }
 # ]
 ```
 
@@ -121,15 +121,15 @@ end
 
 options = users_with_roles.as(:hash).to_a
 # [
-#   { name: "jane", roles: [{ title: "admin" }, { title: "user" }] },
-#   { name: "john", roles: [{ title: "user" }] }
+#   { name: 'jane', roles: [{ title: 'admin' }, { title: 'user' }] },
+#   { name: 'john', roles: [{ title: 'user' }] }
 # ]
 ```
 
 Domain entities are responsible for instantiating their objects from mapper-provided hashes.
 
 ```ruby
-require "virtus"
+require 'virtus'
 
 class Role
   include Virtus.model
@@ -145,9 +145,9 @@ class User
 end
 
 jane = User.new options.first
-# <User @name="jane", @roles=[<Role @title="admin">, <Role @title="user">]>
+# <User @name='jane', @roles=[<Role @title='admin'>, <Role @title='user'>]>
 john = User.new options.last
-# <User @name="john", @roles=[<Role @title="user">]>
+# <User @name='john', @roles=[<Role @title='user'>]>
 ```
 
 ### 2. Rich Interface to Domain
@@ -194,8 +194,8 @@ With the mapper, the datastore adopts tuples directly to domain objects.
 ```ruby
 options = users_with_roles.as(:entity).to_a
 # [
-#   <User @name="jane", @roles=[<Role @title="admin">, <Role @title="user">]>,
-#   <User @name="john", @roles=[<Role @title="user">]>
+#   <User @name='jane', @roles=[<Role @title='admin'>, <Role @title='user'>]>,
+#   <User @name='john', @roles=[<Role @title='user'>]>
 # ]
 ```
 
@@ -261,14 +261,154 @@ end
 
 ### Data Transformations
 
-By its very nature, ROM mapper provides a set of transformations of source tuples into output hashes/models.
+ROM mapper provides rich DSL with whole bunch of methods to transform source tuples into output hashes/models.
+Below is a short list of examples for available transformations. For more details follow a corresponding link.
 
-* [Filtering Attributes](mappers/filtering.md)
-* [Renaming Attributes](mappers/renaming.md)
-* [Wrapping Attributes](mappers/wrapping.md) and [Unwrapping Tuples](mappers/unwrapping.md)
-* [Grouping Tuples](mappers/grouping.md) and [Splitting Attributes](mappers/splitting.md)
-* [Combining Relations](mappers/combining.md)
-* [Mapping Tuples to Models](mappers/models.md)
+[Filtering Attributes](mappers/filtering.md)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  reject_keys
+  attribute :id
+  attribute :name
+end
+
+users.first
+# { id: 1, name: 'Joe', email: 'joe@example.com' }
+
+users.as(:users).first
+# { id: 1, name: 'Joe' }
+```
+
+[Renaming Attributes](mappers/renaming.md)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  symbolize_keys
+  attribute :login, from: :email
+end
+
+users.first
+# { 'id' => 1, 'name' => 'Joe', 'email' => 'joe@example.com' }
+
+users.as(:users).first
+# { id: 1, name: 'Joe', login: 'joe@example.com' }
+```
+
+[Wrapping Attributes](mappers/wrapping.md)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  wrap contacts: [:email, :skype]
+end
+
+users.first
+# { id: 1, name: 'Joe', email: 'joe@example.com', skype:'joe' }
+
+users.as(:users).first
+# { id: 1, name: 'Joe', contacts: { email: 'joe@example.com', skype: 'joe' } }
+```
+
+[Unwrapping Tuples](mappers/unwrapping.md)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  unwrap contacts: [:email]
+end
+
+users.first
+# { id: 1, name: 'Joe', contacts: { email: 'joe@example.com', skype: 'joe' } }
+
+users.as(:users).first
+# { id: 1, name: 'Joe', email: 'joe@example.com', contacts: { skype:'joe' } }
+```
+
+[Grouping Tuples](mappers/grouping.md)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  group contacts: [:email]
+end
+
+users.to_a
+# [
+#   { id: 1, name: 'Joe', email: 'joe@example.com' },
+#   { id: 1, name: 'Joe', email: 'joe@doe.org' }
+# ]
+
+users.as(:users).to_a
+# [
+#   {
+#     id: 1, name: 'Joe', contacts: [
+#       { email: 'joe@example.com' },
+#       { email: 'joe@doe.org' }
+#     ]
+#   }
+# ]
+```
+
+[Splitting Nested Attributes](mappers/splitting.md)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  ungroup contacts: [:type]
+end
+
+users.to_a
+# [
+#   {
+#     id: 1, name: 'Joe', contacts: [
+#       { email: 'joe@example.com',  type: 'home' },
+#       { email: 'joe@personal.org', type: 'home' },
+#       { email: 'joe@doe.org',      type: 'job'  }
+#     ]
+#   }
+# ]
+
+users.as(:users).to_a
+# [
+#   {
+#     id: 1, name: 'Joe', type: 'home', contacts: [
+#       { email: 'joe@example.com' },
+#       { email: 'joe@personal.org' }
+#     ]
+#   }
+#   { id: 1, name: 'Joe', type: 'job', contacts: [{ email: 'joe@doe.org' }]
+# ]
+```
+
+[Combining Relations](mappers/combining.md)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  combine :roles, on: { name: :name } do
+    attribute :role
+  end
+end
+
+users.to_a
+# [{ id: 1, name: 'Joe' }]
+
+roles.to_a
+# [{ name: 'Joe', role: 'admin' }, { name: 'Joe', role: 'manager' }]
+
+users.as(:users).to_a
+# [{ id: 1, roles: [{ role: 'admin' }, { role: 'manager' }] }]
+```
+
+[Mapping Tuples to Models](mappers/models.md)
+
+```ruby
+class UserMapepr < ROM::Mapper
+  model User
+end
+
+users.to_a
+# [{ id: 1, name: 'Joe' }]
+
+users.as(:users).to_a
+# [#<User @id=1, @name='Joe'>]
+```
 
 ### Applying a Mapper
 
@@ -277,10 +417,10 @@ After finalizing ROM, apply the mapper to a relation with the `as` method, or it
 ```ruby
 users = ROM.env.relation(:users) # returns lazy relation
 users.first # returns the first record from the raw data
-# => { id: 1, name: "Joe" }
+# => { id: 1, name: 'Joe' }
 
 users.as(:entity).first # the record mapped to the User model
-# => #<User @id=1, @name="Joe">
+# => #<User @id=1, @name='Joe'>
 
 users.map_with(:entity).first # the alternative syntax
 ```
@@ -324,13 +464,13 @@ end
 users = ROM.finalize.env.relation(:users)
 
 users.first # the raw data
-# { id: 1, name: "Joe", email: "joe@example.com", skype: "joe" }
+# { id: 1, name: 'Joe', email: 'joe@example.com', skype: 'joe' }
 
 users.as(:nested).first
-# { id: 1, name: "Joe", contacts: { email: "joe@example.com", skype: "joe" } }
+# { id: 1, name: 'Joe', contacts: { email: 'joe@example.com', skype: 'joe' } }
 
 users.as(:nested, :entity).first
-# #<User @id=1, @name="Joe" @contacts={ email: "joe@example.com", skype: "joe" }>
+# #<User @id=1, @name='Joe' @contacts={ email: 'joe@example.com', skype: 'joe' }>
 ```
 
 ### Subclassing Mappers
@@ -356,11 +496,11 @@ rom = ROM.finalize.env
 users = rom.relation(:users)
 
 users.first
-# { id: 1, name: "Joe", contact_email: "joe@email.com", contact_skype: "joe" }
+# { id: 1, name: 'Joe', contact_email: 'joe@email.com', contact_skype: 'joe' }
 users.as(:first).first
-# { id: 1, name: "Joe", email: "joe@email.com", contact_skype: "joe" }
+# { id: 1, name: 'Joe', email: 'joe@email.com', contact_skype: 'joe' }
 users.as(:second).first
-# { id: 1, name: "Joe", email: "joe@email.com", skype: "joe" }
+# { id: 1, name: 'Joe', email: 'joe@email.com', skype: 'joe' }
 ```
 
 Use this feature with care. There are [some edge cases you should take into account](mappers/reusing.md).
@@ -387,9 +527,9 @@ end
 
 rom = ROM.finalize.env
 rom.relation(:users).first
-# { id: 1, name: "Joe", contact_email: "joe@email.com", contact_skype: "joe" }
+# { id: 1, name: 'Joe', contact_email: 'joe@email.com', contact_skype: 'joe' }
 rom.relation(:users).as(:nested_hash).first
-# { id: 1, name: "Joe", contacts: { email: "joe@email.com", skype: "joe" } }
+# { id: 1, name: 'Joe', contacts: { email: 'joe@email.com', skype: 'joe' } }
 ```
 
 With this feature you can *extract* common transformations, and share them between various mappers.
@@ -416,8 +556,8 @@ The mapper will be applied to the whole output of a corresponding relation:
 ```ruby
 users = ROM.env.relation(:users)
 users.to_a
-# => [{ id: 1, name: "Jane" }, { id: 2, name: "Joe" }, { id: 3, name: "John"}]
+# => [{ id: 1, name: 'Jane' }, { id: 2, name: 'Joe' }, { id: 3, name: 'John'}]
 
 users.as(:external).to_a
-# => [{ id: 1, name: "Jane" }, { id: 2, name: "Joe" }]
+# => [{ id: 1, name: 'Jane' }, { id: 2, name: 'Joe' }]
 ```
