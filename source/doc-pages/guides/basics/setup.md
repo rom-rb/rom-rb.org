@@ -56,7 +56,7 @@ end
 ROM.finalize
 ```
 
-## Default and Alternative Gatewasys
+## Default and Alternative Gateways
 
 If only one gateway is configured ROM will store it under `:default` name and
 it will be used in all relations. If you setup more than one gateway you can
