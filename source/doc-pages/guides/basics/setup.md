@@ -1,7 +1,12 @@
 # Setup
 
-Setting up ROM means configuring datastores using adapter-specific configuration
-options and defining individual components followed by finalization process.
+In order to integrate ROM adapters and components into your app, ROM requires a setup phase.
+
+The general shape of the setup phase involves the following three steps:
+
+- Configure a [gateway](/introduction/glossary/#gateway) with adapter-specific options
+- Define the individual relation, mapper and command components
+- Finalize the environment
 
 To setup ROM you use a simple interface which supports a generic syntax for all
 adapters; however, each adapter can accept different options.
@@ -18,7 +23,7 @@ ROM.finalize
 Under the hood ROM simply passes provided argument to the corresponding `Datastore`
 constructor which is provided by the adapter. In our case it is `ROM::Memory::Datastore`.
 
-You can read more about adapter datastores in [the adapter section](#) of the guides.
+You can read more about adapter gateways in [the adapter section](#) of the guides.
 
 ## Configuring Many Datastores
 
