@@ -19,6 +19,23 @@ class Users < ROM::Relation[:memory]
 end
 ```
 
+Alternatively you can use the routing-style DSL:
+
+```ruby
+ROM.relation(:users) do
+end
+```
+
+In a relation you can define a specific [gateway](terms.md#gateway) and [dataset](terms.md#dataset) it takes data from, and the registered name of the relation. In the following example the default options are set explicitly:
+
+```ruby
+class Users < ROM::Relation[:memory]
+  register_as :users
+  gateway :default
+  dataset :users
+end
+```
+
 ## Interface Boundaries
 
 Relation layer in ROM clearly establishes interface boundaries. Each relation has
@@ -67,7 +84,10 @@ name_list = -> users { users.map { |user| user[:name] }
 
 user_names = rom.relation(:users) >> name_list
 
+rom.relation(:users).to_a
+# [{ id: 1, name: 'Joe', email: 'joe@example.com' }]
 user_names.to_a
+# ['Joe']
 ```
 
 ### Auto-curry
