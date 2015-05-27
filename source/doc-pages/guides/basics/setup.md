@@ -11,7 +11,7 @@ The general shape of the setup phase involves the following three steps:
 To setup ROM you use a simple interface which supports a generic syntax for all
 adapters; however, each adapter can accept different options.
 
-Here's an example of setting up the in-memory datastore:
+Here's an example of setting up the in-memory gateway:
 
 ``` ruby
 ROM.setup(:memory)
@@ -20,14 +20,14 @@ ROM.setup(:memory)
 
 ROM.finalize
 ```
-Under the hood ROM simply passes provided argument to the corresponding `Datastore`
-constructor which is provided by the adapter. In our case it is `ROM::Memory::Datastore`.
+Under the hood ROM simply passes provided argument to the corresponding `Gateway`
+constructor which is provided by the adapter. In our case it is `ROM::Memory::Gateway`.
 
 You can read more about adapter gateways in [the adapter section](#) of the guides.
 
-## Configuring Many Datastores
+## Configuring Many Gateways
 
-You are not limited to only one datastore. If you use more than one datastore you
+You are not limited to only one gateway. If you use more than one gateway you
 can simply provide a hash with adapter configuration:
 
 ``` ruby
@@ -37,7 +37,7 @@ ROM.setup(
 )
 ```
 
-In this case ROM will register two datastore connections called `:default` and
+In this case ROM will register two gateway connections called `:default` and
 `:other`.
 
 ## Defining components
@@ -45,7 +45,7 @@ In this case ROM will register two datastore connections called `:default` and
 A ROM component is either a relation, command or mapper. After calling `ROM.setup`
 you can define the components you want to use in your application.
 
-In example we can define a relation class for our in-memory datastore:
+In example we can define a relation class for our in-memory gateway:
 
 ``` ruby
 ROM.setup(:memory)
@@ -56,11 +56,11 @@ end
 ROM.finalize
 ```
 
-## Default and Alternative Datastores
+## Default and Alternative Gatewasys
 
-If only one datastore is configured ROM will store it under `:default` name and
-it will be used in all relations. If you setup more than one datastore you can
-assign relations to individual datastores explicitly:
+If only one gateway is configured ROM will store it under `:default` name and
+it will be used in all relations. If you setup more than one gateway you can
+assign relations to individual gateway explicitly:
 
 ``` ruby
 ROM.setup(
@@ -74,7 +74,7 @@ end
 
 # here we will assign to `:other` explicitly
 class Tasks < ROM::Relation[:yaml]
-  datastore :other
+  gateway :other
 end
 
 ROM.finalize
