@@ -551,7 +551,7 @@ Notice that we also need to slot in references to the model and relation here, i
 In order to select and operate on individual objects, we also need to add a couple methods that access tasks by their ID:
 
 ```ruby
-class Tasks < ROM::Relation[:sql]
+class TasksRelation < ROM::Relation[:sql]
   def by_id(id)
     where(id: id)
   end
