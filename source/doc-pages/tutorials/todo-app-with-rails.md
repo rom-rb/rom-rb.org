@@ -278,11 +278,11 @@ class TasksRelation < ROM::Relation[:sql]
   end
 
   def active
-    where(is_completed: true)
+    where(is_completed: false)
   end
 
   def completed
-    where(is_completed: false)
+    where(is_completed: true)
   end
 end
 ```
