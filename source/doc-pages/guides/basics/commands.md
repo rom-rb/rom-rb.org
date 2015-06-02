@@ -161,6 +161,8 @@ To build a command graph you can pass an array with options to the common comman
 interface:
 
 ``` ruby
+require 'rom'
+
 ROM.setup(:memory)
 
 ROM.relation(:users)
@@ -170,11 +172,17 @@ class CreateUser < ROM::Commands::Create[:memory]
   relation :users
   register_as :create
   result :one
+
+  # filter out stuff we don't need
+  input Transproc(:accept_keys, [:id, :name])
 end
 
 class CreateTask < ROM::Commands::Create[:memory]
   relation :tasks
   register_as :create
+
+  # filter out stuff we don't need
+  input Transproc(:accept_keys, [:user_id, :title])
 
   def execute(tasks, user)
     tuples = tasks.map { |t| t.merge(user_id: user[:id]) }
@@ -201,9 +209,10 @@ create_user_with_tasks = rom.command([
   { user: :users }, [:create, [:tasks, [:create]]]
 ])
 
-# simply call the command
 create_user_with_tasks.call(user_with_tasks)
-# [[{:id=>1, :name=>"Jane", :tasks=>[{:title=>"Task One"}, {:title=>"Task Two"}]}], [[{:title=>"Task One", :user_id=>1}, {:title=>"Task Two", :user_id=>1}]]]
+# {:id=>1, :name=>"Jane"}
+# {:title=>"Task One", :user_id=>1}
+# {:title=>"Task Two", :user_id=>1}
 ```
 
 The structure of the array with options is following:
