@@ -151,6 +151,80 @@ command = create_user.with(new_user) >> create_tasks.with(new_tasks)
 command.call
 ```
 
+### Combining Multiple Commands into a Command Graph
+
+Multiple commands can be combined together into a graph that can work with a nested
+input attributes. This is similar to combining relations except that returned
+data is a result of executing commands.
+
+To build a command graph you can pass an array with options to the common command
+interface:
+
+``` ruby
+ROM.setup(:memory)
+
+ROM.relation(:users)
+ROM.relation(:tasks)
+
+class CreateUser < ROM::Commands::Create[:memory]
+  relation :users
+  register_as :create
+  result :one
+end
+
+class CreateTask < ROM::Commands::Create[:memory]
+  relation :tasks
+  register_as :create
+
+  def execute(tasks, user)
+    tuples = tasks.map { |t| t.merge(user_id: user[:id]) }
+    super(tuples)
+  end
+end
+
+ROM.finalize
+
+rom = ROM.env
+
+user_with_tasks = {
+  user: {
+    id: 1,
+    name: 'Jane',
+    tasks: [
+      { title: 'Task One' },
+      { title: 'Task Two' }
+    ]
+  }
+}
+
+create_user_with_tasks = rom.command([
+  { user: :users }, [:create, [:tasks, [:create]]]
+])
+
+# simply call the command
+create_user_with_tasks.call(user_with_tasks)
+# [[{:id=>1, :name=>"Jane", :tasks=>[{:title=>"Task One"}, {:title=>"Task Two"}]}], [[{:title=>"Task One", :user_id=>1}, {:title=>"Task Two", :user_id=>1}]]]
+```
+
+The structure of the array with options is following:
+
+```
+# when key in the input matches relation name
+[
+  :name_of_your_relation, [:name_of_your_relation_command]
+]
+
+# when key in the input doesn't match relation name
+[
+  { key_in_the_input: name_of_your_relation }, [
+    :name_of_your_relation_command
+  ]
+]
+```
+
+This can be nested however you like and used with commands that return either
+`:one` or `:many` results.
+
 ### Mapping Command Result
 
 You can use a custom mapper to pipe results of a command using `>>` operator or
@@ -183,3 +257,5 @@ new_user = { name: 'Jane' }
 # creates a user and maps it using `:entity` mapper
 create_user.call(new_user)
 ```
+
+This works with a single command, composed commands and command graphs.
