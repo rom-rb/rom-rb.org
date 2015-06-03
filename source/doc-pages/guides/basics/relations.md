@@ -80,7 +80,9 @@ ROM.finalize
 
 rom = ROM.env
 
-name_list = -> users { users.map { |user| user[:name] }
+name_list = -> users do
+  users.map { |user| user[:name] }
+end
 
 user_names = rom.relation(:users) >> name_list
 
