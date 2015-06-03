@@ -113,9 +113,7 @@ users.as(:wrapped_users).first
 
 ### Block Syntax
 
-Alternatively, use the [prefix](renaming.md) method inside the block.
-
-The method should have no attributes and cannot customize either prefix, or its separator. It takes the prefix from the name of the `wrap` and separates it by the underscore `"_"`:
+Inside the block the methods `prefix` and `prefix_separator` will affect attributes following them:
 
 ```ruby
 class WrappedUsersMapper < ROM::Mapper
@@ -123,8 +121,10 @@ class WrappedUsersMapper < ROM::Mapper
   relation :users
 
   wrap :contact do
-    prefix
     attribute :email
+
+    prefix :contact
+    prefix_separator '_'
     attribute :skype
   end
 end
@@ -132,7 +132,7 @@ end
 users.as(:wrapped_users).first
 # {
 #   id: 1, name: "Joe",
-#   contact: { email: "joe@example.com", skype: "joe" }
+#   contact: { contact_email: "joe@example.com", skype: "joe" }
 # }
 ```
 
@@ -156,7 +156,7 @@ end
 
 ### Edge Cases
 
-The method works just fine when the name of wrapped tuple is the same as one of its attributes. There is no need for renaming attributes.
+The method works fine when the name of wrapped tuple is the same as one of its attributes. There is no need for renaming attributes.
 
 ```ruby
 meetings = ROM.env.relation(:meetings)
@@ -275,7 +275,7 @@ users.as(:entity).first
 
 ## Nesting Wrappers
 
-Wrappers can be nested at many levels. You can define a corresponding model for any level of nesting:
+Wrappers can be nested deeply. You can define a corresponding model for any level of nesting:
 
 ```ruby
 class UserMapper < ROM::Mapper

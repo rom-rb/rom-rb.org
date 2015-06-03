@@ -14,7 +14,7 @@ Mappers
   - [Chaining Mappers to Pipeline](#chaining-mappers-to-pipeline)
   - [Subclassing Mappers](#subclassing-mappers)
   - [Applying Mappers to Nested Data](#applying-mappers-to-nested-data)
-* [Arbitrary Mappers](#arbitrary-mappers)
+* [Custom Mappers](#custom-mappers)
 
 Purpose
 -------
@@ -27,12 +27,13 @@ ROM provides a DSL to define mappers which can be integrated with 3rd-party libr
 
 Mapping is an extremely powerful concept. It can:
 
-* Rename, wrap and group attributes.
+* Filter and rename attributes.
+* Wrap and group attributes.
 * Coerce values.
 * Build aggregate objects.
 * Build immutable value objects.
 
-ROM also allows you to define mappers that can be reused for many relations.
+ROM also allows you to define mappers that can be reused for many relations, or combined to create a pipeline.
 
 Basic Usage
 -----------
@@ -179,7 +180,7 @@ class User
   include Virtus.model
 
   attribute :name
-  attribute :role # no coersion needed, this work is done by the mapper
+  attribute :roles # no coersion is needed here, this work is done by the mapper
 end
 
 class Role
@@ -261,14 +262,23 @@ end
 
 ### Data Transformations
 
-ROM mapper provides rich DSL with whole bunch of methods to transform source tuples into output hashes/models.
-Below is a short list of examples for available transformations. For more details follow a corresponding link.
+ROM mapper provides rich DSL with whole bunch of methods to transform source tuples into output hashes/models. It supports:
+
+* Filtering Attributes
+* Renaming Attributes
+* Wrapping/Unwrapping Tuples
+* Grouping/Ungrouping Tuples
+* Folding/Unfolding Tuples
+* Combining Tuples from Several Relations
+* Mapping Tuples to Models
+
+Below is a list of examples for available transformations. For more details follow a corresponding link.
 
 [Filtering Attributes](mappers/filtering)
 
 ```ruby
 class UsersMapper < ROM::Mapper
-  reject_keys
+  reject_keys true
   attribute :id
   attribute :name
 end
@@ -299,7 +309,10 @@ users.as(:users).first
 
 ```ruby
 class UsersMapper < ROM::Mapper
-  wrap contacts: [:email, :skype]
+  wrap :contacts do
+    attribute :email
+    attribute :skype
+  end
 end
 
 users.first
@@ -313,7 +326,9 @@ users.as(:users).first
 
 ```ruby
 class UsersMapper < ROM::Mapper
-  unwrap contacts: [:email]
+  unwrap :contacts do
+    attribute :email
+  end
 end
 
 users.first
@@ -327,7 +342,9 @@ users.as(:users).first
 
 ```ruby
 class UsersMapper < ROM::Mapper
-  group contacts: [:email]
+  group :contacts do
+    attribute :email
+  end
 end
 
 users.to_a
@@ -347,37 +364,77 @@ users.as(:users).to_a
 # ]
 ```
 
-[Splitting Nested Attributes](mappers/splitting)
+[Ungrouping Attributes](mappers/ungrouping)
 
 ```ruby
 class UsersMapper < ROM::Mapper
-  ungroup contacts: [:type]
+  ungroup :contacts do
+    attribute :email
+  end
 end
 
 users.to_a
 # [
 #   {
 #     id: 1, name: 'Joe', contacts: [
-#       { email: 'joe@example.com',  type: 'home' },
-#       { email: 'joe@personal.org', type: 'home' },
-#       { email: 'joe@doe.org',      type: 'job'  }
+#       { email: 'joe@example.com' },
+#       { email: 'joe@doe.org' }
 #     ]
 #   }
 # ]
 
 users.as(:users).to_a
 # [
-#   {
-#     id: 1, name: 'Joe', type: 'home', contacts: [
-#       { email: 'joe@example.com' },
-#       { email: 'joe@personal.org' }
-#     ]
-#   }
-#   { id: 1, name: 'Joe', type: 'job', contacts: [{ email: 'joe@doe.org' }]
+#   { id: 1, name: 'Joe', email: 'joe@example.com' },
+#   { id: 1, name: 'Joe', email: 'joe@doe.org' }
 # ]
 ```
 
-[Combining Relations](mappers/combining)
+[Folding Tuples](mappers/folding)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  fold :contacts do
+    attribute :email
+  end
+end
+
+users.to_a
+# [
+#   { id: 1, name: 'Joe', email: 'joe@example.com' },
+#   { id: 1, name: 'Joe', email: 'joe@doe.org' }
+# ]
+
+users.as(:users).to_a
+# [
+#   {
+#     id: 1, name: 'Joe', contacts: ['joe@example.com', 'joe@doe.org']
+#   }
+# ]
+```
+
+[Unfolding Attributes](mappers/unfolding)
+
+```ruby
+class UsersMapper < ROM::Mapper
+  unfold :email, from: :contacts
+end
+
+users.to_a
+# [
+#   {
+#     id: 1, name: 'Joe', contacts: ['joe@example.com', 'joe@doe.org']
+#   }
+# ]
+
+users.as(:users).to_a
+# [
+#   { id: 1, name: 'Joe', email: 'joe@example.com' },
+#   { id: 1, name: 'Joe', email: 'joe@doe.org' }
+# ]
+```
+
+[Combining Tuples from Several Relations](mappers/combining)
 
 ```ruby
 class Roles < ROM::Relation[:memory]
@@ -463,7 +520,10 @@ class NestingMapper < ROM::Mapper
   register_as :nested
   relation :users
 
-  wrap contacts: [:email, :skype]
+  wrap :contacts do
+    attribute :email
+    attribute :skype
+  end
 end
 
 class EntityMapper < ROM::Mapper
@@ -548,10 +608,10 @@ With this feature you can *extract* common transformations, and share them betwe
 
 Use it with some care! There are [edge cases you should take into account](mappers/wrapping#applying-another-mapper).
 
-Arbitrary Mappers
------------------
+Custom Mappers
+--------------
 
-ROM allows to register arbitrary coercer object as a mapper. Every object, that responds to `#call` method with one argument can be registered as the ROM mapper.
+ROM allows to register custom coercer object as a mapper. Every object, that responds to `#call` method with one argument can be registered as the ROM mapper.
 
 To register an arbitrary mapper, use the following syntax:
 

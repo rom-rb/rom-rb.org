@@ -1,3 +1,0 @@
-# Splitting Attributes
-
-TODO
