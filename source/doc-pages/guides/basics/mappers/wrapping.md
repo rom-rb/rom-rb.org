@@ -1,5 +1,4 @@
-Wrapping Attributes
-===================
+# Wrapping Attributes
 
 With the method [wrap] you can take some attributes from a tuple and wrap them to either a nested tuple, or a model.
 
@@ -17,8 +16,7 @@ See [Unwrapping Tuples](unwrapping.md) for the inverse transformation of data.
 
 Notice, mappers have [high-level and low-level API](../mappers.md#high-level-and-low-level-api). Examples in this section use the high-level API only. The same syntax is applicable to low-level API as well.
 
-Basic Usage
------------
+## Basic Usage
 
 Suppose there is a predefined relation that returns an array of tuples:
 
@@ -69,8 +67,7 @@ users.as(:wrapped_users).first
 # }
 ```
 
-Removing Prefixes
------------------
+## Removing Prefixes
 
 Use `:prefix` to remove prefixes from wrapped attributes. The `attribute` method arguments should have no prefixes:
 
@@ -139,8 +136,7 @@ users.as(:wrapped_users).first
 # }
 ```
 
-Renaming Attributes
--------------------
+## Renaming Attributes
 
 Inside the block use the `:from` option of the [attribute](renaming.md) method:
 
@@ -178,8 +174,7 @@ meetings.as(:wrapped_meetings).first
 # { place: "The Conference Hall", agenda: { agenda: "Future plans", main_thesis: "Bancrupcy" } }
 ```
 
-Wrapping to Model
------------------
+## Wrapping to Model
 
 Define the [model](models.md) to map wrapped tuple into:
 
@@ -206,8 +201,7 @@ users.as(:entity).first
 
 **Notice** this feature requires the block syntax. It cannot be done inline.
 
-Applying another Mapper
------------------------
+## Applying another Mapper
 
 Another mapper can be applied to wrapped group of attributes. To do this, use the `:mapper` inline option:
 
@@ -279,8 +273,7 @@ users.as(:entity).first
 # { id: 1, name: "Joe", contacts: { email: "joe@doe.org", skype: "joe" } }
 ```
 
-Nesting Wrappers
-----------------
+## Nesting Wrappers
 
 Wrappers can be nested at many levels. You can define a corresponding model for any level of nesting:
 
@@ -314,8 +307,7 @@ users.as(:entity).first
 # }
 ```
 
-Edge Cases
-----------
+## Edge Cases
 
 ### Rejecting Keys
 
