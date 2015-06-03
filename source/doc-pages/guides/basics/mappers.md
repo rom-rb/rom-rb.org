@@ -37,7 +37,7 @@ ROM also allows you to define mappers that can be reused for many relations.
 Basic Usage
 -----------
 
-With the datastore [relations](relations.md) raw data are extracted from datasets and presented in a form of tuples.
+With the datastore [relations](relations) raw data are extracted from datasets and presented in a form of tuples.
 
 ```ruby
 users = ROM.env.relation(:users)
@@ -60,7 +60,7 @@ class UserAsEntity < ROM::Mapper
 end
 ```
 
-After [finalization](setup.md) apply the mapper:
+After [finalization](setup) apply the mapper:
 
 ```ruby
 users.as(:entity).to_a
@@ -206,7 +206,7 @@ Defining and Applying Mappers
 
 ### Defining a Mapper
 
-Like relations, mappers to be added to ROM environment during the [setup process](setup.md). You're free to declare relations and mappers in any suitable order between invocations of `ROM.setup` and `ROM.finalize`.
+Like relations, mappers to be added to ROM environment during the [setup process](setup). You're free to declare relations and mappers in any suitable order between invocations of `ROM.setup` and `ROM.finalize`.
 
 ```ruby
 setup = ROM.setup :memory
@@ -264,7 +264,7 @@ end
 ROM mapper provides rich DSL with whole bunch of methods to transform source tuples into output hashes/models.
 Below is a short list of examples for available transformations. For more details follow a corresponding link.
 
-[Filtering Attributes](mappers/filtering.md)
+[Filtering Attributes](mappers/filtering)
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -280,7 +280,7 @@ users.as(:users).first
 # { id: 1, name: 'Joe' }
 ```
 
-[Renaming Attributes](mappers/renaming.md)
+[Renaming Attributes](mappers/renaming)
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -295,7 +295,7 @@ users.as(:users).first
 # { id: 1, name: 'Joe', login: 'joe@example.com' }
 ```
 
-[Wrapping Attributes](mappers/wrapping.md)
+[Wrapping Attributes](mappers/wrapping)
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -309,7 +309,7 @@ users.as(:users).first
 # { id: 1, name: 'Joe', contacts: { email: 'joe@example.com', skype: 'joe' } }
 ```
 
-[Unwrapping Tuples](mappers/unwrapping.md)
+[Unwrapping Tuples](mappers/unwrapping)
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -323,7 +323,7 @@ users.as(:users).first
 # { id: 1, name: 'Joe', email: 'joe@example.com', contacts: { skype:'joe' } }
 ```
 
-[Grouping Tuples](mappers/grouping.md)
+[Grouping Tuples](mappers/grouping)
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -347,7 +347,7 @@ users.as(:users).to_a
 # ]
 ```
 
-[Splitting Nested Attributes](mappers/splitting.md)
+[Splitting Nested Attributes](mappers/splitting)
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -377,12 +377,21 @@ users.as(:users).to_a
 # ]
 ```
 
-[Combining Relations](mappers/combining.md)
+[Combining Relations](mappers/combining)
 
 ```ruby
+class Roles < ROM::Relation[:memory]
+  def for_users(users)
+    restrict(user_id: users.map { |u| u[:id] })
+  end
+end
+
 class UsersMapper < ROM::Mapper
-  combine :roles, on: { name: :name } do
-    attribute :role
+  relation :users
+  register_as :with_roles
+
+  combine :roles, on: { id: :user_id } do
+    attribute :name, from: :role
   end
 end
 
@@ -390,13 +399,13 @@ users.to_a
 # [{ id: 1, name: 'Joe' }]
 
 roles.to_a
-# [{ name: 'Joe', role: 'admin' }, { name: 'Joe', role: 'manager' }]
+# [{ user_id: 1, role: 'admin' }, { user_id: 1, role: 'manager' }]
 
-users.as(:users).to_a
-# [{ id: 1, roles: [{ role: 'admin' }, { role: 'manager' }] }]
+users_with_roles = users.combine(roles.for_users).as(:user_with_roles).to_a
+# [{ id: 1, name: 'Joe', roles: [{ name: 'admin' }, { name: 'manager' }] }]
 ```
 
-[Mapping Tuples to Models](mappers/models.md)
+[Mapping Tuples to Models](mappers/models)
 
 ```ruby
 class UserMapepr < ROM::Mapper
@@ -425,7 +434,7 @@ users.as(:entity).first # the record mapped to the User model
 users.map_with(:entity).first # the alternative syntax
 ```
 
-Like [relations](relations.md#lazy-relations), **mappers are applied lazily** which allows you to compose relations and mappers together in an arbitrary order in the data pipeline. All the following definitions do the same thing:
+Like [relations](relations#lazy-relations), **mappers are applied lazily** which allows you to compose relations and mappers together in an arbitrary order in the data pipeline. All the following definitions do the same thing:
 
 ```ruby
 users.with_tasks.with_tags.as(:entity)
@@ -441,7 +450,10 @@ Reusing Mappers
 Mappers can be applied to source data one-by-one. This is especially useful when you map data from various sources with different data structure. With the help of chaining you can adopt sources to common interface with adapter-specific mappers, and then apply the adapter-agnostic mapper to their outputs.
 
 ```
-db adapter -> relation(:users) -> mappers(:adapter_specific) -> mappers(:adapter_agnostic) -> domain
+db adapter ->
+  relation(:users) ->
+    mappers(:adapter_specific) ->
+      mappers(:adapter_agnostic) -> domain
 ```
 
 To do this you can list mappers as arguments of `as` (or `map_with`) method in the required order:
@@ -503,7 +515,7 @@ users.as(:second).first
 # { id: 1, name: 'Joe', email: 'joe@email.com', skype: 'joe' }
 ```
 
-Use this feature with care. There are [some edge cases you should take into account](mappers/reusing.md).
+Use this feature with care. There are [some edge cases you should take into account](mappers/reusing).
 
 ### Applying Mappers to Nested Data
 
@@ -534,7 +546,7 @@ rom.relation(:users).as(:nested_hash).first
 
 With this feature you can *extract* common transformations, and share them between various mappers.
 
-Use it with some care! There are [edge cases you should take into account](mappers/wrapping.md#applying-another-mapper).
+Use it with some care! There are [edge cases you should take into account](mappers/wrapping#applying-another-mapper).
 
 Arbitrary Mappers
 -----------------
@@ -544,7 +556,7 @@ ROM allows to register arbitrary coercer object as a mapper. Every object, that 
 To register an arbitrary mapper, use the following syntax:
 
 ```ruby
-arbitrary_mapper = -> users { users.select { |tuple| tuple[:id].to_i < 3 } }
+arbitrary_mapper = -> users { users.map { |tuple| tuple[:id] } }
 
 setup.mappers do
   register(:users, external: arbitrary_mapper)
@@ -559,5 +571,5 @@ users.to_a
 # => [{ id: 1, name: 'Jane' }, { id: 2, name: 'Joe' }, { id: 3, name: 'John'}]
 
 users.as(:external).to_a
-# => [{ id: 1, name: 'Jane' }, { id: 2, name: 'Joe' }]
+# => [1, 2]
 ```
