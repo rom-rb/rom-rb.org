@@ -390,7 +390,7 @@ users.as(:users).to_a
 # ]
 ```
 
-[Folding Attributes](mappers/folding)
+[Folding Tuples](mappers/folding)
 
 ```ruby
 class UsersMapper < ROM::Mapper
