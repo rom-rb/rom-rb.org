@@ -218,22 +218,132 @@ tasks = rom.relation(:tasks)
 users.combine(tasks).one
 ```
 
-## Create
+## Commands
 
-TODO
+Standard ROM command API can be used with SQL commands. The only additions are
+`associates` plugin which can automatically set foreign-key value when using
+command composition or command graph and `transaction` interface.
 
-## Update
+### Associates Plugin
 
-TODO
+``` ruby
+class CreateTask < ROM::Commands::Create[:sql]
+  relation :tasks
+  register_as :create
+  result :one
 
-## Delete
+  associates :user, key: { user_id: :id }
+end
 
-TODO
+class CreateUser < ROM::Commands::Create[:sql]
+  relation :users
+  register_as :create
+  result :one
+end
 
-## Transactions
+# using command composition
+create_user = rom.command(:users).create
+create_task = rom.command(:tasks).create
 
-TODO
+command = create_user.with(name: 'Jane') >> create_task.with(title: 'Task')
+command.call
+
+# using a graph
+command = rom.command([
+  { user: :users }, [:create, [{ task: :tasks }, [:create]]]
+])
+
+command.call user: { name: 'Jane', task: { title: 'Task' } }
+```
+
+### Transactions
+
+To use a transaction simple wrap calling a command inside its transaction block:
+
+``` ruby
+class CreateTask < ROM::Commands::Create[:sql]
+  relation :tasks
+  register_as :create
+  result :one
+
+  associates :user, key: { user_id: :id }
+end
+
+class CreateUser < ROM::Commands::Create[:sql]
+  relation :users
+  register_as :create
+  result :one
+end
+
+# using command composition
+create_user = rom.command(:users).create
+create_task = rom.command(:tasks).create
+
+command = create_user.with(name: 'Jane') >> create_task.with(title: 'Task')
+
+# rollback happens when any error is raised ie a CommandError from a validator
+command.transaction do
+  command.call
+end
+
+# manual rollback
+create_user.transaction do
+  user = create_user.call(name: 'Jane')
+
+  if all_good?
+    task = create_task.with(title: 'Jane').call(user)
+  else
+    raise ROM::SQL::Rollback
+  end
+end
+```
 
 ## Migrations
 
-TODO
+There are migration tasks available and migration interface available in SQL
+gateways.
+
+### Using Rake Tasks
+
+To load migration tasks simply require them and provide `db:setup` task which
+sets up ROM.
+
+``` ruby
+# your rakefile
+
+require 'rom/sql/rake_task'
+
+namespace :db do
+  task :setup do
+    # your ROM setup code
+  end
+end
+```
+
+Following tasks are available:
+
+* `rake db:create_migration[create_users]` - create migration file under `db/migrations`
+* `rake db:migrate` - runs migrations
+* `rake db:clear` - removes all tables
+* `rake db:reset` - removes all tables and re-runs migrations
+
+### Using Gateway Migration Interface
+
+You can use migrations using gateway's interface:
+
+``` ruby
+ROM.setup(:sql, 'postgres://localhost/rom')
+
+gateway = ROM.finalize.env.gateways[:default]
+
+gateway.migration do
+  change do
+    create_table :users do
+      primary_key :id
+      column :name, type: String, null: false
+    end
+  end
+end
+
+gateway.run_migrations
+```
