@@ -135,8 +135,8 @@ end
 
 ### Using Renamed Attributes in GROUP or WHERE Clauses
 
-If attributes were qualified and you want to use them in `group` or `where` you
-can use special syntax with double-underscore:
+If attributes need to be qualified and you want to use them in `group` or `where`
+you can use special syntax with double-underscore:
 
 ``` ruby
 class Users < ROM::Relation[:sql]
