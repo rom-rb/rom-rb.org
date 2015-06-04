@@ -9,6 +9,7 @@ Mappers
 * [Defining and Applying Mappers](#defining-and-applying-mappers)
   - [Defining a Mapper](#defining-a-mapper)
   - [Data Transformations](#data-transformations)
+  - [Sequences of Transformations](#sequences-of-transformations)
   - [Applying Mappers](#applying-mappers)
 * [Reusing Mappers](#reusing-mappers)
   - [Chaining Mappers to Pipeline](#chaining-mappers-to-pipeline)
@@ -475,6 +476,80 @@ users.to_a
 users.as(:users).to_a
 # [#<User @id=1, @name='Joe'>]
 ```
+
+### Sequences of Transformations
+
+Various transformations can be applied by mappers step-by-step. This allows a mapper to take deeply nested data from source, rearrange them and provide any required output.
+
+Suppose the relation returns the following data:
+
+```ruby
+users = ROM.evn.relation(:users)
+users.first
+# {
+#   list_id: 1,
+#   list_tasks: [
+#     { user: 'Jacob', task_id: 1, task_title: 'be nice'    },
+#     { user: 'Jacob', task_id: 2, task_title: 'sleep well' }
+#   ]
+# }
+```
+
+With the sequence of several `step`-s we can adopt it to domain requirements:
+
+```ruby
+class UserMapepr < ROM::Mapper
+  relation :users
+  register_as :users
+
+  step do
+    prefix 'list'
+    attribute :id
+    unfold :tasks
+  end
+
+  step do
+    unwrap :tasks do
+      attribute :task_id
+      attribute :name, from: :user
+      attribute :task_title
+    end
+  end
+
+  step do
+    group :tasks do
+      prefix 'task'
+      attribute :id
+      attribute :title
+    end
+  end
+
+  step do
+    wrap :user do
+      attribute :name
+      attribute :tasks
+    end
+  end
+end
+```
+
+The mapper will provide the output as following:
+
+```ruby
+users.as(:users).first
+# {
+#   id: 1,
+#   user: {
+#     name: 'Jacob',
+#     tasks: [
+#       { id: 1, title: 'be nice'    },
+#       { id: 2, title: 'sleep well' }
+#     ]
+#   }
+# }
+```
+
+Look at the [corresponding subsection](mappers/sequencing) for further details.
 
 ### Applying a Mapper
 

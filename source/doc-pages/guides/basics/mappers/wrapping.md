@@ -275,7 +275,9 @@ users.as(:entity).first
 
 ## Nesting Wrappers
 
-Wrappers can be nested deeply. You can define a corresponding model for any level of nesting:
+Wrappers can be nested deeply. This allows to compact the sequence of transformation steps by doing several wrappings at once.
+
+You can define a corresponding model for any level of nesting:
 
 ```ruby
 class UserMapper < ROM::Mapper
