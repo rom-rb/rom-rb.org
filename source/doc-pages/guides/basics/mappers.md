@@ -277,6 +277,22 @@ Below is a list of examples for available transformations. For more details foll
 
 [Filtering Attributes](mappers/filtering)
 
+You can either blacklist attributes:
+
+```ruby
+class UsersMapper < ROM::Mapper
+  exclude :password
+end
+
+users.first
+# { id: 1, name: 'Joe', password: '123456' }
+
+users.as(:users).first
+# { id: 1, name: 'Joe' }
+```
+
+...or whitelist them:
+
 ```ruby
 class UsersMapper < ROM::Mapper
   reject_keys true
