@@ -407,11 +407,7 @@ users.to_a
 # ]
 
 users.as(:users).to_a
-# [
-#   {
-#     id: 1, name: 'Joe', contacts: ['joe@example.com', 'joe@doe.org']
-#   }
-# ]
+# [{ id: 1, name: 'Joe', contacts: ['joe@example.com', 'joe@doe.org'] }]
 ```
 
 [Unfolding Attributes](mappers/unfolding)
@@ -422,11 +418,7 @@ class UsersMapper < ROM::Mapper
 end
 
 users.to_a
-# [
-#   {
-#     id: 1, name: 'Joe', contacts: ['joe@example.com', 'joe@doe.org']
-#   }
-# ]
+# [{ id: 1, name: 'Joe', contacts: ['joe@example.com', 'joe@doe.org'] }]
 
 users.as(:users).to_a
 # [
