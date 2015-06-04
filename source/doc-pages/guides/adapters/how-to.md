@@ -57,7 +57,7 @@ This allows ROM to ask for specific datasets from your gateway.
 
 ### Relation
 
-Adapter-specific relation must exists because it can provide various features
+Adapter-specific relation must exist because it can provide various features
 that only make sense for a concrete adapter. It can automatically forward method
 calls to the underlaying dataset in order to expose "native" interface to the
 relation.
