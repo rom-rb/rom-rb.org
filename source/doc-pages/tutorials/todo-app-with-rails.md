@@ -279,11 +279,11 @@ class TasksRelation < ROM::Relation[:sql]
   end
 
   def active
-    where(is_completed: true)
+    where(is_completed: false)
   end
 
   def completed
-    where(is_completed: false)
+    where(is_completed: true)
   end
 end
 ```
@@ -552,7 +552,7 @@ Notice that we also need to slot in references to the model and relation here, i
 In order to select and operate on individual objects, we also need to add a couple methods that access tasks by their ID:
 
 ```ruby
-class Tasks < ROM::Relation[:sql]
+class TasksRelation < ROM::Relation[:sql]
   def by_id(id)
     where(id: id)
   end
