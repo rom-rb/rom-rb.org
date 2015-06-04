@@ -117,3 +117,190 @@ users << { name: 'John' }
 rom.relation(:users).by_name('Jane').to_a
 # [{:name=>"Jane"}]
 ```
+
+### Commands
+
+Adapter commands are optional because you don't always want to change data in a
+given datastore. If your datastore supports create/update/delete operations you
+can provide an interface for that using commands.
+
+ROM adheres to the CQRS but it doesn't enforce it, this means that relations do
+implement CRUD and commands are just thin wrappers around CUD and they depend on
+relations.
+
+By convention all command classes live under `ROM::YourAdapter::Commands` namespace.
+
+### Common Command Behavior
+
+Every ROM command has a couple of features available out-of-the-box:
+
+* `relation` - returns current relation for the current command
+* `source` - original relation that was injected to the current command initially
+* `>>(other)` - composes one command with another
+* `with(input)` - auto-curries a command with provided input
+* `combine(*others)` - builds a command graph with other commands as nodes
+* `one?` - returns true if a command returns a single tuple
+* `many?`- returns true if a command returns more than one tuple
+
+### Extending Relation for Commands
+
+Commands will require an interface to insert, delete and update data and also
+`count`.
+
+Let's provide that:
+
+``` ruby
+module ROM
+  module ArrayAdapter
+    class Relation < ROM::Relation
+      # reading
+      forward :select, :reject
+
+      # writing
+      forward :<<, :delete
+
+      def count
+        dataset.size
+      end
+    end
+  end
+end
+```
+
+### Commands::Create
+
+To implement a create command:
+
+``` ruby
+require 'rom/commands/create' # require what you require!
+
+module ROM
+  module ArrayAdapter
+    module Commands
+      class Create < ROM::Commands::Create
+        def execute(tuples)
+          tuples.each { |tuple| relation << tuple }
+        end
+      end
+    end
+  end
+end
+
+users = ROM::ArrayAdapter::Relation.new(gateway.dataset(:users))
+create_users = ROM::ArrayAdapter::Commands::Create.new(users)
+
+create_users.call([{ name: 'Jane' }])
+
+puts users.to_a.inspect
+# [{:name=>"Jane"}]
+```
+
+### Commands::Delete
+
+To implement a delete command:
+
+``` ruby
+require 'rom/commands/delete'
+
+module ROM
+  module ArrayAdapter
+    module Commands
+      class Delete < ROM::Commands::Delete
+        def execute
+          relation.each { |tuple| source.delete(tuple) }
+        end
+      end
+    end
+  end
+end
+
+delete_users = ROM::ArrayAdapter::Commands::Delete.new(users)
+
+delete_users.call
+
+puts users.to_a.inspect
+# []
+```
+
+Notice that here delete command yields tuples from its current `relation` but
+deletes it from the `source` relation, since this is our canonical source of data.
+
+### Commands::Update
+
+To implement an update command:
+
+``` ruby
+module ROM
+  module ArrayAdapter
+    module Commands
+      class Update < ROM::Commands::Delete
+        def execute(attributes)
+          relation.each { |tuple| tuple.update(attributes) }
+        end
+      end
+    end
+  end
+end
+
+update_users = ROM::ArrayAdapter::Commands::Update.new(users)
+
+update_users.call(age: 21)
+
+puts users.to_a.inspect
+# [{:name=>"Jane", :age=>21}]
+```
+
+Here we simply rely on `Hash#update` which mutates tuples using the input attributes.
+
+### Putting It All Together
+
+Once your command classes are defined ROM will pick them up from your namespace
+and they will be available during setup:
+
+``` ruby
+ROM.setup(:array)
+
+class Users < ROM::Relation[:array]
+  def by_name(name)
+    select { |user| user[:name] == name }
+  end
+end
+
+class CreateUser < ROM::Commands::Create[:array]
+  relation :users
+  register_as :create
+end
+
+class UpdateUser < ROM::Commands::Update[:array]
+  relation :users
+  result :one
+  register_as :update
+end
+
+class DeleteUser < ROM::Commands::Delete[:array]
+  relation :users
+  result :one
+  register_as :delete
+end
+
+rom = ROM.finalize.env
+
+create_users = rom.command(:users).create
+update_user = rom.command(:users).update
+delete_user = rom.command(:users).delete
+
+create_users.call([{ name: 'Jane' }, { name: 'John' }])
+
+puts rom.relation(:users).by_name('Jane').to_a.inspect
+# [{:name=>"Jane"}]
+
+update_user.by_name('Jane').call(name: 'Jane Doe')
+
+puts rom.relation(:users).to_a.inspect
+# [{:name=>"Jane Doe"}, {:name=>"John"}]
+
+delete_user.by_name('John').call
+
+puts rom.relation(:users).to_a.inspect
+# [{:name=>"Jane Doe"}]
+```
