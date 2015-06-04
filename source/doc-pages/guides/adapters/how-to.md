@@ -3,9 +3,9 @@
 ROM makes very little assumptions about its adapters that's why it is simple to
 build a custom adapter that will provide access to a specific datasource.
 
-A ROM adapter must provider the following components:
+A ROM adapter must provide the following components:
 
-* `ROM::Gateway` subclass that implements required interface which
+* `ROM::Gateway` subclass that implements required interface
 * `ROM::Relation` subclass that exposes adapter-specific interface for queries and writing
 
 In addition to that the adapter *may* also provide:
