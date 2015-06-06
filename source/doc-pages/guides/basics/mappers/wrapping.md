@@ -1,4 +1,5 @@
-# Wrapping Attributes
+Wrapping Attributes
+===================
 
 With the method [wrap] you can take some attributes from a tuple and wrap them to either a nested tuple, or a model.
 
@@ -9,6 +10,7 @@ With the method [wrap] you can take some attributes from a tuple and wrap them t
 * [Renaming Attributes](#renaming-attributes)
 * [Wrapping to Model](#wrapping-to-model)
 * [Applying another Mapper](#applying-another-mapper)
+* [Wrapping Embedded Attributes](#wrapping-embedded-attributes)
 * [Nested Wrapping](#nested-wrapping)
 * [Edge Cases](#edge-cases)
 
@@ -16,7 +18,8 @@ See [Unwrapping Tuples](unwrapping.md) for the inverse transformation of data.
 
 Notice, mappers have [high-level and low-level API](../mappers.md#high-level-and-low-level-api). Examples in this section use the high-level API only. The same syntax is applicable to low-level API as well.
 
-## Basic Usage
+Basic Usage
+-----------
 
 Suppose there is a predefined relation that returns an array of tuples:
 
@@ -61,7 +64,8 @@ class WrappedUsersMapper < ROM::Mapper
 end
 ```
 
-## Removing Prefixes
+Removing Prefixes
+-----------------
 
 Use `:prefix` to remove prefixes from wrapped attributes. The `attribute` method arguments should have no prefixes:
 
@@ -130,7 +134,8 @@ users.as(:wrapped_users).first
 # }
 ```
 
-## Renaming Attributes
+Renaming Attributes
+-------------------
 
 Inside the block use the `:from` option of the [attribute](renaming.md) method:
 
@@ -168,7 +173,8 @@ meetings.as(:wrapped_meetings).first
 # { place: "The Conference Hall", agenda: { agenda: "Future plans", main_thesis: "Bancrupcy" } }
 ```
 
-## Wrapping to Model
+Wrapping to Model
+-----------------
 
 Define the [model](models.md) to map wrapped tuple into:
 
@@ -195,7 +201,8 @@ users.as(:entity).first
 
 **Notice** this feature requires the block syntax. It cannot be done inline.
 
-## Applying another Mapper
+Applying another Mapper
+-----------------------
 
 Another mapper can be applied to wrapped group of attributes. To do this, use the `:mapper` inline option:
 
@@ -219,7 +226,8 @@ users.as(:entity).first
 # { id: 1, name: "Joe", contacts: { email: "joe@doe.org", skype: "joe" } }
 ```
 
-## Wrapping Embedded Attributes
+Wrapping Embedded Attributes
+----------------------------
 
 With the help of [the `embedded` method](embedding), attributes can be wrapped from any level of nested data.
 
@@ -265,7 +273,8 @@ users.as(:entity).first
 # }
 ```
 
-## Nested Wrapping
+Nested Wrapping
+---------------
 
 Wrappers can be nested deeply. This allows to compact the sequence of transformation steps by doing several wrappings at once.
 
@@ -303,7 +312,8 @@ users.as(:entity).first
 
 Notice in the example above we mentioned every wrapped attribute (`:address` and `:user`) only once, while they were wrapped at two levels. You haven't to list attributes at any level of wrapping, only at the deepest one.
 
-## Edge Cases
+Edge Cases
+----------
 
 ### Rejecting Keys
 
