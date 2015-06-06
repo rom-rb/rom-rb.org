@@ -9,7 +9,7 @@ With the method [wrap] you can take some attributes from a tuple and wrap them t
 * [Renaming Attributes](#renaming-attributes)
 * [Wrapping to Model](#wrapping-to-model)
 * [Applying another Mapper](#applying-another-mapper)
-* [Nesting Wrappers](#nesting-wrappers)
+* [Nested Wrapping](#nested-wrapping)
 * [Edge Cases](#edge-cases)
 
 See [Unwrapping Tuples](unwrapping.md) for the inverse transformation of data.
@@ -219,7 +219,53 @@ users.as(:entity).first
 # { id: 1, name: "Joe", contacts: { email: "joe@doe.org", skype: "joe" } }
 ```
 
-## Nesting Wrappers
+## Wrapping Embedded Attributes
+
+With the help of [the `embedded` method](embedding), attributes can be wrapped from any level of nested data.
+
+```ruby
+class ContactMapper < ROM::Mapper
+  register_as :contact
+  relation :users
+
+  attribute :email, from: :contact_email
+  attribute :skype, from: :contact_skype
+end
+
+class UserMapper < ROM::Mapper
+  register_as :hash
+  relation :users
+
+  embedded :contacts, type: :hash do
+    wrap :emails do
+      attribute :home, from: :home_email
+      attribute :job,  from: :job_email
+    end
+  end
+end
+
+users = ROM.env.relations(:users)
+users.first
+# {
+#   id: 1, name: "Joe",
+#   contacts: {
+#     home_email: "joe@home.org",
+#     job_email: "joe@job.com",
+#     skype: "joe"
+#   }
+# }
+
+users.as(:entity).first
+# {
+#   id: 1, name: "Joe",
+#   contacts: {
+#     emails: { home: "joe@home.org", job: "joe@job.com" },
+#     skype: "joe"
+#   }
+# }
+```
+
+## Nested Wrapping
 
 Wrappers can be nested deeply. This allows to compact the sequence of transformation steps by doing several wrappings at once.
 
@@ -254,6 +300,8 @@ users.as(:entity).first
 #   >
 # }
 ```
+
+Notice in the example above we mentioned every wrapped attribute (`:address` and `:user`) only once, while they were wrapped at two levels. You haven't to list attributes at any level of wrapping, only at the deepest one.
 
 ## Edge Cases
 

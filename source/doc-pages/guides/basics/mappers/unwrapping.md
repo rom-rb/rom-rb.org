@@ -1,20 +1,21 @@
-# Unwrapping Attributes
+Unwrapping Attributes
+=====================
 
 The method [unwrap] inverses the [wrapping](wrapping) transformation.
 
 * [Basic Usage](#basic-usage)
-* [Removing Prefixes](#removing-prefixes)
+* [Partial Unwrapping](#partial-unwrapping)
 * [Renaming Attributes](#renaming-attributes)
-* [Wrapping to Model](#wrapping-to-model)
-* [Applying another Mapper](#applying-another-mapper)
-* [Nesting Wrappers](#nesting-wrappers)
+* [Unwrapping Embedded Attributes](#unwrapping-embedded-attributes)
+* [Nested Unwrapping](#nested-unwrapping)
 * [Edge Cases](#edge-cases)
 
 Notice, mappers have [high-level and low-level API](../mappers.md#high-level-and-low-level-api). Examples in this section use the high-level API only. The same syntax is applicable to low-level API as well.
 
-## Basic Usage
+Basic Usage
+-----------
 
-Suppose there is a predefined relation that returns an array of tuples:
+Suppose there is a predefined relation that returns an array of nested tuples:
 
 ```ruby
 users = ROM.env.relations(:users)
@@ -22,7 +23,7 @@ users.first
 # { id: 1, name: "Joe", contact: { email: "joe@example.com", skype: "joe" } }
 ```
 
-With `unwrap` we can remove the `:contact` level of nesting:
+With `unwrap` we can remove the `:contact` level of nesting.
 
 ### Inline Syntax
 
@@ -34,7 +35,7 @@ class UnwrappedUsersMapper < ROM::Mapper
   unwrap :contact, [:email, :skype]
 end
 
-users.as(:wrapped_users).first
+users.as(:unwrapped).first
 # { id: 1, name: "Joe", email: "joe@example.com", skype: "joe" }
 ```
 
@@ -54,9 +55,119 @@ class UnwrappedUsersMapper < ROM::Mapper
 end
 ```
 
-### Edge Case: Rewriting Existing Attributes
+Partial Unwrapping
+------------------
 
-In case the attributes it the root has the same names as unwrapped ones, the root attributes will be rewritten with unwrapped values:
+You can unwrap not all the nested attributes, but subset of them:
+
+```ruby
+class UnwrappedUsersMapper < ROM::Mapper
+  register_as :unwrapped
+  relation :users
+
+  unwrap :contact, [:email]
+end
+
+users.as(:unwrapped).first
+# { id: 1, name: "Joe", email: "joe@example.com", contact: { skype: "joe" } }
+```
+
+Renaming Attributes
+-------------------
+
+Inside the block you can use `:from` option to rename unwrapped attributes:
+
+```ruby
+class UnwrappedUsersMapper < ROM::Mapper
+  register_as :unwrapped
+  relation :users
+
+  unwrap :contact do
+    attribute :contact_email, from: :email
+    attribute :contact_skype, from: :skype
+  end
+end
+
+users.as(:unwrapped).first
+# { id: 1, name: "Joe", contact_email: "joe@example.com", contact_skype: "joe" }
+```
+
+You can also use `:from` option with `unwrap` to rename the rest of partially unwrapped attribute:
+
+```ruby
+class UnwrappedUsersMapper < ROM::Mapper
+  register_as :unwrapped
+  relation :users
+
+  unwrap :other_contacts, from: :contacts do
+    attribute :email
+  end
+end
+
+users.as(:unwrapped).first
+# {
+#   id: 1, name: "Joe", email: "joe@example.com",
+#   other_contacts: { skype: "joe" }
+# }
+```
+
+Unwrapping Embedded Attributes
+------------------------------
+
+With the help of [the `embedded` method](embedding), attributes can be unwrapped from any level of nested data.
+
+```ruby
+class UnwrappedUsersMapper < ROM::Mapper
+  register_as :unwrapped
+  relation :users
+
+  embedded :user, type: :hash do
+    unwrap :emails do
+      attribute :email
+    end
+  end
+end
+
+users = ROM.env.relations(:users)
+users.first
+# { role: 'admin', user: { name: 'Joe', emails: { email: 'joe@doe.com' } } }
+users.as(:unwrapped).first
+# { role: 'admin', user: { name: 'Joe', email: 'joe@doe.com' } }
+```
+
+Nested Unwrapping
+-----------------
+
+Unwrapping can be applied to several layers at once:
+
+```ruby
+class UnwrappedUsersMapper < ROM::Mapper
+  register_as :unwrapped
+  relation :users
+
+  unwrap :user do
+    attribute :name
+    unwrap :contacts do
+      attribute :email
+    end
+  end
+end
+
+users = ROM.env.relations(:users)
+users.first
+# { role: 'admin', user: { name: 'Joe', contacts: { email: 'joe@doe.com' } } }
+users.as(:unwrapped).first
+# { role: 'admin', name: 'Joe', email: 'joe@doe.com' }
+```
+
+You haven't to list unwrapped attribute more than once. In the example above we mentioned `email` attribute only once, though it was unwrapped at two levels.
+
+Edge Cases
+----------
+
+### Rewriting Existing Attributes
+
+In case the attributes it the root has the same names as unwrapped ones, the root attributes will be rewritten:
 
 ```ruby
 users = ROM.env.relations(:users)
@@ -74,280 +185,4 @@ end
 
 users.as(:unwrapped).first
 # { id: 1, name: "Joe", email: "joe@example.com" }
-```
-
-## Partial Unwrapping
-
-You can unwrap not all the nested attributes, but subset of them:
-
-```ruby
-class UnwrappedUsersMapper < ROM::Mapper
-  register_as :unwrapped
-  relation :users
-
-  unwrap :contact, [:email]
-end
-
-users.as(:wrapped_users).first
-# { id: 1, name: "Joe", email: "joe@example.com", contact: { skype: "joe" } }
-```
-
-## 
-
-
-## Renaming the Rest of the Attribute
-
-### Inline Syntax
-
-### Block Syntax
-
-Inside the block the methods `prefix` and `prefix_separator` will affect attributes following them:
-
-```ruby
-class WrappedUsersMapper < ROM::Mapper
-  register_as :wrapped_users
-  relation :users
-
-  wrap :contact do
-    attribute :email
-
-    prefix :contact
-    prefix_separator '_'
-    attribute :skype
-  end
-end
-
-users.as(:wrapped_users).first
-# {
-#   id: 1, name: "Joe",
-#   contact: { contact_email: "joe@example.com", skype: "joe" }
-# }
-```
-
-## Renaming Attributes
-
-Inside the block use the `:from` option of the [attribute](renaming.md) method:
-
-```ruby
-class WrappedUsersMapper < ROM::Mapper
-  register_as :wrapped_users
-  relation :users
-
-  wrap :contact do
-    attribute :to_write, from: :contact_email
-    attribute :to_chat,  from: :contact_skype
-  end
-end
-```
-
-**Notice** this feature requires the block syntax. It cannot be done inline.
-
-### Edge Cases
-
-The method works fine when the name of wrapped tuple is the same as one of its attributes. There is no need for renaming attributes.
-
-```ruby
-meetings = ROM.env.relation(:meetings)
-meetings.first
-# { place: "The Conference Hall", agenda: "Future plans", main_thesis: "Bankruptcy" }
-
-class MeetingsMapper < ROM::Mapper
-  register_as :wrapped_meetings
-  relation :meetings
-
-  wrap :agenda, [:agenda, :thesis]
-end
-
-meetings.as(:wrapped_meetings).first
-# { place: "The Conference Hall", agenda: { agenda: "Future plans", main_thesis: "Bancrupcy" } }
-```
-
-## Wrapping to Model
-
-Define the [model](models.md) to map wrapped tuple into:
-
-```ruby
-require "ostruct"
-
-class UserMapper < ROM::Mapper
-  register_as :entity
-  relation :users
-
-  wrap :contact do
-    model     OpenStruct
-    attribute :contact_email
-    attribute :contact_skype
-  end
-end
-
-users.as(:entity).first
-# {
-#   id: 1, name: "Joe",
-#   contact: <OpenStruct contact_email="joe@example.com", contact_skype="joe">
-# }
-```
-
-**Notice** this feature requires the block syntax. It cannot be done inline.
-
-## Applying another Mapper
-
-Another mapper can be applied to wrapped group of attributes. To do this, use the `:mapper` inline option:
-
-```ruby
-class ContactMapper < ROM::Mapper
-  register_as :contact
-  relation :users
-
-  attribute :email, from: :contact_email
-  attribute :skype, from: :contact_skype
-end
-
-class UserMapper < ROM::Mapper
-  register_as :hash
-  relation :users
-
-  wrap :contacts, mapper: ContactMapper
-end
-
-users.as(:entity).first
-# { id: 1, name: "Joe", contacts: { email: "joe@doe.org", skype: "joe" } }
-```
-
-### Edge Cases
-
-Don't define attributes inline along with the `:mapper` option! In this case the mapper won't be applied:
-
-```ruby
-class ContactMapper < ROM::Mapper
-  register_as :contact
-  relation :users
-
-  attribute :email, from: :contact_email
-  attribute :skype, from: :contact_skype
-end
-
-class UserMapper < ROM::Mapper
-  register_as :hash
-  relation :users
-
-  wrap contacts: [:name], mapper: ContactMapper
-end
-
-users.as(:entity).first
-# { id: 1, contacts: { name: "Joe" }, contact_email: "joe@doe.org", contact_skype: "joe" }
-```
-
-Don't use block along with the `:mapper` option! All definitions from inside the block will be ignored:
-
-```ruby
-class ContactMapper < ROM::Mapper
-  register_as :contact
-  relation :users
-
-  attribute :email, from: :contact_email
-  attribute :skype, from: :contact_skype
-end
-
-class UserMapper < ROM::Mapper
-  register_as :hash
-  relation :users
-
-  wrap :contacts, mapper: ContactMapper do
-    attribute :name
-  end
-end
-
-users.as(:entity).first
-# { id: 1, name: "Joe", contacts: { email: "joe@doe.org", skype: "joe" } }
-```
-
-## Nesting Wrappers
-
-Wrappers can be nested deeply. This allows to compact the sequence of transformation steps by doing several wrappings at once.
-
-You can define a corresponding model for any level of nesting:
-
-```ruby
-class UserMapper < ROM::Mapper
-  register_as :entity
-  relation :users
-
-  wrap :contacts do
-    model Contacts
-
-    wrap :email do
-      model Messages
-      attribute :address, from: :contact_email
-    end
-
-    wrap :skype do
-      model Skype
-      attribute :user, from: :contact_skype
-    end
-  end
-end
-
-users.as(:entity).first
-# {
-#   id: 1, name: "Joe",
-#   contacts: <Contacts
-#     @email=<Email @address="joe@example.com">,
-#     @skype=<Skype @user="joe">
-#   >
-# }
-```
-
-## Edge Cases
-
-### Rejecting Keys
-
-The method `wrap` provides its output regardless of the `reject_keys` setting:
-
-```ruby
-class WrappedUsersMapper < ROM::Mapper
-  register_as :wrapped
-  relation :users
-  reject_keys false # is set by default
-
-  wrap :contacts, [:email, :skype], prefix: 'contact'
-end
-
-users.as(:wrapped_users).first
-# {
-#   id: 1, name: "Joe",
-#   contacts: { email: "joe@example.com", skype: "joe" }
-# }
-```
-
-When a `reject_keys` is set to `true`, the `wrap` method defines attributes by itself:
-
-```ruby
-class WrappedUsersMapper < ROM::Mapper
-  register_as :wrapped
-  relation :users
-  reject_keys true
-
-  wrap :contacts, [:email, :skype], prefix: 'contact'
-end
-
-users.as(:wrapped_users).first
-# { contacts: { email: "joe@example.com", skype: "joe" } }
-```
-
-Notice the method *always* removes attributes from the upper-level tuple - even in case they are declared explicitly:
-
-```ruby
-class WrappedUsersMapper < ROM::Mapper
-  register_as :wrapped
-  relation :users
-  reject_keys true
-
-  attribute :contact_email
-  attribute :contact_skype
-
-  wrap :contacts, [:email, :skype], prefix: 'contact'
-end
-
-users.as(:wrapped_users).first
-# { contacts: { email: "joe@example.com", skype: "joe" } }
 ```
