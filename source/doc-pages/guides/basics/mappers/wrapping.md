@@ -219,54 +219,6 @@ users.as(:entity).first
 # { id: 1, name: "Joe", contacts: { email: "joe@doe.org", skype: "joe" } }
 ```
 
-### Edge Cases
-
-Don't define attributes inline along with the `:mapper` option! In this case the mapper won't be applied:
-
-```ruby
-class ContactMapper < ROM::Mapper
-  register_as :contact
-  relation :users
-
-  attribute :email, from: :contact_email
-  attribute :skype, from: :contact_skype
-end
-
-class UserMapper < ROM::Mapper
-  register_as :hash
-  relation :users
-
-  wrap contacts: [:name], mapper: ContactMapper
-end
-
-users.as(:entity).first
-# { id: 1, contacts: { name: "Joe" }, contact_email: "joe@doe.org", contact_skype: "joe" }
-```
-
-Don't use block along with the `:mapper` option! All definitions from inside the block will be ignored:
-
-```ruby
-class ContactMapper < ROM::Mapper
-  register_as :contact
-  relation :users
-
-  attribute :email, from: :contact_email
-  attribute :skype, from: :contact_skype
-end
-
-class UserMapper < ROM::Mapper
-  register_as :hash
-  relation :users
-
-  wrap :contacts, mapper: ContactMapper do
-    attribute :name
-  end
-end
-
-users.as(:entity).first
-# { id: 1, name: "Joe", contacts: { email: "joe@doe.org", skype: "joe" } }
-```
-
 ## Nesting Wrappers
 
 Wrappers can be nested deeply. This allows to compact the sequence of transformation steps by doing several wrappings at once.
