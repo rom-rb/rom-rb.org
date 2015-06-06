@@ -6,12 +6,13 @@ Mappers
 * [Mapping Strategies](#mapping-strategies)
   - [Lean Interface to Domain](#lean-interface-to-domain)
   - [Rich Interface to Domain](#rich-interface-to-domain)
-* [Defining and Applying Mappers](#defining-and-applying-mappers)
+* [Defining Mappers](#defining-and-using-mappers)
   - [Defining a Mapper](#defining-a-mapper)
   - [Data Transformations](#data-transformations)
-  - [Sequences of Transformations](#sequences-of-transformations)
-  - [Applying Mappers](#applying-mappers)
-* [Reusing Mappers](#reusing-mappers)
+  - [Applying Transformations to Embedded Attributes](#applying-transformations-to-embedded-attributes)
+  - [Applying Transformations Step by Step](#applying-transformations-step-by-step)
+* [Applying and Reusing Mappers](#applying-and-reusing-mappers)
+  - [Applying Mappers to Relations](#applying-mappers-to-relations)
   - [Chaining Mappers to Pipeline](#chaining-mappers-to-pipeline)
   - [Subclassing Mappers](#subclassing-mappers)
   - [Applying Mappers to Nested Data](#applying-mappers-to-nested-data)
@@ -485,7 +486,54 @@ users.as(:users).to_a
 # [#<User @id=1, @name='Joe'>]
 ```
 
-### Sequences of Transformations
+### Applying Transformations to Embedded Attributes
+
+Suppose we have a source with a deeply nested data to transform:
+
+```ruby
+users = ROM.evn.relation(:users)
+users.first
+# {
+#   list_id: 1,
+#   list_tasks: [
+#     { user: 'Jacob', task_id: 1, task_title: 'be nice'    },
+#     { user: 'Jacob', task_id: 2, task_title: 'sleep well' }
+#   ]
+# }
+```
+
+With the help of `embedded` we could apply transformations to the necessary level of nesting:
+
+```ruby
+class UserMapepr < ROM::Mapper
+  relation :users
+  register_as :users
+
+  embedded :list_tasks, type: :array do
+    group :tasks, prefix: 'task' do
+      attribute :id
+      attribute :title
+    end
+  end
+end
+
+users.as(:users).first
+# {
+#   list_id: 1,
+#   list_tasks: [
+#     {
+#       user: 'Jacob', tasks: [
+#         { id: 1, title: 'be nice' },
+#         { id: 2, title: 'sleep well' }
+#       ]
+#     }
+#   ]
+# }
+```
+
+See [Embedding Transformations](embedding.md) for further details and edge cases.
+
+### Applying Transformations Step by Step
 
 Various transformations can be applied by mappers step-by-step. This allows a mapper to take deeply nested data from source, rearrange them and provide any required output.
 
@@ -559,7 +607,10 @@ users.as(:users).first
 
 Look at the [corresponding subsection](mappers/sequencing) for further details.
 
-### Applying a Mapper
+Applying and Reusing Mappers
+----------------------------
+
+### Applying Mappers to Relations
 
 After finalizing ROM, apply the mapper to a relation with the `as` method, or its alias `map_with`, using the registered name of the mapper:
 
@@ -582,10 +633,7 @@ users.with_tasks.as(:entity).with_tags
 users.as(:entity).with_tasks.with_tags
 ```
 
-Reusing Mappers
----------------
-
-### The Data Pipeline
+### Chaining Mappers to Pipeline
 
 Mappers can be applied to source data one-by-one. This is especially useful when you map data from various sources with different data structure. With the help of chaining you can adopt sources to common interface with adapter-specific mappers, and then apply the adapter-agnostic mapper to their outputs.
 

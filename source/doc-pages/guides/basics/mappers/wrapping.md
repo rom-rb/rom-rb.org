@@ -59,12 +59,6 @@ class WrappedUsersMapper < ROM::Mapper
     attribute :contact_skype
   end
 end
-
-users.as(:wrapped_users).first
-# {
-#   id: 1, name: "Joe",
-#   contact: { contact_email: "joe@example.com", contact_skype: "joe" }
-# }
 ```
 
 ## Removing Prefixes
