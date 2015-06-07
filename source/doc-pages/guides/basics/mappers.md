@@ -23,9 +23,9 @@ Purpose
 
 Every application needs different representations of the same data. Taking data from one representation and converting it into another in ROM is done by using mappers.
 
-A mapper is an object that takes a tuple and turns it into a domain object, or nested hash, compatible to domain interface.
+A mapper is an object that takes a tuple and turns it into a domain object, or nested hash, compatible to the domain interface.
 
-ROM provides a DSL to define mappers which can be integrated with 3rd-party libraries.
+ROM provides a simple DSL to define mappers and these can be integrated with 3rd-party libraries.
 
 Mapping is an extremely powerful concept. It can:
 
@@ -40,7 +40,7 @@ ROM also allows you to define mappers that can be reused for many relations, or 
 Basic Usage
 -----------
 
-With the datastore [relations](relations) raw data are extracted from datasets and presented in a form of tuples.
+Using a datastore, [relations](relations) of raw data are extracted and presented in the form of tuples.
 
 ```ruby
 users = ROM.env.relation(:users)
@@ -51,9 +51,9 @@ users.to_a
 # ]
 ```
 
-Mappers allow to convert tuples to the form, required by the domain.
+Mappers convert tuples into the form required by the domain.
 
-At first define the mapper for a relation.
+To create a mapper, first define the mapper for a relation.
 
 ```ruby
 class UserAsEntity < ROM::Mapper
@@ -63,7 +63,7 @@ class UserAsEntity < ROM::Mapper
 end
 ```
 
-After [finalization](setup) apply the mapper:
+After [finalization](setup) apply the mapper on the dataset. Here we call `map_with` to apply the `UserAsEntity` mapper (registered as `entity`) on the dataset:
 
 ```ruby
 users.as(:entity).to_a
@@ -76,7 +76,7 @@ users.as(:entity).to_a
 users.map_with(:entity).to_a
 ```
 
-Mappers can also convert tuples returned by ROM commands.
+Mappers can also be used to convert tuples that are returned from ROM [commands](commands).
 
 ```ruby
 create_user = ROM.env.command(:users).create
@@ -90,7 +90,7 @@ create_user.as(:entity).create id: 4, name: 'joffrey', email: 'joffrey@doo.org'
 Mapping Strategies
 ------------------
 
-Consider another example, where the relation contains flat data, that should be mapped into nested models.
+Another example which comes up frequently is to map flat data into a nested model.
 
 ```ruby
 users_with_roles = ROM.env.relation(:users).with_roles
@@ -102,7 +102,7 @@ users_with_roles.to_a
 # ]
 ```
 
-Suppose we need to adopt it to list of domain users who each have many roles. There are two main strategies for doing this.
+Suppose we need to convert it to list of domain users who each have many roles. There are two main strategies for doing this.
 
 ### 1. Lean Interface to Domain
 
@@ -110,6 +110,8 @@ Under the first approach, the responsibility of the datastore is limited. It sho
 
 In this case the datastore is completely decoupled from the domain layer. It knows nothing about entities and their constructors.
 The mapper is responsible for transforming source tuples to entity-friendly hashes.
+
+In this example we will use the `group` syntax to group user roles.
 
 ```ruby
 class UserAsHash < ROM::Mapper
@@ -178,17 +180,17 @@ end
 Entity classes can be flat objects or aggregates defined separately from each other (depending on what you need).
 
 ```ruby
+class Role
+  include Virtus.model
+
+  attribute :title
+end
+
 class User
   include Virtus.model
 
   attribute :name
   attribute :roles # no coersion is needed here, this work is done by the mapper
-end
-
-class Role
-  include Virtus.model
-
-  attribute :title
 end
 ```
 
@@ -244,7 +246,7 @@ class EntityMapper < ROM::Mapper
 end
 ```
 
-As shown above, when defining a new mapper you need to set the registered name of the mapper and the name of the relation it is applicable to. The registered name of the mapper should be unique in a scope of the relation, so the following declarations are correct.
+As shown above, when defining a new mapper you need to set the registered name of the mapper and the name of the relation it is applicable to. The registered name of the mapper should be unique in a scope of the relation, so the following declarations are correct and do not conflict.
 
 ```ruby
 class UserEntityMapper < ROM::Mapper
@@ -264,19 +266,21 @@ end
 
 ### Data Transformations
 
-ROM mapper provides rich DSL with whole bunch of methods to transform source tuples into output hashes/models. It supports:
+ROM mapper provides a rich DSL with a number of methods to transform the source into output domain objects. It supports:
 
-* Filtering Attributes
-* Renaming Attributes
-* Wrapping/Unwrapping Tuples
-* Grouping/Ungrouping Tuples
-* Folding/Unfolding Tuples
-* Combining Tuples from Several Relations
-* Mapping Tuples to Models
+* [Filtering Attributes](mappers/filtering)
+* [Renaming Attributes](mappers/renaming)
+* [Wrapping Attributes](mappers/wrapping)
+* [Grouping Tuples](mappers/grouping)
+* [Folding Tuples](mappers/folding)
+* [Combining Tuples from Several Relations](mappers/combining)
+* [Mapping Tuples to Models](mappers/models)
+* [Embedded Attributes](mappers/embedded)
 
-Below is a list of examples for available transformations. For more details follow a corresponding link.
+Below are some examples of the available transformations. For more details follow the corresponding link.
 
-[Filtering Attributes](mappers/filtering)
+
+#### [Filtering Attributes](mappers/filtering)
 
 You can either blacklist attributes:
 
@@ -296,7 +300,7 @@ users.as(:users).first
 
 ```ruby
 class UsersMapper < ROM::Mapper
-  reject_keys true
+  reject_keys true # Any keys not declared will be rejected
   attribute :id
   attribute :name
 end
@@ -308,7 +312,9 @@ users.as(:users).first
 # { id: 1, name: 'Joe' }
 ```
 
-[Renaming Attributes](mappers/renaming)
+#### [Renaming Attributes](mappers/renaming)
+
+Attributes can be renamed:
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -323,7 +329,8 @@ users.as(:users).first
 # { id: 1, name: 'Joe', login: 'joe@example.com' }
 ```
 
-[Wrapping Attributes](mappers/wrapping)
+#### [Wrapping Attributes](mappers/wrapping)
+Attributes can be nested inside a new object.
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -340,7 +347,8 @@ users.as(:users).first
 # { id: 1, name: 'Joe', contacts: { email: 'joe@example.com', skype: 'joe' } }
 ```
 
-[Unwrapping Tuples](mappers/unwrapping)
+#### [Unwrapping Tuples](mappers/unwrapping)
+Attributes can be pulled out of a nested object:
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -356,7 +364,8 @@ users.as(:users).first
 # { id: 1, name: 'Joe', email: 'joe@example.com', contacts: { skype:'joe' } }
 ```
 
-[Grouping Tuples](mappers/grouping)
+#### [Grouping Tuples](mappers/grouping)
+Objects can be grouped on certain attributes:
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -382,7 +391,8 @@ users.as(:users).to_a
 # ]
 ```
 
-[Ungrouping Attributes](mappers/ungrouping)
+#### [Ungrouping Attributes](mappers/ungrouping)
+Objects can be ungrouped resulting in a flattened structure:
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -408,7 +418,7 @@ users.as(:users).to_a
 # ]
 ```
 
-[Folding Tuples](mappers/folding)
+#### [Folding Tuples](mappers/folding)
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -427,7 +437,8 @@ users.as(:users).to_a
 # [{ id: 1, name: 'Joe', contacts: ['joe@example.com', 'joe@doe.org'] }]
 ```
 
-[Unfolding Attributes](mappers/unfolding)
+#### [Unfolding Attributes](mappers/unfolding)
+Objects can be unfolded, resulting in a flattened structure:
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -444,7 +455,7 @@ users.as(:users).to_a
 # ]
 ```
 
-[Combining Tuples from Several Relations](mappers/combining)
+#### [Combining Tuples from Several Relations](mappers/combining)
 
 ```ruby
 class Roles < ROM::Relation[:memory]
@@ -472,7 +483,8 @@ users_with_roles = users.combine(roles.for_users).as(:user_with_roles).to_a
 # [{ id: 1, name: 'Joe', roles: [{ name: 'admin' }, { name: 'manager' }] }]
 ```
 
-[Mapping Tuples to Models](mappers/models)
+#### [Mapping Tuples to Models](mappers/models)
+The result of a mapping can be a model object, rather than a simple hash or array:
 
 ```ruby
 class UserMapepr < ROM::Mapper
@@ -486,7 +498,7 @@ users.as(:users).to_a
 # [#<User @id=1, @name='Joe'>]
 ```
 
-### Applying Transformations to Embedded Attributes
+#### [Embedded Attributes](mappers/embedded)
 
 Suppose we have a source with a deeply nested data to transform:
 
@@ -531,7 +543,7 @@ users.as(:users).first
 # }
 ```
 
-See [Embedding Transformations](embedding.md) for further details and edge cases.
+See [Embedding Transformations](embedding.md) for further details.
 
 ### Applying Transformations Step by Step
 
@@ -551,7 +563,7 @@ users.first
 # }
 ```
 
-With the sequence of several `step`-s we can adopt it to domain requirements:
+With the sequence of several `step`-s we can perform a series of complex tranformations inside one mapper:
 
 ```ruby
 class UserMapepr < ROM::Mapper
@@ -607,7 +619,7 @@ users.as(:users).first
 
 Look at the [corresponding subsection](mappers/sequencing) for further details.
 
-Applying and Reusing Mappers
+Using and Reusing Mappers
 ----------------------------
 
 ### Applying Mappers to Relations
@@ -678,7 +690,7 @@ users.as(:nested, :entity).first
 
 ### Subclassing Mappers
 
-To DRY the code you can *subclass* a new mapper from existing one and customize it for slightly different output.
+To keep your code [DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself), mappers can be *subclassed* from existing mappers to customize it for slightly different output.
 
 ```ruby
 class FirstMapper < ROM::Mapper
@@ -742,7 +754,7 @@ Use it with some care! There are [edge cases you should take into account](mappe
 Custom Mappers
 --------------
 
-ROM allows to register custom coercer object as a mapper. Every object, that responds to `#call` method with one argument can be registered as the ROM mapper.
+ROM allows custom coercer objects to be registered as mappers. Any object, that responds to `#call` method with one argument can be registered as a ROM mapper.
 
 To register an arbitrary mapper, use the following syntax:
 
