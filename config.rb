@@ -44,6 +44,8 @@ activate :blog do |blog|
   blog.tag_template = "blog/tag.html"
 end
 
+ignore 'doc-pages/*'
+
 page 'blog/*', layout: 'blog_article'
 page 'blog/feed.xml', layout: false
 
@@ -61,6 +63,22 @@ set :images_dir, 'images'
 
 activate :livereload
 activate :directory_indexes
+
+doc_pages_root = "#{root}/source/doc-pages"
+
+%w(introduction guides tutorials).each do |type|
+  Dir["#{doc_pages_root}/#{type}/**/*.md"].each do |full_path|
+    dir = File.dirname(full_path.gsub("#{doc_pages_root}/", ''))
+    name = File.basename(full_path, '.md')
+    path = "#{dir}/#{name}"
+
+    proxy "#{path}.html", "doc-page.html", locals: { type: type, doc: path }, ignore: true do
+      content_for(:page_title) {
+        name.split('/').unshift(type).map(&:humanize).join(' &raquo; ')
+      }
+    end
+  end
+end
 
 helpers do
 
@@ -85,6 +103,14 @@ helpers do
 
   def tutorials_layout(&block)
     partial "layouts/tutorials", locals: { content: capture_html(&block) }
+  end
+
+  def guides_layout(&block)
+    partial "layouts/guides", locals: { content: capture_html(&block) }
+  end
+
+  def within_layout(name, &block)
+    partial "layouts/#{name}", locals: { content: capture_html(&block) }
   end
 
   DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
