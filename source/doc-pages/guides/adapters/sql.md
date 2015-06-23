@@ -4,8 +4,6 @@ ROM supports SQL databases via `rom-sql` adapter which currently uses [Sequel](#
 under the hood. The adapter ships with an enhanced `Relation` that supports
 sql-specific query DSL and association macros that simplify constructing joins.
 
-TODO: probably needs a bit more words
-
 ## Setup
 
 To setup an SQL gateway you can use a database URL and options (if needed):

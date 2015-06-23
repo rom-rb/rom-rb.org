@@ -1,5 +1,4 @@
-Mappers
-=======
+# Mappers
 
 * [Purpose](#purpose)
 * [Basic Usage](#basic-usage)
@@ -18,29 +17,35 @@ Mappers
   - [Applying Mappers to Nested Data](#applying-mappers-to-nested-data)
 * [Custom Mappers](#custom-mappers)
 
-Purpose
--------
+## Purpose
 
-Every application needs different representations of the same data. Taking data from one representation and converting it into another in ROM is done by using mappers.
+Every application needs different representations of the same data. Taking data
+from one representation and converting it into another in ROM is done by using
+mappers.
 
-A mapper is an object that takes a tuple and turns it into a domain object, or nested hash, compatible to the domain interface.
+A mapper is an object that takes a relation and turns it into a domain-specific
+collection which can include objects compatible with the domain interface. It can
+return plain hashes or instantiate domain-specific models for you.
 
-ROM provides a simple DSL to define mappers and these can be integrated with 3rd-party libraries.
+ROM provides a DSL to define mappers which can be integrated with 3rd-party
+libraries.
 
 Mapping is an extremely powerful concept. It can:
 
-* Filter and rename attributes.
-* Wrap and group attributes.
-* Coerce values.
-* Build aggregate objects.
-* Build immutable value objects.
+* Filter and rename attributes
+* Wrap and group attributes
+* Coerce values
+* Build aggregate objects
+* Build immutable value objects
+* And more...
 
-ROM also allows you to define mappers that can be reused for many relations, or combined to create a pipeline.
+ROM also allows you to define mappers that can be reused for many relations, or
+combined to create a pipeline.
 
-Basic Usage
------------
+## Basic Usage
 
-Using a datastore, [relations](relations) of raw data are extracted and presented in the form of tuples.
+With the adapter [relations](/guides/basics/relations) raw data are extracted
+from datasets and presented in a form of tuples.
 
 ```ruby
 users = ROM.env.relation(:users)
@@ -87,8 +92,7 @@ create_user.as(:entity).create id: 4, name: 'joffrey', email: 'joffrey@doo.org'
 # <User @id=4, @name='jeff', @email='joffrey@doo.org'>
 ```
 
-Mapping Strategies
-------------------
+## Mapping Strategies
 
 Another example which comes up frequently is to map flat data into a nested model.
 
@@ -206,8 +210,7 @@ options = users_with_roles.as(:entity).to_a
 
 This flexibility can simplify your domain layer quite a bit. You can design your domain objects exactly the way you want and configure mappings accordingly.
 
-Defining and Applying Mappers
------------------------------
+## Defining and Applying Mappers
 
 ### Defining a Mapper
 
@@ -645,7 +648,9 @@ users.with_tasks.as(:entity).with_tags
 users.as(:entity).with_tasks.with_tags
 ```
 
-### Chaining Mappers to Pipeline
+## Reusing Mappers
+
+### The Data Pipeline
 
 Mappers can be applied to source data one-by-one. This is especially useful when you map data from various sources with different data structure. With the help of chaining you can adopt sources to common interface with adapter-specific mappers, and then apply the adapter-agnostic mapper to their outputs.
 
@@ -751,8 +756,7 @@ With this feature you can *extract* common transformations, and share them betwe
 
 Use it with some care! There are [edge cases you should take into account](mappers/wrapping#applying-another-mapper).
 
-Custom Mappers
---------------
+## Custom Mappers
 
 ROM allows custom coercer objects to be registered as mappers. Any object, that responds to `#call` method with one argument can be registered as a ROM mapper.
 
