@@ -324,7 +324,7 @@ Following tasks are available:
 
 * `rake db:create_migration[create_users]` - create migration file under `db/migrations`
 * `rake db:migrate` - runs migrations
-* `rake db:clear` - removes all tables
+* `rake db:clean` - removes all tables
 * `rake db:reset` - removes all tables and re-runs migrations
 
 ### Using Gateway Migration Interface
