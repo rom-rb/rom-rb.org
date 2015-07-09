@@ -230,7 +230,7 @@ class CreateTask < ROM::Commands::Create[:sql]
   register_as :create
   result :one
 
-  associates :user, key: { user_id: :id }
+  associates :user, key: [:user_id, :id]
 end
 
 class CreateUser < ROM::Commands::Create[:sql]
@@ -264,7 +264,7 @@ class CreateTask < ROM::Commands::Create[:sql]
   register_as :create
   result :one
 
-  associates :user, key: { user_id: :id }
+  associates :user, key: [:user_id, :id]
 end
 
 class CreateUser < ROM::Commands::Create[:sql]
