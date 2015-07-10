@@ -591,7 +591,7 @@ Creating a view template for this form is easily done with the built-in Rails ta
 # app/views/tasks/new.html.erb
 
 <%= form_for task do |t| %>
-  <%= task.errors.full_messages if task.errors %>
+  <%= task.errors.full_messages if task.errors.present? %>
   <%= t.text_field :title %>
   <%= t.select :is_completed, [['Completed', true], ['Active', false]] %>
   <%= t.submit %>
