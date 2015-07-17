@@ -50,7 +50,7 @@ In example we can define a relation class for our in-memory gateway:
 ``` ruby
 ROM.setup(:memory)
 
-class Users < ROM::Memory[:memory]
+class Users < ROM::Relation[:memory]
 end
 
 ROM.finalize
@@ -96,7 +96,7 @@ calling `ROM.finalize`:
 ``` ruby
 ROM.setup(:memory)
 
-class Users < ROM::Memory[:memory]
+class Users < ROM::Relation[:memory]
 end
 
 class CreateUser < ROM::Commands::Create[:memory]
