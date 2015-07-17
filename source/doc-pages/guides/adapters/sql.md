@@ -334,14 +334,14 @@ ROM.setup(:sql, 'postgres://localhost/rom')
 
 gateway = ROM.finalize.env.gateways[:default]
 
-gateway.migration do
+migration = gateway.migration do
   change do
     create_table :users do
       primary_key :id
-      column :name, type: String, null: false
+      column :name, String, null: false
     end
   end
 end
 
-gateway.run_migrations
+migration.apply(gateway.connection, :up)
 ```
