@@ -518,7 +518,7 @@ rails generate rom:commands tasks --adapter sql
 
 Commands are the basic method by which ROM sends write commands to a data source. Commands come into their own when there are complex data integrity rules and error handling at play.
 
-But in the context of Rails, we’re not always dealing with rich and complex write logic. Famously, Rails is all about the CRUD. ROM goes with this flow by providing `Rom::Model::Form` utility for handling input mapping and validation.
+But in the context of Rails, we’re not always dealing with rich and complex write logic. Famously, Rails is all about the CRUD. ROM goes with this flow by providing `ROM::Model::Form` utility for handling input mapping and validation.
 
 Forms are a higher level abstraction built on top of commands to help simplify the boilerplate process of creating administration and CRUD apps.
 
