@@ -506,7 +506,7 @@ users.as(:users).to_a
 Suppose we have a source with a deeply nested data to transform:
 
 ```ruby
-users = ROM.evn.relation(:users)
+users = ROM.env.relation(:users)
 users.first
 # {
 #   list_id: 1,
@@ -555,7 +555,7 @@ Various transformations can be applied by mappers step-by-step. This allows a ma
 Suppose the relation returns the following data:
 
 ```ruby
-users = ROM.evn.relation(:users)
+users = ROM.env.relation(:users)
 users.first
 # {
 #   list_id: 1,
