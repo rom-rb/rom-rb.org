@@ -8,6 +8,14 @@ In ROM, repositories encapsulate access to domain-specific entities. They use
 relations to expose a convenient interface for composing relations and
 automatically mapping them to struct objects.
 
+## Installation
+
+Repository is a seperate gem:
+
+```
+gem install rom-repository
+```
+
 ## Defining a Repository Class
 
 A repository object gets access to selected relations that are available in the
