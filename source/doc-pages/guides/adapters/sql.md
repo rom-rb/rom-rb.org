@@ -218,11 +218,15 @@ users.combine(tasks).one
 
 ## Commands
 
-Standard ROM command API can be used with SQL commands. The only additions are
-`associates` plugin which can automatically set foreign-key value when using
-command composition or command graph and `transaction` interface.
+SQL commands support all features of the standard [ROM command API](/guides/basics/commands/). In addition, the following SQL-specific features are supported:
+
+- The `associates` plugin, for connecting foreign key values when composing commands
+- The `transaction` interface, which provides a block scope for working with database transactions
 
 ### Associates Plugin
+
+The `associates` plugin is used to automatically set foreign-key values when using
+command composition.
 
 ``` ruby
 class CreateTask < ROM::Commands::Create[:sql]
