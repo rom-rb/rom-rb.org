@@ -1,6 +1,6 @@
 # SQL Adapter
 
-ROM supports SQL databases via `rom-sql` adapter which currently uses [Sequel](#)
+ROM supports SQL databases via `rom-sql` adapter which currently uses [Sequel](http://sequel.jeremyevans.net/)
 under the hood. The adapter ships with an enhanced `Relation` that supports
 sql-specific query DSL and association macros that simplify constructing joins.
 
