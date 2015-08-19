@@ -198,9 +198,7 @@ you can define your own relation view, improve the query yourself and it will wo
 exactly the same in terms of the internal machanics.
 
 <div class="well">
-For now, relation composition is tested only with sql adapter. 1.0.0 will support
-any adapter, which means you'll be able to easily compose relations from different
-databases.
+Notice that you can compose relations from different databases!
 </div>
 
 #### Auto-Combine Plugin
