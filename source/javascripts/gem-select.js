@@ -3,6 +3,11 @@ $(function() {
     'SQL' : 'rom-sql',
     'MongoDB' : 'rom-mongo',
     'Event Store' : 'rom-event_store',
+    'Git' : 'rom-git',
+    'Neo4j' : 'rom-neo4j',
+    'HTTP' : 'rom-http',
+    'CouchDB' : 'rom-couchdb',
+    'RethinkDB' : 'rom-rethinkdb',
     'YAML' : 'rom-yaml',
     'CSV' : 'rom-csv'
   };
