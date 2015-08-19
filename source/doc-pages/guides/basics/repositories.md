@@ -1,9 +1,5 @@
 # Repositories
 
-<div class="well">
-This Guide is based on rom 0.9.0.beta and rom-repository 0.0.2.
-</div>
-
 In ROM, repositories encapsulate access to domain-specific entities. They use
 relations to expose a convenient interface for composing relations and
 automatically mapping them to struct objects.
