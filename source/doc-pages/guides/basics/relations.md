@@ -119,6 +119,8 @@ Auto-curry and data-pipeline allows very simple yet powerful feature where you
 can combine results from many relations into a single relation:
 
 ``` ruby
+ROM.use :auto_registration
+
 ROM.setup(:memory)
 
 class Users < ROM::Relation[:memory]
