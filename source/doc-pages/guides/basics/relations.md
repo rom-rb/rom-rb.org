@@ -68,6 +68,8 @@ You can send a relation through any object that responds to `call` using common
 `>>` operator:
 
 ``` ruby
+ROM.use :auto_registration
+
 ROM.setup(:memory)
 
 class Users < ROM::Relation[:memory]
