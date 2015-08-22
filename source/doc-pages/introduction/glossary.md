@@ -1,10 +1,6 @@
 # Glossary
 
-TODO: intro goes here
-
-## Core components
-
-TODO: intro goes here
+This document explains basic terms used in ROM.
 
 #### Relation
 

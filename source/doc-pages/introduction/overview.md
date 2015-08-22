@@ -1,3 +1,5 @@
+# Overview
+
 ROM encourages a clear separation between your application domain and the data
 access layer. This is more than just hiding access behind methods. Your
 application is not coupled to the details of data retrieval or manipulation.
@@ -16,19 +18,29 @@ The core of ROM is divided up into four high-level concerns as you can see
 above:
 
 ### [**Adapters**](/introduction/adapters)
+
 ROM uses adapters to connect to different data sources (a database, a csv file -
 it doesn't matter) and exposes a native CRUD interface to its relations.
 
-### [**Relations**](/introduction/relations)
+### [**Repositories**](/guides/basics/repositories)
+
+A repository provides a convenient interface for fetching domain-specific entities
+and value objects from a database. It's a higher-level abstraction built on top
+of relation and mapping layers.
+
+### [**Relations**](/guides/basics/relations)
+
 A relation is defined as a set of tuples identified by unique pairs of attributes
 and their values. In ROM it is an object that responds to `#each` which yields hashes. It
 is backed by <mark>a dataset object</mark> provided by the adapter.
 
-### [**Mappers**](/introduction/mappers)
+### [**Mappers**](/guides/basics/mappers)
+
 A mapper is an object that takes a tuple and turns it into a domain object. ROM
 provides a DSL to define mappers which can be integrated with 3rd-party mapping
 libraries.
 
-### [**Commands**](/introduction/commands)
+### [**Commands**](/guides/basics/commands)
+
 Commands in ROM are intended to safely modify data. Commands can be used to create,
 update and delete.
