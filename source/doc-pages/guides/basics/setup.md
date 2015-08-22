@@ -20,6 +20,7 @@ ROM.setup(:memory)
 
 ROM.finalize
 ```
+
 Under the hood ROM simply passes provided argument to the corresponding `Gateway`
 constructor which is provided by the adapter. In our case it is `ROM::Memory::Gateway`.
 
@@ -53,6 +54,8 @@ ROM.setup(:memory)
 class Users < ROM::Relation[:memory]
 end
 
+rom.register_relation(Users)
+
 ROM.finalize
 ```
 
@@ -76,6 +79,9 @@ end
 class Tasks < ROM::Relation[:yaml]
   gateway :other
 end
+
+rom.register_relation(Users)
+rom.register_relation(Tasks)
 
 ROM.finalize
 ```
@@ -104,6 +110,9 @@ class CreateUser < ROM::Commands::Create[:memory]
   register_as :create
   result :one
 end
+
+rom.register_relation(Users)
+rom.register_command(CreateUser)
 
 ROM.finalize
 
