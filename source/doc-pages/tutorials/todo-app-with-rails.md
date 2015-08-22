@@ -1,3 +1,8 @@
+<div class="well">
+This tutorial is out of date. Please [let us know](https://github.com/rom-rb/rom-rb.org/issues/70)
+if you'd like to help with updating it.
+</div>
+
 # Todo App With Rails
 
 This tutorial explains how to make ROM feel right at home in your Rails application. It is primarily intended for those familiar with Rails who want to learn more about ROM.
