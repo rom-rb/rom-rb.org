@@ -1,13 +1,19 @@
 # Relations
 
+In bigger applications query logic becomes complicated very quickly. That's why
+it is a good idea to break it down into smaller components. You can get pretty
+far with [Repositories](/guides/basics/repositories/) but eventually you will
+face a situation where encapsulating complex query inside custom relations will
+be helpful.
+
 In ROM relations are the central part of the system. They provide access to data
 through internal interfaces provided by adapters and allow you to specify your
-own interface for accessing application-specific data structures.
+own interface for accessing *application-specific data structures*.
 
 The fundamental design principle in ROM is that all components work with relations
 rather than individual objects from relations. This means that a relation can only
-return other relations (also known as "views" or "virtual relations"). Then both
-commands and mappers receive a relation, do their work and return a relation back.
+return other relations (also known as "views"). Then both commands and mappers
+receive a relation, do their work and return a relation back.
 
 ## Defining a relation
 

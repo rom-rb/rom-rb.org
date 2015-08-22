@@ -1,8 +1,8 @@
 # Repositories
 
 In ROM, repositories encapsulate access to domain-specific entities. They use
-relations to expose a convenient interface for composing relations and
-automatically mapping them to struct objects.
+[relations](/guides/basics/relations/) to expose a convenient interface for
+composing relations and automatically mapping them to struct objects.
 
 ## Installation
 
