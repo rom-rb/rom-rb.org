@@ -86,20 +86,22 @@ rom.register_relation(Tasks)
 ROM.finalize
 ```
 
-## Environment
+## Container
 
 During finalization process ROM instantiates all components based on your class
-definitions. Those objects are stored in a registry called ROM's environment.
+definitions. Those objects are stored in a registry called ROM container.
 
-The environment provides *top-level interface for accessing all components*.
+The container provides *top-level interface for accessing all components*.
 
 Currently to simplify integration with frameworks like Rails ROM, by default,
-stores finalized environment in a globally accessible `ROM.env`.
+stores finalized container in a globally accessible `ROM.env`.
 
 In example if we defined a relation and a command we can simply access them after
 calling `ROM.finalize`:
 
 ``` ruby
+ROM.use :auto_registration
+
 ROM.setup(:memory)
 
 class Users < ROM::Relation[:memory]
@@ -111,16 +113,11 @@ class CreateUser < ROM::Commands::Create[:memory]
   result :one
 end
 
-rom.register_relation(Users)
-rom.register_command(CreateUser)
-
-ROM.finalize
-
-rom = ROM.env
+rom = ROM.finalize.env
 
 # access users relation
 rom.relation(:users)
 
 # access user command object
-rom.command(:users).create
+rom.command(:users)[:create]
 ```
