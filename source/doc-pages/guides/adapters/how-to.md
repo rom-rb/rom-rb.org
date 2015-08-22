@@ -69,6 +69,9 @@ relation using `forward` macro:
 module ROM
   module ArrayAdapter
     class Relation < ROM::Relation
+      # we must configure adapter identifier here
+      adapter :array
+
       forward :select, :reject
     end
   end
@@ -84,6 +87,11 @@ relation = ROM::ArrayAdapter::Relation.new(gateway.dataset(:users))
 relation.select { |tuple| tuple[:name] == 'Jane' }.inspect
 # #<ROM::ArrayAdapter::Relation dataset=[{:name=>"Jane"}]>
 ```
+
+<div class="well">
+Please remember about setting `adapter` identifier - it is used by ROM to infer
+component types specific to a given adapter. It's essential during the setup.
+</div>
 
 ### Registering Your Adapter
 
@@ -153,6 +161,8 @@ Let's provide that:
 module ROM
   module ArrayAdapter
     class Relation < ROM::Relation
+      adapter :array
+
       # reading
       forward :select, :reject
 
@@ -178,6 +188,9 @@ module ROM
   module ArrayAdapter
     module Commands
       class Create < ROM::Commands::Create
+        # Just like in case of Relation, we must configure adapter identifier
+        adapter :array
+
         def execute(tuples)
           tuples.each { |tuple| relation << tuple }
         end
@@ -206,6 +219,8 @@ module ROM
   module ArrayAdapter
     module Commands
       class Delete < ROM::Commands::Delete
+        adapter :array
+
         def execute
           relation.each { |tuple| source.delete(tuple) }
         end
@@ -234,6 +249,8 @@ module ROM
   module ArrayAdapter
     module Commands
       class Update < ROM::Commands::Delete
+        adapter :array
+
         def execute(attributes)
           relation.each { |tuple| tuple.update(attributes) }
         end
