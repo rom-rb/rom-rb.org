@@ -23,7 +23,7 @@ ROM.finalize
 Under the hood ROM simply passes provided argument to the corresponding `Gateway`
 constructor which is provided by the adapter. In our case it is `ROM::Memory::Gateway`.
 
-You can read more about adapter gateways in [the adapter section](#) of the guides.
+You can read more about adapter gateways in [the adapter guide](/guides/adapters).
 
 ## Configuring Many Gateways
 
