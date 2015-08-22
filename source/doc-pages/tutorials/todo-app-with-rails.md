@@ -1,5 +1,5 @@
 <div class="well">
-This tutorial is out of date. Please [let us know](https://github.com/rom-rb/rom-rb.org/issues/70)
+This tutorial is out of date. Please <a href="https://github.com/rom-rb/rom-rb.org/issues/70">let us know</a>
 if you'd like to help with updating it.
 </div>
 
