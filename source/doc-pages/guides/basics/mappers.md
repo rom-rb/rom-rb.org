@@ -23,6 +23,12 @@ Every application needs different representations of the same data. Taking data
 from one representation and converting it into another in ROM is done by using
 mappers.
 
+Even though [Repository](/guides/basics/repositories/) supports automatic mapping
+to structs, you may face situations where a customized mapping logic can be helpful.
+
+Another great use-case for mappers is converting input into persistable form that
+matches your database schema, which works great with [commands](/guides/basics/commands).
+
 A mapper is an object that takes a relation and turns it into a domain-specific
 collection which can include objects compatible with the domain interface. It can
 return plain hashes or instantiate domain-specific models for you.
@@ -41,6 +47,15 @@ Mapping is an extremely powerful concept. It can:
 
 ROM also allows you to define mappers that can be reused for many relations, or
 combined to create a pipeline.
+
+## Installation
+
+Mappers are part of `rom-mapper` gem which core `rom` gem depends on; however,
+you can use mappers standalone, in that case simply install the gem:
+
+``` sh
+gem install rom-mapper
+```
 
 ## Basic Usage
 

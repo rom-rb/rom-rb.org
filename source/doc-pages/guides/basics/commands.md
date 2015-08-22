@@ -12,6 +12,10 @@ ROM supports three type of commands:
 
 It is possible for a given adapter to provide more types.
 
+Commands are small, well encapsulated objects, this makes it possible to compose
+them into a command graph which can persist data coming from many relations with
+a single call.
+
 ## Defining a command
 
 A command can be defined as a class that inherits from an adapter-specific class
