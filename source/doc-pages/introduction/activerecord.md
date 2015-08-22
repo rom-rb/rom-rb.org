@@ -1,9 +1,18 @@
-Many Rubyists start their journey being exposed to Rails and its favored
-object relational mapping (ORM) library, `ActiveRecord`. `ActiveRecord` is an
-implementation of the **Active Record** pattern. In this pattern, objects carry
-the data *and* the behavior that operates on that data.
+# Active Record and ROM
+
+This document explains basic differences between Active Record ORM from Rails and
+ROM.
+
+### Database Support
+
+**Active Record**: supports only SQL
+
+**ROM**: supports anything that can provide data, including SQL databases, NoSQL
+databases, CSV files, git repositories, remote HTTP APIs, anything. You can work
+with multiple databases at once and combine data in memory, if that's what you need.
 
 ### Data Access
+
 **Active Record**: Data access logic is part of the object and controls all
 reading and writing to the database. You use the same objects to create, read,
 update, and delete data. These objects are the models in traditional Rails
@@ -18,6 +27,7 @@ Imagine your `ActiveRecord` models only exposed the scopes and scope methods to
 the rest of the application. This is what ROM relations are like.
 
 ### Models
+
 **Active Record**: Models are at the heart of the pattern, and the library.
 As mentioned before, all data access is via the model. The assumption is
 that your application will only ever need a data representation that matches
@@ -29,4 +39,22 @@ All those objects that you create are nothing more than mapping. They take
 `ActiveRecord` objects and represent them in a context sensitive way.
 
 **ROM**: There is no single "model" object in ROM. ROM objects that are
-instantiated by the mappers have no knowledge about persistence.
+instantiated by the mappers have no knowledge about persistence. You can map to
+whatever structure you want and in common use-cases you can use repositories to
+automatically map query results to simple struct-like objects.
+
+### Validation
+
+**Active Record**: mixes domain-specific data validation with persistence layer.
+An active record object validates itself using its own validation rules.
+
+**ROM**: there's no validation concept built-in. Validations are handled externally
+by separate libraries and validated data can be passed down to the command layer
+to be persisted. Currently `rom-model` gem provides a standalone validation layer.
+
+### Data Coercion
+
+**Active Record**: handles coercion internally prior persisting data
+
+**ROM**: input should be coerced by an external component. Currently `rom-model`
+provides a standalone input coercion layer.
