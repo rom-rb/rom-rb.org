@@ -36,9 +36,8 @@ is backed by <mark>a dataset object</mark> provided by the adapter.
 
 ### [**Mappers**](/guides/basics/mappers)
 
-A mapper is an object that takes a tuple and turns it into a domain object. ROM
-provides a DSL to define mappers which can be integrated with 3rd-party mapping
-libraries.
+A mapper is an object that takes a relation and maps it into a different representation.
+ROM provides a DSL to define mappers or you can register your own mapper objects.
 
 ### [**Commands**](/guides/basics/commands)
 
