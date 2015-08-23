@@ -83,7 +83,9 @@ class UserAsEntity < ROM::Mapper
 end
 ```
 
-After [finalization](setup) apply the mapper on the dataset. Here we call `map_with` to apply the `UserAsEntity` mapper (registered as `entity`) on the dataset:
+After [finalization](/guides/basics/setup) apply the mapper on the
+dataset. Here we call `map_with` to apply the `UserAsEntity` mapper
+(registered as `entity`) on the dataset:
 
 ```ruby
 users.as(:entity).to_a
@@ -96,7 +98,8 @@ users.as(:entity).to_a
 users.map_with(:entity).to_a
 ```
 
-Mappers can also be used to convert tuples that are returned from ROM [commands](commands).
+Mappers can also convert tuples returned from
+[commands](/guides/basics/commands).
 
 ```ruby
 create_user = ROM.env.command(:users).create
@@ -229,7 +232,10 @@ This flexibility can simplify your domain layer quite a bit. You can design your
 
 ### Defining a Mapper
 
-Like relations, mappers to be added to ROM environment during the [setup process](setup). You're free to declare relations and mappers in any suitable order between invocations of `ROM.setup` and `ROM.finalize`.
+Like relations, mappers to be added to ROM environment during the
+[setup process](/guides/basics/setup). You're free to declare
+relations and mappers in any suitable order between invocations of
+`ROM.setup` and `ROM.finalize`.
 
 ```ruby
 setup = ROM.setup :memory
