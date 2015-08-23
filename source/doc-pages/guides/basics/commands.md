@@ -120,7 +120,7 @@ The same technique is used with update commands.
 
 ``` ruby
 # Define update command in setup, as with DeleteUser above
-class UpdateUser < ROM::Commands::Delete[:memory]
+class UpdateUser < ROM::Commands::Update[:memory]
   relation :users
   register_as :update
   result :one
