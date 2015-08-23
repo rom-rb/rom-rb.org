@@ -116,6 +116,20 @@ delete_user = rom.command(:users).delete
 delete_user.by_id(1).call
 ```
 
+The same technique is used with update commands.
+
+``` ruby
+# Define update command in setup, as with DeleteUser above
+class UpdateUser < ROM::Commands::Delete[:memory]
+  relation :users
+  register_as :update
+  result :one
+end
+
+# Update user 1, setting `foo` to `"bar"`
+rom.command(:users).update.by_id(1).call(foo: "bar")
+```
+
 ## Composing Commands
 
 Multiple commands can be composed into a pipeline using common `>>` operator:
