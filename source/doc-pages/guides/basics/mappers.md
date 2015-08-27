@@ -102,11 +102,16 @@ Mappers can also convert tuples returned from
 [commands](/guides/basics/commands).
 
 ```ruby
-create_user = ROM.env.command(:users).create
-create_user.call id: 3, name: 'jack', email: 'jack@doo.org'
+rom = ROM.env
+
+rom.command(:users).create.call(
+  id: 3, name: 'jack', email: 'jack@doo.org'
+)
 # { id: 3, name: 'jack', email: 'jack@doo.org' }
 
-create_user.as(:entity).create id: 4, name: 'joffrey', email: 'joffrey@doo.org'
+rom.command(:users).as(:entity).create(
+  id: 4, name: 'joffrey', email: 'joffrey@doo.org'
+)
 # <User @id=4, @name='jeff', @email='joffrey@doo.org'>
 ```
 
