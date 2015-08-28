@@ -1,6 +1,7 @@
 $(function() {
   var gemMap = {
     'SQL' : 'rom-sql',
+    'Cassandra' : 'rom-cassandra',
     'MongoDB' : 'rom-mongo',
     'Event Store' : 'rom-event_store',
     'Git' : 'rom-git',
