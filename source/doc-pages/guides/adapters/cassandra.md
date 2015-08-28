@@ -25,28 +25,29 @@ ROM supports [Apache Cassandra] via [rom-cassandra] adapter based on Datastax of
 
 ## Setup
 
-To setup a Cassandra gateway you can use options (if needed):
+Set a Cassandra gateway in a [ROM generic way](http://rom-rb.org/guides/basics/setup/):
 
 ```ruby
 # without options (connects to host '127.0.0.1', port 9042 by default)
 ROM.setup(:cassandra)
 
 # with inline host and port
-ROM.setup(:cassandra, 'https://127.0.0.1:9042')
+ROM.setup(:cassandra, '127.0.0.1:9042')
 
 # with detail options
-ROM.setup(:cassandra, hosts: ['127.0.0.1', '127.0.0.2'], port: 9042, user: 'admin', password: 'foobar')
+ROM.setup(:cassandra, hosts: ['127.0.0.1', '127.0.0.2'], port: 9042, username: 'admin', password: 'foobar')
 
-# multi-gateway setup
-ROM.setup(
-  default: [:cassandra, hosts: ['127.0.0.1'], port: 9042, user: 'admin', passowrd: 'foobar'],
-  other: [:cassandra, hosts: ['https://myserver.com'], port: 9042, user: 'master', password: 'barbaz']
-)
+# or their combination
+ROM.setup(:cassandra, '127.0.0.1', port: 9042, username: 'admin', password: 'foobar')
 ```
+
+The adapter uses [datastax ruby driver][ruby driver] under the hood. You can find other options [in its API documentation](http://datastax.github.io/ruby-driver/api/#methods).
 
 ## Defining Relations
 
-To define a Cassandra relation you can use the standard way of defining relations in ROM. The only specifics is that you're expected to set both keyspace and table name for the dataset in the *dot notation*:
+To define a Cassandra relation follow [the standard way of defining relations](http://rom-rb.org/guides/basics/relations/) in ROM.
+
+The only specifics is that you're expected to set both the keyspace and table name explicitly, using the *dot notation*:
 
 ```ruby
 class Users < ROM::Relation[:cassandra]
@@ -79,41 +80,15 @@ Relation methods always return other relations. You can use the following ones:
 - `limit(value)`
 - `allow_filtering`
 
-See more verbose description of those methods at the [CQL builder SELECT wiki page]. Notice in ROM, the `select(*columns)` is renamed to `get(*columns)`.
+See more verbose description of those methods at the [CQL builder SELECT wiki page][CQL builder wiki].
 
-## Combining Relations
-
-Both in Cassandra and in ROM there’s no “relationship” concept.
-
-More common way of building aggregates from relations is to combine relations. The combine interface is a standard feature available in ROM for all adapters so there’s nothing special about it in the Cassandra land:
-
-```ruby
-class Roles < ROM::Relation[:cassandra]
-  repository "authentication.roles"
-
-  def for_users(users)
-    where(user_name: users.map(&:name))
-  end
-end
-
-class UserMapper < ROM::Mapper
-  relation :users
-  register_as :user_with_roles
-
-  combine :roles, on: { name: :user_name }
-end
-
-users = rom.relation(:users)
-roles = rom.relation(:roles)
-
-users.combine(tasks).one
-```
+Notice in ROM, the `select(*columns)` is renamed to `get(*columns)`.
 
 ## Commands
 
-Cassandra commands support all features of the standard ROM command API. In addition, the Cassandra-specific Batch command is supported.
+Cassandra commands support all features of the [standard ROM command API](http://rom-rb.org/guides/basics/commands/). In addition, the Cassandra-specific **Batch** command is supported.
 
-Unlike SQL, Cassandra doesn't read data in course of writing. That's why every command returns an empty array in case of success. To check the result of writing you need to select records manually via corresponding relation.
+Unlike SQL, Cassandra doesn't read data in course of writing. That's why every command returns an empty array. To check the result of operation you need to provide select request explicitly.
 
 ### Create
 
@@ -201,9 +176,12 @@ See more verbose description of those methods at the [CQL builder DELETE wiki pa
 
 This command is Cassandra-specific, that's why it is inherited from `ROM::Cassandra::Commands::Batch` directly (there's no such abstract thing as `ROM::Commands::Batch`).
 
-You can create a batch for every existing relation (doesn't matter which one to use), add commands, and then call a batch. The whole batch is executed as a single request to the Cassandra cluster.
+The whole batch is executed as a single request to the Cassandra cluster:
+- create a batch for every existing relation (doesn't matter which one to use)
+- add necessary commands to the bach
+- call a batch.
 
-You needn't to restrict a batch by commands to the same table or keyspace. Feel free to add commands to as many various keyspaces and tables as necessary.
+You needn't to restrict a batch by commands to the same table or keyspace.
 
 ```ruby
 class Batch < ROM::Cassandra::Commands::Batch
@@ -219,7 +197,7 @@ batch.add "INSERT INTO logs.users (id, text) VALUES (1, 'Record deleted');"
 batch.call
 ```
 
-If you like OOP style, use `batch.keyspace(name)` to start the query. The previous example can be rewritten as:
+If you prefer OOP style, use `batch.keyspace(name)` to start the query. The previous example can be rewritten as:
 
 ```ruby
 # ...
@@ -228,7 +206,7 @@ batch.add batch.keyspace(:logs).table(:users).insert(id: 1, text: "Record delete
 batch.call
 ```
 
-You can also redefine `execute` method just in the same way as for other commands:
+You can also redefine `execute` method in the same way as for other commands:
 
 ```ruby
 class Batch < ROM::Cassandra::Commands::Batch
