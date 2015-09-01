@@ -87,7 +87,7 @@ helpers do
   end
 
   def nav_link(slug, title, class_names = [])
-    current = current_page.data.slug
+    current = page_slug(current_page)
 
     class_names = Array(class_names)
     class_names << 'active' if slug == current
