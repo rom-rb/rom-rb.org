@@ -516,7 +516,7 @@ users_with_roles = users.combine(roles.for_users).as(:user_with_roles).to_a
 The result of a mapping can be a model object, rather than a simple hash or array:
 
 ```ruby
-class UserMapepr < ROM::Mapper
+class UserMapper < ROM::Mapper
   model User
 end
 
@@ -546,7 +546,7 @@ users.first
 With the help of `embedded` we could apply transformations to the necessary level of nesting:
 
 ```ruby
-class UserMapepr < ROM::Mapper
+class UserMapper < ROM::Mapper
   relation :users
   register_as :users
 
@@ -595,7 +595,7 @@ users.first
 With the sequence of several `step`-s we can perform a series of complex tranformations inside one mapper:
 
 ```ruby
-class UserMapepr < ROM::Mapper
+class UserMapper < ROM::Mapper
   relation :users
   register_as :users
 
@@ -704,7 +704,7 @@ class EntityMapper < ROM::Mapper
   register_as :entity
   relation :users
 
-  class User
+  model User
 end
 
 users = ROM.finalize.env.relation(:users)
