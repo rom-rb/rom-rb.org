@@ -87,7 +87,7 @@ helpers do
   end
 
   def nav_link(slug, title, class_names = [])
-    current = current_page.data.slug
+    current = page_slug(current_page)
 
     class_names = Array(class_names)
     class_names << 'active' if slug == current
@@ -117,8 +117,12 @@ helpers do
   GEMS = config.projects
 
   def edit_article_link(title = 'Edit')
-    slug = current_page.data.slug
+    slug = page_slug(current_page)
     link_to title, DOC_PAGES_ROOT % { slug: slug }
+  end
+
+  def page_slug(current_page)
+    current_page.data.slug || "/#{current_page.metadata[:locals][:doc]}"
   end
 
   def api_docs_link(gem)
