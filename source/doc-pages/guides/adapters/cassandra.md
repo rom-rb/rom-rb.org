@@ -15,12 +15,6 @@
 
 ROM supports [Apache Cassandra] via [rom-cassandra] adapter based on Datastax official [ruby driver] and [CQL builder].
 
-- [Setup](#setup)
-- [Defining Relations](#defining-relations)
-- [Combining Relations](#combining-relations)
-- [Commands](#commands)
-- [Migrations](#migrations)
-
 *The adapter is still in beta. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom] and report issues to the [ROM project on Github].*
 
 ## Setup
@@ -98,7 +92,7 @@ class CreateUser < ROM::Commands::Create[:cassandra]
   register_as :create_user
 
   def execute(name)
-    super { insert(name: name).if_not_exists }
+    super insert(name: name).if_not_exists
   end
 end
 
@@ -124,7 +118,7 @@ class UpdateUser < ROM::Commands::Update[:cassandra]
   register_as :update_user
 
   def execute(id, name)
-    super { set(name: name).where(id: id).if_exists }
+    super set(name: name).where(id: id).if_exists
   end
 end
 
@@ -152,7 +146,7 @@ class DeleteUser < ROM::Commands::Delete[:cassandra]
   register_as :delete_user
 
   def execute(id)
-    super { where(id: id).if_exists }
+    super where(id: id).if_exists
   end
 end
 
@@ -213,11 +207,8 @@ class Batch < ROM::Cassandra::Commands::Batch
   relation :users
 
   def execute(id)
-    super {
-      self
-        .add(keyspace(:authentication).table(:users).delete.where(id: 1))
-        .add("INSERT INTO logs.users (id, text) VALUES (1, 'Record deleted');")
-    }
+    super add(keyspace(:authentication).table(:users).delete.where(id: 1))
+      .add("INSERT INTO logs.users (id, text) VALUES (1, 'Record deleted');")
   end
 end
 ```
