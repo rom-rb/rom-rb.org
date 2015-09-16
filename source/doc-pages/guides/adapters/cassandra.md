@@ -1,21 +1,8 @@
 # Cassandra Adapter
 
-[Apache Cassandra]: https://cassandra.apache.org/
-[CQL builder BATCH wiki page]: https://github.com/nepalez/query_builder/wiki/BATCH
-[CQL builder DELETE wiki page]: https://github.com/nepalez/query_builder/wiki/DELETE
-[CQL builder INSERT wiki page]: https://github.com/nepalez/query_builder/wiki/INSERT
-[CQL builder SELECT wiki page]: https://github.com/nepalez/query_builder/wiki/SELECT
-[CQL builder UPDATE wiki page]: https://github.com/nepalez/query_builder/wiki/UPDATE
-[CQL builder wiki]: https://github.com/nepalez/query_builder/wiki/Home
-[CQL builder]: https://github.com/nepalez/query_builder
-[ROM chatroom]: https://gitter.im/rom-rb/chat
-[ROM project on Github]: https://github.com/rom-rb/rom
-[rom-cassandra]: https://github.com/rom-rb/rom-cassandra
-[ruby driver]: https://github.com/datastax/ruby-driver
-
 ROM supports [Apache Cassandra] via [rom-cassandra] adapter based on Datastax official [ruby driver] and [CQL builder].
 
-*The adapter is still in beta. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom] and report issues to the [ROM project on Github].*
+*The adapter is still in beta. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom] and report issues [on github][rom-cassandra].*
 
 ## Setup
 
@@ -281,3 +268,16 @@ gateway = ROM.finalize.env.gateways[:default]
 logger = ROM::Cassandra::Migrations::Logger.new
 gateway.migrate path: "db/migrate", logger: logger, version: 20151231235959
 ```
+
+[Apache Cassandra]: https://cassandra.apache.org/
+[CQL builder BATCH wiki page]: https://github.com/nepalez/query_builder/wiki/BATCH
+[CQL builder DELETE wiki page]: https://github.com/nepalez/query_builder/wiki/DELETE
+[CQL builder INSERT wiki page]: https://github.com/nepalez/query_builder/wiki/INSERT
+[CQL builder SELECT wiki page]: https://github.com/nepalez/query_builder/wiki/SELECT
+[CQL builder UPDATE wiki page]: https://github.com/nepalez/query_builder/wiki/UPDATE
+[CQL builder wiki]: https://github.com/nepalez/query_builder/wiki/Home
+[CQL builder]: https://github.com/nepalez/query_builder
+[ROM chatroom]: https://gitter.im/rom-rb/chat
+[ROM project on Github]: https://github.com/rom-rb/rom
+[rom-cassandra]: https://github.com/rom-rb/rom-cassandra
+[ruby driver]: https://github.com/datastax/ruby-driver

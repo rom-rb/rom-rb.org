@@ -2,7 +2,7 @@
 
 ROM supports [Apache Kafka][kafka] via [rom-kafka][rom-kafka] adapter, that is built on top of the [poseidon][poseidon] ruby driver.
 
-*Before v0.0.1 the adapter is still in alpha/beta. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom][rom-gitter] and report issues to the [ROM project on Github][rom-github].*
+*Before v0.0.1 the adapter is still in alpha/beta. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom][rom-gitter] and report issues [on github][rom-kafka].*
 
 ## Intro
 
