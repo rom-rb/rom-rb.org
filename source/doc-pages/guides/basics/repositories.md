@@ -6,7 +6,7 @@ composing relations and automatically mapping them to struct objects.
 
 ## Installation
 
-Repository is a seperate gem:
+Repository is a separate gem:
 
 ```
 gem install rom-repository
