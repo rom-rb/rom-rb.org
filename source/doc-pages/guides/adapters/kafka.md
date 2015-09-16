@@ -52,7 +52,7 @@ In addition to `brokers` and `client_id` you can use the following options:
 | `:max_bytes` | `Integer` | `1_048_576` | The maximum number of bytes to fetch by consumer (1MB by default). |
 | `:max_wait_ms` | `Integer` | `100` | How long to block until the server sends data.  This is only enforced if min_bytes is > 0. |
 
-### Using a partitioner
+### Partitioner
 
 With the `:partitioner` option you can specify a procedure to define a partition by key. The procedure should take 2 arguments for key and number of partitions, and return the integer value for a partition.
 
@@ -75,6 +75,10 @@ insert = ROM.command(:items).create
 # Messages "bar" and "baz" will be added to the partition 1 ("foo".count % 2 = 1).
 insert.with(key: "foo").call "bar", "baz"
 ```
+
+### Compression
+
+To use snappy compression, install the [snappy][snappy] gem, or simply add gem 'snappy' to your project's Gemfile.
 
 ## Relations
 
@@ -284,3 +288,4 @@ Mappers can be applied to relations and commands in a [standard ROM way][rom-map
 [rom-mappers]: http://rom-rb.org/guides/basics/mappers
 [rom-relations]: http://rom-rb.org/guides/basics/relations/
 [rom-setup]: http://rom-rb.org/guides/basics/setup
+[snappy]: https://github.com/miyucy/snappy
