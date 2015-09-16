@@ -199,8 +199,9 @@ But be careful. Actual size of data being read is defined by `:max_bytes` settin
 
 For example, when you set `offset(2)`, the relation can actually fetch the chunk of 5 messages (and move the next offset correspodingly). If you continue reading, you'll miss 3 messages. That's why it is **strongly recommended** to set `offset` explicitly after using of `limit` modifier.
 
+This is unsafe (can cause missing messages):
+
 ```ruby
-# This can cause missing messages
 greetings = rom.relation(:greetings).limit(1)
 greetings.call.to_a
 # => [
@@ -208,8 +209,11 @@ greetings.call.to_a
 #    ]
 greetings.call.to_a
 # => []
+```
 
-# This is ok
+while this is pretty safe:
+
+```ruby
 greetings.limit(1).call.to_a
 # => [
 #      { value: "Hi",    topic: "greetings", key: nil, offset: 0 },
