@@ -229,7 +229,7 @@ Also notice, that every time you use modifier, the new connection is re-establis
 
 ## Commands
 
-Kafka supports the `Create` [command only][rom-commands]. Neither update, nor deletion are available, because Kafka provides log(s) of immutable messages. You can only add new messages to the log, but not to change or delete them.
+Kafka supports the `Create` [command only][rom-commands]. You can only add immutable messages to the log, but not to change or delete them.
 
 `ROM::Kafka` provides two helpers for command: `#where` and `#using`.
 
