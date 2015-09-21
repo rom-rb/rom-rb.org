@@ -76,7 +76,7 @@ class Users < ROM::Relation[:sql]
 end
 
 # here we will assign to `:other` explicitly
-class Tasks < ROM::Relation[:yaml]
+class Tasks < ROM::Relation[:csv]
   gateway :other
 end
 
