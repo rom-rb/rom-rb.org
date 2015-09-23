@@ -1,35 +1,62 @@
-Ruby Object Mapper (ROM) is a Ruby library with the goal to provide powerful object
-mapping capabilities without limiting the full power of your datastore. ROM is based
-on several concepts and decisions that differentiate it from your normal Ruby ORM:
+Ruby Object Mapper (ROM) is a Ruby persistence library with the goal to provide 
+powerful object mapping capabilities without limiting the full power of your 
+datastore. 
 
-* Provide minimum infrastructure to handle mapping and persistence
-* Provide higher-level abstractions on top of lower-level components
-* Querying the datastore is considered a private implementation detail
-* Abstract query interfaces are sources of unnecessary complexity
-* Reading and mutating data are distinct concerns
-* Simple to use the underlying datastore when desired
-* Be kind to the runtime environment
+More specifically, ROM exists to:
 
-These [core concepts](/introduction/overview) are implemented in ROM with
-[**adapters**](/introduction/adapters), [**relations**](/introduction/relations),
-[**mappers**](/introduction/mappers), and [**commands**](/introduction/commands).
+* Isolate the application from persistence details
+* Provide minimum infrastructure for mapping and persistence
+* Provide shared abstractions for lower-level components
+* Provide simple use of the underlying datastore when desired
 
-On top of those components ROM provides **[Repository](/guides/basics/repositories/)**
-interface for convenient access to your data.
+These [core features](/introduction/overview) are implemented in ROM through 
+[**Repository**](/guides/basics/repositories), which in turn uses the fundamental 
+building blocks [**adapters**](/introduction/adapters), [**relations**](/introduction/relations),
+[**mappers**](/introduction/mappers), and [**commands**](/introduction/commands). 
 
 ### Philosophy
 
-ROM is not implemented in the typical Ruby fashion. It blends various functional
-patterns with object-orientation. ROM is built with dependency-injection in mind,
-there are no public class-level interfaces in ROM except the setup interface.
-Every object in ROM is "functional" in the sense that it returns data and doesn't
-cause side-effects. Furthermore all ROM components respond to the same common
-interface, which allows powerful composition. Higher-level abstractions like
-`Repository` make great use of those lower-level, composable objects.
+* Simple is best
+* Composition is powerful
+* Apps require architectural freedom
+* Reading and writing are distinct problems
+* Decouple apps from query details
+* Abstract query interfaces only add complexity
 
-All ROM components are built to be stand-alone, they can be used independently of
-each other, are loosely coupled and follow the single responsibility principle,
-rather than having a single object that handles coercion, state, persistence,
-validation and your all-important business logic, ROM provides the infrastructure
-to allow you to easily create small dedicated classes for handling each of these
-concerns individually, and tie it all together in a simple, manageable fashion.
+ROM leverages Ruby’s linguistic strengths with a blend of Object Oriented and Functional styles. 
+Following a powerful composition pattern, every ROM object shares a common pipeline interface 
+and returns data without side-effects. It’s also built with dependency-injection in mind; there 
+are no public class-level interfaces beyond the setup interface. 
+
+All ROM components are stand-alone: they are loosely coupled, can be used independently, and 
+follow the single responsibility principle. A single object that handles coercion, state, 
+persistence, validation, and all-important business logic rapidly becomes complex. Instead, ROM 
+provides the infrastructure that allows you to easily create small, dedicated classes for handling 
+each concern individually, and then tie it together in a developer-friendly way.
+
+###ROM is not an ORM
+ROM is based on several concepts and decisions that differentiate it from commonplace Ruby ORMs. 
+The fundamental flaw behind ORMs is the idea that it could be easy to either: 
+
+1. Map objects to database tables one-to-one (the 
+[ActiveRecord](https://en.wikipedia.org/wiki/Active_record_pattern) design pattern); or
+1. Introduce a complex machinery to translate between objects and persistence structures (the 
+[DataMapper](https://en.wikipedia.org/wiki/Data_mapper_pattern) pattern)
+
+Both strategies are cumbersome. ActiveRecord writes you into a corner, limiting your application’s 
+modeling to what’s convenient for the database. ROM isn’t bound one-to-one with database tables, 
+and that enables developers to use the best persistence tool for the task at hand.
+
+DataMapper is one step better, but retains the complexity and ambiguity of managing mutable objects. 
+ROM bypasses that complexity by working statelessly. 
+
+###Inspirations, Ideas, and Friends
+Like ROM & its fundamental ideas? You should check these out, too: 
+
+* [Rich Hickey on state, immutability, and how to leverage OO principles](http://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey)
+* [Gary Bernhardt on boundaries, immutability, a clean design](https://www.youtube.com/watch?v=yTkzNHF6rMs) 
+* [Rich Hickey on the importance of simplicity for cognition](https://www.youtube.com/watch?v=rI8tNMsozo0)
+* [Robert C. Martin (“Uncle Bob”) on hexagonal architecture](https://www.youtube.com/watch?v=WpkDN78P884) 
+
+### Get Started!
+Want to try it out? Start with the [**Repository**](/guides/basics/repositories) guide!
