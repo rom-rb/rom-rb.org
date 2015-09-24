@@ -9,10 +9,14 @@ More specifically, ROM exists to:
 * Provide shared abstractions for lower-level components
 * Provide simple use of the underlying datastore when desired
 
-These [core features](/introduction/overview) are implemented in ROM through 
-[**Repository**](/guides/basics/repositories), which in turn uses the fundamental 
-building blocks [**adapters**](/introduction/adapters), [**relations**](/introduction/relations),
-[**mappers**](/introduction/mappers), and [**commands**](/introduction/commands). 
+### Get Started!
+
+Want to try it out? Start with the [**Repository**](/guides/basics/repositories) guide! Repository 
+is the simplest interface for basic operations.
+
+For a more in-depth look, read up on the fundamental building blocks 
+[**adapters**](/introduction/adapters), [**relations**](/introduction/relations),
+[**mappers**](/introduction/mappers), and [**commands**](/introduction/commands).
 
 ### Philosophy
 
