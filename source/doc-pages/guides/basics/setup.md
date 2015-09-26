@@ -49,7 +49,7 @@ you can define the components you want to use in your application.
 In example we can define a relation class for our in-memory gateway:
 
 ``` ruby
-ROM.setup(:memory)
+rom = ROM.setup(:memory)
 
 class Users < ROM::Relation[:memory]
 end
@@ -66,7 +66,7 @@ it will be used in all relations. If you setup more than one gateway you can
 assign relations to individual gateway explicitly:
 
 ``` ruby
-ROM.setup(
+rom = ROM.setup(
   default: [:sql, 'sqlite::memory'],
   other: [:csv, '/path/to/files', { encoding: 'utf-8', col_sep: ';' }]
 )
@@ -102,7 +102,7 @@ calling `ROM.finalize`:
 ``` ruby
 ROM.use :auto_registration
 
-ROM.setup(:memory)
+rom = ROM.setup(:memory)
 
 class Users < ROM::Relation[:memory]
 end
