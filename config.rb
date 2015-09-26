@@ -2,10 +2,15 @@ Encoding.default_internal = "utf-8"
 
 require 'slim'
 require 'builder'
+require 'octokit'
 
 set :site_url, 'http://rom-rb.org'
 set :page_title, 'Ruby Object Mapper'
 set :twitter_handle, '@rom_rb'
+
+set :github_org, 'rom-rb'
+set :github_client, Octokit::Client.new(client_id: ENV['GH_CLIENT_ID'],
+                                        client_secret: ENV['GH_CLIENT_SECRET'] )
 
 set :people, {
   'Don Morrison' => 'https://twitter.com/elskwid',
@@ -13,22 +18,16 @@ set :people, {
   'Mark Rickerby' => 'https://twitter.com/maetl'
 }
 
-set :projects, %w[
-  rom
-  rom-sql
-  rom-yesql
-  rom-influxdb
-  rom-event_store
-  rom-rethinkdb
-  rom-mongo
-  rom-redis
-  rom-csv
-  rom-yaml
-  rom-dm
-  rom-lotus
-  rom-rails
-  rom-roda
-]
+set :projects, github_client
+              .org_repos(github_org)
+              .select{ |r| r[:language] == "Ruby" }
+              .map { |r| r[:name] }
+
+set :contributors, projects.each_with_object({}) { |p, o|
+                    github_client
+                    .contributors(github_org + '/' + p)
+                    .map { |r| o[r[:login]] ||= []; o[r[:login]] << p }
+                   }
 
 set :markdown_engine, :redcarpet
 set :markdown, fenced_code_blocks: true,
