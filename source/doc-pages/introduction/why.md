@@ -29,7 +29,7 @@ by ROM components, gives you powerful interfaces to help dealing with complexity
 and performance issues.
 
 When using ROM you are not limited to any ORM abstraction, because ROM doesn't
-have it. Instead, you can levarage features of your database using adapter
+have it. Instead, you can leverage features of your database using adapter
 interfaces, which can also help in reducing complexity of your application.
 
 ROM focuses on *simplicity* and *removes unnecessary abstractions*. It helps you
