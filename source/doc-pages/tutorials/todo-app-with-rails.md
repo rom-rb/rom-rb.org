@@ -75,6 +75,20 @@ rom = ROM.env
 
 In a default Rails setup, the ROM environment is loaded from the standard [ActiveRecord  configuration](http://guides.rubyonrails.org/configuring.html#configuring-active-record). As long as the database specified there is supported by ROM SQL, no additional setup is necessary.
 
+#### ActiveRecord-less cases
+
+If ActiveRecord is not used, or there is no `database.yml` it's necessary to add an initializer.
+Easiest and preferable way is using a Database URL.
+
+```ruby
+# config/initializers/rom.rb
+ROM::Rails::Railtie.configure do |config|
+  config.gateways[:default] = [:sql, ENV.fetch('DATABASE_URL')]
+end
+```
+
+Example of URL - `sqlite://db/development.sqlite3` or `jdbc:sqlite://db/development.sqlite3` (in case of jRuby).
+
 ### Working with ROM objects
 
 The Rails template introduces a convention for managing objects provided by ROM alongside the familiar Rails conventions.
