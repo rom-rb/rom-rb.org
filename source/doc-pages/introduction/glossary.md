@@ -5,7 +5,7 @@ This document explains basic terms used in ROM.
 #### Relation
 
 An object that represents data in your system, implements `each` and yields
-[tuples](#Tuple).
+[tuples](#tuple).
 
 #### Mapper
 
@@ -31,7 +31,7 @@ CSV or YAML.
 #### Gateway
 
 An object that encapsulates access to a specific persistence backend. In example
-the SQL gateway provides access to database tables via its [datasets](#Dataset)
+the SQL gateway provides access to database tables via its [datasets](#dataset)
 
 #### Dataset
 
