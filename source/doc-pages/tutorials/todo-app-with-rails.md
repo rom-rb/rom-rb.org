@@ -341,7 +341,7 @@ Now we can render this partial from the index view. While we’re here, we can a
   <% tasks.each do |task| %>
     <li>
       <span><%= task[:title] %></span>
-      <span><%= status_label(task[:is_complete]) %></span>
+      <span><%= status_label(task[:is_completed]) %></span>
     </li>
   <% end %>
 </ul>
@@ -500,7 +500,7 @@ _It’s worth noting that many of the explicit steps and manual wiring demonstra
 
 ## Forms and Validation
 
-Instead of mixing together the parts of an applicaton that query data and the parts that change data, ROM’s API splits these out into separate responsibilities.
+Instead of mixing together the parts of an application that query data and the parts that change data, ROM’s API splits these out into separate responsibilities.
 
 This might be disorienting at first if you’re used to ActiveRecord. Once you grok [CQRS](http://martinfowler.com/bliki/CQRS.html), the concept makes a whole lot more sense.
 
@@ -515,7 +515,7 @@ rom.command(:tasks).create.call(title: 'finish the tutorial')
 Here’s how this command is registered and set up behind the scenes:
 
 ```ruby
-# app/commands/tasks/create.rb
+# app/commands/task_commands/create.rb
 
 module TaskCommands
   class Create < ROM::Commands::Create[:sql]
@@ -571,6 +571,8 @@ Notice that we also need to slot in references to the model and relation here, i
 In order to select and operate on individual objects, we also need to add a couple methods that access tasks by their ID:
 
 ```ruby
+# app/relations/tasks_relation.rb
+
 class TasksRelation < ROM::Relation[:sql]
   def by_id(id)
     where(id: id)
@@ -727,7 +729,7 @@ Testing ROM with Rails is fairly straightforward.
 You can run full integration tests on relations in the same way that you’d test any other data access object:
 
 ```ruby
-# spec/relations/task_spec.rb
+# spec/relations/tasks_spec.rb
 
 require 'rails_helper'
 
@@ -788,11 +790,11 @@ end
 
 In this tutorial we’ve taken a walk through a simple integration of ROM concepts into a very basic Rails application.
 
-- We got up and running quickly with an application template and a brief disucussion of the rom-rails integration.
+- We got up and running quickly with an application template and a brief discussion of the ROM-rails integration.
 - Next we displayed a list of tasks on the index page of our new application. This showed us the basics of a ROM relation.
 - A simple list of tasks wasn’t enough so we explored extending the tasks relation to give us a sorted list of tasks and use it in our views.
-- Still not satisified we realized that our array of hashes returned from relations didn’t cut it. We set up a task mapper and a value object to give us a richer representation of data.
-- All of that would be greate if we needed a read-only application. Managing tasks was next for us and there we learned about ROM commands and ROM command/query separation.
+- Still not satisfied we realized that our array of hashes returned from relations didn’t cut it. We set up a task mapper and a value object to give us a richer representation of data.
+- All of that would be great if we needed a read-only application. Managing tasks was next for us and there we learned about ROM commands and ROM command/query separation.
 - Taking the command/query separation a little further helped us understand the ROM way of handling validations and errors.
 
 We hope that what we’ve presented here helps you to better understand how ROM can be used in your Rails applications and beyond.
