@@ -297,19 +297,19 @@ end
 
 ROM mapper provides a rich DSL with a number of methods to transform the source into output domain objects. It supports:
 
-* [Filtering Attributes](mappers/filtering)
-* [Renaming Attributes](mappers/renaming)
-* [Wrapping Attributes](mappers/wrapping)
-* [Grouping Tuples](mappers/grouping)
-* [Folding Tuples](mappers/folding)
-* [Combining Tuples from Several Relations](mappers/combining)
-* [Mapping Tuples to Models](mappers/models)
-* [Embedded Attributes](mappers/embedded)
+* [Filtering Attributes](filtering)
+* [Renaming Attributes](renaming)
+* [Wrapping Attributes](wrapping)
+* [Grouping Tuples](grouping)
+* [Folding Tuples](folding)
+* [Combining Tuples from Several Relations](combining)
+* [Mapping Tuples to Models](models)
+* [Embedded Attributes](embedded)
 
 Below are some examples of the available transformations. For more details follow the corresponding link.
 
 
-#### [Filtering Attributes](mappers/filtering)
+#### [Filtering Attributes](filtering)
 
 You can either blacklist attributes:
 
@@ -341,7 +341,7 @@ users.as(:users).first
 # { id: 1, name: 'Joe' }
 ```
 
-#### [Renaming Attributes](mappers/renaming)
+#### [Renaming Attributes](renaming)
 
 Attributes can be renamed:
 
@@ -358,7 +358,7 @@ users.as(:users).first
 # { id: 1, name: 'Joe', login: 'joe@example.com' }
 ```
 
-#### [Wrapping Attributes](mappers/wrapping)
+#### [Wrapping Attributes](wrapping)
 Attributes can be nested inside a new object.
 
 ```ruby
@@ -376,7 +376,7 @@ users.as(:users).first
 # { id: 1, name: 'Joe', contacts: { email: 'joe@example.com', skype: 'joe' } }
 ```
 
-#### [Unwrapping Tuples](mappers/unwrapping)
+#### [Unwrapping Tuples](unwrapping)
 Attributes can be pulled out of a nested object:
 
 ```ruby
@@ -393,7 +393,7 @@ users.as(:users).first
 # { id: 1, name: 'Joe', email: 'joe@example.com', contacts: { skype:'joe' } }
 ```
 
-#### [Grouping Tuples](mappers/grouping)
+#### [Grouping Tuples](grouping)
 Objects can be grouped on certain attributes:
 
 ```ruby
@@ -420,7 +420,7 @@ users.as(:users).to_a
 # ]
 ```
 
-#### [Ungrouping Attributes](mappers/ungrouping)
+#### [Ungrouping Attributes](ungrouping)
 Objects can be ungrouped resulting in a flattened structure:
 
 ```ruby
@@ -447,7 +447,7 @@ users.as(:users).to_a
 # ]
 ```
 
-#### [Folding Tuples](mappers/folding)
+#### [Folding Tuples](folding)
 
 ```ruby
 class UsersMapper < ROM::Mapper
@@ -466,7 +466,7 @@ users.as(:users).to_a
 # [{ id: 1, name: 'Joe', contacts: ['joe@example.com', 'joe@doe.org'] }]
 ```
 
-#### [Unfolding Attributes](mappers/unfolding)
+#### [Unfolding Attributes](unfolding)
 Objects can be unfolded, resulting in a flattened structure:
 
 ```ruby
@@ -484,7 +484,7 @@ users.as(:users).to_a
 # ]
 ```
 
-#### [Combining Tuples from Several Relations](mappers/combining)
+#### [Combining Tuples from Several Relations](combining)
 
 ```ruby
 class Roles < ROM::Relation[:memory]
@@ -512,7 +512,7 @@ users_with_roles = users.combine(roles.for_users).as(:user_with_roles).to_a
 # [{ id: 1, name: 'Joe', roles: [{ name: 'admin' }, { name: 'manager' }] }]
 ```
 
-#### [Mapping Tuples to Models](mappers/models)
+#### [Mapping Tuples to Models](models)
 The result of a mapping can be a model object, rather than a simple hash or array:
 
 ```ruby
@@ -527,7 +527,7 @@ users.as(:users).to_a
 # [#<User @id=1, @name='Joe'>]
 ```
 
-#### [Embedded Attributes](mappers/embedded)
+#### [Embedded Attributes](embedded)
 
 Suppose we have a source with a deeply nested data to transform:
 
@@ -646,7 +646,7 @@ users.as(:users).first
 # }
 ```
 
-Look at the [corresponding subsection](mappers/sequencing) for further details.
+Look at the [corresponding subsection](sequencing) for further details.
 
 Using and Reusing Mappers
 ----------------------------
@@ -666,7 +666,7 @@ users.as(:entity).first # the record mapped to the User model
 users.map_with(:entity).first # the alternative syntax
 ```
 
-Like [relations](relations#lazy-relations), **mappers are applied lazily** which allows you to compose relations and mappers together in an arbitrary order in the data pipeline. All the following definitions do the same thing:
+Like [relations](/buides/basics/relations#lazy-relations), **mappers are applied lazily** which allows you to compose relations and mappers together in an arbitrary order in the data pipeline. All the following definitions do the same thing:
 
 ```ruby
 users.with_tasks.with_tags.as(:entity)
@@ -749,7 +749,7 @@ users.as(:second).first
 # { id: 1, name: 'Joe', email: 'joe@email.com', skype: 'joe' }
 ```
 
-Use this feature with care. There are [some edge cases you should take into account](mappers/reusing).
+Use this feature with care. There are [some edge cases you should take into account](reusing).
 
 ### Applying Mappers to Nested Data
 
@@ -780,7 +780,7 @@ rom.relation(:users).as(:nested_hash).first
 
 With this feature you can *extract* common transformations, and share them between various mappers.
 
-Use it with some care! There are [edge cases you should take into account](mappers/wrapping#applying-another-mapper).
+Use it with some care! There are [edge cases you should take into account](wrapping#applying-another-mapper).
 
 ## Custom Mappers
 
