@@ -25,7 +25,7 @@ For a more in-depth look, read up on the fundamental building blocks
 * Apps require architectural freedom
 * Reading and writing are distinct problems
 * Decouple apps from query details
-* Abstract query interfaces only add complexity
+* Universal query interfaces only add complexity
 
 ROM leverages Ruby’s linguistic strengths with a blend of Object Oriented and Functional styles. 
 Following a powerful composition pattern, every ROM object shares a common pipeline interface 
