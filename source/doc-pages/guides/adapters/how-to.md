@@ -245,10 +245,12 @@ deletes it from the `source` relation, since this is our canonical source of dat
 To implement an update command:
 
 ``` ruby
+require 'rom/commands/update'
+
 module ROM
   module ArrayAdapter
     module Commands
-      class Update < ROM::Commands::Delete
+      class Update < ROM::Commands::Update
         adapter :array
 
         def execute(attributes)
