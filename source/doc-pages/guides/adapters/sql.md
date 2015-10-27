@@ -80,6 +80,28 @@ end
 Remember that relation methods must always return other relations, you shouldn't
 return a single tuple.
 
+#### Raw SQL
+
+To use raw SQL in defining a relation or view:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  def order_by_name
+    order(Sequel.lit('name'))
+  end
+end
+```
+
+For example, you can use this approach to order by a JSON attribute in a jsonb column:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  view(:order_by_detail_key, [:key]) do |key|
+    order(Sequel.lit('detail ->> ? DESC', key))
+  end
+end
+```
+
 ## Associations
 
 In ROM there's no "relationship" concept, instead you simply use relation interface
