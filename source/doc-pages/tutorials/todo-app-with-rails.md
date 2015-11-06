@@ -403,6 +403,7 @@ With our value object defined, we can simply instruct the task mapper to use it 
 class TaskMapper < ROM::Mapper
   relation :tasks
 
+  register_as :task
   model Task
 end
 ```
@@ -415,7 +416,7 @@ By default, ROM does not implicitly trigger mappers on relations. Pass the name 
 class TasksController < ApplicationController
   def index
     render locals: {
-      tasks: tasks.index_view(params[:status]).as(:tasks)
+      tasks: tasks.index_view(params[:status]).as(:task)
     }
   end
 
