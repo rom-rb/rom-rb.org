@@ -130,7 +130,7 @@ update_command = command.update(user: user_update) do |user|
     books.by_user(user).by_id(book[:id])
   })
 
-  users.update(:books, books_update)
+  user.update(:books, books_update)
 end
 
 # call it with a nested input
