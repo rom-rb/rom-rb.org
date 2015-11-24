@@ -73,6 +73,22 @@ config.auto_registration("/path/to/components")
 container = ROM.container(config)
 ```
 
+For a quick-start you can use an in-line style setup DSL:
+
+``` ruby
+rom = ROM.container(:sql, 'postgres://localhost/rom') do |config|
+  config.use(:macros) # enable in-line component registration
+
+  config.relation(:users) do
+    def by_id(id)
+      where(id: id)
+    end
+  end
+end
+
+rom.relation(:users) # returns registered users relation object
+```
+
 ## Command API Improvements
 
 Probably the most noticable improvement/feature is the addition of the command graph DSL. The command graph was introduced in 0.9.0 and it allowed you to compose a single command that will be able to persist data coming in a nested structure, similar to `nested_attributes_for` in ActiveRecord, but more flexible.
