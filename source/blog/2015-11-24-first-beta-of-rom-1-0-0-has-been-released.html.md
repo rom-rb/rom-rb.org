@@ -96,7 +96,8 @@ Probably the most noticable improvement/feature is the addition of the command g
 This release introduces support for `update` and `delete` commands in the graph as well as a new DSL for graph definitions. Here's an example:
 
 ``` ruby
-# assuming `rom` is your rom container and you have `create` commands for :users and :books relations
+# assuming `rom` is your rom container and you have `create` commands
+# for :users and :books relations
 command = rom.command # returns command builder
 
 # define a command that will persist user data with its book data
@@ -116,7 +117,8 @@ create_command.call(
 It also supports `update` (`delete` works in the same way):
 
 ``` ruby
-# assuming `rom` is your rom container and you have `update` commands for :users and :books relations
+# assuming `rom` is your rom container and you have `update` commands
+# for :users and :books relations
 command = rom.command # returns command builder
 
 # define a command that will restrict user by its id and update it
