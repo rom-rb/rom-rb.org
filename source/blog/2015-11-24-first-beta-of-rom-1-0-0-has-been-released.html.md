@@ -122,15 +122,15 @@ It also supports `update` (`delete` works in the same way):
 command = rom.command # returns command builder
 
 # define a command that will restrict user by its id and update it
-user_update = command.restrict(:users, -> users, user { users.by_id(user[:id]) }
+user_update = command.restrict(:users) { |users, user| users.by_id(user[:id]) }
 
 update_command = command.update(user: user_update) do |user|
   # define an inner update command for books
-  books_update = user.restrict(:books, -> books, user, book {
+  books_update = user.restrict(:books) do |books, user, book|
     books.by_user(user).by_id(book[:id])
-  })
+  end
 
-  user.update(:books, books_update)
+  user.update(books: books_update)
 end
 
 # call it with a nested input
