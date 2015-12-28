@@ -22,24 +22,24 @@ above:
 ROM uses adapters to connect to different data sources (a database, a csv file -
 it doesn't matter) and exposes a native CRUD interface to its relations.
 
-### [**Repositories**](/guides/basics/repositories)
+### Repositories
 
 A repository provides a convenient interface for fetching domain-specific entities
 and value objects from a database. It's a higher-level abstraction built on top
 of relation and mapping layers.
 
-### [**Relations**](/guides/basics/relations)
+### Relations
 
 A relation is defined as a set of tuples identified by unique pairs of attributes
 and their values. In ROM it is an object that responds to `#each` which yields hashes. It
 is backed by <mark>a dataset object</mark> provided by the adapter.
 
-### [**Mappers**](/guides/basics/mappers)
+### Mappers
 
 A mapper is an object that takes a relation and maps it into a different representation.
 ROM provides a DSL to define mappers or you can register your own mapper objects.
 
-### [**Commands**](/guides/basics/commands)
+### Commands
 
 Commands in ROM are intended to safely modify data. Commands can be used to create,
 update and delete.
