@@ -54,7 +54,7 @@ rom = ROM.setup(:memory)
 class Users < ROM::Relation[:memory]
 end
 
-rom.register_relation(Users)
+ROM.register_relation(Users)
 
 ROM.finalize
 ```
@@ -80,8 +80,8 @@ class Tasks < ROM::Relation[:csv]
   gateway :other
 end
 
-rom.register_relation(Users)
-rom.register_relation(Tasks)
+ROM.register_relation(Users)
+ROM.register_relation(Tasks)
 
 ROM.finalize
 ```
