@@ -67,9 +67,9 @@ activate :directory_indexes
 doc_pages_root = "#{root}/source/doc-pages"
 
 %w(introduction guides tutorials).each do |type|
-  Dir["#{doc_pages_root}/#{type}/**/*.md"].each do |full_path|
+  Dir["#{doc_pages_root}/#{type}/**/*.{md,slim}"].each do |full_path|
     dir = File.dirname(full_path.gsub("#{doc_pages_root}/", ''))
-    name = File.basename(full_path, '.md')
+    name = File.basename(full_path).split('.').first # some files have multiple extentions
     path = "#{dir}/#{name}"
 
     proxy "#{path}.html", "doc-page.html", locals: { type: type, doc: path }, ignore: true do
