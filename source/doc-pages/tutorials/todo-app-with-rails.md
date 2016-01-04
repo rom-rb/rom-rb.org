@@ -1,7 +1,7 @@
-<div class="well">
+<aside class="well">
 This tutorial is out of date. Please <a href="https://github.com/rom-rb/rom-rb.org/issues/70">let us know</a>
 if you'd like to help with updating it.
-</div>
+</aside>
 
 # Todo App With Rails
 
@@ -16,6 +16,7 @@ The application will have the following capabilities:
 - Creating, updating and deleting tasks
 
 By the end of this tutorial, you’ll have learned the following:
+
 
 - How ROM integrates with Rails
 - How to use ROM to build basic CRUD applications

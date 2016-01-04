@@ -82,10 +82,10 @@ user.to_hash # {:id=>1, :name=>"Jane"}
 ROM repositories generate struct classes for you, so that you don't have to define
 them.
 
-<div class="well">
+<aside class="well">
 There's a planned feature with which you'll be able to provide namespaces for your
 structs, this will define struct class constants rather than using anonymous classes.
-</div>
+</aside>
 
 ## Working With Relations
 
@@ -144,10 +144,10 @@ Thanks to this feature we can be explicit about the data structures our relation
 return, this comes with the benefit of auto-mapping and better introspection
 capabilities that can be used to build even more advanced features.
 
-<div class="well">
+<aside class="well">
 The view feature will be enhanced with type annotations so that it will be possible
 to automatically map database-specific types into domain-specific types.
-</div>
+</aside>
 
 ### Base View Plugin
 
@@ -197,9 +197,9 @@ simply using relations and their views. When default behavior is not satisfactor
 you can define your own relation view, improve the query yourself and it will work
 exactly the same in terms of the internal machanics.
 
-<div class="well">
+<aside class="well">
 Notice that you can compose relations from different databases!
-</div>
+</aside>
 
 #### Auto-Combine Plugin
 
