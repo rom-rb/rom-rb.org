@@ -101,7 +101,10 @@ helpers do
     partial "layouts/#{name}", locals: { content: capture_html(&block) }
   end
 
-  DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
+  # TODO: temporarily redirect to WIP 1.0 project
+  # DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
+  DOC_PAGES_ROOT = 'https://github.com/tenjininc/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
+
   GEMS = config.projects
 
   def edit_article_link(title = 'Edit')
