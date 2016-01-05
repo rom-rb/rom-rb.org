@@ -308,15 +308,22 @@ create_users = rom.command(:users).create
 update_user = rom.command(:users).update
 delete_user = rom.command(:users).delete
 
+
 create_users.call([{ name: 'Jane' }, { name: 'John' }])
+
+puts rom.relation(:users).to_a.inspect
+# [{:name=>"Jane"}, {:name=>"John"}]
+
 
 puts rom.relation(:users).by_name('Jane').to_a.inspect
 # [{:name=>"Jane"}]
+
 
 update_user.by_name('Jane').call(name: 'Jane Doe')
 
 puts rom.relation(:users).to_a.inspect
 # [{:name=>"Jane Doe"}, {:name=>"John"}]
+
 
 delete_user.by_name('John').call
 
