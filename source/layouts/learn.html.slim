@@ -1,0 +1,27 @@
+.row
+  .col-md-3
+    ul.nav.nav-pills.nav-stacked
+      = nav_heading("/learn", "Introduction")
+      = nav_link('/learn/introduction/grounding', 'Grounding')
+      = nav_link("/learn/introduction/why", "Why ROM?")
+      = nav_link("/learn/introduction/activerecord", "Active Record and ROM")
+      = nav_heading('/learn/basics/getting_started', 'Getting Started')
+      = nav_heading('/learn/basics/setup', 'Setup')
+      = nav_heading('/learn/basics/read', 'Reading Simple Records')
+      = nav_heading('/learn/basics/write', 'Writing Simple Records')
+      = nav_heading('/learn/associations', 'Associations')
+      = nav_link('/learn/associations/one_one', 'One-To-One')
+      = nav_link('/learn/associations/one_many', 'One-To-Many')
+      = nav_link('/learn/associations/many_many', 'Many-To-Many')
+      = nav_heading('/learn/advanced', 'Advanced Topics')
+      = nav_heading("/learn/glossary", "Glossary")
+  .col-md-9
+    .page-header
+      h1 = current_page.data.title
+    .page-article
+      == content
+      .page-article-edit
+        hr
+        .share.pull-left
+        p class="pull-right"
+          | Edit this article on #{edit_article_link('GitHub')}

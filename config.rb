@@ -66,7 +66,7 @@ activate :directory_indexes
 
 doc_pages_root = "#{root}/source/doc-pages"
 
-%w(introduction guides tutorials).each do |type|
+%w(learn adapters tutorials).each do |type|
   Dir["#{doc_pages_root}/#{type}/**/*.{md,slim}"].each do |full_path|
     dir = File.dirname(full_path.gsub("#{doc_pages_root}/", ''))
     name = File.basename(full_path).split('.').first # some files have multiple extentions
@@ -95,18 +95,6 @@ helpers do
     content_tag(:li, class: class_names.join(' ')) do
       link_to(title, slug, class: class_names.join(' '))
     end
-  end
-
-  def introduction_layout(&block)
-    partial "layouts/introduction", locals: { content: capture_html(&block) }
-  end
-
-  def tutorials_layout(&block)
-    partial "layouts/tutorials", locals: { content: capture_html(&block) }
-  end
-
-  def guides_layout(&block)
-    partial "layouts/guides", locals: { content: capture_html(&block) }
   end
 
   def within_layout(name, &block)
