@@ -1,0 +1,17 @@
+.row
+  .col-md-3
+    ul.nav.nav-pills.nav-stacked
+      = nav_heading('/adapters', 'Adapters')
+      = nav_link('/adapters/adapter/sql', 'SQL')
+      = nav_link('/adapters/adapter/cassandra', 'Cassandra')
+      = nav_heading('/adapters/how-to', 'Creating An Adapter')
+  .col-md-9
+    .page-header
+      h1 = current_page.data.title
+    .page-article
+      == content
+      .page-article-edit
+        hr
+        .share.pull-left
+        p class="pull-right"
+          | Edit this article on #{edit_article_link('GitHub')}

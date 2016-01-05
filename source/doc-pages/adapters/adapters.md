@@ -1,5 +1,3 @@
-# Adapters
-
 Adapters are the basis upon which all of ROM is built. ROM uses adapters to
 connect to different data sources. These adapters expose *native* interfaces
 as internal data access concerns for other layers.
