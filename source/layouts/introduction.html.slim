@@ -2,9 +2,11 @@
   .col-md-3
     ul.nav.nav-pills.nav-stacked
       = nav_heading("/introduction", "Introduction")
+      = nav_link('/introduction/grounding', 'Grounding')
       = nav_link("/introduction/why", "Why ROM?")
       = nav_link("/introduction/activerecord", "Active Record and ROM")
-      = nav_heading("/introduction/overview", "Overview")
+      = nav_heading('/introduction/getting_started', 'Getting Started')
+      /= nav_heading('/introduction/', 'Overview')
       = nav_heading("/introduction/glossary", "Glossary")
   .col-md-9
     .page-header

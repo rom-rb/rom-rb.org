@@ -1,5 +1,10 @@
 # Setup
 
+<aside class="well">
+   Note: All guide examples are written specifically for the <code>rom-sql</code> adapter. 
+   If you are using a different one, consult that adapter's documentation too.
+</aside>
+
 In order to integrate ROM adapters and components into your app, ROM requires a setup phase.
 
 The general shape of the setup phase involves the following three steps:
