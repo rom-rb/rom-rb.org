@@ -1,128 +1,92 @@
 # Setup
 
+ROM needs a setup phase to provide a persistence environment for your entities. The end 
+result is the **container**, an object that provides access to relations and commands, and integrates 
+the two with your mappers. 
+
+Setup can be done in two styles: block form and flat form.
+For simplicity, we’ll focus on block form, but you can still learn about the flat form in the 
+[advanced topics](/learn/advanced).  
+
 <aside class="well">
-   Note: All guide examples are written specifically for the <code>rom-sql</code> adapter. 
-   If you are using a different one, consult that adapter's documentation too.
+   Note: Most guide examples are written specifically for the <code>rom-sql</code> adapter. 
+   If you are using a different one, consult that adapter's documentation as well.
 </aside>
 
-In order to integrate ROM adapters and components into your app, ROM requires a setup phase.
+##Connect to a Gateway
 
-The general shape of the setup phase involves the following three steps:
+Call `ROM#container` with the adapter symbol and configuration details for that adapter: 
 
-- Configure a [gateway](/introduction/glossary/#gateway) with adapter-specific options
-- Define the individual relation, mapper and command components
-- Finalize the environment
-
-To setup ROM you use a simple interface which supports a generic syntax for all
-adapters; however, each adapter can accept different options.
-
-Here's an example of setting up the in-memory gateway:
-
-``` ruby
-ROM.setup(:memory)
-
-# define your components
-
-ROM.finalize
-```
-
-Under the hood ROM simply passes provided argument to the corresponding `Gateway`
-constructor which is provided by the adapter. In our case it is `ROM::Memory::Gateway`.
-
-You can read more about adapter gateways in [the adapter guide](/guides/adapters).
-
-## Configuring Many Gateways
-
-You are not limited to only one gateway. If you use more than one gateway you
-can simply provide a hash with adapter configuration:
-
-``` ruby
-ROM.setup(
-  default: [:sql, 'sqlite::memory'],
-  other: [:csv, '/path/to/files', { encoding: 'utf-8', col_sep: ';' }]
-)
-```
-
-In this case ROM will register two gateway connections called `:default` and
-`:other`.
-
-## Defining components
-
-A ROM component is either a relation, command or mapper. After calling `ROM.setup`
-you can define the components you want to use in your application.
-
-In example we can define a relation class for our in-memory gateway:
-
-``` ruby
-rom = ROM.setup(:memory)
-
-class Users < ROM::Relation[:memory]
+```ruby
+# This creates a rom-sql adapter backed by SQLite in-memory database
+ROM.container(:sql, 'sqlite::memory') do |rom|
+    # define relations and commands here...
 end
 
-rom.register_relation(Users)
-
-ROM.finalize
+# ROM also comes with a very barebones in-memory adapter. 
+ROM.container(:memory, 'memory://test') do |rom|
+    # define relations and commands here...
+end
 ```
 
-## Default and Alternative Gateways
+###... Or Several
 
-If only one gateway is configured ROM will store it under `:default` name and
-it will be used in all relations. If you setup more than one gateway you can
-assign relations to individual gateway explicitly:
+Sometimes you have multiple data sources. You can provide multiple 
+[gateway](http://rom-rb.org/introduction/glossary/#gateway) configurations with a name hash. 
 
-``` ruby
-rom = ROM.setup(
-  default: [:sql, 'sqlite::memory'],
-  other: [:csv, '/path/to/files', { encoding: 'utf-8', col_sep: ';' }]
-)
-
-# here `:default` is used
-class Users < ROM::Relation[:sql]
+```ruby
+# Example: an old mysql database, “tasks”, and a new database “task_master”
+# This registers two rom-sql adapters and then labels postgres with “default” and mysql with “legacy”
+ROM.container(
+  default: [:sql, 'postgres://localhost/task_master'], # gateway 1
+  legacy: [:sql, 'mysql2://localhost/tasks']           # gateway 2 
+) do |rom|
+    # setup code goes here...
 end
-
-# here we will assign to `:other` explicitly
-class Tasks < ROM::Relation[:csv]
-  gateway :other
-end
-
-rom.register_relation(Users)
-rom.register_relation(Tasks)
-
-ROM.finalize
 ```
 
-## Container
+If there is only one adapter provided, then its label is assumed to be `:default`:
 
-During finalization process ROM instantiates all components based on your class
-definitions. Those objects are stored in a registry called ROM container.
+```ruby
+# This setup call...
+ROM.container(:sql, 'sqlite::memory')
 
-The container provides *top-level interface for accessing all components*.
-
-Currently to simplify integration with frameworks like Rails ROM, by default,
-stores finalized container in a globally accessible `ROM.env`.
-
-In example if we defined a relation and a command we can simply access them after
-calling `ROM.finalize`:
-
-``` ruby
-ROM.use :auto_registration
-
-rom = ROM.setup(:memory)
-
-class Users < ROM::Relation[:memory]
-end
-
-class CreateUser < ROM::Commands::Create[:memory]
-  relation :users
-  register_as :create
-  result :one
-end
-
-rom = ROM.finalize.env
-
-# access users relation
-rom.relation(:users)
-
-# access user command object
-rom.command(:users)[:create]
+# is equivalent to this one:
+ROM.container(default: [:sql, 'sqlite::memory'])
 ```
+
+##Access the Environment Container
+`ROM.container` always returns the finalized environment container, which can then be 
+injected into your domain logic as a dependency.
+
+```ruby
+rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
+    # define relations and commands here...
+end
+
+# now pass it to your app and rejoice!
+MyApp.run(rom_container)
+```
+
+<aside class="well">
+  <p>ActiveRecord and DataMapper provide a global access to data, but this is considered a bad practice in 
+  modern standards.</p>
+  <p>Injecting the container keeps your app free from persistence details and more flexible for testing.</p>
+</aside>
+
+##Plugins
+Both block and flat style support calling `use` on the `ROM::Configuration` object to activate plugins for 
+that configuration. 
+
+Currently, the only bundled plugin is `:macros`, which provides the DSL for specifying your relations, 
+commands, and mappers. 
+
+```ruby
+ROM.container(:sql, 'sqlite::memory') do |rom|
+   rom.use :macros 
+end
+```
+
+
+#Next
+Learn [how to read](/learn/basics/read) by defining Repositories and Relations
