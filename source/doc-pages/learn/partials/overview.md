@@ -2,15 +2,23 @@ ROM encourages a clear separation between your application domain and the data
 access layer. This is more than just hiding access behind methods. Your
 application is not coupled to the details of data retrieval or manipulation.
 
-The figure below represents how data flows through an application using ROM:
-
-The data flows from the <mark>datastore</mark>, through the
-<mark>adapter</mark>, to be accessed by <mark>relations</mark>, and then
-optionally mapped to domain objects by <mark>mappers</mark>. Modifying data
-requires the use of <mark>commands</mark> that use the <mark>adapter</mark>
-to persist changes.
+The figure below represents the data flow through an application using ROM:
 
 <img src="/images/rom-design-overview.png"/>
+
+**Reading**
+
+1. Your application requests data from a <mark>Relation</mark> (or its easier cousin <mark>Repository</mark>)
+1. Data is read from the <mark>Datastore</mark> using the <mark>Adapter</mark>
+1. The result is returned to your application
+   * It can also optionally be mapped to domain objects using <mark>Mappers</mark>
+   
+**Writing**
+
+1. Your application calls a <mark>Command</mark> to perform a Create, Update, Delete, or custom operation
+1. The command runs using its underlying Relation and Adapter to modify the datastore 
+1. The result is returned to your application
+
 
 #### [**Adapters**](/introduction/adapters)
 
@@ -37,7 +45,7 @@ ROM provides a DSL to define mappers or you can register your own mapper objects
 #### Commands
 
 Commands in ROM are intended to safely modify data. Commands can be used to create,
-update and delete.
+update and delete. They are usually provided by the adapter, but you may define your own. 
 
 ##Next
 Continue on to read about [Setup](/guides/basics/setup)
