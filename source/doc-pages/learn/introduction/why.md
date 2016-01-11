@@ -5,27 +5,27 @@ object relational mapping (ORM) library, `Active Record`. `Active Record` is an
 implementation of the **Active Record** pattern. In this pattern, objects carry
 the data *and* the behavior that operates on that data.
 
-`Active Record` pattern has been widely adopted by the ruby community, mostly due
+The `Active Record` pattern has been widely adopted by the Ruby community, mostly due
 to the success of Rails; however, it's a pattern with well known shortcomings. In
-complex applications `Active Record` is no longer a good choice as it tightly
-couples your application domain layer with the underlaying database. It's
+complex applications, `Active Record` is no longer a good choice as it tightly
+couples your application's domain layer with the underlying database. It's
 especially problematic in Rails where its `ActiveRecord` ORM provides a gigantic
 interface to handle many different concerns. As a result, many Rails applications
-have been suffering from rapidly increasing complexity, caused by internal
-coupling and lack of clean domain layer, to a point where *maintaining and growing
-an application becomes very difficult*.
+suffer from rapidly increasing complexity, caused by internal coupling and lack
+of a clean domain layer, to a point where *maintaining and growing an application
+becomes very difficult*.
 
 The *benefit* of using `Active Record`, which speeds up initial development and
 lowers the costs during early stages of a project, quickly *becomes irrelevant*
 once complexity of the application grows and adding new features and fixing bugs
 takes more time than it should.
 
-ROM provides an alternative way to handling persistence and related concerns. It
+ROM provides an alternative way of handling persistence and related concerns. It
 can be used as effectively, in terms of fast development, as Active Record, with
 the great benefit of being able to adjust your design to the growing complexity
-of your application. *Lack of coupling* between your application *domain layer* and
-the underlaying databases simplifies your code and *the persistence layer*, handled
-by ROM components, gives you powerful interfaces to help dealing with complexity
+of your application. *Lack of coupling* between your application's *domain layer* and
+the underlying databases simplifies your code and *the persistence layer*, handled
+by ROM components, gives you powerful interfaces to help deal with complexity
 and performance issues.
 
 When using ROM you are not limited to any ORM abstraction, because ROM doesn't
@@ -43,7 +43,7 @@ flexibility is of primary concern to ROM.
 
 ### Powerful
 
-ROM makes it easy to work with different datasources. A minimum structure is
+ROM makes it easy to work with different data sources. A minimum structure is
 provided with more adapters being created every day. The primary adapter,
 [`rom-sql`](https://github.com/rom-rb/rom-sql), is built on the battle-tested
 [`Sequel`](https://github.com/jeremyevans/sequel) library which is stable and
