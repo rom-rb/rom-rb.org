@@ -15,3 +15,18 @@ configuration.relation(:users)
 When you’re finished configuring, pass the configuration object to `ROM.container` to generate the finalized 
 container. There are no differences in the internal semantics between block-style and flat-style setup.
 
+
+## Explicit Relations
+Sometimes you need to define relations directly, instead of relying on the adapter inferring it. 
+ 
+ Block Style
+ ```ruby
+ rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
+     rom.relation(:users)
+ end
+ ```
+ 
+ Flat Style
+ ```ruby
+ 
+ ```
