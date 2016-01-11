@@ -48,4 +48,4 @@ Commands in ROM are intended to safely modify data. Commands can be used to crea
 update and delete. They are usually provided by the adapter, but you may define your own. 
 
 ##Next
-Continue on to read about [Setup](/guides/basics/setup)
+Continue on to read about [Setup](/learn/basics/setup)
