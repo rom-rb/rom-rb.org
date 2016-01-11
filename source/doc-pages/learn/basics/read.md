@@ -18,9 +18,9 @@ require 'rom-repository'
 rom_container = ROM.container(:sql, 'sqlite::memory') 
 
 class MyRepository < ROM::Repository::Base
-    relations :users
-
-    # ... selector methods will go here. We'll discuss those later
+   relations :users
+   
+   # ... selector methods will go here. We'll discuss those later
 end
 
 user_repo = MyRepository.new(rom_container)
@@ -38,16 +38,16 @@ rom_container = ROM.container(:sql, 'sqlite::memory')
 
 # Perhaps one Repo to handle users and related authentication relations
 class UsersRepository < ROM::Repository::Base
-  relations :users
-
-  # ... [users-related selector methods go here]
+   relations :users
+   
+   # ... [users-related selector methods go here]
 end
 
 # Another repository could handle the projects and related concepts
 class ProjectRepository < ROM::Repository::Base
-  relations :projects
-
-  # ... [project-related selector methods go here]
+   relations :projects
+   
+   # ... [project-related selector methods go here]
 end
 
 user_repo = UserRepository.new(rom_container)
@@ -66,18 +66,18 @@ They use the querying methods provided by the adapter to accomplish their task. 
 
 ```ruby
 class MyRepository  
-    # declaring :users here makes the #users method available
-    relations :users
-
-    # find all users with the given attributes
-    def users_with(attributes_hash)
-        users.where(attributes_hash)
-    end
-    
-    # collect  a list of all user ids
-    def user_id_list
-        users.to_a.collect {|user| user[:id]}
-    end
+   # declaring :users here makes the #users method available
+   relations :users
+   
+   # find all users with the given attributes
+   def users_with(attributes_hash)
+      users.where(attributes_hash)
+   end
+   
+   # collect  a list of all user ids
+   def user_id_list
+      users.to_a.collect {|user| user[:id]}
+   end
 end
 ```
 
@@ -112,23 +112,24 @@ This short example demonstrates using selector methods, #one, and #to_a.
 require 'rom-repository'
 
 rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-    rom.relation(:users)
+   rom.use :macros
+
+   rom.relation(:users)
 end
 
 class MyRepository < ROM::Repository::Base
-    relations :users # this makes the #users method available
+   relations :users # this makes the #users method available
 
-
-    # selector methods
-    def users_with(params)
-        users.where(params).to_a
-    end
-
-    def user_by_id(id)
-        users.where(id: id).one!
-    end 
-
-    # ... etc
+   # selector methods
+   def users_with(params)
+      users.where(params).to_a
+   end
+   
+   def user_by_id(id)
+      users.where(id: id).one!
+   end 
+   
+   # ... etc
 end
 
 MyApp.run(rom_container, MyRepository.new(rom_container))
@@ -137,6 +138,8 @@ MyApp.run(rom_container, MyRepository.new(rom_container))
 And then in our app we can use the selector methods:
 
 ```ruby
+# assuming that there is already data present
+
 repository.users_with(first_name: 'Malcolm', last_name: 'Reynolds')
 #=> [ROM::Struct[User] , ROM::Struct[User], ...]
 
