@@ -2,18 +2,17 @@
 
 ##Relations
 Relations are the basis for reading data. Many adapters, like the popular `rom-sql` will examine your datastore and 
-automatically define a default relation for you. Hooray!
+automatically infer default relations for you. Hooray!
 
 Once your application matures, you'll likely need to define relations directly. See the [advanced guide](/learn/advanced) for more. 
 
 ##Repositories
-A Repository ("Repo") object provides a lot of conveniences for reading data with ROM’s fundamental building block of 
-relations.
+A Repository ("Repo") object provides a lot of conveniences for reading data with relations.
 
-You need to explicitly declare which `relations` it manages:
+You need to explicitly declare which `relations` it needs access to:
 
 ```ruby
-require rom-repository
+require 'rom-repository'
 
 # Assuming a database with table 'users'
 rom_container = ROM.container(:sql, 'sqlite::memory') 
@@ -105,12 +104,12 @@ users.one!
 users.to_a
 ```
 
-##Example
+##Full Example
 This short example demonstrates using selector methods, #one, and #to_a.
 
 
 ```ruby
-require rom-repository
+require 'rom-repository'
 
 rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
     rom.relation(:users)
