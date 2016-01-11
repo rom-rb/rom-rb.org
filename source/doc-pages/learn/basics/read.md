@@ -88,3 +88,58 @@ Read your adapter's documentation to see the full listing of its Relation method
 These are just simple reads. See the <a href="/learn/associations">Associations</a> section to see how to construct multi-relation selector methods.
  </aside>
 
+
+####Single Results vs Many Results
+Every relation is lazy loading and most methods return another relation. To enact the relation query and get actual data, use `#one`, `#one!`, or `#to_a`. 
+
+```ruby 
+# Produces a single tuple. 
+# Raises an error if there are 0 results
+users.one
+
+# Produces a single tuple. 
+# Raises an error if there are 0 results or more than one
+users.one!
+
+# Produces an array of tuples, possibly empty. 
+users.to_a
+```
+
+##Example
+This short example demonstrates using selector methods, #one, and #to_a.
+
+
+```ruby
+require rom-repository
+
+rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
+    rom.relation(:users)
+end
+
+class MyRepository < ROM::Repository::Base
+    relations :users # this makes the #users method available
+
+
+    # selector methods
+    def users_with(params)
+        users.where(params).to_a
+    end
+
+    def user_by_id(id)
+        users.where(id: id).one!
+    end 
+
+    # ... etc
+end
+```
+
+And then in our app we can use the selector methods:
+
+```ruby
+repository.users_with(first_name: 'Malcolm', last_name: 'Reynolds')
+#=> [ROM::Struct[User] , ROM::Struct[User], ...]
+
+repository.user_by_id(1)
+#=> ROM::Struct[User]
+```
+
