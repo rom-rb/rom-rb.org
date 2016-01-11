@@ -19,14 +19,14 @@ container. There are no differences in the internal semantics between block-styl
 ## Explicit Relations
 Sometimes you need to define relations directly, instead of relying on the adapter inferring it. 
  
- Block Style
- ```ruby
- rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-     rom.relation(:users)
- end
- ```
+Block Style
+```ruby
+rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
+ rom.relation(:users)
+end
+```
  
- Flat Style
- ```ruby
- 
- ```
+Flat Style
+```ruby
+
+```

@@ -7,7 +7,7 @@ automatically define a default relation for you. Hooray!
 Once your application matures, you'll likely need to define relations directly. See the [advanced guide](/learn/advanced) for more. 
 
 ##Repositories
-A Repository object provides a lot of conveniences for reading data with ROM’s fundamental building block of 
+A Repository ("Repo") object provides a lot of conveniences for reading data with ROM’s fundamental building block of 
 relations.
 
 You need to explicitly declare which `relations` it manages:
@@ -34,7 +34,10 @@ Depending on how complex your application becomes, you may want to create separa
 subdivide duties.
  
 ```ruby
-# Perhaps one to handle users and related authentication relations
+# Assuming a database with tables 'users' and 'projects'
+rom_container = ROM.container(:sql, 'sqlite::memory') 
+
+# Perhaps one Repo to handle users and related authentication relations
 class UsersRepository < ROM::Repository::Base
   relations :users
 
@@ -55,4 +58,33 @@ project_repo = ProjectRepository.new(rom_container)
 MyApp.run(user_repo, project_repo)
 ```
 
+###Selector Methods
+While defining a Repository, you will also define its methods for domain-specific queries. These are called 
+**selector methods**.
+
+They use the querying methods provided by the adapter to accomplish their task. For example, the 
+`rom-sql` adapter provides methods like `Relation#where`.
+
+```ruby
+class MyRepository  
+    # declaring :users here makes the #users method available
+    relations :users
+
+    # find all users with the given attributes
+    def users_with(attributes_hash)
+        users.where(attributes_hash)
+    end
+    
+    # collect  a list of all user ids
+    def user_id_list
+        users.to_a.collect {|user| user[:id]}
+    end
+end
+```
+
+Read your adapter's documentation to see the full listing of its Relation methods. 
+
+<aside class="well">
+These are just simple reads. See the <a href="/learn/associations">Associations</a> section to see how to construct multi-relation selector methods.
+ </aside>
 
