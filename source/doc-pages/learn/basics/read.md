@@ -130,6 +130,8 @@ class MyRepository < ROM::Repository::Base
 
     # ... etc
 end
+
+MyApp.run(rom_container, MyRepository.new(rom_container))
 ```
 
 And then in our app we can use the selector methods:
