@@ -26,3 +26,20 @@ tasks = rom_container.relation(:tasks)
 # combine two relations into one
 users.by_name('Jane').combine(tasks.for_users)
 ```
+
+
+This is made possible by the auto-currying feature. 
+
+##Auto-Curry
+Every relation method that you defined supports auto-curry syntax. *Currying* means that you can reference a Relation 
+and provide method arguments later:
+
+```ruby
+users_by_name = rom.relation(:users).by_name
+
+# call later on using short `[]` syntax
+users_by_name['Jane']
+
+# or more explicitly
+users_by_name.call('Jane')
+```
