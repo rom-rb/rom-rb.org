@@ -14,7 +14,7 @@ rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
    rom.relation(:users)
    
    rom.relation(:tasks) do
-      data
+      dataset :tickets      # overriding the default dataset to link the relation to a table of a different name 
    end
 end
 ```

@@ -1,3 +1,3 @@
 # Advanced Topics
 
-Index
+* [Flat Style](/learn/advanced/flat_style)
