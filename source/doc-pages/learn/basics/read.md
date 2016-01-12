@@ -1,15 +1,30 @@
 #Reading Simple Records
 
 ##Relations
-Relations are the basis for reading data. Many adapters, like the popular `rom-sql` will examine your datastore and 
-automatically infer default relations for you. Hooray!
+Relations are the basis for reading data. Many adapters, like the popular `rom-sql` support
+automatically inferring default relations from your datastore schema. Hooray!
 
-Once your application matures, you'll likely need to define relations directly. See the [advanced guide](/learn/advanced) for more. 
+If your chosen adapter doesn't support relation inference, or you want to override the default, 
+just call `Configuration#relation`. 
+
+```ruby
+rom_container = ROM.container(:sql, 'sqlite::memory') do |rom| 
+   rom.use :macros
+
+   rom.relation(:users)
+   
+   rom.relation(:tasks) do
+      data
+   end
+end
+```
+
+Most of the time, though, you'll do reading though a *Repository*. 
 
 ##Repositories
 A Repository ("Repo") object provides a lot of conveniences for reading data with relations.
 
-You need to explicitly declare which `relations` it needs access to:
+You need to explicitly declare which `relations` it can access:
 
 ```ruby
 require 'rom-repository'
@@ -84,12 +99,14 @@ end
 Read your adapter's documentation to see the full listing of its Relation methods. 
 
 <aside class="well">
-These are just simple reads. See the <a href="/learn/associations">Associations</a> section to see how to construct multi-relation selector methods.
+These are just simple reads. See the <a href="/learn/associations">Associations</a> section to see how to 
+construct multi-relation selector methods using joins.
  </aside>
 
 
 ####Single Results vs Many Results
-Every relation is lazy loading and most methods return another relation. To enact the relation query and get actual data, use `#one`, `#one!`, or `#to_a`. 
+Every relation is lazy loading and most methods return another relation. To enact the relation query and get actual 
+data, use `#one`, `#one!`, or `#to_a`. 
 
 ```ruby 
 # Produces a single tuple. 

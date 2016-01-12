@@ -82,7 +82,8 @@ Currently, the only bundled plugin is `:macros`, which provides the DSL for spec
 commands, and mappers. 
 
 ```ruby
-ROM.container(:sql, 'sqlite::memory') do |rom|
+ROM.container(:sql, 'sqlite::memory') do |rom| 
+   # rom is a ROM::Configuration
    rom.use :macros 
 end
 ```
