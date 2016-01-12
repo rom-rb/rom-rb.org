@@ -1,4 +1,4 @@
-#Advanced Setup - Flat Style
+#Advanced - Flat Style
 Block style doesn’t suit all use cases, so you can also break it down into many separate parts in **flat style**. 
 
 ## Setup
