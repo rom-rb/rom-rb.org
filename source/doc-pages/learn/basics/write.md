@@ -73,6 +73,19 @@ new_users = [
 create_user.call(new_users) # saves the users
 ```
 
+Commands are backed by a relation, which you can use to specify which records to Update or Delete. 
+
+```ruby
+# operate on a single result 
+rom_container.command(:users).delete.by_id(2).call()
+
+# or many
+rom_container.command(:users).delete.matching_attributes(first_name: 'Lawrence').call()
+
+# update is the same, and takes the new data as a parameter to #call 
+rom_container.command(:users).update.by_id(7).call(first_name: 'Kaylee', last_name: 'Frye')
+```
+
 <aside class="well">
 These are just simple writes. See the <a href="/learn/associations">Associations</a> section to see how to write nested 
 models. 
