@@ -113,12 +113,12 @@ Every relation is lazy loading and most methods return another relation. To
 materialize the relation and get actual data, use `#one`, `#one!`, or `#to_a`.
 
 ```ruby
-# Produces a single tuple.
-# Raises an error if there are 0 results
+# Produces a single tuple or nil if none found.
+# Raises an error if there are more than one.
 users.one
 
 # Produces a single tuple.
-# Raises an error if there are 0 results or more than one
+# Raises an error if there are 0 results or more than one.
 users.one!
 
 # Produces an array of tuples, possibly empty.
