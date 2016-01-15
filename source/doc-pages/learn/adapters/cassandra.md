@@ -6,7 +6,7 @@ ROM supports [Apache Cassandra] via [rom-cassandra] adapter based on Datastax of
 
 ## Setup
 
-Set a Cassandra gateway in a [ROM generic way](http://rom-rb.org/guides/basics/setup/):
+Set a Cassandra gateway in a [ROM generic way](http://rom-rb.org/learn/setup/):
 
 ```ruby
 # without options (connects to host '127.0.0.1', port 9042 by default)
@@ -26,7 +26,7 @@ The adapter uses [datastax ruby driver][ruby driver] under the hood. You can fin
 
 ## Defining Relations
 
-To define a Cassandra relation follow [the standard way of defining relations](http://rom-rb.org/guides/basics/relations/) in ROM.
+To define a Cassandra relation follow [the standard way of defining relations](http://rom-rb.org/learn/read/simple/) in ROM.
 
 The only specifics is that you're expected to set both the keyspace and table name explicitly, using the *dot notation*:
 
