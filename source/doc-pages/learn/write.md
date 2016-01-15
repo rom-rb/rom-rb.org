@@ -1,4 +1,4 @@
-# Writing Simple Records
+# Writing
 
 <aside class="well">
   Docs are pending while we're working on command support for rom-repository
