@@ -25,7 +25,7 @@ end
 ###... Or Several
 
 Sometimes you have multiple data sources. You can provide multiple
-[gateway](http://rom-rb.org/introduction/glossary/#gateway) configurations with a name hash.
+[gateway](http://rom-rb.org/learn/glossary/#gateway) configurations with a name hash.
 
 ```ruby
 # Example: an old mysql database, “tasks”, and a new database “task_master”
@@ -83,4 +83,4 @@ end
 
 
 #Next
-Learn [how to read](/learn/basics/read) by defining Repositories and Relations
+Learn [how to read](/learn/read) by defining Repositories and Relations
