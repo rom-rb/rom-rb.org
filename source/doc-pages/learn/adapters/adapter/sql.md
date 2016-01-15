@@ -6,23 +6,12 @@ sql-specific query DSL and association macros that simplify constructing joins.
 
 ## Setup
 
-To setup an SQL gateway you can use a database URL and options (if needed):
+Refer to the general [setup](/learn/setup) for information how to setup rom with
+a specific adapter.
 
-``` ruby
-# without options
-ROM.setup(:sql, 'sqlite:///path/to/db.sqlite')
+## Supported SQL Databases
 
-# with options
-ROM.setup(:sql, 'postgres://localhost/rom', encoding: 'unicode')
-
-# multi-gateway setup
-ROM.setup(
-  default: [:sql, 'postgres://localhost/default'],
-  other: [:sql, 'mysql://localhost/other']
-)
-```
-
-Following schemes are supported:
+Following connection URI schemes are supported:
 
 - ado
 - amalgalite
@@ -100,8 +89,8 @@ class Users < ROM::Relation[:sql]
   end
 end
 
-rom.relation(:users).with_tasks
-rom.relation(:users).with_posts
+rom.relations[:users].with_tasks
+rom.relations[:users].with_posts
 ```
 
 ### Qualifying And Renaming Attributes
@@ -177,7 +166,7 @@ class UserMapper < ROM::Mapper
   end
 end
 
-rom.relation(:users).as(:user_with_tasks).with_tasks.one
+rom.relations[:users].as(:user_with_tasks).with_tasks.one
 ```
 
 This technique is brittle as it requires careful selection of the attributes and
@@ -215,6 +204,11 @@ tasks = rom.relation(:tasks)
 
 users.combine(tasks).one
 ```
+
+<aside class="well">
+It is recommended to user rom-repository with its auto-mapping capabilities instead
+of defining complex mappers.
+</aside>
 
 ## Commands
 

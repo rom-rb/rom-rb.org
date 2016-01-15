@@ -1,4 +1,4 @@
-### Philosophy
+# Philosophy
 
 * Simple is best
 * Composition is powerful

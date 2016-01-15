@@ -8,7 +8,7 @@ Depending on your environment, you may want to use different setup strategies:
 
 * [Block Style](/learn/setup/block-style) - suitable for small scripts
 * [Rails](/learn/setup/rails) - setup integrated with Rails
-* [Flat Style](/learn/advanced/flat_style) - suitable for custom environments (advanced usage)
+* [Flat Style](/learn/advanced/flat-style) - suitable for custom environments (advanced usage)
 
 <aside class="well">
    Note: Most guide examples are written specifically for the <code>rom-sql</code> adapter.

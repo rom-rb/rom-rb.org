@@ -107,7 +107,7 @@ ROM.register_adapter(:array, ROM::ArrayAdapter)
 This is it! Now our array adapter can be setup using ROM:
 
 ``` ruby
-ROM.setup(:array)
+configuration= ROM::Configuration.new(:array)
 
 class Users < ROM::Relation[:array]
   def by_name(name)
@@ -115,14 +115,16 @@ class Users < ROM::Relation[:array]
   end
 end
 
-rom = ROM.finalize.env
+configuration.register_relation(Users)
+
+rom = ROM.create_container(configuration)
 
 users = rom.gateways[:default].dataset(:users)
 
 users << { name: 'Jane' }
 users << { name: 'John' }
 
-rom.relation(:users).by_name('Jane').to_a
+rom.relations[:users].by_name('Jane').to_a
 # [{:name=>"Jane"}]
 ```
 
@@ -277,7 +279,7 @@ Once your command classes are defined ROM will pick them up from your namespace
 and they will be available during setup:
 
 ``` ruby
-ROM.setup(:array)
+configuration = ROM::Configuration.new(:array)
 
 class Users < ROM::Relation[:array]
   def by_name(name)
@@ -302,31 +304,36 @@ class DeleteUser < ROM::Commands::Delete[:array]
   register_as :delete
 end
 
-rom = ROM.finalize.env
+configuration.register_relation(Users)
 
-create_users = rom.command(:users).create
-update_user = rom.command(:users).update
-delete_user = rom.command(:users).delete
+configuration.register_command(CreateUser)
+configuration.register_command(UpdateUser)
+configuration.register_command(DeleteUser)
 
+rom = ROM.create_container(configuration)
+
+create_users = rom.commands[:users][:create]
+update_user = rom.commands[:users][:update]
+delete_user = rom.commands[:users][:delete]
 
 create_users.call([{ name: 'Jane' }, { name: 'John' }])
 
-puts rom.relation(:users).to_a.inspect
+puts rom.relations[:users].to_a.inspect
 # [{:name=>"Jane"}, {:name=>"John"}]
 
 
-puts rom.relation(:users).by_name('Jane').to_a.inspect
+puts rom.relations[:users].by_name('Jane').to_a.inspect
 # [{:name=>"Jane"}]
 
 
 update_user.by_name('Jane').call(name: 'Jane Doe')
 
-puts rom.relation(:users).to_a.inspect
+puts rom.relations[:users].to_a.inspect
 # [{:name=>"Jane Doe"}, {:name=>"John"}]
 
 
 delete_user.by_name('John').call
 
-puts rom.relation(:users).to_a.inspect
+puts rom.relations[:users].to_a.inspect
 # [{:name=>"Jane Doe"}]
 ```
