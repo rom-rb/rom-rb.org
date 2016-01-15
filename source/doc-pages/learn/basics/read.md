@@ -36,9 +36,9 @@ require 'rom-repository'
 rom_container = ROM.container(:sql, 'sqlite::memory')
 
 class MyRepository < ROM::Repository::Base
-   relations :users
+  relations :users
 
-   # ... selector methods will go here. We'll discuss those later
+  # ... selector methods will go here. We'll discuss those later
 end
 
 user_repo = MyRepository.new(rom_container)
@@ -56,16 +56,16 @@ rom_container = ROM.container(:sql, 'sqlite::memory')
 
 # Perhaps one Repo to handle users and related authentication relations
 class UsersRepository < ROM::Repository::Base
-   relations :users
+  relations :users
 
-   # ... [users-related selector methods go here]
+  # ... [users-related selector methods go here]
 end
 
 # Another repository could handle the projects and related concepts
 class ProjectRepository < ROM::Repository::Base
-   relations :projects
+  relations :projects
 
-   # ... [project-related selector methods go here]
+  # ... [project-related selector methods go here]
 end
 
 user_repo = UserRepository.new(rom_container)
@@ -133,24 +133,24 @@ This short example demonstrates using selector methods, #one, and #to_a.
 require 'rom-repository'
 
 rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-   rom.use :macros
+  rom.use :macros
 
-   rom.relation(:users)
+  rom.relation(:users)
 end
 
 class MyRepository < ROM::Repository::Base
-   relations :users # this makes the #users method available
+  relations :users # this makes the #users method available
 
-   # selector methods
-   def users_with(params)
-      users.where(params).to_a
-   end
+  # selector methods
+  def users_with(params)
+     users.where(params).to_a
+  end
 
-   def user_by_id(id)
-      users.where(id: id).one!
-   end
+  def user_by_id(id)
+     users.where(id: id).one!
+  end
 
-   # ... etc
+  # ... etc
 end
 
 MyApp.run(rom_container, MyRepository.new(rom_container))
@@ -191,9 +191,9 @@ require 'dry-data'
 require 'rom-repository'
 
 rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-   rom.use :macros
+  rom.use :macros
 
-   rom.relation(:locations)
+  rom.relation(:locations)
 end
 
 class Location < Dry::Data::Value
@@ -202,11 +202,11 @@ class Location < Dry::Data::Value
 end
 
 class MyRepository < ROM::Repository::Base
-   relations :locations
+  relations :locations
 
-   def all_locations
-     locations.select(:lat, :lng).as(Location).to_a
-   end
+  def all_locations
+    locations.select(:lat, :lng).as(Location).to_a
+  end
 end
 
 repo = MyRepository.new(rom_container)
