@@ -167,3 +167,49 @@ repository.users_with(first_name: 'Malcolm', last_name: 'Reynolds')
 repository.user_by_id(1)
 #=> ROM::Struct[User]
 ```
+
+## Mapping To Custom Objects
+
+Repositories can map relations to your custom objects. As a general best-practice
+every public repository method should return materialized, domain objects.
+
+<aside class="well">
+You can use any object type where constructor accepts a hash with attributes.
+</aside>
+
+### Using With dry-data
+
+[dry-data](https://github.com/dryrb/dry-data) provides interfaces for defining
+structs and values. These object types are suitable to use with repositories, as
+they can easily build simple objects or complex aggregates and support custom
+types for individual attribute values, too.
+
+Here's a simple example how to define a location value:
+
+``` ruby
+require 'dry-data'
+require 'rom-repository'
+
+rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
+   rom.use :macros
+
+   rom.relation(:locations)
+end
+
+class Location < Dry::Data::Value
+  attribute :lat, Types::Strict::Float
+  attribute :lng, Types::Strict::Float
+end
+
+class MyRepository < ROM::Repository::Base
+   relations :locations
+
+   def all_locations
+     locations.select(:lat, :lng).as(Location).to_a
+   end
+end
+
+repo = MyRepository.new(rom_container)
+
+repo.all_locations
+```
