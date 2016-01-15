@@ -31,9 +31,7 @@ html
             .container
               a.navbar-brand href="/" Ruby Object Mapper
               ul.nav.navbar-nav
-                = nav_link("/introduction", "Introduction")
-                = nav_link("/guides", "Guides")
-                = nav_link("/tutorials", "Tutorials")
+                = nav_link("/learn", "Learn")
                 li.dropdown == api_docs_nav
                 = nav_link("/blog", "Blog")
                 = nav_link("/contribute", "Contribute")
@@ -53,4 +51,4 @@ html
             javascript:
               !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
         .muted.copyright
-          | Ruby Object Mapper &copy; 2014-2015
+          | Ruby Object Mapper &copy; 2014-#{Date.today.year}

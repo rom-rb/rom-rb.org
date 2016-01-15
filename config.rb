@@ -66,10 +66,10 @@ activate :directory_indexes
 
 doc_pages_root = "#{root}/source/doc-pages"
 
-%w(introduction guides tutorials).each do |type|
-  Dir["#{doc_pages_root}/#{type}/**/*.md"].each do |full_path|
+%w(learn adapters tutorials).each do |type|
+  Dir["#{doc_pages_root}/#{type}/**/*.{md,slim}"].each do |full_path|
     dir = File.dirname(full_path.gsub("#{doc_pages_root}/", ''))
-    name = File.basename(full_path, '.md')
+    name = File.basename(full_path).split('.').first # some files have multiple extentions
     path = "#{dir}/#{name}"
 
     proxy "#{path}.html", "doc-page.html", locals: { type: type, doc: path }, ignore: true do
@@ -97,23 +97,14 @@ helpers do
     end
   end
 
-  def introduction_layout(&block)
-    partial "layouts/introduction", locals: { content: capture_html(&block) }
-  end
-
-  def tutorials_layout(&block)
-    partial "layouts/tutorials", locals: { content: capture_html(&block) }
-  end
-
-  def guides_layout(&block)
-    partial "layouts/guides", locals: { content: capture_html(&block) }
-  end
-
   def within_layout(name, &block)
     partial "layouts/#{name}", locals: { content: capture_html(&block) }
   end
 
-  DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
+  # TODO: temporarily redirect to WIP 1.0 project
+  # DOC_PAGES_ROOT = 'https://github.com/rom-rb/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
+  DOC_PAGES_ROOT = 'https://github.com/tenjininc/rom-rb.org/tree/master/source/doc-pages%{slug}.md'
+
   GEMS = config.projects
 
   def edit_article_link(title = 'Edit')
