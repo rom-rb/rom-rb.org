@@ -12,15 +12,15 @@ The figure below represents the data flow through an application using ROM:
 1. Data is read from the <mark>Datastore</mark> using the <mark>Adapter</mark>
 1. The result is returned to your application
    * It can also optionally be mapped to domain objects using <mark>Mappers</mark>
-   
+
 **Writing**
 
 1. Your application calls a <mark>Command</mark> to perform a Create, Update, Delete, or custom operation
-1. The command runs using its underlying Relation and Adapter to modify the datastore 
+1. The command runs using its underlying Relation and Adapter to modify the datastore
 1. The result is returned to your application
 
 
-#### [**Adapters**](/introduction/adapters)
+#### [**Adapters**](/learn/adapters)
 
 ROM uses adapters to connect to different data sources (a database, a csv file -
 it doesn't matter) and exposes a native CRUD interface to its relations.
@@ -45,7 +45,8 @@ ROM provides a DSL to define mappers or you can register your own mapper objects
 #### Commands
 
 Commands in ROM are intended to safely modify data. Commands can be used to create,
-update and delete. They are usually provided by the adapter, but you may define your own. 
+update and delete. They are usually provided by the adapter, but you may define your own.
 
-##Next
-Continue on to read about [Setup](/learn/basics/setup)
+## Next
+
+Continue on to read about [Setup](/learn/setup)
