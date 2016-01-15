@@ -83,4 +83,4 @@ end
 
 
 #Next
-Learn [how to read](/learn/read) by defining Repositories and Relations
+Learn [how to read](/learn/read/) by defining Repositories and Relations

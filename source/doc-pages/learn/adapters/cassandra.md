@@ -6,7 +6,7 @@ ROM supports [Apache Cassandra] via [rom-cassandra] adapter based on Datastax of
 
 ## Setup
 
-Set a Cassandra gateway in a [ROM generic way](http://rom-rb.org/learn/setup):
+Set a Cassandra gateway in a [ROM generic way](http://rom-rb.org/learn/setup/):
 
 ```ruby
 # without options (connects to host '127.0.0.1', port 9042 by default)
