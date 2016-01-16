@@ -1,16 +1,20 @@
 $(function() {
   var gemMap = {
-    'SQL' : 'rom-sql',
+    'CSV' : 'rom-csv',
     'Cassandra' : 'rom-cassandra',
-    'MongoDB' : 'rom-mongo',
+    'CouchDB' : 'rom-couchdb',
     'Event Store' : 'rom-event_store',
     'Git' : 'rom-git',
-    'Neo4j' : 'rom-neo4j',
     'HTTP' : 'rom-http',
-    'CouchDB' : 'rom-couchdb',
+    'InfluxDB' : 'rom-influxdb',
+    'JSON' : 'rom-json',
+    'Kafka' : 'rom-kafka',
+    'MongoDB' : 'rom-mongo',
+    'Neo4j' : 'rom-neo4j',
+    'Redis' : 'rom-redis',
     'RethinkDB' : 'rom-rethinkdb',
-    'YAML' : 'rom-yaml',
-    'CSV' : 'rom-csv'
+    'SQL' : 'rom-sql',
+    'YAML' : 'rom-yaml'
   };
 
   var $code = $('#gem-install-code');

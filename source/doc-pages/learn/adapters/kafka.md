@@ -2,7 +2,7 @@
 
 ROM supports [Apache Kafka][kafka] via [rom-kafka][rom-kafka] adapter, that is built on top of the [poseidon][poseidon] ruby driver.
 
-*Before v0.0.1 the adapter is still in alpha/beta. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom][rom-gitter] and report issues [on github][rom-kafka].*
+*Before v0.1.0 the adapter is still in alpha. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom][rom-gitter] and report issues [on github][rom-kafka].*
 
 ## Intro
 
@@ -10,7 +10,7 @@ The adapter provides access to Kafka brokers in much the same way as other adapt
 
 - By the very nature of Kafka, it allows only creating (publishing) messages, and reading (consuming) them. No 'update' and 'delete' commands are available.
 
-- Reading messages from Kafka also differs from what you'd expect from a database. Kafka only supports reading a sequence of messages from a *topic*'s *partition*, starting from some *offset* . You can neither reorder messages or filter them in any way. That operations are up to domain application. All you can define is the topic ([relation](#relation)), its [partition](#partition), the initial [offset](#offset), and [limit](#limit) the number of messages to output.
+- Reading messages from Kafka also differs from what you'd expect from a database. Kafka only supports reading a sequence of messages from a *topic*'s *partition*, starting from some *offset* . You can neither reorder messages or filter them in any way. That operations are up to domain application. All you can define is the topic ([relation](#relation)), its [partition](#partition), initial [offset](#offset), and [limit](#limit) for number of messages to output.
 
 ## Setup
 
@@ -19,19 +19,25 @@ Brokers can be set in the following ways:
 
 ```ruby
 # by default (connects to host 'localhost', port 9092)
-ROM.setup(:kafka, client_id: :admin)
+ROM::Configuration.new(:kafka, client_id: :admin)
 
 # with inline address (host:port)
-ROM.setup(:kafka, 'localhost:9092', client_id: :admin)
+ROM::Configuration.new(:kafka, 'localhost:9092', client_id: :admin)
 
 # ...or a list of addresses
-ROM.setup(:kafka, '127.0.0.1:9092', '127.0.0.2:9092', client_id: :admin)
+ROM::Configuration.new(:kafka, '127.0.0.1:9092', '127.0.0.2:9092', client_id: :admin)
 
 # with explicit array of `hosts` and `port`
-ROM.setup(:kafka, hosts: ['127.0.0.1', '127.0.0.2'], port: 9092, client_id: :admin)
+ROM::Configuration.new :kafka,
+  hosts:     ['127.0.0.1', '127.0.0.2'],
+  port:      9092,
+  client_id: :admin
 
 # or their combination (the same as '127.0.0.1:9092', '127.0.0.1:9093')
-ROM.setup(:kafka, '127.0.0.1', hosts: ['127.0.0.2:9093'], port: 9092, client_id: :admin)
+ROM::Configuration.new :kafka, '127.0.0.1',
+  hosts:     ['127.0.0.2:9093'],
+  port:      9092,
+  client_id: :admin
 ```
 
 ### Additional options
@@ -59,16 +65,10 @@ With the `:partitioner` option you can specify a procedure to define a partition
 In the following example a message is added to a corresponding partition depending on number of letters in a key:
 
 ```ruby
-ROM.setup(
-  :kafka,
-  client_id: :admin,
+rom = ROM::Configuration.new :kafka, '127.0.0.1',
+  client_id:   :admin,
   partitioner: -> key, number { key.count % number }
-)
 
-#...
-
-ROM.finalize
-rom = ROM.env
 insert = ROM.command(:items).create
 
 # Suppose the topic "items" has 3 partitions (0 and 1).
@@ -109,7 +109,8 @@ The relation `call` method returns an array of tuples with 4 keys:
 
 ```ruby
 # After the setup
-rom = ROM.finalize.env
+rom = ROM::Configuration.new(:kafka, '127.0.0.1', client_id: :admin)
+
 greetings = rom.relation(:greetings)
 
 # Selects all messages from the (default) partition 0
@@ -136,13 +137,11 @@ Kafka allows reading messages from given offset. Messages are fetched by chunks 
 This options can be set for a gateway during the [setup phase](#setup):
 
 ```ruby
-ROM.setup(
-  :kafka,
+rom = ROM::Configuration.new :kafka,
   client_id: :admin,
   min_bytes: 1_024,  # ignore data less then 1Kb
   max_bytes: 10_240, # read nor more than 10Kb at once
   max_wait_ms: 100   # wait for responce no longer than 100ms
-)
 ```
 
 or you can update them with `using` method:
@@ -263,7 +262,7 @@ In case of success the command returns an array of messages added to Kafka:
 
 ```ruby
 # After the setup
-rom = ROM.finalize.env
+rom = ROM::Configuration.new(:kafka, '127.0.0.1', client_id: :admin)
 greet = rom.command(:greetings).greet
 
 greet.call "Hi, Joe", "How're you?"
@@ -273,7 +272,7 @@ greet.call "Hi, Joe", "How're you?"
 #    ]
 ```
 
-Because producer and consumer connection to Kafka brokers are separated. That's why a command actually not reading messages and knows nothing about their partition and offset (defined by server). You have to read them explicitly if you need (but do you?).
+The producer and consumer connections to Kafka brokers are separated. A command doesn't read messages being written, and knows nothing about partitions and offsets that where assigned by the server. You have to read them explicitly if you need.
 
 ## Mappers
 
