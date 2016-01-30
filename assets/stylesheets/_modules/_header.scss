@@ -1,0 +1,61 @@
+.header {
+  @include margin-trailer(1);
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  &__logo {
+    background-image: url(/images/logo--small.svg);
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    height: rhythm(1.42);
+    width: rhythm(1.42) * 96/32;
+    @include from(2) {
+      background-image: url(/images/logo.svg);
+      width: rhythm(1.42) * 270/32;
+    }
+    @include from(3) {
+      height: rhythm(1);
+      width: rhythm(1) * 270/32;
+    }
+
+    &__link {
+      @include no-text;
+      display: block;
+      height: 100%;
+    }
+  }
+
+  &__menu-toggler {
+    @include type-scale(xlarge);
+    color: palette(accent);
+    @include from(3) {
+      display: none;
+    }
+
+    &--is-active {
+      @extend .header__menu-toggler;
+      color: palette(black);
+    }
+  }
+
+  &__menu {
+    display: none;
+    flex-basis: 100%;
+    @include from(3) {
+      display: block;
+      flex-basis: auto;
+    }
+
+    &--is-active {
+      @extend .header__menu;
+      @include margin-leader(1);
+      display: block;
+      @include from(3) {
+        @include margin-leader(0);
+      }
+    }
+  }
+}

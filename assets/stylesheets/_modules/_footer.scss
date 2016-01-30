@@ -1,0 +1,53 @@
+.footer {
+  background-color: palette(white);
+  padding: rhythm(1);
+
+  &__content {
+    @include margin-trailer(1);
+    @include padding-leader(1);
+    @include padding-trailer(1)
+    text-align: center;
+    @include from(3) {
+      @include pad(1);
+    }
+  }
+
+  &__header {
+    text-align: center;
+
+    &:after {
+      background-color: palette(accent);
+      content: '';
+      display: block;
+      height: rhythm(0.2);
+      margin: rhythm(1) auto 0 auto;
+      width: rhythm(1.5);
+    }
+  }
+
+  &__fine-print {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    &__social {
+      @include type-scale(large);
+      display: flex;
+      flex-grow: 0;
+
+      &__icon {
+        color: palette(beige, extra-dark);
+        margin-right: rhythm(1);
+
+        &:hover {
+          color: palette(black);
+        }
+
+        &--last {
+          @extend .footer__fine-print__social__icon;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}

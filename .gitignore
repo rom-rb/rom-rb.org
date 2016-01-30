@@ -10,7 +10,10 @@
 # Ignore the build directory
 /build
 
-# Ignore Sass' cache
+# Ignore cache
 /.sass-cache
-Gemfile.lock
-.ruby-version
+/.cache
+/.tmp
+
+# Ignore node packages
+/node_modules

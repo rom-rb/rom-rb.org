@@ -1,0 +1,95 @@
+// Establish a vertical rhythm
+@include establish-baseline;
+
+html {
+  @include from(3) {
+    font-size: 1.05rem;
+  }
+}
+
+body {
+  background-color: palette(white);
+  color: palette(beige, extra-dark);
+  font-family: font-family(primary);
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol{
+  @include margin-trailer(1);
+  margin-top: 0;
+}
+
+h1 {
+  @include type-scale(xxlarge);
+  @include type-weight(medium);
+  color: palette(black);
+}
+
+h2 {
+  @include type-scale(large);
+  @include type-weight(medium);
+  color: palette(black);
+}
+
+h3 {
+  @include type-scale(base);
+  @include type-weight(semi-bold);
+  color: palette(black);
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+}
+
+h4 {
+  @include type-scale(small);
+  @include type-weight(semi-bold);
+  color: palette(black);
+  letter-spacing: 0.125em;
+  text-transform: uppercase;
+}
+
+
+p:last-child,
+ul:last-child,
+ol:last-child {
+  @include margin-trailer(0);
+}
+
+ul, ol {
+  margin-left: rhythm(1);
+}
+
+li {
+  display: list-item;
+  list-style-type: disc;
+}
+
+small {
+  @include type-scale(small);
+  @include from(3) {
+    @include type-scale(xsmall, false);
+  }
+}
+
+strong {
+  @include type-weight(medium);
+}
+
+a {
+  @include type-weight(medium);
+  color: palette(accent);
+  text-decoration: underline;
+
+  &:hover {
+    color: palette(accent, dark);
+  }
+}
+
+mark {
+  background-color: palette(beige);
+  color: palette(beige, extra-dark);
+  padding: rhythm(0.125) rhythm(0.25);
+}

@@ -1,13 +1,10 @@
 ---
-layout: "blog"
+title: Blog
+pageable: true
+per_page: 5
 ---
-h1 #{tagname} posts
 
-ul.posts
-  - articles.each_with_index do |article, i|
-    li
-      == link_to article.title, article_permalink(article)
-      | &mdash;
-      span.date = I18n.l(article.date.to_date, format: :short)
-      | by
-      span.author = article.data['author']
+h1= "Posts for #{tagname}"
+
+= partial 'blog/article', collection: page_articles, locals: { link: true, summary: true, subheading: true }
+= partial 'blog/pagination', locals: { prev_page: prev_page, next_page: next_page, page_number: page_number, num_pages: num_pages }

@@ -1,13 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'middleman'
+# Middleman gems
+gem 'middleman', '>= 4.0.0'
 gem 'middleman-livereload'
 gem 'middleman-syntax'
-gem 'middleman-gh-pages'
 gem 'middleman-blog'
+gem 'middleman-deploy', github: 'middleman-contrib/middleman-deploy'
 
+# Styling
 gem 'slim'
 gem 'redcarpet'
-gem 'builder'
-gem 'bootstrap-sass'
-gem 'therubyracer'

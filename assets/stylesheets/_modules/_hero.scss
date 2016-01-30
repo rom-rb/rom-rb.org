@@ -1,0 +1,44 @@
+.hero {
+  @include type-scale(medium);
+  @include padding-leader(1);
+  text-align: center;
+  @include from(3) {
+    @include pad(2);
+  }
+
+  &__logo {
+    @include margin-trailer(2);
+
+    &__image {
+      max-width: 60%;
+      width: 100%;
+    }
+  }
+
+  &__intro {
+    @include margin-trailer(2);
+
+    &__name {
+      @include type-weight(medium);
+      letter-spacing: -0.025em;
+    }
+  }
+
+  &__buttons {
+    @include margin-trailer(2);
+    @include pad(1);
+    @include from(3) {
+      @include pad(2);
+    }
+  }
+
+  &__announcement {
+    @include type-weight(medium);
+    color: palette(black);
+    text-decoration: none;
+
+    &:hover {
+      color: palette(accent);
+    }
+  }
+}

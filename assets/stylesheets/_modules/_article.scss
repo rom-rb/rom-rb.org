@@ -1,0 +1,45 @@
+.article {
+  @include margin-trailer(1);
+
+  &:last-child {
+    @include margin-trailer(0);
+  }
+
+  &__title {
+    @include margin-trailer(0);
+
+    &__link {
+      text-decoration: none;
+
+      &--is-active {
+        @extend .article__title__link;
+        color: palette(black);
+      }
+    }
+  }
+
+  &__metadata {
+    @include type-scale(small);
+    @include margin-trailer(1);
+  }
+
+  &__tags {
+    display: inline-block;
+    margin: 0;
+  }
+
+  &__tag {
+    display: inline-block;
+    margin-right: 0.25rem;
+
+    &:after {
+      content: ',';
+    }
+
+    &:last-child {
+      &:after {
+        content: '';
+      }
+    }
+  }
+}

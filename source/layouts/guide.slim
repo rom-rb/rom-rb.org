@@ -1,0 +1,4 @@
+= wrap_layout :content do
+  - if current_page.data.chapter
+    h4= current_page.data.chapter
+  = yield

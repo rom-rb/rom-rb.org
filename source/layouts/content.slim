@@ -1,0 +1,8 @@
+= wrap_layout :layout do
+  - if current_page.data.sidebar
+    .page__sidebar
+      .sidebar
+        = partial current_page.data.sidebar
+  .page__content
+    .content
+      = yield
