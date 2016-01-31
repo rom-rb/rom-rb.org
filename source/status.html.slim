@@ -1,27 +1,25 @@
 ---
-title: Ruby Object Mapper - Status
-slug: "/status"
+title: Status
 ---
 
-h1 ROM Project Status
+markdown:
+  # ROM Project Status
 
-p
-  | The ROM ecosystem consists of the core rom gem along with rom-rails,
-    for Rails integration, and various adapter gems.
+  The ROM ecosystem consists of the core rom gem along with rom-rails, for Rails
+  integration, and various adapter gems.
 
-p
-  | With so many projects, it can be difficult to keep up on the status of
-    each one. Below is a break-down for each rom-related project, the current
-    stable released version, and the build status for the master branch.
+  With so many projects, it can be difficult to keep up on the status of each
+  one. Below is a break-down for each rom-related project, the current stable
+  released version, and the build status for the master branch.
 
-table.table.table-striped
+table
   thead
     tr
       th Project
       th Released Version
       th Master Build Status
   tbody
-    - for project in projects
+    - data.projects.each do |project|
       tr
         td
           a href="https://github.com/rom-rb/#{project}" #{project}

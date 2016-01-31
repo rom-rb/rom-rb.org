@@ -1,0 +1,18 @@
+ul.inline-buttons.inline-buttons--centered
+  li.inline-buttons__button
+    - if next_page.nil?
+      span.button--disabled
+        span.fa.fa-arrow-left
+    - else
+      = link_to next_page.url, class: 'button'
+        span.fa.fa-arrow-left
+  li.inline-buttons__spacer.inline-buttons__spacer--wide
+    p
+      strong= "#{page_number} of #{num_pages}"
+  li.inline-buttons__button.inline-buttons__button
+    - if prev_page.nil?
+      span.button--disabled
+        span.fa.fa-arrow-right
+    - else
+      = link_to prev_page.url, class: 'button'
+        span.fa.fa-arrow-right

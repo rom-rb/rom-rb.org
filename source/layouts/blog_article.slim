@@ -1,0 +1,4 @@
+= wrap_layout :content do
+  = partial 'blog/article', object: current_article, locals: { link: false, subheading: false, summary: false }
+  #disqus_thread
+  script src=config.disqus_embed_url

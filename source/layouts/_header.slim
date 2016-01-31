@@ -1,0 +1,13 @@
+header.header
+  .header__logo= link_to 'Ruby Object Mapper', '/', class: 'header__logo__link'
+  #navigation__toggler.header__menu-toggler
+    span.fa.fa-navicon
+  #navigation__items.header__menu
+    nav.menu
+      ul.menu__items
+        li.menu__item= nav_link_to 'Learn', '/learn', class: 'menu__item__link'
+        li.menu__item= nav_link_to 'API', '/api', class: 'menu__item__link'
+        li.menu__item= nav_link_to 'Blog', '/blog', class: 'menu__item__link'
+        li.menu__item= nav_link_to 'Contribute', '/contribute', class: 'menu__item__link'
+        li.menu__item= nav_link_to 'Status', '/status', class: 'menu__item__link'
+        li.menu__item--last= nav_link_to 'Backers <3', '/backers', class: 'menu__item__link'

@@ -1,8 +1,8 @@
 ---
+title: Blog
 pageable: true
-per_page: 10
-layout: blog
-slug: "/blog"
+per_page: 2
 ---
 
-== partial 'blog/articles'
+= partial 'blog/article', collection: page_articles, locals: { summary: false, subheading: false, link: true }
+= partial 'blog/pagination', locals: { prev_page: prev_page, next_page: next_page, page_number: page_number, num_pages: num_pages }

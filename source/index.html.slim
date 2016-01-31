@@ -1,17 +1,17 @@
-- content_for(:page_title) { "Home" }
+.hero
+  div.hero__logo
+    = image_tag 'logo--hero.svg', class: 'hero__logo__image'
 
-.jumbotron
-  h1
-    | Ruby Object Mapper
-  p
-    | ROM is an open-source <em>persistence and mapping toolkit for Ruby</em> built for speed and simplicity.
-  p
-    ul class="list-inline"
-      li
-        a href="/learn" class="btn btn-primary btn-lg" Learn more
-      li
-        a href="https://salt.bountysource.com/teams/rom-rb" class="btn btn-success btn-lg" Support ROM!
-        a href="/blog/2015/08/04/sustainable-development-campaign" Read the announcement about our campaign
+  p.hero__intro
+    span.hero__intro__name> Ruby Object Mapper
+    | is an open-source persistence and mapping toolkit for
+    =<> link_to 'Ruby', 'https://ruby-lang.org'
+    | built for speed and simplicity.
 
-.well.well-lg
-  = partial "doc-pages/learn/partials/_installation"
+  ul.hero__buttons.inline-buttons--stacked
+    li.inline-buttons--stacked__button= link_to 'Learn More', '/learn', class: 'button button--full button--large'
+    li.inline-buttons--stacked__button--last= link_to 'Support ROM', '/contribute', class: 'button--secondary button--full button--large'
+
+  p= link_to '/blog/sustainable-development-campaign/', class: 'hero__announcement'
+    | Read the announcement about our campaign
+    span.fa.fa-caret-right<

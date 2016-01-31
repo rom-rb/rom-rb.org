@@ -1,0 +1,48 @@
+.button {
+  @include type-scale(small);
+  @include type-weight(semi-bold);
+  background-color: palette(accent);
+  border-radius: 0.5em;
+  color: palette(white);
+  display: inline-block;
+  letter-spacing: 0.15em;
+  padding: rhythm(0.2) rhythm(0.6);
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: palette(accent, dark);
+    color: palette(white);
+  }
+
+  &--large {
+    @include type-scale(base);
+    padding: rhythm(0.6) rhythm(1);
+  }
+
+  &--full {
+    display: block;
+    text-align: center;
+  }
+
+  &--secondary {
+    @extend .button;
+    background-color: palette(white);
+    color: palette(accent);
+
+    &:hover {
+      background-color: palette(white);
+      color: palette(accent, dark);
+    }
+  }
+
+  &--disabled {
+    @extend .button;
+    background-color: palette(beige);
+    color: palette(beige, dark);
+
+    &:hover {
+      @extend .button--disabled;
+    }
+  }
+}

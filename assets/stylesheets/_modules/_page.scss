@@ -1,0 +1,29 @@
+.page {
+  background-color: palette(beige);
+  padding: rhythm(1);
+  padding-bottom: rhythm(2);
+
+  &__sidebar {
+    @include from(3) {
+      @include span(3 no-gutters);
+      padding-right: rhythm(1);
+    }
+
+    & + .page__content {
+      @include from(3) {
+        float: left;
+      }
+    }
+  }
+
+  &__content {
+    margin-left: - rhythm(1);
+    margin-right: - rhythm(1);
+    @include from(3) {
+      @include span(9 no-gutters);
+      float: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

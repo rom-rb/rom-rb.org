@@ -1,0 +1,13 @@
+pre {
+  margin: 0;
+
+  code {
+    padding: 0;
+  }
+}
+
+code {
+  background-color: palette(beige);
+  color: palette(beige, extra-dark);
+  padding: rhythm(0.125) rhythm(0.25);
+}

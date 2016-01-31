@@ -1,0 +1,10 @@
+.code {
+  @include type-scale(base);
+  @include adjust-leading-to(0.75);
+  background-color: palette(beige);
+  border-radius: 0.5em;
+  font-family: font-family(monospace);
+  overflow: auto;
+  padding: rhythm(1);
+  -webkit-overflow-scrolling: touch;
+}

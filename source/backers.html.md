@@ -1,6 +1,5 @@
 ---
-title: Ruby Object Mapper - Backers!
-slug: "/backers"
+title: Backers
 ---
 
 # Sponsors

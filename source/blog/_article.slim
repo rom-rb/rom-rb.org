@@ -1,0 +1,21 @@
+article.article
+  - if subheading
+    h2.article__title
+      = nav_link_to article.title, article.url, class: 'article__title__link'
+  - else
+    h1.article__title
+      = nav_link_to article.title, article.url, class: 'article__title__link'
+
+  .article__metadata
+    | Posted by
+    =<> link_to article.data.author, data.authors[article.data.author].url
+    | on
+    =<> I18n.l(article.date.to_date, format: :long)
+    | under
+    ul.article__tags<
+      - article.tags.each do |tag|
+        li.article__tag= link_to tag, "/blog/tags/#{tag}"
+
+  = summary ? article.summary : article.body
+
+  hr

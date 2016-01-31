@@ -1,0 +1,17 @@
+h2.sidebar__header--first Blog
+
+h3.sidebar__header Latest Posts
+ul.sidebar__items
+  - blog.articles.first(5).each do |article|
+    li.sidebar__item= nav_link_to article.title, article.url, class: 'sidebar__link'
+
+h3.sidebar__header Browse Tags
+ul.sidebar__items
+  - blog.tags.each do |tag, articles|
+    li.sidebar__item= nav_link_to tag, "/blog/tags/#{tag}", class: 'sidebar__link'
+
+h3.sidebar__header Subscribe
+p
+  = link_to '#', class: 'button--secondary'
+    span.fa.fa-rss>
+    | RSS

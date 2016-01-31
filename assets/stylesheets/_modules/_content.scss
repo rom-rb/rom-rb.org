@@ -1,0 +1,74 @@
+.content {
+  background-color: palette(white);
+  border-bottom: 0.25rem solid palette(beige, dark);
+  border-top: 0.25rem solid palette(beige, dark);
+  padding: rhythm(1);
+  @include from(3) {
+    border: 0.25rem solid palette(beige, dark);
+    border-radius: 0.5rem;
+    padding: rhythm(1.5);
+  }
+
+  pre {
+    @extend .code;
+    @include margin-trailer(1);
+    display: block;
+
+    &:last-child {
+      @include margin-trailer(0);
+    }
+  }
+
+  hr {
+    @include pre(2);
+    @include post(2);
+    @include margin-leader(2);
+    @include margin-trailer(2);
+    background-color: palette(beige);
+    border: 0;
+    color: palette(beige);
+    display: block;
+    height: 0.2rem;
+  }
+
+  table {
+    @include margin-trailer(1);
+    @include type-scale(small);
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+
+    th {
+      @include type-weight(semi-bold);
+      border-bottom: 0.25rem solid palette(beige, dark);
+      margin: 0;
+      padding: rhythm(0.25) rhythm(0.5);
+      text-align: left;
+    }
+
+    tr {
+      &:nth-child(2n) {
+        background-color: palette(beige);
+      }
+    }
+
+    td {
+      margin: 0;
+      padding: rhythm(0.25) rhythm(0.5);
+    }
+  }
+
+  blockquote {
+    @include type-scale(small);
+    margin: 0;
+    @include margin-trailer(1);
+    background-color: palette(red, extra-light);
+    border-radius: 0.5rem;
+    color: palette(red, dark);
+    padding: rhythm(1);
+
+    &:last-child {
+      @include margin-trailer(0);
+    }
+  }
+}
