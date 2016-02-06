@@ -9,7 +9,9 @@
 
 .footer__fine-print
   .footer__fine-print__copyright
-    small= copyright
+    small
+      => copyright
+      = design_by
   .footer__fine-print__social
     = link_to 'https://github.com/rom-rb/rom', class: 'footer__fine-print__social__icon'
       span.fa.fa-github-alt

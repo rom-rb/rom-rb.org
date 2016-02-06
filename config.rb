@@ -23,7 +23,12 @@ helpers do
   end
 
   def copyright
-    "&copy; 2014-#{Time.now.year} Ruby Object Mapper"
+    "&copy; 2014-#{Time.now.year} Ruby Object Mapper."
+  end
+
+  def design_by
+    url = 'https://github.com/angeloashmore'
+    "Design by #{link_to '@angeloashmore', url}."
   end
 end
 
