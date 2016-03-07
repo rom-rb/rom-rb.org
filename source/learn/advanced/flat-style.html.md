@@ -79,13 +79,13 @@ By default, it assumes that each class is in the root namespace. A `namespace` o
 
 ```ruby
 configuration = ROM::Configuration.new(:memory)
-configuration.auto_registration(__dir__), namespace: "MyApp")
+configuration.auto_registration(__dir__, namespace: "MyApp")
 container = ROM.container(configuration)
 ```
 
 ```ruby
 configuration = ROM::Configuration.new(:memory)
-configuration.auto_registration(__dir__), namespace: "MyApp", relations: {namespace: "MyApp::Relations"})
+configuration.auto_registration(__dir__, namespace: "MyApp", relations: {namespace: "MyApp::Relations"})
 container = ROM.container(configuration)
 ```
 
