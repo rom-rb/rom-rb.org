@@ -42,7 +42,7 @@ require 'rom-repository'
 # Assuming a database with table 'users'
 rom_container = ROM.container(:sql, 'sqlite::memory')
 
-class MyRepository < ROM::Repository::Base
+class MyRepository < ROM::Repository
   relations :users
 
   # ... selector methods will go here. We'll discuss those later
@@ -62,14 +62,14 @@ separate Repository classes to subdivide duties.
 rom_container = ROM.container(:sql, 'sqlite::memory')
 
 # Perhaps one Repo to handle users and related authentication relations
-class UsersRepository < ROM::Repository::Base
+class UsersRepository < ROM::Repository
   relations :users
 
   # ... [users-related selector methods go here]
 end
 
 # Another repository could handle the projects and related concepts
-class ProjectRepository < ROM::Repository::Base
+class ProjectRepository < ROM::Repository
   relations :projects
 
   # ... [project-related selector methods go here]
@@ -144,7 +144,7 @@ rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
   rom.relation(:users)
 end
 
-class MyRepository < ROM::Repository::Base
+class MyRepository < ROM::Repository
   relations :users # this makes the #users method available
 
   # selector methods
@@ -205,7 +205,7 @@ class Location < Dry::Data::Value
   attribute :lng, Types::Strict::Float
 end
 
-class MyRepository < ROM::Repository::Base
+class MyRepository < ROM::Repository
   relations :locations
 
   def all_locations
