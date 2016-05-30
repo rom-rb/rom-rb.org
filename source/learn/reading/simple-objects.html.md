@@ -91,7 +91,7 @@ They use the querying methods provided by the adapter to accomplish their task.
 For example, the `rom-sql` adapter provides methods like `Relation#where`.
 
 ```ruby
-class MyRepository
+class MyRepository < ROM::Repository
   # declaring :users here makes the #users method available
   relations :users
 
