@@ -316,11 +316,13 @@ sets up ROM.
 ``` ruby
 # your rakefile
 
+require 'rom/sql'
 require 'rom/sql/rake_task'
 
 namespace :db do
   task :setup do
     # your ROM setup code
+    @gateway = ROM.container(:sql, 'postgres://localhost/rom')
   end
 end
 ```
