@@ -26,7 +26,7 @@ The adapter uses [datastax ruby driver][ruby driver] under the hood. You can fin
 
 ## Defining Relations
 
-To define a Cassandra relation follow [the standard way of defining relations](http://rom-rb.org/learn/read/simple/) in ROM.
+To define a Cassandra relation follow [the standard way of defining relations](http://rom-rb.org/learn/reading/simple-objects) in ROM.
 
 The only specifics is that you're expected to set both the keyspace and table name explicitly, using the *dot notation*:
 
