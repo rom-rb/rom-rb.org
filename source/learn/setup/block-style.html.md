@@ -82,12 +82,13 @@ Both block and flat style support calling `use` on the `ROM::Configuration`
 object to activate plugins for that configuration.
 
 Currently, the only bundled plugin is `:macros`, which provides the DSL for
-specifying your relations, commands, and mappers.
+specifying your relations, commands, and mappers. As of version 1.0.0 the
+`:macros`-plugin is included by default.
 
 ```ruby
 ROM.container(:sql, 'sqlite::memory') do |rom|
    # rom is a ROM::Configuration
-   rom.use :macros
+   rom.use :some_plugin_name
 end
 ```
 

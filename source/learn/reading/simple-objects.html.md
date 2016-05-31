@@ -16,8 +16,6 @@ override the default, just call `Configuration#relation`.
 
 ```ruby
 rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-  rom.use :macros
-
   rom.relation(:users)
 
   rom.relation(:tasks) do
@@ -139,8 +137,6 @@ This short example demonstrates using selector methods, #one, and #to_a.
 require 'rom-repository'
 
 rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-  rom.use :macros
-
   rom.relation(:users)
 end
 
@@ -195,8 +191,6 @@ require 'dry-data'
 require 'rom-repository'
 
 rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-  rom.use :macros
-
   rom.relation(:locations)
 end
 

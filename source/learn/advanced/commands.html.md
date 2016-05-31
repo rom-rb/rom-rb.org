@@ -150,8 +150,6 @@ require 'rom-sql'
 
 # Assumes a database with a users table
 rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-  rom.use :macros
-
   rom.relation(:users) do
     def by_id(id)
       restrict(id: id)
