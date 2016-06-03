@@ -103,7 +103,7 @@ requirement.
 While the DSL syntax is often convenient, Relations can also be defined with a
 class extending `ROM::Relation` from the appropriate adapter.
 
-```Ruby
+```ruby
 # Defines a Users relation for the SQL adapter
 class Users < ROM::Relation[:sql]
 
