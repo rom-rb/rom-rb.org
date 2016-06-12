@@ -35,14 +35,12 @@ ROM components need to be registered with the ROM environment in order to be
 used.
 
 The `:macros` plugin handles this behind the scenes for you whenever you use the
-DSL to declare a ROM component. Call `use(:macros)` to enable the plugin:
+DSL to declare a ROM component. As of version 1.0.0 it is enabled by default:
 
 ```ruby
 configuration = ROM::Configuration.new(:memory, 'memory://test')
 
 # Anything after this line will be automatically registered
-configuration.use :macros
-
 # Declare Relations, Commands, and Mappers here
 ```
 
