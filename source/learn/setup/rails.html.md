@@ -127,3 +127,22 @@ class UserMapper < ROM::Mapper
   # some mapping logic
 end
 ```
+
+# Using generators
+
+Rails integration comes with several generators defined, these are:
+
+* `rom:commands`
+* `rom:form`
+* `rom:mapper`
+* `rom:relation`
+
+To use them proceed as with typical rails generators for example:
+
+```
+rails generate rom:relation user
+```
+
+To obtain more information about given generator and it's options, run it without arguments, ex. `rails g rom:commands`
+
+
