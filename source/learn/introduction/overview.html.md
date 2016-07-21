@@ -28,9 +28,10 @@ TODO: create a new diagram :)
 
 #### Repositories
 
-A repository provides a convenient interface for fetching domain-specific
-entities and value objects from a database. It's a higher-level abstraction
-built on top of relation and mapping layers.
+Repositories provide a powerful CRUD interface built on top of relation, mapping
+and command APIs. They give you a simple way for composing data provided by relations,
+automatically map data to struct objects or custom object types, and expose simple
+access to commands with support for changesets.
 
 #### Relations
 
