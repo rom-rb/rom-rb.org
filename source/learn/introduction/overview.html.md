@@ -26,11 +26,6 @@ TODO: create a new diagram :)
 3. The result is returned to your application
   * It can be optionnally mapped to a different representation using <mark>Mappers</mark>
 
-#### Adapters
-
-ROM uses adapters to connect to different data sources (a database, a csv file -
-it doesn't matter) and exposes a native CRUD interface to its relations.
-
 #### Repositories
 
 A repository provides a convenient interface for fetching domain-specific
@@ -57,4 +52,13 @@ representation. Mappers are generated automatically by repositories and in typic
 cases you don't have to define them; however, ROM provides a DSL to define custom
 mappings or you can register your own mapper objects for custom, non-standard
 queries, or complex cross-datastore mappings.
+
+#### Adapters
+
+ROM uses adapters to connect to different data sources (a database, a csv file -
+it doesn't matter) and exposes a native CRUD interface to its relations. Every
+adapter has extension points to support database-specific functionality. It provides
+its own relation types, extensions for built-in commands, and potentially new command
+types. Furthermore, an adapter can provide extra features that are needed to work
+with a given database type. In example, `rom-sql` provides Migration API.
 
