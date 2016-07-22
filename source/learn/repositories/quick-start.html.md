@@ -15,7 +15,7 @@ SQL gateway and create a `:users` table:
 require 'rom'
 
 rom = ROM.container(:sql, 'sqlite::memory') do |conf|
-  conf.default.connection.create_table(:users) do
+  conf.default.create_table(:users) do
     primary_key :id
     column :name, String, null: false
     column :email, String, null: false
