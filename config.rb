@@ -54,7 +54,17 @@ activate :external_pipeline,
   command: build? ? './node_modules/webpack/bin/webpack.js --bail' : './node_modules/webpack/bin/webpack.js --watch -d',
   source: '.tmp/dist',
   latency: 1
-activate :deploy, deploy_method: :git
+
+if ENV['NEXT']
+  activate :deploy do |deploy|
+    deploy.deploy_method = :rsync
+    deploy.host   = 'next.rom-rb.org'
+    deploy.path   = '/var/www/next.rom-rb.org'
+    deploy.clean  = true
+  end
+else
+  activate :deploy, deploy_method: :git
+end
 
 # Development-specific configuration
 configure :development do
