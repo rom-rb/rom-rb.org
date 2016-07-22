@@ -1,8 +1,6 @@
 ---
 title: Reading Aggregates
-chapter: Reading
+chapter: Reading Aggregates
 ---
-
-# Reading Aggregates
 
 TODO
