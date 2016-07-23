@@ -1,16 +1,14 @@
 ---
-title: Kafka Adapter
-chapter: Adapters
+title: Kafka
+chapter: Overview
 ---
-
-# Kafka Adapter
 
 ROM supports [Apache Kafka][kafka] via [rom-kafka][rom-kafka] adapter, that is
 built on top of the [poseidon][poseidon] ruby driver.
 
-*Before v0.1.0 the adapter is still in alpha. If you find any inconsistency,
- please feel free to ask your questions at the [ROM chatroom][rom-gitter] and
- report issues [on github][rom-kafka].*
+> Before v0.1.0 the adapter is still in alpha. If you find any inconsistency,
+> please feel free to ask your questions at the [ROM chatroom][rom-gitter] and
+> report issues [on github][rom-kafka].
 
 ## Intro
 
