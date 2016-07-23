@@ -35,7 +35,3 @@ end
 
 Remember that relation methods must always return other relations, you shouldn't
 return a single tuple.
-
-#### Query DSL
-
-TODO

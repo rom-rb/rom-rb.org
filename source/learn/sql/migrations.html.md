@@ -3,10 +3,10 @@ title: SQL Adapter
 chapter: Migrations
 ---
 
-There are migration tasks available and migration interface available in SQL
-gateways.
+The SQL adapter uses Sequel migration API exposed by SQL gateways. You can either
+use the built-in rake tasks, or handle migrations manually.
 
-### Using Rake Tasks
+### Migration Rake Tasks
 
 To load migration tasks simply require them and provide `db:setup` task which
 sets up ROM.
