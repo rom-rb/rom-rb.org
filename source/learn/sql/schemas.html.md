@@ -6,6 +6,21 @@ chapter: Schemas
 The SQL adapter adds its own schema types and association declarations to the
 built-in Relation Schema feature.
 
+#### Setting `dataset` through Schema
+
+If your relation class name doesn't match the table name, you can override it
+using `schema` API:
+
+``` ruby
+module MyApp
+  module Relations
+    class Users < ROM::Relation[:sql]
+      schema(:users, infer: true) # has the same effect as calling `dataset :users`
+    end
+  end
+end
+```
+
 #### Inferring Attributes
 
 If you don't want to declare all attributes explicitly, you can tell rom-sql to
