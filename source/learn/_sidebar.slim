@@ -14,6 +14,12 @@ ul.sidebar__items
       li.sidebar__sub-item= nav_link_to 'Block Style Setup', '/learn/getting-started/block-style-setup', class: 'sidebar__sub-link'
       li.sidebar__sub-item= nav_link_to 'Rails Setup', '/learn/getting-started/rails-setup', class: 'sidebar__sub-link'
   li.sidebar__item
+    = nav_link_to 'Core', '/learn/core', class: 'sidebar__link'
+    ul.sidebar__sub-items
+      li.sidebar__sub-item= nav_link_to 'General Usage Tips', '/learn/core/general-usage-tips', class: 'sidebar__sub-link'
+      li.sidebar__sub-item= nav_link_to 'Relations', '/learn/core/relations', class: 'sidebar__sub-link'
+      li.sidebar__sub-item= nav_link_to 'Schemas', '/learn/core/schemas', class: 'sidebar__sub-link'
+  li.sidebar__item
     = nav_link_to 'Repositories', '/learn/repositories', class: 'sidebar__link'
     ul.sidebar__sub-items
       li.sidebar__sub-item= nav_link_to 'Quick Start', '/learn/repositories/quick-start', class: 'sidebar__sub-link'
