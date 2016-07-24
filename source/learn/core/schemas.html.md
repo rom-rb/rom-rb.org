@@ -26,6 +26,75 @@ class Users < ROM::Relation[:http]
 end
 ```
 
+#### Annotations
+
+Schema types provide an API for adding arbitrary meta-information. This is mostly
+useful for adapters, or anything that may need to introspect relation schemas.
+
+Here's an example:
+
+``` ruby
+class Users < ROM::Relation[:http]
+  schema do
+    attribute :name, Types::String.meta(namespace: 'details')
+  end
+end
+```
+
+Here we defined a `:namespace` meta-information, that can be used accessed via
+`:name` type:
+
+``` ruby
+Users.schema[:name].meta[:namespace] # 'details'
+```
+
+#### Primary keys
+
+You can set up a primary key, either a single attribute or a composite:
+
+``` ruby
+class Users < ROM::Relation[:http]
+  schema do
+    attribute :id, Types::Int
+    attribute :name, Types::String
+    attribute :age, Types::Int
+
+    primary_key :id
+  end
+end
+```
+
+For a composite primary key simply pass a list of attribute names:
+
+``` ruby
+class UsersGroups < ROM::Relation[:http]
+  schema do
+    attribute :user_id, Types::Int
+    attribute :group_id, Types::Int
+
+    primary_key :id, :group_id
+  end
+end
+```
+
+> This is just a shortcut for an annotation: `Types::Int.meta(primary_key: true)`
+
+#### Foreign Keys
+
+You can set up foreign keys pointing to a specific relation:
+
+``` ruby
+class Posts < ROM::Relation[:http]
+  schema do
+    attribute :user_id, Types::ForeignKey(:users)
+    # defaults to `Types::Int` but can be overridden:
+    attribute :user_id, Types::ForeignKey(:users, Types::UUID)
+  end
+end
+```
+
+> This is just a shortcut for an annotation: `Types::Int.meta(foreign_key: true, relation: :users)`
+
 #### Commands & Schemas
 
 If you define a schema for a relation, its commands will automatically use it
