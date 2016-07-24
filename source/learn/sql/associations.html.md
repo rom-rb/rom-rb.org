@@ -6,7 +6,7 @@ chapter: Associations
 Relation schemas in SQL land can be used to define canonical associations. These
 definitions play important role in automatic mapping of aggregates in repositories.
 
-#### belongs_to (many-to-one)
+## belongs_to (many-to-one)
 
 The `belongs_to` definition establishes a many-to-one association type.
 
@@ -20,7 +20,7 @@ class Post < ROM::Relation[:sql]
 end
 ```
 
-#### has_many (one-to-many)
+## has_many (one-to-many)
 
 The `has_many` definition establishes a one-to-many association type.
 
@@ -34,7 +34,7 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-#### has_many-through (many-to-many)
+## has_many-through (many-to-many)
 
 The `has_many` definition supports `:through` option which establishes a
 many-to-many association type.
@@ -58,7 +58,7 @@ class UsersTasks < ROM::Relation[:sql]
 end
 ```
 
-#### has_one (one-to-one)
+## has_one (one-to-one)
 
 The `has_one` definition establishes a one-to-one association type.
 
@@ -70,7 +70,7 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-#### has_one-through (one-to-one-through)
+## has_one-through (one-to-one-through)
 
 The `has_one` definition supports `:through` option which establishes a
 one-to-one-through association type.
@@ -90,7 +90,7 @@ class UsersAccounts < ROM::Relation[:sql]
 end
 ```
 
-#### Aliasing an association
+## Aliasing an association
 
 If you want to use a different name for an association, you can use `:as` option.
 All association types support this feature.

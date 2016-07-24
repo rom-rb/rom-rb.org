@@ -1,6 +1,6 @@
 ---
 title: Repositories
-chapter: Overview
+chapter: Index
 ---
 
 In this section you can learn how to work with ROM repositories.

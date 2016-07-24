@@ -4,9 +4,9 @@ chapter: Schemas
 ---
 
 The SQL adapter adds its own schema types and association declarations to the
-built-in Relation Schema feature.
+built-in [Relation Schema](/learn/core/schemas) feature.
 
-#### Setting `dataset` through Schema
+## Setting `dataset` through Schema
 
 If your relation class name doesn't match the table name, you can override it
 using `schema` API:
@@ -21,7 +21,7 @@ module MyApp
 end
 ```
 
-#### Inferring Attributes
+## Inferring Attributes
 
 If you don't want to declare all attributes explicitly, you can tell rom-sql to
 infer attributes from an existing schema.
@@ -39,7 +39,7 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-#### PostgreSQL Types
+## PostgreSQL Types
 
 When you define relation schema attributes using custom PG types, the values
 will be automatically coerced before executing commands, so you don't have to

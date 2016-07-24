@@ -1,9 +1,7 @@
 ---
-title: Standalone Commands
-chapter: Advanced Topics
+title: Advanced Topics
+chapter: Standalone Commands
 ---
-
-# Standalone Commands
 
 Writing records to a persistence solution is done through Commands. Commands are
 objects that encapsulate datastore-specific modification operations. They

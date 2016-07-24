@@ -1,8 +1,6 @@
 ---
-title: Mappers
-chapter: Advanced Topics
+title: Advanced
+chapter: Mappers
 ---
-
-# Custom Mappers
 
 > New docs are being written. Stay tuned.

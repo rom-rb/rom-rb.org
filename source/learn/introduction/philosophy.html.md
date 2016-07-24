@@ -1,9 +1,7 @@
 ---
-title: Philosophy
-chapter: Introduction
+title: Introduction
+chapter: Philosophy
 ---
-
-# Philosophy
 
 * Simple is best
 * Composition is powerful

@@ -1,9 +1,7 @@
 ---
-title: Flat Style Setup
-chapter: Advanced Topics
+title: Advanced
+chapter: Flat Style Setup
 ---
-
-# Flat Style Setup
 
 Block style setup is suitable for simple, quick'n'dirty scripts that need to
 access databases, in a typical application setup, you want to break down

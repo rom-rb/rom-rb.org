@@ -1,9 +1,7 @@
 ---
-title: Combining Relation Results
-chapter: Advanced Topics
+title: Advanced
+chapter: Combining Relation Results
 ---
-
-# Combining Relation Results
 
 Ordinarily, Relation is used through Repository, but some applications may use
 Relation directly. This removes the layer of syntactic sugar provided by
@@ -34,7 +32,7 @@ tasks = rom_container.relation(:tasks)
 users.by_name('Jane').combine(tasks.for_users)
 ```
 
-This is made possible by the auto-currying feature. 
+This is made possible by the auto-currying feature.
 
 ## Auto-Curry
 

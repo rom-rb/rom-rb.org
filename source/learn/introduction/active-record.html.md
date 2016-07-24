@@ -1,6 +1,6 @@
 ---
-title: Active Record and ROM
-chapter: Introduction
+title: Introduction
+chapter: Active Record and ROM
 ---
 
 # Active Record and ROM

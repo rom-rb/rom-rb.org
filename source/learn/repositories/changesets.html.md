@@ -8,8 +8,6 @@ You already learned how to simply use commands with repositories in the
 to it! In this section you're going to learn how to use <mark>Changesets</mark>
 along with repositories.
 
-## Changesets
-
 Persisting data in a database can be complex. You often need to pre-process the
 data before it can be persisted. Whenever additional processing needs to happen
 you can use <mark>Changesets</mark> to prepare the data before they can be sent

@@ -12,7 +12,7 @@ Apart from adapter-specific extensions, schemas can be *extended by you* since
 you can define your own *types*. That's how `rom-sql` provides its own PostgreSQL
 types.
 
-#### Defining a schema
+## Defining a schema
 
 The DSL is very simple, you provide attribute names along with their types:
 
@@ -26,13 +26,13 @@ class Users < ROM::Relation[:http]
 end
 ```
 
-#### Types namespace
+## Types namespace
 
 All builtin types are defined in `ROM::Types` namespace, and individual adapters
 may provide their own namespace which extends the builtin one. For example `rom-sql`
 provides `ROM::SQL::Types` and `ROM::SQL::Types::PG`.
 
-#### Annotations
+## Annotations
 
 Schema types provide an API for adding arbitrary meta-information. This is mostly
 useful for adapters, or anything that may need to introspect relation schemas.
@@ -54,7 +54,7 @@ Here we defined a `:namespace` meta-information, that can be used accessed via
 Users.schema[:name].meta[:namespace] # 'details'
 ```
 
-#### Primary keys
+## Primary keys
 
 You can set up a primary key, either a single attribute or a composite:
 
@@ -85,7 +85,7 @@ end
 
 > This is just a shortcut for an annotation: `Types::Int.meta(primary_key: true)`
 
-#### Foreign Keys
+## Foreign Keys
 
 You can set up foreign keys pointing to a specific relation:
 
@@ -101,7 +101,7 @@ end
 
 > This is just a shortcut for an annotation: `Types::Int.meta(foreign_key: true, relation: :users)`
 
-#### Commands & Schemas
+## Commands & Schemas
 
 If you define a schema for a relation, its commands will automatically use it
 when processing the input. This allows us to perform database-specific coercions,
@@ -125,7 +125,7 @@ Now when you persist data using [repositories](/learn/repositories) or
 [custom commands](/learn/advanced/custom-commands), your schema will be used
 to process the input data, and our `:id` value will be handled by the `UUID` type.
 
-#### Type System
+## Type System
 
 Schemas use a type system from [dry-types](http://dry-rb.org/gems/dry-types) and
 you can define your own schema types however you want. What types you need really

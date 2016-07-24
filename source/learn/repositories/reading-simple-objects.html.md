@@ -24,7 +24,7 @@ user_repo = UserRepository.new(rom)
 project_repo = ProjectRepo.new(rom)
 ```
 
-### Repository Interface
+## Repository Interface
 
 While defining a repository, you will also define its interface for
 domain-specific queries. These are called **selector methods**.
@@ -52,7 +52,7 @@ methods.
 > These are just simple reads. See the [Associations](/learn/associations)
 > section to see how to construct multi-relation selector methods using joins.
 
-#### Single Results vs Many Results
+## Single Results vs Many Results
 
 Every relation is lazy loading and most methods return another relation. To
 materialize the relation and get actual data, use `#one`, `#one!`, or `#to_a`.

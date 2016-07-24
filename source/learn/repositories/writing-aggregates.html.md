@@ -8,7 +8,7 @@ complex commands that can persist nested data, which reflect aggregate structure
 
 > This is a new API that's currently limited to `Create` commands only
 
-#### has_many
+## has_many example
 
 Let's say we have `:users` with `:tasks` and we'd like to persist a nested data
 structure which represents this association.

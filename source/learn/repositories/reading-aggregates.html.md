@@ -1,5 +1,5 @@
 ---
-title: Reading Aggregates
+title: Repositories
 chapter: Reading Aggregates
 ---
 
@@ -13,7 +13,7 @@ If an adapter doesn't support association in schemas, you can still load aggrega
 using [`Repository#combine`](/learn/repositories/combine-interface) interface,
 which is more advanced and flexible.
 
-#### Relation Schema
+## Relation Schema
 
 First, we want to define our canonical associations. We call them canonical since
 they are defined by your database schema. It's common to diverge from canonical
@@ -62,7 +62,7 @@ With associations defined in the relation schemas we established common queries
 that will be automatically used for composing relations into aggregates. Let's
 see how we can leverage that in repositories.
 
-#### Repository Aggregates
+## Repository Aggregates
 
 Let's say we'd like to expose an aggregate where a user is loaded with its tasks.
 We need to define a root repository with `:users` set up as the root and provide

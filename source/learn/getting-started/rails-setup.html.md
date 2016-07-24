@@ -1,9 +1,7 @@
 ---
-title: Rails Setup
-chapter: Setup
+title: Getting Started
+chapter: Rails Setup
 ---
-
-# Rails Setup
 
 Rails integration is provided by
 [rom-rails](https://github.com/rom-rb/rom-rails) project. Simply add it to your

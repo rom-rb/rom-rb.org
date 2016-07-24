@@ -60,7 +60,7 @@ end
 Check out [API documentation](http://www.rubydoc.info/github/rom-rb/rom-repository/ROM/Repository/RelationProxy/Combine)
 for all types of compositions that are available in repositories.
 
-#### When to use custom compositions?
+## When to use custom compositions?
 
 In many common cases using canonical asociations will be sufficient, which means
 that you simply define associations in schemas and

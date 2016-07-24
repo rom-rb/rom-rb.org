@@ -1,9 +1,7 @@
 ---
 title: Getting Started
-chapter: Getting Started
+chapter: Installation
 ---
-
-## Install adapter
 
 Choose one or more adapters you intend to use, and run the install command for
 each one (or add it to your `Gemfile`):

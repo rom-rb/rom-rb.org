@@ -1,5 +1,5 @@
 ---
-title: SQL Adapter
+title: SQL
 chapter: Joins
 ---
 
@@ -17,7 +17,7 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-#### Qualifying and Renaming Attributes
+## Qualifying and Renaming Attributes
 
 Joining relations introduces a problem of having conflicting attribute names. To
 solve this you often need to qualify and rename columns.
@@ -44,7 +44,7 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-#### Using Renamed Attributes in GROUP or WHERE Clauses
+## Using Renamed Attributes in GROUP or WHERE Clauses
 
 If attributes need to be qualified and you want to use them in `group` or `where`
 you can use special syntax with double-underscore:
@@ -61,7 +61,7 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-#### Mapping Joined Relations (advanced usage)
+## Mapping Joined Relations (advanced usage)
 
 You can map a result from a join to a single aggregate using mappers:
 

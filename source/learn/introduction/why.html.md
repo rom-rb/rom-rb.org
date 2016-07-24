@@ -1,9 +1,7 @@
 ---
-title: Why ROM?
-chapter: Introduction
+title: Introduction
+chapter: Why ROM?
 ---
-
-# Why ROM?
 
 Many Rubyists start their journey being exposed to Rails and its favored object
 relational mapping (ORM) library, `Active Record`. `Active Record` is an

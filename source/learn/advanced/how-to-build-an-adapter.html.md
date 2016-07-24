@@ -3,8 +3,6 @@ title: How to Build a ROM Adapter
 chapter: Adapters
 ---
 
-# How To Build a ROM Adapter
-
 ROM makes very little assumptions about its adapters that's why it is simple to
 build a custom adapter that will provide access to a specific datasource.
 
