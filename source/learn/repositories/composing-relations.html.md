@@ -34,7 +34,7 @@ class Users < ROM::Relation[:sql]
   schema(infer: true)
 
   view(:authors, [:id, :name]) do |posts|
-    select(:id, :name).where(id: posts.pluck(:user_id).order(:name)
+    select(:id, :name).where(id: posts.pluck(:user_id)).order(:name)
   end
 end
 ```
