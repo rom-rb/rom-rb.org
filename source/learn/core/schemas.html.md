@@ -26,6 +26,12 @@ class Users < ROM::Relation[:http]
 end
 ```
 
+#### Types namespace
+
+All builtin types are defined in `ROM::Types` namespace, and individual adapters
+may provide their own namespace which extends the builtin one. For example `rom-sql`
+provides `ROM::SQL::Types` and `ROM::SQL::Types::PG`.
+
 #### Annotations
 
 Schema types provide an API for adding arbitrary meta-information. This is mostly
