@@ -3,8 +3,8 @@ title: Getting Started
 chapter: Installation
 ---
 
-Choose one or more adapters you intend to use, and run the install command for
-each one (or add it to your `Gemfile`):
+Choose one or more adapters that you intend to use, and run the install command
+for each one (or add it to your `Gemfile`):
 
 |Adapter|Install Command|
 |-------|---------------|
@@ -30,7 +30,7 @@ each one (or add it to your `Gemfile`):
 Simply install `rom-repository` or add it to your `Gemfile`. Adapters will be
 auto-loaded based on configuration settings.
 
-In example, if you'd like to use ROM with an SQL database, add following gems to
+For example, if you'd like to use ROM with an SQL database, add following gems to
 you `Gemfile`:
 
 ``` ruby
