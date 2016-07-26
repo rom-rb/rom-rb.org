@@ -16,12 +16,12 @@ shares a common pipeline interface and returns data without side-effects. It’s
 also built with dependency-injection in mind; there are no public class-level
 interfaces beyond the setup interface.
 
-All ROM components are stand-alone: they are loosely coupled, can be used
+All ROM components are stand-alone; they are loosely coupled, can be used
 independently, and follow the single responsibility principle. A single object
 that handles coercion, state, persistence, validation, and all-important
 business logic rapidly becomes complex. Instead, ROM provides the infrastructure
 that allows you to easily create small, dedicated classes for handling each
-concern individually, and then tie it together in a developer-friendly way.
+concern individually, and then tie them together in a developer-friendly way.
 
 ## ROM is not an ORM
 
