@@ -148,3 +148,9 @@ Here are a couple of guidelines that should help you in making right decisions:
   to validate the data prior sending them to a command, but there might be use cases
   where you expect data to be valid already, and any type error *is indeed an exception*
   and you want your system to crash
+
+## Learn more
+
+You can learn more about adapter-specific schemas:
+
+- [SQL schemas](/learn/sql/schemas)
