@@ -22,7 +22,7 @@ ROM::Rails::Railtie.configure do |config|
 end
 ```
 
-You can provide additional adapter-specific options, in example you can enable
+You can provide additional adapter-specific options, for example you can enable
 specific sql plugins for postgres:
 
 ``` ruby
@@ -70,13 +70,13 @@ In Rails environment ROM container is accessible via `ROM.container`:
 ROM.container # returns the container
 ```
 
-Accessing global container directly is considered as a bad practice. The
+Accessing the global container directly is considered as a bad practice. The
 recommended way is to use a DI mechanism to inject specific ROM components as
 dependencies into your objects.
 
-In example you can use [dry-container](https://github.com/dryrb/dry-container)
-and [dry-auto_inject](https://github.com/dryrb/dry-auto_inject) gems to define
-your own application container and specify dependencies there and have them
+For example you can use [dry-container](https://github.com/dryrb/dry-container)
+and [dry-auto_inject](https://github.com/dryrb/dry-auto_inject) to define
+your own application container and specify dependencies there to have them
 automatically injected.
 
 See [rom-rails-skeleton](https://github.com/solnic/rom-rails-skeleton) for an
@@ -85,7 +85,7 @@ example of such setup.
 ## Defining Relations
 
 Relation class definitions are being automatically loaded from `app/relations`.
-In example let's define `users` relation:
+The following code defines a `users` relation for the `:sql` adapter:
 
 ``` ruby
 class Users < ROM::Relation[:sql]
@@ -99,7 +99,7 @@ ROM.container.relations[:users]
 ## Defining Commands
 
 Command class definitions are being automatically loaded from `app/commands`.
-In example let's define a command which inserts data into `users` relation:
+The following code defines a command which inserts data into `users` relation:
 
 ``` ruby
 # app/commands/create_user.rb
