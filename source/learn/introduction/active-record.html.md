@@ -5,8 +5,7 @@ chapter: Active Record and ROM
 
 # Active Record and ROM
 
-This document explains basic differences between Active Record ORM from Rails
-and ROM.
+This document explains basic differences between Rails' Active Record ORM and ROM.
 
 ## Database Support
 
@@ -36,7 +35,7 @@ Every relation that your application is going to use is explicitly defined. The
 ROM relations expose powerful internal query APIs that you use to create
 publicly accessible relation methods to return query results.
 
-Imagine your `ActiveRecord` models only exposed the scopes and scope methods to
+Imagine that `ActiveRecord` models only exposed the scopes and scope methods to
 the rest of the application. This is what ROM relations are like.
 
 ## Models
@@ -55,8 +54,8 @@ All those objects that you create are nothing more than mapping. They take
 
 #### ROM
 
-There is no single "model" object in ROM. ROM objects that are instantiated by
-the mappers have no knowledge about persistence. You can map to whatever
+There is no single "model" object in ROM. ROM objects are instantiated by
+the mappers and have no knowledge about persistence. You can map to whatever
 structure you want and in common use-cases you can use repositories to
 automatically map query results to simple struct-like objects.
 
