@@ -3,9 +3,9 @@ title: Repositories
 chapter: Reading Aggregates
 ---
 
-Repositories have a powerful API for composing data into nested structures. We
-call them aggregates, where the root is constructed from the data provided by the
-root relation, and additional relations provide data for child nodes.
+Repositories have a powerful API for composing data into nested structures, which
+we call **aggregates**, where the root is constructed from the data provided by
+the root relation, and additional relations provide data for child nodes.
 
 This document uses `rom-sql` which provide support for defining canonical database
 associations in relation schemas, which are used to simplify reading aggregates.

@@ -3,8 +3,9 @@ title: Repositories
 chapter: Reading Simple Objects
 ---
 
-Depending on how complex your application becomes, you may want to create
-separate Repository classes to subdivide duties.
+It's best to create multiple Repository classes that each focus on a segment of
+the data. One rough guideline is to make a repository for each concept within
+your app:
 
 ```ruby
 # Assuming a database with tables 'users' and 'projects'
@@ -12,12 +13,10 @@ rom = ROM.container(:sql, 'sqlite::memory')
 
 # Perhaps one Repo to handle users
 class UserRepo < ROM::Repository[:users]
-  # ... [users-related selector methods go here]
 end
 
 # Another repository could handle the projects
 class ProjectRepo < ROM::Repository[:projects]
-  # ... [project-related selector methods go here]
 end
 
 user_repo = UserRepository.new(rom)
@@ -143,4 +142,4 @@ end
 
 ## Next
 
-You can proceed to [reading aggregates](/learn/repositories/reading-aggregates) section.
+Now we can read simple structs. Next, learn how to [read complex, aggregate data](/learn/repositories/reading-aggregates).

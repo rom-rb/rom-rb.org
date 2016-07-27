@@ -60,7 +60,7 @@ class UserRepo < ROM::Repository[:users]
 end
 ```
 
-The `commands` macro defines a `create` method for us:
+The `commands` macro defines a `UserRepo#create` method for us:
 
 ``` ruby
 user_repo.create(name: "Jane", email: "jane@doe.org")
@@ -68,14 +68,17 @@ user_repo.create(name: "Jane", email: "jane@doe.org")
 ```
 
 By default, repos return simple `ROM::Struct` objects. You'll learn more about them in
-[the reading](/reading/simple-objects) section.
+[reading](/reading/simple-objects) section.
 
 ### Update and Delete
 
-Update and Delete commands require restricting relations so that we can update or
-delete a subset of a given relation. `rom-sql` adapter automatically defines a
-restricted relation by the primary key called `by_pk`. We can use this to define
-update and delete commands for a repo:
+Update and Delete commands require restricting relations so that ROM knows exactly
+which records to modify. Provide :update and :delete with the symbol name of the
+method to call to get that restricted relation.
+
+The most popular adapter, rom-sql, automatically defines a method, `by_pk`, that
+restricts by the primary key. In projects with rom-sql, we would use it to define
+update and delete commands in a repo:
 
 ``` ruby
 require 'rom-repository'
@@ -102,4 +105,4 @@ user_repo.delete(user.id)
 ## Next
 
 Now that you know how to create tables and define repositories with full CRUD
-support, you can proceed to [the reading](/learn/repositories/reading-simple-objects) section.
+support, you can proceed to [reading](/learn/repositories/reading-simple-objects) section.

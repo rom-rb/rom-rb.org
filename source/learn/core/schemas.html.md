@@ -3,10 +3,9 @@ title: Core
 chapter: Schemas
 ---
 
-Relation schemas define explicitly attribute names and types for tuples that
-a given relation provides. All adapters support relation schemas, and adapter-specific
-extensions can be provided as well, for example `rom-sql` extends schema DSL with
-support for defining associations.
+Schemas define explicit attribute names and types within a relation. All adapters
+support relation schemas, and adapter-specific extensions can be provided as well,
+for example `rom-sql` extends schema DSL with support for defining associations.
 
 Apart from adapter-specific extensions, schemas can be *extended by you* since
 you can define your own *types*. That's how `rom-sql` provides its own PostgreSQL
@@ -14,7 +13,7 @@ types.
 
 ## Defining a schema
 
-The DSL is very simple, you provide attribute names along with their types:
+The DSL is simple. Provide a symbol name with a type class from the Types module:
 
 ``` ruby
 class Users < ROM::Relation[:http]
@@ -31,6 +30,53 @@ end
 All builtin types are defined in `ROM::Types` namespace, and individual adapters
 may provide their own namespace which extends the builtin one. For example `rom-sql`
 provides `ROM::SQL::Types` and `ROM::SQL::Types::PG`.
+
+## Primary keys
+
+You can set up a primary key, either a single attribute or a composite:
+
+``` ruby
+class Users < ROM::Relation[:http]
+  schema do
+    attribute :id, Types::Int
+    attribute :name, Types::String
+    attribute :age, Types::Int
+
+    primary_key :id
+  end
+end
+```
+
+For a composite primary key, pass the relevant attribute names:
+
+``` ruby
+class UsersGroups < ROM::Relation[:http]
+  schema do
+    attribute :user_id, Types::Int
+    attribute :group_id, Types::Int
+
+    primary_key :id, :group_id
+  end
+end
+```
+
+> `primary_key` is a shortcut for the annotation: Types::Int.meta(primary_key: true)
+
+## Foreign Keys
+
+You can set up foreign keys pointing to a specific relation:
+
+``` ruby
+class Posts < ROM::Relation[:http]
+  schema do
+    attribute :user_id, Types::ForeignKey(:users)
+    # defaults to `Types::Int` but can be overridden:
+    attribute :user_id, Types::ForeignKey(:users, Types::UUID)
+  end
+end
+```
+
+> `foreign_key` is a shortcut for the annotation: Types::Int.meta(foreign_key: true, relation: :users)
 
 ## Annotations
 
@@ -54,52 +100,6 @@ Here we defined a `:namespace` meta-information, that can be used accessed via
 Users.schema[:name].meta[:namespace] # 'details'
 ```
 
-## Primary keys
-
-You can set up a primary key, either a single attribute or a composite:
-
-``` ruby
-class Users < ROM::Relation[:http]
-  schema do
-    attribute :id, Types::Int
-    attribute :name, Types::String
-    attribute :age, Types::Int
-
-    primary_key :id
-  end
-end
-```
-
-For a composite primary key simply pass a list of attribute names:
-
-``` ruby
-class UsersGroups < ROM::Relation[:http]
-  schema do
-    attribute :user_id, Types::Int
-    attribute :group_id, Types::Int
-
-    primary_key :id, :group_id
-  end
-end
-```
-
-> This is just a shortcut for an annotation: `Types::Int.meta(primary_key: true)`
-
-## Foreign Keys
-
-You can set up foreign keys pointing to a specific relation:
-
-``` ruby
-class Posts < ROM::Relation[:http]
-  schema do
-    attribute :user_id, Types::ForeignKey(:users)
-    # defaults to `Types::Int` but can be overridden:
-    attribute :user_id, Types::ForeignKey(:users, Types::UUID)
-  end
-end
-```
-
-> This is just a shortcut for an annotation: `Types::Int.meta(foreign_key: true, relation: :users)`
 
 ## Commands & Schemas
 
@@ -136,7 +136,7 @@ Here are a couple of guidelines that should help you in making right decisions:
 
 * Don't treat relation schemas as a complex coercion system that is used against
   data received at the HTTP boundary (ie rack request params)
-* Coercion logic in schemas should be low-level, ie `Hash` => `PGHash` in `rom-sql`
+* Coercion logic in schemas should be low-level (eg. Hash => PGHash in rom-sql)
 * Default values should be used as a low-level guarantee that some value is
   **always set** before making a change in your database. Generating a unique id
   is a good example. For default values that are closer to your application domain
