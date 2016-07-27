@@ -3,6 +3,8 @@ title: HTTP
 chapter: Setup
 ---
 
+*The adapter is still in beta. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom] and report issues [on github][rom-http].*
+
 ROM supports HTTP-based services via the `rom-http` adapter, which is
 client-agnostic.  The adapter presents a request-response wrapper, allowing
 the use of an arbitrary HTTP client gem.
