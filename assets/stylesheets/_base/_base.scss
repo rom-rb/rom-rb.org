@@ -25,7 +25,7 @@ ol{
 
 h1 {
   @include type-scale(xxlarge);
-  @include type-weight(medium);
+  @include type-weight(semi-bold);
   color: palette(black);
 }
 
@@ -44,6 +44,7 @@ h3 {
 }
 
 h4 {
+  @include margin-trailer(1);
   @include type-scale(small);
   @include type-weight(semi-bold);
   color: palette(black);
