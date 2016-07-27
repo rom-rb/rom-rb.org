@@ -10,7 +10,7 @@
     @include margin-trailer(2);
 
     &__image {
-      max-width: 60%;
+      max-width: 40%;
       width: 100%;
     }
   }
@@ -19,7 +19,7 @@
     @include margin-trailer(2);
 
     &__name {
-      @include type-weight(medium);
+      @include type-weight(semi-bold);
       letter-spacing: -0.025em;
     }
   }
