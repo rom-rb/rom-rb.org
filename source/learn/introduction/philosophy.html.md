@@ -3,13 +3,6 @@ title: Introduction
 chapter: Philosophy
 ---
 
-* Simple is best
-* Composition is powerful
-* Apps require architectural freedom
-* Reading and writing are distinct problems
-* Decouple apps from query details
-* Universal query interfaces only add complexity
-
 ROM leverages Ruby’s linguistic strengths with a blend of Object Oriented and
 Functional styles. Following a powerful composition pattern, every ROM object
 shares a common pipeline interface and returns data without side-effects. It’s
@@ -23,7 +16,7 @@ business logic rapidly becomes complex. Instead, ROM provides the infrastructure
 that allows you to easily create small, dedicated classes for handling each
 concern individually, and then tie them together in a developer-friendly way.
 
-## ROM is not an ORM
+## ROM is not a typical Object-Relational-Mapper
 
 ROM is based on several concepts and decisions that differentiate it from
 commonplace Ruby ORMs. The fundamental flaw behind ORMs is the idea that it
