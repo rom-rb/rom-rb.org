@@ -6,8 +6,15 @@ chapter: Block Style Setup
 This guide explains how to configure ROM using block style which is suitable for
 simple scripts.
 
+> #### ROM & frameworks
+>
 > If want to use ROM with a framework, see specific instructions in the getting
 > started section.
+
+> #### Configuration
+>
+> The configuration options explained in this document are the same for
+> [Flat Style Setup](/advanced/flat-style-setup) using `ROM::Configuration` object
 
 ## Connect to a single database
 
@@ -17,6 +24,11 @@ adapter:
 ```ruby
 # This creates a rom-sql adapter backed by SQLite in-memory database
 ROM.container(:sql, 'sqlite::memory') do |rom|
+  # define relations and commands here...
+end
+
+# You can provide additional connection options too
+ROM.container(:sql, 'postgres://localhost/my_db', extensions: [:pg_json]) do |rom|
   # define relations and commands here...
 end
 
