@@ -84,7 +84,7 @@ example of such setup.
 
 ## Defining Relations
 
-Relation class definitions are being automatically loaded from `app/relations`.
+Relation class definitions are automatically loaded from `app/relations`.
 The following code defines a `users` relation for the `:sql` adapter:
 
 ``` ruby
@@ -98,7 +98,7 @@ ROM.container.relations[:users]
 
 ## Defining Commands
 
-Command class definitions are being automatically loaded from `app/commands`.
+Command class definitions are automatically loaded from `app/commands`.
 The following code defines a command which inserts data into `users` relation:
 
 ``` ruby

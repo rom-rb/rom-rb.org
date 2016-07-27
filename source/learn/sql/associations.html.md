@@ -95,7 +95,7 @@ end
 If you want to use a different name for an association, you can use `:as` option.
 All association types support this feature.
 
-In example, let's say we have `:posts` belonging to `:users` but we'd like to call
+For example, let's say we have `:posts` belonging to `:users` but we'd like to call
 them `:authors`:
 
 ``` ruby
