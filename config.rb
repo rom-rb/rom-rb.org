@@ -30,6 +30,11 @@ helpers do
     url = 'https://github.com/angeloashmore'
     "Design by #{link_to '@angeloashmore', url}."
   end
+
+  def logo_by
+    url = 'https://github.com/kapowaz'
+    "Logo by #{link_to '@kapowaz', url}."
+  end
 end
 
 # General configuration

@@ -12,8 +12,6 @@ The best way to contribute to ROM is to use it. The more places it’s used and 
 
 Install [ROM](https://github.com/rom-rb/rom) and [its dependencies](/status) and try it out in an existing project.
 
-Experiment with a [new Rails project](/tutorials/todo-app-with-rails) based on ROM.
-
 Dive deeper into the ROM ecosystem by writing an adapter for a new data source.
 
 ## Community
@@ -27,3 +25,7 @@ Report bugs and offer feedback on features via [GitHub Issues](https://github.co
 Look for issues marked with [help wanted](https://github.com/rom-rb/rom/labels/help-wanted). That’s a sign that a unit of work is up for grabs.
 
 Before diving into code contributions, it’s best to check in [on Gitter](https://gitter.im/rom-rb/chat) or post a comment on the relevant GitHub issue to let others know you’re interested and ensure you understand the context.
+
+# Code of Conduct
+
+ROM project adheres to [the Contributor Covenant](http://contributor-covenant.org)
