@@ -140,7 +140,7 @@ Here are a couple of guidelines that should help you in making right decisions:
 * Default values should be used as a low-level guarantee that some value is
   **always set** before making a change in your database. Generating a unique id
   is a good example. For default values that are closer to your application domain
-  it's better to handle this outside of the persistence layer. In example setting
+  it's better to handle this outside of the persistence layer. For example, setting
   `draft` as the default value for post's `:status` attribute is part of your domain
   more than it is part of your persistence layer.
 * Strict types *can be used* and they will raise `TypeError` when invalid data

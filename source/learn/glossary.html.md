@@ -32,7 +32,7 @@ CSV or YAML.
 
 #### Gateway
 
-An object that encapsulates access to a specific persistence backend. In example
+An object that encapsulates access to a specific persistence backend. For example
 the SQL gateway provides access to database tables via its [datasets](#dataset)
 
 #### Dataset

@@ -61,5 +61,5 @@ it doesn't matter) and exposes a native CRUD interface to its relations. Every
 adapter has extension points to support database-specific functionality. It provides
 its own relation types, extensions for built-in commands, and potentially new command
 types. Furthermore, an adapter can provide extra features that are needed to work
-with a given database type. In example, `rom-sql` provides Migration API.
+with a given database type. For example, `rom-sql` provides Migration API.
 
