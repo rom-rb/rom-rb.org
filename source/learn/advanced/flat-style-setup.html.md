@@ -8,8 +8,11 @@ access databases, in a typical application setup, you want to break down
 individual component definitions, like relations or commands, into separate
 files.
 
-**Framework integrations take care of the setup for you. If you want to use ROM
-with a framework, please refer to [frameworks](/learn/frameworks) section.**
+> ROM & Frameworks
+>
+> Framework integrations **take care of the setup for you**. If you want to use ROM
+> with a framework, please refer to specific instructions under [Getting Started](/learn/getting-started)
+> section
 
 ## Setup
 
@@ -32,14 +35,8 @@ the internal semantics between block-style and flat-style setup.
 ROM components need to be registered with the ROM environment in order to be
 used.
 
-The `:macros` plugin handles this behind the scenes for you whenever you use the
-DSL to declare a ROM component. Call `use(:macros)` to enable the plugin:
-
 ```ruby
 configuration = ROM::Configuration.new(:memory, 'memory://test')
-
-# Anything after this line will be automatically registered
-configuration.use :macros
 
 # Declare Relations, Commands, and Mappers here
 ```
@@ -73,30 +70,7 @@ configuration.auto_registration(__dir__)
 container = ROM.container(configuration)
 ```
 
-By default, it assumes that each class is in the root namespace. A `namespace` option can be provided if that is not the case. Finally, the file name and the name of the constant must match.
-
-```ruby
-configuration = ROM::Configuration.new(:memory)
-configuration.auto_registration(__dir__, namespace: "MyApp")
-container = ROM.container(configuration)
-```
-
-```ruby
-configuration = ROM::Configuration.new(:memory)
-configuration.auto_registration(__dir__, namespace: "MyApp", relations: {namespace: "MyApp::Relations"})
-container = ROM.container(configuration)
-```
-
 ## Relations
-
-Relations are the interface to get data out of your persistence solution. They
-represent groups of data; in a database scenario, these are equivalent to
-tables.
-
-As your application grows in scope or complexity, you will likely want to DRY up
-common logic from your Repository class(es) into Relations. In other situations,
-you may also use Relations directly - Repository is just a convenience, not a
-requirement.
 
 While the DSL syntax is often convenient, Relations can also be defined with a
 class extending `ROM::Relation` from the appropriate adapter.
@@ -104,6 +78,11 @@ class extending `ROM::Relation` from the appropriate adapter.
 ```ruby
 # Defines a Users relation for the SQL adapter
 class Users < ROM::Relation[:sql]
+
+end
+
+# Defines a Posts relation for the HTTP adapter
+class Posts < ROM::Relation[:http]
 
 end
 ```
@@ -143,3 +122,7 @@ class CreateUser < ROM::Commands::Create[:memory]
    result :one
 end
 ```
+
+> Typically, you're going to use [repository command interface](/learn/repositories/quick-start);
+> custom command classes are useful when the built-in command support in
+> repositories doesn't meet your requirements
