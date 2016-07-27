@@ -4,20 +4,28 @@ chapter: Installation
 ---
 
 Choose one or more adapters that you intend to use, and run the install command
-for each one (or add it to your `Gemfile`):
+for each one (or add it to your `Gemfile`)
 
-|Adapter|Install Command|
-|-------|---------------|
-|SQL|`gem install rom-sql`|
-|Cassandra|`gem install rom-cassandra`|
-|MongoDB|`gem install rom-mongo`|
-|CouchDB|`gem install rom-couchdb`|
-|Neo4j|`gem install rom-neo4j`|
+Compatible with rom 2.0:
+
+|Adapter|Install Command|Production ready?|
+|-------|---------------|---|
+|SQL|`gem install rom-sql`| √ |
+|Yesql|`gem install rom-yesql`| √ |
+|HTTP|`gem install rom-http`| √ |
+|RethinkDB|`gem install rom-rethinkdb`| - |
+
+Outdated (help wanted!) adapters:
+
+|Adapter|Install Command|Production ready?
+|-------|---------------|---|
+|Cassandra|`gem install rom-cassandra`| √ |
+|CSV|`gem install rom-csv`| √ |
+|YAML|`gem install rom-yaml`| √ |
+|CouchDB|`gem install rom-couchdb`| √ |
+|MongoDB|`gem install rom-mongo`| - |
+|Neo4j|`gem install rom-neo4j`| - |
 |Event Store|`gem install rom-event_store`|
-|RethinkDB|`gem install rom-rethinkdb`|
-|HTTP|`gem install rom-http`|
-|CSV|`gem install rom-csv`|
-|YAML|`gem install rom-yaml`|
 
 > #### How to choose an adapter?
 >
