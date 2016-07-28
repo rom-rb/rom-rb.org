@@ -1,6 +1,6 @@
 ---
-title: Introduction
-chapter: Overview
+chapter: Introduction
+title: Overview
 ---
 
 ROM encourages a clear separation between your application domain and the data

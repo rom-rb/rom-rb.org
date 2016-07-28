@@ -1,4 +1,6 @@
-# Glossary
+---
+chapter: Glossary
+---
 
 This document explains basic terms used in ROM.
 

@@ -1,9 +1,7 @@
 ---
-title: Introduction
-chapter: Active Record and ROM
+chapter: Introduction
+title: Active Record and ROM
 ---
-
-# Active Record and ROM
 
 This document explains basic differences between Rails' Active Record ORM and ROM.
 

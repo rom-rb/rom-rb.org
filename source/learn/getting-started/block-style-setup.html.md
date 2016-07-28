@@ -1,6 +1,6 @@
 ---
-title: Getting Started
-chapter: Block Style Setup
+chapter: Getting Started
+title: Block Style Setup
 ---
 
 This guide explains how to configure ROM using block style which is suitable for

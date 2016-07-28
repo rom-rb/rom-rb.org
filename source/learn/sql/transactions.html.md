@@ -1,6 +1,6 @@
 ---
-title: SQL
-chapter: Transactions
+chapter: SQL
+title: Transactions
 ---
 
 To use a transaction simple wrap calling a command inside its transaction block:

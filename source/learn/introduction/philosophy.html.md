@@ -1,6 +1,6 @@
 ---
-title: Introduction
-chapter: Philosophy
+chapter: Introduction
+title: Philosophy
 ---
 
 ROM leverages Ruby’s linguistic strengths with a blend of Object Oriented and

@@ -1,6 +1,9 @@
 ---
-title: Getting Started
-chapter: Installation
+chapter: Getting Started
+title: Installation
+sections:
+  - block-style-setup
+  - rails-setup
 ---
 
 Choose one or more adapters that you intend to use, and run the install command

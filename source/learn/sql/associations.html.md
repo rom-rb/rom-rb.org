@@ -1,6 +1,6 @@
 ---
-title: SQL
-chapter: Associations
+chapter: SQL
+title: Associations
 ---
 
 Relation schemas in SQL land can be used to define canonical associations. These

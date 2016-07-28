@@ -1,6 +1,8 @@
 ---
-title: Core
-chapter: Index
+chapter: Core
+sections:
+  - relations
+  - schemas
 ---
 
 In this section you can learn about APIs that are common for all adapters. Once

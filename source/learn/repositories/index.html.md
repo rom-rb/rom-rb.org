@@ -1,6 +1,12 @@
 ---
-title: Repositories
-chapter: Index
+chapter: Repositories
+sections:
+  - quick-start
+  - reading-simple-objects
+  - reading-aggregates
+  - composing-relations
+  - changesets
+  - writing-aggregates
 ---
 
 In this section you can learn how to work with ROM repositories.

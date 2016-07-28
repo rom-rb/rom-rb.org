@@ -1,6 +1,6 @@
 ---
-title: Repositories
-chapter: Composing Relations
+chapter: Repositories
+title: Composing Relations
 ---
 
 Composing relations means defining various subsets of data in ways that make

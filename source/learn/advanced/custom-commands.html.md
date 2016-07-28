@@ -1,6 +1,6 @@
 ---
-title: Advanced
-chapter: Custom Commands
+chapter: Advanced
+title: Custom Commands
 ---
 
 There are some adapters that add base commands, but you can also define your own.

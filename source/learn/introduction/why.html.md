@@ -1,6 +1,6 @@
 ---
-title: Introduction
-chapter: Why ROM?
+chapter: Introduction
+title: Why ROM?
 ---
 
 Many Rubyists start their journey being exposed to Rails and its favored object

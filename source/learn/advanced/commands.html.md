@@ -1,6 +1,6 @@
 ---
-title: Advanced Topics
-chapter: Standalone Commands
+chapter: Advanced Topics
+title: Standalone Commands
 ---
 
 Writing records to a persistence solution is done through Commands. Commands are

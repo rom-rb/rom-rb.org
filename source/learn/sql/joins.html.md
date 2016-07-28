@@ -1,6 +1,6 @@
 ---
-title: SQL
-chapter: Joins
+chapter: SQL
+title: Joins
 ---
 
 To load associated relations you can simply use `inner_join` or `left_join`:

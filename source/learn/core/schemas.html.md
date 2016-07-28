@@ -1,6 +1,6 @@
 ---
-title: Core
-chapter: Schemas
+chapter: Core
+title: Schemas
 ---
 
 Schemas define explicit attribute names and types within a relation. All adapters

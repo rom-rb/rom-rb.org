@@ -1,6 +1,6 @@
 ---
-title: Core
-chapter: Relations
+chapter: Core
+title: Relations
 ---
 
 Relations are really the heart of ROM. They provide APIs for reading the data
