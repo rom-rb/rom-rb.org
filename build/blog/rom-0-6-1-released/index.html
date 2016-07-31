@@ -1,0 +1,157 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - ROM 0.6.1 Released</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_rom-0-6-1-released blog_rom-0-6-1-released_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link--is-active" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-2-0-0-released/">ROM 2.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-released/">ROM 1.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-rc-released/">ROM 1.0.0 RC Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/first-beta-of-rom-1-0-0-has-been-released/">First Beta of ROM 1.0.0 Has Been Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-0-9-0-released/">ROM 0.9.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/release">release</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/announcement">announcement</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/oss">oss</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/support">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a class="button--secondary" href="#"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a class="article__title__link--is-active" href="/blog/rom-0-6-1-released/">ROM 0.6.1 Released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/maetl">Mark Rickerby</a> on April 04, 2015 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We’re pleased to announce that ROM 0.6.1 is now available, building on the <a href="/blog/2015/03/23/rom-0-6-0-released/">improvements and API changes in 0.6.0</a>.</p>
+
+<p>This release includes updates of the following gems:</p>
+
+<ul>
+<li><a href="https://rubygems.org/gems/rom">rom 0.6.1</a> - <a href="https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v061-2015-04-04">changelog</a></li>
+<li><a href="https://rubygems.org/gems/rom-sql">rom-sql 0.4.1</a> - <a href="https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v041-2015-04-04">changelog</a></li>
+<li><a href="https://rubygems.org/gems/rom-rails">rom-rails 0.3.1</a> - <a href="https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v031-2015-04-04">changelog</a></li>
+<li><a href="https://rubygems.org/gems/rom-lotus">rom-lotus 0.0.1</a> - <a href="https://github.com/rom-rb/rom-lotus/blob/master/CHANGELOG.md">changelog</a></li>
+</ul>
+
+<h2>Auto-mapping of command results</h2>
+
+<p>The results of commands can now be mapped in the same way as relations, using <code>as</code> or <code>map_with</code>.</p>
+<pre class="syntax ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:rel_name</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:mapper_name</span><span class="p">)</span>
+</code></pre>
+
+<h2>New migrations interface</h2>
+
+<p>A database migration interface is now included in <code>rom-sql</code>. This is currently a thin wrapper around the excellent <a href="http://sequel.jeremyevans.net/rdoc/files/doc/migration_rdoc.html">Sequel Migrations API</a>.</p>
+
+<p>You can use migrations with one or more repositories as follows:</p>
+<pre class="syntax ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span>
+  <span class="ss">default: </span><span class="p">[</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">],</span>
+  <span class="ss">other: </span><span class="p">[</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/test'</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span>
+
+<span class="no">ROM</span><span class="o">::</span><span class="no">SQL</span><span class="p">.</span><span class="nf">migration</span> <span class="k">do</span>
+  <span class="n">change</span> <span class="k">do</span>
+    <span class="n">create_table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">primary_key</span> <span class="ss">:id</span>
+      <span class="no">String</span> <span class="ss">:name</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># for a non-default repository</span>
+<span class="no">ROM</span><span class="o">::</span><span class="no">SQL</span><span class="p">.</span><span class="nf">migration</span><span class="p">(</span><span class="ss">:other</span><span class="p">)</span> <span class="k">do</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>The expected way to run migrations is to require the Rake task from <code>rom/sql/rake_task</code>, and provide a <code>db:setup</code> task that sets up the ROM connection.</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'sqlite3'</span>
+<span class="nb">require</span> <span class="s1">'rom/sql/rake_task'</span>
+
+<span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
+  <span class="n">task</span> <span class="ss">:setup</span> <span class="k">do</span>
+    <span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span>
+    <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Improvements to forms for Rails users</h2>
+
+<p>There are several new changes that rationalize and improve the usability of the Rails forms API:</p>
+
+<ul>
+<li>An optional <code>mappings</code> declaration has been added, which applies named mappers to the results of form commands.</li>
+<li>Form generators can generate a shared base form class for new/update forms.</li>
+<li><code>input</code> and <code>validations</code> blocks are now available in all descendants of <code>ROM::Model::Form</code>.</li>
+</ul>
+
+<p>The following example shows what this looks like in action, with base attributes and validations shared by the child classes, which each declare their own command, mapper, and attribute inputs:</p>
+<pre class="syntax ruby"><code><span class="c1"># app/forms/user_form.rb</span>
+<span class="k">class</span> <span class="nc">UserForm</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Form</span>
+  <span class="n">input</span> <span class="k">do</span>
+    <span class="n">set_model_name</span> <span class="s1">'User'</span>
+
+    <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">String</span>
+    <span class="n">attribute</span> <span class="ss">:email</span><span class="p">,</span> <span class="no">String</span>
+  <span class="k">end</span>
+
+  <span class="n">validations</span> <span class="k">do</span>
+    <span class="n">relation</span> <span class="ss">:users</span>
+
+    <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+    <span class="n">validates</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">uniqueness: </span><span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># app/forms/new_user_form.rb</span>
+<span class="k">class</span> <span class="nc">NewUserForm</span> <span class="o">&lt;</span> <span class="no">UserForm</span>
+  <span class="n">commands</span> <span class="ss">users: :create</span>
+
+  <span class="n">mappings</span> <span class="ss">users: :entity</span>
+
+  <span class="n">input</span> <span class="k">do</span>
+    <span class="n">timestamps</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">commit!</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">try</span> <span class="p">{</span> <span class="n">users</span><span class="p">.</span><span class="nf">create</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># app/forms/update_user_form.rb</span>
+<span class="k">class</span> <span class="nc">UpdateUserForm</span> <span class="o">&lt;</span> <span class="no">UserForm</span>
+  <span class="n">commands</span> <span class="ss">users: :update</span>
+
+  <span class="n">mappings</span> <span class="ss">users: :entity</span>
+
+  <span class="n">input</span> <span class="k">do</span>
+    <span class="n">timestamps</span><span class="p">(</span><span class="ss">:updated_at</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">commit!</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">try</span> <span class="p">{</span> <span class="n">users</span><span class="p">.</span><span class="nf">update</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">set</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Lotus integration</h2>
+
+<p>And last but not least, <a href="https://github.com/rom-rb/rom-lotus">rom-lotus</a> is out shiny new integration with the <a href="http://lotusrb.org/">Lotus Framework</a>.</p>
+
+<p>A very basic setup example:</p>
+<pre class="syntax ruby"><code><span class="c1"># config/environment.rb</span>
+<span class="nb">require</span> <span class="s1">'lotus/setup'</span>
+<span class="nb">require</span> <span class="s1">'rom-lotus'</span>
+
+<span class="nb">require_relative</span> <span class="s1">'../apps/web/application'</span>
+
+<span class="no">Lotus</span><span class="o">::</span><span class="no">Container</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span>
+  <span class="n">mount</span> <span class="no">Web</span><span class="o">::</span><span class="no">Application</span><span class="p">,</span> <span class="ss">at: </span><span class="s1">'/'</span>
+
+  <span class="no">ROM</span><span class="o">::</span><span class="no">Lotus</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="no">Web</span><span class="o">::</span><span class="no">Application</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">setup</span><span class="o">|</span>
+    <span class="n">setup</span><span class="p">.</span><span class="nf">repositories</span><span class="p">[</span><span class="ss">:default</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="ss">:sql</span><span class="p">,</span> <span class="s2">"sqlite:///tmp/test.sqlite"</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Expect to hear more about this as the integration evolves.</p>
+
+<h2>Upgrading to 0.6.1</h2>
+
+<p>Please let us know if you have any trouble with the upgrade. Contact us directly via <a href="https://gitter.im/rom-rb/chat">Gitter</a> or <a href="https://github.com/rom-rb/rom/issues">submit an issue on GitHub</a> describing any problems you&#39;re having.</p>
+
+<h2>Onwards to 0.7</h2>
+
+<p>We’re planning to focus heavily on improvements to mappers and commands in 0.7, which should get us significantly closer to figuring out what the shape of these APIs will be in 1.0.</p>
+
+<p>Thanks for your support!</p>
+<hr /></article><div id="disqus_thread"></div><script src="https://rom-rb-blog.disqus.com/embed.js"></script></div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

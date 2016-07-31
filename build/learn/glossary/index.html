@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_glossary learn_glossary_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Glossary</h1><p>This document explains basic terms used in ROM.</p>
+
+<h4>Relation</h4>
+
+<p>An object that represents data in your system, implements <code>each</code> and yields
+<a href="#tuple">tuples</a>.</p>
+
+<h4>Mapper</h4>
+
+<p>An object that receives a relation and maps it to another representation. Anything
+that responds to <code>call</code> can be a mapper in ROM.</p>
+
+<h4>Command</h4>
+
+<p>An object that executes a datastore-specific operation in order to create, update
+or delete tuples in a relation. Commands execute operations using relation
+interface which is datastore-specific; however, on the surface they simply respond
+to <code>call</code>.</p>
+
+<p>Every adapter <em>can provide custom command types</em>.</p>
+
+<h4>Tuple</h4>
+
+<p>An element in a relation. Typically represented by a hash object.</p>
+
+<h4>Datastore</h4>
+
+<p>A persistence backend, typically a database but also a flat file with data like
+CSV or YAML.</p>
+
+<h4>Gateway</h4>
+
+<p>An object that encapsulates access to a specific persistence backend. For example
+the SQL gateway provides access to database tables via its <a href="#dataset">datasets</a></p>
+
+<h4>Dataset</h4>
+
+<p>A raw source of data with an interface specific for a given datastore. Relations
+use datasets to fetch data from persistence backends, like databases. Dataset&#39;s
+interface is not directly exposed to the application layer; however, it is
+available as private interface of relations.</p>
+
+<h4>Adapter</h4>
+
+<p>An adapter is a library providing infrastructure for ROM to support specific
+persistence backends. An adapter ships with its own <code>Gateway</code>, <code>Dataset</code>, <code>Relation</code>
+and <code>Command</code> classes.</p>
+
+<h2>Patterns</h2>
+
+<p>ROM is implemented using a couple of fundamental patterns that make it flexible
+and extendible.</p>
+
+<h4>Callable Functional Objects</h4>
+
+<p>Relation, mapper and command objects are callable and work as functions, they
+receive input and return output with no run-time side-effects. Furthermore all
+objects don&#39;t have mutable state and it&#39;s safe to memoize them and rely on
+consistent behavior.</p>
+
+<h4>Data Pipeline</h4>
+
+<p>Relations, mappers and commands can be composed into a data pipeline which is a
+simple idea that one object returns a relation and passes it to another. All objects
+respond to <code>call</code> and accept a relation and implement common <code>&gt;&gt;</code> operator which
+is used to construct the pipeline.</p>
+
+<h4>Graph</h4>
+
+<p>A nested object with a root and its nodes. ROM allows you to build <code>relation</code>
+and <code>command</code> graphs for working with nested structures and associations.</p>
+
+<h4>CQRS</h4>
+
+<p>A way of organizing your application so that reading data is separated from
+changing data. In ROM it is easily achievable by using relations and commands.</p>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

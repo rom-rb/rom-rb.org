@@ -1,0 +1,365 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Overview</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_kafka learn_kafka_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Kafka &raquo; Overview</h1><p>ROM supports <a href="http://kafka.apache.org/">Apache Kafka</a> via <a href="https://github.com/rom-rb/rom-kafka">rom-kafka</a> adapter, that is
+built on top of the <a href="https://github.com/bpot/poseidon">poseidon</a> ruby driver.</p>
+
+<blockquote>
+<p>Before v0.1.0 the adapter is still in alpha. If you find any inconsistency,
+please feel free to ask your questions at the <a href="https://gitter.im/rom-rb/chat">ROM chatroom</a> and
+report issues <a href="https://github.com/rom-rb/rom-kafka">on github</a>.</p>
+</blockquote>
+
+<h2>Intro</h2>
+
+<p>The adapter provides access to Kafka brokers in much the same way as other
+adapters do for corresponding datastores with some specifics:</p>
+
+<ul>
+<li><p>By the very nature of Kafka, it allows only creating (publishing) messages,
+and reading (consuming) them. No &#39;update&#39; and &#39;delete&#39; commands are available.</p></li>
+<li><p>Reading messages from Kafka also differs from what you&#39;d expect from a
+database. Kafka only supports reading a sequence of messages from a <em>topic</em>&#39;s
+<em>partition</em>, starting from some <em>offset</em> . You can neither reorder messages or
+filter them in any way. That operations are up to domain application. All you
+can define is the topic (<a href="#relation">relation</a>), its <a href="#partition">partition</a>,
+initial <a href="#offset">offset</a>, and <a href="#limit">limit</a> for number of messages to
+output.</p></li>
+</ul>
+
+<h2>Setup</h2>
+
+<p>Set a Kafka gateway in a <a href="http://rom-rb.org/guides/basics/setup">ROM generic way</a>. When setting a gateway
+you have to specify the <code>client_id</code> and a list of Kafka brokers. Brokers can be
+set in the following ways:</p>
+<pre class="syntax ruby"><code><span class="c1"># by default (connects to host 'localhost', port 9092)</span>
+<span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:kafka</span><span class="p">,</span> <span class="ss">client_id: :admin</span><span class="p">)</span>
+
+<span class="c1"># with inline address (host:port)</span>
+<span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:kafka</span><span class="p">,</span> <span class="s1">'localhost:9092'</span><span class="p">,</span> <span class="ss">client_id: :admin</span><span class="p">)</span>
+
+<span class="c1"># ...or a list of addresses</span>
+<span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:kafka</span><span class="p">,</span> <span class="s1">'127.0.0.1:9092'</span><span class="p">,</span> <span class="s1">'127.0.0.2:9092'</span><span class="p">,</span> <span class="ss">client_id: :admin</span><span class="p">)</span>
+
+<span class="c1"># with explicit array of `hosts` and `port`</span>
+<span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span> <span class="ss">:kafka</span><span class="p">,</span>
+  <span class="ss">hosts:     </span><span class="p">[</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="s1">'127.0.0.2'</span><span class="p">],</span>
+  <span class="ss">port:      </span><span class="mi">9092</span><span class="p">,</span>
+  <span class="ss">client_id: :admin</span>
+
+<span class="c1"># or their combination (the same as '127.0.0.1:9092', '127.0.0.1:9093')</span>
+<span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span> <span class="ss">:kafka</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
+  <span class="ss">hosts:     </span><span class="p">[</span><span class="s1">'127.0.0.2:9093'</span><span class="p">],</span>
+  <span class="ss">port:      </span><span class="mi">9092</span><span class="p">,</span>
+  <span class="ss">client_id: :admin</span>
+</code></pre>
+
+<h3>Additional options</h3>
+
+<p>In addition to <code>brokers</code> and <code>client_id</code> you can use the following options:</p>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Type</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code>:partitioner</code></td>
+<td><code>Proc</code>, <code>nil</code></td>
+<td><code>nil</code></td>
+<td>A proc used to define partition by key.</td>
+</tr>
+<tr>
+<td><code>:compression_codec</code></td>
+<td><code>:gzip</code>, <code>:snappy</code>, <code>nil</code></td>
+<td><code>nil</code></td>
+<td>The type of compression to be used.</td>
+</tr>
+<tr>
+<td><code>:metadata_refresh_interval_ms</code></td>
+<td><code>Integer</code></td>
+<td><code>600_000</code></td>
+<td>How frequently the topic metadata should be updated (in milliseconds).</td>
+</tr>
+<tr>
+<td><code>:max_send_retries</code></td>
+<td><code>Integer</code></td>
+<td><code>3</code></td>
+<td>The number of times to retry sending of messages to a Kafka leader.</td>
+</tr>
+<tr>
+<td><code>:retry_backoff_ms</code></td>
+<td><code>Integer</code></td>
+<td><code>100</code></td>
+<td>The amount of time (in milliseconds) to wait before refreshing the metadata after we are unable to send messages.</td>
+</tr>
+<tr>
+<td><code>:required_acks</code></td>
+<td><code>Integer</code></td>
+<td><code>0</code></td>
+<td>The number of acks required per request.</td>
+</tr>
+<tr>
+<td><code>:ack_timeout_ms</code></td>
+<td><code>Integer</code></td>
+<td><code>1_500</code></td>
+<td>How long the producer waits for acks.</td>
+</tr>
+<tr>
+<td><code>:socket_timeout_ms</code></td>
+<td><code>Integer</code></td>
+<td><code>10_000</code></td>
+<td>How long the producer/consumer socket waits for any reply from server.</td>
+</tr>
+<tr>
+<td><code>:min_bytes</code></td>
+<td><code>Integer</code></td>
+<td><code>1</code></td>
+<td>The smallest amount of data the server should send (By default send data as soon as it is ready).</td>
+</tr>
+<tr>
+<td><code>:max_bytes</code></td>
+<td><code>Integer</code></td>
+<td><code>1_048_576</code></td>
+<td>The maximum number of bytes to fetch by consumer (1MB by default).</td>
+</tr>
+<tr>
+<td><code>:max_wait_ms</code></td>
+<td><code>Integer</code></td>
+<td><code>100</code></td>
+<td>How long to block until the server sends data.  This is only enforced if min_bytes is &gt; 0.</td>
+</tr>
+</tbody></table>
+
+<h3>Partitioner</h3>
+
+<p>With the <code>:partitioner</code> option you can specify a procedure to define a partition
+by key. The procedure should take 2 arguments for key and number of partitions,
+and return the integer value for a partition.</p>
+
+<p>In the following example a message is added to a corresponding partition
+depending on number of letters in a key:</p>
+<pre class="syntax ruby"><code><span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span> <span class="ss">:kafka</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span>
+  <span class="ss">client_id:   :admin</span><span class="p">,</span>
+  <span class="ss">partitioner: </span><span class="o">-&gt;</span> <span class="n">key</span><span class="p">,</span> <span class="n">number</span> <span class="p">{</span> <span class="n">key</span><span class="p">.</span><span class="nf">count</span> <span class="o">%</span> <span class="n">number</span> <span class="p">}</span>
+
+<span class="n">insert</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:items</span><span class="p">).</span><span class="nf">create</span>
+
+<span class="c1"># Suppose the topic "items" has 3 partitions (0 and 1).</span>
+<span class="c1"># Messages "bar" and "baz" will be added to the partition 1 ("foo".count % 2 = 1).</span>
+<span class="n">insert</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="ss">key: </span><span class="s2">"foo"</span><span class="p">).</span><span class="nf">call</span> <span class="s2">"bar"</span><span class="p">,</span> <span class="s2">"baz"</span>
+</code></pre>
+
+<h3>Compression</h3>
+
+<p>To use snappy compression, install the <a href="https://github.com/miyucy/snappy">snappy</a> gem, or simply add gem &#39;snappy&#39; to your project&#39;s Gemfile.</p>
+
+<h2>Relations</h2>
+
+<p>In <code>ROM::Kafka</code> the relation describes a topic. You can read messages from a specific partition from a specified offset.
+By default both the partition and initial offset are set to 0.</p>
+
+<p>To define a Kafka relation follow <a href="http://rom-rb.org/guides/basics/relations/">the standard way of defining relations</a> in ROM.</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Greetings</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:kafka</span><span class="p">]</span>
+  <span class="n">topic</span> <span class="ss">:greetings</span> <span class="c1"># kafka-specific alias for `relation :greetings`</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>To define relations that are exposed to you application you can define your own
+methods using dataset modifiers:</p>
+
+<ul>
+<li><code>#from</code> to define a partition to read data from (0 by default).</li>
+<li><code>#offset</code> to define a <em>starting</em> offset to start reading from (0 by default).</li>
+<li><code>#limit</code> to define a number of messages to be fetched.</li>
+<li><code>#using</code> to modify any option of the setup.</li>
+</ul>
+
+<p>The relation <code>call</code> method returns an array of tuples with 4 keys:</p>
+
+<ul>
+<li><code>value</code> for the message.</li>
+<li><code>topic</code> for the current topic.</li>
+<li><code>key</code> for the current key.</li>
+<li><code>offset</code> for the offset of the current message.</li>
+</ul>
+<pre class="syntax ruby"><code><span class="c1"># After the setup</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:kafka</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="ss">client_id: :admin</span><span class="p">)</span>
+
+<span class="n">greetings</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
+
+<span class="c1"># Selects all messages from the (default) partition 0</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hi!", topic: "greetings", key: nil, offset: 0 },</span>
+<span class="c1">#      { value: "Hello!", topic: "greetings", key: nil, offset: 1 }</span>
+<span class="c1">#    ]</span>
+</code></pre>
+
+<h3>Partition</h3>
+
+<p>By default messages are read from 0 partition. You can explicitly select the
+partition to read from:</p>
+<pre class="syntax ruby"><code><span class="c1"># Will read all messages from the partition 1 of the "greetings" topic</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">call</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">to_a</span>
+</code></pre>
+
+<h3>Using options</h3>
+
+<p>Kafka allows reading messages from given offset. Messages are fetched by
+chunks - you can set a maximum and minimum length (in bytes), as well as the
+wait time for the server to responce.</p>
+
+<p>This options can be set for a gateway during the <a href="#setup">setup phase</a>:</p>
+<pre class="syntax ruby"><code><span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span> <span class="ss">:kafka</span><span class="p">,</span>
+  <span class="ss">client_id: :admin</span><span class="p">,</span>
+  <span class="ss">min_bytes: </span><span class="mi">1_024</span><span class="p">,</span>  <span class="c1"># ignore data less then 1Kb</span>
+  <span class="ss">max_bytes: </span><span class="mi">10_240</span><span class="p">,</span> <span class="c1"># read nor more than 10Kb at once</span>
+  <span class="ss">max_wait_ms: </span><span class="mi">100</span>   <span class="c1"># wait for responce no longer than 100ms</span>
+</code></pre>
+
+<p>or you can update them with <code>using</code> method:</p>
+<pre class="syntax ruby"><code><span class="c1"># read all messages whatever length they have, and wait for the request up to second</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nf">using</span><span class="p">(</span><span class="ss">min_bytes: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">max_wait_ms: </span><span class="mi">1_000</span><span class="p">).</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+</code></pre>
+
+<h3>Offset</h3>
+
+<p>When Kafka reads messages from topic/partition, it stops at some offset. This
+can be an offset of the last message (at the time of reading).</p>
+
+<p>If in some period of time you&#39;ll make another call, it start reading messages
+from the next offset (only new ones).</p>
+<pre class="syntax ruby"><code><span class="n">greetings</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hi",    topic: "greetings", key: nil, offset: 0 },</span>
+<span class="c1">#      { value: "Hello", topic: "greetings", key: nil, offset: 1 }</span>
+<span class="c1">#    ]</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; [] (because all messages has bean read diring the first call)</span>
+<span class="nb">sleep</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hola", topic: "greetings", key: nil, offset: 2 }</span>
+<span class="c1">#    ]</span>
+<span class="c1"># (only messages being added after the previous call)</span>
+</code></pre>
+
+<p>If you need to restart reading from a specific offset, you can do it by setting
+<code>offset</code> explicitly:</p>
+<pre class="syntax ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">).</span><span class="nf">offset</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">call</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hello", topic: "greetings", key: nil, offset: 1 },</span>
+<span class="c1">#    ]</span>
+</code></pre>
+
+<p>You can use info from the last extracted tuple to define an offset, from which
+to start the next time.</p>
+
+<h3>Limit</h3>
+
+<p>You can define a maximum number of messages to return, using the <code>limit</code> method:</p>
+<pre class="syntax ruby"><code><span class="n">greetings</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">)</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">offset</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hello", topic: "greetings", key: nil, offset: 1 },</span>
+<span class="c1">#      { value: "Hola",  topic: "greetings", key: nil, offset: 2 }</span>
+<span class="c1">#    ]</span>
+</code></pre>
+
+<p>But be careful. Actual size of data being read is defined by <code>:max_bytes</code>
+settings, not the offset.</p>
+
+<p>For example, when you set <code>offset(2)</code>, the relation can actually fetch the chunk
+of 5 messages (and move the next offset correspodingly). If you continue
+reading, you&#39;ll miss 3 messages. That&#39;s why it is <strong>strongly recommended</strong> to
+set <code>offset</code> explicitly after using of <code>limit</code> modifier.</p>
+
+<p>This is unsafe (can cause missing messages):</p>
+<pre class="syntax ruby"><code><span class="n">greetings</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hi",    topic: "greetings", key: nil, offset: 0 },</span>
+<span class="c1">#    ]</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; []</span>
+</code></pre>
+
+<p>while this is pretty safe:</p>
+<pre class="syntax ruby"><code><span class="n">greetings</span><span class="p">.</span><span class="nf">limit</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hi",    topic: "greetings", key: nil, offset: 0 },</span>
+<span class="c1">#    ]</span>
+<span class="n">greetings</span><span class="p">.</span><span class="nf">offset</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hello", topic: "greetings", key: nil, offset: 1 },</span>
+<span class="c1">#      { value: "Hola",  topic: "greetings", key: nil, offset: 2 }</span>
+<span class="c1">#    ]</span>
+</code></pre>
+
+<p>Also notice, that every time you use modifier, the new connection is
+re-established. That&#39;s why the <strong>rule of thumb</strong> is either not using modifiers
+at all, or set the offset explicitly for every call.</p>
+
+<h2>Commands</h2>
+
+<p>Kafka supports the <code>Create</code> <a href="http://rom-rb.org/guides/basics/commands/">command only</a>. You can only add
+immutable messages to the log, but not to change or delete them.</p>
+
+<p><code>ROM::Kafka</code> provides two helpers for command: <code>#where</code> and <code>#using</code>.</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Greet</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:kafka</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:greetings</span>
+  <span class="n">register_as</span> <span class="ss">:greet</span>
+
+  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="k">super</span> <span class="n">where</span><span class="p">(</span><span class="ss">key: </span><span class="s2">"foo"</span><span class="p">).</span><span class="nf">using</span><span class="p">(</span><span class="ss">socket_timeout_ms: </span><span class="mi">10</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Here <code>where</code> modifier requires only one value for a <code>:key</code>. The <code>using</code> modifier accepts any value you&#39;ll get, but will ignore unused ones. You&#39;re recommended to use only <a href="#additional-options">those keys</a> that are defined for the producer:</p>
+
+<ul>
+<li>partitioner</li>
+<li>compression_codec</li>
+<li>metadata<em>refresh</em>interval_ms</li>
+<li>max<em>send</em>retries</li>
+<li>retry<em>backoff</em>ms</li>
+<li>required_acks</li>
+<li>ack<em>timeout</em>ms</li>
+<li>socket<em>timeout</em>ms</li>
+</ul>
+
+<p>In case of success the command returns an array of messages added to Kafka:</p>
+<pre class="syntax ruby"><code><span class="c1"># After the setup</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:kafka</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="ss">client_id: :admin</span><span class="p">)</span>
+<span class="n">greet</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">).</span><span class="nf">greet</span>
+
+<span class="n">greet</span><span class="p">.</span><span class="nf">call</span> <span class="s2">"Hi, Joe"</span><span class="p">,</span> <span class="s2">"How're you?"</span>
+<span class="c1"># =&gt; [</span>
+<span class="c1">#      { value: "Hi, Joe",     topic: "greetings", key: 0 },</span>
+<span class="c1">#      { value: "How're you?", topic: "greetings", key: 0 }</span>
+<span class="c1">#    ]</span>
+</code></pre>
+
+<p>The producer and consumer connections to Kafka brokers are separated. A command
+doesn&#39;t read messages being written, and knows nothing about partitions and
+offsets that where assigned by the server. You have to read them explicitly if
+you need.</p>
+
+<h2>Mappers</h2>
+
+<p>Mappers can be applied to relations and commands in a
+<a href="http://rom-rb.org/guides/basics/mappers">standard ROM way</a>.</p>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

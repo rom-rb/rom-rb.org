@@ -1,0 +1,104 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Joins</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_sql learn_sql_joins learn_sql_joins_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>SQL &raquo; Joins</h1><p>To load associated relations you can simply use <code>inner_join</code> or <code>left_join</code>:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">with_tasks</span>
+    <span class="n">inner_join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">with_posts</span>
+    <span class="n">left_join</span><span class="p">(</span><span class="ss">:posts</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Qualifying and Renaming Attributes</h2>
+
+<p>Joining relations introduces a problem of having conflicting attribute names. To
+solve this you often need to qualify and rename columns.</p>
+
+<p>To qualify all attributes in a relation:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">with_tasks</span>
+    <span class="n">qualified</span><span class="p">.</span><span class="nf">inner_join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="c1"># produces "SELECT users.id, users.name ..."</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>To rename all attributes in a relation:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">with_tasks</span>
+    <span class="n">prefix</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">qualified</span><span class="p">.</span><span class="nf">inner_join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="c1"># produces "SELECT users.id AS user_id, users.name AS user_name ..."</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Using Renamed Attributes in GROUP or WHERE Clauses</h2>
+
+<p>If attributes need to be qualified and you want to use them in <code>group</code> or <code>where</code>
+you can use special syntax with double-underscore:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">with_tasks</span>
+    <span class="n">prefix</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">qualified</span>
+      <span class="p">.</span><span class="nf">inner_join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">users__name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="c1"># produces "SELECT ... FROM ... WHERE users.name = 'Jane'"</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Mapping Joined Relations (advanced usage)</h2>
+
+<p>You can map a result from a join to a single aggregate using mappers:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">with_tasks</span>
+    <span class="n">joinable</span>
+      <span class="p">.</span><span class="nf">inner_join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">select_append</span><span class="p">(</span><span class="ss">:tasks__title</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">joinable</span>
+    <span class="n">prefix</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">qualified</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">register_as</span> <span class="ss">:user_with_tasks</span>
+
+  <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">from: :user_id</span>
+  <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">from: :user_name</span>
+
+  <span class="n">group</span> <span class="ss">:tasks</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:title</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">].</span><span class="nf">map_with</span><span class="p">(</span><span class="ss">:user_with_tasks</span><span class="p">).</span><span class="nf">with_tasks</span><span class="p">.</span><span class="nf">one</span>
+</code></pre>
+
+<p>This technique is brittle as it requires careful selection of the attributes and
+dealing with potential name conflicts; however, <em>for performance reasons you may
+have cases where you would prefer to use joins</em>.</p>
+
+<p>Here, ROM doesn&#39;t block you, and gives you all that&#39;s needed to map complex join
+results into a simple domain aggregate.</p>
+
+<blockquote>
+<p>In typical cases, the built-in auto-mapping in repositories is all you need.
+Even when you need custom queries, it&#39;s still much easier to define custom
+relations for composition and use <code>Repository#combine</code> API which uses
+eager-loading for associated relation data.</p>
+</blockquote>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

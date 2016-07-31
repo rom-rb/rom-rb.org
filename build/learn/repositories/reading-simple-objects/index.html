@@ -1,0 +1,145 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Reading Simple Objects</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_repositories learn_repositories_reading-simple-objects learn_repositories_reading-simple-objects_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Repositories &raquo; Reading Simple Objects</h1><p>It&#39;s best to create multiple Repository classes that each focus on a segment of
+the data. One rough guideline is to make a repository for each concept within
+your app:</p>
+<pre class="syntax ruby"><code><span class="c1"># Assuming a database with tables 'users' and 'projects'</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span>
+
+<span class="c1"># Perhaps one Repo to handle users</span>
+<span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="c1"># Another repository could handle the projects</span>
+<span class="k">class</span> <span class="nc">ProjectRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:projects</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">user_repo</span> <span class="o">=</span> <span class="no">UserRepository</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rom</span><span class="p">)</span>
+<span class="n">project_repo</span> <span class="o">=</span> <span class="no">ProjectRepo</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rom</span><span class="p">)</span>
+</code></pre>
+
+<h2>Repository Interface</h2>
+
+<p>While defining a repository, you will also define its interface for
+domain-specific queries. These are called <strong>selector methods</strong>.</p>
+
+<p>They use the querying methods provided by the relations to accomplish their task.
+For example, the <code>rom-sql</code> adapter provides methods like <code>Relation#where</code>.</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+  <span class="c1"># find all users with the given attributes</span>
+  <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="c1"># collect a list of all user ids</span>
+  <span class="k">def</span> <span class="nf">ids</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">pluck</span><span class="p">(</span><span class="ss">:id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Read your adapter&#39;s documentation to see the full listing of its Relation
+methods.</p>
+
+<blockquote>
+<p>These are just simple reads. See the <a href="/learn/associations">Associations</a>
+section to see how to construct multi-relation selector methods using joins.</p>
+</blockquote>
+
+<h2>Single Results vs Many Results</h2>
+
+<p>Every relation is lazy loading and most methods return another relation. To
+materialize the relation and get actual data, use <code>#one</code>, <code>#one!</code>, or <code>#to_a</code>.</p>
+<pre class="syntax ruby"><code><span class="c1"># Produces a single tuple or nil if none found.</span>
+<span class="c1"># Raises an error if there are more than one.</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">one</span>
+
+<span class="c1"># Produces a single tuple.</span>
+<span class="c1"># Raises an error if there are 0 results or more than one.</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">one!</span>
+
+<span class="c1"># Produces an array of tuples, possibly empty.</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">to_a</span>
+</code></pre>
+
+<h2>Full Example</h2>
+
+<p>This short example demonstrates using selector methods, #one, and #to_a.</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-repository'</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
+  <span class="n">conf</span><span class="p">.</span><span class="nf">default</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">create_table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">primary_key</span> <span class="ss">:id</span>
+    <span class="n">column</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">column</span> <span class="ss">:email</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">conditions</span><span class="p">).</span><span class="nf">to_a</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="c1"># ... etc</span>
+<span class="k">end</span>
+
+<span class="n">user_repo</span> <span class="o">=</span> <span class="no">UserRepo</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rom</span><span class="p">)</span>
+</code></pre>
+
+<blockquote>
+<p>Notice that <code>users.where</code> and <code>users.fetch</code> are SQL-specific interfaces that
+should not leak into your application domain layer, that&#39;s why we hide them
+behind our own repository interface.</p>
+</blockquote>
+
+<p>And then in our app we can use the selector methods:</p>
+<pre class="syntax ruby"><code><span class="c1"># assuming that there is already data present</span>
+
+<span class="n">user_repo</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span><span class="ss">first_name: </span><span class="s1">'Malcolm'</span><span class="p">,</span> <span class="ss">last_name: </span><span class="s1">'Reynolds'</span><span class="p">)</span>
+<span class="c1">#=&gt; [ROM::Struct[User] , ROM::Struct[User], ...]</span>
+
+<span class="n">user_repo</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#=&gt; ROM::Struct[User]</span>
+</code></pre>
+
+<h2>Mapping To Custom Objects</h2>
+
+<p>Repositories can map relations to your custom objects. As a general best-practice
+every public repository method should return materialized, domain objects.</p>
+
+<blockquote>
+<p>You can use any object type where constructor accepts a hash with attributes.</p>
+</blockquote>
+
+<p>Let&#39;s tweak our <code>UserRepo#query</code> method to return our own user models:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">attr_reader</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+    <span class="vi">@id</span><span class="p">,</span> <span class="vi">@name</span><span class="p">,</span> <span class="vi">@email</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">.</span><span class="nf">values_at</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">conditions</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="no">User</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Next</h2>
+
+<p>Now we can read simple structs. Next, learn how to <a href="/learn/repositories/reading-aggregates">read complex, aggregate data</a>.</p>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

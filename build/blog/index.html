@@ -1,0 +1,333 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Blog</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link--is-active" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-2-0-0-released/">ROM 2.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-released/">ROM 1.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-rc-released/">ROM 1.0.0 RC Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/first-beta-of-rom-1-0-0-has-been-released/">First Beta of ROM 1.0.0 Has Been Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-0-9-0-released/">ROM 0.9.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/release">release</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/announcement">announcement</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/oss">oss</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/support">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a class="button--secondary" href="#"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a class="article__title__link" href="/blog/rom-2-0-0-released/">ROM 2.0.0 Released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on July 27, 2016 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We’re happy to announce the release of <code>rom 2.0</code> with a big list of improvements and new features! This release is a huge milestone for the project as <strong>its infrastructure is now complete</strong> - this means that all core APIs and high-level extensions are in place, and from now on it’s a matter of expanding functionality with new features.</p>
+
+<p>Let’s take a quick look at the release highlights!</p>
+
+<h2>Relation Schemas</h2>
+
+<p>This new feature allows you to define a relation schema with attribute names and types.</p>
+
+<p>By defining a relation schema you establish the canonical representation of the data provided by a relation. This gives you type-safe commands out-of-the-box and allows you to define custom types for low-level database coercions.</p>
+
+<p>On top of that, every adapter can extend Schema API with its own features, and that’s how the new version of <code>rom-sql</code> adds support for defining associations.</p>
+
+<p>Here’s an example:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+  <span class="n">schema</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Serial</span>
+    <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span>
+
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span> <span class="ss">:tasks</span>
+      <span class="n">belongs_to</span> <span class="ss">:group</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>You can learn more about relation schemas in <a href="/learn/core/schemas">the user documentation</a>. For more information about associations check out <a href="/learn/sql/associations">SQL docs</a>.</p>
+
+<h2>Command support in repositories</h2>
+
+<p>The new version of <code>rom-repository</code> adds support for database commands. This is a convenient API for common create/update/delete operations. It means <strong>there’s no need to define custom command classes for common operations</strong> anymore. Here’s an example:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+  <span class="n">commands</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">update: :by_pk</span><span class="p">,</span> <span class="ss">delete: :by_pk</span>
+<span class="k">end</span>
+
+<span class="c1"># create</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
+
+<span class="c1"># update</span>
+<span class="n">user_repo</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">)</span>
+
+<span class="c1"># delete</span>
+<span class="n">user_repo</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+</code></pre>
+
+<p>Check out <a href="/learn/repositories/quick-start">the user documentation</a> for more information.</p>
+
+<h2>Repository changesets</h2>
+
+<p>Another new feature is the Changeset API, provided by <code>rom-repository</code>. This is a new way to handle data changesets via repository commands, similar to Elixir’s Ecto.</p>
+
+<p>Changesets can be created via the <code>Repository#changeset</code> interface, here’s an example of “an update changeset”:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+  <span class="n">commands</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">update: :by_pk</span>
+<span class="k">end</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'jane@doe.org'</span><span class="p">)</span>
+
+<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane Doe'</span><span class="p">)</span>
+
+<span class="n">changeset</span><span class="p">.</span><span class="nf">diff?</span> <span class="c1"># true</span>
+<span class="n">changeset</span><span class="p">.</span><span class="nf">diff</span> <span class="c1"># {name=&gt;"Jane Doe"}</span>
+
+<span class="n">user_repo</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="n">changeset</span><span class="p">)</span>
+</code></pre>
+
+<p>This is a very fresh addition, please try it out and let us know what you think! You can learn more about it in <a href="/learn/repositories/changesets">the user documentation</a>.</p>
+
+<h2>Native Upsert support for PostgreSQL &gt;= 9.5</h2>
+
+<p>We added a new command type to <code>rom-sql</code> called <code>Postgres::Upsert</code>, this allows
+you to use native upsert statements on PostgreSQL. The repositories don&#39;t support
+it yet, but you can register commands manually and they will be available within
+the repositories.</p>
+
+<p>Here&#39;s a full example of a setup with an Upsert command:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-repository'</span>
+<span class="nb">require</span> <span class="s1">'rom-sql'</span>
+<span class="nb">require</span> <span class="s1">'rom/sql/commands/postgres'</span>
+
+<span class="n">conf</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/rom_example'</span><span class="p">)</span>
+
+<span class="n">conf</span><span class="p">.</span><span class="nf">default</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">create_table?</span> <span class="ss">:quotes</span> <span class="k">do</span>
+  <span class="n">primary_key</span> <span class="ss">:id</span>
+  <span class="no">String</span> <span class="ss">:quote</span><span class="p">,</span> <span class="ss">unique: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="no">Integer</span> <span class="ss">:likes</span><span class="p">,</span> <span class="ss">default: </span><span class="mi">1</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UpsertQuote</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">SQL</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Postgres</span><span class="o">::</span><span class="no">Upsert</span>
+  <span class="n">relation</span> <span class="ss">:quotes</span>
+  <span class="n">register_as</span> <span class="ss">:create_or_update</span>
+  <span class="n">result</span> <span class="ss">:one</span>
+
+  <span class="n">conflict_target</span> <span class="ss">:quote</span>
+  <span class="n">update_statement</span> <span class="ss">likes: </span><span class="no">Sequel</span><span class="p">.</span><span class="nf">+</span><span class="p">(</span><span class="ss">:quotes__likes</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">conf</span><span class="p">.</span><span class="nf">register_command</span><span class="p">(</span><span class="no">UpsertQuote</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">QuoteRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:quotes</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">create_or_update</span><span class="p">(</span><span class="n">quote</span><span class="p">)</span>
+    <span class="n">command</span><span class="p">(</span><span class="ss">:quotes</span><span class="p">)[</span><span class="ss">:create_or_update</span><span class="p">].</span><span class="nf">call</span><span class="p">(</span><span class="n">quote</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
+
+<span class="n">quote_repo</span> <span class="o">=</span> <span class="no">QuoteRepo</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rom</span><span class="p">)</span>
+
+<span class="n">quote</span> <span class="o">=</span> <span class="n">quote_repo</span><span class="p">.</span><span class="nf">create_or_update</span><span class="p">(</span><span class="ss">quote: </span><span class="s1">'Such quote'</span><span class="p">)</span>
+
+<span class="nb">puts</span> <span class="n">quote</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># {:id=&gt;1, :quote=&gt;"Such quote", :likes=&gt;1}</span>
+
+<span class="n">quote</span> <span class="o">=</span> <span class="n">quote_repo</span><span class="p">.</span><span class="nf">create_or_update</span><span class="p">(</span><span class="ss">quote: </span><span class="s1">'Such quote'</span><span class="p">)</span>
+
+<span class="nb">puts</span> <span class="n">quote</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># {:id=&gt;1, :quote=&gt;"Such quote", :likes=&gt;2}</span>
+</code></pre>
+
+<h2>New website design &amp; new documentation</h2>
+
+<p>Thanks to the awesome work of <a href="https://github.com/angeloashmore">Angelo Ashmore</a>, we’ve got a shiny new website design. We also updated the <a href="/learn">user docs</a> and improved <a href="/api">API docs</a> coverage for most important rom gems.</p>
+
+<p>We’re looking for help with adding guides, please check out <a href="https://github.com/rom-rb/rom-rb.org/issues?q=is%3Aissue+is%3Aopen+label%3Aguide">the issues</a> if you’re interested in contributing a guide.</p>
+
+<h2>Hanami and Trailblazer co-operation!</h2>
+
+<p>We started working closely with the <a href="http://hanamirb.org">Hanami</a> and <a href="http://trailblazer.to">Trailblazer</a> communities, looking into how our projects can help each other. As a result, we’ll be working on <strong>a rom-based backend for hanami-model</strong>, and <strong>integrating rom with Reform</strong> from Trailblazer.</p>
+
+<p>These are really exciting times, we believe our co-operation will help us build a stronger ruby ecosystem!</p>
+
+<h2>What happens next?</h2>
+
+<p>We’d like to finish stable versions of <code>rom-sql</code> and <code>rom-repository</code> later this year. The core <code>rom</code> gem is already at version 2.0, but the main adapter and repositories are still unstable. There will be a lot of effort going into improving the query DSL in <code>rom-sql</code>, there are a lot of <code>Sequel</code> features that we could leverage and make the adapter even more powerful.</p>
+
+<p>Depending on the feedback, we’ll also focus on expanding functionality of existing features and bug-fixing. Please report any issues on <a href="https://github.com/rom-rb">GitHub</a> for individual rom projects that you use.</p>
+
+<h2>Gem updates summary</h2>
+
+<p>Please see <a href="https://github.com/rom-rb/rom/wiki/Upgrade-Guides#upgrading-100--200">the upgrade guide</a> for more information about upgrading.</p>
+
+<p>As part of this release following gems have been released:</p>
+
+<ul>
+<li>rom 2.0.0 <a href="https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v100-2016-07-27">CHANGELOG</a></li>
+<li>rom-support 2.0.0 <a href="https://github.com/rom-rb/rom-support/blob/master/CHANGELOG.md#v200-2016-07-27">CHANGELOG</a></li>
+<li>rom-sql 0.8.0 <a href="https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v070-2016-07-27">CHANGELOG</a></li>
+<li>rom-repository 0.3.0 <a href="https://github.com/rom-rb/rom-repository/blob/master/CHANGELOG.md#v020-2016-07-27">CHANGELOG</a></li>
+<li>rom-mapper 0.4.0 <a href="https://github.com/rom-rb/rom-mapper/blob/master/CHANGELOG.md#v030-2016-07-27">CHANGELOG</a></li>
+<li>rom-model 0.3.0 <a href="https://github.com/rom-rb/rom-model/blob/master/CHANGELOG.md#v020-2016-07-27">CHANGELOG</a></li>
+<li>rom-rails 0.7.0 <a href="https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v060-2016-07-27">CHANGELOG</a></li>
+</ul>
+<hr /></article><article class="article"><h1 class="article__title"><a class="article__title__link" href="/blog/rom-1-0-0-released/">ROM 1.0.0 Released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on January 06, 2016 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We&#39;re happy to announce the first stable release of <code>rom</code> core gem. It took us
+a little over a year to discover and implement the core interfaces that allow
+building rom adapters and extensions. Since no significant changes had to be made
+for many months and there are no outstanding issues - <code>rom 1.0.0</code> is now available.</p>
+
+<p>Following gems have been updated and released:</p>
+
+<ul>
+<li>rom 1.0.0 <a href="https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v100-2016-01-06">CHANGELOG</a></li>
+<li>rom-support 1.0.0 <a href="https://github.com/rom-rb/rom-support/blob/master/CHANGELOG.md#v100-2016-01-06">CHANGELOG</a></li>
+<li>rom-mapper 0.3.0 <a href="https://github.com/rom-rb/rom-mapper/blob/master/CHANGELOG.md#v030-2016-01-06">CHANGELOG</a></li>
+<li>rom-model 0.2.0 <a href="https://github.com/rom-rb/rom-model/blob/master/CHANGELOG.md#v020-2016-01-06">CHANGELOG</a></li>
+<li>rom-rails 0.6.0 <a href="https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v060-2016-01-06">CHANGELOG</a></li>
+<li>rom-sql 0.7.0 <a href="https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v070-2016-01-06">CHANGELOG</a></li>
+<li>rom-repository 0.2.0 <a href="https://github.com/rom-rb/rom-repository/blob/master/CHANGELOG.md#v020-2016-01-06">CHANGELOG</a></li>
+</ul>
+
+<h2>What Does This Release Mean?</h2>
+
+<p>This is a huge milestone even though it doesn&#39;t change a lot from the usage point
+of view. Having a stable set of core interfaces will make it easier to develop
+adapters and extensions and get them to a stable state, too. Up until now every
+ROM release was huge, including lots of changes in many places, multiple gems
+were released at the same time. These kind of releases are hard to manage and it&#39;s
+also difficult to provide information about individual changes and improvements
+without overwhelming current users and potential new users.</p>
+
+<p>Now, with the stable rom core, we can focus on individual adapters and extensions.
+Release them separately, and probably more often. It will also make it simpler
+to explain and document changes and improvements.</p>
+
+<h2>What Happens Next?</h2>
+
+<p>First of all, we&#39;re working on updating <a href="http://rom-rb.org">rom-rb.org</a>, which will
+have <a href="https://github.com/rom-rb/rom-rb.org/issues/111">a new design</a> and content -
+as the documentation is currently being rewritten. The initial set of docs was too
+focused on shared, lower-level APIs, mixed with adapter-specific APIs, which was
+confusing. New docs will focus on high-level guides specific to individual adapters,
+so it will be much easier to understand how to use ROM in a specific context.</p>
+
+<p>As far as individual gems go, here&#39;s a rough plan:</p>
+
+<ul>
+<li><a href="https://github.com/rom-rb/rom">rom</a>
+
+<ul>
+<li>Relation schema support that can be used by commands and for migrations</li>
+<li>Shared database migration interfaces for all adapters</li>
+</ul></li>
+<li><a href="https://github.com/rom-rb/rom-sql">rom-sql</a>
+
+<ul>
+<li>Improvements in the query DSL, especially when it comes to building
+complex joins. We&#39;re still using Sequel but that may be changed in the near future.</li>
+<li>Support for prepared statements</li>
+<li>Built-in types for relation schemas specific to individual databases</li>
+</ul></li>
+<li><a href="https://github.com/rom-rb/rom-repository">rom-repository</a>
+
+<ul>
+<li>Support for commands</li>
+<li>Setup interface, that would make it simple to quickly configure gateway
+connection and fetch data</li>
+<li>Support for dry-data structs and values</li>
+</ul></li>
+<li><a href="https://github.com/rom-rb/rom-model">rom-model</a>
+
+<ul>
+<li><code>ActiveModel::Validations</code> will be replaced by <a href="https://github.com/dryrb/dry-validation">dry-validation</a></li>
+<li><code>ROM::Model::Attributes</code> will be deprecated in favor of dry-validation schemas</li>
+</ul></li>
+<li><a href="https://github.com/rom-rb/rom-rails">rom-rails</a>
+
+<ul>
+<li>Rewrite on top of <a href="https://github.com/dryrb/dry-component">dry-component</a></li>
+<li><code>ROM::Model::Form</code> will be deprecated</li>
+</ul></li>
+</ul>
+
+<p>Apart from these improvements, there will be smaller clean ups, refactorings and
+performance tweaks.</p>
+
+<p>The following adapters are looking for contributors and/or maintainers:</p>
+
+<ul>
+<li><a href="https://github.com/rom-rb/rom-rethinkdb">rom-rethinkdb</a></li>
+<li><a href="https://github.com/rom-rb/rom-influxdb">rom-influxdb</a></li>
+<li><a href="https://github.com/rom-rb/rom-mongo">rom-mongo</a></li>
+<li><a href="https://github.com/rom-rb/rom-redis">rom-redis</a></li>
+<li><a href="https://github.com/rom-rb/rom-neo4j">rom-neo4j</a></li>
+<li><a href="https://github.com/rom-rb/rom-json">rom-json</a></li>
+<li><a href="https://github.com/rom-rb/rom-csv">rom-csv</a></li>
+<li><a href="https://github.com/rom-rb/rom-git">rom-git</a></li>
+<li><a href="https://github.com/rom-rb/rom-http">rom-http</a></li>
+<li><a href="https://github.com/rom-rb/rom-event_store">rom-event_store</a></li>
+</ul>
+
+<p>Please get in touch if your&#39;re interested in helping out :)</p>
+
+<h2>Towards rom 2.0, Stable Adapters and Repository</h2>
+
+<p>Further development of adapters and repository will very likely require changes
+in some of the core public APIs. Expect an evolution though, not a revolution.
+Some features will be introduced during 1.x.y upgrades, like relation schema, but
+any public API change will require a major version bump since rom follows SemVer.
+It&#39;s probably safe to assume this will happen later this year.</p>
+
+<p><code>rom</code> 2.0.0 will be a base for the first stable releases of individual adapters and
+extensions. That&#39;s why it is so important to focus on other adapters, not just
+<code>rom-sql</code>, to see what kind of improvements are needed and whether it&#39;s going to
+break any public APIs.</p>
+
+<h2>Providing Feedback And Reporting Issues</h2>
+
+<p>If you have found an issue or you&#39;re seeking help, there are number of ways you
+can get in touch:</p>
+
+<ul>
+<li>Report <a href="https://github.com/rom-rb/rom/issues">an issue</a> on GitHub, preferably
+in the issue tracker for the specific rom project. If you&#39;re not sure which one
+it is - don&#39;t worry and report it in the main rom issue tracker</li>
+<li>Ask for help in <a href="https://gitter.im/rom-rb/chat">the gitter channel</a></li>
+<li>Post a message <a href="http://discuss.rom-rb.org">on our forum</a></li>
+</ul>
+
+<p>If you&#39;ve got feedback regarding documentation and/or the website, please report
+an issue in <a href="https://github.com/rom-rb/rom-rb.org/issues">the rom-rb.org</a> repo.</p>
+
+<h2>Thank You!</h2>
+
+<p>I&#39;d like to use this opportunity to simply say &quot;Thank You!&quot; to everybody involved
+with the project. Many people have been supporting ROM in various ways, either
+by contributing bug fixes, adding features or making huge refactorings. There
+are also many people who have been very helpful in the gitter channel, providing
+support for others who were trying out ROM.</p>
+
+<p>Really special thanks go to early adopters and contributors:</p>
+
+<ul>
+<li><a href="https://github.com/aflatter">Alexander Flatter</a> - for adopting rom very early,
+helping with API design, contributing code and supporting users in the channel</li>
+<li><a href="https://github.com/nepalez">Andrew Kozin</a> - for helping with rom-mapper, creating
+rom-migrator, rom-cassandra and rom-kafka</li>
+<li><a href="https://github.com/AMHOL">Andy Holland</a> - for helping with rom core, creating
+rom-http and being supportive in the channel</li>
+<li><a href="https://github.com/cflipse">Chris Flipse</a> - who helped by providing patches
+and helping me with rom-rails and rom-yaml</li>
+<li><a href="https://github.com/endash">Christopher Swasey</a> - for his insane effort to refactor
+and improve rom setup interfaces</li>
+<li><a href="https://github.com/elskwid">Don Morrison</a> - for supporting me in the very early
+days of ROM, helping with adapter interface, documentation, rom-rb website and
+release announcements</li>
+<li><a href="https://github.com/kwando">Hannes Nevalainen</a> - for testing things out early,
+providing awesome feedback and contributing to different rom projects</li>
+<li><a href="https://github.com/maetl">Mark Rickerby</a> - who built rom-neo4j and helped with
+other projects, rom-rb website and release announcements</li>
+<li><a href="https://github.com/gotar">Oskar Szrajer</a> - who helped a lot with rom-sql, rom-yesql,
+other adapters and patches in multiple rom projects as well as helped promoting
+rom at local Ruby meetups AND by providing support in our gitter channel</li>
+<li><a href="https://github.com/splattael">Peter Suschlik</a> - for helping with performance
+improvements, support libs and helping with PRs. Peter is currently #3 comitter :)</li>
+<li><a href="https://github.com/robinetmiller">Robin Miller</a> - for helping with the new
+documentation and providing great feedback</li>
+</ul>
+
+<p>I&#39;m terribly sorry if I missed somebody! Thank you <em>so much</em> for helping with this
+enormous effort!</p>
+
+<p>Happy 2016 :)</p>
+<hr /></article><ul class="inline-buttons inline-buttons--centered"><li class="inline-buttons__button"><a class="button" href="/blog/page/2/"><span class="fa fa-arrow-left"></span></a></li><li class="inline-buttons__spacer inline-buttons__spacer--wide"><p><strong>1 of 6</strong></p></li><li class="inline-buttons__button inline-buttons__button"><span class="button--disabled"><span class="fa fa-arrow-right"></span></span></li></ul></div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

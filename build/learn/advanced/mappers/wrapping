@@ -1,0 +1,341 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_advanced learn_advanced_mappers learn_advanced_mappers_wrapping"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Wrapping Attributes</h1>
+
+<p>With the method <a href="http://www.rubydoc.info/gems/rom/ROM/Mapper/AttributeDSL:wrap">wrap</a> you can take some attributes from a tuple and wrap them to either a nested tuple, or a model.</p>
+
+<ul>
+<li><a href="#basic-usage">Basic Usage</a></li>
+<li><a href="#removing-prefixes">Removing Prefixes</a></li>
+<li><a href="#renaming-attributes">Renaming Attributes</a></li>
+<li><a href="#wrapping-to-model">Wrapping to Model</a></li>
+<li><a href="#applying-another-mapper">Applying another Mapper</a></li>
+<li><a href="#wrapping-embedded-attributes">Wrapping Embedded Attributes</a></li>
+<li><a href="#nested-wrapping">Nested Wrapping</a></li>
+<li><a href="#edge-cases">Edge Cases</a></li>
+</ul>
+
+<p>See <a href="unwrapping.md">Unwrapping Tuples</a> for the inverse transformation of data.</p>
+
+<p>Notice, mappers have <a href="../mappers.md#high-level-and-low-level-api">high-level and low-level API</a>. Examples in this section use the high-level API only. The same syntax is applicable to low-level API as well.</p>
+
+<h2>Basic Usage</h2>
+
+<p>Suppose there is a predefined relation that returns an array of tuples:</p>
+<pre class="syntax ruby"><code><span class="n">users</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">relations</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">first</span>
+<span class="c1"># { id: 1, name: "Joe", contact_email: "joe@example.com", contact_skype: "joe" }</span>
+</code></pre>
+
+<p>With a <code>wrap</code> we can take <code>:contact_email</code> and <code>:contact_skype</code> attributes and convert them into the <code>:contact</code> tuple:</p>
+
+<h3>Inline Syntax</h3>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped_users</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">contact: </span><span class="p">[</span><span class="ss">:contact_email</span><span class="p">,</span> <span class="ss">:contact_skype</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:wrapped_users</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contact: { contact_email: "joe@example.com", contact_skype: "joe" }</span>
+<span class="c1"># }</span>
+</code></pre>
+
+<h3>Block Syntax</h3>
+
+<p>Just the same result can be obtained by using the block with attributes defined inside:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped_users</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">:contact</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:contact_email</span>
+    <span class="n">attribute</span> <span class="ss">:contact_skype</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Removing Prefixes</h2>
+
+<p>Use <code>:prefix</code> to remove prefixes from wrapped attributes. The <code>attribute</code> method arguments should have no prefixes:</p>
+
+<h3>Inline Syntax</h3>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped_users</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">:contacts</span><span class="p">,</span> <span class="p">[</span><span class="ss">:email</span><span class="p">,</span> <span class="ss">:skype</span><span class="p">],</span> <span class="ss">prefix: </span><span class="s1">'contact'</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:wrapped_users</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contacts: { email: "joe@example.com", skype: "joe" }</span>
+<span class="c1"># }</span>
+</code></pre>
+
+<p>Use <code>:prefix_separator</code> in case of a custom separator:</p>
+<pre class="syntax ruby"><code><span class="n">user</span><span class="p">.</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   :"contact.email" =&gt; "joe@example.com", :"contact.skype" =&gt; "joe"</span>
+<span class="c1"># }</span>
+
+<span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped_users</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">:contacts</span><span class="p">,</span> <span class="p">[</span><span class="ss">:email</span><span class="p">,</span> <span class="ss">:skype</span><span class="p">],</span> <span class="ss">prefix: </span><span class="s1">'contact'</span><span class="p">,</span> <span class="ss">prefix_separator: </span><span class="s1">'.'</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:wrapped_users</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contacts: { email: "joe@example.com", skype: "joe" }</span>
+<span class="c1"># }</span>
+</code></pre>
+
+<h3>Block Syntax</h3>
+
+<p>Inside the block the methods <code>prefix</code> and <code>prefix_separator</code> will affect attributes following them:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped_users</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">:contact</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:email</span>
+
+    <span class="n">prefix</span> <span class="ss">:contact</span>
+    <span class="n">prefix_separator</span> <span class="s1">'_'</span>
+    <span class="n">attribute</span> <span class="ss">:skype</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:wrapped_users</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contact: { contact_email: "joe@example.com", skype: "joe" }</span>
+<span class="c1"># }</span>
+</code></pre>
+
+<h2>Renaming Attributes</h2>
+
+<p>Inside the block use the <code>:from</code> option of the <a href="renaming.md">attribute</a> method:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped_users</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">:contact</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:to_write</span><span class="p">,</span> <span class="ss">from: :contact_email</span>
+    <span class="n">attribute</span> <span class="ss">:to_chat</span><span class="p">,</span>  <span class="ss">from: :contact_skype</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p><strong>Notice</strong> this feature requires the block syntax. It cannot be done inline.</p>
+
+<h3>Edge Cases</h3>
+
+<p>The method works fine when the name of wrapped tuple is the same as one of its attributes. There is no need for renaming attributes.</p>
+<pre class="syntax ruby"><code><span class="n">meetings</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:meetings</span><span class="p">)</span>
+<span class="n">meetings</span><span class="p">.</span><span class="nf">first</span>
+<span class="c1"># { place: "The Conference Hall", agenda: "Future plans", main_thesis: "Bankruptcy" }</span>
+
+<span class="k">class</span> <span class="nc">MeetingsMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped_meetings</span>
+  <span class="n">relation</span> <span class="ss">:meetings</span>
+
+  <span class="n">wrap</span> <span class="ss">:agenda</span><span class="p">,</span> <span class="p">[</span><span class="ss">:agenda</span><span class="p">,</span> <span class="ss">:thesis</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">meetings</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:wrapped_meetings</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># { place: "The Conference Hall", agenda: { agenda: "Future plans", main_thesis: "Bancrupcy" } }</span>
+</code></pre>
+
+<h2>Wrapping to Model</h2>
+
+<p>Define the <a href="models.md">model</a> to map wrapped tuple into:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s2">"ostruct"</span>
+
+<span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:entity</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">:contact</span> <span class="k">do</span>
+    <span class="n">model</span>     <span class="no">OpenStruct</span>
+    <span class="n">attribute</span> <span class="ss">:contact_email</span>
+    <span class="n">attribute</span> <span class="ss">:contact_skype</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:entity</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contact: &lt;OpenStruct contact_email="joe@example.com", contact_skype="joe"&gt;</span>
+<span class="c1"># }</span>
+</code></pre>
+
+<p><strong>Notice</strong> this feature requires the block syntax. It cannot be done inline.</p>
+
+<h2>Applying another Mapper</h2>
+
+<p>Another mapper can be applied to wrapped group of attributes. To do this, use the <code>:mapper</code> inline option:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">ContactMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:contact</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">attribute</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">from: :contact_email</span>
+  <span class="n">attribute</span> <span class="ss">:skype</span><span class="p">,</span> <span class="ss">from: :contact_skype</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:hash</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">:contacts</span><span class="p">,</span> <span class="ss">mapper: </span><span class="no">ContactMapper</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:entity</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># { id: 1, name: "Joe", contacts: { email: "joe@doe.org", skype: "joe" } }</span>
+</code></pre>
+
+<h2>Wrapping Embedded Attributes</h2>
+
+<p>With the help of <a href="/learn/advanced/mappers/embedding">the <code>embedded</code> method</a>, attributes can be wrapped from any level of nested data.</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">ContactMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:contact</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">attribute</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">from: :contact_email</span>
+  <span class="n">attribute</span> <span class="ss">:skype</span><span class="p">,</span> <span class="ss">from: :contact_skype</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:hash</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">embedded</span> <span class="ss">:contacts</span><span class="p">,</span> <span class="ss">type: :hash</span> <span class="k">do</span>
+    <span class="n">wrap</span> <span class="ss">:emails</span> <span class="k">do</span>
+      <span class="n">attribute</span> <span class="ss">:home</span><span class="p">,</span> <span class="ss">from: :home_email</span>
+      <span class="n">attribute</span> <span class="ss">:job</span><span class="p">,</span>  <span class="ss">from: :job_email</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">relations</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contacts: {</span>
+<span class="c1">#     home_email: "joe@home.org",</span>
+<span class="c1">#     job_email: "joe@job.com",</span>
+<span class="c1">#     skype: "joe"</span>
+<span class="c1">#   }</span>
+<span class="c1"># }</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:entity</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contacts: {</span>
+<span class="c1">#     emails: { home: "joe@home.org", job: "joe@job.com" },</span>
+<span class="c1">#     skype: "joe"</span>
+<span class="c1">#   }</span>
+<span class="c1"># }</span>
+</code></pre>
+
+<h2>Nested Wrapping</h2>
+
+<p>Wrappers can be nested deeply. This allows to compact the sequence of transformation steps by doing several wrappings at once.</p>
+
+<p>You can define a corresponding model for any level of nesting:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:entity</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="n">wrap</span> <span class="ss">:contacts</span> <span class="k">do</span>
+    <span class="n">model</span> <span class="no">Contacts</span>
+
+    <span class="n">wrap</span> <span class="ss">:email</span> <span class="k">do</span>
+      <span class="n">model</span> <span class="no">Messages</span>
+      <span class="n">attribute</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">from: :contact_email</span>
+    <span class="k">end</span>
+
+    <span class="n">wrap</span> <span class="ss">:skype</span> <span class="k">do</span>
+      <span class="n">model</span> <span class="no">Skype</span>
+      <span class="n">attribute</span> <span class="ss">:user</span><span class="p">,</span> <span class="ss">from: :contact_skype</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:entity</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contacts: &lt;Contacts</span>
+<span class="c1">#     @email=&lt;Email @address="joe@example.com"&gt;,</span>
+<span class="c1">#     @skype=&lt;Skype @user="joe"&gt;</span>
+<span class="c1">#   &gt;</span>
+<span class="c1"># }</span>
+</code></pre>
+
+<p>Notice in the example above we mentioned every wrapped attribute (<code>:address</code> and <code>:user</code>) only once, while they were wrapped at two levels. You haven&#39;t to list attributes at any level of wrapping, only at the deepest one.</p>
+
+<h2>Edge Cases</h2>
+
+<h3>Rejecting Keys</h3>
+
+<p>The method <code>wrap</code> provides its output regardless of the <code>reject_keys</code> setting:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">reject_keys</span> <span class="kp">false</span> <span class="c1"># is set by default</span>
+
+  <span class="n">wrap</span> <span class="ss">:contacts</span><span class="p">,</span> <span class="p">[</span><span class="ss">:email</span><span class="p">,</span> <span class="ss">:skype</span><span class="p">],</span> <span class="ss">prefix: </span><span class="s1">'contact'</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:wrapped_users</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># {</span>
+<span class="c1">#   id: 1, name: "Joe",</span>
+<span class="c1">#   contacts: { email: "joe@example.com", skype: "joe" }</span>
+<span class="c1"># }</span>
+</code></pre>
+
+<p>When a <code>reject_keys</code> is set to <code>true</code>, the <code>wrap</code> method defines attributes by itself:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">reject_keys</span> <span class="kp">true</span>
+
+  <span class="n">wrap</span> <span class="ss">:contacts</span><span class="p">,</span> <span class="p">[</span><span class="ss">:email</span><span class="p">,</span> <span class="ss">:skype</span><span class="p">],</span> <span class="ss">prefix: </span><span class="s1">'contact'</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:wrapped_users</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># { contacts: { email: "joe@example.com", skype: "joe" } }</span>
+</code></pre>
+
+<p>Notice the method <em>always</em> removes attributes from the upper-level tuple - even in case they are declared explicitly:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">WrappedUsersMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:wrapped</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">reject_keys</span> <span class="kp">true</span>
+
+  <span class="n">attribute</span> <span class="ss">:contact_email</span>
+  <span class="n">attribute</span> <span class="ss">:contact_skype</span>
+
+  <span class="n">wrap</span> <span class="ss">:contacts</span><span class="p">,</span> <span class="p">[</span><span class="ss">:email</span><span class="p">,</span> <span class="ss">:skype</span><span class="p">],</span> <span class="ss">prefix: </span><span class="s1">'contact'</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:wrapped_users</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1"># { contacts: { email: "joe@example.com", skype: "joe" } }</span>
+</code></pre>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

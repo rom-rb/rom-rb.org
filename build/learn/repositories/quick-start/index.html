@@ -1,0 +1,100 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Quick Start</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_repositories learn_repositories_quick-start learn_repositories_quick-start_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Repositories &raquo; Quick Start</h1><p>This documentation uses <code>rom-sql</code> as an example. For in-depth information see
+documentation for specific databases.</p>
+
+<h2>Creating a schema</h2>
+
+<p>You can quickly create a schema inside the setup block. Let&#39;s configure our
+SQL gateway and create a <code>:users</code> table:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom'</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
+  <span class="n">conf</span><span class="p">.</span><span class="nf">default</span><span class="p">.</span><span class="nf">create_table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">primary_key</span> <span class="ss">:id</span>
+    <span class="n">column</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="n">column</span> <span class="ss">:email</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Repositories</h2>
+
+<p>A Repository (&quot;Repo&quot;) object provides a lot of conveniences for reading data
+with relations. Every repo can access one or more relations, depending on how
+you set it up.</p>
+
+<p>To set up a repo to work with our <code>:users</code> relation simply define a class like
+this:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-repository'</span>
+
+<span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Repositories must be instantiated with a rom container passed to the constructor,
+this gives access to all components within the container:</p>
+<pre class="syntax ruby"><code><span class="n">user_repo</span> <span class="o">=</span> <span class="no">UserRepo</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rom</span><span class="p">)</span>
+</code></pre>
+
+<p>Let&#39;s see how Create, Update and Delete commands work with repositories.</p>
+
+<h3>Create</h3>
+
+<p>A repo can be configured to provide access to <code>Create</code> commands:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-repository'</span>
+
+<span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+  <span class="n">commands</span> <span class="ss">:create</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>The <code>commands</code> macro defines a <code>UserRepo#create</code> method for us:</p>
+<pre class="syntax ruby"><code><span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">,</span> <span class="ss">email: </span><span class="s2">"jane@doe.org"</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" email="jane@doe.org"&gt;</span>
+</code></pre>
+
+<p>By default, repos return simple <code>ROM::Struct</code> objects. You&#39;ll learn more about them in
+<a href="/reading/simple-objects">reading</a> section.</p>
+
+<h3>Update and Delete</h3>
+
+<p>Update and Delete commands require restricting relations so that ROM knows exactly
+which records to modify. Provide :update and :delete with the symbol name of the
+method to call to get that restricted relation.</p>
+
+<p>The most popular adapter, rom-sql, automatically defines a method, <code>by_pk</code>, that
+restricts by the primary key. In projects with rom-sql, we would use it to define
+update and delete commands in a repo:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-repository'</span>
+
+<span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+  <span class="n">commands</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">update: :by_pk</span><span class="p">,</span> <span class="ss">delete: :by_pk</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Now we have a full <code>CRUD</code> setup, we can create, update and delete user data:</p>
+<pre class="syntax ruby"><code><span class="n">user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">,</span> <span class="ss">email: </span><span class="s2">"jane@doe.org"</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" email="jane@doe.org"&gt;</span>
+
+<span class="c1"># let's update the user</span>
+<span class="n">updated_user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane Doe" email="jane@doe.org"&gt;</span>
+
+<span class="c1"># and now let's delete the user</span>
+<span class="n">user_repo</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+</code></pre>
+
+<h2>Next</h2>
+
+<p>Now that you know how to create tables and define repositories with full CRUD
+support, you can proceed to <a href="/learn/repositories/reading-simple-objects">reading</a> section.</p>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Block Style Setup</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_getting-started learn_getting-started_block-style-setup learn_getting-started_block-style-setup_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Getting Started &raquo; Block Style Setup</h1><p>This guide explains how to configure ROM using block style which is suitable for
+simple scripts.</p>
+
+<blockquote>
+<h4>ROM &amp; frameworks</h4>
+
+<p>If want to use ROM with a framework, see specific instructions in the getting
+started section.</p>
+
+<h4>Configuration</h4>
+
+<p>The configuration options explained in this document are the same for
+<a href="/learn/advanced/flat-style-setup">Flat Style Setup</a> using <code>ROM::Configuration</code> object</p>
+</blockquote>
+
+<h2>Connect to a single database</h2>
+
+<p>Call <code>ROM.container</code> with the adapter symbol and configuration details for that
+adapter:</p>
+<pre class="syntax ruby"><code><span class="c1"># This creates a rom-sql adapter backed by SQLite in-memory database</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+  <span class="c1"># define relations and commands here...</span>
+<span class="k">end</span>
+
+<span class="c1"># You can provide additional connection options too</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/my_db'</span><span class="p">,</span> <span class="ss">extensions: </span><span class="p">[</span><span class="ss">:pg_json</span><span class="p">])</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+  <span class="c1"># define relations and commands here...</span>
+<span class="k">end</span>
+
+<span class="c1"># ROM also comes with a very barebones in-memory adapter.</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:memory</span><span class="p">,</span> <span class="s1">'memory://test'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+  <span class="c1"># define relations and commands here...</span>
+<span class="k">end</span>
+</code></pre>
+
+<h3>Connect to multiple databases</h3>
+
+<p>Sometimes you have multiple data sources. You can provide multiple
+<a href="/learn/glossary/#gateway">gateway</a> configurations with a name
+hash.</p>
+<pre class="syntax ruby"><code><span class="c1"># Example: an old mysql database, “tasks”, and a new database “task_master”</span>
+<span class="c1"># This registers two rom-sql adapters and then labels postgres with “default” and mysql with “legacy”</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span>
+  <span class="ss">default: </span><span class="p">[</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/task_master'</span><span class="p">],</span> <span class="c1"># gateway 1</span>
+  <span class="ss">legacy: </span><span class="p">[</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'mysql2://localhost/tasks'</span><span class="p">]</span>           <span class="c1"># gateway 2</span>
+<span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+    <span class="c1"># setup code goes here...</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>If there is only one adapter provided, then its identifier is automatically set
+to <code>:default</code>:</p>
+<pre class="syntax ruby"><code><span class="c1"># This setup call...</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span>
+
+<span class="c1"># is equivalent to this one:</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">default: </span><span class="p">[</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">])</span>
+</code></pre>
+
+<h2>Access the container</h2>
+
+<p><code>ROM.container</code> always returns the finalized environment container <strong>object</strong>.
+This object is not global, and it must be managed either by you or a framework
+that you use.</p>
+<pre class="syntax ruby"><code><span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+  <span class="c1"># define relations and commands here...</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>ActiveRecord and DataMapper provide global access to their components, but this
+is considered a bad practice in modern standards. ROM creates an isolated, local
+container without polluting global namespaces. This allows you to easily pass
+it around without being worried about accidental side-effects like conflicting
+database connections or configurations being overridden in a non-thread-safe
+way</p>
+</blockquote>
+
+<h2>Next</h2>
+
+<p>Learn <a href="/learn/reading">how to read data</a> via Repositories and Relations.</p>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

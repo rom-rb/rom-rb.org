@@ -1,0 +1,342 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Adapters</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_advanced learn_advanced_how-to-build-an-adapter learn_advanced_how-to-build-an-adapter_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>How to Build a ROM Adapter &raquo; Adapters</h1><p>ROM makes very little assumptions about its adapters that&#39;s why it is simple to
+build a custom adapter that will provide access to a specific datasource.</p>
+
+<p>A ROM adapter must provide the following components:</p>
+
+<ul>
+<li><code>ROM::Gateway</code> subclass that implements required interface</li>
+<li><code>ROM::Relation</code> subclass that exposes adapter-specific interface for queries
+and writing</li>
+</ul>
+
+<p>In addition to that the adapter <em>may</em> also provide:</p>
+
+<ul>
+<li><code>ROM::Commands::Create</code> subclass for <code>create</code> operation</li>
+<li><code>ROM::Commands::Update</code> subclass for <code>update</code> operation</li>
+<li><code>ROM::Commands::Delete</code> subclass for <code>delete</code> operation</li>
+</ul>
+
+<p>Let&#39;s build an adapter for a plain Ruby array, because why not.</p>
+
+<h2>Gateway</h2>
+
+<p>Adapter&#39;s gateway is used by ROM to retrieve datasets and inject them into
+adapter&#39;s relations as their data-access backends. Here&#39;s a simple
+implementation:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom'</span>
+
+<span class="k">module</span> <span class="nn">ROM</span>
+  <span class="k">module</span> <span class="nn">ArrayAdapter</span>
+    <span class="k">class</span> <span class="nc">Gateway</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Gateway</span>
+      <span class="kp">attr_reader</span> <span class="ss">:datasets</span>
+
+      <span class="k">def</span> <span class="nf">initialize</span>
+        <span class="vi">@datasets</span> <span class="o">=</span> <span class="no">Hash</span><span class="p">.</span><span class="nf">new</span> <span class="p">{</span> <span class="o">|</span><span class="n">h</span><span class="p">,</span> <span class="n">k</span><span class="o">|</span> <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span> <span class="p">}</span>
+      <span class="k">end</span>
+
+      <span class="k">def</span> <span class="nf">dataset</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+        <span class="n">datasets</span><span class="p">[</span><span class="nb">name</span><span class="p">]</span>
+      <span class="k">end</span>
+
+      <span class="k">def</span> <span class="nf">dataset?</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+        <span class="n">datasets</span><span class="p">.</span><span class="nf">key?</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">gateway</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">ArrayAdapter</span><span class="o">::</span><span class="no">Gateway</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="n">gateway</span><span class="p">.</span><span class="nf">dataset</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+<span class="n">tasks</span> <span class="o">=</span> <span class="n">gateway</span><span class="p">.</span><span class="nf">dataset</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span>
+
+<span class="n">gateway</span><span class="p">.</span><span class="nf">dataset?</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="c1"># true</span>
+<span class="n">gateway</span><span class="p">.</span><span class="nf">dataset?</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span> <span class="c1"># true</span>
+</code></pre>
+
+<p>This allows ROM to ask for specific datasets from your gateway.</p>
+
+<h2>Relation</h2>
+
+<p>Adapter-specific relation must exist because it can provide various features
+that only make sense for a concrete adapter. It can automatically forward method
+calls to the underlaying dataset in order to expose &quot;native&quot; interface to the
+relation.</p>
+
+<p>Since our datasets are just arrays, we can expose various array methods to the
+relation using <code>forward</code> macro:</p>
+<pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">ROM</span>
+  <span class="k">module</span> <span class="nn">ArrayAdapter</span>
+    <span class="k">class</span> <span class="nc">Relation</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span>
+      <span class="c1"># we must configure adapter identifier here</span>
+      <span class="n">adapter</span> <span class="ss">:array</span>
+
+      <span class="n">forward</span> <span class="ss">:select</span><span class="p">,</span> <span class="ss">:reject</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="n">gateway</span><span class="p">.</span><span class="nf">dataset</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+
+<span class="n">users</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'Jane'</span> <span class="p">}</span>
+<span class="n">users</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'John'</span> <span class="p">}</span>
+
+<span class="n">relation</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">ArrayAdapter</span><span class="o">::</span><span class="no">Relation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">gateway</span><span class="p">.</span><span class="nf">dataset</span><span class="p">(</span><span class="ss">:users</span><span class="p">))</span>
+
+<span class="n">relation</span><span class="p">.</span><span class="nf">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">tuple</span><span class="o">|</span> <span class="n">tuple</span><span class="p">[</span><span class="ss">:name</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Jane'</span> <span class="p">}.</span><span class="nf">inspect</span>
+<span class="c1"># #&lt;ROM::ArrayAdapter::Relation dataset=[{:name=&gt;"Jane"}]&gt;</span>
+</code></pre>
+
+<blockquote>
+<p>Please remember about setting <code>adapter</code> identifier - it is used by ROM to
+infer component types specific to a given adapter. It&#39;s essential during the
+setup.</p>
+</blockquote>
+
+<h2>Registering Your Adapter</h2>
+
+<p>The adapter must register itself under specific identifier which then can be
+used to set up ROM components for that particular adapter.</p>
+
+<p>To register your adapter:</p>
+<pre class="syntax ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">register_adapter</span><span class="p">(</span><span class="ss">:array</span><span class="p">,</span> <span class="no">ROM</span><span class="o">::</span><span class="no">ArrayAdapter</span><span class="p">)</span>
+</code></pre>
+
+<p>This is it! Now our array adapter can be setup using ROM:</p>
+<pre class="syntax ruby"><code><span class="n">configuration</span><span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:array</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:array</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="nb">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span> <span class="n">user</span><span class="p">[</span><span class="ss">:name</span><span class="p">]</span> <span class="o">==</span> <span class="nb">name</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Users</span><span class="p">)</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">create_container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">gateways</span><span class="p">[</span><span class="ss">:default</span><span class="p">].</span><span class="nf">dataset</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+
+<span class="n">users</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'Jane'</span> <span class="p">}</span>
+<span class="n">users</span> <span class="o">&lt;&lt;</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'John'</span> <span class="p">}</span>
+
+<span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">].</span><span class="nf">by_name</span><span class="p">(</span><span class="s1">'Jane'</span><span class="p">).</span><span class="nf">to_a</span>
+<span class="c1"># [{:name=&gt;"Jane"}]</span>
+</code></pre>
+
+<h2>Commands</h2>
+
+<p>Adapter commands are optional because you don&#39;t always want to change data in a
+given datastore. If your datastore supports create/update/delete operations you
+can provide an interface for that using commands.</p>
+
+<p>ROM adheres to the CQRS but it doesn&#39;t enforce it, this means that relations do
+implement CRUD and commands are just thin wrappers around CUD and they depend on
+relations.</p>
+
+<p>By convention all command classes live under <code>ROM::YourAdapter::Commands</code>
+namespace.</p>
+
+<h3>Common Command Behavior</h3>
+
+<p>Every ROM command has a couple of features available out-of-the-box:</p>
+
+<ul>
+<li><code>relation</code> - returns current relation for the current command</li>
+<li><code>source</code> - original relation that was injected to the current command initially</li>
+<li><code>&gt;&gt;(other)</code> - composes one command with another</li>
+<li><code>with(input)</code> - auto-curries a command with provided input</li>
+<li><code>combine(*others)</code> - builds a command graph with other commands as nodes</li>
+<li><code>one?</code> - returns true if a command returns a single tuple</li>
+<li><code>many?</code>- returns true if a command returns more than one tuple</li>
+</ul>
+
+<h3>Extending Relation for Commands</h3>
+
+<p>Commands will require an interface to insert, delete and update data and also
+<code>count</code>.</p>
+
+<p>Let&#39;s provide that:</p>
+<pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">ROM</span>
+  <span class="k">module</span> <span class="nn">ArrayAdapter</span>
+    <span class="k">class</span> <span class="nc">Relation</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span>
+      <span class="n">adapter</span> <span class="ss">:array</span>
+
+      <span class="c1"># reading</span>
+      <span class="n">forward</span> <span class="ss">:select</span><span class="p">,</span> <span class="ss">:reject</span>
+
+      <span class="c1"># writing</span>
+      <span class="n">forward</span> <span class="ss">:&lt;&lt;</span><span class="p">,</span> <span class="ss">:delete</span>
+
+      <span class="k">def</span> <span class="nf">count</span>
+        <span class="n">dataset</span><span class="p">.</span><span class="nf">size</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h4>Commands::Create</h4>
+
+<p>To implement a create command:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom/commands/create'</span> <span class="c1"># require what you require!</span>
+
+<span class="k">module</span> <span class="nn">ROM</span>
+  <span class="k">module</span> <span class="nn">ArrayAdapter</span>
+    <span class="k">module</span> <span class="nn">Commands</span>
+      <span class="k">class</span> <span class="nc">Create</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span>
+        <span class="c1"># Just like in case of Relation, we must configure adapter identifier</span>
+        <span class="n">adapter</span> <span class="ss">:array</span>
+
+        <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">tuples</span><span class="p">)</span>
+          <span class="n">tuples</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">tuple</span><span class="o">|</span> <span class="n">relation</span> <span class="o">&lt;&lt;</span> <span class="n">tuple</span> <span class="p">}</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">ArrayAdapter</span><span class="o">::</span><span class="no">Relation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">gateway</span><span class="p">.</span><span class="nf">dataset</span><span class="p">(</span><span class="ss">:users</span><span class="p">))</span>
+<span class="n">create_users</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">ArrayAdapter</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+
+<span class="n">create_users</span><span class="p">.</span><span class="nf">call</span><span class="p">([{</span> <span class="ss">name: </span><span class="s1">'Jane'</span> <span class="p">}])</span>
+
+<span class="nb">puts</span> <span class="n">users</span><span class="p">.</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># [{:name=&gt;"Jane"}]</span>
+</code></pre>
+
+<h4>Commands::Delete</h4>
+
+<p>To implement a delete command:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom/commands/delete'</span>
+
+<span class="k">module</span> <span class="nn">ROM</span>
+  <span class="k">module</span> <span class="nn">ArrayAdapter</span>
+    <span class="k">module</span> <span class="nn">Commands</span>
+      <span class="k">class</span> <span class="nc">Delete</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Delete</span>
+        <span class="n">adapter</span> <span class="ss">:array</span>
+
+        <span class="k">def</span> <span class="nf">execute</span>
+          <span class="n">relation</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">tuple</span><span class="o">|</span> <span class="n">source</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">tuple</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">delete_users</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">ArrayAdapter</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Delete</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+
+<span class="n">delete_users</span><span class="p">.</span><span class="nf">call</span>
+
+<span class="nb">puts</span> <span class="n">users</span><span class="p">.</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># []</span>
+</code></pre>
+
+<p>Notice that here delete command yields tuples from its current <code>relation</code> but
+deletes it from the <code>source</code> relation, since this is our canonical source of
+data.</p>
+
+<h4>Commands::Update</h4>
+
+<p>To implement an update command:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom/commands/update'</span>
+
+<span class="k">module</span> <span class="nn">ROM</span>
+  <span class="k">module</span> <span class="nn">ArrayAdapter</span>
+    <span class="k">module</span> <span class="nn">Commands</span>
+      <span class="k">class</span> <span class="nc">Update</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Update</span>
+        <span class="n">adapter</span> <span class="ss">:array</span>
+
+        <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+          <span class="n">relation</span><span class="p">.</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">tuple</span><span class="o">|</span> <span class="n">tuple</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">update_users</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">ArrayAdapter</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Update</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+
+<span class="n">update_users</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">age: </span><span class="mi">21</span><span class="p">)</span>
+
+<span class="nb">puts</span> <span class="n">users</span><span class="p">.</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># [{:name=&gt;"Jane", :age=&gt;21}]</span>
+</code></pre>
+
+<p>Here we simply rely on <code>Hash#update</code> which mutates tuples using the input
+attributes.</p>
+
+<h3>Putting It All Together</h3>
+
+<p>Once your command classes are defined ROM will pick them up from your namespace
+and they will be available during setup:</p>
+<pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:array</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:array</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="nb">select</span> <span class="p">{</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span> <span class="n">user</span><span class="p">[</span><span class="ss">:name</span><span class="p">]</span> <span class="o">==</span> <span class="nb">name</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">CreateUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:array</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">register_as</span> <span class="ss">:create</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">UpdateUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Update</span><span class="p">[</span><span class="ss">:array</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">result</span> <span class="ss">:one</span>
+  <span class="n">register_as</span> <span class="ss">:update</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">DeleteUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Delete</span><span class="p">[</span><span class="ss">:array</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">result</span> <span class="ss">:one</span>
+  <span class="n">register_as</span> <span class="ss">:delete</span>
+<span class="k">end</span>
+
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Users</span><span class="p">)</span>
+
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_command</span><span class="p">(</span><span class="no">CreateUser</span><span class="p">)</span>
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_command</span><span class="p">(</span><span class="no">UpdateUser</span><span class="p">)</span>
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_command</span><span class="p">(</span><span class="no">DeleteUser</span><span class="p">)</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">create_container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+
+<span class="n">create_users</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:create</span><span class="p">]</span>
+<span class="n">update_user</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:update</span><span class="p">]</span>
+<span class="n">delete_user</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:delete</span><span class="p">]</span>
+
+<span class="n">create_users</span><span class="p">.</span><span class="nf">call</span><span class="p">([{</span> <span class="ss">name: </span><span class="s1">'Jane'</span> <span class="p">},</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'John'</span> <span class="p">}])</span>
+
+<span class="nb">puts</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">].</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># [{:name=&gt;"Jane"}, {:name=&gt;"John"}]</span>
+
+
+<span class="nb">puts</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">].</span><span class="nf">by_name</span><span class="p">(</span><span class="s1">'Jane'</span><span class="p">).</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># [{:name=&gt;"Jane"}]</span>
+
+
+<span class="n">update_user</span><span class="p">.</span><span class="nf">by_name</span><span class="p">(</span><span class="s1">'Jane'</span><span class="p">).</span><span class="nf">call</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane Doe'</span><span class="p">)</span>
+
+<span class="nb">puts</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">].</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># [{:name=&gt;"Jane Doe"}, {:name=&gt;"John"}]</span>
+
+
+<span class="n">delete_user</span><span class="p">.</span><span class="nf">by_name</span><span class="p">(</span><span class="s1">'John'</span><span class="p">).</span><span class="nf">call</span>
+
+<span class="nb">puts</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">].</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+<span class="c1"># [{:name=&gt;"Jane Doe"}]</span>
+</code></pre>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

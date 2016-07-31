@@ -1,0 +1,178 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - ROM 0.8.0 Released</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_rom-0-8-0-released blog_rom-0-8-0-released_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link--is-active" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-2-0-0-released/">ROM 2.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-released/">ROM 1.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-rc-released/">ROM 1.0.0 RC Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/first-beta-of-rom-1-0-0-has-been-released/">First Beta of ROM 1.0.0 Has Been Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-0-9-0-released/">ROM 0.9.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/release">release</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/announcement">announcement</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/oss">oss</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/support">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a class="button--secondary" href="#"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a class="article__title__link--is-active" href="/blog/rom-0-8-0-released/">ROM 0.8.0 Released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on June 22, 2015 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We&#39;re very happy to announce the release of Ruby Object Mapper 0.8.0. This release ships with the support for nested input for commands and many improvements in mappers. You can look at <a href="https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v070-2015-06-22">the changelog</a> for the full overview.</p>
+
+<p>Apart from ROM 0.8.0 release there are also updates of the following gems:</p>
+
+<ul>
+<li>rom-sql 0.5.2 which comes with improved migration tasks that no longer require env finalization <a href="https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v070-2015-06-22">CHANGELOG</a></li>
+<li>rom-rails 0.4.0 with the support for embedded validators <a href="https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v070-2015-06-22">CHANGELOG</a></li>
+</ul>
+
+<p>There are 2 new adapters added to the rom-rb organization so check them out:</p>
+
+<ul>
+<li><a href="https://github.com/rom-rb/rom-couchdb">rom-couchdb</a></li>
+<li><a href="https://github.com/rom-rb/rom-git">rom-git</a></li>
+</ul>
+
+<h2>Support For Nested Input</h2>
+
+<p>ROM commands are now even more powerful by allowing composition of multiple commands into one that can receive a nested input which will be used to insert data into multiple relations. This feature is compatible with combined relation mapping which means you can pipe results from a combined command through mappers just like in case of combined relations.</p>
+
+<p>When do you want to use this feature? Every time you want to persist entire object graph, in example a post with its tags or a user with an address.</p>
+
+<p>Here&#39;s a complete example of using combined commands with a mapper:</p>
+<pre class="syntax ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/rom'</span><span class="p">)</span>
+
+<span class="no">ROM</span><span class="o">::</span><span class="no">SQL</span><span class="p">.</span><span class="nf">gateway</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">create_table</span> <span class="ss">:posts</span> <span class="k">do</span>
+  <span class="n">primary_key</span> <span class="ss">:id</span>
+  <span class="n">column</span> <span class="ss">:title</span><span class="p">,</span> <span class="no">String</span>
+<span class="k">end</span>
+
+<span class="no">ROM</span><span class="o">::</span><span class="no">SQL</span><span class="p">.</span><span class="nf">gateway</span><span class="p">.</span><span class="nf">connection</span><span class="p">.</span><span class="nf">create_table</span> <span class="ss">:tags</span> <span class="k">do</span>
+  <span class="n">primary_key</span> <span class="ss">:id</span>
+  <span class="n">foreign_key</span> <span class="ss">:post_id</span><span class="p">,</span> <span class="ss">:posts</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="n">column</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">String</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Posts</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Tags</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">CreatePost</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:posts</span>
+  <span class="n">result</span> <span class="ss">:one</span>
+  <span class="n">register_as</span> <span class="ss">:create</span>
+  <span class="n">input</span> <span class="no">Transproc</span><span class="p">(</span><span class="ss">:accept_keys</span><span class="p">,</span> <span class="p">[</span><span class="ss">:title</span><span class="p">])</span> <span class="c1"># filters out `:tags` key</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">CreateTag</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:tags</span>
+  <span class="n">register_as</span> <span class="ss">:create</span>
+  <span class="n">input</span> <span class="no">Transproc</span><span class="p">(</span><span class="ss">:accept_keys</span><span class="p">,</span> <span class="p">[</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:post_id</span><span class="p">])</span>
+  <span class="n">associates</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">key: </span><span class="p">[</span><span class="ss">:post_id</span><span class="p">,</span> <span class="ss">:id</span><span class="p">]</span> <span class="c1"># automatically sets FK value</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">PostMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">relation</span> <span class="ss">:posts</span>
+  <span class="n">register_as</span> <span class="ss">:entity</span>
+
+  <span class="n">combine</span> <span class="ss">:tags</span><span class="p">,</span> <span class="ss">on: </span><span class="p">{</span> <span class="ss">id: :post_id</span> <span class="p">}</span>
+<span class="k">end</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
+
+<span class="n">create_post_with_tags</span> <span class="o">=</span> <span class="n">rom</span>
+  <span class="p">.</span><span class="nf">command</span><span class="p">([{</span> <span class="ss">post: :posts</span> <span class="p">},</span> <span class="p">[</span><span class="ss">:create</span><span class="p">,</span> <span class="p">[</span><span class="ss">:tags</span><span class="p">,</span> <span class="p">[</span><span class="ss">:create</span><span class="p">]]]])</span>
+  <span class="p">.</span><span class="nf">as</span><span class="p">(</span><span class="ss">:entity</span><span class="p">)</span>
+
+<span class="n">create_post_with_tags</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span>
+  <span class="ss">post: </span><span class="p">{</span> <span class="ss">title: </span><span class="s1">'Hello World'</span><span class="p">,</span> <span class="ss">tags: </span><span class="p">[{</span> <span class="ss">name: </span><span class="s1">'red'</span> <span class="p">},</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'green'</span> <span class="p">}]</span> <span class="p">}</span>
+<span class="p">).</span><span class="nf">to_a</span>
+<span class="c1"># [</span>
+<span class="c1">#   {</span>
+<span class="c1">#     :id =&gt; 1,</span>
+<span class="c1">#     :title =&gt; "Hello World",</span>
+<span class="c1">#     :tags =&gt; [</span>
+<span class="c1">#       { :id=&gt;1, :post_id=&gt;1, :name=&gt;"red" },</span>
+<span class="c1">#       { :id=&gt;2, :post_id=&gt;1, :name=&gt;"green" }</span>
+<span class="c1">#      ]</span>
+<span class="c1">#   }</span>
+<span class="c1"># ]</span>
+</code></pre>
+
+<h2>Mapper Steps</h2>
+
+<p>Transforming data with mappers can be really complex and sometimes you may want to define multiple mapping steps. That&#39;s why we introduced a new interface in Mapper DSL where you can do just that:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">step</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">from: :user_id</span>
+    <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">from: :user_name</span>
+  <span class="k">end</span>
+
+  <span class="n">step</span> <span class="k">do</span>
+    <span class="n">wrap</span> <span class="ss">:details</span> <span class="k">do</span>
+      <span class="n">attribute</span> <span class="ss">:name</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">mapper</span> <span class="o">=</span> <span class="no">UserMapper</span><span class="p">.</span><span class="nf">build</span>
+
+<span class="n">mapper</span><span class="p">.</span><span class="nf">call</span><span class="p">([{</span> <span class="ss">user_id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">user_name: </span><span class="s1">'Jane'</span> <span class="p">}])</span>
+<span class="c1"># [{ :id =&gt; 1, :details =&gt; { :name =&gt; "Jane" } }]</span>
+</code></pre>
+
+<p>Typically you want to use this feature when mapping logic is too complex to be expressed using nested blocks. It&#39;s especially useful when dealing with multiple group/ungroup/wrap/unwrap/fold/unfold operations that simply cannot be defined as a deeply nested mapping definition block.</p>
+
+<h2>New Mapping Transformations</h2>
+
+<p>We have 3 new transformations <code>fold</code>, <code>unfold</code> and <code>ungroup</code> which makes mappers even more powerful.</p>
+
+<p>Folding can be used to collapse values from multiple tuples under a single array attribute:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">PostFoldMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">fold</span> <span class="ss">tag_list: </span><span class="p">[</span><span class="ss">:tag_name</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">mapper</span> <span class="o">=</span> <span class="no">PostFoldMapper</span><span class="p">.</span><span class="nf">build</span>
+
+<span class="nb">puts</span> <span class="n">mapper</span><span class="p">.</span><span class="nf">call</span><span class="p">([</span>
+  <span class="p">{</span> <span class="ss">title: </span><span class="s1">'Hello World'</span><span class="p">,</span> <span class="ss">tag_name: </span><span class="s1">'red'</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">title: </span><span class="s1">'Hello World'</span><span class="p">,</span> <span class="ss">tag_name: </span><span class="s1">'green'</span> <span class="p">}</span>
+<span class="p">]).</span><span class="nf">inspect</span>
+<span class="c1"># [{:title=&gt;"Hello World", :tag_list=&gt;["red", "green"]}]</span>
+</code></pre>
+
+<p>Unfolding is, unsurprisingly, an inversion of folding:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">PostUnfoldMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">unfold</span> <span class="ss">:tag_name</span><span class="p">,</span> <span class="ss">from: :tag_list</span>
+<span class="k">end</span>
+
+<span class="n">mapper</span> <span class="o">=</span> <span class="no">PostUnfoldMapper</span><span class="p">.</span><span class="nf">build</span>
+
+<span class="nb">puts</span> <span class="n">mapper</span><span class="p">.</span><span class="nf">call</span><span class="p">([{</span> <span class="ss">title: </span><span class="s1">'Hello World'</span><span class="p">,</span> <span class="ss">tag_list: </span><span class="p">[</span><span class="s1">'red'</span><span class="p">,</span> <span class="s1">'green'</span><span class="p">]</span> <span class="p">}]).</span><span class="nf">inspect</span>
+<span class="c1"># [{:tag_name=&gt;"red", :title=&gt;"Hello World"}, {:tag_name=&gt;"green", :title=&gt;"Hello World"}]</span>
+</code></pre>
+
+<p>Now you can also ungroup tuples:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">PostUngroupMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">ungroup</span> <span class="ss">:tags</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:tag_name</span><span class="p">,</span> <span class="ss">from: :name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">mapper</span> <span class="o">=</span> <span class="no">PostUngroupMapper</span><span class="p">.</span><span class="nf">build</span>
+
+<span class="nb">puts</span> <span class="n">mapper</span><span class="p">.</span><span class="nf">call</span><span class="p">([</span>
+  <span class="p">{</span> <span class="ss">title: </span><span class="s1">'Hello World'</span><span class="p">,</span> <span class="ss">tags: </span><span class="p">[{</span> <span class="ss">name: </span><span class="s1">'red'</span> <span class="p">},</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'green'</span> <span class="p">}]</span> <span class="p">}</span>
+<span class="p">]).</span><span class="nf">inspect</span>
+<span class="c1"># [{:tag_name=&gt;"red", :title=&gt;"Hello World"}, {:tag_name=&gt;"green", :title=&gt;"Hello World"}]</span>
+</code></pre>
+
+<h2>Guides</h2>
+
+<p>ROM is growing really fast and there&#39;s a lot of functionality that is difficult to describe in API documentation. That&#39;s why we started a new <a href="http://rom-rb.org/guides">Guides</a> section on the official rom-rb.org website.</p>
+
+<p>You can already find a lot of information about ROM setup, adapters, relations, commands and mappers. We&#39;ll be adding more content and improving existing documentation based on the feedback so please check them out and let us know what you think.</p>
+
+<p>In the upcoming weeks you should also see new tutorials covering topics like building your own persistence layer with ROM, handling data import with ROM or how to use ROM with various JSON serializers like Roar or Yaks, so stay tuned!</p>
+
+<h2>Next Release</h2>
+
+<p>We have a pretty good understanding of what we want to achieve with the next 0.9.0 release which will improve the internal architecture of ROM. We&#39;re planning to split <code>rom</code> gem into <a href="https://github.com/rom-rb/rom/issues/256">smaller pieces</a> and introduce cleaner and more explicit interfaces for setting up ROM.</p>
+
+<p>Another planned change is introducing <a href="https://github.com/rom-rb/rom/issues/193">Policy Over Configuration</a> API which should improve ROM configuration and handling various conventions.</p>
+
+<p>This release will be a big step towards 1.0.0 which is scheduled for September (yes, this year ;)).</p>
+<hr /></article><div id="disqus_thread"></div><script src="https://rom-rb-blog.disqus.com/embed.js"></script></div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

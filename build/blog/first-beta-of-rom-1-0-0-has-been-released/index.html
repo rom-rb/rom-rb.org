@@ -1,0 +1,217 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - First Beta of ROM 1.0.0 Has Been Released</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_first-beta-of-rom-1-0-0-has-been-released blog_first-beta-of-rom-1-0-0-has-been-released_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link--is-active" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-2-0-0-released/">ROM 2.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-released/">ROM 1.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-rc-released/">ROM 1.0.0 RC Released</a></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/blog/first-beta-of-rom-1-0-0-has-been-released/">First Beta of ROM 1.0.0 Has Been Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-0-9-0-released/">ROM 0.9.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/release">release</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/announcement">announcement</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/oss">oss</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/support">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a class="button--secondary" href="#"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a class="article__title__link--is-active" href="/blog/first-beta-of-rom-1-0-0-has-been-released/">First Beta of ROM 1.0.0 Has Been Released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on November 24, 2015 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>Exactly a year ago ROM 0.3.0 was released after <a href="http://solnic.eu/2014/10/23/ruby-object-mapper-reboot.html">the reboot of the project was announced</a>, it was a complete rewrite that introduced the new and simplified adapter interface. Since then we&#39;ve come a long way, the community has been growing, rom-rb organization on Github has now 28 projects including 16 adapters.</p>
+
+<p>The core API, which also includes adapter interface, is stabilizing. This means we are coming very close to releasing the final version of rom 1.0.0 and today I&#39;m very happy to announce that its first beta1 was released. Please notice this is the release of the core rom gem - adapters and other extensions remain unstable (in the sem-ver sense).</p>
+
+<p>To ease testing we also released beta versions of minor upgrades of other rom gems so that you can install them from rubygems rather than relying on github sources. Overall the release includes following updates:</p>
+
+<ul>
+<li><a href="https://rubygems.org/gems/rom">rom</a> 1.0.0.beta1 <a href="https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v100-to-be-released">CHANGELOG</a></li>
+<li><a href="https://rubygems.org/gems/rom-support">rom-support</a> 1.0.0.beta1 <a href="https://github.com/rom-rb/rom-support/blob/master/CHANGELOG.md#v100-to-be-released">CHANGELOG</a></li>
+<li><a href="https://rubygems.org/gems/rom-mapper">rom-mapper</a> 0.3.0.beta1 <a href="https://github.com/rom-rb/rom-mapper/blob/master/CHANGELOG.md#v030-to-be-released">CHANGELOG</a></li>
+<li><a href="https://rubygems.org/gems/rom-repository">rom-repository</a> 0.2.0.beta1 <a href="https://github.com/rom-rb/rom-repository/blob/master/CHANGELOG.md#v020-to-be-released">CHANGELOG</a></li>
+<li><a href="https://rubygems.org/gems/rom-sql">rom-sql</a> 0.7.0.beta1 <a href="https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v070-to-be-released">CHANGELOG</a></li>
+<li><a href="https://rubygems.org/gems/rom-rails">rom-rails</a> 0.6.0.beta1 <a href="https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v060-to-be-released">CHANGELOG</a></li>
+<li><a href="https://rubygems.org/gems/rom-model">rom-model</a> 0.2.0.beta1 <a href="https://github.com/rom-rb/rom-model/blob/master/CHANGELOG.md#020-to-be-released">CHANGELOG</a></li>
+</ul>
+
+<h2>Changes In Setup API</h2>
+
+<p>Setting up ROM has been refactored and specific responsibilites have been broken down into smaller, and explicit, objects. Unfortunately it is a breaking change as <code>ROM.setup</code> method is gone. If you&#39;re using ROM with rails, things should continue to work, but if you have a custom rom setup additional actions are required.</p>
+
+<p>This was an important change that resulted in a cleaner API, removed complex logic that used to rely on <code>inheritance</code> hooks to automatically register components and reduced the amount of global state that ROM relies on.</p>
+
+<p>We kept convenience in mind though and introduced a feature that uses dir/file structure to infer components and register them automatically but without the complexity of relying on <code>inheritance</code> hooks.</p>
+
+<p>Here&#39;s an example of a step-by-step setup with explicit registration:</p>
+<pre class="syntax ruby"><code><span class="c1"># instead of ROM.setup:</span>
+<span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/rom'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">config</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Users</span><span class="p">)</span>
+
+<span class="c1"># creates rom container with registered components</span>
+<span class="n">container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+
+<p>Here&#39;s an example of a setup that infers components from dir/file names:</p>
+<pre class="syntax ruby"><code><span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/rom'</span><span class="p">)</span>
+
+<span class="c1"># configure auto-registration by providing root path to your components</span>
+<span class="c1"># namespacing is turned off</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">auto_registration</span><span class="p">(</span><span class="s2">"/path/to/components"</span><span class="p">,</span> <span class="ss">namespace: </span><span class="kp">false</span><span class="p">)</span>
+
+<span class="c1"># assuming there's `/path/to/components/relations/users.rb`</span>
+<span class="c1"># which defines `Users` relation class it will be automatically registered</span>
+
+<span class="c1"># creates rom container with registered components</span>
+<span class="n">container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+
+<p>You can also use auto-registration with namespaces, which is turned on by default:</p>
+<pre class="syntax ruby"><code><span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/rom'</span><span class="p">)</span>
+
+<span class="c1"># configure auto-registration by providing root path to your components</span>
+<span class="c1"># namespacing is turned on by default</span>
+<span class="n">config</span><span class="p">.</span><span class="nf">auto_registration</span><span class="p">(</span><span class="s2">"/path/to/components"</span><span class="p">)</span>
+
+<span class="c1"># assuming there's `/path/to/components/relations/users.rb`</span>
+<span class="c1"># which defines `Relations::Users` class it will be automatically registered</span>
+
+<span class="c1"># creates rom container with registered components</span>
+<span class="n">container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+
+<p>For a quick-start you can use an in-line style setup DSL:</p>
+<pre class="syntax ruby"><code><span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/rom'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">use</span><span class="p">(</span><span class="ss">:macros</span><span class="p">)</span> <span class="c1"># enable in-line component registration</span>
+
+  <span class="n">config</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+      <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="c1"># returns registered users relation object</span>
+</code></pre>
+
+<h2>Command API Improvements</h2>
+
+<p>Probably the most noticable improvement/feature is the addition of the command graph DSL. The command graph was introduced in 0.9.0 and it allowed you to compose a single command that will be able to persist data coming in a nested structure, similar to <code>nested_attributes_for</code> in ActiveRecord, but more flexible.</p>
+
+<p>This release introduces support for <code>update</code> and <code>delete</code> commands in the graph as well as a new DSL for graph definitions. Here&#39;s an example:</p>
+<pre class="syntax ruby"><code><span class="c1"># assuming `rom` is your rom container and you have `create` commands</span>
+<span class="c1"># for :users and :books relations</span>
+<span class="n">command</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">command</span> <span class="c1"># returns command builder</span>
+
+<span class="c1"># define a command that will persist user data with its book data</span>
+<span class="n">create_command</span> <span class="o">=</span> <span class="n">command</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">user: :users</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+  <span class="n">user</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">:books</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># call it with a nested input</span>
+<span class="n">create_command</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span>
+  <span class="ss">user: </span><span class="p">{</span>
+    <span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">,</span>
+    <span class="ss">books: </span><span class="p">[{</span> <span class="ss">title: </span><span class="s2">"Book 1"</span> <span class="p">},</span> <span class="p">{</span> <span class="ss">title: </span><span class="s2">"Book 2"</span> <span class="p">}]</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>It also supports <code>update</code> (<code>delete</code> works in the same way):</p>
+<pre class="syntax ruby"><code><span class="c1"># assuming `rom` is your rom container and you have `update` commands</span>
+<span class="c1"># for :users and :books relations</span>
+<span class="n">command</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">command</span> <span class="c1"># returns command builder</span>
+
+<span class="c1"># define a command that will restrict user by its id and update it</span>
+<span class="n">user_update</span> <span class="o">=</span> <span class="n">command</span><span class="p">.</span><span class="nf">restrict</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">users</span><span class="p">,</span> <span class="n">user</span><span class="o">|</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span> <span class="p">}</span>
+
+<span class="n">update_command</span> <span class="o">=</span> <span class="n">command</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">user: </span><span class="n">user_update</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+  <span class="c1"># define an inner update command for books</span>
+  <span class="n">books_update</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">restrict</span><span class="p">(</span><span class="ss">:books</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">books</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">book</span><span class="o">|</span>
+    <span class="n">books</span><span class="p">.</span><span class="nf">by_user</span><span class="p">(</span><span class="n">user</span><span class="p">).</span><span class="nf">by_id</span><span class="p">(</span><span class="n">book</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
+
+  <span class="n">user</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">books: </span><span class="n">books_update</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># call it with a nested input</span>
+<span class="n">update_command</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span>
+  <span class="ss">user: </span><span class="p">{</span>
+    <span class="ss">id: </span><span class="mi">1</span><span class="p">,</span>
+    <span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">,</span>
+    <span class="ss">books: </span><span class="p">[{</span> <span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">title: </span><span class="s2">"Book 1"</span> <span class="p">},</span> <span class="p">{</span> <span class="ss">id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">title: </span><span class="s2">"Book 2"</span> <span class="p">}]</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>As a bonus, you are free to use all types of commands in the same graph and have complete freedom in defining how specific relations must be restricted for a given command.</p>
+
+<h3>New Command Result API</h3>
+
+<p>Starting from 1.0.0 you can check whether a command result was successful or not:</p>
+<pre class="syntax ruby"><code><span class="n">create_command</span> <span class="o">=</span> <span class="n">command</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">user: :users</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+  <span class="n">user</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">:books</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">create_command</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span>
+  <span class="ss">user: </span><span class="p">{</span>
+    <span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">,</span>
+    <span class="ss">books: </span><span class="p">[{</span> <span class="ss">title: </span><span class="s2">"Book 1"</span> <span class="p">},</span> <span class="p">{</span> <span class="ss">title: </span><span class="s2">"Book 2"</span> <span class="p">}]</span>
+  <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">result</span><span class="p">.</span><span class="nf">success?</span> <span class="c1"># true if everything went fine, false otherwise</span>
+<span class="n">result</span><span class="p">.</span><span class="nf">failure?</span> <span class="c1"># true if it failed, false otherwise</span>
+</code></pre>
+
+<h2>Relation API Extensions</h2>
+
+<p>Early version of rom-repository introduced a couple of plugins that now have become part of the core rom gem. They are opt-in and the adapter developers must decide whether or not it makes sense to enable them for adapter relations.</p>
+
+<h3>View</h3>
+
+<p>Relation <code>view</code> plugin is a DSL for defining relation views with an explicit header definition. It is typically useful for reusable relation projections that you can easily compose together in repositories.</p>
+
+<p>Here&#39;s a simple example:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">view</span><span class="p">(</span><span class="ss">:listing</span><span class="p">,</span> <span class="p">[</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">])</span> <span class="k">do</span> <span class="o">|*</span><span class="n">order_args</span><span class="o">|</span>
+    <span class="nb">select</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">).</span><span class="nf">order</span><span class="p">(</span><span class="o">*</span><span class="n">order_args</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">listing</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:id</span><span class="p">)</span>
+</code></pre>
+
+<p>This plugin plays major role in relation composition as it defines the header up-front, which allows repositories to generate mappers automatically, which is very convenient. It is also a nice way of specifying re-usable relation projections which some times may indicate where using an actual database view (assuming your db supports it) could simplify your queries.</p>
+
+<h3>Key Inference</h3>
+
+<p>This simple plugin provides default value for a foreign-key in a relation. It is used for generating relation views used for composition in the repositories.</p>
+
+<p>You can use it too:</p>
+<pre class="syntax ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">foreign_key</span> <span class="c1"># =&gt; `:user_id`</span>
+</code></pre>
+
+<h3>Defining Default Datasets</h3>
+
+<p>It is now possible to not only specify the name of a relation dataset, but also configure it using a block, when you do that your relation will be initialized with whatever that blocks returns, it is executed in the context of the dataset object:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">dataset</span><span class="p">(</span><span class="ss">:people</span><span class="p">)</span> <span class="k">do</span>
+    <span class="nb">select</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">).</span><span class="nf">order</span><span class="p">(</span><span class="ss">:id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h3>Mapper Extension</h3>
+
+<p>There&#39;s one new feature in the mapper DSL where you can map values from multiple attributes into a new attribute:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">MyMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">attribute</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">from: </span><span class="p">[</span><span class="ss">:city</span><span class="p">,</span> <span class="ss">:street</span><span class="p">,</span> <span class="ss">:zipcode</span><span class="p">]</span> <span class="k">do</span> <span class="o">|</span><span class="n">city</span><span class="p">,</span> <span class="n">street</span><span class="p">,</span> <span class="n">zipcode</span><span class="o">|</span>
+    <span class="s2">"</span><span class="si">#{</span><span class="n">city</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">street</span><span class="si">}</span><span class="s2">, </span><span class="si">#{</span><span class="n">zipcode</span><span class="si">}</span><span class="s2">"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Release Plan</h2>
+
+<p>Please try out the beta releases and provide feedback. Once we are sure that it works for everybody we&#39;ll be able to push the first RC and hopefully follow-up with the final 1.0.0 release shortly after the RC. Other gems that are now released as betas will be bumped to final versions and depend on rom 1.0.0 final.</p>
+
+<p>The final release also means a major update of <a href="http://rom-rb.org">rom-rb.org</a> along with a new set of documentation, guides and tutorials. This is still a work in progress and needs help, please <a href="https://gitter.im/rom-rb/chat">get in touch</a> if you&#39;re interested in helping out.</p>
+
+<p>Once rom 1.0.0 is out there will be major focus on rom-sql and rom-repository. There&#39;s a plan to <a href="https://github.com/rom-rb/rom-sql/issues/48">improve query DSL</a> in rom-sql and provide full CRUD interface for repositories that should be handy for simple applications.</p>
+
+<p>If you see any issues, please report them in the individual issue trackers on Github or main <a href="https://github.com/rom-rb/rom/issues">rom</a> if you are not sure which gem it relates to.</p>
+<hr /></article><div id="disqus_thread"></div><script src="https://rom-rb-blog.disqus.com/embed.js"></script></div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Blog</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_3 blog_page_3_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link--is-active" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-2-0-0-released/">ROM 2.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-released/">ROM 1.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-rc-released/">ROM 1.0.0 RC Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/first-beta-of-rom-1-0-0-has-been-released/">First Beta of ROM 1.0.0 Has Been Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-0-9-0-released/">ROM 0.9.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/release">release</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/announcement">announcement</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/oss">oss</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/support">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a class="button--secondary" href="#"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a class="article__title__link" href="/blog/rom-0-9-0-released/">ROM 0.9.0 Released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on August 19, 2015 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We are pleased to announce the release of ROM 0.9.0! This is a big release which focuses on internal clean-up in the core library as a preparation for 1.0.0. For those of you hungry for new features - you won&#39;t be disappointed. As part of this release we are introducing new adapters, new gems extracted from rom and the long awaited high-level interface for ROM called rom-repository.</p>
+
+<p>For notes about upgrading to ROM 0.9.0 please refer to <a href="https://github.com/rom-rb/rom/wiki/Upgrade-Guides">Upgrade Guides</a>.</p>
+
+<p>Gem updates summary:</p>
+
+<ul>
+<li>rom 0.9.0 <a href="https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v090-2015-08-19">CHANGELOG</a></li>
+<li>rom-sql 0.6.0 <a href="https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v060-2015-08-19">CHANGELOG</a></li>
+<li>rom-yaml 0.2.0 <a href="https://github.com/rom-rb/rom-yaml/blob/master/CHANGELOG.md#v020-2015-08-19">CHANGELOG</a></li>
+<li>rom-csv 0.2.0 <a href="https://github.com/rom-rb/rom-csv/blob/master/CHANGELOG.md#v020-2015-08-19">CHANGELOG</a></li>
+<li>rom-rails 0.5.0 <a href="https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v050-2015-08-19">CHANGELOG</a></li>
+<li>rom-lotus 0.2.0 <a href="https://github.com/rom-rb/rom-lotus/blob/master/CHANGELOG.md#v020-2015-08-19">CHANGELOG</a></li>
+<li>rom-roda 0.2.0 <a href="https://github.com/rom-rb/rom-roda/blob/master/CHANGELOG.md#v020-2015-08-19">CHANGELOG</a></li>
+</ul>
+
+<p>New gems:</p>
+
+<ul>
+<li><a href="https://github.com/rom-rb/rom-repository">rom-repository</a> 0.1.0 - a higher-level interface with auto-mapping and additional relation plugins</li>
+<li><a href="https://github.com/rom-rb/rom-mapper">rom-mapper</a> 0.1.1 - standalone mapper objects extracted from rom</li>
+<li><a href="https://github.com/rom-rb/rom-model">rom-model</a> 0.1.1 - extracted from rom-rails, includes <code>Attributes</code> and <code>Validator</code> extensions</li>
+<li><a href="https://github.com/rom-rb/rom-support">rom-support</a> 0.1.0 - a bunch of small extensions reused across all rom gems</li>
+</ul>
+
+<p>New adapters:</p>
+
+<ul>
+<li><a href="https://github.com/rom-rb/rom-couchdb">rom-couchdb</a> - an adapter for CouchDB</li>
+<li><a href="http://github.com/rom-rb/rom-http">rom-http</a> - an abstract HTTP adapter useful for implementing concrete adapters for HTTP APIs</li>
+<li><a href="http://github.com/rom-rb/rom-rethinkdb">rom-rethinkdb</a> - an adapter for RethinkDB</li>
+</ul>
+
+<h2>Repository</h2>
+
+<p>Probably the most significant addition coming with this release is rom-repository. Using lower-level APIs and configuring mappers manually is tedious in most of the cases that&#39;s why Repository was introduced.</p>
+
+<p>Repository interface is very simple and built on top of Relation and Mapper API. It allows you to easily work with relations and have results automatically mapped to struct-like objects. There are a couple of neat plugins that ship with this gem which make relation composition ridiculously simple.</p>
+
+<p>Repositories work <em>with all adapters</em> which means you can combine data from different data sources.</p>
+
+<p>Here&#39;s an example repository class:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UserRepository</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">relations</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">:tasks</span>
+
+  <span class="k">def</span> <span class="nf">with_tasks</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">combine_children</span><span class="p">(</span><span class="ss">many: </span><span class="n">tasks</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">user_repo</span><span class="p">.</span><span class="nf">with_tasks</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="c1"># [#&lt;ROM::Struct[User] id=1 name="Jane" tasks=[#&lt;ROM::Struct[Task] id=2 user_id=1 title="Jane Task"&gt;]&gt;, #&lt;ROM::Struct[User] id=2 name="Joe" tasks=[#&lt;ROM::Struct[Task] id=1 user_id=2 title="Joe Task"&gt;]&gt;]</span>
+</code></pre>
+
+<p>Please refer to <a href="http://rom-rb.org/guides/basics/repositories/">Repository Guide</a> for the rationale and more information.</p>
+
+<h2>Multi-Environment Support</h2>
+
+<p>Initially, ROM supported its setup process through a global environment object. This was a good start that worked well with frameworks like Rails that expect globally accessible objects; however, we&#39;re pushing towards removing global state as much as possible.</p>
+
+<p>For that reason in ROM 0.9.0 you can configure the environment as a standalone object, which comes with the benefit of being able to have more than one environment. Why would you want to have many environments? For example for database sharding, or separating components within your application where data comes from different sources and you want to keep them isolated.</p>
+
+<p>Here&#39;s an example of a multi-environment setup:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Persistence</span><span class="o">::</span><span class="no">Command</span><span class="o">::</span><span class="no">CreateUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">register_as</span> <span class="ss">:create</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Persistence</span><span class="o">::</span><span class="no">Query</span><span class="o">::</span><span class="no">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">dataset</span> <span class="ss">:users</span>
+<span class="k">end</span>
+
+<span class="n">command_env</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Environment</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">command_env</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="p">[</span><span class="ss">:postgres</span><span class="p">,</span> <span class="s1">'postgres://command_host/my_db'</span><span class="p">)</span>
+<span class="n">command_env</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Persistence</span><span class="o">::</span><span class="no">Command</span><span class="o">::</span><span class="no">CreateUser</span><span class="p">)</span>
+
+<span class="n">command_container</span> <span class="o">=</span> <span class="n">command_env</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
+
+<span class="n">command_container</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="c1"># access to defined commands</span>
+
+<span class="n">query_env</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Environment</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">query_env</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="p">[</span><span class="ss">:postgres</span><span class="p">,</span> <span class="s1">'postgres://query_host/my_db'</span><span class="p">)</span>
+<span class="n">query_env</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Persistence</span><span class="o">::</span><span class="no">Query</span><span class="o">::</span><span class="no">Users</span><span class="p">)</span>
+
+<span class="n">query_container</span> <span class="o">=</span> <span class="n">query_env</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
+
+<span class="n">query_container</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="c1"># access to defined relations</span>
+</code></pre>
+
+<p>Global setup process still works, but please refer to <a href="https://github.com/rom-rb/rom/wiki/Upgrade-Guides">upgrade guide</a> if you are using ROM standalone without any framework integration.</p>
+
+<h2>Gateway Configuration Support</h2>
+
+<p>A new interface for configuring individual adapter gateways has been added. For now the only customization you can make is configuring how relation inferrence should work:</p>
+<pre class="syntax ruby"><code><span class="c1"># disable inferring relations from schema</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="p">[</span>
+  <span class="ss">:postgres</span><span class="p">,</span> <span class="s1">'postgres://localhost/db'</span><span class="p">,</span> <span class="ss">infer_relations: </span><span class="kp">false</span>
+<span class="p">])</span>
+
+<span class="c1"># cherry-pick which relations should be inferred</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="p">[</span>
+  <span class="ss">:postgres</span><span class="p">,</span> <span class="s1">'postgres://localhost/db'</span><span class="p">,</span> <span class="ss">inferrable_relations: </span><span class="p">[</span><span class="ss">:users</span><span class="p">,</span> <span class="ss">:tasks</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># disallow inferrence for specific relations</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="p">[</span>
+  <span class="ss">:postgres</span><span class="p">,</span> <span class="s1">'postgres://localhost/db'</span><span class="p">,</span> <span class="ss">not_inferrable_relations: </span><span class="p">[</span><span class="ss">:some_table</span><span class="p">]</span>
+<span class="p">])</span>
+</code></pre>
+
+<p>This feature is useful when you have a big database and you don&#39;t want to use ROM to deal with all of your relations.</p>
+
+<h2>Extracted Standalone Mappers</h2>
+
+<p>You can now install rom-mapper as a standalone gem and use the powerful mapping DSL:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-mapper'</span>
+
+<span class="k">class</span> <span class="nc">PostMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">attribute</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">from: </span><span class="s1">'post_title'</span>
+
+  <span class="n">wrap</span> <span class="ss">:author</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">from: </span><span class="s1">'post_author'</span>
+    <span class="n">attribute</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">from: </span><span class="s1">'post_author_email'</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">post_mapper</span> <span class="o">=</span> <span class="no">PostMapper</span><span class="p">.</span><span class="nf">build</span>
+
+<span class="n">post_mapper</span><span class="p">.</span><span class="nf">call</span><span class="p">([</span>
+<span class="p">{</span> <span class="s1">'post_title'</span> <span class="o">=&gt;</span> <span class="s1">'Hello World'</span><span class="p">,</span> <span class="s1">'post_author'</span> <span class="o">=&gt;</span> <span class="s1">'Jane'</span><span class="p">,</span> <span class="s1">'post_author_email'</span> <span class="o">=&gt;</span> <span class="s1">'jane@doe.org'</span> <span class="p">}</span>
+<span class="p">])</span>
+<span class="c1"># [{:title=&gt;"Hello World", :author=&gt;{:name=&gt;"Jane", :email=&gt;"jane@doe.org"}}]</span>
+</code></pre>
+
+<p>Mappers are very powerful, make sure to check out the <a href="http://rom-rb.org/guides/basics/mappers/">Mapper Guides</a>.</p>
+
+<h2>All Relations Are Lazy</h2>
+
+<p>Before 0.9.0, ROM had a separate layer for decorating your relations with a lazy-proxy wrapper. This has caused some confusion and unnecessary complexity, as the relations you defined were not the same thing that the <code>#relation()</code> method returned. It also turned out that implementing rom-repository was more difficult than it should have been.</p>
+
+<p>That&#39;s why in ROM 0.9.0 all relations have lazy interface. It means that every relation method you define is auto-curried:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># assuming your container is called `rom`</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+
+<span class="n">user_by_name</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_name</span> <span class="c1"># returns auto-curried relation</span>
+
+<span class="n">user_by_name</span><span class="p">[</span><span class="s1">'Jane'</span><span class="p">].</span><span class="nf">one!</span> <span class="c1"># call later on to apply the required argument</span>
+</code></pre>
+
+<h2>Adapter Query DSL is Public</h2>
+
+<p>Starting from ROM 0.9.0, the query interface exposed by individual adapters is public, <strong>but</strong> it is not recommended to use it directly in your application. Relations should be used to encapsulate data access properly and query DSLs should not leak to the application layer.</p>
+<pre class="syntax ruby"><code><span class="c1"># this is considered as a smell</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
+
+<span class="c1"># that's the proper way™</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">by_name</span><span class="p">(</span><span class="s2">"Jane"</span><span class="p">)</span>
+</code></pre>
+
+<h2>Extracted Model Extensions</h2>
+
+<p>A couple of useful extensions have been extracted from the rom-rails gem into rom-model. These are standalone components that are based on Virtus and ActiveModel. We have an ambitious plan to rewrite it in the future on top of more powerful tools. Please refer to rom-model <a href="https://github.com/rom-rb/rom-model#rommodel">README</a> for more information.</p>
+
+<p>Right now you can use <code>Attributes</code> and enhanced <code>Validator</code> objects with nice support for embedded validations:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">AuthorInput</span>
+  <span class="kp">include</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Attributes</span>
+
+  <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">String</span>
+  <span class="n">attribute</span> <span class="ss">:email</span><span class="p">,</span> <span class="no">String</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">PostInput</span>
+  <span class="kp">include</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Attributes</span>
+
+  <span class="n">attribute</span> <span class="ss">:title</span><span class="p">,</span> <span class="no">String</span>
+  <span class="n">attribute</span> <span class="ss">:author</span><span class="p">,</span> <span class="no">AuthorInput</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">PostValidator</span>
+  <span class="kp">include</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Model</span><span class="o">::</span><span class="no">Validator</span>
+
+  <span class="n">validates</span> <span class="ss">:title</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+
+  <span class="n">embedded</span> <span class="ss">:author</span> <span class="k">do</span>
+    <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">input</span> <span class="o">=</span> <span class="no">PostInput</span><span class="p">[{</span> <span class="ss">title: </span><span class="s1">'Hello World'</span><span class="p">,</span> <span class="ss">author: </span><span class="p">{</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'jane@doe.org'</span> <span class="p">}</span> <span class="p">}]</span>
+
+<span class="n">validator</span> <span class="o">=</span> <span class="no">PostValidator</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
+<span class="n">validator</span><span class="p">.</span><span class="nf">valid?</span>
+</code></pre>
+
+<h2>HTTP Adapter</h2>
+
+<p>The new, abstract <code>rom-http</code> adapter is a fantastic addition to the growing list of ROM adapters. It gives you a solid foundation for building a custom adapter which needs to talk via HTTP protocol. It&#39;s pretty flexible, and works like any other rom adapter - which means that you can use either the lower-level relation and mapping APIs or set it up with <code>rom-repository</code> and auto-mapping.</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'json'</span>
+<span class="nb">require</span> <span class="s1">'http'</span>
+
+<span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:http</span><span class="p">]</span>
+  <span class="n">dataset</span> <span class="ss">:users</span>
+
+  <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">with_path</span><span class="p">(</span><span class="nb">id</span><span class="p">.</span><span class="nf">to_s</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Environment</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">rom</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:http</span><span class="p">,</span> <span class="p">{</span>
+  <span class="ss">uri: </span><span class="s1">'http://jsonplaceholder.typicode.com'</span><span class="p">,</span>
+  <span class="ss">request_handler: </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="p">{</span>
+    <span class="no">HTTP</span><span class="p">.</span><span class="nf">headers</span><span class="p">(</span><span class="n">dataset</span><span class="p">.</span><span class="nf">headers</span><span class="p">).</span><span class="nf">public_send</span><span class="p">(</span>
+      <span class="n">dataset</span><span class="p">.</span><span class="nf">request_method</span><span class="p">,</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="n">dataset</span><span class="p">.</span><span class="nf">uri</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">dataset</span><span class="p">.</span><span class="nf">name</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">dataset</span><span class="p">.</span><span class="nf">path</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+      <span class="ss">params: </span><span class="n">dataset</span><span class="p">.</span><span class="nf">params</span>
+    <span class="p">)</span>
+  <span class="p">},</span>
+  <span class="ss">response_handler: </span><span class="o">-&gt;</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span> <span class="p">{</span>
+    <span class="no">Array</span><span class="p">([</span><span class="no">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">body</span><span class="p">)]).</span><span class="nf">flatten</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="n">rom</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Users</span><span class="p">)</span>
+
+<span class="n">container</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
+
+<span class="n">container</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">to_a</span>
+<span class="c1"># =&gt; GET http://jsonplaceholder.typicode.com/users/1 [ Accept: application/json ]</span>
+</code></pre>
+
+<h2>Support Campaign</h2>
+
+<p>As announced <a href="https://github.com/rom-rb/rom-model#rommodel">a couple of weeks ago</a>, we&#39;re running a campaign for <a href="http://salt.bountysource.com/teams/rom-rb">sustainable development</a>. We already have people who&#39;ve decided to donate - thank you <strong>so much</strong> for your support.</p>
+
+<p>With ROM 0.9.0 we&#39;re close to the first stable 1.0.0 release, but there&#39;s still a lot to be done. Please consider supporting this great effort.</p>
+
+<p>Please also remember that ROM is a project open for contributions and currently we have 24 repositories under our GitHub organization. There are many adapters looking for maintainers, there are many smaller tasks to do in core libraries, framework integrations and other extensions. Please get in touch if you&#39;re interested in contributing &lt;3.</p>
+
+<h2>Reporting Issues and Support</h2>
+
+<p>All repositories now have their own issue trackers enabled on GitHub. If you find a bug, or have problems using ROM, please report an issue for a specific project. If you&#39;re not sure which project it relates to, just report it in the main <a href="https://github.com/rom-rb/rom/issues">rom issue tracker</a>, and we&#39;ll move it to the right place if needed.</p>
+
+<p>For any random questions and support requests you can talk to us on <a href="http://gitter.im/rom-rb/chat">gitter</a>.</p>
+
+<p><s>Last but not least - we&#39;re looking for help in setting up a Discourse instance on DigitalOcean to make it simpler for people to discuss things as an alternative to gitter.</s></p>
+
+<p>We&#39;ve got <a href="http://discuss.rom-rb.org">a discourse</a> instance up and running :)</p>
+
+<h2>ROM 1.0.0 - See You at ROSSConf!</h2>
+
+<p>In case you missed it, ROM is part of the second edition of <a href="http://www.rossconf.io/event/berlin/">ROSSConf in Berlin</a>, where you&#39;ll have a chance to contribute to the project. We have a crazy plan to release 1.0.0 during the event or at least close all the remaining issues and get an RC out of the door. :)</p>
+
+<p>We&#39;ll be working on the list of issues scheduled for 1.0.0, thus it is important to get as much feedback as possible from <strong>you</strong>.</p>
+
+<p>Please try out ROM 0.9.0. Let us know your thoughts. Report issues, ideas, comments, anything that can help in specifying what should be done for 1.0.0 will be grately appreciated.</p>
+
+<p>Thanks! &lt;3</p>
+<hr /></article><article class="article"><h1 class="article__title"><a class="article__title__link" href="/blog/sustainable-development-campaign/">Sustainable Development Campaign</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on August 04, 2015 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/oss">oss</a></li><li class="article__tag"><a href="/blog/tags/support">support</a></li></ul></div><p>ROM has been in development for a couple of years already, in fact, its <a href="https://github.com/solnic/rom-relation/tree/pre-mapper-extraction">early prototype</a> was built in 2012, and has gone through multiple phases before the final architecture was introduced in October last year. This has been a huge effort which resulted in the creation of many smaller libraries and, of course, ROM itself.</p>
+
+<p>One of the main reasons that this project was started was to discover a better way of writing Ruby code that would result in a cleaner architecture for the systems we&#39;re building. The Ruby ecosystem has mostly been shaped by the Active Record pattern introduced in the Rails framework, but ROM tries to move away from the common approach, so that it&#39;s easier to build <strong>and grow</strong> systems built in Ruby.</p>
+
+<p>It&#39;s been an interesting journey with lots of experimentation, and we are getting there, as ROM is approaching 1.0.0.</p>
+
+<p>There are a few mind-shifting aspects of ROM which are worth consideration as general programming guidelines in Ruby:</p>
+
+<ul>
+<li>Prefer simple objects that don&#39;t change (mutate) and have a single purpose to exist</li>
+<li>Prefer interfaces that have no side-effects</li>
+<li>Embrace simple data structures rather than complicated objects that mix data and behavior</li>
+<li>Prefer objects over classes, and always treat dependencies explicitly</li>
+<li>Pay attention to boundaries and proper separation of concerns</li>
+</ul>
+
+<p>Those guideliness have led to the decision that ROM will not be a typical Object Relational Mapper which tries to hide your database behind walls of complicated and leaky abstractions and pretend that &quot;you can just use objects&quot;. This is the reason why ROM gives you a powerful interface to use your database effectively; which can be levaraged to design your systems with simpler data structures in mind and decouple your application layer from persistence concerns.</p>
+
+<p>Such an approach has a significant impact on <strong>lowering complexity</strong> of your application layer.</p>
+
+<h2>Growing The Ecosystem</h2>
+
+<p>ROM is already a big project; if you consider its lower level libraries, over 14 adapters and integration with 3 frameworks. But it goes beyond that - other libraries are being developed that are based the on same programming principles. It is absolutely amazing to see that happening. The ecosystem is growing.</p>
+
+<p>We have reached a point where ROM needs a sustainable pace of development, so that following things can happen:</p>
+
+<ul>
+<li>Reach 1.0.0 in September</li>
+<li>Extract re-usable APIs into separate libraries so that other projects can benefit from them</li>
+<li>Improve existing adapters to be production-ready (the more the merrier)</li>
+<li>Address all known issues in a timely fashion</li>
+<li>Support users in multiple channels</li>
+<li>Establish a solid release process with a CI setup that can help in developing adapters and extensions</li>
+</ul>
+
+<p>In order to be able to do all of that we need your support.</p>
+
+<h2>Campaign on Bountysource</h2>
+
+<p>Bountysource is a service that helps in raising funds for Open Source projects. Its latest feature, called Salt, allows sustainable fundraising on a monthly basis. This makes it possible to support a steady pace of development - which is crucial for a complex project like ROM.</p>
+
+<p>If you&#39;d like to see ROM grow faster, please consider supporting the project through <a href="https://salt.bountysource.com/teams/rom-rb">the campaign</a>.</p>
+
+<p>We want to take the project to the next level with this campaign and hope to expand the team so that more people can work continuously on ROM. We are happy to use the funds to sponsor work on ROM itself and also on any other library that the project could benefit from.</p>
+
+<h2>What&#39;s in it for you?</h2>
+
+<p>There are many ways in which you and your company can benefit from ROM <em>today</em>, but there&#39;s still a lot to be done to make ROM simpler to use for the common application use-case. This includes adding convenient, high-level abstractions as well as providing great documentation and other resources that would teach people how to use ROM.</p>
+
+<p>If you&#39;re interested in the project but it still feels &quot;weird&quot; or &quot;too complicated&quot;, this is exactly the reason that the campaign was started. ROM <em>should be accessible for everybody</em>, including less experienced developers. Not only do we want to promote ROM, but also, the general approach to writing Ruby code, which we believe results in a better and more maintainable code-base.</p>
+
+<p>For any questions or concerns, please do not hesitate to <a href="https://twitter.com/_solnic_">get in touch</a>.</p>
+<hr /></article><ul class="inline-buttons inline-buttons--centered"><li class="inline-buttons__button"><a class="button" href="/blog/page/4/"><span class="fa fa-arrow-left"></span></a></li><li class="inline-buttons__spacer inline-buttons__spacer--wide"><p><strong>3 of 6</strong></p></li><li class="inline-buttons__button inline-buttons__button"><a class="button" href="/blog/page/2/"><span class="fa fa-arrow-right"></span></a></li></ul></div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

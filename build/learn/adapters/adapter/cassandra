@@ -1,0 +1,261 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_adapters learn_adapters_adapter learn_adapters_adapter_cassandra"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Cassandra Adapter</h1>
+
+<p>ROM supports <a href="https://cassandra.apache.org/">Apache Cassandra</a> via <a href="https://github.com/rom-rb/rom-cassandra">rom-cassandra</a> adapter based on Datastax official <a href="https://github.com/datastax/ruby-driver">ruby driver</a> and <a href="https://github.com/nepalez/query_builder">CQL builder</a>.</p>
+
+<p><em>The adapter is still in beta. If you find any inconsistency, please feel free to ask your questions at the <a href="https://gitter.im/rom-rb/chat">ROM chatroom</a> and report issues <a href="https://github.com/rom-rb/rom-cassandra">on github</a>.</em></p>
+
+<h2>Setup</h2>
+
+<p>Set a Cassandra gateway in a <a href="http://rom-rb.org/learn/setup/">ROM generic way</a>:</p>
+<pre class="syntax ruby"><code><span class="c1"># without options (connects to host '127.0.0.1', port 9042 by default)</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:cassandra</span><span class="p">)</span>
+
+<span class="c1"># with inline host and port</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:cassandra</span><span class="p">,</span> <span class="s1">'127.0.0.1:9042'</span><span class="p">)</span>
+
+<span class="c1"># with detail options</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:cassandra</span><span class="p">,</span> <span class="ss">hosts: </span><span class="p">[</span><span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="s1">'127.0.0.2'</span><span class="p">],</span> <span class="ss">port: </span><span class="mi">9042</span><span class="p">,</span> <span class="ss">username: </span><span class="s1">'admin'</span><span class="p">,</span> <span class="ss">password: </span><span class="s1">'foobar'</span><span class="p">)</span>
+
+<span class="c1"># or their combination</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:cassandra</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="ss">port: </span><span class="mi">9042</span><span class="p">,</span> <span class="ss">username: </span><span class="s1">'admin'</span><span class="p">,</span> <span class="ss">password: </span><span class="s1">'foobar'</span><span class="p">)</span>
+</code></pre>
+
+<p>The adapter uses <a href="https://github.com/datastax/ruby-driver">datastax ruby driver</a> under the hood. You can find other options <a href="http://datastax.github.io/ruby-driver/api/#methods">in its API documentation</a>.</p>
+
+<h2>Defining Relations</h2>
+
+<p>To define a Cassandra relation follow <a href="http://rom-rb.org/learn/reading/simple-objects">the standard way of defining relations</a> in ROM.</p>
+
+<p>The only specifics is that you&#39;re expected to set both the keyspace and table name explicitly, using the <em>dot notation</em>:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:cassandra</span><span class="p">]</span>
+  <span class="n">dataset</span> <span class="s2">"authentication.users"</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>To define relations that are exposed to you application you can define your own methods and use internal CQL query DSL:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:cassandra</span><span class="p">]</span>
+  <span class="k">def</span> <span class="nf">last_5_distinct</span>
+    <span class="n">distinct</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:desc</span><span class="p">).</span><span class="nf">limit</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="n">get</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">).</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Relation methods always return other relations. You can use the following ones:</p>
+
+<ul>
+<li><code>get(*columns)</code></li>
+<li><code>count(nil|1)</code></li>
+<li><code>distinct</code></li>
+<li><code>where(conditions)</code></li>
+<li><code>where_clustered(options)</code></li>
+<li><code>order(name, :asc|:desc)</code></li>
+<li><code>limit(value)</code></li>
+<li><code>allow_filtering</code></li>
+</ul>
+
+<p>See more verbose description of those methods at the <a href="https://github.com/nepalez/query_builder/wiki/Home">CQL builder SELECT wiki page</a>.</p>
+
+<p>Notice in ROM, the <code>select(*columns)</code> is renamed to <code>get(*columns)</code>.</p>
+
+<h2>Commands</h2>
+
+<p>Cassandra commands support all features of the <a href="http://rom-rb.org/guides/basics/commands/">standard ROM command API</a>. In addition, the Cassandra-specific <strong>Batch</strong> command is supported.</p>
+
+<p>Unlike SQL, Cassandra doesn&#39;t read data in course of writing. That&#39;s why every command returns an empty array. To check the result of operation you need to provide select request explicitly.</p>
+
+<h3>Create</h3>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">CreateUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:cassandra</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">register_as</span> <span class="ss">:create_user</span>
+
+  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="k">super</span> <span class="n">insert</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">).</span><span class="nf">if_not_exists</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># After the setup</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">create_user</span><span class="p">.</span><span class="nf">call</span> <span class="s2">"Joe"</span>
+<span class="c1"># =&gt; []</span>
+</code></pre>
+
+<p>The <code>Create</code> command supports DSL methods:</p>
+
+<ul>
+<li><code>insert(data)</code></li>
+<li><code>if_not_exists</code></li>
+<li><code>using(options)</code></li>
+</ul>
+
+<p>See more verbose description of those methods at the <a href="https://github.com/nepalez/query_builder/wiki/INSERT">CQL builder INSERT wiki page</a>.</p>
+
+<h3>Update</h3>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UpdateUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Update</span><span class="p">[</span><span class="ss">:cassandra</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">register_as</span> <span class="ss">:update_user</span>
+
+  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="nb">name</span><span class="p">)</span>
+    <span class="k">super</span> <span class="n">set</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">).</span><span class="nf">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">).</span><span class="nf">if_exists</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># After the setup</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">update_user</span><span class="p">.</span><span class="nf">call</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Frank"</span>
+<span class="c1"># =&gt; []</span>
+</code></pre>
+
+<p>The <code>Update</code> command supports DSL methods:</p>
+
+<ul>
+<li><code>update(options)</code></li>
+<li><code>using(options)</code></li>
+<li><code>where(options)</code></li>
+<li><code>if(options)</code></li>
+<li><code>if_exists</code></li>
+</ul>
+
+<p>See more verbose description of those methods at the <a href="https://github.com/nepalez/query_builder/wiki/UPDATE">CQL builder UPDATE wiki page</a>.</p>
+
+<h3>Delete</h3>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">DeleteUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Delete</span><span class="p">[</span><span class="ss">:cassandra</span><span class="p">]</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">register_as</span> <span class="ss">:delete_user</span>
+
+  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">super</span> <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">).</span><span class="nf">if_exists</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># After the setup</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">delete_user</span><span class="p">.</span><span class="nf">call</span> <span class="mi">1</span>
+<span class="c1"># =&gt; []</span>
+</code></pre>
+
+<p>The <code>Delete</code> command supports DSL methods:</p>
+
+<ul>
+<li><code>delete(*columns)</code></li>
+<li><code>using(options)</code></li>
+<li><code>where(options)</code></li>
+<li><code>if(options)</code></li>
+<li><code>if_exists</code></li>
+</ul>
+
+<p>See more verbose description of those methods at the <a href="https://github.com/nepalez/query_builder/wiki/DELETE">CQL builder DELETE wiki page</a>.</p>
+
+<h3>Batch</h3>
+
+<p>This command is Cassandra-specific, that&#39;s why it is inherited from <code>ROM::Cassandra::Commands::Batch</code> directly (there&#39;s no such abstract thing as <code>ROM::Commands::Batch</code>).</p>
+
+<p>The whole batch is executed as a single request to the Cassandra cluster:
+- create a batch for every existing relation (doesn&#39;t matter which one to use)
+- add necessary commands to the bach
+- call a batch.</p>
+
+<p>You needn&#39;t to restrict a batch by commands to the same table or keyspace.</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Batch</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Cassandra</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Batch</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+<span class="k">end</span>
+
+<span class="c1"># ...after the setup</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
+<span class="n">batch</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">batch</span>
+
+<span class="n">batch</span><span class="p">.</span><span class="nf">add</span> <span class="s2">"DELETE FROM authentication.users WHERE id = 1;"</span>
+<span class="n">batch</span><span class="p">.</span><span class="nf">add</span> <span class="s2">"INSERT INTO logs.users (id, text) VALUES (1, 'Record deleted');"</span>
+<span class="n">batch</span><span class="p">.</span><span class="nf">call</span>
+</code></pre>
+
+<p>If you prefer OOP style, use <code>batch.keyspace(name)</code> to start the query. The previous example can be rewritten as:</p>
+<pre class="syntax ruby"><code><span class="c1"># ...</span>
+<span class="n">batch</span><span class="p">.</span><span class="nf">add</span> <span class="n">batch</span><span class="p">.</span><span class="nf">keyspace</span><span class="p">(</span><span class="ss">:authentication</span><span class="p">).</span><span class="nf">table</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">delete</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">id: </span><span class="mi">1</span><span class="p">)</span>
+<span class="n">batch</span><span class="p">.</span><span class="nf">add</span> <span class="n">batch</span><span class="p">.</span><span class="nf">keyspace</span><span class="p">(</span><span class="ss">:logs</span><span class="p">).</span><span class="nf">table</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">insert</span><span class="p">(</span><span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">text: </span><span class="s2">"Record deleted"</span><span class="p">)</span>
+<span class="n">batch</span><span class="p">.</span><span class="nf">call</span>
+</code></pre>
+
+<p>You can also redefine <code>execute</code> method in the same way as for other commands:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Batch</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Cassandra</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Batch</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+
+  <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">super</span> <span class="n">add</span><span class="p">(</span><span class="n">keyspace</span><span class="p">(</span><span class="ss">:authentication</span><span class="p">).</span><span class="nf">table</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">delete</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">id: </span><span class="mi">1</span><span class="p">))</span>
+      <span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="s2">"INSERT INTO logs.users (id, text) VALUES (1, 'Record deleted');"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Migrations</h2>
+
+<h3>Writing a Migration</h3>
+
+<p>Include into your rakefile:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s2">"rom/cassandra/tasks"</span>
+</code></pre>
+
+<p>Then you can run the task from the command like to scaffold new migration (the second argument can be skipped, default value is shown below):</p>
+<pre class="syntax plaintext"><code>rake db:create_migration[create_users,db/migrate]
+</code></pre>
+
+<p>Then edit the created file and define <code>up</code> and <code>down</code> methods by hand. Use methods <code>call</code> and <code>keyspace</code>:</p>
+<pre class="syntax ruby"><code><span class="c1"># db/migrate/20151231235959_create_users.rb</span>
+<span class="k">class</span> <span class="nc">CreateUsers</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Cassandra</span><span class="o">::</span><span class="no">Migrations</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">up</span>
+    <span class="n">call</span> <span class="n">keyspace</span><span class="p">(</span><span class="ss">:authentication</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">create</span>
+      <span class="p">.</span><span class="nf">if_not_exists</span>
+      <span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="ss">options: </span><span class="p">{</span> <span class="ss">class: :SimpleStrategy</span><span class="p">,</span> <span class="ss">replication_factor: </span><span class="mi">3</span> <span class="p">})</span>
+
+    <span class="n">call</span> <span class="n">keyspace</span><span class="p">(</span><span class="ss">:authentication</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">table</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">create</span>
+      <span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:int</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="ss">:name</span><span class="p">,</span> <span class="ss">:text</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">primary_key</span><span class="p">(</span><span class="ss">:id</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">if_not_exists</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">down</span>
+    <span class="n">call</span> <span class="n">keyspace</span><span class="p">(</span><span class="ss">:authentication</span><span class="p">).</span><span class="nf">drop</span><span class="p">.</span><span class="nf">if_exists</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Just like in <code>Batch</code> command, you can send either <code>OOP</code> queries, or raw CQL statements:</p>
+<pre class="syntax ruby"><code><span class="c1"># ...</span>
+<span class="k">def</span> <span class="nf">down</span>
+  <span class="n">call</span> <span class="s2">"DROP KEYSPACE IF EXISTS authentication.users;"</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>You can use many various CQL queries, not only keyspace and table creators.
+See the list of queries and available OOP syntax in the <a href="https://github.com/nepalez/query_builder/wiki/Home">CQL builder wiki</a>.</p>
+
+<h3>Gateway Migration Interface</h3>
+
+<p>You can migrate (up|down) to the target version using gateway&#39;s low-level interface:</p>
+<pre class="syntax ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:cassandra</span><span class="p">,</span> <span class="s2">"127.0.0.1:9042"</span><span class="p">)</span>
+
+<span class="n">gateway</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">gateways</span><span class="p">[</span><span class="ss">:default</span><span class="p">]</span>
+
+<span class="c1"># Default path and logger are shown explicitly.</span>
+<span class="c1"># You can either skip this settings, or use custom ones.</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Cassandra</span><span class="o">::</span><span class="no">Migrations</span><span class="o">::</span><span class="no">Logger</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">gateway</span><span class="p">.</span><span class="nf">migrate</span> <span class="ss">path: </span><span class="s2">"db/migrate"</span><span class="p">,</span> <span class="ss">logger: </span><span class="n">logger</span><span class="p">,</span> <span class="ss">version: </span><span class="mi">20151231235959</span>
+</code></pre>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

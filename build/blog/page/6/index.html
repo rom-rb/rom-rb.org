@@ -1,0 +1,187 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Blog</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_6 blog_page_6_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link--is-active" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-2-0-0-released/">ROM 2.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-released/">ROM 1.0.0 Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-1-0-0-rc-released/">ROM 1.0.0 RC Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/first-beta-of-rom-1-0-0-has-been-released/">First Beta of ROM 1.0.0 Has Been Released</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/rom-0-9-0-released/">ROM 0.9.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/release">release</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/announcement">announcement</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/oss">oss</a></li><li class="sidebar__item"><a class="sidebar__link" href="/blog/tags/support">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a class="button--secondary" href="#"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a class="article__title__link" href="/blog/rom-0-5-0-released/">ROM 0.5.0 Released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/elskwid">Don Morrison</a> on December 31, 2014 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>Today we&#39;re happy to announce the release of ROM version 0.5.0. It is the
+culmination of months of hard work from a growing <a href="https://github.com/rom-rb/rom/network/members">team of contributors</a>.</p>
+
+<p>It&#39;s exciting to end the year with such a large and meaningful release.</p>
+
+<h2>How We Got Here</h2>
+
+<p>There were some twists and turns along the way, not the least of which was
+a reboot of the project with all new internals in November. The reboot was a
+turning point that has allowed us to accelerate development while cementing
+the core of ROM and surrounding libraries.</p>
+
+<h2>Version 0.5.0</h2>
+
+<p>The emphasis thus far has been on powerful mapping features and speed. This
+has resulted in an interface that looks <em>lower-level</em> than the other projects
+people use daily. We believe the higher-level and more convenient interfaces
+will emerge with more real world use.</p>
+
+<p>Many of the features and much of the polishing found in this release happened
+as a direct result of ROM being used in production projects. In fact, one of
+the larger realizations over the last several months has been that <strong>ROM is
+not an ORM</strong>. I know. We were as surprised as you. Take some time to use it
+and you&#39;ll see what we mean. The <a href="/tutorials/rails">Rails Tutorial</a> outlined
+below is a great place to start.</p>
+
+<p>There were so many things added, improved, replaced, refactored, and considered
+both in the core of ROM and in libraries like <a href="https://github.com/rom-rb/rom-rails"><code>rom-rails</code></a> and
+<a href="https://github.com/rom-rb/rom-sql"><code>rom-sql</code></a> that we can&#39;t cover them all here. See the changelog
+section below for an overview of the changes and a link to the changelogs for
+each project.</p>
+
+<h2>rom-rb.org</h2>
+
+<p>If you&#39;re reading this, it&#39;s because of the work we&#39;ve done updating the
+website. Alongside the obvious layout and style changes we&#39;ve also spent
+time on <a href="/introduction">introductions</a> and <a href="/tutorials">tutorials</a>.</p>
+
+<h3>Introductions</h3>
+
+<p>The <a href="/introduction">introductions</a> are here to help you get accustomed to the
+terms and concepts used throughout ROM. You&#39;ll also find a brief article on
+<a href="/introduction/why">Why ROM</a> and a short comparision with <a href="/introduction/activerecord">ActiveRecord</a>.</p>
+
+<h3>Tutorials</h3>
+
+<p>We&#39;ve put together a fairly thorough tutorial for getting started with
+<a href="/tutorials/rails">ROM and Rails</a> and have several more planned. Even if you
+don&#39;t use Rails, this tutorial can help you understand how many of the ideas
+in ROM come together to create powerful ways of working with data.</p>
+
+<p>There will be more <a href="/tutorials">tutorials</a> in the coming weeks.</p>
+
+<h2>[rom] v0.5.0 Changelog summary:</h2>
+
+<ul>
+<li><p>Major milestone of putting together relation and mapping layers is done.
+ROM runs on a pluggable data mapping backends now. The first one is built-in
+and is based on a new library called <a href="https://github.com/solnic/transproc">transproc</a>. More will
+come soon as the need arises.</p></li>
+<li><p>Mapping is much more powerful now, support for prefixing keys, symbolizing
+keys, wrapping, grouping, embeddeding and coercions was added. In addition to
+that wrap, group and embedded can be nested which allows you to build very rich
+aggregate objects</p></li>
+<li><p>Reading can only be used with defined relations now, which adheres to one of
+the core concepts in rom that data access should be restricted and encapsulated
+in the relation layer.</p></li>
+<li><p>Adapter interface was improved and extended with extra options that can be used
+to build powerful adapters setup interface was improved and now accepts a
+simple URI string or a database.yml-complaint hash, makes it easier to use
+rom standalone and/or integrate with other libs and frameworks.</p></li>
+<li><p>Relations that are not used by readers don&#39;t have to be defined now, it will be
+done automatically based on schema. This simplifies setup process every relation
+has access to all other relations (previously those were &quot;raw&quot; datasets from
+adapters). This allows you to reuse your relations inside. Well, relations.</p></li>
+<li><p>Lots of internal improvements that should make using rom a nicer experience.</p></li>
+<li><p>It remains very fast. Still lots of opportunities to tune it but not a big
+priority right now.</p></li>
+</ul>
+
+<p><a href="https://github.com/rom-rb/rom/blob/v0.5.0/CHANGELOG.md">Full changelog</a></p>
+
+<h2>[rom-rails] v0.2.0 Changelog summary:</h2>
+
+<ul>
+<li><p>We have now generators for relations, mappers and commands!</p></li>
+<li><p>Convenient validation and params processing extensions were added to make it
+easier to switch from AR to ROM in rails apps.</p></li>
+<li><p>Support for hot-reloading in development env (works with spring!)</p></li>
+<li><p>Support for more connection options (as a result of the general improvements
+in adapter interface)</p></li>
+</ul>
+
+<p><a href="https://github.com/rom-rb/rom-rails/blob/v0.2.0/CHANGELOG.md">Full changelog</a></p>
+
+<h2>[rom-demo] Updated:</h2>
+
+<ul>
+<li>Was updated to work with the latest ROM. You can see a GitHub adapter with
+some advanced mapping.</li>
+</ul>
+
+<p><a href="https://github.com/solnic/rom-demo">Latest rom-demo</a></p>
+
+<h2>[rom-sql] v0.3.1 Changelog summary:</h2>
+
+<ul>
+<li>Support for changes to ROM options and Rails reloading.</li>
+</ul>
+
+<p><a href="https://github.com/rom-rb/rom-sql/blob/v0.3.1/CHANGELOG.md">Full changelog</a></p>
+
+<h2>New adapters:</h2>
+
+<p>As mentioned before there are a couple of small adapters in the works:
+<a href="https://github.com/rom-rb/rom-yaml"><code>rom-yaml</code></a> and <a href="https://github.com/rom-rb/rom-csv"><code>rom-csv</code></a> with more planned.</p>
+
+<h2>Onward towards ROM 1.0.0</h2>
+
+<p>Version 0.5.0 is a milestone on the journey to 1.0.0. There&#39;s nothing magical
+about a one-dot-oh but wouldn&#39;t it be nice?</p>
+
+<p>For 1.0.0 there are no major changes planned. We will focus on polishing and new
+features like transactions in <a href="https://github.com/rom-rb/rom-sql"><code>rom-sql</code></a> and an extended command
+interface. There will be lots of internal small refactorings, improvements in
+the spec suite to bring a more unit-based approach now that interfaces are
+stabilizing, features based on feedback, and fixes for any bugs that come our
+way.</p>
+
+<h3>You can help</h3>
+
+<p>Yes, you can! As with all projects <em>&quot;many hands make light work&quot;</em>. You don&#39;t
+have to jump in and tackle core issues, of course you can, but there are many
+ways you can help us out:</p>
+
+<h4>Try it out</h4>
+
+<p>Take it for a test drive. Drop it in to an existing project or create a new
+special little place just for ROM to live. The only requirement is that you come
+back and tell us what you think. Like. Dislike. We want to hear it all.</p>
+
+<h4>Tell us how you&#39;re using ROM</h4>
+
+<p>You may already be building things with ROM and we&#39;d love to hear about it. What
+are you making? How is it working for you?  What interfaces have you created to
+make common work easier? This feedback can greatly improve the project for
+everyone.</p>
+
+<h4>Documentation</h4>
+
+<p>[dramatic pause] We all love it when it&#39;s written but who writes it? We do. When
+you&#39;re trying out ROM and you find something doesn&#39;t make sense -- just create an
+issue on the repo. You could even assign it to yourself and make it better.
+(Imagine the satisfaction...)</p>
+
+<h4>Tutorials</h4>
+
+<p>Follow a tutorial. Well, since there is only one at the time of this announcement
+perhaps we should say &quot;follow THE tutorial&quot;. Go through it and see what you make
+of it. If you find yourself using ROM differently, like in another framework,
+create a short tutorial about it. We can even help with the writing if you need
+it.</p>
+
+<h4>Write adapters</h4>
+
+<p>There are a couple of simple adapters in progress. Both
+<a href="https://github.com/rom-rb/rom-yaml"><code>rom-yaml</code></a> and <a href="https://github.com/rom-rb/rom-csv"><code>rom-csv</code></a> are about as easy as
+they get. Maybe you could write <code>rom-json</code> or <code>rom-NEWDB</code>. We can help with this
+as well. Get it started and we&#39;ll all chip in.</p>
+
+<h4>Find your own way</h4>
+
+<p>We truly believe there are as many ways to help as there people. Take a look
+around, chat with us on <a href="https://gitter.im/rom-rb/chat">Gitter</a> and get to it.</p>
+
+<p><strong>Thanks for reading and here&#39;s to a great 2015!</strong></p>
+<hr /></article><ul class="inline-buttons inline-buttons--centered"><li class="inline-buttons__button"><span class="button--disabled"><span class="fa fa-arrow-left"></span></span></li><li class="inline-buttons__spacer inline-buttons__spacer--wide"><p><strong>6 of 6</strong></p></li><li class="inline-buttons__button inline-buttons__button"><a class="button" href="/blog/page/5/"><span class="fa fa-arrow-right"></span></a></li></ul></div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Standalone Commands</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_advanced learn_advanced_commands learn_advanced_commands_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Advanced Topics &raquo; Standalone Commands</h1><p>Writing records to a persistence solution is done through Commands. Commands are
+objects that encapsulate datastore-specific modification operations. They
+receive a relation and execute their operation using that relation.</p>
+
+<p>ROM adapters can provide three basic Command types:</p>
+
+<ul>
+<li><code>ROM::Commands::Create</code></li>
+<li><code>ROM::Commands::Update</code></li>
+<li><code>ROM::Commands::Delete</code></li>
+</ul>
+
+<p>Some adapters provide more for special operations - see your adapter’s
+documentation for details.</p>
+
+<h2>Defining Commands</h2>
+
+<p>In your setup, define available commands with the <code>commands</code> statement, passing
+it a symbol of the relation&#39;s name:</p>
+<pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-repository'</span>
+
+<span class="c1"># Assumes a database with a users table</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+ <span class="c1"># Remember that many adapters can infer relations, so we can often skip defining it.</span>
+ <span class="c1"># Otherwise, add something like:</span>
+ <span class="c1">#</span>
+ <span class="c1"># rom.relation(:users)</span>
+
+ <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="c1"># declares that we can create, update, and delete users.</span>
+    <span class="n">define</span><span class="p">(</span><span class="ss">:create</span><span class="p">)</span>
+    <span class="n">define</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span>
+    <span class="n">define</span><span class="p">(</span><span class="ss">:delete</span><span class="p">)</span>
+ <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h3>Single Results vs Many Results</h3>
+
+<p>Ordinarily, a command will return an <code>Array</code> of <code>Hash</code> objects. You can
+customize this to return a single result by supplying <code>result :one</code> to the
+command definition.</p>
+<pre class="syntax ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+  <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">define</span><span class="p">(</span><span class="ss">:create</span><span class="p">)</span> <span class="k">do</span>
+       <span class="n">result</span> <span class="ss">:one</span>
+    <span class="k">end</span>
+
+    <span class="c1"># ... etc</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Executing Commands</h2>
+
+<p>Every registered command is accessible through the environment container:</p>
+<pre class="syntax ruby"><code><span class="n">rom_container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+  <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+      <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">by_first_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+      <span class="n">where</span><span class="p">(</span><span class="ss">first_name: </span><span class="nb">name</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">define</span><span class="p">(</span><span class="ss">:create</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># fetch the command object by type</span>
+<span class="n">create_user</span> <span class="o">=</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:create</span><span class="p">]</span>
+
+<span class="c1"># a command object won’t do anything until it’s called with input tuples:</span>
+<span class="n">new_users</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span> <span class="ss">name: </span><span class="s1">'Jane'</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="ss">name: </span><span class="s1">'Joe'</span> <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">create_user</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">new_users</span><span class="p">)</span> <span class="c1"># saves the user tuples</span>
+</code></pre>
+
+<p>Commands are backed by a relation, which you can use to specify which records to
+Update or Delete.</p>
+<pre class="syntax ruby"><code><span class="c1"># operate on a single result</span>
+<span class="n">delete_user</span> <span class="o">=</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:delete</span><span class="p">]</span>
+
+<span class="n">delete_user</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">call</span>
+
+<span class="c1"># or many</span>
+<span class="n">delete_users</span> <span class="o">=</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:delete</span><span class="p">]</span>
+
+<span class="n">delete_users</span><span class="p">.</span><span class="nf">by_first_name</span><span class="p">(</span><span class="ss">first_name: </span><span class="s1">'Lawrence'</span><span class="p">).</span><span class="nf">call</span>
+
+<span class="c1"># update is the same, and takes the new data as a parameter to #call</span>
+<span class="n">update_user</span> <span class="o">=</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">command</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:update</span><span class="p">]</span>
+
+<span class="n">update_user</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">7</span><span class="p">).</span><span class="nf">call</span><span class="p">(</span><span class="ss">first_name: </span><span class="s1">'Kaylee'</span><span class="p">,</span> <span class="ss">last_name: </span><span class="s1">'Frye'</span><span class="p">)</span>
+</code></pre>
+
+<h2>Full Example</h2>
+
+<p>This short example demonstrates defining and using the three basic commands.</p>
+<pre class="syntax ruby"><code><span class="c1"># app.rb</span>
+<span class="k">class</span> <span class="nc">MyApp</span>
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">run</span><span class="p">(</span><span class="n">rom_container</span><span class="p">)</span>
+    <span class="n">user_commands</span> <span class="o">=</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+
+    <span class="c1"># Create...</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">user_commands</span><span class="p">[</span><span class="ss">:create</span><span class="p">].</span><span class="nf">call</span><span class="p">(</span><span class="ss">first_name: </span><span class="s1">'Natalia'</span><span class="p">,</span> <span class="ss">last_name: </span><span class="s1">'Romanova'</span><span class="p">)</span>
+
+    <span class="nb">puts</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+    <span class="c1"># =&gt; [{:first_name=&gt;"Natalia", :last_name=&gt;"Romanova"}]</span>
+
+    <span class="c1"># Update...</span>
+    <span class="n">user_commands</span><span class="p">[</span><span class="ss">:update</span><span class="p">].</span><span class="nf">by_id</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="ss">:id</span><span class="p">]).</span><span class="nf">call</span><span class="p">(</span><span class="ss">first_name: </span><span class="s1">'Natasha'</span><span class="p">,</span> <span class="ss">last_name: </span><span class="s1">'Romanoff'</span><span class="p">)</span>
+
+    <span class="nb">puts</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+    <span class="c1"># =&gt; [{:first_name=&gt;"Natasha", :last_name=&gt;"Romanoff"}]</span>
+
+    <span class="c1"># And Delete!</span>
+    <span class="n">user_commands</span><span class="p">[</span><span class="ss">:delete</span><span class="p">].</span><span class="nf">by_id</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="ss">:id</span><span class="p">]).</span><span class="nf">call</span>
+
+    <span class="nb">puts</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
+    <span class="c1"># =&gt; []</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<pre class="syntax ruby"><code><span class="c1"># command_demo.rb</span>
+<span class="nb">require</span> <span class="s1">'rom-sql'</span>
+
+<span class="c1"># Assumes a database with a users table</span>
+<span class="n">rom_container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+  <span class="n">rom</span><span class="p">.</span><span class="nf">use</span> <span class="ss">:macros</span>
+
+  <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+      <span class="n">restrict</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">define</span><span class="p">(</span><span class="ss">:create</span><span class="p">)</span> <span class="k">do</span>
+       <span class="n">result</span> <span class="ss">:one</span>
+    <span class="k">end</span>
+
+    <span class="n">define</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span>
+
+    <span class="n">define</span><span class="p">(</span><span class="ss">:delete</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">MyApp</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">rom_container</span><span class="p">)</span>
+</code></pre>
+
+<p>Run it and see the three states print out.</p>
+<pre class="syntax shell"><code>ruby command_demo.rb
+</code></pre>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

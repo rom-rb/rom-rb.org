@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Why ROM?</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_introduction learn_introduction_why learn_introduction_why_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Introduction &raquo; Why ROM?</h1><p>Many Rubyists start their journey being exposed to Rails and its favored object
+relational mapping (ORM) library, <code>Active Record</code>. <code>Active Record</code> is an
+implementation of the <strong>Active Record</strong> pattern. In this pattern, objects carry
+the data <em>and</em> the behavior that operates on that data.</p>
+
+<p>The <code>Active Record</code> pattern has been widely adopted by the Ruby community,
+mostly due to the success of Rails; however, it&#39;s a pattern with well known
+shortcomings. In complex applications, <code>Active Record</code> is no longer a good
+choice as it tightly couples your application&#39;s domain layer with the underlying
+database. It&#39;s especially problematic in Rails - where its <code>ActiveRecord</code> ORM
+provides a gigantic interface to handle many different concerns. As a result,
+many Rails applications suffer from rapidly increasing complexity, caused by
+internal coupling and lack of a clean domain layer, to a point where
+<em>maintaining and growing an application becomes very difficult</em>.</p>
+
+<p>The <em>benefit</em> of using <code>Active Record</code>, which speeds up initial development and
+lowers the costs during early stages of a project, quickly <em>becomes irrelevant</em>
+once complexity of the application grows and adding new features and fixing bugs
+takes more time than it should.</p>
+
+<p>ROM provides an alternative way of handling persistence and related concerns. It
+can be used as effectively, in terms of fast development, as Active Record, with
+the great benefit of being able to adjust your design to the growing complexity
+of your application. <em>Loose coupling</em> between your application&#39;s <em>domain
+layer</em> and the underlying databases simplifies your code and <em>the persistence
+layer</em>, handled by ROM components, gives you powerful interfaces to help deal
+with complexity and performance issues.</p>
+
+<p>When using ROM you are not limited to any ORM abstraction, because ROM doesn&#39;t
+have it. Instead, you can leverage features of your database using adapter
+interfaces, which can also help you to reduce the complexity of your application.</p>
+
+<p>ROM focuses on <em>simplicity</em> and <em>removes unnecessary abstractions</em>. It helps you
+in working efficiently with the data and turning it into meaningful information.</p>
+
+<h2>Flexible</h2>
+
+<p>The single biggest reason to use ROM is to have the freedom to design the domain
+layer however you like - you aren&#39;t tied to the structure of your database.
+This flexibility is of primary concern to ROM.</p>
+
+<h2>Powerful</h2>
+
+<p>ROM makes it easy to work with, and switch between, different data sources. A
+minimum structure is provided with more adapters being created every day. The
+primary adapter, <a href="https://github.com/rom-rb/rom-sql"><code>rom-sql</code></a>, is built on
+the battle-tested <a href="https://github.com/jeremyevans/sequel"><code>Sequel</code></a> library 
+which is stable and brings with it immediate support for many different types
+of databases.</p>
+
+<h2>Small</h2>
+
+<p>Each piece of ROM is small and understandable making it easier to find what you
+need when adding the library to your project.</p>
+
+<h2>Explicit</h2>
+
+<p>ROM favors explicitness and avoiding &quot;magic&quot; as much as possible.</p>
+
+<h2>Usable</h2>
+
+<p>ROM components are small, simple to use and allows powerful composition.
+Higher-level abstractions can be easily built on top of lower-level components.</p>
+
+<h2>Fast</h2>
+
+<p>ROM is fast, and it gives you the power to improve performance easily when
+default behavior doesn&#39;t satisfy you. No magic, no leaky abstractions, you&#39;re in
+control.</p>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

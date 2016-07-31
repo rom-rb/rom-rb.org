@@ -1,0 +1,122 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Flat Style Setup</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_advanced learn_advanced_flat-style-setup learn_advanced_flat-style-setup_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a class="header__logo__link" href="/">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a class="menu__item__link--is-active" href="/learn">Learn</a></li><li class="menu__item"><a class="menu__item__link" href="/api">API</a></li><li class="menu__item"><a class="menu__item__link" href="/blog">Blog</a></li><li class="menu__item"><a class="menu__item__link" href="/contribute">Contribute</a></li><li class="menu__item"><a class="menu__item__link" href="/status">Status</a></li><li class="menu__item--last"><a class="menu__item__link" href="/backers">Backers <3</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a class="sidebar__link" href="/learn/introduction/">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/philosophy/">Philosophy</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/why/">Why ROM?</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/overview/">Overview</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/introduction/active-record/">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/getting-started/">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/block-style-setup/">Block Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/getting-started/rails-setup/">Rails Setup</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/core/">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/core/schemas/">Schemas</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/repositories/">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/quick-start/">Quick Start</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-simple-objects/">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/reading-aggregates/">Reading Aggregates</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/composing-relations/">Composing Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/changesets/">Changesets</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/repositories/writing-aggregates/">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/sql/">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/relations/">Relations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/schemas/">Schemas</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/associations/">Associations</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/joins/">Joins</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/commands/">Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/transactions/">Transactions</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/sql/migrations/">Migrations</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/kafka/">Kafka</a></li><li class="sidebar__item"><a class="sidebar__link--is-active" href="/learn/advanced/">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a class="sidebar__sub-link--is-active" href="/learn/advanced/flat-style-setup/">Flat Style Setup</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/combine/">Combining Relation Results</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/commands/">Standalone Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/custom-commands/">Custom Commands</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/mappers/">Mappers</a></li><li class="sidebar__sub-item"><a class="sidebar__sub-link" href="/learn/advanced/how-to-build-an-adapter/">Adapters</a></li></ul></li><li class="sidebar__item"><a class="sidebar__link" href="/learn/glossary/">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Advanced &raquo; Flat Style Setup</h1><p>Block style setup is suitable for simple, quick&#39;n&#39;dirty scripts that need to
+access databases, in a typical application setup, you want to break down
+individual component definitions, like relations or commands, into separate
+files.</p>
+
+<blockquote>
+<p>ROM &amp; Frameworks</p>
+
+<p>Framework integrations <strong>take care of the setup for you</strong>. If you want to use ROM
+with a framework, please refer to specific instructions under <a href="/learn/getting-started">Getting Started</a>
+section</p>
+</blockquote>
+
+<h2>Setup</h2>
+
+<p>To do setup in flat style, create a <code>ROM::Configuration</code> object. This is the
+same object that gets yielded into your block in block-style setup, so the API
+is identical.</p>
+<pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">,</span> <span class="s1">'memory://test'</span><span class="p">)</span>
+<span class="n">configuration</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+<span class="c1"># ... etc</span>
+</code></pre>
+
+<p>When you’re finished configuring, pass the configuration object to
+<code>ROM.container</code> to generate the finalized container. There are no differences in
+the internal semantics between block-style and flat-style setup.</p>
+
+<h3>Registering Components</h3>
+
+<p>ROM components need to be registered with the ROM environment in order to be
+used.</p>
+<pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">,</span> <span class="s1">'memory://test'</span><span class="p">)</span>
+
+<span class="c1"># Declare Relations, Commands, and Mappers here</span>
+</code></pre>
+
+<p>If you prefer to create explicit classes for your components you must register
+them with the configuration directly:</p>
+<pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">,</span> <span class="s1">'memory://test'</span><span class="p">)</span>
+
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">OneOfMyRelations</span><span class="p">)</span>
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">AnotherOfMyRelations</span><span class="p">)</span>
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_command</span><span class="p">(</span><span class="no">User</span><span class="o">::</span><span class="no">CreateCommand</span><span class="p">)</span>
+<span class="n">configuration</span><span class="p">.</span><span class="nf">register_mapper</span><span class="p">(</span><span class="no">User</span><span class="o">::</span><span class="no">UserMapper</span><span class="p">)</span>
+</code></pre>
+
+<p>You can pass multiple components to each <code>register</code> call, as a list of
+arguments.</p>
+
+<h3>Auto-registration</h3>
+
+<p>ROM provides <code>auto_registration</code> as a convenience method for automatically
+<code>require</code>-ing and registering components that are not declared with the DSL. At
+a minimum, <code>auto_registration</code> requires a base directory. By default, it will
+load relations from <code>&lt;base&gt;/relations</code>, commands from <code>&lt;base&gt;/commands</code>, and
+mappers from <code>&lt;base&gt;/mappers</code>.</p>
+<pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">)</span>
+<span class="n">configuration</span><span class="p">.</span><span class="nf">auto_registration</span><span class="p">(</span><span class="n">__dir__</span><span class="p">)</span>
+<span class="n">container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+</code></pre>
+
+<h2>Relations</h2>
+
+<p>While the DSL syntax is often convenient, Relations can also be defined with a
+class extending <code>ROM::Relation</code> from the appropriate adapter.</p>
+<pre class="syntax ruby"><code><span class="c1"># Defines a Users relation for the SQL adapter</span>
+<span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+
+<span class="k">end</span>
+
+<span class="c1"># Defines a Posts relation for the HTTP adapter</span>
+<span class="k">class</span> <span class="nc">Posts</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:http</span><span class="p">]</span>
+
+<span class="k">end</span>
+</code></pre>
+
+<p>Relations can declare the specific
+<a href="http://rom-rb.org/introduction/glossary/#gateway">gateway</a> and
+<a href="http://rom-rb.org/introduction/glossary/#dataset">dataset</a> it takes data from,
+as well as the registered name of the relation. The following example sets the
+default options explicitly:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">register_as</span> <span class="ss">:users</span>    <span class="c1"># the registered name; eg. for use in Repository’s relations(...) method</span>
+  <span class="n">gateway</span> <span class="ss">:default</span>      <span class="c1"># the gateway name, as defined in setup</span>
+  <span class="n">dataset</span> <span class="ss">:users</span>        <span class="c1"># eg. in sql, this is the table name</span>
+<span class="k">end</span>
+</code></pre>
+
+<h2>Commands</h2>
+
+<p>Just like Relations, Commands have an alternative style as a regular class:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">CreateUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:memory</span><span class="p">]</span>
+
+<span class="k">end</span>
+</code></pre>
+
+<p>Commands have three settings: their relation, which takes the registered name of
+a relation; their result type, either <code>:one</code> or <code>:many</code>; and their registered
+name.</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">CreateUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:memory</span><span class="p">]</span>
+   <span class="n">register_as</span> <span class="ss">:create</span>
+   <span class="n">relation</span> <span class="ss">:users</span>
+   <span class="n">result</span> <span class="ss">:one</span>
+<span class="k">end</span>
+</code></pre>
+
+<blockquote>
+<p>Typically, you&#39;re going to use <a href="/learn/repositories/quick-start">repository command interface</a>;
+custom command classes are useful when the built-in command support in
+repositories doesn&#39;t meet your requirements</p>
+</blockquote>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on ROM or simply want to see ROM evolve faster to meet your requirements,
+please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
+Bountysource</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2016 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a class="footer__fine-print__social__icon" href="https://github.com/rom-rb/rom"><span class="fa fa-github-alt"></span></a><a class="footer__fine-print__social__icon--last" href="https://twitter.com/rom_rb"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>
