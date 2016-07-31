@@ -17,6 +17,7 @@ Compatible with rom 2.0:
 |Yesql|`gem install rom-yesql`| √ |
 |CouchDB|`gem install rom-couchdb`| √ |
 |HTTP|`gem install rom-http`| √ |
+|Git|`gem install rom-git`| - |
 |RethinkDB|`gem install rom-rethinkdb`| - |
 
 Outdated (help wanted!) adapters:
