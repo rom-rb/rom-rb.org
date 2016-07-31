@@ -15,6 +15,7 @@ Compatible with rom 2.0:
 |-------|---------------|---|
 |SQL|`gem install rom-sql`| √ |
 |Yesql|`gem install rom-yesql`| √ |
+|CouchDB|`gem install rom-couchdb`| √ |
 |HTTP|`gem install rom-http`| √ |
 |RethinkDB|`gem install rom-rethinkdb`| - |
 
@@ -22,10 +23,10 @@ Outdated (help wanted!) adapters:
 
 |Adapter|Install Command|Production ready?
 |-------|---------------|---|
-|Cassandra|`gem install rom-cassandra`| √ |
 |CSV|`gem install rom-csv`| √ |
 |YAML|`gem install rom-yaml`| √ |
-|CouchDB|`gem install rom-couchdb`| √ |
+|Cassandra|`gem install rom-cassandra`| √ |
+|Kafka|`gem install rom-kafka`| √ |
 |MongoDB|`gem install rom-mongo`| - |
 |Neo4j|`gem install rom-neo4j`| - |
 |Event Store|`gem install rom-event_store`|
