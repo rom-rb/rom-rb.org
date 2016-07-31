@@ -1,6 +1,6 @@
 ---
-title: Kafka
-chapter: Overview
+chapter: Kafka
+title: Overview
 ---
 
 ROM supports [Apache Kafka][kafka] via [rom-kafka][rom-kafka] adapter, that is

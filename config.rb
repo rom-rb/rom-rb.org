@@ -5,7 +5,6 @@ page '/*.txt', layout: false
 page '/', layout: 'layout'
 page '/learn/*', layout: 'guide', data: { sidebar: 'learn/sidebar' }
 page '/blog/*', data: { sidebar: 'blog/sidebar' }
-proxy '/learn/index.html', '/learn/introduction/index.html'
 
 # Helpers
 helpers do
@@ -16,6 +15,18 @@ helpers do
     options[:class] ||= ''
     options[:class] << '--is-active' if is_active
     link_to(link_text, url, options)
+  end
+
+  def learn_root_resource
+    sitemap.find_resource_by_destination_path('learn/index.html')
+  end
+
+  def sections_as_resources(resource)
+    sections = resource.data.sections
+    sections.map do |s|
+      destination_path = resource.url + "#{s}/index.html"
+      sitemap.find_resource_by_destination_path(destination_path)
+    end
   end
 
   def head_title

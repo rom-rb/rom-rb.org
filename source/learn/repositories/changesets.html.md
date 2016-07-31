@@ -1,6 +1,6 @@
 ---
-title: Repositories
-chapter: Changesets
+chapter: Repositories
+title: Changesets
 ---
 
 You already learned how to simply use commands with repositories in the

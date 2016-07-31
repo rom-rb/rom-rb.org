@@ -1,6 +1,6 @@
 ---
-title: SQL
-chapter: Schemas
+chapter: SQL
+title: Schemas
 ---
 
 The SQL adapter adds its own schema types and association declarations to the

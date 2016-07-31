@@ -1,6 +1,6 @@
 ---
-title: Repositories
-chapter: Reading Simple Objects
+chapter: Repositories
+title: Reading Simple Objects
 ---
 
 It's best to create multiple Repository classes that each focus on a segment of

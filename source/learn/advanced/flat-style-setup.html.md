@@ -1,6 +1,6 @@
 ---
-title: Advanced
-chapter: Flat Style Setup
+chapter: Advanced
+title: Flat Style Setup
 ---
 
 Block style setup is suitable for simple, quick'n'dirty scripts that need to

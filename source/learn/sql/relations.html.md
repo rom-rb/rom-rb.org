@@ -1,6 +1,6 @@
 ---
-title: SQL
-chapter: Relations
+chapter: SQL
+title: Relations
 ---
 
 To define an SQL relation you can use the standard way of defining relations in

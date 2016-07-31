@@ -1,6 +1,6 @@
 ---
-title: Getting Started
-chapter: Rails Setup
+chapter: Getting Started
+title: Rails Setup
 ---
 
 Rails integration is provided by

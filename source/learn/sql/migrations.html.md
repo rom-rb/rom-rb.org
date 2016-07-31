@@ -1,6 +1,6 @@
 ---
-title: SQL Adapter
-chapter: Migrations
+chapter: SQL Adapter
+title: Migrations
 ---
 
 The SQL adapter uses Sequel migration API exposed by SQL gateways. You can either

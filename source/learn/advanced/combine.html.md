@@ -1,6 +1,6 @@
 ---
-title: Advanced
-chapter: Combining Relation Results
+chapter: Advanced
+title: Combining Relation Results
 ---
 
 Ordinarily, Relation is used through Repository, but some applications may use

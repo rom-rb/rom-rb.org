@@ -1,6 +1,6 @@
 ---
-title: Repositories
-chapter: Quick Start
+chapter: Repositories
+title: Quick Start
 ---
 
 This documentation uses `rom-sql` as an example. For in-depth information see

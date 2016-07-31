@@ -1,6 +1,6 @@
 ---
-title: SQL
-chapter: Commands
+chapter: SQL
+title: Commands
 ---
 
 SQL commands support all features of the standard

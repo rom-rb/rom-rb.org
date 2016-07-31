@@ -1,6 +1,6 @@
 ---
-title: Repositories
-chapter: Writing Aggregates
+chapter: Repositories
+title: Writing Aggregates
 ---
 
 Repositories provide a command builder interface which you can use to construct

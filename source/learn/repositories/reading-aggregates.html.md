@@ -1,6 +1,6 @@
 ---
-title: Repositories
-chapter: Reading Aggregates
+chapter: Repositories
+title: Reading Aggregates
 ---
 
 Repositories have a powerful API for composing data into nested structures, which

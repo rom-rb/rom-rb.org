@@ -1,50 +1,11 @@
 h2.sidebar__header--first Learn
 
 ul.sidebar__items
-  li.sidebar__item
-    = nav_link_to 'Introduction', '/learn/introduction', class: 'sidebar__link'
-    ul.sidebar__sub-items
-      li.sidebar__sub-item= nav_link_to 'Philosophy', '/learn/introduction/philosophy', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Why ROM?', '/learn/introduction/why', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Active Record and ROM', '/learn/introduction/active-record', class: 'sidebar__sub-link'
-  li.sidebar__item
-    = nav_link_to 'Getting Started', '/learn/getting-started', class: 'sidebar__link'
-    ul.sidebar__sub-items
-      li.sidebar__sub-item= nav_link_to 'Block Style Setup', '/learn/getting-started/block-style-setup', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Rails Setup', '/learn/getting-started/rails-setup', class: 'sidebar__sub-link'
-  li.sidebar__item
-    = nav_link_to 'Core', '/learn/core', class: 'sidebar__link'
-    ul.sidebar__sub-items
-      li.sidebar__sub-item= nav_link_to 'Relations', '/learn/core/relations', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Schemas', '/learn/core/schemas', class: 'sidebar__sub-link'
-  li.sidebar__item
-    = nav_link_to 'Repositories', '/learn/repositories', class: 'sidebar__link'
-    ul.sidebar__sub-items
-      li.sidebar__sub-item= nav_link_to 'Quick Start', '/learn/repositories/quick-start', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Reading Simple Objects', '/learn/repositories/reading-simple-objects', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Reading Aggregates', '/learn/repositories/reading-aggregates', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Composing Relations', '/learn/repositories/composing-relations', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Changesets', '/learn/repositories/changesets', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Writing Aggregates', '/learn/repositories/writing-aggregates', class: 'sidebar__sub-link'
-  li.sidebar__item
-    = nav_link_to 'SQL', '/learn/sql', class: 'sidebar__link'
-    ul.sidebar__sub-items
-      li.sidebar__sub-item= nav_link_to 'Relations', '/learn/sql/relations', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Schemas', '/learn/sql/schemas', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Associations', '/learn/sql/associations', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Joins', '/learn/sql/joins', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Commands', '/learn/sql/commands', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Transactions', '/learn/sql/transactions', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Migrations', '/learn/sql/migrations', class: 'sidebar__sub-link'
-  li.sidebar__item
-    = nav_link_to 'Kafka', '/learn/kafka', class: 'sidebar__link'
-  li.sidebar__item
-    = nav_link_to 'Advanced Topics', '/learn/advanced', class: 'sidebar__link'
-    ul.sidebar__sub-items
-      li.sidebar__sub-item= nav_link_to 'Flat Style Setup', '/learn/advanced/flat-style-setup', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Combining Relation Results', '/learn/advanced/combine', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Standalone Commands', '/learn/advanced/commands', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Custom Commands', '/learn/advanced/custom-commands', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'Custom Mappers', '/learn/advanced/mappers', class: 'sidebar__sub-link'
-      li.sidebar__sub-item= nav_link_to 'How to build an adapter', '/learn/advanced/how-to-build-an-adapter', class: 'sidebar__sub-link'
-  li.sidebar__item= nav_link_to 'Glossary', '/learn/glossary', class: 'sidebar__link'
+  - sections_as_resources(learn_root_resource).each do |resource|
+    li.sidebar__item
+      = nav_link_to resource.data.chapter, resource.url, class: 'sidebar__link'
+      - unless resource.data.sections.nil?
+        ul.sidebar__sub-items
+          - sections_as_resources(resource).each do |subresource|
+            li.sidebar__sub-item
+              = nav_link_to subresource.data.title, subresource.url, class: 'sidebar__sub-link'
