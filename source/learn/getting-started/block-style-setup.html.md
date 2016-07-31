@@ -14,7 +14,7 @@ simple scripts.
 > #### Configuration
 >
 > The configuration options explained in this document are the same for
-> [Flat Style Setup](/advanced/flat-style-setup) using `ROM::Configuration` object
+> [Flat Style Setup](/learn/advanced/flat-style-setup) using `ROM::Configuration` object
 
 ## Connect to a single database
 
