@@ -52,9 +52,10 @@ end
 set :layout, 'content'
 set :css_dir, 'assets/stylesheets'
 set :js_dir, 'assets/javascripts'
+
 set :markdown_engine, :redcarpet
-set :markdown, :tables => true, :autolink => true, :gh_blockcode => true,
-    :fenced_code_blocks => true
+set :markdown, tables: true, autolink: true, gh_blockcode: true, fenced_code_blocks: true
+
 set :disqus_embed_url, 'https://rom-rb-blog.disqus.com/embed.js'
 
 activate :blog,
@@ -63,8 +64,11 @@ activate :blog,
   permalink: '{title}.html',
   paginate: true,
   tag_template: 'blog/tag.html'
+
 activate :syntax, css_class: 'syntax'
+
 activate :directory_indexes
+
 activate :external_pipeline,
   name: :webpack,
   command: build? ? './node_modules/webpack/bin/webpack.js --bail' : './node_modules/webpack/bin/webpack.js --watch -d',
