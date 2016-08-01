@@ -19,7 +19,7 @@ end
 class ProjectRepo < ROM::Repository[:projects]
 end
 
-user_repo = UserRepository.new(rom)
+user_repo = UserRepo.new(rom)
 project_repo = ProjectRepo.new(rom)
 ```
 
