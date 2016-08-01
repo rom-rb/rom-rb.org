@@ -87,4 +87,4 @@ end
 
 ## Next
 
-Learn [how to read data](/learn/reading) via Repositories and Relations.
+Learn [how to read data](/learn/repositories/reading-simple-objects/) via Repositories and Relations.
