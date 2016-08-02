@@ -61,7 +61,7 @@ Depending on your application needs, you may want to use different setup strateg
 
 * [Block Style](/learn/getting-started/block-style-setup) - suitable for small scripts
 * [Rails](/learn/getting-started/rails-setup) - setup integrated with Rails
-* [Flat Style](/learn/advanced/flat-style) - suitable for custom environments (**advanced usage**)
+* [Flat Style](/learn/advanced/flat-style-setup) - suitable for custom environments (**advanced usage**)
 
 > Note: Most guide examples are written specifically for the `rom-sql` adapter.
 > If you are using a different one, consult that adapter's documentation as
