@@ -103,7 +103,7 @@ The following code defines a command which inserts data into <code>users</code> 
 <h2>Defining Custom Mappers</h2>
 
 <p>If you want to use custom mappers you can place them under <code>app/mappers</code>:</p>
-<pre class="syntax ruby"><code><span class="c1"># app/commands/user_mapper.rb</span>
+<pre class="syntax ruby"><code><span class="c1"># app/mappers/user_mapper.rb</span>
 <span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
   <span class="n">relation</span> <span class="ss">:users</span>
 

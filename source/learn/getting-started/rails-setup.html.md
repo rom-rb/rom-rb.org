@@ -118,7 +118,7 @@ ROM.container.commands[:users][:create]
 If you want to use custom mappers you can place them under `app/mappers`:
 
 ``` ruby
-# app/commands/user_mapper.rb
+# app/mappers/user_mapper.rb
 class UserMapper < ROM::Mapper
   relation :users
 
