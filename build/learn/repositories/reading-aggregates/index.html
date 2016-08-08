@@ -23,7 +23,7 @@ however, in the early days of every project, using canonical associations is all
 you need, so let&#39;s start with that!</p>
 
 <p>We&#39;re going to define <code>:users</code> that have many <code>:tasks</code>. To keep things simpler
-let&#39;s define relations using <a href="/getting-started/block-style-setup">block-style setup</a>:</p>
+let&#39;s define relations using <a href="/learn/getting-started/block-style-setup">block-style setup</a>:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom'</span>
 
 <span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
