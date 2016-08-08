@@ -68,7 +68,7 @@ user_repo.create(name: "Jane", email: "jane@doe.org")
 ```
 
 By default, repos return simple `ROM::Struct` objects. You'll learn more about them in
-[reading](/reading/simple-objects) section.
+[reading][reading-simple-objects] section.
 
 ### Update and Delete
 
@@ -105,4 +105,6 @@ user_repo.delete(user.id)
 ## Next
 
 Now that you know how to create tables and define repositories with full CRUD
-support, you can proceed to [reading](/learn/repositories/reading-simple-objects) section.
+support, you can proceed to [reading][reading-simple-objects] section.
+
+[reading-simple-objects]: /learn/repositories/reading-simple-objects
