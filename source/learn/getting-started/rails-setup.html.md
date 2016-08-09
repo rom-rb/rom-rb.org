@@ -70,6 +70,15 @@ In Rails environment ROM container is accessible via `ROM.env`:
 ROM.env # returns the container
 ```
 
+In your controllers you can access ROM container simply like this:
+``` ruby
+class HomesController < ApplicationController
+  def show
+    rom #=> returns rom container
+  end
+end
+```
+
 Accessing the global container directly is considered as a bad practice. The
 recommended way is to use a DI mechanism to inject specific ROM components as
 dependencies into your objects.
