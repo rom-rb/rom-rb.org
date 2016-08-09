@@ -70,11 +70,11 @@ In Rails environment ROM container is accessible via `ROM.env`:
 ROM.env # returns the container
 ```
 
-In your controllers you can access ROM container simply like this:
+In your controllers you can access ROM container by `rom` variable:
 ``` ruby
-class HomesController < ApplicationController
+class UsersController < ApplicationController
   def show
-    rom #=> returns rom container
+    @user = rom.relation(:users).by_id(params[:id]).one
   end
 end
 ```
