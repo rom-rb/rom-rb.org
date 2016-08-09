@@ -64,10 +64,10 @@ After that, you have access to following tasks:
 
 ## Accessing Container
 
-In Rails environment ROM container is accessible via `ROM::Rails::Railtie.container`:
+In Rails environment ROM container is accessible via `ROM.env`:
 
 ``` ruby
-ROM::Rails::Railtie.container # returns the container
+ROM.env # returns the container
 ```
 
 Accessing the global container directly is considered as a bad practice. The
@@ -93,7 +93,7 @@ class Users < ROM::Relation[:sql]
 end
 
 # access registered relation via container
-ROM::Rails::Railtie.container.relations[:users]
+ROM.env.relations[:users]
 ```
 
 ## Defining Commands
@@ -110,7 +110,7 @@ class CreateUser < ROM::Commands::Create[:sql]
 end
 
 # access registered relation via container
-ROM::Rails::Railtie.container.commands[:users][:create]
+ROM.env.commands[:users][:create]
 ```
 
 ## Defining Custom Mappers
