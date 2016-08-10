@@ -7,10 +7,10 @@ Repositories have a powerful API for composing data into nested structures, whic
 we call **aggregates**, where the root is constructed from the data provided by
 the root relation, and additional relations provide data for child nodes.
 
-This document uses `rom-sql` which provide support for defining canonical database
+This document uses `rom-sql` which provides support for defining canonical database
 associations in relation schemas, which are used to simplify reading aggregates.
 If an adapter doesn't support association in schemas, you can still load aggregates
-using [`Repository#combine`](/learn/repositories/combine-interface) interface,
+using [`Repository#combine`](http://www.rubydoc.info/gems/rom-repository/ROM/Repository/RelationProxy/Combine) interface,
 which is more advanced and flexible.
 
 ## Relation Schema

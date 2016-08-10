@@ -48,9 +48,6 @@ end
 Read your adapter's documentation to see the full listing of its Relation
 methods.
 
-> These are just simple reads. See the [Associations](/learn/associations)
-> section to see how to construct multi-relation selector methods using joins.
-
 ## Single Results vs Many Results
 
 Every relation is lazy loading and most methods return another relation. To
