@@ -57,9 +57,18 @@ enable them in your <code>Rakefile</code>:</p>
 
 <h2>Accessing Container</h2>
 
-<p>In Rails environment ROM container is accessible via <code>ROM.container</code>:</p>
-<pre class="syntax ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">container</span> <span class="c1"># returns the container</span>
+<p>In Rails environment ROM container is accessible via <code>ROM.env</code>:</p>
+<pre class="syntax ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">env</span> <span class="c1"># returns the container</span>
 </code></pre>
+
+<p>In your controllers you can access ROM container by <code>rom</code> variable:
+<code>ruby
+class UsersController &lt; ApplicationController
+  def show
+    @user = rom.relation(:users).by_id(params[:id]).one
+  end
+end
+</code></p>
 
 <p>Accessing the global container directly is considered as a bad practice. The
 recommended way is to use a DI mechanism to inject specific ROM components as
@@ -82,7 +91,7 @@ The following code defines a <code>users</code> relation for the <code>:sql</cod
 <span class="k">end</span>
 
 <span class="c1"># access registered relation via container</span>
-<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
 </code></pre>
 
 <h2>Defining Commands</h2>
@@ -97,7 +106,7 @@ The following code defines a command which inserts data into <code>users</code> 
 <span class="k">end</span>
 
 <span class="c1"># access registered relation via container</span>
-<span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:create</span><span class="p">]</span>
+<span class="no">ROM</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:create</span><span class="p">]</span>
 </code></pre>
 
 <h2>Defining Custom Mappers</h2>
