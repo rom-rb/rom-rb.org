@@ -41,7 +41,3 @@ Following connection URI schemes are supported:
 - sqlite
 - swift
 - tinytds
-
-## Establishing Gateways
-
-TODO
