@@ -71,6 +71,7 @@ ROM.env # returns the container
 ```
 
 In your controllers you can access ROM container by `rom` variable:
+
 ``` ruby
 class UsersController < ApplicationController
   def show
@@ -79,17 +80,17 @@ class UsersController < ApplicationController
 end
 ```
 
-Accessing the global container directly is considered as a bad practice. The
-recommended way is to use a DI mechanism to inject specific ROM components as
-dependencies into your objects.
-
-For example you can use [dry-container](https://github.com/dryrb/dry-container)
-and [dry-auto_inject](https://github.com/dryrb/dry-auto_inject) to define
-your own application container and specify dependencies there to have them
-automatically injected.
-
-See [rom-rails-skeleton](https://github.com/solnic/rom-rails-skeleton) for an
-example of such setup.
+> Accessing the global container directly is considered as a bad practice. The
+> recommended way is to use a DI mechanism to inject specific ROM components as
+> dependencies into your objects.
+>
+> For example you can use [dry-container](https://github.com/dryrb/dry-container)
+> and [dry-auto_inject](https://github.com/dryrb/dry-auto_inject) to define
+> your own application container and specify dependencies there to have them
+> automatically injected.
+>
+> See [rom-rails-skeleton](https://github.com/solnic/rom-rails-skeleton) for an
+> example of such setup.
 
 ## Defining Relations
 
