@@ -61,15 +61,15 @@ enable them in your <code>Rakefile</code>:</p>
 <pre class="syntax ruby"><code><span class="no">ROM</span><span class="p">.</span><span class="nf">env</span> <span class="c1"># returns the container</span>
 </code></pre>
 
-<p>In your controllers you can access ROM container by <code>rom</code> variable:
-<code>ruby
-class UsersController &lt; ApplicationController
-  def show
-    @user = rom.relation(:users).by_id(params[:id]).one
-  end
-end
-</code></p>
+<p>In your controllers you can access ROM container by <code>rom</code> variable:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UsersController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@user</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">by_id</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">]).</span><span class="nf">one</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
 
+<blockquote>
 <p>Accessing the global container directly is considered as a bad practice. The
 recommended way is to use a DI mechanism to inject specific ROM components as
 dependencies into your objects.</p>
@@ -81,6 +81,7 @@ automatically injected.</p>
 
 <p>See <a href="https://github.com/solnic/rom-rails-skeleton">rom-rails-skeleton</a> for an
 example of such setup.</p>
+</blockquote>
 
 <h2>Defining Relations</h2>
 
