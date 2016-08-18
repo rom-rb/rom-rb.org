@@ -20,7 +20,7 @@ Repository, and so <code>#combine</code> must be handled directly.</p>
 <span class="k">end</span>
 
 
-<span class="n">rom_container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
+<span class="n">rom_container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:memory</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">rom</span><span class="o">|</span>
   <span class="n">rom</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Users</span><span class="p">,</span> <span class="no">Tasks</span><span class="p">)</span>
 <span class="k">end</span>
 
