@@ -21,7 +21,7 @@ class Tasks < ROM::Relation[:memory]
 end
 
 
-rom_container = ROM.container(:sql) do |rom|
+rom_container = ROM.container(:memory) do |rom|
   rom.register_relation(Users, Tasks)
 end
 
