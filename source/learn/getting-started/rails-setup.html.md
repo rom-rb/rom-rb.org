@@ -135,3 +135,49 @@ class UserMapper < ROM::Mapper
   # some mapping logic
 end
 ```
+
+## Running alongside ActiveRecord
+
+There might be some cases where you will want to run ROM alongside ActiveRecord.
+Since ROM.rb is designed to work independently, you will need to take few additional steps.
+
+ROM creates it's own connections and Rails above version 5 won't allow you to drop the 
+database since there are active connections on it.
+
+``` ruby
+# lib/tasks/db.rb
+task :remove_rom_connection => [:environment] do
+  ROM.env && ROM.env.disconnect
+end
+
+Rake::Task["db:drop"].clear_prerequisites()
+Rake::Task["db:drop"].enhance [:remove_rom_connection, :load_config, :check_protected_environments]
+
+Rake::Task["db:reset"].clear_prerequisites()
+Rake::Task["db:reset"].enhance [:remove_rom_connection, "db:drop", "db:setup"]
+```
+
+Since migration (and other) tasks require environment, ROM will be loaded and
+will have throw an exception, because relations will try to load tables before
+migrations had actually ran. We know this is an ugly solution, but we are working hard
+to solve this case. This monkey patch will give you reasonable information to
+act upon if the necessity arises.
+
+``` ruby
+# config/initializers/rom_monkey.rb
+module ROM
+  module Rails
+    class Railtie < ::Rails::Railtie
+      alias_method :create_container!, :create_container
+      def create_container
+        begin
+          create_container!
+        rescue => e
+          puts "Container failed to initialize because of #{e.inspect}"
+          puts "This message comes from the monkey patch in #{__FILE__}, if you are using rake, then this is fine"
+        end
+      end
+    end
+  end
+end
+```
