@@ -139,7 +139,7 @@ end
 ## Running alongside ActiveRecord
 
 There might be some cases where you will want to run ROM alongside ActiveRecord.
-Since ROM.rb is designed to work independently, you will need to take few additional steps.
+Since ROM is designed to work independently, you will need to take few additional steps.
 
 ROM creates it's own connections and Rails above version 5 won't allow you to drop the 
 database since there are active connections on it.
