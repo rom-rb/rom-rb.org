@@ -120,6 +120,48 @@ The following code defines a command which inserts data into <code>users</code> 
   <span class="c1"># some mapping logic</span>
 <span class="k">end</span>
 </code></pre>
+
+<h2>Running alongside ActiveRecord</h2>
+
+<p>There might be some cases where you will want to run ROM alongside ActiveRecord.
+Since ROM is designed to work independently, you will need to take few additional steps.</p>
+
+<p>ROM creates it&#39;s own connections and Rails above version 5 won&#39;t allow you to drop the 
+database since there are active connections on it.</p>
+<pre class="syntax ruby"><code><span class="c1"># lib/tasks/db.rb</span>
+<span class="n">task</span> <span class="ss">:remove_rom_connection</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="ss">:environment</span><span class="p">]</span> <span class="k">do</span>
+  <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span> <span class="o">&amp;&amp;</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">disconnect</span>
+<span class="k">end</span>
+
+<span class="no">Rake</span><span class="o">::</span><span class="no">Task</span><span class="p">[</span><span class="s2">"db:drop"</span><span class="p">].</span><span class="nf">clear_prerequisites</span><span class="p">()</span>
+<span class="no">Rake</span><span class="o">::</span><span class="no">Task</span><span class="p">[</span><span class="s2">"db:drop"</span><span class="p">].</span><span class="nf">enhance</span> <span class="p">[</span><span class="ss">:remove_rom_connection</span><span class="p">,</span> <span class="ss">:load_config</span><span class="p">,</span> <span class="ss">:check_protected_environments</span><span class="p">]</span>
+
+<span class="no">Rake</span><span class="o">::</span><span class="no">Task</span><span class="p">[</span><span class="s2">"db:reset"</span><span class="p">].</span><span class="nf">clear_prerequisites</span><span class="p">()</span>
+<span class="no">Rake</span><span class="o">::</span><span class="no">Task</span><span class="p">[</span><span class="s2">"db:reset"</span><span class="p">].</span><span class="nf">enhance</span> <span class="p">[</span><span class="ss">:remove_rom_connection</span><span class="p">,</span> <span class="s2">"db:drop"</span><span class="p">,</span> <span class="s2">"db:setup"</span><span class="p">]</span>
+</code></pre>
+
+<p>Since migration (and other) tasks require environment, ROM will be loaded and
+will have throw an exception, because relations will try to load tables before
+migrations had actually ran. We know this is an ugly solution, but we are working hard
+to solve this case. This monkey patch will give you reasonable information to
+act upon if the necessity arises.</p>
+<pre class="syntax ruby"><code><span class="c1"># config/initializers/rom_monkey.rb</span>
+<span class="k">module</span> <span class="nn">ROM</span>
+  <span class="k">module</span> <span class="nn">Rails</span>
+    <span class="k">class</span> <span class="nc">Railtie</span> <span class="o">&lt;</span> <span class="o">::</span><span class="no">Rails</span><span class="o">::</span><span class="no">Railtie</span>
+      <span class="kp">alias_method</span> <span class="ss">:create_container!</span><span class="p">,</span> <span class="ss">:create_container</span>
+      <span class="k">def</span> <span class="nf">create_container</span>
+        <span class="k">begin</span>
+          <span class="n">create_container!</span>
+        <span class="k">rescue</span> <span class="o">=&gt;</span> <span class="n">e</span>
+          <span class="nb">puts</span> <span class="s2">"Container failed to initialize because of </span><span class="si">#{</span><span class="n">e</span><span class="p">.</span><span class="nf">inspect</span><span class="si">}</span><span class="s2">"</span>
+          <span class="nb">puts</span> <span class="s2">"This message comes from the monkey patch in </span><span class="si">#{</span><span class="kp">__FILE__</span><span class="si">}</span><span class="s2">, if you are using rake, then this is fine"</span>
+        <span class="k">end</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
 </div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
 on ROM or simply want to see ROM evolve faster to meet your requirements,
 please consider backing the project through <a href="https://salt.bountysource.com/teams/rom-rb">our campaign on
