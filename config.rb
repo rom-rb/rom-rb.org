@@ -49,6 +49,7 @@ helpers do
 end
 
 # General configuration
+set :build_dir, 'docs'
 set :layout, 'content'
 set :css_dir, 'assets/stylesheets'
 set :js_dir, 'assets/javascripts'
