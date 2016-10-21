@@ -22,7 +22,7 @@ module Relations
 end
 ```
 
-To define relations that are exposed to you application you can define your own
+To define relations that are exposed to your application you can define your own
 methods and use internal [query DSL](#query-dsl):
 
 ``` ruby
