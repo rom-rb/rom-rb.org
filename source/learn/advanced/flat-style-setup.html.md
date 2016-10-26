@@ -88,7 +88,7 @@ end
 ```
 
 Relations can declare the specific
-[gateway](http://rom-rb.org/introduction/glossary/#gateway) and
+[gateway](http://rom-rb.org/learn/glossary#gateway) and
 [dataset](http://rom-rb.org/introduction/glossary/#dataset) it takes data from,
 as well as the registered name of the relation. The following example sets the
 default options explicitly:
