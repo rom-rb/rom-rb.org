@@ -19,7 +19,7 @@ override this easily:</p>
 <span class="k">end</span>
 </code></pre>
 
-<p>To define relations that are exposed to you application you can define your own
+<p>To define relations that are exposed to your application you can define your own
 methods and use internal <a href="#query-dsl">query DSL</a>:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
