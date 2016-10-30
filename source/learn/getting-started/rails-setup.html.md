@@ -145,7 +145,7 @@ ROM creates it's own connections and Rails above version 5 won't allow you to dr
 database since there are active connections on it.
 
 ``` ruby
-# lib/tasks/db.rb
+# lib/tasks/db.rake
 task :remove_rom_connection => [:environment] do
   ROM.env && ROM.env.disconnect
 end
