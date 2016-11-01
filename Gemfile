@@ -6,6 +6,7 @@ gem 'middleman-livereload'
 gem 'middleman-syntax'
 gem 'middleman-blog'
 gem 'middleman-deploy', github: 'middleman-contrib/middleman-deploy'
+gem 'nokogiri'
 
 # Styling
 gem 'slim'
