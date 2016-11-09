@@ -1,10 +1,13 @@
-
 ---
 chapter: Simple authentication with ROM and Rails
 title: Block Style Setup
 ---
 
 ## Initial setup
+
+This guide describes how to add a simplest form of user authentication using ROM, Warden and Rails.
+
+> Please note that this guide is only for ilustrative purposes and does not include validations 
 
 First of all, let's add following gems to the Gemfile:
 
@@ -33,7 +36,12 @@ require 'rom/sql/rake_task'
 
 When this is done, let's generate a migration that adds users table to our database:
 
-The migration should look as follows:
+```bash
+rake db:create_migration[create_users]
+# <= migration file created db/migrate/20161109173831_create_users.rb
+```
+
+Let's open up our migration file and add the following lines:
 ```ruby
 ROM::SQL.migration do
   change do
@@ -48,8 +56,9 @@ end
 We want emails to be unique, and both password and email fields to not be NULL.
 
 Let's run our migration task:
-```
-
+```bash
+rake db:migrate
+# <= db:migrate executed
 ```
 
 Once that is done, we can start working on our repositories and rom components. Let's add schema file first in `app/relations/users.rb`:
@@ -108,11 +117,14 @@ Warden::Strategies.add(:password) do
 end
 ```
 In first block we define that we want to use password strategy for authentication. 
-In the next few lines we are identifying how we want to serialize and deserialize user from and to session. 
-In the last part we define what the autentication for the user will look like and call appropriate warden methods.
+Following are the lines we are identifying how we want to serialize and deserialize user from and to session. 
+At last part we define what the autentication for the user will look like and call appropriate warden methods.
 
 
 Let's add a controller for handling sessions with a new session form, create session action and destory session action.
+We use wardens `authenticate` method to get required parameters and authenticate user. If warden returns a user object
+that means we authenticated successfully and can proceed to logging in. In a case where there is no user matching credentials,
+we redirect user with an error message from warden.
 ```ruby
 class UserSessionsController < ApplicationController
   def new
@@ -136,6 +148,7 @@ end
 ```
 
 The next step in line is to add user creation. Please take a note that user creation has no validations in place, so don't put this code in production.
+We use `create` method on the UsersRepo that we created to achive that:
 
 ```ruby
 class UsersController < ApplicationController
@@ -149,7 +162,8 @@ class UsersController < ApplicationController
 end
 ```
 
-There is one additional step that we need to take and define a `current_user` helper method so it can be used in views and elseware.
+There is one additional step that we need to take and define a `current_user` helper method so it can be used in views and elseware. 
+We achive that by getting user object from warden middleware:
 ```ruby
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
@@ -169,7 +183,8 @@ Rails.application.routes.draw do
   match 'user_sessions/destroy' => "user_sessions#destroy", via: :delete, as: :destroy_user_sessions
 end
 ```
-Let's create a header partial that can be included in all our view files:
+
+Let's create a header partial that can be included in all our view files and that has links to Log Out and Sign Up:
 ```ruby
 <% if current_user %>
   Hello <%= current_user.email %>!
@@ -183,7 +198,7 @@ Let's create a header partial that can be included in all our view files:
 <% end %>
 ```
 
-Create a login form:
+The next thing that we should do is to add login form:
 ```ruby
 <%= render partial: "layouts/header" %>
 <h1>Log in</h1>
@@ -204,7 +219,7 @@ Create a login form:
   </div>
 </div>
 ```
-A sign up form:
+Now let's create login form for users to have ability to sign up:
 ```ruby
 <%= render partial: "layouts/header" %>
 
@@ -227,5 +242,4 @@ A sign up form:
 </div>
 ```
 
-And we are done! Check out `localhost:3000/user_sessions/new` to have ability to log in or to navigate to sign up form!
-
+And we are done! Check out `localhost:3000/user_sessions/new` to have ability to log in or to navigate to sign up form.
