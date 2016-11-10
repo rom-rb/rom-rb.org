@@ -1,13 +1,13 @@
 ---
-chapter: Simple authentication with ROM and Rails
-title: Block Style Setup
+chapter: Getting Started
+title: Simple authentication with ROM and Rails
 ---
 
 ## Initial setup
 
 This guide describes how to add a simplest form of user authentication using ROM, Warden and Rails.
 
-> Please note that this guide is only for ilustrative purposes and does not include validations 
+> Please note that this guide is only for illustrative purposes and does not include validations 
 
 First of all, let's add following gems to the Gemfile:
 
@@ -21,7 +21,7 @@ gem 'bcrypt'
 gem 'sqlite3'
 ```
 
-Now we will need to add configuration for rom to work. In this example we are going to use SQLite3 to store our data:
+Now we will need to add configuration for ROM to work. In this example we are going to use SQLite3 to store our data:
 
 ```ruby
 ROM::Rails::Railtie.configure do |config|
@@ -61,13 +61,15 @@ rake db:migrate
 # <= db:migrate executed
 ```
 
-Once that is done, we can start working on our repositories and rom components. Let's add schema file first in `app/relations/users.rb`:
+Once that is done, we can start working on our repositories and rom components. Let's add schema file first:
 ```ruby
+# app/relations/users.rb
 class Users < ROM::Relation[:sql]
 end
 ```
 After that, let's add repository that will do all the heavy lifting for us:
 ```ruby
+# app/repos/users_repo.rb
 include BCrypt
 
 class UsersRepo < ROM::Repository[:users]
@@ -89,10 +91,11 @@ class UsersRepo < ROM::Repository[:users]
   end
 end
 ```
-In this repo we will have three methods. One that finds a user by id, which will be used in warden later on. Another is authenticate, that will take email and password and will return user if it is present and password is correct. The third one is for creating user with encrypted password.
+In this repo we will have three methods. `find_by_id` finds a user by id, which will be used in warden later on. Another is `authenticate`, that will take email and password and will return user if it is present and password is correct. The third one, `create` is for creating user with encrypted password.
 
-Now that this is done, we can implement warden password strategy. In initializers you can put the following code:
+Now that this is done, we can implement warden password strategy. In the initializers you can put the following code:
 ```ruby
+# config/initializers/warden.rb
 Rails.application.config.middleware.use Warden::Manager do |manager|
   manager.default_strategies :password
 end
@@ -118,14 +121,15 @@ end
 ```
 In first block we define that we want to use password strategy for authentication. 
 Following are the lines we are identifying how we want to serialize and deserialize user from and to session. 
-At last part we define what the autentication for the user will look like and call appropriate warden methods.
+At last part we define what the authentication for the user will look like and call appropriate warden methods.
 
 
-Let's add a controller for handling sessions with a new session form, create session action and destory session action.
+Let's add a controller for handling sessions with a new session form, create session action and destroy session action.
 We use wardens `authenticate` method to get required parameters and authenticate user. If warden returns a user object
 that means we authenticated successfully and can proceed to logging in. In a case where there is no user matching credentials,
 we redirect user with an error message from warden.
 ```ruby
+# app/controllers/user_sessions_controller.rb
 class UserSessionsController < ApplicationController
   def new
   end
@@ -148,9 +152,10 @@ end
 ```
 
 The next step in line is to add user creation. Please take a note that user creation has no validations in place, so don't put this code in production.
-We use `create` method on the UsersRepo that we created to achive that:
+We use `create` method on the UsersRepo that we created to achieve that:
 
 ```ruby
+# app/controllers/users_controller.rb
 class UsersController < ApplicationController
   def new
   end
@@ -162,9 +167,10 @@ class UsersController < ApplicationController
 end
 ```
 
-There is one additional step that we need to take and define a `current_user` helper method so it can be used in views and elseware. 
-We achive that by getting user object from warden middleware:
+There is one additional step that we need to take and define a `current_user` helper method so that it can be used in views. 
+We achieve that by getting user object from warden middleware:
 ```ruby
+# app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
@@ -177,6 +183,7 @@ end
 
 After we are done with controllers, we need to map them to routes:
 ```ruby
+# config/routes.rb
 Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :user_sessions, only: [:new, :create]
@@ -184,7 +191,8 @@ Rails.application.routes.draw do
 end
 ```
 
-Let's create a header partial that can be included in all our view files and that has links to Log Out and Sign Up:
+Let's create a header partial that can be included in all our view files and that has links to Log Out and Sign Up in `app/views/layouts/_header.html.erb`:
+
 ```ruby
 <% if current_user %>
   Hello <%= current_user.email %>!
@@ -198,7 +206,7 @@ Let's create a header partial that can be included in all our view files and tha
 <% end %>
 ```
 
-The next thing that we should do is to add login form:
+The next thing that we should do is to add login form in `app/views/user_sessions/new.html.erb`:
 ```ruby
 <%= render partial: "layouts/header" %>
 <h1>Log in</h1>
@@ -219,7 +227,7 @@ The next thing that we should do is to add login form:
   </div>
 </div>
 ```
-Now let's create login form for users to have ability to sign up:
+Now let's create login form for users to have ability to sign up in `app/views/users/new.html.erb`:
 ```ruby
 <%= render partial: "layouts/header" %>
 
@@ -242,4 +250,4 @@ Now let's create login form for users to have ability to sign up:
 </div>
 ```
 
-And we are done! Check out `localhost:3000/user_sessions/new` to have ability to log in or to navigate to sign up form.
+And we are done! Check out `localhost:3000/user_sessions/new` to have ability to log in or to navigate to the sign up form.
