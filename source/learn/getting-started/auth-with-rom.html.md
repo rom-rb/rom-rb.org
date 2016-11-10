@@ -30,6 +30,7 @@ ROM::Rails::Railtie.configure do |config|
   config.gateways[:default] = [:sql, "sqlite://db/dev.db"]
 end
 ```
+
 After this, we will need to add ROM rake tasks in our Procfile
 
 ```ruby
@@ -45,6 +46,7 @@ rake db:create_migration[create_users]
 ```
 
 Let's open up our migration file and add the following lines:
+
 ```ruby
 # db/migrate/20161109173831_create_users.rb
 ROM::SQL.migration do
@@ -57,9 +59,11 @@ ROM::SQL.migration do
   end
 end
 ```
+
 We want emails to be unique, and both password and email fields to not be NULL.
 
 Let's run our migration task:
+
 ```bash
 rake db:migrate
 # <= db:migrate executed
@@ -95,9 +99,11 @@ class UsersRepo < ROM::Repository[:users]
   end
 end
 ```
+
 In this repo we will have three methods. `find_by_id` finds a user by id, which will be used in warden later on. Another is `authenticate`, that will take email and password and will return user if it is present and password is correct. The third one, `create` is for creating user with encrypted password.
 
 Now that this is done, we can implement warden password strategy. In the initializers you can put the following code:
+
 ```ruby
 # config/initializers/warden.rb
 Rails.application.config.middleware.use Warden::Manager do |manager|
@@ -123,15 +129,16 @@ Warden::Strategies.add(:password) do
   end
 end
 ```
+
 In first block we define that we want to use password strategy for authentication. 
 Following are the lines we are identifying how we want to serialize and deserialize user from and to session. 
 At last part we define what the authentication for the user will look like and call appropriate warden methods.
-
 
 Let's add a controller for handling sessions with a new session form, create session action and destroy session action.
 We use wardens `authenticate` method to get required parameters and authenticate user. If warden returns a user object
 that means we authenticated successfully and can proceed to logging in. In a case where there is no user matching credentials,
 we redirect user with an error message from warden.
+
 ```ruby
 # app/controllers/user_sessions_controller.rb
 class UserSessionsController < ApplicationController
@@ -173,6 +180,7 @@ end
 
 There is one additional step that we need to take and define a `current_user` helper method so that it can be used in views. 
 We achieve that by getting user object from warden middleware:
+
 ```ruby
 # app/controllers/application_controller.rb
 class ApplicationController < ActionController::Base
@@ -186,6 +194,7 @@ end
 ```
 
 After we are done with controllers, we need to map them to routes:
+
 ```ruby
 # config/routes.rb
 Rails.application.routes.draw do
@@ -211,6 +220,7 @@ Let's create a header partial that can be included in all our view files and tha
 ```
 
 The next thing that we should do is to add login form in `app/views/user_sessions/new.html.erb`:
+
 ```ruby
 <%= render partial: "layouts/header" %>
 <h1>Log in</h1>
@@ -231,7 +241,9 @@ The next thing that we should do is to add login form in `app/views/user_session
   </div>
 </div>
 ```
+
 Now let's create login form for users to have ability to sign up in `app/views/users/new.html.erb`:
+
 ```ruby
 <%= render partial: "layouts/header" %>
 
