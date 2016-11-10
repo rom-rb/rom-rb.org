@@ -12,6 +12,7 @@ This guide describes how to add a simplest form of user authentication using ROM
 First of all, let's add following gems to the Gemfile:
 
 ```ruby
+# Gemfile
 gem 'rom-rails'
 gem 'rom-sql'
 gem 'rom-repository'
@@ -24,6 +25,7 @@ gem 'sqlite3'
 Now we will need to add configuration for ROM to work. In this example we are going to use SQLite3 to store our data:
 
 ```ruby
+# config/initializers/rom.rb
 ROM::Rails::Railtie.configure do |config|
   config.gateways[:default] = [:sql, "sqlite://db/dev.db"]
 end
@@ -31,6 +33,7 @@ end
 After this, we will need to add ROM rake tasks in our Procfile
 
 ```ruby
+# Procfile
 require 'rom/sql/rake_task'
 ```
 
@@ -43,6 +46,7 @@ rake db:create_migration[create_users]
 
 Let's open up our migration file and add the following lines:
 ```ruby
+# db/migrate/20161109173831_create_users.rb
 ROM::SQL.migration do
   change do
     create_table :users do
