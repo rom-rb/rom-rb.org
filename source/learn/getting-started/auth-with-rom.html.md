@@ -70,12 +70,15 @@ rake db:migrate
 ```
 
 Once that is done, we can start working on our repositories and rom components. Let's add schema file first:
+
 ```ruby
 # app/relations/users.rb
 class Users < ROM::Relation[:sql]
 end
 ```
+
 After that, let's add repository that will do all the heavy lifting for us:
+
 ```ruby
 # app/repos/users_repo.rb
 include BCrypt
