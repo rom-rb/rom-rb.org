@@ -31,10 +31,10 @@ ROM::Rails::Railtie.configure do |config|
 end
 ```
 
-After this, we will need to add ROM rake tasks in our Procfile
+After this, we will need to add ROM rake tasks in our Rakefile
 
 ```ruby
-# Procfile
+# Rakefile
 require 'rom/sql/rake_task'
 ```
 
