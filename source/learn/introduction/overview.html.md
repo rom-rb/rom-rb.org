@@ -16,7 +16,7 @@ TODO: create a new diagram :)
 1. Your application requests data from a <mark>Repository</mark>
 2. Data is read from the <mark>Datastore</mark> using a <mark>Relation</mark> provided by an <mark>Adapter</mark>
 3. The result is returned to your application
-  * It can be optionnally mapped to a different representation using <mark>Mappers</mark>
+  * It can be optionally mapped to a different representation using <mark>Mappers</mark>
 
 ### Writing
 
@@ -24,7 +24,7 @@ TODO: create a new diagram :)
    Delete, or a custom operation
 2. The command executes a datastore-specific operation via its relation
 3. The result is returned to your application
-  * It can be optionnally mapped to a different representation using <mark>Mappers</mark>
+  * It can be optionally mapped to a different representation using <mark>Mappers</mark>
 
 #### Repositories
 
