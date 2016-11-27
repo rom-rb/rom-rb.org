@@ -25,13 +25,13 @@ it a symbol of the relation's name:
 require 'rom-repository'
 
 # Assumes a database with a users table
-ROM.container(:sql, 'sqlite::memory') do |rom|
+ROM.container(:sql, 'sqlite::memory') do |config|
  # Remember that many adapters can infer relations, so we can often skip defining it.
  # Otherwise, add something like:
  #
- # rom.relation(:users)
+ # config.relation(:users)
 
- rom.commands(:users) do
+ config.commands(:users) do
     # declares that we can create, update, and delete users.
     define(:create)
     define(:update)
@@ -47,8 +47,8 @@ customize this to return a single result by supplying `result :one` to the
 command definition.
 
 ```ruby
-ROM.container(:sql, 'sqlite::memory') do |rom|
-  rom.commands(:users) do
+ROM.container(:sql, 'sqlite::memory') do |config|
+  config.commands(:users) do
     define(:create) do
        result :one
     end
@@ -63,8 +63,8 @@ end
 Every registered command is accessible through the environment container:
 
 ```ruby
-rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-  rom.relation(:users) do
+rom_container = ROM.container(:sql, 'sqlite::memory') do |config|
+  config.relation(:users) do
     def by_id(id)
       where(id: id)
     end
@@ -74,7 +74,7 @@ rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
     end
   end
 
-  rom.commands(:users) do
+  config.commands(:users) do
     define(:create)
   end
 end
@@ -147,16 +147,16 @@ end
 require 'rom-sql'
 
 # Assumes a database with a users table
-rom_container = ROM.container(:sql, 'sqlite::memory') do |rom|
-  rom.use :macros
+rom_container = ROM.container(:sql, 'sqlite::memory') do |config|
+  config.use :macros
 
-  rom.relation(:users) do
+  config.relation(:users) do
     def by_id(id)
       restrict(id: id)
     end
   end
 
-  rom.commands(:users) do
+  config.commands(:users) do
     define(:create) do
        result :one
     end

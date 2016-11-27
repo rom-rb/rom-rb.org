@@ -23,17 +23,17 @@ adapter:
 
 ```ruby
 # This creates a rom-sql adapter backed by SQLite in-memory database
-ROM.container(:sql, 'sqlite::memory') do |rom|
+ROM.container(:sql, 'sqlite::memory') do |config|
   # define relations and commands here...
 end
 
 # You can provide additional connection options too
-ROM.container(:sql, 'postgres://localhost/my_db', extensions: [:pg_json]) do |rom|
+ROM.container(:sql, 'postgres://localhost/my_db', extensions: [:pg_json]) do |config|
   # define relations and commands here...
 end
 
 # ROM also comes with a very barebones in-memory adapter.
-ROM.container(:memory, 'memory://test') do |rom|
+ROM.container(:memory, 'memory://test') do |config|
   # define relations and commands here...
 end
 ```
@@ -50,7 +50,7 @@ hash.
 ROM.container(
   default: [:sql, 'postgres://localhost/task_master'], # gateway 1
   legacy: [:sql, 'mysql2://localhost/tasks']           # gateway 2
-) do |rom|
+) do |config|
     # setup code goes here...
 end
 ```
@@ -73,7 +73,7 @@ This object is not global, and it must be managed either by you or a framework
 that you use.
 
 ```ruby
-rom = ROM.container(:sql, 'sqlite::memory') do |rom|
+rom = ROM.container(:sql, 'sqlite::memory') do |config|
   # define relations and commands here...
 end
 ```

@@ -21,8 +21,8 @@ class Tasks < ROM::Relation[:memory]
 end
 
 
-rom_container = ROM.container(:memory) do |rom|
-  rom.register_relation(Users, Tasks)
+rom_container = ROM.container(:memory) do |config|
+  config.register_relation(Users, Tasks)
 end
 
 users = rom_container.relation(:users)
