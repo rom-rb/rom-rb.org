@@ -19,8 +19,8 @@ work with them:
 ``` ruby
 require 'rom-repository'
 
-rom = ROM.container(:sql, 'sqlite::memory') do |conf|
-  conf.default.create_table(:users) do
+rom = ROM.container(:sql, 'sqlite::memory') do |config|
+  config.default.create_table(:users) do
     primary_key :id
     column :name, String, null: false
     column :email, String, null: false
