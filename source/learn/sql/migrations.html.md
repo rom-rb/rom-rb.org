@@ -23,7 +23,7 @@ namespace :db do
 end
 ```
 
-Following tasks are available:
+The following tasks are available:
 
 * `rake db:create_migration[create_users]` - create migration file under
   `db/migrations`
