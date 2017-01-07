@@ -65,7 +65,9 @@ The `has_one` definition establishes a one-to-one association type.
 ``` ruby
 class Users < ROM::Relation[:sql]
   schema(infer: true) do
-    has_one :account
+    associations do
+      has_one :account
+    end
   end
 end
 ```
@@ -78,14 +80,18 @@ one-to-one-through association type.
 ``` ruby
 class Users < ROM::Relation[:sql]
   schema(infer: true) do
-    has_one :account, through: :users_accounts
+    associations do
+      has_one :account, through: :users_accounts
+    end
   end
 end
 
 class UsersAccounts < ROM::Relation[:sql]
   schema(infer: true) do
-    belongs_to :account
-    belongs_to :user
+    associations do
+      belongs_to :account
+      belongs_to :user
+    end
   end
 end
 ```
