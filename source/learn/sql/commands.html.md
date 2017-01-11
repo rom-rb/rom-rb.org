@@ -4,7 +4,7 @@ title: Commands
 ---
 
 SQL commands support all features of the standard
-[ROM command API](/guides/basics/commands/). In addition, the following
+[ROM command API](/learn/advanced/commands). In addition, the following
 SQL-specific features are supported:
 
 - The `associates` plugin, for connecting foreign key values when composing
