@@ -13,19 +13,18 @@ types.
 
 ## Why?
 
-First of all, because schemas give an explicit definition for the canonical data
-structures a given relation returns. Even when you project data in ways that diverge
-from the canonical representation, your application *will* work with the canonical
-representation too, because changing data in a database relies on it.
+First of all, because schemas give an explicit definition for the data
+structures a given relation returns.
 
-With a schema defined, **all commands will automatically use it**, this will give
+Both **relations** and **commands** can use schemas to process data, this gives
 you type-safe commands out-of-the-box, with optional ability to perform low-level
-database coercions (like coercing a hash to a PG hash etc.).
+database coercions (like coercing a hash to a PG hash etc.), as well as optional
+coercions when reading data.
 
 Furthermore, schemas can provide meta-data that can be used to automate many common
 tasks, like generating relations automatically for associations.
 
-## Defining a schema
+## Defining schemas explicitly
 
 The DSL is simple. Provide a symbol name with a type from the Types module:
 
@@ -35,6 +34,27 @@ class Users < ROM::Relation[:http]
     attribute :id, Types::Int
     attribute :name, Types::String
     attribute :age, Types::Int
+  end
+end
+```
+
+## Inferring schemas
+
+If the adapter that you use supports inferring schemas, your schemas can be defined as:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true)
+end
+```
+
+You can also **override inferred attributes**:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true) do
+    # this overrides inferred :meta attribute
+    attribute :meta, Types::MyCustomMetaType
   end
 end
 ```

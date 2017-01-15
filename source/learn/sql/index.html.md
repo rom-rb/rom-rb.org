@@ -3,11 +3,13 @@ chapter: SQL
 sections:
   - relations
   - schemas
+  - queries
+  - attributes
   - associations
   - joins
-  - commands
   - transactions
   - migrations
+  - commands
 ---
 
 ROM supports SQL databases via `rom-sql` adapter which currently uses

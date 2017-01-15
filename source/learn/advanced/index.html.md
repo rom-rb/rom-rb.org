@@ -1,7 +1,7 @@
 ---
 chapter: Advanced
 sections:
-  - flat-style-setup
+  - explicit-setup
   - combine
   - commands
   - custom-commands
@@ -9,7 +9,7 @@ sections:
   - how-to-build-an-adapter
 ---
 
-* [Flat Style Setup](/learn/advanced/flat-style-setup) - multi-file setup
+* [Explicit Setup](/learn/advanced/explicit-setup) - multi-file, explicit setup with components defined as classes
 * [Combining Relation Results](/learn/advanced/combine)
 * [Standalone Commands](/learn/advanced/commands)
 * [Custom Commands](/learn/advanced/custom_commands)

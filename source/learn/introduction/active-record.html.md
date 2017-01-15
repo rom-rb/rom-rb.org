@@ -68,7 +68,7 @@ object validates itself using its own validation rules.
 
 There's no validation concept built-in. Validations are handled externally by
 separate libraries and validated data can be passed down to the command layer to
-be persisted. Currently `rom-model` gem provides a standalone validation layer.
+be persisted.
 
 ## Data Coercion
 
@@ -78,5 +78,5 @@ Handles coercion internally prior persisting data.
 
 #### ROM
 
-Input should be coerced by an external component. Currently `rom-model` provides
-a standalone input coercion layer.
+Coercion can be handled by relation schema attributes. Complex data transformations
+can be easily handled by repository changesets.

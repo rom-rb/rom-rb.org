@@ -12,6 +12,10 @@ SQL-specific features are supported:
 - The `transaction` interface, which provides a block scope for working with
   database transactions
 
+> #### Custom commands
+> Define custom commands **only when repositories with changesets and auto-commands** 
+> are blocking you
+
 ### Associates Plugin
 
 The `associates` plugin is used to automatically set foreign-key values when

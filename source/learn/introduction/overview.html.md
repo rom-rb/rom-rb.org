@@ -7,10 +7,6 @@ ROM encourages a clear separation between your application domain and the data
 access layer. This is more than just hiding access behind methods. Your
 application is not coupled to the details of data retrieval or manipulation.
 
-The figure below represents the data flow through an application using ROM:
-
-TODO: create a new diagram :)
-
 ### Reading
 
 1. Your application requests data from a <mark>Repository</mark>
@@ -20,8 +16,8 @@ TODO: create a new diagram :)
 
 ### Writing
 
-1. Your application calls a <mark>Command</mark> to perform a Create, Update,
-   Delete, or a custom operation
+1. Your application calls a <mark>Command</mark>, either directly or through repository or its changesets,
+   to perform a Create, Update, Delete, or a custom command type
 2. The command executes a datastore-specific operation via its relation
 3. The result is returned to your application
   * It can be optionally mapped to a different representation using <mark>Mappers</mark>

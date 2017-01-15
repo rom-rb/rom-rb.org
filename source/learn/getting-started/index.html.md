@@ -2,35 +2,36 @@
 chapter: Getting Started
 title: Installation
 sections:
-  - block-style-setup
+  - setup-dsl
   - rails-setup
 ---
 
 Choose one or more adapters that you intend to use, and run the install command
 for each one (or add it to your `Gemfile`)
 
-Compatible with rom 2.0:
+Compatible with rom 3.0:
 
-|Adapter|Install Command|Production ready?|
+|Adapter|Install Command|On production?|
 |-------|---------------|---|
 |SQL|`gem install rom-sql`| √ |
-|Yesql|`gem install rom-yesql`| √ |
+|YAML|`gem install rom-yaml`| √ |
 |CouchDB|`gem install rom-couchdb`| √ |
 |HTTP|`gem install rom-http`| √ |
-|Git|`gem install rom-git`| - |
-|RethinkDB|`gem install rom-rethinkdb`| - |
+|DynamoDB|`gem install rom-dynamo`| √ |
 
 Outdated (help wanted!) adapters:
 
 |Adapter|Install Command|Production ready?
 |-------|---------------|---|
 |CSV|`gem install rom-csv`| √ |
-|YAML|`gem install rom-yaml`| √ |
+|Git|`gem install rom-git`| - |
 |Cassandra|`gem install rom-cassandra`| √ |
 |Kafka|`gem install rom-kafka`| √ |
 |MongoDB|`gem install rom-mongo`| - |
 |Neo4j|`gem install rom-neo4j`| - |
 |Event Store|`gem install rom-event_store`|
+|RethinkDB|`gem install rom-rethinkdb`| - |
+|Yesql|`gem install rom-yesql`| √ |
 
 > #### How to choose an adapter?
 >
@@ -59,9 +60,9 @@ and commands, and integrates the two with your mappers.
 
 Depending on your application needs, you may want to use different setup strategies:
 
-* [Block Style](/learn/getting-started/block-style-setup) - suitable for small scripts
+* [Setup DSL](/learn/getting-started/setup-dsl) - suitable for small scripts
 * [Rails](/learn/getting-started/rails-setup) - setup integrated with Rails
-* [Flat Style](/learn/advanced/flat-style-setup) - suitable for custom environments (**advanced usage**)
+* [Explicit](/learn/advanced/explicit-setup) - suitable for custom environments (**advanced usage**)
 
 > Note: Most guide examples are written specifically for the `rom-sql` adapter.
 > If you are using a different one, consult that adapter's documentation as

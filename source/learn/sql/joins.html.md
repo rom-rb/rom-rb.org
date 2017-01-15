@@ -3,12 +3,48 @@ chapter: SQL
 title: Joins
 ---
 
-To load associated relations you can simply use `inner_join` or `left_join`:
+To load associated relations you can simply use `join`, `left_join`, or `right_join`.
+
+## Using joins with relations
 
 ``` ruby
 class Users < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      has_many :tasks
+      has_many :posts
+    end
+  end
+
   def with_tasks
-    inner_join(:tasks, user_id: :id)
+    join(tasks)
+  end
+
+  def with_posts
+    left_join(posts)
+  end
+end
+```
+
+> ## Auto-qualifying
+> When you pass a relation as the argument for join methods, the resulting relation
+> will have all attributes **qualified** automatically for you
+
+## Using joins with explicit name and options
+
+If you want to have more control, you can pass table name and additional options yourself:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      has_many :tasks
+      has_many :posts
+    end
+  end
+
+  def with_tasks
+    join(:tasks, user_id: :id, priority: 1)
   end
 
   def with_posts
@@ -17,90 +53,33 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-## Qualifying and Renaming Attributes
+## Using joins with additional options
 
-Joining relations introduces a problem of having conflicting attribute names. To
-solve this you often need to qualify and rename columns.
-
-To qualify all attributes in a relation:
+Second option hash can be used too, if you want to provide more options:
 
 ``` ruby
 class Users < ROM::Relation[:sql]
-  def with_tasks
-    qualified.inner_join(:tasks, user_id: :id)
+  schema(infer: true) do
+    associations do
+      has_many :tasks
+      has_many :posts
+    end
   end
-  # produces "SELECT users.id, users.name ..."
+
+  def with_tasks
+    join(:tasks, user_id: :id, { table_alias: :user_tasks })
+  end
+
+  def with_posts
+    left_join(posts, user_id: :id, { table_alias: :user_posts })
+  end
 end
 ```
 
-To rename all attributes in a relation:
+## Learn more
 
-``` ruby
-class Users < ROM::Relation[:sql]
-  def with_tasks
-    prefix(:user).qualified.inner_join(:tasks, user_id: :id)
-  end
-  # produces "SELECT users.id AS user_id, users.name AS user_name ..."
-end
-```
+Check out API docs:
 
-## Using Renamed Attributes in GROUP or WHERE Clauses
-
-If attributes need to be qualified and you want to use them in `group` or `where`
-you can use special syntax with double-underscore:
-
-``` ruby
-class Users < ROM::Relation[:sql]
-  def with_tasks
-    prefix(:user)
-      .qualified
-      .inner_join(:tasks, user_id: :id)
-      .where(users__name: 'Jane')
-  end
-  # produces "SELECT ... FROM ... WHERE users.name = 'Jane'"
-end
-```
-
-## Mapping Joined Relations (advanced usage)
-
-You can map a result from a join to a single aggregate using mappers:
-
-``` ruby
-class Users < ROM::Relation[:sql]
-  def with_tasks
-    joinable
-      .inner_join(:tasks, user_id: :id)
-      .select_append(:tasks__title)
-  end
-
-  def joinable
-    prefix(:user).qualified
-  end
-end
-
-class UserMapper < ROM::Mapper
-  relation :users
-  register_as :user_with_tasks
-
-  attribute :id, from: :user_id
-  attribute :name, from: :user_name
-
-  group :tasks do
-    attribute :title
-  end
-end
-
-rom.relations[:users].map_with(:user_with_tasks).with_tasks.one
-```
-
-This technique is brittle as it requires careful selection of the attributes and
-dealing with potential name conflicts; however, *for performance reasons you may
-have cases where you would prefer to use joins*.
-
-Here, ROM doesn't block you, and gives you all that's needed to map complex join
-results into a simple domain aggregate.
-
-> In typical cases, the built-in auto-mapping in repositories is all you need.
-> Even when you need custom queries, it's still much easier to define custom
-> relations for composition and use `Repository#combine` API which uses
-> eager-loading for associated relation data.
+* [api::rom-sql::SQL/Relation/Reading](#join)
+* [api::rom-sql::SQL/Relation/Reading](#left_join)
+* [api::rom-sql::SQL/Relation/Reading](#right_join)

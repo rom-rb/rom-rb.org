@@ -1,12 +1,12 @@
 ---
 chapter: Advanced
-title: Flat Style Setup
+title: Explicit Setup
 ---
 
 Block style setup is suitable for simple, quick'n'dirty scripts that need to
 access databases, in a typical application setup, you want to break down
 individual component definitions, like relations or commands, into separate
-files.
+files and define them as explicit classes.
 
 > ROM & Frameworks
 >
@@ -32,8 +32,7 @@ the internal semantics between block-style and flat-style setup.
 
 ### Registering Components
 
-ROM components need to be registered with the ROM environment in order to be
-used.
+ROM components need to be registered with the ROM configuration in order to be used.
 
 ```ruby
 configuration = ROM::Configuration.new(:memory, 'memory://test')
@@ -53,8 +52,7 @@ configuration.register_command(User::CreateCommand)
 configuration.register_mapper(User::UserMapper)
 ```
 
-You can pass multiple components to each `register` call, as a list of
-arguments.
+You can pass multiple components to each `register` call, as a list of arguments.
 
 ### Auto-registration
 
@@ -64,16 +62,75 @@ a minimum, `auto_registration` requires a base directory. By default, it will
 load relations from `<base>/relations`, commands from `<base>/commands`, and
 mappers from `<base>/mappers`.
 
+#### Namespaces inferred from directory structure
+
+By default, auto-registration assumes that the directory structure reflects your module/class
+organization, for example:
+
+``` ruby
+# lib/relations/users.rb
+module Relations
+  class Users < ROM::Relation[:sql]
+    schema(infer: true)
+  end
+end
+
+# lib/relations
+```
+
+Then to set up auto-registration simply provide the root path to your components directory:
+
 ```ruby
 configuration = ROM::Configuration.new(:memory)
-configuration.auto_registration(__dir__)
+configuration.auto_registration('/path/to/lib')
+container = ROM.container(configuration)
+```
+
+#### Explicit namespace name
+
+If your directory structure doesn't reflect module/class organization but you do namespace components,
+then you can set up auto-registration via `:namespace` option:
+
+``` ruby
+# lib/relations/users.rb
+module Persistence
+  module Relations
+    class Users < ROM::Relation[:sql]
+      schema(infer: true)
+    end
+  end
+end
+```
+
+Since we use `Persistence` as our namespace, we need to set it explicitly:
+
+```ruby
+configuration = ROM::Configuration.new(:memory)
+configuration.auto_registration('/path/to/lib', namespace: 'Persistence')
+container = ROM.container(configuration)
+```
+
+#### Turning namespace off
+
+If you keep all components under `{path}/(relations|commands|mappers)` directories and don't
+namespace them, then you can simply turn namespacing off:
+
+``` ruby
+# lib/relations/users.rb
+class Users < ROM::Relation[:sql]
+  schema(infer: true)
+end
+```
+
+```ruby
+configuration = ROM::Configuration.new(:memory)
+configuration.auto_registration('/path/to/lib', namespace: false)
 container = ROM.container(configuration)
 ```
 
 ## Relations
 
-While the DSL syntax is often convenient, Relations can also be defined with a
-class extending `ROM::Relation` from the appropriate adapter.
+Relations can be defined with a class extending `ROM::Relation` from the appropriate adapter.
 
 ```ruby
 # Defines a Users relation for the SQL adapter
@@ -103,7 +160,7 @@ end
 
 ## Commands
 
-Just like Relations, Commands have an alternative style as a regular class:
+Just like Relations, Commands can be defined as explicit classes:
 
 ```ruby
 class CreateUser < ROM::Commands::Create[:memory]
@@ -123,6 +180,6 @@ class CreateUser < ROM::Commands::Create[:memory]
 end
 ```
 
-> Typically, you're going to use [repository command interface](/learn/repositories/quick-start);
+> Typically, you're going to use [repository command interface and changesets](/learn/repositories/quick-start);
 > custom command classes are useful when the built-in command support in
 > repositories doesn't meet your requirements

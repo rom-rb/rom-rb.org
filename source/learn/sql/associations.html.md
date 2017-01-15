@@ -20,6 +20,9 @@ class Post < ROM::Relation[:sql]
 end
 ```
 
+> #### Naming convention
+> This method is a shortcut for `belongs_to :users, as: :user`
+
 ## has_many (one-to-many)
 
 The `has_many` definition establishes a one-to-many association type.
@@ -72,6 +75,9 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
+> #### Naming convention
+> This method is a shortcut for `has_one :acounts, as: :account`
+
 ## has_one-through (one-to-one-through)
 
 The `has_one` definition supports `:through` option which establishes a
@@ -114,6 +120,86 @@ class Post < ROM::Relation[:sql]
 end
 ```
 
-> An alias is used by repositories, which means that in our example, if you load
+> The alias is used by repositories, which means that in our example, if you load
 > an aggregate with posts and its authors, the attribute name in post structs
 > will be called **author**
+
+## Extending associations with custom views
+
+You can use `:view` option and specify which relation view should be used to extend
+default association relation. Let's say you have users with many accounts through
+users_accounts and you want to add attributes from the join relation to accounts:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      has_many :accounts, through: :users_accounts, view: :ordered
+    end
+  end
+end
+
+class Accounts < ROM::Relation[:sql]
+  schema(infer: true)
+
+  view(:ordered) do
+    schema do
+      append(users_accounts[:position])
+    end
+
+    relation do
+      order(:position)
+    end
+  end
+end
+```
+
+This way when you load users with their accounts, they will include `:position`
+attribute from the join table and will be ordered by that attribute.
+
+## Using associations to manually preload relations
+
+You can reuse queries that associations use in your own methods too via `assoc`
+shortcut method:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      has_many :tasks
+    end
+  end
+
+  def admin_tasks
+    assoc(:tasks).where(admin: true)
+  end
+end
+```
+
+## Setting a custom foreign-key
+
+By default, foreign keys found in schemas are used, but you can provide custom names too via
+`:foreign_key` option:
+
+``` ruby
+class Flights < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      belongs_to :destinations, as: :from, foreign_key: :from_id
+      belongs_to :destinations, as: :to, foreign_key: :to_id
+    end
+  end
+end
+```
+
+> All association types support this option
+
+## Learn more
+
+Check out API documentation:
+
+* [api::rom-sql::SQL/Schema](AssociationsDSL)
+* [api::rom-sql::SQL/Association](OneToMany)
+* [api::rom-sql::SQL/Association](OneToOne)
+* [api::rom-sql::SQL/Association](ManyToOne)
+* [api::rom-sql::SQL/Association](ManyToMany)

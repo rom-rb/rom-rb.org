@@ -98,5 +98,39 @@ task_repo.aggregate(:user).one
 # => #<ROM::Struct[Task] id=1 user_id=1 title="Jane Task" user=#<ROM::Struct[User] id=1 name="jane" email="jane@doe.org" task_id=1>>
 ```
 
-> Notice that in this case `User` struct is loaded as a child object where `Task`
-> is a parent, thus `User` has `task_id` assigned.
+Notice that in this case `User` struct is loaded as a child object where `Task`
+is a parent, thus `User` has `task_id` assigned, which is **a virtual foreign key**
+that doesn't really exist in our schema.
+
+### Loading aggregates using wrapping
+
+An alternative, and faster, way of loading **parent objects** is to use `wrap_parent` method:
+
+``` ruby
+class TaskRepo < ROM::Repository[:tasks]
+  def by_id_with_user(id)
+    tasks.by_pk(id).wrap_parent(user: task_repo.users).one
+  end
+end
+
+task_repo.by_id_with_user(id)
+# => #<ROM::Struct[Task] id=1 user_id=1 title="Jane Task" user=#<ROM::Struct[User] id=1 name="jane" email="jane@doe.org">>
+```
+
+Notice that unlike with `aggregate` method, the parent object does not include **a virtual foreign key**.
+
+> #### Performance and availability
+> `wrap_parent` is **only available in rom-sql**, which uses a join instead of eager-loading
+> and **it's significantly faster** than using `aggregate`. Other adapters can implement this
+> interface too, assuming it makes sense in case of a given database.
+
+## Learn more
+
+Loading aggregates with repositories can be achieved in many different ways, for
+detailed information about invidual methods please refer to the API documentation:
+
+* [api::rom-repository::Repository/Root](#aggregate)
+* [api::rom-repository::Repository/RelationProxy](#combine_children)
+* [api::rom-repository::Repository/RelationProxy](#combine_parents)
+* [api::rom-repository::Repository/RelationProxy](#combine)
+* [api::rom-repository::Repository/RelationProxy](#wrap_parent)

@@ -6,21 +6,6 @@ title: Schemas
 The SQL adapter adds its own schema types and association declarations to the
 built-in [Relation Schema](/learn/core/schemas) feature.
 
-## Setting `dataset` through Schema
-
-If your relation class name doesn't match the table name, you can override it
-using `schema` API:
-
-``` ruby
-module MyApp
-  module Relations
-    class Users < ROM::Relation[:sql]
-      schema(:users, infer: true) # has the same effect as calling `dataset :users`
-    end
-  end
-end
-```
-
 ## Inferring Attributes
 
 If you don't want to declare all attributes explicitly, you can tell rom-sql to
@@ -37,6 +22,25 @@ require 'rom-sql'
 class Users < ROM::Relation[:sql]
   schema(infer: true) # that's it
 end
+```
+
+## Coercions
+
+Relations and commands can coerce output and input data automatically based on your schema attributes.
+Default attribute types in schemas are used for input coercions in commands, if you want to apply additional
+coercions when relations read their data, you can do it via `:read` type in schema definitions:
+
+``` ruby
+class Posts < ROM::Relation[:sql]
+  schema(infer: true) do
+    attribute :status, Types::String, read: Types.Constructor(Symbol, &:to_sym)
+  end
+end
+
+id = users.insert(title: 'Hello World', status: :draft)
+
+users.by_pk(1).one
+# => {:id => 1, :title => "Hello World", status: :draft }
 ```
 
 ## PostgreSQL Types

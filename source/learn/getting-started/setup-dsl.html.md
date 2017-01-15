@@ -1,9 +1,9 @@
 ---
 chapter: Getting Started
-title: Block Style Setup
+title: Setup DSL
 ---
 
-This guide explains how to configure ROM using block style which is suitable for
+This guide explains how to quickly configure ROM using setup DSL, which is suitable for
 simple scripts.
 
 > #### ROM & frameworks
@@ -14,7 +14,7 @@ simple scripts.
 > #### Configuration
 >
 > The configuration options explained in this document are the same for
-> [Flat Style Setup](/learn/advanced/flat-style-setup) using `ROM::Configuration` object
+> [Explicit Setup](/learn/advanced/explicit-setup) using `ROM::Configuration` object
 
 ## Connect to a single database
 

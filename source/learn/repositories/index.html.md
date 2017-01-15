@@ -4,8 +4,9 @@ sections:
   - quick-start
   - reading-simple-objects
   - reading-aggregates
-  - composing-relations
   - changesets
+  - custom-changesets
+  - changeset-transactions
   - writing-aggregates
 ---
 
