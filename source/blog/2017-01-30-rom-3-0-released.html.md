@@ -23,7 +23,7 @@ class Users < ROM::Relation[:sql]
   schema(infer: true)
   
   def duplicated_emails
-    select { [email, int::count(id)].as(:count) }.
+    select { [email, int::count(id).as(:count)] }.
       group(:name).
       order(:name)
   end
