@@ -1,5 +1,5 @@
 ---
-title: rom 3.0 Released
+title: ROM 3.0 Released
 date: 2017-01-30
 tags: release,announcement
 author: Piotr Solnica
