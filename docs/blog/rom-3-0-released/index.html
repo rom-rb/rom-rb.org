@@ -20,22 +20,22 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">duplicated_emails</span>
+  <span class="k">def</span> <span class="nf">emails</span>
     <span class="nb">select</span> <span class="p">{</span> <span class="p">[</span><span class="n">email</span><span class="p">,</span> <span class="n">int</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:count</span><span class="p">)]</span> <span class="p">}.</span>
-      <span class="nf">group</span><span class="p">(</span><span class="ss">:name</span><span class="p">).</span>
-      <span class="nf">order</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+      <span class="nf">group</span><span class="p">(</span><span class="ss">:email</span><span class="p">).</span>
+      <span class="nf">order</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span>
   <span class="k">end</span>
-  <span class="c1"># SELECT "name", COUNT("id") AS "count"</span>
+  <span class="c1"># SELECT "email", COUNT("id") AS "count"</span>
   <span class="c1">#  FROM "users"</span>
-  <span class="c1">#  GROUP BY "name"</span>
-  <span class="c1">#  ORDER BY "name"</span>
+  <span class="c1">#  GROUP BY "email"</span>
+  <span class="c1">#  ORDER BY "email"</span>
 <span class="k">end</span>
 </code></pre>
 <p>You can use both blocks or refer to attributes directly through <code>Relation#[]</code> method which returns schema attributes identified by their canonical names:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">duplicated_emails</span>
+  <span class="k">def</span> <span class="nf">emails</span>
     <span class="nb">select</span><span class="p">(</span><span class="nb">self</span><span class="p">[</span><span class="ss">:email</span><span class="p">],</span> <span class="nb">self</span><span class="p">[</span><span class="ss">:id</span><span class="p">].</span><span class="nf">func</span> <span class="p">{</span> <span class="n">int</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:count</span><span class="p">)</span> <span class="p">}).</span>
       <span class="nf">group</span><span class="p">(</span><span class="ss">:email</span><span class="p">).</span>
       <span class="nf">order</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span>
@@ -53,14 +53,14 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="c1">#   #&lt;ROM::SQL::Function[Integer] func=#&lt;Sequel::SQL::Function @name=&gt;"COUNT", @args=&gt;[#&lt;ROM::SQL::Attribute[Integer] primary_key=true name=:id source=ROM::Relation::Name(users)&gt;], @opts=&gt;{}&gt; alias=:count&gt;</span>
 <span class="c1"># ]</span>
 </code></pre>
-<p>This plays major role in automatic mapping in repositories, as they can define structs with all attribute type information provided by relations.</p>
+<p>This plays a major role in automatic mapping in repositories, as they can define structs with all attribute type information provided by relations.</p>
 
 <h3>Support for SQL functions</h3>
 
-<p>The <code>count</code> function we used in the previous example probably caught your attention - this is a new feature which allows you to use any SQL function with arbitrary arguments, including relation attributes, or <strong>anything</strong> that can be dumped into a valid SQL. The syntax is always:</p>
+<p>The <code>count</code> function we used in the previous example probably caught your attention—this is a new feature which allows you to use any SQL function with arbitrary arguments, including relation attributes, or <strong>anything</strong> that can be dumped into a valid SQL. The syntax is always:</p>
 <pre class="syntax ruby"><code><span class="n">type_annotation</span><span class="o">::</span><span class="n">function_name</span><span class="p">(</span><span class="o">*</span><span class="n">arguments</span><span class="p">)</span>
 </code></pre>
-<p>It returns <code>ROM::SQL::Function</code> object which works like any other schema attribute, and you can qualify it or provide an alias, or use boolean expression with various operators. Functions work with <code>select</code>, <code>order</code> and <code>where</code>. The only difference is that <code>select</code> requires type annotation, and the other methods don&#39;t.</p>
+<p>It returns a <code>ROM::SQL::Function</code> object which works like any other schema attribute, and you can qualify it or provide an alias, or use a boolean expression with various operators. Functions work with <code>select</code>, <code>order</code> and <code>where</code>. The only difference is that <code>select</code> requires a type annotation, and the other methods don&#39;t.</p>
 
 <p>Here&#39;s another example:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
@@ -73,6 +73,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
   <span class="k">def</span> <span class="nf">busy_people</span>
     <span class="nb">select</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="n">tasks</span><span class="p">[</span><span class="ss">:id</span><span class="p">].</span><span class="nf">func</span> <span class="p">{</span> <span class="n">int</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:task_count</span><span class="p">)</span> <span class="p">}).</span>
       <span class="nf">left_join</span><span class="p">(</span><span class="n">tasks</span><span class="p">).</span>
+      <span class="nf">group</span><span class="p">(</span><span class="ss">:id</span><span class="p">).</span>
       <span class="nf">having</span> <span class="p">{</span> <span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">.</span><span class="nf">qualified</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="p">}</span>
   <span class="k">end</span>
   <span class="c1"># SELECT "users"."id", "users"."name", COUNT("tasks"."id") AS "task_count"</span>
@@ -82,11 +83,11 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
   <span class="c1">#   HAVING (count("users"."id") &gt; 1) ORDER BY "users"."id"</span>
 <span class="k">end</span>
 </code></pre>
-<p>Maybe you noticed that we passed <code>tasks</code> relation object to <code>left_join</code> - this is another new feature.</p>
+<p>Maybe you noticed that we passed <code>tasks</code> relation object to <code>left_join</code>—this is another new feature.</p>
 
 <h3>Improved joins</h3>
 
-<p>You can now pass relation objects to <code>join</code>, <code>left_join</code> and <code>right_join</code> and, assuming you configured associations, your relation will do the work for you to join correct table with join conditions already set. Furthermore, it will be automatically qualified. Here&#39;s what it means:</p>
+<p>You can now pass relation objects to <code>join</code>, <code>left_join</code> and <code>right_join</code>, and, assuming you configured associations, your relation will do the work for you to join the correct table with join conditions already set. Furthermore, it will be automatically qualified. Here&#39;s what it means:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Tasks</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
     <span class="n">associations</span> <span class="k">do</span>
@@ -173,7 +174,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 
 <h2>Improved repositories</h2>
 
-<p>We added support for transactions, custom commands in changesets, run-time changeset mapping with custom blocks, associating data via changesets, asking for custom objects when committing a changeset...check out <a href="http://rom-rb.org/learn/repositories/changesets/">updated docs</a> to learn more, and here are some of the highlights.</p>
+<p>We added support for transactions, custom commands in changesets, run-time changeset mapping with custom blocks, associating data via changesets, asking for custom objects when committing a changeset... check out <a href="http://rom-rb.org/learn/repositories/changesets/">updated docs</a> to learn more, and here are some of the highlights.</p>
 
 <h3>Comitting changesets</h3>
 
@@ -202,7 +203,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 </code></pre>
 <h3>Powerful data transformations</h3>
 
-<p>Changeset now support custom data transformations, with many builtin functions provided by the <a href="https://github.com/solnic/transproc">transproc</a> gem. You can define your custom changeset classes and specify how data must be transformed before we can pass it to the underlying database command:</p>
+<p>Changeset now support custom data transformations, with many builtin functions provided by <a href="https://github.com/solnic/transproc">transproc</a> gem. You can define your custom changeset classes and specify how data must be transformed before we can pass it to the underlying database command:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">NewUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Changeset</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
   <span class="n">map</span> <span class="k">do</span>
     <span class="n">unwrap</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">prefix: </span><span class="kp">true</span>
@@ -217,9 +218,9 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="p">)</span>
 
 <span class="n">new_user</span><span class="p">.</span><span class="nf">commit</span>
-<span class="c1"># =&gt; {:id=&gt;1, :name=&gt;"Jane", address_city: "Krakow", address_country: "Poland", address_street: "Street 1", zipcode: "1234"}</span>
+<span class="c1"># =&gt; {:id=&gt;1, :name=&gt;"Jane", address_city: "Krakow", address_country: "Poland", address_street: "Street 1", address_zipcode: "1234"}</span>
 </code></pre>
-<p>You can also pass an argument to <code>.map</code> and in that case you can use arbitrary code to perform transformation. Check out <a href="http://rom-rb.org/learn/repositories/custom-changesets/">docs</a> to learn more.</p>
+<p>You can also pass an argument to <code>.map</code> and in that case you can use arbitrary code to perform a transformation. Check out <a href="http://rom-rb.org/learn/repositories/custom-changesets/">docs</a> to learn more.</p>
 
 <h2>Support for nested aggregates</h2>
 
