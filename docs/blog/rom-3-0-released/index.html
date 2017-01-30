@@ -16,7 +16,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 
 <p>Relation schemas are <strong>always available</strong>, they keep track of the current attributes that relation tuples will include. This is a huge improvement, since previously schemas were only the representation of canonical relations (defined by your actual database schema). Projections go through schemas, and they adjust their attributes automatically. This gives us complete information about data that any relation can return.</p>
 
-<p>In rom-sql schema attributes are extended with SQL-specific features, which allows queries like that:</p>
+<p>In rom-sql schema attributes are extended with SQL-specific features, which allows queries like this:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
 
@@ -37,13 +37,13 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 
   <span class="k">def</span> <span class="nf">duplicated_emails</span>
     <span class="nb">select</span><span class="p">(</span><span class="nb">self</span><span class="p">[</span><span class="ss">:email</span><span class="p">],</span> <span class="nb">self</span><span class="p">[</span><span class="ss">:id</span><span class="p">].</span><span class="nf">func</span> <span class="p">{</span> <span class="n">int</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:count</span><span class="p">)</span> <span class="p">}).</span>
-      <span class="nf">group</span><span class="p">(</span><span class="ss">:name</span><span class="p">).</span>
-      <span class="nf">order</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
+      <span class="nf">group</span><span class="p">(</span><span class="ss">:email</span><span class="p">).</span>
+      <span class="nf">order</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span>
   <span class="k">end</span>
-  <span class="c1"># SELECT "name", COUNT("id") AS "count"</span>
+  <span class="c1"># SELECT "email", COUNT("id") AS "count"</span>
   <span class="c1">#   FROM "users"</span>
-  <span class="c1">#   GROUP BY "name"</span>
-  <span class="c1">#   ORDER BY "name"</span>
+  <span class="c1">#   GROUP BY "email"</span>
+  <span class="c1">#   ORDER BY "email"</span>
 <span class="k">end</span>
 </code></pre>
 <p>Resulting relation views include complete information about their current schema:</p>
