@@ -71,7 +71,7 @@ The `count` function we used in the previous example probably caught your attent
 type_annotation::function_name(*arguments)
 ```
 
-It returns `ROM::SQL::Function` object which works like any other schema attribute, and you can qualify it or provide an alias, or use boolean expression with various operators. Functions work with `select`, `order` and `where`. The only difference is that `select` requires type annotation, and the other methods don't.
+It returns a `ROM::SQL::Function` object which works like any other schema attribute, and you can qualify it or provide an alias, or use a boolean expression with various operators. Functions work with `select`, `order` and `where`. The only difference is that `select` requires a type annotation, and the other methods don't.
 
 Here's another example:
 
@@ -86,6 +86,7 @@ class Users < ROM::Relation[:sql]
   def busy_people
     select(:id, :name, tasks[:id].func { int::count(id).as(:task_count) }).
       left_join(tasks).
+      group(:id).
       having { count(id.qualified) > 1 }
   end
   # SELECT "users"."id", "users"."name", COUNT("tasks"."id") AS "task_count"
@@ -96,11 +97,11 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-Maybe you noticed that we passed `tasks` relation object to `left_join` - this is another new feature.
+Maybe you noticed that we passed `tasks` relation object to `left_join`—this is another new feature.
 
 ### Improved joins
 
-You can now pass relation objects to `join`, `left_join` and `right_join` and, assuming you configured associations, your relation will do the work for you to join correct table with join conditions already set. Furthermore, it will be automatically qualified. Here's what it means:
+You can now pass relation objects to `join`, `left_join` and `right_join`, and, assuming you configured associations, your relation will do the work for you to join the correct table with join conditions already set. Furthermore, it will be automatically qualified. Here's what it means:
 
 ``` ruby
 class Tasks < ROM::Relation[:sql]
@@ -199,7 +200,7 @@ For now this is very explicit, in the near future we'll add various convention-b
 
 ## Improved repositories
 
-We added support for transactions, custom commands in changesets, run-time changeset mapping with custom blocks, associating data via changesets, asking for custom objects when committing a changeset...check out [updated docs](http://rom-rb.org/learn/repositories/changesets/) to learn more, and here are some of the highlights.
+We added support for transactions, custom commands in changesets, run-time changeset mapping with custom blocks, associating data via changesets, asking for custom objects when committing a changeset... check out [updated docs](http://rom-rb.org/learn/repositories/changesets/) to learn more, and here are some of the highlights.
 
 ### Comitting changesets
 
@@ -233,7 +234,7 @@ user_repo.create(new_user)
 
 ### Powerful data transformations
 
-Changeset now support custom data transformations, with many builtin functions provided by the [transproc](https://github.com/solnic/transproc) gem. You can define your custom changeset classes and specify how data must be transformed before we can pass it to the underlying database command:
+Changeset now support custom data transformations, with many builtin functions provided by [transproc](https://github.com/solnic/transproc) gem. You can define your custom changeset classes and specify how data must be transformed before we can pass it to the underlying database command:
 
 ``` ruby
 class NewUser < ROM::Changeset::Create[:users]
@@ -250,10 +251,10 @@ new_user = user_repo.changeset(NewUser).data(
 )
 
 new_user.commit
-# => {:id=>1, :name=>"Jane", address_city: "Krakow", address_country: "Poland", address_street: "Street 1", zipcode: "1234"}
+# => {:id=>1, :name=>"Jane", address_city: "Krakow", address_country: "Poland", address_street: "Street 1", address_zipcode: "1234"}
 ```
 
-You can also pass an argument to `.map` and in that case you can use arbitrary code to perform transformation. Check out [docs](http://rom-rb.org/learn/repositories/custom-changesets/) to learn more.
+You can also pass an argument to `.map` and in that case you can use arbitrary code to perform a transformation. Check out [docs](http://rom-rb.org/learn/repositories/custom-changesets/) to learn more.
 
 ## Support for nested aggregates
 
