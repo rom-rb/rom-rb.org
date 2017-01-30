@@ -16,7 +16,7 @@ Schemas now use adapter-specific attribute types, which allowed us to implement 
 
 Relation schemas are **always available**, they keep track of the current attributes that relation tuples will include. This is a huge improvement, since previously schemas were only the representation of canonical relations (defined by your actual database schema). Projections go through schemas, and they adjust their attributes automatically. This gives us complete information about data that any relation can return.
 
-In rom-sql schema attributes are extended with SQL-specific features, which allows queries like that:
+In rom-sql schema attributes are extended with SQL-specific features, which allows queries like this:
 
 ``` ruby
 class Users < ROM::Relation[:sql]
@@ -42,13 +42,13 @@ class Users < ROM::Relation[:sql]
   
   def duplicated_emails
     select(self[:email], self[:id].func { int::count(id).as(:count) }).
-      group(:name).
-      order(:name)
+      group(:email).
+      order(:email)
   end
-  # SELECT "name", COUNT("id") AS "count"
+  # SELECT "email", COUNT("id") AS "count"
   #   FROM "users"
-  #   GROUP BY "name"
-  #   ORDER BY "name"
+  #   GROUP BY "email"
+  #   ORDER BY "email"
 end
 ```
 
