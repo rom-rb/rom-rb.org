@@ -22,15 +22,15 @@ In rom-sql schema attributes are extended with SQL-specific features, which allo
 class Users < ROM::Relation[:sql]
   schema(infer: true)
   
-  def duplicated_emails
+  def emails
     select { [email, int::count(id).as(:count)] }.
-      group(:name).
-      order(:name)
+      group(:email).
+      order(:email)
   end
-  # SELECT "name", COUNT("id") AS "count"
+  # SELECT "email", COUNT("id") AS "count"
   #  FROM "users"
-  #  GROUP BY "name"
-  #  ORDER BY "name"
+  #  GROUP BY "email"
+  #  ORDER BY "email"
 end
 ```
 
@@ -40,7 +40,7 @@ You can use both blocks or refer to attributes directly through `Relation#[]` me
 class Users < ROM::Relation[:sql]
   schema(infer: true)
   
-  def duplicated_emails
+  def emails
     select(self[:email], self[:id].func { int::count(id).as(:count) }).
       group(:email).
       order(:email)
@@ -62,10 +62,10 @@ users.duplicated_emails.schema.attributes
 # ]
 ```
 
-This plays major role in automatic mapping in repositories, as they can define structs with all attribute type information provided by relations.
+This plays a major role in automatic mapping in repositories, as they can define structs with all attribute type information provided by relations.
 
 ### Support for SQL functions
-The `count` function we used in the previous example probably caught your attention - this is a new feature which allows you to use any SQL function with arbitrary arguments, including relation attributes, or **anything** that can be dumped into a valid SQL. The syntax is always:
+The `count` function we used in the previous example probably caught your attention—this is a new feature which allows you to use any SQL function with arbitrary arguments, including relation attributes, or **anything** that can be dumped into a valid SQL. The syntax is always:
 
 ``` ruby
 type_annotation::function_name(*arguments)
