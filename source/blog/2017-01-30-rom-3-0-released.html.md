@@ -255,6 +255,20 @@ new_user.commit
 
 You can also pass an argument to `.map` and in that case you can use arbitrary code to perform transformation. Check out [docs](http://rom-rb.org/learn/repositories/custom-changesets/) to learn more.
 
+## Support for nested aggregates
+
+If you specified your associations in relations, you can use a simplified interface for fetching aggregates through repositories. For example if you have users with tasks, and tasks have tags, and you want to load a user aggregate with more levels of nesting, you can now do this:
+
+``` ruby
+class UserRepo < ROM::Repository[:users]
+  relations :tasks, :tags
+end
+
+user_repo.aggregate(tasks: :tags)
+```
+
+Check out [Repository#aggregate](http://www.rubydoc.info/gems/rom-repository/ROM/Repository/Root#aggregate-instance_method) API docs for more information.
+
 ## Detailed release information
 
 As part of this release following gems have been published:
