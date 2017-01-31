@@ -20,7 +20,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">emails</span>
+  <span class="k">def</span> <span class="nf">duplicated_emails</span>
     <span class="nb">select</span> <span class="p">{</span> <span class="p">[</span><span class="n">email</span><span class="p">,</span> <span class="n">int</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:count</span><span class="p">)]</span> <span class="p">}.</span>
       <span class="nf">group</span><span class="p">(</span><span class="ss">:email</span><span class="p">).</span>
       <span class="nf">order</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span>
@@ -35,7 +35,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
 
-  <span class="k">def</span> <span class="nf">emails</span>
+  <span class="k">def</span> <span class="nf">duplicated_emails</span>
     <span class="nb">select</span><span class="p">(</span><span class="nb">self</span><span class="p">[</span><span class="ss">:email</span><span class="p">],</span> <span class="nb">self</span><span class="p">[</span><span class="ss">:id</span><span class="p">].</span><span class="nf">func</span> <span class="p">{</span> <span class="n">int</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:count</span><span class="p">)</span> <span class="p">}).</span>
       <span class="nf">group</span><span class="p">(</span><span class="ss">:email</span><span class="p">).</span>
       <span class="nf">order</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span>
