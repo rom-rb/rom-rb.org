@@ -277,8 +277,7 @@ As part of this release following gems have been published:
 * rom 3.0.0 [CHANGELOG](https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v300-2017-01-29)
 * rom-sql 1.0.0 [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v100-2017-01-29)
 * rom-repository 1.0.0 [CHANGELOG](https://github.com/rom-rb/rom-repository/blob/master/CHANGELOG.md#v100-2017-01-29)
-
-If you're using Rails, rom-rails 0.9.0 is around the corner, so stay tuned.
+* rom-rails 0.9.0 [CHANGELOG](https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v090--2017-01-30)
 
 Please check out [rom-rb.org](http://rom-rb.org) as it was updated with more documentation!
 
