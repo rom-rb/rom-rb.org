@@ -22,7 +22,7 @@ In rom-sql schema attributes are extended with SQL-specific features, which allo
 class Users < ROM::Relation[:sql]
   schema(infer: true)
   
-  def emails
+  def duplicated_emails
     select { [email, int::count(id).as(:count)] }.
       group(:email).
       order(:email)
@@ -40,7 +40,7 @@ You can use both blocks or refer to attributes directly through `Relation#[]` me
 class Users < ROM::Relation[:sql]
   schema(infer: true)
   
-  def emails
+  def duplicated_emails
     select(self[:email], self[:id].func { int::count(id).as(:count) }).
       group(:email).
       order(:email)
