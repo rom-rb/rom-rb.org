@@ -37,7 +37,7 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-In basic case, which is selecting unqualified columns using their canonical names,
+In a basic case, which is selecting unqualified columns using their canonical names,
 a list of symbols is all you need. Schemas and their attributes are useful in more
 complex cases, so it's beneficial to know that you can use them in `select` method.
 

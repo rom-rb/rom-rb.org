@@ -21,7 +21,7 @@ In rom-sql schema attributes are extended with SQL-specific features, which allo
 ``` ruby
 class Users < ROM::Relation[:sql]
   schema(infer: true)
-  
+
   def duplicated_emails
     select { [email, int::count(id).as(:count)] }.
       group(:email).
@@ -39,7 +39,7 @@ You can use both blocks or refer to attributes directly through `Relation#[]` me
 ``` ruby
 class Users < ROM::Relation[:sql]
   schema(infer: true)
-  
+
   def duplicated_emails
     select(self[:email], self[:id].func { int::count(id).as(:count) }).
       group(:email).
@@ -82,7 +82,7 @@ class Users < ROM::Relation[:sql]
       has_many :tasks
     end
   end
-  
+
   def busy_people
     select(:id, :name, tasks[:id].func { int::count(id).as(:task_count) }).
       left_join(tasks).
@@ -110,7 +110,7 @@ class Tasks < ROM::Relation[:sql]
       belongs_to :user
     end
   end
-  
+
   def with_user
     # "join(:users, user_id: :id).qualified" becomes:
     join(users)
@@ -127,7 +127,7 @@ class Users < ROM::Relation[:sql]
       has_many :tasks
     end
   end
-  
+
   def priority_tasks(user_ids)
     assoc(:tasks).
       select(:id, :title, self[:name].qualified.as(:user))
@@ -163,7 +163,7 @@ class Accounts < ROM::Relation[:sql]
 
   view(:ordered) do
     schema do
-      append(users_accounts[:position])
+      append(relations[:users_accounts][:position])
     end
 
     relation do
@@ -186,7 +186,7 @@ Address = Struct.new(:country, :city, :street, :zipcode)
 
 class Users < ROM::Relation[:sql]
   AddressType = Types.Constructor(Address) { |value| Address.new(*value) }
-    
+
   schema(infer: true) do
     attribute :address, Types::PG::JSONB, read: AddressType
   end

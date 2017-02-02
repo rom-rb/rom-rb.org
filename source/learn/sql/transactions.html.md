@@ -3,7 +3,7 @@ chapter: SQL
 title: Transactions
 ---
 
-To use a transaction simple wrap calling a command inside its transaction block:
+To use a transaction simply wrap calling a command inside its transaction block:
 
 ``` ruby
 class CreateTask < ROM::Commands::Create[:sql]

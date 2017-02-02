@@ -55,7 +55,7 @@ end
 
 ## Using joins with additional options
 
-Second option hash can be used too, if you want to provide more options:
+The second option hash can be used too, if you want to provide more options:
 
 ``` ruby
 class Users < ROM::Relation[:sql]
@@ -67,11 +67,11 @@ class Users < ROM::Relation[:sql]
   end
 
   def with_tasks
-    join(:tasks, user_id: :id, { table_alias: :user_tasks })
+    join(:tasks, { user_id: :id }, table_alias: :user_tasks)
   end
 
   def with_posts
-    left_join(posts, user_id: :id, { table_alias: :user_posts })
+    left_join(posts, { user_id: :id }, table_alias: :user_posts)
   end
 end
 ```

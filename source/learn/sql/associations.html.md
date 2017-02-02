@@ -76,7 +76,7 @@ end
 ```
 
 > #### Naming convention
-> This method is a shortcut for `has_one :acounts, as: :account`
+> This method is a shortcut for `has_one :accounts, as: :account`
 
 ## has_one-through (one-to-one-through)
 
@@ -107,7 +107,7 @@ end
 If you want to use a different name for an association, you can use `:as` option.
 All association types support this feature.
 
-For example, let's say we have `:posts` belonging to `:users` but we'd like to call
+For example, we have `:posts` belonging to `:users` but we'd like to call
 them `:authors`:
 
 ``` ruby
