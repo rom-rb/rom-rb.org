@@ -121,7 +121,7 @@ end
 
 configuration.register_relation(Users)
 
-rom = ROM.create_container(configuration)
+rom = ROM.container(configuration)
 
 users = rom.gateways[:default].dataset(:users)
 
