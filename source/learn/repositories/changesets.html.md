@@ -24,8 +24,6 @@ rom = ROM.container(:sql, 'sqlite::memory') do |config|
     primary_key :id
     column :name, String, null: false
     column :email, String, null: false
-    column :created_at, DateTime
-    column :updated_at, DateTime
   end
 end
 
@@ -53,7 +51,7 @@ user_repo.update(user.id, changeset)
 ```
 
 Repositories **will not execute an update command** if there's no diff between
-the original tuple and the new one, ie:
+the original tuple and the new one, i.e.:
 
 ``` ruby
 changeset = user_repo.changeset(user.id, email: 'jane@doe.org')
@@ -72,8 +70,8 @@ Changeset has an extendible data-pipe mechanism available via `Changeset.map`
 Changeset mappings support all transformation functions from [transproc](https://github.com/solnic/transproc) project,
 and in addition to that we have:
 
-* `:add_timestamps` - sets `created_at` and `updated_at` timestamps
-* `:touch` - sets `updated_at` timestamp
+* `:add_timestamps`–sets `created_at` and `updated_at` timestamps (don't forget to add those fields to the table in case of using `rom-sql`)
+* `:touch`–sets `updated_at` timestamp
 
 ### Pre-configured mapping
 
@@ -105,7 +103,7 @@ user_repo.create(changeset)
 
 ### Custom mapping block
 
-If you don't want to use built-in transformations, simply configure mapping and
+If you don't want to use built-in transformations, simply configure a mapping and
 pass `tuple` argument to the map block:
 
 ``` ruby
@@ -131,7 +129,7 @@ user_repo.create(changeset)
 
 ### On-demand mapping
 
-There are situations where you would like to perform additional mapping but adding
+There are situations where you would like to perform an additional mapping but adding
 a special changeset class would be an overkill. That's why it's possible to apply
 additional mappings at run-time without having to use a custom changeset class.
 To do this simply use `Changeset#map` method:

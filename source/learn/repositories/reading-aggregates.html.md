@@ -122,7 +122,7 @@ Notice that unlike with `aggregate` method, the parent object does not include *
 > #### Performance and availability
 > `wrap_parent` is **only available in rom-sql**, which uses a join instead of eager-loading
 > and **it's significantly faster** than using `aggregate`. Other adapters can implement this
-> interface too, assuming it makes sense in case of a given database.
+> interface too, assuming it makes sense in case of a given data source.
 
 ## Learn more
 

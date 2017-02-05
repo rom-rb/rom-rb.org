@@ -20,7 +20,7 @@ rom = ROM.container(:sql, 'sqlite::memory') do |conf|
 
   conf.default.create_table(:tasks) do
     primary_key :id
-    foreign_key :user_id, :users, null :false
+    foreign_key :user_id, :users, null: false
     column :title, String, null: false
   end
 

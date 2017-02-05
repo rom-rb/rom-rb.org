@@ -70,7 +70,7 @@ users.to_a
 
 This short example demonstrates using selector methods, #one, and #to_a.
 
-``` ruby
+```ruby
 require 'rom-repository'
 
 rom = ROM.container(:sql, 'sqlite::memory') do |config|
@@ -109,7 +109,7 @@ user_repo.query(first_name: 'Malcolm', last_name: 'Reynolds')
 #=> [ROM::Struct[User] , ROM::Struct[User], ...]
 
 user_repo.by_id(1)
-#=> ROM::Struct[User]
+#=> {id: 1, first_name: 'Malcolm', last_name: 'Reynolds'}
 ```
 
 ## Mapping To Custom Objects

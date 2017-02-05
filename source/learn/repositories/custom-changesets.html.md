@@ -6,10 +6,10 @@ title: Custom Changesets
 You can define custom changeset classes that should inherit from one of the built-in
 types:
 
-- `ROM::Changeset::Create` - uses `Create` commands
-- `ROM::Changeset::Update` - uses `Update` commands
-- `ROM::Changeset::Delete` - uses `Delete` commands
-- `ROM::Changeset` - generic type, needs to be configured with a specific command type that you'd like to use
+- `ROM::Changeset::Create` uses `Create` commands
+- `ROM::Changeset::Update` uses `Update` commands
+- `ROM::Changeset::Delete` uses `Delete` commands
+- `ROM::Changeset` is a generic type that needs to be configured with a specific command type that you'd like to use
 
 ## Defining Changeset subclass for a specific relation
 
@@ -91,7 +91,7 @@ end
 
 new_user = user_repo.
   changeset(NewUserChangeset).
-  with(token_generator: SecureRandom.method(:hex)
+  with(token_generator: SecureRandom.method(:hex).
   data(name: 'Jane')
 
 user_repo.create(new_user)
