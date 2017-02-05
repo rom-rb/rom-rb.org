@@ -77,7 +77,7 @@ materialize the relation and get actual data, use <code>#one</code>, <code>#one!
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-    <span class="n">users</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">one!</span>
   <span class="k">end</span>
 
   <span class="c1"># ... etc</span>
@@ -86,7 +86,7 @@ materialize the relation and get actual data, use <code>#one</code>, <code>#one!
 <span class="n">user_repo</span> <span class="o">=</span> <span class="no">UserRepo</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rom</span><span class="p">)</span>
 </code></pre>
 <blockquote>
-<p>Notice that <code>users.where</code> and <code>users.fetch</code> are SQL-specific interfaces that
+<p>Notice that <code>users.where</code> and <code>users.by_pk</code> are SQL-specific interfaces that
 should not leak into your application domain layer, that&#39;s why we hide them
 behind our own repository interface.</p>
 </blockquote>
