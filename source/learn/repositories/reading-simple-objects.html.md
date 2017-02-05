@@ -87,7 +87,7 @@ class UserRepo < ROM::Repository[:users]
   end
 
   def by_id(id)
-    users.fetch(id)
+    users.by_pk(id).one!
   end
 
   # ... etc
@@ -96,7 +96,7 @@ end
 user_repo = UserRepo.new(rom)
 ```
 
-> Notice that `users.where` and `users.fetch` are SQL-specific interfaces that
+> Notice that `users.where` and `users.by_pk` are SQL-specific interfaces that
 > should not leak into your application domain layer, that's why we hide them
 > behind our own repository interface.
 
