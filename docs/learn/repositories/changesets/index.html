@@ -23,8 +23,6 @@ work with them:</p>
     <span class="n">primary_key</span> <span class="ss">:id</span>
     <span class="n">column</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
     <span class="n">column</span> <span class="ss">:email</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
-    <span class="n">column</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">DateTime</span>
-    <span class="n">column</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="no">DateTime</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
@@ -48,7 +46,7 @@ to <code>update</code> command method:</p>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane Doe" email="jane@doe.org"&gt;</span>
 </code></pre>
 <p>Repositories <strong>will not execute an update command</strong> if there&#39;s no diff between
-the original tuple and the new one, ie:</p>
+the original tuple and the new one, i.e.:</p>
 <pre class="syntax ruby"><code><span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'jane@doe.org'</span><span class="p">)</span>
 
 <span class="n">changeset</span><span class="p">.</span><span class="nf">diff?</span> <span class="c1"># false</span>
@@ -65,8 +63,8 @@ the original tuple and the new one, ie:</p>
 and in addition to that we have:</p>
 
 <ul>
-<li><code>:add_timestamps</code> - sets <code>created_at</code> and <code>updated_at</code> timestamps</li>
-<li><code>:touch</code> - sets <code>updated_at</code> timestamp</li>
+<li><code>:add_timestamps</code>–sets <code>created_at</code> and <code>updated_at</code> timestamps (don&#39;t forget to add those fields to the table in case of using <code>rom-sql</code>)</li>
+<li><code>:touch</code>–sets <code>updated_at</code> timestamp</li>
 </ul>
 
 <h3>Pre-configured mapping</h3>
@@ -93,7 +91,7 @@ having <code>address_*</code> prefix:</p>
 </code></pre>
 <h3>Custom mapping block</h3>
 
-<p>If you don&#39;t want to use built-in transformations, simply configure mapping and
+<p>If you don&#39;t want to use built-in transformations, simply configure a mapping and
 pass <code>tuple</code> argument to the map block:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">NewUserChangeset</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Changeset</span><span class="o">::</span><span class="no">Create</span>
   <span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">tuple</span><span class="o">|</span>
@@ -118,7 +116,7 @@ which means you have access to changeset&#39;s state</p>
 
 <h3>On-demand mapping</h3>
 
-<p>There are situations where you would like to perform additional mapping but adding
+<p>There are situations where you would like to perform an additional mapping but adding
 a special changeset class would be an overkill. That&#39;s why it&#39;s possible to apply
 additional mappings at run-time without having to use a custom changeset class.
 To do this simply use <code>Changeset#map</code> method:</p>

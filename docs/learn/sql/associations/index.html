@@ -70,7 +70,7 @@ many-to-many association type.</p>
 <blockquote>
 <h4>Naming convention</h4>
 
-<p>This method is a shortcut for <code>has_one :acounts, as: :account</code></p>
+<p>This method is a shortcut for <code>has_one :accounts, as: :account</code></p>
 </blockquote>
 
 <h2>has_one-through (one-to-one-through)</h2>
@@ -99,7 +99,7 @@ one-to-one-through association type.</p>
 <p>If you want to use a different name for an association, you can use <code>:as</code> option.
 All association types support this feature.</p>
 
-<p>For example, let&#39;s say we have <code>:posts</code> belonging to <code>:users</code> but we&#39;d like to call
+<p>For example, we have <code>:posts</code> belonging to <code>:users</code> but we&#39;d like to call
 them <code>:authors</code>:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>

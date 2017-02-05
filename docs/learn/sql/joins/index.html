@@ -53,7 +53,7 @@ will have all attributes <strong>qualified</strong> automatically for you</p>
 </code></pre>
 <h2>Using joins with additional options</h2>
 
-<p>Second option hash can be used too, if you want to provide more options:</p>
+<p>The second option hash can be used too, if you want to provide more options:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
     <span class="n">associations</span> <span class="k">do</span>
@@ -63,11 +63,11 @@ will have all attributes <strong>qualified</strong> automatically for you</p>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">with_tasks</span>
-    <span class="n">join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">,</span> <span class="p">{</span> <span class="ss">table_alias: :user_tasks</span> <span class="p">})</span>
+    <span class="n">join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="p">{</span> <span class="ss">user_id: :id</span> <span class="p">},</span> <span class="ss">table_alias: :user_tasks</span><span class="p">)</span>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">with_posts</span>
-    <span class="n">left_join</span><span class="p">(</span><span class="n">posts</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">,</span> <span class="p">{</span> <span class="ss">table_alias: :user_posts</span> <span class="p">})</span>
+    <span class="n">left_join</span><span class="p">(</span><span class="n">posts</span><span class="p">,</span> <span class="p">{</span> <span class="ss">user_id: :id</span> <span class="p">},</span> <span class="ss">table_alias: :user_posts</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre>

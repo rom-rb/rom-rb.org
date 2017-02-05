@@ -8,10 +8,10 @@ ga('send', 'pageview');</script></head><body class="learn learn_repositories lea
 types:</p>
 
 <ul>
-<li><code>ROM::Changeset::Create</code> - uses <code>Create</code> commands</li>
-<li><code>ROM::Changeset::Update</code> - uses <code>Update</code> commands</li>
-<li><code>ROM::Changeset::Delete</code> - uses <code>Delete</code> commands</li>
-<li><code>ROM::Changeset</code> - generic type, needs to be configured with a specific command type that you&#39;d like to use</li>
+<li><code>ROM::Changeset::Create</code> uses <code>Create</code> commands</li>
+<li><code>ROM::Changeset::Update</code> uses <code>Update</code> commands</li>
+<li><code>ROM::Changeset::Delete</code> uses <code>Delete</code> commands</li>
+<li><code>ROM::Changeset</code> is a generic type that needs to be configured with a specific command type that you&#39;d like to use</li>
 </ul>
 
 <h2>Defining Changeset subclass for a specific relation</h2>
@@ -80,8 +80,8 @@ instead of implementing additional method in our changeset:</p>
 
 <span class="n">new_user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span>
   <span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span>
-  <span class="nf">with</span><span class="p">(</span><span class="ss">token_generator: </span><span class="no">SecureRandom</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:hex</span><span class="p">)</span>
-  <span class="n">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+  <span class="nf">with</span><span class="p">(</span><span class="ss">token_generator: </span><span class="no">SecureRandom</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:hex</span><span class="p">).</span>
+  <span class="nf">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
