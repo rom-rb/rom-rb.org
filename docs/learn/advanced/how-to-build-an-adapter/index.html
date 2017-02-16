@@ -117,7 +117,7 @@ used to set up ROM components for that particular adapter.</p>
 
 <span class="n">configuration</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Users</span><span class="p">)</span>
 
-<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">create_container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
 
 <span class="n">users</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">gateways</span><span class="p">[</span><span class="ss">:default</span><span class="p">].</span><span class="nf">dataset</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
 
