@@ -174,6 +174,17 @@ shortcut method:</p>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre>
+<h2>Using a relation named differently from the table</h2>
+
+<p>It&#39;s a common case for legacy databases to have tables named differently from relations. Your legacy table name must be the first argument and the corresponding relation name must go with <code>:relation</code> option:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span> <span class="ss">:todos</span><span class="p">,</span> <span class="ss">as: :tasks</span><span class="p">,</span> <span class="ss">relation: :tasks</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
 <blockquote>
 <p>All association types support this option</p>
 </blockquote>
