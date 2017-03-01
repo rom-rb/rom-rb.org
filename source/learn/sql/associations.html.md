@@ -192,6 +192,20 @@ class Flights < ROM::Relation[:sql]
 end
 ```
 
+## Using a relation named differently from the table
+
+It's a common case for legacy databases to have tables named differently from relations. Your legacy table name must be the first argument and the corresponding relation name must go with `:relation` option:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      has_many :todos, as: :tasks, relation: :tasks
+    end
+  end
+end
+```
+
 > All association types support this option
 
 ## Learn more
