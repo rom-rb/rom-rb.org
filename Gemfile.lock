@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/middleman-contrib/middleman-deploy.git
+  remote: git://github.com/middleman-contrib/middleman-deploy.git
   revision: 243ab38b08896cd5a37d6845a01a5761b934a898
   specs:
     middleman-deploy (2.0.0.pre.alpha)
