@@ -74,6 +74,46 @@ admin_repo.create(new_admin)
 # => #<ROM::Struct[Admin] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e">
 ```
 
+## Custom changeset with a restricted relation
+
+Changesets that inherit from `Update` and `Delete` are restrictible, which means that their
+relation can (and in typical cases should be) restricted. For convenience, you can restrict
+a changeset using `#by_pk` method, which is a common thing to do:
+
+``` ruby
+require 'securerandom'
+
+class UpdateUserChangeset < ROM::Changeset::Update[:users]
+  map do |tuple|
+    tuple.merge(access_token: generate_access_token)
+  end
+
+  def generate_access_token
+    SecureRandom.hex
+  end
+end
+```
+
+Now we can get our custom changeset and restrict its relation by its primary key:
+
+``` ruby
+user = user_repo.create(name: "Jane")
+changeset = user_repo.changeset(UpdateUserChangeset).by_pk(user.id)
+
+user_repo.update(changeset)
+# => #<ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e">
+```
+
+You can also pass data to the restriction method:
+
+``` ruby
+user = user_repo.create(name: "Jane")
+changeset = user_repo.changeset(UpdateUserChangeset).by_pk(user.id, name: "Jane Doe")
+
+user_repo.update(changeset)
+# => #<ROM::Struct[User] id=1 name="Jane Doe" access_token="b9dd175aec90758b0841d09e4947724e">
+```
+
 ### Using Dependency Injection with changesets
 
 If you want to reuse various components in your changesets without coupling them too much, you can use `option` API

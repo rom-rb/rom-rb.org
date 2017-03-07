@@ -1,6 +1,6 @@
 ---
 chapter: Repositories
-title: Changeset Transactions
+title: Changeset Transactions & Associations
 ---
 
 If you want to commit multiple changesets, it's a good idea to wrap that operation in a
@@ -60,7 +60,7 @@ user_repo = UserRepo.new(rom)
 task = task_repo.transaction do
   user = user_repo.create(name: 'Jane')
 
-  new_task = task_repo.changeset(title: 'Task One').associate(user, :users)
+  new_task = task_repo.changeset(title: 'Task One').associate(user)
 
   task_repo.create(new_task)
 end
@@ -69,6 +69,13 @@ task
 # #<ROM::Struct[Task] id=1 user_id=1 title="Task One">
 ```
 
+> ### Association name
+>
+> Notice that `associate` method can accept a rom struct and it will try to infer
+> association name from it. If this fails because you have an aliased association
+> then pass association name explicitly as the second argument, ie: `associate(user, :author)`
+
 ## Learn more
 
+* [api::rom-repository::Changeset/Stateful](#associate)
 * [api::rom-repository::Repository](#transaction)
