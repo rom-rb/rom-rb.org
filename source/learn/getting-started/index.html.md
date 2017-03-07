@@ -17,7 +17,8 @@ Compatible with rom 3.0:
 |YAML|`gem install rom-yaml`| √ |
 |CouchDB|`gem install rom-couchdb`| √ |
 |HTTP|`gem install rom-http`| √ |
-|DynamoDB|`gem install rom-dynamo`| √ |
+|DynamoDB|`gem install rom-dynamodb`| √ |
+|Yesql|`gem install rom-yesql`| √ |
 
 Outdated (help wanted!) adapters:
 
@@ -31,7 +32,6 @@ Outdated (help wanted!) adapters:
 |Neo4j|`gem install rom-neo4j`| - |
 |Event Store|`gem install rom-event_store`|
 |RethinkDB|`gem install rom-rethinkdb`| - |
-|Yesql|`gem install rom-yesql`| √ |
 
 > #### How to choose an adapter?
 >
