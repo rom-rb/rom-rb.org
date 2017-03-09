@@ -16,6 +16,12 @@ Official Ruby Object Mapper website.
    npm install
    ```
 
+   or
+
+   ```shell
+   yarn
+   ```
+
 3. Serve locally at [http://localhost:4567](http://localhost:4567):
 
    ```shell
