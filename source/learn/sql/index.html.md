@@ -17,29 +17,34 @@ ROM supports SQL databases via `rom-sql` adapter which currently uses
 an enhanced `Relation` that supports sql-specific query DSL and association
 macros that simplify constructing joins.
 
-Refer to the general [setup](/learn/getting-started/block-style-setup) for information
+Refer to the [Getting Started](/learn/getting-started/) and
+[Explicit Setup](/learn/advanced/explicit-setup/) pages for information on
 how to setup ROM with a specific adapter.
 
 Following connection URI schemes are supported:
 
-- ado
-- amalgalite
-- cubrid
-- db2
-- dbi
-- do
-- fdbsql
-- firebird
-- ibmdb
-- informix
-- jdbc
-- mysql
-- mysql2
-- odbc
-- openbase
-- oracle
-- postgres
-- sqlanywhere
-- sqlite
-- swift
-- tinytds
+- `ado`
+- `amalgalite`
+- `cubrid`
+- `db2`
+- `dbi`
+- `do`
+- `fdbsql`
+- `firebird`
+- `ibmdb`
+- `informix`
+- `jdbc`
+- `mysql`
+- `mysql2`
+- `odbc`
+- `openbase`
+- `oracle`
+- `postgres`
+- `sqlanywhere`
+- `sqlite`
+- `swift`
+- `tinytds`
+
+For details on specifying database connection URLs please refer to the
+[Connecting to a database](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html)
+Sequel page.
