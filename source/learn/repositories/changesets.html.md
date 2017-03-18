@@ -38,7 +38,7 @@ user = user_repo.create(name: 'Jane', email: 'jane@doe.org')
 changeset = user_repo.changeset(user.id, name: 'Jane Doe')
 
 changeset.diff? # true
-changeset.diff # {name=>"Jane Doe"}
+changeset.diff # {:name=>"Jane Doe"}
 ```
 
 Changesets are compatible with commands, as they implement `Hash` interface, this
