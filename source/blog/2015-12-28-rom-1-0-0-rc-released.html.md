@@ -19,6 +19,6 @@ As part of this release other gems have been upgraded too:
 - rom-sql 0.7.0.rc1
 - rom-repository 0.2.0.rc1
 
-These are pre-releases which means you need to add them explicitly to your Gemfile. If you're having problem with upgrading [report an issue](https://github.com/rom-rb/rom/issues), ask for help on [gitter](https://gitter.im/rom-rb/chat) or post a message on [the forum](http://discuss.rom-rb.org).
+These are pre-releases which means you need to add them explicitly to your Gemfile. If you're having problem with upgrading [report an issue](https://github.com/rom-rb/rom/issues), ask for help on [gitter](https://gitter.im/rom-rb/chat) or post a message on [the forum](http://discourse.rom-rb.org).
 
 The final version should be released on Wednesday, December 30th, unless we find some blocking issues which are hard to fix.

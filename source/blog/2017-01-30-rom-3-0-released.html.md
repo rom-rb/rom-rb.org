@@ -285,7 +285,7 @@ Please check out [rom-rb.org](http://rom-rb.org) as it was updated with more doc
 
 Please do read [rom-sql 1.0.0 upgrade guide](https://github.com/rom-rb/rom-sql/wiki/Upgrading-from-0.9.x-to-1.0.0) as it includes useful information. Making the transition should not be difficult, many applications (including big ones), have been already upgraded during beta/RC testing, and it was a smooth process.
 
-If you have problems with the upgrade, please report an issue or ask for help on [the discussion forum](https://discuss.rom-rb.org).
+If you have problems with the upgrade, please report an issue or ask for help on [the discussion forum](https://discourse.rom-rb.org).
 
 ## Thank you!
 
