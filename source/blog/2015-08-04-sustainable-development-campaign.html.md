@@ -45,6 +45,10 @@ If you'd like to see ROM grow faster, please consider supporting the project thr
 
 We want to take the project to the next level with this campaign and hope to expand the team so that more people can work continuously on ROM. We are happy to use the funds to sponsor work on ROM itself and also on any other library that the project could benefit from.
 
+> ## UPDATE
+>
+> We moved our donation campaign to [opencollective.com/rom](https://opencollective.com/rom)
+
 ## What's in it for you?
 
 There are many ways in which you and your company can benefit from ROM *today*, but there's still a lot to be done to make ROM simpler to use for the common application use-case. This includes adding convenient, high-level abstractions as well as providing great documentation and other resources that would teach people how to use ROM.
