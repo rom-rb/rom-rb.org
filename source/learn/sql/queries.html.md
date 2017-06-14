@@ -131,6 +131,11 @@ class Users < ROM::Relation[:sql]
     where(name: name, admin: true)
     # ... WHERE ("name" = 'Jane') AND ("admin" IS TRUE) ...
   end
+
+  def by_ids(ids)
+    where(ids: ids)
+    # ... WHERE ("id" IN (1, 2)) ...
+  end
 end
 ```
 
@@ -158,6 +163,15 @@ class Users < ROM::Relation[:sql]
   def query
     where { (id < 10) | (id > 20) }
     # (("id" < 10) OR ("id" > 20))
+
+    where { id.not(10..20) }
+    # (("id" < 10) OR ("id" > 20))
+
+    where { id.in(1..10) & id.in(20..100) }
+    # (("id" >= 1) AND ("id" <= 10) AND ("id" >= 20) AND ("id" <= 100))
+
+    where { name.ilike('%an%') }
+    # ("name" ILIKE '%an%' ESCAPE '\\')
   end
 end
 ```
@@ -179,6 +193,25 @@ class Users < ROM::Relation[:sql]
   end
 end
 ```
+
+## Orders
+
+`order` method with block will order your query:
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true)
+
+  def query
+    order { created_at.desc }
+    # ... ORDER BY "created_at" DESC
+
+    order { created_at.asc }
+    # ... ORDER BY "created_at" ASC
+  end
+end
+```
+
 
 ## Learn more
 
