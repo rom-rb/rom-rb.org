@@ -60,7 +60,7 @@ user_repo = UserRepo.new(rom)
 task = task_repo.transaction do
   user = user_repo.create(name: 'Jane')
 
-  new_task = task_repo.changeset(title: 'Task One').associate(user)
+  new_task = task_repo.tasks.changeset(:create, title: 'Task One').associate(user)
 
   task_repo.create(new_task)
 end
