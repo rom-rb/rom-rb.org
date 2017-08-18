@@ -69,9 +69,11 @@ organization, for example:
 
 ``` ruby
 # lib/relations/users.rb
-module Relations
-  class Users < ROM::Relation[:sql]
-    schema(infer: true)
+module Lib
+  module Relations
+    class Users < ROM::Relation[:sql]
+      schema(infer: true)
+    end
   end
 end
 

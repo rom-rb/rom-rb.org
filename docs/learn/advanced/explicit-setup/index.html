@@ -61,9 +61,11 @@ mappers from <code>&lt;base&gt;/mappers</code>.</p>
 <p>By default, auto-registration assumes that the directory structure reflects your module/class
 organization, for example:</p>
 <pre class="syntax ruby"><code><span class="c1"># lib/relations/users.rb</span>
-<span class="k">module</span> <span class="nn">Relations</span>
-  <span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
-    <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">module</span> <span class="nn">Lib</span>
+  <span class="k">module</span> <span class="nn">Relations</span>
+    <span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+      <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
