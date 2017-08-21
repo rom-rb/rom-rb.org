@@ -11,3 +11,7 @@ gem 'nokogiri'
 # Styling
 gem 'slim'
 gem 'redcarpet'
+
+group :development do
+  gem 'byebug'
+end
