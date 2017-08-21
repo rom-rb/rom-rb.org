@@ -4,7 +4,7 @@ title: Commands
 ---
 
 SQL commands support all features of the standard
-[ROM command API](/learn/advanced/commands). In addition, the following
+[ROM command API](/learn/%{version}/advanced/commands). In addition, the following
 SQL-specific features are supported:
 
 - The `associates` plugin, for connecting foreign key values when composing
@@ -13,7 +13,7 @@ SQL-specific features are supported:
   database transactions
 
 > #### Custom commands
-> Define custom commands **only when repositories with changesets and auto-commands** 
+> Define custom commands **only when repositories with changesets and auto-commands**
 > are blocking you
 
 ### Associates Plugin

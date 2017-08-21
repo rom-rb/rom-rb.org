@@ -155,8 +155,8 @@ class Users < ROM::Relation[:http]
 end
 ```
 
-Now when you persist data using [repositories](/learn/repositories) or
-[custom commands](/learn/advanced/custom-commands), your schema will be used
+Now when you persist data using [repositories](/learn/%{version}/repositories) or
+[custom commands](/learn/%{version}/advanced/custom-commands), your schema will be used
 to process the input data, and our `:id` value will be handled by the `UUID` type.
 
 ## Type System
@@ -187,4 +187,4 @@ Here are a couple of guidelines that should help you in making right decisions:
 
 You can learn more about adapter-specific schemas:
 
-- [SQL schemas](/learn/sql/schemas)
+- [SQL schemas](/learn/%{version}/sql/schemas)

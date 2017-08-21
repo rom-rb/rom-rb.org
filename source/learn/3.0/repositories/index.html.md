@@ -13,11 +13,11 @@ sections:
 
 In this section you can learn how to work with ROM repositories.
 
-* [Quick Start](/learn/repositories/quick-start)
-* [Reading Simple Objects](/learn/repositories/reading-simple-objects)
-* [Reading Aggregates](/learn/repositories/reading-aggregates)
-* [Composing Relations](/learn/repositories/composing-relations)
-* [Changesets](/learn/repositories/changesets)
-* [Custom Changesets](/learn/repositories/custom-changesets)
-* [Changeset Transactions & Associations](/learn/repositories/changeset-transactions)
-* [Writing Aggregates](/learn/repositories/writing-aggregates)
+* [Quick Start](/learn/%{version}/repositories/quick-start)
+* [Reading Simple Objects](/learn/%{version}/repositories/reading-simple-objects)
+* [Reading Aggregates](/learn/%{version}/repositories/reading-aggregates)
+* [Composing Relations](/learn/%{version}/repositories/composing-relations)
+* [Changesets](/learn/%{version}/repositories/changesets)
+* [Custom Changesets](/learn/%{version}/repositories/custom-changesets)
+* [Changeset Transactions & Associations](/learn/%{version}/repositories/changeset-transactions)
+* [Writing Aggregates](/learn/%{version}/repositories/writing-aggregates)

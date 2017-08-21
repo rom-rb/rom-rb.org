@@ -4,7 +4,7 @@ title: Schemas
 ---
 
 The SQL adapter adds its own schema types and association declarations to the
-built-in [Relation Schema](/learn/core/schemas) feature.
+built-in [Relation Schema](/learn/%{version}/core/schemas) feature.
 
 ## Inferring Attributes
 

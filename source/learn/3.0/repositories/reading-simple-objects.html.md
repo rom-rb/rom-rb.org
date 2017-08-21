@@ -139,4 +139,4 @@ end
 
 ## Next
 
-Now we can read simple structs. Next, learn how to [read complex, aggregate data](/learn/repositories/reading-aggregates).
+Now we can read simple structs. Next, learn how to [read complex, aggregate data](/learn/%{version}/repositories/reading-aggregates).

@@ -11,7 +11,7 @@ files and define them as explicit classes.
 > ROM & Frameworks
 >
 > Framework integrations **take care of the setup for you**. If you want to use ROM
-> with a framework, please refer to specific instructions under [Getting Started](/learn/getting-started)
+> with a framework, please refer to specific instructions under [Getting Started](/learn/%{version}/getting-started)
 > section
 
 ## Setup
@@ -180,6 +180,6 @@ class CreateUser < ROM::Commands::Create[:memory]
 end
 ```
 
-> Typically, you're going to use [repository command interface and changesets](/learn/repositories/quick-start);
+> Typically, you're going to use [repository command interface and changesets](/learn/%{version}/repositories/quick-start);
 > custom command classes are useful when the built-in command support in
 > repositories doesn't meet your requirements
