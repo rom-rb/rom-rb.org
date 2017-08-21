@@ -62,11 +62,13 @@ helpers do
   end
 
   def version
-    current_path[%r{\w+/([\d\.]+|current)\/}, 1] || data.versions.current
+    current_path[%r{\w+/([\d\.]+|current|develop)\/}, 1] || data.versions.current
   end
 
   def version_variants
-    data.versions.core.map { |v| [v, v] } + [["current", "current (#{ data.versions.current })"]]
+    data.versions.core.map { |v| [v, v] } +
+      [["current", "current (#{ data.versions.current })"],
+       ["develop", "develop"]]
   end
 end
 
