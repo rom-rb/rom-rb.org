@@ -14,7 +14,7 @@ simple scripts.
 > #### Configuration
 >
 > The configuration options explained in this document are the same for
-> [Explicit Setup](/learn/advanced/explicit-setup) using `ROM::Configuration` object
+> [Explicit Setup](/learn/%{version}/advanced/explicit-setup) using `ROM::Configuration` object
 
 ## Connect to a single database
 
@@ -41,7 +41,7 @@ end
 ### Connect to multiple databases
 
 Sometimes you have multiple data sources. You can provide multiple
-[gateway](/learn/glossary/#gateway) configurations with a name
+[gateway](/learn/%{version}/glossary/#gateway) configurations with a name
 hash.
 
 ```ruby
@@ -87,4 +87,4 @@ end
 
 ## Next
 
-Learn [how to read data](/learn/repositories/reading-simple-objects/) via Repositories and Relations.
+Learn [how to read data](/learn/%{version}/repositories/reading-simple-objects/) via Repositories and Relations.

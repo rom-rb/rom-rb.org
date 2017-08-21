@@ -4,7 +4,7 @@ title: Changesets
 ---
 
 You already learned how to simply use commands with repositories in the
-[Quick Start](/learn/repositories/quick-start) section, but there's so much more
+[Quick Start](/learn/%{version}/repositories/quick-start) section, but there's so much more
 to it! In this section you're going to learn how to use <mark>Changesets</mark>
 along with repositories.
 
@@ -171,4 +171,4 @@ Check out API docs:
 
 ### Next
 
-Now you can learn how to [define custom changeset classes](/learn/repositories/custom-changesets).
+Now you can learn how to [define custom changeset classes](/learn/%{version}/repositories/custom-changesets).

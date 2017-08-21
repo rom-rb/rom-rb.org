@@ -60,9 +60,9 @@ and commands, and integrates the two with your mappers.
 
 Depending on your application needs, you may want to use different setup strategies:
 
-* [Setup DSL](/learn/getting-started/setup-dsl) - suitable for small scripts
-* [Rails](/learn/getting-started/rails-setup) - setup integrated with Rails
-* [Explicit](/learn/advanced/explicit-setup) - suitable for custom environments (**advanced usage**)
+* [Setup DSL](/learn/%{version}/getting-started/setup-dsl) - suitable for small scripts
+* [Rails](/learn/%{version}/getting-started/rails-setup) - setup integrated with Rails
+* [Explicit](/learn/%{version}/advanced/explicit-setup) - suitable for custom environments (**advanced usage**)
 
 > Note: Most guide examples are written specifically for the `rom-sql` adapter.
 > If you are using a different one, consult that adapter's documentation as

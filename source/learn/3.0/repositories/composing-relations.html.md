@@ -64,7 +64,7 @@ for all types of compositions that are available in repositories.
 
 In many common cases using canonical asociations will be sufficient, which means
 that you simply define associations in schemas and
-[read aggregates](/learn/repositories/reading-aggregates); however, you will find
+[read aggregates](/learn/%{version}/repositories/reading-aggregates); however, you will find
 situations where custom views, with smaller data sets and more optimizied queries
 are useful too. You will also find this to be useful when you'd like to compose
 data that are fetched from multiple data sources (ie an SQL database and an HTTP API).
@@ -73,6 +73,3 @@ Relation composition helps you shape your data structures in ways that match you
 application's domain. Rather than using canonical representation defined by the
 database schemas, you can create simpler and more optimized representation of the
 data, which simplifies your domain layer.
-
-
-

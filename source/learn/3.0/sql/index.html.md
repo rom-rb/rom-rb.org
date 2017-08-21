@@ -17,8 +17,8 @@ ROM supports SQL databases via `rom-sql` adapter which currently uses
 an enhanced `Relation` that supports sql-specific query DSL and association
 macros that simplify constructing joins.
 
-Refer to the [Getting Started](/learn/getting-started/) and
-[Explicit Setup](/learn/advanced/explicit-setup/) pages for information on
+Refer to the [Getting Started](/learn/%{version}/getting-started/) and
+[Explicit Setup](/learn/%{version}/advanced/explicit-setup/) pages for information on
 how to setup ROM with a specific adapter.
 
 Following connection URI schemes are supported:

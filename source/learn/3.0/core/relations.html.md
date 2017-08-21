@@ -57,4 +57,4 @@ end
 
 ### Next
 
-Now let's see how you can use [relation schemas](/learn/core/schemas).
+Now let's see how you can use [relation schemas](/learn/%{version}/core/schemas).
