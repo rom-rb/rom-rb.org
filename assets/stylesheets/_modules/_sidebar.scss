@@ -1,10 +1,6 @@
 .sidebar {
   @include type-scale(small);
   @include margin-trailer(1);
-  @include from(3) {
-    @include padding-leader(1.5);
-    margin-top: 0.5rem;
-  }
 
   &__header {
     @include margin-trailer(0.5);

@@ -1,7 +1,9 @@
-h2.sidebar__header--first Guides
+= partial 'layouts/version_switcher'
+
+h2.sidebar__header--first Learn
 
 ul.sidebar__items
-  - sections_as_resources(guides_root_resource).each do |resource|
+  - sections_as_resources(learn_root_resource).each do |resource|
     li.sidebar__item
       = nav_link_to resource.data.chapter, resource.url, class: 'sidebar__link'
       - unless resource.data.sections.nil?

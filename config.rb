@@ -3,8 +3,8 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 page '/', layout: 'layout'
-page '/learn/*', layout: 'guide', data: { sidebar: 'learn/sidebar' }
-page '/guides/*', layout: 'guide', data: { sidebar: 'guides/sidebar' }
+page '/learn/*', layout: 'guide', data: { sidebar: 'learn/%{version}/sidebar' }
+page '/guides/*', layout: 'guide', data: { sidebar: 'guides/%{version}/sidebar' }
 page '/blog/*', data: { sidebar: 'blog/sidebar' }
 
 def next?
@@ -28,17 +28,17 @@ helpers do
   end
 
   def learn_root_resource
-    sitemap.find_resource_by_destination_path('learn/index.html')
+    sitemap.find_resource_by_destination_path("learn/#{ version }/index.html")
   end
 
   def guides_root_resource
-    sitemap.find_resource_by_destination_path('guides/index.html')
+    sitemap.find_resource_by_destination_path("guides/#{ version }/index.html")
   end
 
   def sections_as_resources(resource)
     sections = resource.data.sections
-    sections.map do |s|
-      destination_path = resource.url + "#{s}/index.html"
+    sections.map do |section|
+      destination_path = resource.url + "#{ section }/index.html"
       sitemap.find_resource_by_destination_path(destination_path)
     end
   end
@@ -59,6 +59,14 @@ helpers do
   def logo_by
     url = 'https://github.com/kapowaz'
     "Logo by #{link_to '@kapowaz', url}."
+  end
+
+  def version
+    current_path[%r{\w+/([\d\.]+|current)\/}, 1] || data.versions.current
+  end
+
+  def version_variants
+    data.versions.core.map { |v| [v, v] } + [["current", "current (#{ data.versions.current })"]]
   end
 end
 
@@ -153,4 +161,9 @@ end
 # Development-specific configuration
 configure :development do
   activate :livereload
+end
+
+begin
+  require 'byebug'
+rescue LoadError
 end

@@ -2,7 +2,7 @@
   - if current_page.data.sidebar
     .page__sidebar
       .sidebar
-        = partial current_page.data.sidebar
+        = partial current_page.data.sidebar % { version: version }
   .page__content
     .content
       = yield
