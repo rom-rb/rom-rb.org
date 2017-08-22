@@ -5,6 +5,8 @@ page '/*.txt', layout: false
 page '/', layout: 'layout'
 page '/*/learn/*', layout: 'guide', data: { sidebar: '%{version}/learn/sidebar' }
 page '/*/guides/*', layout: 'guide', data: { sidebar: '%{version}/guides/sidebar' }
+page '/learn/*', layout: 'guide', data: { sidebar: '3.0/learn/sidebar' }
+page '/guides/*', layout: 'guide', data: { sidebar: '3.0/guides/sidebar' }
 page '/blog/*', data: { sidebar: 'blog/sidebar' }
 
 def next?
@@ -62,7 +64,7 @@ helpers do
   end
 
   def version
-    current_path[%r{\A([\d\.]+|current|develop)\/}, 1] || data.versions.current
+    current_path[%r{\A([\d\.]+|current|develop)\/}, 1] || data.versions.fallback
   end
 
   def version_variants
