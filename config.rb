@@ -3,8 +3,8 @@ page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 page '/', layout: 'layout'
-page '/learn/*', layout: 'guide', data: { sidebar: 'learn/%{version}/sidebar' }
-page '/guides/*', layout: 'guide', data: { sidebar: 'guides/%{version}/sidebar' }
+page '/*/learn/*', layout: 'guide', data: { sidebar: '%{version}/learn/sidebar' }
+page '/*/guides/*', layout: 'guide', data: { sidebar: '%{version}/guides/sidebar' }
 page '/blog/*', data: { sidebar: 'blog/sidebar' }
 
 def next?
@@ -28,11 +28,11 @@ helpers do
   end
 
   def learn_root_resource
-    sitemap.find_resource_by_destination_path("learn/#{ version }/index.html")
+    sitemap.find_resource_by_destination_path("#{ version }/learn/index.html")
   end
 
   def guides_root_resource
-    sitemap.find_resource_by_destination_path("guides/#{ version }/index.html")
+    sitemap.find_resource_by_destination_path("#{ version }/guides/index.html")
   end
 
   def sections_as_resources(resource)
@@ -62,7 +62,7 @@ helpers do
   end
 
   def version
-    current_path[%r{\w+/([\d\.]+|current|develop)\/}, 1] || data.versions.current
+    current_path[%r{\A([\d\.]+|current|develop)\/}, 1] || data.versions.current
   end
 
   def version_variants
