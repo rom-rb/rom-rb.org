@@ -70,7 +70,7 @@ helpers do
   def version_variants
     data.versions.core.map { |v| [v, v] } +
       [["current", "current (#{ data.versions.current })"],
-       ["develop", "develop"]]
+       ["develop", "develop (#{ data.versions.next })"]]
   end
 end
 
