@@ -37,20 +37,16 @@ class CreateUser < ROM::Commands::Create[:sql]
 end
 
 # using command composition
-create_user = rom.commands[:users][:create]
-create_task = rom.commands[:tasks][:create]
+create_user = rom.command(:users).create
+create_task = rom.command(:tasks).create
 
-command = create_user.curry(name: 'Jane') >> create_task.curry(title: 'Task')
+command = create_user.with(name: 'Jane') >> create_task.with(title: 'Task')
 command.call
-
-# using command composition with arguments
-command = create_user >> create_task.curry(title: 'Task')
-command.call(name: 'Jane')
 
 # using a graph
-command = create_user
-           .curry(name: 'Jane')
-           .combine(create_article.curry(title: 'Task'))
+command = rom.command([
+  { user: :users }, [:create, [{ task: :tasks }, [:create]]]
+])
 
-command.call
+command.call user: { name: 'Jane', task: { title: 'Task' } }
 ```

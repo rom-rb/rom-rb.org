@@ -10,7 +10,7 @@ a session object to the block and queues your changesets to be persisted in a tr
 ## Saving a single changeset
 
 ``` ruby
-changeset = user_repo.users.changeset(:create, name: 'Jane')
+changeset = user_repo.changeset(name: 'Jane')
 
 user_repo.session do |s|
   s.add(changeset)
@@ -22,8 +22,8 @@ end
 If you configured associations in your schemas, you can associate changesets easily:
 
 ``` ruby
-user_changeset = user_repo.users.changeset(:create, name: 'Jane')
-task_changeset = task_repo.tasks.changeset(:create, title: 'Task 1')
+user_changeset = user_repo.changeset(name: 'Jane')
+task_changeset = task_repo.changeset(title: 'Task 1')
 
 user_repo.session do |s|
   s.add(user_changeset.associate(task_changeset, :user))
@@ -37,8 +37,8 @@ You can use all changeset types within the same session, let's say we want updat
 ``` ruby
 user = user_repo.fetch(1)
 
-user_changeset = user_repo.users.changeset(:create, task_count: user.task_count + 1)
-new_task_changeset = task_repo.tasks.changeset(:create, title: 'Another task')
+user_changeset = user_repo.changeset(task_count: user.task_count + 1)
+new_task_changeset = task_repo.changeset(title: 'Another task')
 
 user_repo.session do |s|
   s.add(new_task_changeset.associate(user, :user)

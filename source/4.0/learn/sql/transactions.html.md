@@ -21,10 +21,10 @@ class CreateUser < ROM::Commands::Create[:sql]
 end
 
 # using command composition
-create_user = rom.command(:users).create
-create_task = rom.command(:tasks).create
+create_user = rom.commands[:users][:create]
+create_task = rom.commands[:tasks][:create]
 
-command = create_user.with(name: 'Jane') >> create_task.with(title: 'Task')
+command = create_user.curry(name: 'Jane') >> create_task.curry(title: 'Task')
 
 # rollback happens when any error is raised ie a CommandError from a validator
 command.transaction do

@@ -35,7 +35,7 @@ user_repo = UserRepo.new(rom)
 
 user = user_repo.create(name: 'Jane', email: 'jane@doe.org')
 
-changeset = user_repo.users.changeset(:update, user.id, name: 'Jane Doe')
+changeset = user_repo.changeset(user.id, name: 'Jane Doe')
 
 changeset.diff? # true
 changeset.diff # {:name=>"Jane Doe"}
@@ -54,7 +54,7 @@ Repositories **will not execute an update command** if there's no diff between
 the original tuple and the new one, i.e.:
 
 ``` ruby
-changeset = user_repo.users.changeset(:update, user.id, email: 'jane@doe.org')
+changeset = user_repo.changeset(user.id, email: 'jane@doe.org')
 
 changeset.diff? # false
 
@@ -93,7 +93,7 @@ Then we can ask the user repo for our changeset:
 ``` ruby
 user_data = { name: 'Jane', address: { city: 'NYC', street: 'Street 1' } }
 
-changeset = user_repo.users.changeset(NewUserChangeset).data(user_data)
+changeset = user_repo.changeset(NewUserChangeset).data(user_data)
 
 changeset.to_h
 # { name: 'Jane', address_city: 'NYC', address_street: 'Street 1' }
@@ -115,7 +115,7 @@ end
 
 user_data = { name: 'Jane' }
 
-changeset = user_repo.users.changeset(NewUserChangeset).data(user_data)
+changeset = user_repo.changeset(NewUserChangeset).data(user_data)
 
 changeset.to_h
 # { name: 'Jane', created_on: <Date: 2017-01-21 ((2457775j,0s,0n),+0s,2299161j)> }
@@ -135,8 +135,8 @@ additional mappings at run-time without having to use a custom changeset class.
 To do this simply use `Changeset#map` method:
 
 ``` ruby
-changeset = user_repo.users
-  .changeset(:create, name: 'Joe', email: 'joe@doe.org')
+changeset = user_repo
+  .changeset(name: 'Joe', email: 'joe@doe.org')
   .map(:add_timestamps)
 
 user_repo.create(changeset)
@@ -149,7 +149,7 @@ Changesets can be committed without the need to use repository command methods. 
 raw data returned from your database:
 
 ``` ruby
-new_user = repo.users.changeset(:create, name: 'Jane')
+new_user = repo.changeset(name: 'Jane')
 => #<ROM::Changeset::Create relation=ROM::Relation::Name(users) data={:name=>"Jane"}>
 
 repo.create(new_user)

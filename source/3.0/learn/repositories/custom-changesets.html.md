@@ -33,7 +33,7 @@ end
 Now we can easily use this changeset with a user repository:
 
 ``` ruby
-new_user = user_repo.users.changeset(NewUserChangeset).data(name: 'Jane')
+new_user = user_repo.changeset(NewUserChangeset).data(name: 'Jane')
 
 user_repo.create(new_user)
 # => #<ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e">
@@ -63,12 +63,12 @@ end
 Now we can ask specific root repositories for instances of this changeset:
 
 ``` ruby
-new_user = user_repo.users.changeset(NewUserChangeset).data(name: 'Jane')
+new_user = user_repo.changeset(NewUserChangeset).data(name: 'Jane')
 
 user_repo.create(new_user)
 # => #<ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e">
 
-new_admin = admin_repo.users.changeset(NewUserChangeset).data(name: 'Jane')
+new_admin = admin_repo.changeset(NewUserChangeset).data(name: 'Jane')
 
 admin_repo.create(new_admin)
 # => #<ROM::Struct[Admin] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e">
@@ -98,7 +98,7 @@ Now we can get our custom changeset and restrict its relation by its primary key
 
 ``` ruby
 user = user_repo.create(name: "Jane")
-changeset = user_repo.users.changeset(UpdateUserChangeset).by_pk(user.id)
+changeset = user_repo.changeset(UpdateUserChangeset).by_pk(user.id)
 
 user_repo.update(changeset)
 # => #<ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e">
@@ -108,7 +108,7 @@ You can also pass data to the restriction method:
 
 ``` ruby
 user = user_repo.create(name: "Jane")
-changeset = user_repo.users.changeset(UpdateUserChangeset).by_pk(user.id, name: "Jane Doe")
+changeset = user_repo.changeset(UpdateUserChangeset).by_pk(user.id, name: "Jane Doe")
 
 user_repo.update(changeset)
 # => #<ROM::Struct[User] id=1 name="Jane Doe" access_token="b9dd175aec90758b0841d09e4947724e">
@@ -129,7 +129,7 @@ class NewUserChangeset < ROM::Changeset::Create
   end
 end
 
-new_user = user_repo.users
+new_user = user_repo.
   changeset(NewUserChangeset).
   with(token_generator: SecureRandom.method(:hex).
   data(name: 'Jane')

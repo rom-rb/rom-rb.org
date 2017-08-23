@@ -296,7 +296,7 @@ In case of success the command returns an array of messages added to Kafka:
 ```ruby
 # After the setup
 rom = ROM::Configuration.new(:kafka, '127.0.0.1', client_id: :admin)
-greet = rom.commands[:greetings][:greet]
+greet = rom.command(:greetings).greet
 
 greet.call "Hi, Joe", "How're you?"
 # => [
