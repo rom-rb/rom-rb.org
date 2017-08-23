@@ -56,7 +56,7 @@ them in a transaction:</p>
 <span class="n">task</span> <span class="o">=</span> <span class="n">task_repo</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
   <span class="n">user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
 
-  <span class="n">new_task</span> <span class="o">=</span> <span class="n">task_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">title: </span><span class="s1">'Task One'</span><span class="p">).</span><span class="nf">associate</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+  <span class="n">new_task</span> <span class="o">=</span> <span class="n">task_repo</span><span class="p">.</span><span class="nf">tasks</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Task One'</span><span class="p">).</span><span class="nf">associate</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
 
   <span class="n">task_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_task</span><span class="p">)</span>
 <span class="k">end</span>

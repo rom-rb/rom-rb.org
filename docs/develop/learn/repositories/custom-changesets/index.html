@@ -31,7 +31,7 @@ set up a custom changeset class that will do just that:</p>
 <span class="k">end</span>
 </code></pre>
 <p>Now we can easily use this changeset with a user repository:</p>
-<pre class="syntax ruby"><code><span class="n">new_user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+<pre class="syntax ruby"><code><span class="n">new_user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
@@ -55,12 +55,12 @@ without setting it up for any specific relation:</p>
 <span class="k">end</span>
 </code></pre>
 <p>Now we can ask specific root repositories for instances of this changeset:</p>
-<pre class="syntax ruby"><code><span class="n">new_user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+<pre class="syntax ruby"><code><span class="n">new_user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
 
-<span class="n">new_admin</span> <span class="o">=</span> <span class="n">admin_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+<span class="n">new_admin</span> <span class="o">=</span> <span class="n">admin_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
 
 <span class="n">admin_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_admin</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[Admin] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
@@ -84,14 +84,14 @@ a changeset using <code>#by_pk</code> method, which is a common thing to do:</p>
 </code></pre>
 <p>Now we can get our custom changeset and restrict its relation by its primary key:</p>
 <pre class="syntax ruby"><code><span class="n">user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
-<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">UpdateUserChangeset</span><span class="p">).</span><span class="nf">by_pk</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">UpdateUserChangeset</span><span class="p">).</span><span class="nf">by_pk</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
 </code></pre>
 <p>You can also pass data to the restriction method:</p>
 <pre class="syntax ruby"><code><span class="n">user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
-<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">UpdateUserChangeset</span><span class="p">).</span><span class="nf">by_pk</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">)</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">UpdateUserChangeset</span><span class="p">).</span><span class="nf">by_pk</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane Doe" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
@@ -109,8 +109,8 @@ instead of implementing additional method in our changeset:</p>
   <span class="k">end</span>
 <span class="k">end</span>
 
-<span class="n">new_user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span>
-  <span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span>
+<span class="n">new_user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span>
+  <span class="n">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span>
   <span class="nf">with</span><span class="p">(</span><span class="ss">token_generator: </span><span class="no">SecureRandom</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:hex</span><span class="p">).</span>
   <span class="nf">data</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
 

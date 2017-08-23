@@ -34,7 +34,7 @@ work with them:</p>
 
 <span class="n">user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'jane@doe.org'</span><span class="p">)</span>
 
-<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane Doe'</span><span class="p">)</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:update</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane Doe'</span><span class="p">)</span>
 
 <span class="n">changeset</span><span class="p">.</span><span class="nf">diff?</span> <span class="c1"># true</span>
 <span class="n">changeset</span><span class="p">.</span><span class="nf">diff</span> <span class="c1"># {:name=&gt;"Jane Doe"}</span>
@@ -47,7 +47,7 @@ to <code>update</code> command method:</p>
 </code></pre>
 <p>Repositories <strong>will not execute an update command</strong> if there&#39;s no diff between
 the original tuple and the new one, i.e.:</p>
-<pre class="syntax ruby"><code><span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'jane@doe.org'</span><span class="p">)</span>
+<pre class="syntax ruby"><code><span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:update</span><span class="p">,</span> <span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'jane@doe.org'</span><span class="p">)</span>
 
 <span class="n">changeset</span><span class="p">.</span><span class="nf">diff?</span> <span class="c1"># false</span>
 
@@ -82,7 +82,7 @@ having <code>address_*</code> prefix:</p>
 <p>Then we can ask the user repo for our changeset:</p>
 <pre class="syntax ruby"><code><span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">,</span> <span class="ss">address: </span><span class="p">{</span> <span class="ss">city: </span><span class="s1">'NYC'</span><span class="p">,</span> <span class="ss">street: </span><span class="s1">'Street 1'</span> <span class="p">}</span> <span class="p">}</span>
 
-<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="n">user_data</span><span class="p">)</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="n">user_data</span><span class="p">)</span>
 
 <span class="n">changeset</span><span class="p">.</span><span class="nf">to_h</span>
 <span class="c1"># { name: 'Jane', address_city: 'NYC', address_street: 'Street 1' }</span>
@@ -101,7 +101,7 @@ pass <code>tuple</code> argument to the map block:</p>
 
 <span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'Jane'</span> <span class="p">}</span>
 
-<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="n">user_data</span><span class="p">)</span>
+<span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">).</span><span class="nf">data</span><span class="p">(</span><span class="n">user_data</span><span class="p">)</span>
 
 <span class="n">changeset</span><span class="p">.</span><span class="nf">to_h</span>
 <span class="c1"># { name: 'Jane', created_on: &lt;Date: 2017-01-21 ((2457775j,0s,0n),+0s,2299161j)&gt; }</span>
@@ -120,8 +120,8 @@ which means you have access to changeset&#39;s state</p>
 a special changeset class would be an overkill. That&#39;s why it&#39;s possible to apply
 additional mappings at run-time without having to use a custom changeset class.
 To do this simply use <code>Changeset#map</code> method:</p>
-<pre class="syntax ruby"><code><span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span>
-  <span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Joe'</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'joe@doe.org'</span><span class="p">)</span>
+<pre class="syntax ruby"><code><span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span>
+  <span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Joe'</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'joe@doe.org'</span><span class="p">)</span>
   <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="ss">:add_timestamps</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
@@ -131,7 +131,7 @@ To do this simply use <code>Changeset#map</code> method:</p>
 
 <p>Changesets can be committed without the need to use repository command methods. The difference is that by committing a changeset you get back
 raw data returned from your database:</p>
-<pre class="syntax ruby"><code><span class="n">new_user</span> <span class="o">=</span> <span class="n">repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+<pre class="syntax ruby"><code><span class="n">new_user</span> <span class="o">=</span> <span class="n">repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
 <span class="o">=&gt;</span> <span class="c1">#&lt;ROM::Changeset::Create relation=ROM::Relation::Name(users) data={:name=&gt;"Jane"}&gt;</span>
 
 <span class="n">repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>

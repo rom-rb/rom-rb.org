@@ -82,7 +82,7 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 
 <span class="c1"># After the setup</span>
 <span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
-<span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">create_user</span><span class="p">.</span><span class="nf">call</span> <span class="s2">"Joe"</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:create_user</span><span class="p">].</span><span class="nf">call</span> <span class="s2">"Joe"</span>
 <span class="c1"># =&gt; []</span>
 </code></pre>
 <p>The <code>Create</code> command supports DSL methods:</p>
@@ -107,7 +107,7 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 
 <span class="c1"># After the setup</span>
 <span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
-<span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">update_user</span><span class="p">.</span><span class="nf">call</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Frank"</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:update_user</span><span class="p">].</span><span class="nf">call</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"Frank"</span>
 <span class="c1"># =&gt; []</span>
 </code></pre>
 <p>The <code>Update</code> command supports DSL methods:</p>
@@ -134,7 +134,7 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 
 <span class="c1"># After the setup</span>
 <span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
-<span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">delete_user</span><span class="p">.</span><span class="nf">call</span> <span class="mi">1</span>
+<span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:delete_user</span><span class="p">].</span><span class="nf">call</span> <span class="mi">1</span>
 <span class="c1"># =&gt; []</span>
 </code></pre>
 <p>The <code>Delete</code> command supports DSL methods:</p>
@@ -165,7 +165,7 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 
 <span class="c1"># ...after the setup</span>
 <span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span><span class="p">.</span><span class="nf">env</span>
-<span class="n">batch</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">batch</span>
+<span class="n">batch</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:batch</span><span class="p">]</span>
 
 <span class="n">batch</span><span class="p">.</span><span class="nf">add</span> <span class="s2">"DELETE FROM authentication.users WHERE id = 1;"</span>
 <span class="n">batch</span><span class="p">.</span><span class="nf">add</span> <span class="s2">"INSERT INTO logs.users (id, text) VALUES (1, 'Record deleted');"</span>

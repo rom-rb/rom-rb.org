@@ -9,7 +9,7 @@ provide a session API to achieve that via <code>Repository#session</code> method
 a session object to the block and queues your changesets to be persisted in a transaction.</p>
 
 <h2>Saving a single changeset</h2>
-<pre class="syntax ruby"><code><span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+<pre class="syntax ruby"><code><span class="n">changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">session</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
   <span class="n">s</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
@@ -18,8 +18,8 @@ a session object to the block and queues your changesets to be persisted in a tr
 <h2>Saving a changeset with association</h2>
 
 <p>If you configured associations in your schemas, you can associate changesets easily:</p>
-<pre class="syntax ruby"><code><span class="n">user_changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
-<span class="n">task_changeset</span> <span class="o">=</span> <span class="n">task_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">title: </span><span class="s1">'Task 1'</span><span class="p">)</span>
+<pre class="syntax ruby"><code><span class="n">user_changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+<span class="n">task_changeset</span> <span class="o">=</span> <span class="n">task_repo</span><span class="p">.</span><span class="nf">tasks</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Task 1'</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">session</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
   <span class="n">s</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">user_changeset</span><span class="p">.</span><span class="nf">associate</span><span class="p">(</span><span class="n">task_changeset</span><span class="p">,</span> <span class="ss">:user</span><span class="p">))</span>
@@ -30,8 +30,8 @@ a session object to the block and queues your changesets to be persisted in a tr
 <p>You can use all changeset types within the same session, let&#39;s say we want update and create:</p>
 <pre class="syntax ruby"><code><span class="n">user</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-<span class="n">user_changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">task_count: </span><span class="n">user</span><span class="p">.</span><span class="nf">task_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">new_task_changeset</span> <span class="o">=</span> <span class="n">task_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">title: </span><span class="s1">'Another task'</span><span class="p">)</span>
+<span class="n">user_changeset</span> <span class="o">=</span> <span class="n">user_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">task_count: </span><span class="n">user</span><span class="p">.</span><span class="nf">task_count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">new_task_changeset</span> <span class="o">=</span> <span class="n">task_repo</span><span class="p">.</span><span class="nf">tasks</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Another task'</span><span class="p">)</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">session</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
   <span class="n">s</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">new_task_changeset</span><span class="p">.</span><span class="nf">associate</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="ss">:user</span><span class="p">)</span>

@@ -20,10 +20,10 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 <span class="k">end</span>
 
 <span class="c1"># using command composition</span>
-<span class="n">create_user</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">create</span>
-<span class="n">create_task</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">create</span>
+<span class="n">create_user</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:create</span><span class="p">]</span>
+<span class="n">create_task</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:tasks</span><span class="p">][</span><span class="ss">:create</span><span class="p">]</span>
 
-<span class="n">command</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">create_task</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="ss">title: </span><span class="s1">'Task'</span><span class="p">)</span>
+<span class="n">command</span> <span class="o">=</span> <span class="n">create_user</span><span class="p">.</span><span class="nf">curry</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="n">create_task</span><span class="p">.</span><span class="nf">curry</span><span class="p">(</span><span class="ss">title: </span><span class="s1">'Task'</span><span class="p">)</span>
 
 <span class="c1"># rollback happens when any error is raised ie a CommandError from a validator</span>
 <span class="n">command</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
