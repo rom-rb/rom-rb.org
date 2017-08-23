@@ -64,13 +64,13 @@ helpers do
   end
 
   def version
-    current_path[%r{\A([\d\.]+|current|develop)\/}, 1] || data.versions.fallback
+    current_path[%r{\A([\d\.]+|current|next)\/}, 1] || data.versions.fallback
   end
 
   def version_variants
     data.versions.core.map { |v| [v, v] } +
       [["current", "current (#{ data.versions.current })"],
-       ["develop", "develop (#{ data.versions.next })"]]
+       ["next", "next (#{ data.versions.next })"]]
   end
 end
 
