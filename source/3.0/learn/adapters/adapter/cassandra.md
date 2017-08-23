@@ -85,7 +85,7 @@ end
 
 # After the setup
 rom = ROM.finalize.env
-rom.command(:users).create_user.call "Joe"
+rom.commands[:users][:create_user].call "Joe"
 # => []
 ```
 
@@ -111,7 +111,7 @@ end
 
 # After the setup
 rom = ROM.finalize.env
-rom.command(:users).update_user.call 1, "Frank"
+rom.commands[:users][:update_user].call 1, "Frank"
 # => []
 ```
 
@@ -139,7 +139,7 @@ end
 
 # After the setup
 rom = ROM.finalize.env
-rom.command(:users).delete_user.call 1
+rom.commands[:users][:delete_user].call 1
 # => []
 ```
 
@@ -171,7 +171,7 @@ end
 
 # ...after the setup
 rom = ROM.finalize.env
-batch = rom.command(:users).batch
+batch = rom.commands[:users][:batch]
 
 batch.add "DELETE FROM authentication.users WHERE id = 1;"
 batch.add "INSERT INTO logs.users (id, text) VALUES (1, 'Record deleted');"
