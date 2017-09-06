@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(3);
+	module.exports = __webpack_require__(4);
 
 
 /***/ },
@@ -58,10 +58,15 @@
 
 	var _navigationToggler2 = _interopRequireDefault(_navigationToggler);
 
+	var _versionSwticher = __webpack_require__(3);
+
+	var _versionSwticher2 = _interopRequireDefault(_versionSwticher);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	document.addEventListener('DOMContentLoaded', function () {
 	  (0, _navigationToggler2.default)();
+	  (0, _versionSwticher2.default)();
 	});
 
 /***/ },
@@ -94,6 +99,28 @@
 
 /***/ },
 /* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = switchVersion;
+	function switcher() {
+	  return document.getElementById('sidebar__version-switcher');
+	}
+
+	function switchVersion() {
+	  switcher().addEventListener('change', switchVersionHandler);
+	}
+
+	function switchVersionHandler() {
+	  window.document.location = switcher().value;
+	}
+
+/***/ },
+/* 4 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

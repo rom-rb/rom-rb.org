@@ -1,0 +1,5 @@
+h3.sidebar__version
+  'Version:
+  select#sidebar__version-switcher
+    - version_variants.each do |code, name|
+      option value="/#{ current_path.sub(version, code) }" selected=("selected" if code == version) = name

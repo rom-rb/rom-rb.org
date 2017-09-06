@@ -768,10 +768,6 @@ code {
 
 .sidebar {
   margin-bottom: 1.6rem; }
-  @media (min-width: 668px) {
-    .sidebar {
-      padding-top: 2.4rem;
-      margin-top: 0.5rem; } }
   .sidebar__header, .sidebar__header--first {
     margin-bottom: 0.8rem;
     letter-spacing: 0;

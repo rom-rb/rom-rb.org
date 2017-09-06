@@ -1,0 +1,5 @@
+current: "3.0"
+next: "4.0"
+core:
+  - "3.0"
+fallback: "3.0"

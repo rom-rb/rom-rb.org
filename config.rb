@@ -1,10 +1,38 @@
+# This is a monkey-patch to fix the problem with double-watching
+# symlinked directories
+WATCHED_PATHS = Dir["*"] -
+                %w(source node_modules vendor) +
+                Dir["source/*"] -
+                %w(source/current source/next source/learn source/guides)
+
+class ::Middleman::SourceWatcher
+  # The default source watcher implementation. Watches a directory on disk
+  # and responds to events on changes.
+  def listen!
+    return if @disable_watcher || @listener || @waiting_for_existence
+
+    config = {
+      force_polling: @force_polling
+    }
+
+    config[:wait_for_delay] = @wait_for_delay.try(:to_f) || 0.5
+    config[:latency] = @latency.to_f if @latency
+
+    @listener = ::Listen.to(*WATCHED_PATHS, config, &method(:on_listener_change))
+
+    @listener.start
+  end
+end
+
 # Per-page layout changes:
 page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
 page '/', layout: 'layout'
-page '/learn/*', layout: 'guide', data: { sidebar: 'learn/sidebar' }
-page '/guides/*', layout: 'guide', data: { sidebar: 'guides/sidebar' }
+page '/*/learn/*', layout: 'guide', data: { sidebar: '%{version}/learn/sidebar' }
+page '/*/guides/*', layout: 'guide', data: { sidebar: '%{version}/guides/sidebar' }
+page '/learn/*', layout: 'guide', data: { sidebar: '3.0/learn/sidebar' }
+page '/guides/*', layout: 'guide', data: { sidebar: '3.0/guides/sidebar' }
 page '/blog/*', data: { sidebar: 'blog/sidebar' }
 
 def next?
@@ -28,17 +56,17 @@ helpers do
   end
 
   def learn_root_resource
-    sitemap.find_resource_by_destination_path('learn/index.html')
+    sitemap.find_resource_by_destination_path("#{ version }/learn/index.html")
   end
 
   def guides_root_resource
-    sitemap.find_resource_by_destination_path('guides/index.html')
+    sitemap.find_resource_by_destination_path("#{ version }/guides/index.html")
   end
 
   def sections_as_resources(resource)
     sections = resource.data.sections
-    sections.map do |s|
-      destination_path = resource.url + "#{s}/index.html"
+    sections.map do |section|
+      destination_path = resource.url + "#{ section }/index.html"
       sitemap.find_resource_by_destination_path(destination_path)
     end
   end
@@ -59,6 +87,16 @@ helpers do
   def logo_by
     url = 'https://github.com/kapowaz'
     "Logo by #{link_to '@kapowaz', url}."
+  end
+
+  def version
+    current_path[%r{\A([\d\.]+|current|next)\/}, 1] || data.versions.fallback
+  end
+
+  def version_variants
+    data.versions.core.map { |v| [v, v] } +
+      [["current", "current (#{ data.versions.current })"],
+       ["next", "next (#{ data.versions.next })"]]
   end
 end
 
@@ -81,6 +119,8 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     if content.start_with?('api::')
       _, project, klass = content.split('::')
       link_to_api(project, klass, link)
+    elsif link['%{version}']
+      super(link % { version: scope.version }, title, content)
     else
       super
     end
@@ -153,4 +193,9 @@ end
 # Development-specific configuration
 configure :development do
   activate :livereload
+end
+
+begin
+  require 'byebug'
+rescue LoadError
 end
