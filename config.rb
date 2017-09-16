@@ -179,17 +179,6 @@ activate :external_pipeline,
   source: '.tmp/dist',
   latency: 1
 
-if next?
-  activate :deploy do |deploy|
-    deploy.deploy_method = :rsync
-    deploy.host   = 'next.rom-rb.org'
-    deploy.path   = '/var/www/next.rom-rb.org'
-    deploy.clean  = true
-  end
-else
-  activate :deploy, deploy_method: :git
-end
-
 # Development-specific configuration
 configure :development do
   activate :livereload
