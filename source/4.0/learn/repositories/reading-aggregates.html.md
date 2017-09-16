@@ -9,9 +9,6 @@ the root relation, and additional relations provide data for child nodes.
 
 This document uses `rom-sql` which provides support for defining canonical database
 associations in relation schemas, which are used to simplify reading aggregates.
-If an adapter doesn't support association in schemas, you can still load aggregates
-using [`Repository#combine`](http://www.rubydoc.info/gems/rom-repository/ROM/Repository/RelationProxy/Combine) interface,
-which is more advanced and flexible.
 
 ## Relation Schema
 
@@ -70,8 +67,6 @@ access to `:tasks` relation:
 
 ``` ruby
 class UserRepo < ROM::Repository[:users]
-  # we configure this explicitly so we can see that this repo will work with tasks relation too
-  relations :tasks
 end
 ```
 
@@ -89,7 +84,6 @@ means we're going to load a task with its user:
 
 ``` ruby
 class TaskRepo < ROM::Repository[:tasks]
-  relations :users
 end
 
 task_repo = TaskRepo.new(rom)
@@ -109,7 +103,7 @@ An alternative, and faster, way of loading **parent objects** is to use `wrap_pa
 ``` ruby
 class TaskRepo < ROM::Repository[:tasks]
   def by_id_with_user(id)
-    tasks.by_pk(id).wrap_parent(user: task_repo.users).one
+    tasks.by_pk(id).wrap(:user).one
   end
 end
 
@@ -129,8 +123,6 @@ Notice that unlike with `aggregate` method, the parent object does not include *
 Loading aggregates with repositories can be achieved in many different ways, for
 detailed information about invidual methods please refer to the API documentation:
 
+* [api::rom/Relation](#combine)
+* [api::rom/Relation](#wrap)
 * [api::rom-repository::Repository/Root](#aggregate)
-* [api::rom-repository::Repository/RelationProxy](#combine_children)
-* [api::rom-repository::Repository/RelationProxy](#combine_parents)
-* [api::rom-repository::Repository/RelationProxy](#combine)
-* [api::rom-repository::Repository/RelationProxy](#wrap_parent)

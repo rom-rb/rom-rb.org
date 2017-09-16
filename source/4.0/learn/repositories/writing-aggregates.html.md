@@ -57,10 +57,8 @@ along with associated tasks:
 
 ``` ruby
 class UserRepo < ROM::Repository[:users]
-  relations :tasks
-
   def create_with_tasks(user)
-    command(:create, aggregate(:tasks)).call(user)
+    users.combine(:tasks).command(:create).call(user)
   end
 end
 

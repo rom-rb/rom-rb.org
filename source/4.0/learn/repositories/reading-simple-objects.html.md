@@ -112,31 +112,6 @@ user_repo.by_id(1)
 #=> {id: 1, first_name: 'Malcolm', last_name: 'Reynolds'}
 ```
 
-## Mapping To Custom Objects
-
-Repositories can map relations to your custom objects. As a general best-practice
-every public repository method should return materialized, domain objects.
-
-> You can use any object type where constructor accepts a hash with attributes.
-
-Let's tweak our `UserRepo#query` method to return our own user models:
-
-``` ruby
-class User
-  attr_reader :id, :name, :email
-
-  def initialize(attributes)
-    @id, @name, @email = attributes.values_at(:id, :name, :email)
-  end
-end
-
-class UserRepo < ROM::Repository[:users]
-  def query(conditions)
-    users.where(conditions).as(User)
-  end
-end
-```
-
 ## Next
 
 Now we can read simple structs. Next, learn how to [read complex, aggregate data](/%{version}/learn/repositories/reading-aggregates).
