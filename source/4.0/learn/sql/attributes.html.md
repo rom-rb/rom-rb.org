@@ -23,7 +23,7 @@ class Users < ROM::Relation[:sql]
   end
 
   def with_tasks
-    join(:tasks, user_id: :id).qualified
+    join(:tasks, user_id: :id)
     
     # the same will be done when you use a shortcut:
     join(tasks)
@@ -44,7 +44,7 @@ class Users < ROM::Relation[:sql]
   end
 
   def with_tasks
-    prefix(:user).qualified
+    prefix(:user)
   end
   # produces "SELECT users.id AS user_id, users.name AS user_name ..."
 end

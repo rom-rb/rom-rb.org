@@ -26,10 +26,6 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-> ## Auto-qualifying
-> When you pass a relation as the argument for join methods, the resulting relation
-> will have all attributes **qualified** automatically for you
-
 ## Using joins with explicit name and options
 
 If you want to have more control, you can pass table name and additional options yourself:
