@@ -1,0 +1,165 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Mappers</title><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/4.0/learn" class="menu__item__link--is-active">Learn</a></li><li class="menu__item"><a href="/4.0/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h3 class="sidebar__version">Version: <select id="sidebar__version-switcher"><option value="/3.0/learn/core/mappers/index.html">3.0</option><option value="/current/learn/core/mappers/index.html">current (3.0)</option><option value="/next/learn/core/mappers/index.html">next (4.0)</option></select></h3><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/4.0/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/philosophy/" class="sidebar__sub-link">Philosophy</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/why/" class="sidebar__sub-link">Why ROM?</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/overview/" class="sidebar__sub-link">Overview</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/active-record/" class="sidebar__sub-link">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/core/" class="sidebar__link--is-active">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/mappers/" class="sidebar__sub-link--is-active">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/kafka/" class="sidebar__link">Kafka</a></li><li class="sidebar__item"><a href="/4.0/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/glossary/" class="sidebar__link">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Core &raquo; Mappers</h1><p>Mappers are used to process relation data, this may involve merging results from
+multiple relations into nested data structures or instantiating custom objects.
+Relations generate their mappers automatically for most common use cases, but
+mappers are separated from relations, which means you can always define your own
+mappers, whenever you have the need.</p>
+
+<h2>Default relation mappers</h2>
+
+<p>Relations are configured to map automatically to plain hashes by default. When you&#39;re
+using relations via repostories, they are configured to map to <code>ROM::Struct</code> by default,
+and you can define custom struct namespace, if you want your own objects to be instantiated
+instead.</p>
+
+<p>Here&#39;s how default mapping looks like, assuming you have a users relation available:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">has_many</span> <span class="ss">:tasks</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">one</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane"</span><span class="p">}</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">combine</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">one</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane"</span><span class="p">,</span> <span class="ss">:tasks</span><span class="o">=&gt;</span><span class="p">[{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:user_id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:title</span><span class="o">=&gt;</span><span class="s2">"One"</span><span class="p">},</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="ss">:user_id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:title</span><span class="o">=&gt;</span><span class="s2">"Two"</span><span class="p">}]}</span>
+</code></pre>
+<h2>Mapping to custom objects via custom struct namespace</h2>
+
+<p>Relations use <code>auto_struct</code> feature to create <code>ROM::Struct</code> subclasses automatically based
+on information in schemas. <code>ROM::Struct</code> is the default <code>struct_namespace</code> when <code>auto_struct</code>
+is enabled. You can set your own <code>struct_namespace</code> where your custom classes are defined, and
+in this case mappers will use this namespace to find struct classes corresponding to your
+relations.</p>
+<pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">Entities</span>
+  <span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Struct</span>
+    <span class="k">def</span> <span class="nf">full_name</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="n">struct_namespace</span> <span class="no">Entities</span>
+  <span class="n">auto_struct</span> <span class="kp">true</span>
+<span class="k">end</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">one</span>
+<span class="n">user</span><span class="p">.</span><span class="nf">full_name</span>
+<span class="c1"># =&gt; "Jane Doe"</span>
+</code></pre>
+<h3>How struct classes are determined</h3>
+
+<p>Mappers will look for struct classes based on <code>Relation#name</code>, but this is not restricted
+to canonical names of your relations, as they can be aliased too. For instance, you may
+define <code>:admins</code> relation, which is restricted to users with <code>type</code> set to <code>&quot;Admin&quot;</code>. Then
+if you have a <code>Entities::Admin</code> class, it will be used as the struct class for <code>:admins</code>
+relation.</p>
+<pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">Entities</span>
+  <span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Struct</span>
+    <span class="k">def</span> <span class="nf">admin?</span>
+      <span class="kp">false</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">class</span> <span class="nc">Admin</span> <span class="o">&lt;</span> <span class="no">User</span>
+    <span class="k">def</span> <span class="nf">admin?</span>
+      <span class="kp">true</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Admins</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">dataset</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">type: </span><span class="s2">"Admin"</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">schema</span><span class="p">(</span><span class="ss">:users</span><span class="p">,</span> <span class="ss">as: :admins</span><span class="p">,</span> <span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="n">struct_namespace</span> <span class="no">Entities</span>
+  <span class="n">auto_struct</span> <span class="kp">true</span>
+<span class="k">end</span>
+
+<span class="n">admin</span> <span class="o">=</span> <span class="n">admins</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">one</span>
+
+<span class="n">admin</span><span class="p">.</span><span class="nf">admin?</span>
+<span class="c1"># true</span>
+</code></pre>
+<blockquote>
+<h4>Usage with repositories</h4>
+
+<p>It is advised to configure struct_namespace in repositories, as it&#39;s the appropriate
+layer where application-specific data structures are coming from.</p>
+</blockquote>
+
+<h2>Mapping to custom objects explicitly</h2>
+
+<p>You can ask a relation to instantiate your own objects via <code>Relation#map_to</code> interface.
+Your object class must have a constructor which accepts a hash with attributes.</p>
+
+<p>Here&#39;s a simple example:</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">User</span>
+  <span class="kp">attr_reader</span> <span class="ss">:attributes</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+    <span class="vi">@attributes</span> <span class="o">=</span> <span class="n">attributes</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">[]</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="n">attributes</span><span class="p">[</span><span class="nb">name</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">map_to</span><span class="p">(</span><span class="no">User</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;User:0x007fa7eabf1a50 @attributes={:id=&gt;1, :name=&gt;"Jane"}&gt;</span>
+</code></pre>
+<h2>Using custom mappers</h2>
+
+<p>A mapper can be any object which responds to <code>#call</code>, which accepts a relation and
+return an array with results back. This means a simple proc will be just fine:</p>
+<pre class="syntax ruby"><code><span class="n">user_name_mapper</span> <span class="o">=</span> <span class="o">-&gt;</span> <span class="n">users</span> <span class="p">{</span> <span class="n">users</span><span class="p">.</span><span class="nf">pluck</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="n">user_names</span> <span class="o">=</span> <span class="n">users</span> <span class="o">&gt;&gt;</span> <span class="n">user_name_mapper</span>
+
+<span class="n">user_names</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"Jane"</span><span class="p">,</span> <span class="s2">"John"</span><span class="p">]</span>
+</code></pre>
+<p>Typically though, custom mappers will be used in more complex cases, when the underlying database
+doesn&#39;t provide enough functionality that&#39;s needed to get desired data structures. In such cases,
+you can define mapper classes and configure mapping there.</p>
+<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">MyMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Transformer</span>
+  <span class="n">relation</span> <span class="ss">:users</span>
+  <span class="n">register_as</span> <span class="ss">:my_mapper</span>
+
+  <span class="n">map_array</span> <span class="k">do</span>
+    <span class="c1"># define custom transformations here</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<p>With a custom mapper configured, you can use <code>Relation#map_with</code> interface to send relation data
+through your mapper:</p>
+<pre class="syntax ruby"><code><span class="n">users</span><span class="p">.</span><span class="nf">map_with</span><span class="p">(</span><span class="ss">:my_mapper</span><span class="p">).</span><span class="nf">to_a</span>
+</code></pre>
+<p><code>ROM::Transformer</code> is powered by <a href="https://github.com/solnic/transproc#transformer">transproc</a>.</p>
+
+<h2>Learn more</h2>
+
+<ul>
+<li><a href="http://www.rubydoc.info/gems/rom/ROM/Relation#.schema-class_method">Relation.schema</a></li>
+<li><a href="http://www.rubydoc.info/gems/rom/ROM/Relation#.auto_struct-class_method">Relation.auto_struct</a></li>
+<li><a href="http://www.rubydoc.info/gems/rom/ROM/Relation#.struct_namespace-class_method">Relation.struct_namespace</a></li>
+<li><a href="http://www.rubydoc.info/gems/rom/ROM/Relation#map_to-instance_method">Relation#map_to</a></li>
+<li><a href="http://www.rubydoc.info/gems/rom/ROM/Relation#map_with-instance_method">Relation#map_with</a></li>
+<li><a href="http://www.rubydoc.info/gems/rom/ROM//Transformer">ROM::Transformer</a></li>
+</ul>
+</div></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2017 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>
