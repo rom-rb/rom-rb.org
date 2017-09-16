@@ -9,7 +9,6 @@ sections:
   - joins
   - transactions
   - migrations
-  - commands
 ---
 
 ROM supports SQL databases via `rom-sql` adapter which currently uses
