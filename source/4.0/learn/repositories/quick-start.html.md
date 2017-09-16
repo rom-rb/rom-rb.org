@@ -20,6 +20,12 @@ rom = ROM.container(:sql, 'sqlite::memory') do |conf|
     column :name, String, null: false
     column :email, String, null: false
   end
+
+  class Users < ROM::Relation[:sql]
+    schema(infer: true)
+  end
+
+  conf.register_relation(Users)
 end
 ```
 
