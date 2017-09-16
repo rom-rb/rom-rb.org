@@ -142,20 +142,38 @@ end
 class Accounts < ROM::Relation[:sql]
   schema(infer: true)
 
-  view(:ordered) do
-    schema do
-      append(users_accounts[:position])
-    end
-
-    relation do
-      order(:position)
-    end
+  def ordered
+    select_append(users_accounts[:position]).order(:position)
   end
 end
 ```
 
 This way when you load users with their accounts, they will include `:position`
 attribute from the join table and will be ordered by that attribute.
+
+## Overridding associations with custom views
+
+You can use `:override` option along with `:view` and specify which relation view
+should be used to **override** default association relation.
+
+``` ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      has_many :public_accounts, view: :for_users, override: true
+    end
+  end
+end
+
+class Accounts < ROM::Relation[:sql]
+  schema(infer: true)
+
+  def for_users(assoc, users)
+    join(:users_accounts, account_id: :id).
+      where(type: "Public", assoc[:target_key] => users.pluck(:id))
+  end
+end
+```
 
 ## Using associations to manually preload relations
 
