@@ -76,7 +76,7 @@ class Users < ROM::Relation[:sql]
   schema(infer: true)
 
   def index
-    select { [id.qualified, name.qualified] }
+    select { [id, name] }
   end
 end
 ```
@@ -139,19 +139,6 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-If you want to qualify column, you need to use schema attributes instead of plain symbols:
-
-``` ruby
-class Users < ROM::Relation[:sql]
-  schema(infer: true)
-
-  def by_name(name)
-    where(self[:name].qualified => name)
-    # ... WHERE ("users"."name" = 'Jane') ...
-  end
-end
-```
-
 ### Complex conditions
 
 If you pass a block to `where` you can use restriction DSL to compose more complex conditions:
@@ -194,7 +181,7 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-## Orders
+## Order
 
 `order` method with block will order your query:
 
@@ -211,7 +198,6 @@ class Users < ROM::Relation[:sql]
   end
 end
 ```
-
 
 ## Learn more
 
