@@ -2,10 +2,6 @@
 chapter: Advanced
 sections:
   - explicit-setup
-  - combine
-  - commands
-  - custom-commands
-  - mappers
   - how-to-build-an-adapter
 ---
 
