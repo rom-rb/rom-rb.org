@@ -154,7 +154,11 @@ attribute from the join table and will be ordered by that attribute.
 ## Overridding associations with custom views
 
 You can use `:override` option along with `:view` and specify which relation view
-should be used to **override** default association relation.
+should be used to **override** default association relation. Let's say we have `Users`
+that have many `Accounts` and we want to provide our custom query to fetch all accounts
+for particular users, we can achieve that by defining `Accounts#for_users` and setting it
+as the overridden association view in `Users` associations. This method receives related
+association object, and a loaded users relation.
 
 ``` ruby
 class Users < ROM::Relation[:sql]
@@ -174,6 +178,13 @@ class Accounts < ROM::Relation[:sql]
   end
 end
 ```
+
+There are 2 requirements that every overridden association view must meet:
+
+- They must always return a relation instance
+- Returned relation's schema **must include a valid combine key**, which is used
+  to merge data into nested structures. Typically, combine keys are simply the same
+  as join keys. See `Combine keys vs join keys` sub-section to learn more
 
 ## Using associations to manually preload relations
 
