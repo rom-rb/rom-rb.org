@@ -5,18 +5,18 @@ title: Schemas
 
 Schemas define explicit attribute names and types within a relation. All adapters
 support relation schemas, and adapter-specific extensions can be provided as well,
-for example `rom-sql` extends schema DSL with support for defining associations.
+for example `rom-sql` extends schema DSL with support for database-specific types.
 
 Apart from adapter-specific extensions, schemas can be *extended by you* since
-you can define your own *types*. That's how `rom-sql` provides its own PostgreSQL
-types.
+you can define your own *types* as well as your own custom methods available on
+attribute objects.
 
 ## Why?
 
-First of all, because schemas give an explicit definition for the data
-structures a given relation returns.
+First of all, because schemas give an explicit definition for the data structures
+a given relation returns.
 
-Both **relations** and **commands** can use schemas to process data, this gives
+Both **relations** and **commands** use schemas to process data, this gives
 you type-safe commands out-of-the-box, with optional ability to perform low-level
 database coercions (like coercing a hash to a PG hash etc.), as well as optional
 coercions when reading data.
@@ -134,12 +134,11 @@ Here we defined a `:namespace` meta-information, that can be used accessed via
 Users.schema[:name].meta[:namespace] # 'details'
 ```
 
+## Using `write` types
 
-## Commands & Schemas
-
-If you define a schema for a relation, its commands will automatically use it
-when processing the input. This allows us to perform database-specific coercions,
-setting default values or optionally applying low-level constraints.
+Relations commands will automatically use schema attributes when processing the input.
+This allows us to perform database-specific coercions, setting default values or applying
+low-level constraints.
 
 Let's say our setup requires generating a UUID prior executing a command:
 
@@ -159,6 +158,23 @@ Now when you persist data using [repositories](/%{version}/learn/repositories) o
 [custom commands](/%{version}/learn/advanced/custom-commands), your schema will be used
 to process the input data, and our `:id` value will be handled by the `UUID` type.
 
+## Using `read` types
+
+Apart from `write` types, you can also specify `read` types, these are used by relations
+when they read data from a database. You can define them using `:read` option:
+
+``` ruby
+class Users < ROM::Relation[:http]
+  schema do
+    attribute :id, Types::Serial
+    attribute :name, Types::String
+    attribute :birthday, Types::String, read: Types::Coercible::Date
+  end
+end
+```
+
+Now when `Users` relation reads it data, `birthday` values will be processed via `Types::Coercible::Date`.
+
 ## Type System
 
 Schemas use a type system from [dry-types](http://dry-rb.org/gems/dry-types) and
@@ -170,7 +186,7 @@ Here are a couple of guidelines that should help you in making right decisions:
 
 * Don't treat relation schemas as a complex coercion system that is used against
   data received at the HTTP boundary (ie rack request params)
-* Coercion logic in schemas should be low-level (eg. Hash => PGHash in rom-sql)
+* Coercion logic for input should be low-level (eg. Hash => PGHash in rom-sql)
 * Default values should be used as a low-level guarantee that some value is
   **always set** before making a change in your database. Generating a unique id
   is a good example. For default values that are closer to your application domain
