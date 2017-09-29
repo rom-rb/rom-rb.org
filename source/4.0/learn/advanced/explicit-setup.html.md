@@ -70,7 +70,7 @@ organization, for example:
 ``` ruby
 # lib/relations/users.rb
 module Relations
-  class Users < ROM::Relation[:sql]
+  class Users < ROM::Relation[:memory]
     schema(infer: true)
   end
 end
@@ -85,6 +85,31 @@ configuration = ROM::Configuration.new(:memory)
 configuration.auto_registration('/path/to/lib')
 container = ROM.container(configuration)
 ```
+
+In special cases where the components are located deeper in the file structure all you have
+to do is provide the path to the outer most module and the rest will be inferred from
+the directory structure:
+
+```ruby
+# lib/persistence/relations/users.rb
+module Persistence
+  module Relations
+    class Users < ROM::Relation[:memory]
+      schema(:users, infer: true) # Notice the dataset name is set explicitly
+    end
+  end
+end
+
+configuration = ROM::Configuration.new(:memory)
+configuration.auto_registration('root_dir/lib/persistence/')
+container = ROM.container(configuration)
+
+```
+
+In this scenario the [Dataset](/%{version}/glossary/#dataset) name will need to be set
+explicitly otherwise the fully qualified relation name will be used, in this case
+`:persistence_relations_users`.
+
 
 #### Explicit namespace name
 
@@ -102,12 +127,44 @@ module Persistence
 end
 ```
 
-Since we use `Persistence` as our namespace, we need to set it explicitly:
+Notice that the directory structure is different from our module structure. Since we use `Persistence`
+as our namespace, we need to set it explicitly so ROM can locate our relation after loading:
 
 ```ruby
 configuration = ROM::Configuration.new(:memory)
 configuration.auto_registration('/path/to/lib', namespace: 'Persistence')
 container = ROM.container(configuration)
+```
+
+Keep in mind with this namespace strategy, each component must be located under a module matching the
+components name:
+
+```ruby
+# Commands
+# lib/commands/update_user_command.rb
+module Persistence
+  module Commands
+    class UpdateUserCommand < ROM::SQL:Commands::Create
+      relation :users
+      register_as :update_user_command
+      
+      def execute(tuple); end
+    end
+  end
+end
+
+# Mappers
+# lib/mappers/user_mapper.rb
+module Persistence
+  module Mappers
+    class UserMapper < ROM::Transformer
+      relation :users
+      register_as :user_mapper
+      
+      map_array do; end
+    end
+  end
+end
 ```
 
 #### Turning namespace off
