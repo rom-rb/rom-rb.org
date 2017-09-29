@@ -51,25 +51,26 @@ handle that yourself.
 
 ``` ruby
 require 'rom-sql'
-require 'rom/sql/types/pg'
 
 class Users < ROM::Relation[:sql]
   schema do
-    attribute :meta, Types::PG::JSON
-    attribute :tags, Types::PG::Array
-    attribute :info, Types::PG::Hash
+    attribute :meta, Types::PG::JSONB
+    attribute :tags, Types::PG::Array('varchar')
+    attribute :info, Types::PG::HStore
   end
 end
 
 Users.schema[:meta][{ name: 'Jane' }].class
-# Sequel::Postgres::JSONHash
+# Sequel::Postgres::JSONBHash
 
 Users.schema[:meta][[1, 2, 3]].class
-# Sequel::Postgres::JSONArray
+# Sequel::Postgres::JSONBArray
 
 Users.schema[:tags][%w(red green blue)].class
-# Sequel::Postgres::JSONArray
+# => Sequel::Postgres::PGArray
 
 Users.schema[:info][{ some: 'info' }].class
-# Sequel::Postgres::JSONHash
+# => Sequel::Postgres::HStore
 ```
+
+For getting `hstore` to work be sure you have the `pg_hstore` extension loaded.
