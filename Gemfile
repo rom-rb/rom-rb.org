@@ -14,5 +14,5 @@ gem 'slim'
 gem 'redcarpet'
 
 group :development do
-  gem 'byebug'
+  gem 'pry-byebug'
 end

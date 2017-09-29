@@ -9,7 +9,8 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     backports (3.8.0)
-    byebug (9.0.6)
+    byebug (9.1.0)
+    coderay (1.1.2)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -40,6 +41,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     memoist (0.16.0)
+    method_source (0.9.0)
     middleman (4.2.1)
       coffee-script (~> 2.2)
       compass-import-once (= 1.0.5)
@@ -95,6 +97,12 @@ GEM
     padrino-support (0.13.3.4)
       activesupport (>= 3.1)
     parallel (1.12.0)
+    pry (0.11.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
+    pry-byebug (3.5.0)
+      byebug (~> 9.1)
+      pry (~> 0.10)
     public_suffix (2.0.5)
     rack (2.0.3)
     rack-livereload (0.3.16)
@@ -122,12 +130,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
   middleman (~> 4.0)
   middleman-blog
   middleman-livereload
   middleman-syntax
   nokogiri
+  pry-byebug
   redcarpet
   slim
 

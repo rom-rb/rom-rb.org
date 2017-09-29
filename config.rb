@@ -93,6 +93,10 @@ helpers do
     current_path[%r{\A([\d\.]+|current|next)\/}, 1] || data.versions.fallback
   end
 
+  def versions_match?(v1, v2)
+    v1 == v2 || v1 == 'next' && v2 == data.versions.next
+  end
+
   def version_variants
     data.versions.core.map { |v| [v, v] } +
       [["current", "current (#{ data.versions.current })"],
@@ -185,6 +189,6 @@ configure :development do
 end
 
 begin
-  require 'byebug'
+  require 'pry-byebug'
 rescue LoadError
 end
