@@ -9,6 +9,7 @@ sections:
   - joins
   - transactions
   - migrations
+  - advanced-pg-support
 ---
 
 ROM supports SQL databases via `rom-sql` adapter which currently uses
