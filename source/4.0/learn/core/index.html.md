@@ -4,6 +4,7 @@ sections:
   - relations
   - schemas
   - associations
+  - combines
   - changesets
   - commands
   - mappers
@@ -16,6 +17,7 @@ section.
 - [Relations](/%{version}/learn/core/relations) explains the purpose and basic usage of relations
 - [Schemas](/%{version}/learn/core/schemas) explains how you can leverage relation schemas
 - [Associations](/%{version}/learn/core/associations) explains how associations work
+- [Combines](/%{version}/learn/core/combines) explains how to combine relations 
 - [Changesets](/%{version}/learn/core/changesets) explains the purpose and basic usage of changesets
 - [Commands](/%{version}/learn/core/commands) explains the purpose and basic usage of commands
 - [Mappers](/%{version}/learn/core/mappers) explains the purpose and basic usage of mappers
