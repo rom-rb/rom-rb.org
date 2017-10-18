@@ -98,9 +98,11 @@ helpers do
   end
 
   def version_variants
-    data.versions.core.map { |v| [v, v] } +
-      [["current", "current (#{ data.versions.current })"],
-       ["next", "next (#{ data.versions.next })"]]
+    next_vs = data.versions.show_next ? [["next", "next (#{ data.versions.next })"]] : []
+
+    [*data.versions.core.map { |v| [v, v] },
+     ["current", "current (#{ data.versions.current })"],
+     *next_vs]
   end
 
   GH_NEW_ISSUE_URL = "https://github.com/rom-rb/rom-rb.org/issues/new?labels=%{labels}&assignees=%{assignees}&title=%{title}".freeze

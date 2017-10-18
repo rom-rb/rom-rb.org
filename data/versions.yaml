@@ -1,5 +1,7 @@
-current: "3.0"
+current: "4.0"
 next: "4.0"
 core:
   - "3.0"
-fallback: "3.0"
+  - "4.0"
+fallback: "4.0"
+show_next: false
