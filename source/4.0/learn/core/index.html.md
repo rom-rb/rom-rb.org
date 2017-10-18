@@ -6,6 +6,7 @@ sections:
   - associations
   - changesets
   - commands
+  - structs
   - mappers
 ---
 
@@ -18,4 +19,5 @@ section.
 - [Associations](/%{version}/learn/core/associations) explains how associations work
 - [Changesets](/%{version}/learn/core/changesets) explains the purpose and basic usage of changesets
 - [Commands](/%{version}/learn/core/commands) explains the purpose and basic usage of commands
+- [Structs](/%{version}/learn/core/structs) explains the purpose and basic usage of structs
 - [Mappers](/%{version}/learn/core/mappers) explains the purpose and basic usage of mappers
