@@ -102,6 +102,26 @@ helpers do
       [["current", "current (#{ data.versions.current })"],
        ["next", "next (#{ data.versions.next })"]]
   end
+
+  GH_NEW_ISSUE_URL = "https://github.com/rom-rb/rom-rb.org/issues/new?labels=%{labels}&assignees=%{assignees}&title=%{title}".freeze
+  def feedback_link
+    tokens = {
+      title: "Feedback on #{URI.encode(head_title)}",
+      labels: "feedback",
+      assignees: "solnic"
+    }
+
+    link_to "Provide feedback!", GH_NEW_ISSUE_URL % tokens, class: "button"
+  end
+
+  GH_EDIT_FILE_URL = "https://github.com/rom-rb/rom-rb.org/blob/master/source/%{current_path}".freeze
+  def edit_file_link
+    link_to "Edit on GitHub", GH_EDIT_FILE_URL % { current_path: current_source_file}, class: "button"
+  end
+
+  def current_source_file
+    "#{current_path}.slim"
+  end
 end
 
 # General configuration

@@ -22,3 +22,16 @@
 
 // Modules
 @import '_modules/**/*';
+
+.feedback {
+  margin-top: 1rem;
+
+  .inline-buttons {
+    float: right;
+  }
+
+  .button {
+    margin-left: 1rem;
+    font-size: 0.65rem;
+  }
+}
