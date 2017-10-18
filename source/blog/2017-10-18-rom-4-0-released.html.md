@@ -170,10 +170,10 @@ There are dozens of other improvements and new features, to quickly summarize fe
 
 This is a major release with breaking changes. Please refer to [the upgrade guide](https://github.com/rom-rb/rom/wiki/4.0-Upgrade-Guide) for more information. As part of 4.0.0, following gems have been released:
 
-* `rom-core 4.0.0` [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/master/core/CHANGELOG.md)
-* `rom-mapper 1.0.0` [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/master/mapper/CHANGELOG.md)
-* `rom-repository 1.0.0` [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/master/repository/CHANGELOG.md)
-* `rom-changeset 1.0.0` [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/master/changeset/CHANGELOG.md)
+* `rom-core 4.0.0` [CHANGELOG](https://github.com/rom-rb/rom/blob/master/core/CHANGELOG.md)
+* `rom-mapper 1.0.0` [CHANGELOG](https://github.com/rom-rb/rom/blob/master/mapper/CHANGELOG.md)
+* `rom-repository 1.0.0` [CHANGELOG](https://github.com/rom-rb/rom/blob/master/repository/CHANGELOG.md)
+* `rom-changeset 1.0.0` [CHANGELOG](https://github.com/rom-rb/rom/blob/master/changeset/CHANGELOG.md)
 * `rom 4.0.0` [CHANGELOG](https://github.com/rom-rb/rom/blob/master/CHANGELOG.md) - this is now a meta-gem which depends on all core components
 * `rom-sql 2.0.0` [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md)
 
