@@ -794,3 +794,11 @@ code {
     margin-bottom: 0rem; }
   .sidebar__sub-link {
     font-weight: 400; }
+
+.feedback {
+  margin-top: 1rem; }
+  .feedback .inline-buttons, .feedback .inline-buttons--stacked {
+    float: right; }
+  .feedback .button, .feedback .button--secondary, .feedback .button--disabled {
+    margin-left: 1rem;
+    font-size: 0.65rem; }
