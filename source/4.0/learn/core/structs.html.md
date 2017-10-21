@@ -132,4 +132,4 @@ users.by_pk(1).map_to(User)
 
 ## Learn more
 
-* [api::rom](Struct)
+* [api::rom-mapper](Struct)

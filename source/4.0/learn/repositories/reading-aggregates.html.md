@@ -123,6 +123,6 @@ Notice that unlike with `aggregate` method, the parent object does not include *
 Loading aggregates with repositories can be achieved in many different ways, for
 detailed information about invidual methods please refer to the API documentation:
 
-* [api::rom/Relation](#combine)
-* [api::rom/Relation](#wrap)
+* [api::rom-core/Relation](#combine)
+* [api::rom-core/Relation](#wrap)
 * [api::rom-repository::Repository/Root](#aggregate)
