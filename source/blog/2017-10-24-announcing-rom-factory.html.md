@@ -61,7 +61,7 @@ You can also re-use values from other attributes:
 ``` ruby
 MyFactory.define(:user) do |f|
   f.name "Jane"
-  f.email { |name| "#{name}@rom-rb.org" }
+  f.email { "#{name}@rom-rb.org" }
 end
 ```
 
