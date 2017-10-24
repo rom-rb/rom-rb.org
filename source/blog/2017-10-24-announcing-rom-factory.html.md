@@ -7,7 +7,7 @@ author: Piotr Solnica
 
 We're happy to announce a new project that we've been working on - rom-factory. The project was originally started by [Jānis Miezītis](https://github.com/janjiss) back in 2016, and then it was moved to rom-rb organization in March 2017. As you can probably guess, rom-factory is a data generator library, similar to FactoryBot (previously known as FactoryGirl) or Fabrication. It's built on top of rom-rb and has a sweet integration with Faker gem.
 
-Let's take a look how it looks like.
+Let's see how it looks like.
 
 ## Factories
 
