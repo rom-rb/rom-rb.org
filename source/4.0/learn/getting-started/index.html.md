@@ -9,11 +9,16 @@ sections:
 Choose one or more adapters that you intend to use, and run the install command
 for each one (or add it to your `Gemfile`)
 
-Compatible with rom 3.0:
+Compatible with rom 4.0:
 
 |Adapter|Install Command|On production?|
 |-------|---------------|---|
 |SQL|`gem install rom-sql`| √ |
+
+Compatible with rom 3.0:
+
+|Adapter|Install Command|On production?|
+|-------|---------------|---|
 |YAML|`gem install rom-yaml`| √ |
 |CouchDB|`gem install rom-couchdb`| √ |
 |HTTP|`gem install rom-http`| √ |
