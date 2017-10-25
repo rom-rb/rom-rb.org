@@ -6,7 +6,5 @@ sections:
 ---
 
 * [Explicit Setup](/%{version}/learn/advanced/explicit-setup) - multi-file, explicit setup with components defined as classes
-* [Combining Relation Results](/%{version}/learn/advanced/combine)
-* [Standalone Commands](/%{version}/learn/advanced/commands)
-* [Custom Commands](/%{version}/learn/advanced/custom_commands)
-* [Custom Mappers](/%{version}/learn/advanced/mappers)
+* [Custom Adapter](/%{version}/learn/advances/how-to-build-an-adapter) - Instructions
+on how to build a custom adapter that works with ROM
