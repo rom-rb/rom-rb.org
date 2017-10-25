@@ -45,7 +45,9 @@ class Users < ROM::Relation[:memory]
   schema do
     attribute :id, Types::Int
     attribute :name, Types::String
-
+    
+    primary_key :id
+    
     associations do
       has_many :tasks, combine_key: :user_id, override: true, view: :for_users
     end
@@ -57,6 +59,8 @@ class Tasks < ROM::Relation[:memory]
     attribute :id, Types::Int
     attribute :user_id, Types::Int
     attribute :title, Types::String
+    
+    primary_key :id
   end
 
   def for_users(_assoc, users)
