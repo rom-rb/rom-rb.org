@@ -6,20 +6,25 @@ title: Connecting to existing database
 This article assumes:
 
 * You have a database called `my_db`
-* There's a table called `users`
+* There's a table called `users` with `name` column
 
 To connect to your database and define a repository for `users` table, simply do:
 
 ``` ruby
-rom = ROM.container(
-  :sql, 'postgres://localhost/my_db', username: 'user', password: 'secret'
-)
+require "rom"
 
-class UserRepo < ROM::Repository[:users]
-  commands :create
+rom = ROM.container(:sql, 'postgres://localhost/my_db', username: 'user', password: 'secret') do |config|
+  config.relation(:users) do
+    schema(infer: true)
+    auto_struct true
+  end
 end
 
-user_repo = UserRepo.new(rom)
+users = rom.relations[:users]
+
+users.changeset(:create, name: "Jane").commit
+
+jane = users.where(name: "Jane").one
 ```
 
 ## Learn more
