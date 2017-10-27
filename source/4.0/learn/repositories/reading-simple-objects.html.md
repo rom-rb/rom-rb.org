@@ -9,7 +9,16 @@ your app:
 
 ```ruby
 # Assuming a database with tables 'users' and 'projects'
-rom = ROM.container(:sql, 'sqlite::memory')
+rom = ROM.container(:sql, 'sqlite::memory') do |config|
+  config.relation(:users) do
+    schema(infer: true)
+    auto_struct true
+  end
+  config.relation(:projects) do
+    schema(infer: true)
+    auto_struct true
+  end
+end
 
 # Perhaps one Repo to handle users
 class UserRepo < ROM::Repository[:users]
