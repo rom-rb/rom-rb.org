@@ -8,7 +8,16 @@ ga('send', 'pageview');</script></head><body class="current current_learn curren
 the data. One rough guideline is to make a repository for each concept within
 your app:</p>
 <pre class="syntax ruby"><code><span class="c1"># Assuming a database with tables 'users' and 'projects'</span>
-<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="n">auto_struct</span> <span class="kp">true</span>
+  <span class="k">end</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:projects</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="n">auto_struct</span> <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
 <span class="c1"># Perhaps one Repo to handle users</span>
 <span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
