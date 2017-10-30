@@ -1,7 +1,10 @@
 require 'tilt'
 require 'middleman-core/renderers/redcarpet'
+require_relative './markdown_preprocessors'
 
 class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
+  include MarkdownPreprocessors
+  
   DEFAULT_OPTS = {
     tables: true,
     autolink: true,
