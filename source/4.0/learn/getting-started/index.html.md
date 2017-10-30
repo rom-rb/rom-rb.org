@@ -2,6 +2,7 @@
 chapter: Getting Started
 title: Installation
 sections:
+  - core-concepts
   - setup-dsl
   - rails-setup
 ---
