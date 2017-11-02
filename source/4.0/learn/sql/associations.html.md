@@ -3,8 +3,7 @@ chapter: SQL
 title: Associations
 ---
 
-Relation schemas in SQL land can be used to define canonical associations. These
-definitions play important role in automatic mapping of aggregates in repositories.
+Relation schemas in SQL land can be used to define canonical associations. These definitions play important role in automatic mapping of aggregates.
 
 ## belongs_to (many-to-one)
 
@@ -120,7 +119,7 @@ class Post < ROM::Relation[:sql]
 end
 ```
 
-> The alias is used by repositories, which means that in our example, if you load
+> The alias is used by auto-mapping, which means that in our example, if you load
 > an aggregate with posts and its authors, the attribute name in post structs
 > will be called **author**
 
