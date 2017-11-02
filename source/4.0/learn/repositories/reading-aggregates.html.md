@@ -101,6 +101,6 @@ that doesn't really exist in our schema.
 Loading aggregates with repositories can be achieved in many different ways, for
 detailed information about invidual methods please refer to the API documentation:
 
-* [api::rom-core/Relation](#combine)
-* [api::rom-core/Relation](#wrap)
+* [api::rom-core::Relation](#combine)
+* [api::rom-core::Relation](#wrap)
 * [api::rom-repository::Repository/Root](#aggregate)
