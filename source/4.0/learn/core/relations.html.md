@@ -57,6 +57,45 @@ class Users < ROM::Relation
 end
 ```
 
+## Materializing relations
+
+To materialize a relation means asking it to load its data from a database. Relations can be materialized in a couple of ways, and you should be cautious about when it's happening, so that the minimum amount of interactions with a database takes place.
+
+### Getting all results
+
+To get all results, simply coerce a relation to an array via `Relation#to_a`:
+
+``` ruby
+users.to_a
+=> [{:id=>1, :name=>"Jane Doe"}, {:id=>2, :name=>"John Doe"}]
+```
+
+### Getting a single result
+
+To materialize a relation and retrieve just a single result, use `#one` or `#one!`:
+
+```ruby
+# Produces a single result or nil if none found.
+# Raises an error if there are more than one.
+users.one
+
+# Produces a single tuple.
+# Raises an error if there are 0 results or more than one.
+users.one!
+```
+
+### Iteration
+
+If you start iterating over a relation via `Relation#each`, the relation will get its data via `#to_a` and yield results to the block.
+
+``` ruby
+users.each do |user|
+ puts user[:name]
+end
+# Jane Doe
+# John Doe
+```
+
 ### Next
 
 Now let's see how you can use [relation schemas](/%{version}/learn/core/schemas).

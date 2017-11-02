@@ -57,24 +57,6 @@ end
 Read your adapter's documentation to see the full listing of its Relation
 methods.
 
-## Single Results vs Many Results
-
-Every relation is lazy loading and most methods return another relation. To
-materialize the relation and get actual data, use `#one`, `#one!`, or `#to_a`.
-
-```ruby
-# Produces a single tuple or nil if none found.
-# Raises an error if there are more than one.
-users.one
-
-# Produces a single tuple.
-# Raises an error if there are 0 results or more than one.
-users.one!
-
-# Produces an array of tuples, possibly empty.
-users.to_a
-```
-
 ## Full Example
 
 This short example demonstrates using selector methods, #one, and #to_a.
