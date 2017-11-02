@@ -96,28 +96,6 @@ Notice that in this case `User` struct is loaded as a child object where `Task`
 is a parent, thus `User` has `task_id` assigned, which is **a virtual foreign key**
 that doesn't really exist in our schema.
 
-### Loading aggregates using wrapping
-
-An alternative, and faster, way of loading **parent objects** is to use `wrap_parent` method:
-
-``` ruby
-class TaskRepo < ROM::Repository[:tasks]
-  def by_id_with_user(id)
-    tasks.by_pk(id).wrap(:user).one
-  end
-end
-
-task_repo.by_id_with_user(id)
-# => #<ROM::Struct[Task] id=1 user_id=1 title="Jane Task" user=#<ROM::Struct[User] id=1 name="jane" email="jane@doe.org">>
-```
-
-Notice that unlike with `aggregate` method, the parent object does not include **a virtual foreign key**.
-
-> #### Performance and availability
-> `wrap_parent` is **only available in rom-sql**, which uses a join instead of eager-loading
-> and **it's significantly faster** than using `aggregate`. Other adapters can implement this
-> interface too, assuming it makes sense in case of a given data source.
-
 ## Learn more
 
 Loading aggregates with repositories can be achieved in many different ways, for
