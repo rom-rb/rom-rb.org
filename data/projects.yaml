@@ -21,8 +21,6 @@
 -
   name: rom-kafka
 -
-  name: rom-lotus
--
   name: rom-mongo
 -
   name: rom-neo4j
