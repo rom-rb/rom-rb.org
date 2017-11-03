@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "building the site"
-bundle exec middleman build > /dev/null
+BUILD=true bundle exec middleman build > /dev/null
 
 echo "pushing the build"
 git add -A && git commit -m "Deploy" && git push origin master
