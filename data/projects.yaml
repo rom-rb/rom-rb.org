@@ -1,23 +1,40 @@
-- rom-core
-- rom-changeset
-- rom-repository
-- rom-mapper
-- rom-sql
-- rom-cassandra
-- rom-couchdb
-- rom-csv
-- rom-event_store
-- rom-git
-- rom-http
-- rom-influxdb
-- rom-json
-- rom-kafka
-- rom-lotus
-- rom-mongo
-- rom-neo4j
-- rom-rails
-- rom-redis
-- rom-rethinkdb
-- rom-roda
-- rom-yaml
-- rom-yesql
+-
+  name: rom
+-
+  name: rom-sql
+-
+  name: rom-cassandra
+-
+  name: rom-couchdb
+-
+  name: rom-csv
+-
+  name: rom-event_store
+-
+  name: rom-git
+-
+  name: rom-http
+-
+  name: rom-influxdb
+-
+  name: rom-json
+-
+  name: rom-kafka
+-
+  name: rom-lotus
+-
+  name: rom-mongo
+-
+  name: rom-neo4j
+-
+  name: rom-rails
+-
+  name: rom-redis
+-
+  name: rom-rethinkdb
+-
+  name: rom-roda
+-
+  name: rom-yaml
+-
+  name: rom-yesql

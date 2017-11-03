@@ -741,6 +741,8 @@ code {
   background-color: #f7f5f3;
   padding: 1.6rem;
   padding-bottom: 3.2rem; }
+  .page .grid {
+    max-width: 100%; }
   @media (min-width: 668px) {
     .page__sidebar {
       -moz-box-sizing: border-box;

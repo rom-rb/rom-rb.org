@@ -24,6 +24,8 @@ class ::Middleman::SourceWatcher
   end
 end
 
+require_relative 'lib/site'
+
 # Per-page layout changes:
 page '/*.xml', layout: false
 page '/*.json', layout: false
@@ -34,6 +36,10 @@ page '/*/guides/*', layout: 'guide', data: { sidebar: '%{version}/guides/sidebar
 page '/learn/*', layout: 'guide', data: { sidebar: '3.0/learn/sidebar' }
 page '/guides/*', layout: 'guide', data: { sidebar: '3.0/guides/sidebar' }
 page '/blog/*', data: { sidebar: 'blog/sidebar' }
+
+Site.projects.each do |project|
+  proxy "/api/#{project.name}/index.html", '/api/project.html', layout: 'api', locals: { project: project }
+end
 
 def next?
   ENV['NEXT'] == 'true'
@@ -123,6 +129,10 @@ helpers do
 
   def current_source_file
     "#{current_path}.slim"
+  end
+
+  def projects
+    Site.projects
   end
 end
 

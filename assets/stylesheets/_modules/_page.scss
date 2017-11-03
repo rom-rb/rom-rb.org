@@ -3,6 +3,10 @@
   padding: rhythm(1);
   padding-bottom: rhythm(2);
 
+  .grid {
+    max-width: 100%;
+  }
+
   &__sidebar {
     @include from(3) {
       @include span(3 no-gutters);
