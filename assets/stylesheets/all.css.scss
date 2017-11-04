@@ -36,6 +36,18 @@
   }
 }
 
+blockquote {
+  .header {
+    margin-bottom: 0.35rem;
+
+    &:hover {
+      .anchor {
+        display: none;
+      }
+    }
+  }
+}
+
 .header {
   display: block;
   margin-bottom: 1.2rem;

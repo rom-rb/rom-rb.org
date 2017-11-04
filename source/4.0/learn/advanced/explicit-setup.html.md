@@ -8,7 +8,7 @@ access databases, in a typical application setup, you want to break down
 individual component definitions, like relations or commands, into separate
 files and define them as explicit classes.
 
-> ROM & Frameworks
+> #### ROM & Frameworks
 >
 > Framework integrations **take care of the setup for you**. If you want to use ROM
 > with a framework, please refer to specific instructions under [Getting Started](/%{version}/learn/getting-started)
