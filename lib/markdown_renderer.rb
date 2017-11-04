@@ -27,7 +27,7 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
 
     anchor = %(<a name="#{permalink}" class="anchor" href="##{permalink}">#{anchor_svg}</a>)
 
-    %(<h#{level} id="#{permalink}" class="header">#{anchor}#{title}</h#{level}>)
+    %(<h#{level} id="#{permalink}" class="hd">#{anchor}#{title}</h#{level}>)
   end
 
   def link(link, title, content)
