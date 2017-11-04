@@ -35,3 +35,20 @@
     font-size: 0.65rem;
   }
 }
+
+.header {
+  display: block;
+  margin-bottom: 1.2rem;
+
+  .anchor {
+    padding-right: 2px;
+    margin-left: -18px;
+    display: none;
+  }
+
+  &:hover {
+    .anchor {
+      display: inline-block;
+    }
+  }
+}

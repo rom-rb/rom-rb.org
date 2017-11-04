@@ -150,7 +150,12 @@ set :js_dir, 'assets/javascripts'
 require_relative 'lib/markdown_renderer'
 
 set :markdown_engine, :redcarpet
-set :markdown, renderer: MarkdownRenderer
+set :markdown, renderer: MarkdownRenderer,
+    tables: true,
+    autolink: true,
+    gh_blockcode: true,
+    fenced_code_blocks: true,
+    with_toc_data: true
 
 set :disqus_embed_url, 'https://rom-rb-blog.disqus.com/embed.js'
 
