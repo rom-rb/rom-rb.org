@@ -805,6 +805,11 @@ code {
     margin-left: 1rem;
     font-size: 0.65rem; }
 
+blockquote .header {
+  margin-bottom: 0.35rem; }
+  blockquote .header:hover .anchor {
+    display: none; }
+
 .header {
   display: block;
   margin-bottom: 1.2rem; }
