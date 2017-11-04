@@ -18,14 +18,26 @@ table
       th Project
       th Released Version
       th Master Build Status
+      th CodeClimate
+      th Test Coverage
+      th Doc Coverage
   tbody
-    - data.projects.each do |project|
+    - projects.each do |project|
       tr
         td
-          a href="https://github.com/rom-rb/#{project}" #{project}
+          a href=project.github_url = project
         td
-          a href="https://rubygems.org/gems/#{project}"
-            img src="https://img.shields.io/gem/v/#{project}.svg?style=flat"
+          a href=project.rubygems_url
+            img src=project.version_badge
         td
           a href="https://github.com/rom-rb/#{project}"
-            img src="https://img.shields.io/travis/rom-rb/#{project}/master.svg?style=flat"
+            img src=project.ci_badge
+        td
+          a href=project.codeclimate_url
+            img src=project.codeclimate_badge
+        td
+          a href=project.codeclimate_url
+            img src=project.coverage_badge
+        td
+          a href=project.inch_url
+            img src=project.inch_badge
