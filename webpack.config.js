@@ -21,13 +21,13 @@ module.exports = {
   module: {
     preLoaders: [{
       test: /\.scss$/,
-      exclude: /node_modules|\.tmp|vendor/,
+      exclude: /node_modules|tmp|vendor/,
       loader: 'import-glob',
     }],
 
     loaders: [
       { test: /\.js?$/, loader: "babel", exclude: /node_modules/ },
-      { test: /\.scss$/, exclude: /node_modules|\.tmp|vendor/, loader: ExtractTextPlugin.extract('css!sass') },
+      { test: /\.scss$/, exclude: /node_modules|tmp|vendor/, loader: ExtractTextPlugin.extract('css!sass') },
     ],
   },
 
