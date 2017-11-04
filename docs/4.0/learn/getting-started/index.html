@@ -118,21 +118,17 @@ API, or need the expandability of MongoDB and CouchDB. It&#39;s up to you to
 choose the appropriate solution for your application&#39;s needs.</p>
 </blockquote>
 
-<h2>Install rom-repository</h2>
+<h2>Install rom</h2>
 
-<p>Simply install <code>rom-repository</code> or add it to your <code>Gemfile</code>. Adapters will be
-auto-loaded based on configuration settings.</p>
+<p>Simply install <code>rom</code> or add it to your <code>Gemfile</code>. Adapters will be auto-loaded based on configuration settings. </p>
 
-<p>For example, if you&#39;d like to use ROM with an SQL database, add following gems to
-you <code>Gemfile</code>:</p>
-<pre class="syntax ruby"><code><span class="n">gem</span> <span class="s1">'rom-repository'</span>
+<p>For example, if you&#39;d like to use ROM with an SQL database, add following gems to you <code>Gemfile</code>:</p>
+<pre class="syntax ruby"><code><span class="n">gem</span> <span class="s1">'rom'</span>
 <span class="n">gem</span> <span class="s1">'rom-sql'</span>
 </code></pre>
 <h2>Next</h2>
 
-<p>ROM needs a setup phase to provide a persistence environment for your entities.
-The end result is the <strong>container</strong>, an object that provides access to relations
-and commands, and integrates the two with your mappers.</p>
+<p>ROM needs a setup phase to provide a persistence environment for your entities. The end result is the <strong>container</strong>, an object that provides access to relations and commands, and integrates the two with your mappers.</p>
 
 <p>Depending on your application needs, you may want to use different setup strategies:</p>
 
@@ -144,8 +140,7 @@ and commands, and integrates the two with your mappers.</p>
 
 <blockquote>
 <p>Note: Most guide examples are written specifically for the <code>rom-sql</code> adapter.
-If you are using a different one, consult that adapter&#39;s documentation as
-well.</p>
+If you are using a different one, consult that adapter&#39;s documentation as well.</p>
 </blockquote>
 </div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/4.0/learn/getting-started/index.html.slim" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Installation" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
 on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
