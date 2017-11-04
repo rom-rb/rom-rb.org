@@ -26,7 +26,7 @@ adds new, great features on top of existing APIs.</p>
 </ul>
 
 <p>Let&#39;s see what this new release brings.</p>
-<h2 id="explicit-eager-loading" class="header"><a name="explicit-eager-loading" class="anchor" href="#explicit-eager-loading">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="explicit-eager-loading" class="hd"><a name="explicit-eager-loading" class="anchor" href="#explicit-eager-loading">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Explicit eager-loading</h2>
@@ -88,7 +88,7 @@ adds new, great features on top of existing APIs.</p>
 <span class="c1"># ]</span>
 </code></pre>
 <p>As you can see ROM executes the minimum amount of needed SQL queries. It shouldn&#39;t surprise given that you explicitly told ROM which relations should be used to load the data. As you can probably imagine you are free to use whatever strategy fits better in a particular use case. You can use combine, or you can use joins, or both at the same time. It doesn&#39;t really matter since it&#39;s just data flowing from one object to another producing end result - a nested data structure.</p>
-<h2 id="mapping-combined-relations" class="header"><a name="mapping-combined-relations" class="anchor" href="#mapping-combined-relations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="mapping-combined-relations" class="hd"><a name="mapping-combined-relations" class="anchor" href="#mapping-combined-relations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Mapping combined relations</h2>
@@ -127,7 +127,7 @@ adds new, great features on top of existing APIs.</p>
 <span class="c1">#   #&lt;User:0x007fc86a820250 @id=1, @name="Jane",</span>
 <span class="c1">#       @tasks=[#&lt;Task:0x007fc86a8221b8 @id=2, @title="Task for Jane"&gt;]&gt;</span>
 <span class="c1"># ]</span>
-</code></pre><h2 id="more-mapping-goodies" class="header"><a name="more-mapping-goodies" class="anchor" href="#more-mapping-goodies">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="more-mapping-goodies" class="hd"><a name="more-mapping-goodies" class="anchor" href="#more-mapping-goodies">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>More mapping goodies</h2>
@@ -168,7 +168,7 @@ adds new, great features on top of existing APIs.</p>
 
 <span class="n">mapper</span><span class="p">.</span><span class="nf">call</span> <span class="p">[{</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">,</span> <span class="ss">address: </span><span class="p">{</span> <span class="ss">street: </span><span class="s1">'Street 1'</span><span class="p">,</span> <span class="ss">city: </span><span class="s1">'NYC'</span> <span class="p">}</span> <span class="p">}]</span>
 <span class="c1"># [{ :name =&gt; "Jane", :street =&gt; "Street 1", :city =&gt; "NYC" }]</span>
-</code></pre><h3 id="registering-custom-objects-as-mappers" class="header"><a name="registering-custom-objects-as-mappers" class="anchor" href="#registering-custom-objects-as-mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="registering-custom-objects-as-mappers" class="hd"><a name="registering-custom-objects-as-mappers" class="anchor" href="#registering-custom-objects-as-mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Registering Custom Objects as Mappers</h3>
@@ -196,7 +196,7 @@ adds new, great features on top of existing APIs.</p>
 
 <span class="nb">puts</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:name_list</span><span class="p">).</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
 <span class="c1"># ["Jane", "John"]</span>
-</code></pre><h3 id="plugin-interface" class="header"><a name="plugin-interface" class="anchor" href="#plugin-interface">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="plugin-interface" class="hd"><a name="plugin-interface" class="anchor" href="#plugin-interface">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Plugin Interface</h3>
@@ -218,7 +218,7 @@ adds new, great features on top of existing APIs.</p>
 <span class="k">end</span>
 </code></pre>
 <p>Plugins can be provided only for a specific adapter and are grouped by relation, command and mapper types.</p>
-<h3 id="roadmap-towards-1-0-0" class="header"><a name="roadmap-towards-1-0-0" class="anchor" href="#roadmap-towards-1-0-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="roadmap-towards-1-0-0" class="hd"><a name="roadmap-towards-1-0-0" class="anchor" href="#roadmap-towards-1-0-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Roadmap: Towards 1.0.0</h3>

@@ -7,7 +7,7 @@ ga('create', 'UA-2573270-5', 'auto');
 ga('send', 'pageview');</script></head><body class="blog blog_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/4.0/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/4.0/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link--is-active">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/announcing-rom-factory/" class="sidebar__link">Announcing rom-factory</a></li><li class="sidebar__item"><a href="/blog/rom-4-0-released/" class="sidebar__link">ROM 4.0.0 released</a></li><li class="sidebar__item"><a href="/blog/rom-repository-1-1-0-released/" class="sidebar__link">rom-repository 1.1.0 released</a></li><li class="sidebar__item"><a href="/blog/rom-3-0-released/" class="sidebar__link">ROM 3.0 Released</a></li><li class="sidebar__item"><a href="/blog/rom-2-0-0-released/" class="sidebar__link">ROM 2.0.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/tags/release" class="sidebar__link">release</a></li><li class="sidebar__item"><a href="/blog/tags/announcement" class="sidebar__link">announcement</a></li><li class="sidebar__item"><a href="/blog/tags/repository" class="sidebar__link">repository</a></li><li class="sidebar__item"><a href="/blog/tags/oss" class="sidebar__link">oss</a></li><li class="sidebar__item"><a href="/blog/tags/support" class="sidebar__link">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a href="#" class="button--secondary"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a href="/blog/announcing-rom-factory/" class="article__title__link">Announcing rom-factory</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on October 24, 2017 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We&#39;re happy to announce a new project that we&#39;ve been working on - rom-factory. The project was originally started by <a href="https://github.com/janjiss">Jānis Miezītis</a> back in 2016, and then it was moved to rom-rb organization in March 2017. As you can probably guess, rom-factory is a data generator library, similar to FactoryBot (previously known as FactoryGirl) or Fabrication. It&#39;s built on top of rom-rb and has a sweet integration with Faker gem.</p>
 
 <p>Let&#39;s see how it looks like.</p>
-<h2 id="factories" class="header"><a name="factories" class="anchor" href="#factories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="factories" class="hd"><a name="factories" class="anchor" href="#factories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Factories</h2>
@@ -33,7 +33,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 <p>...or you can ask for a struct which will be persisted in your database:</p>
 <pre class="syntax ruby"><code><span class="no">MyFactory</span><span class="p">[</span><span class="ss">:user</span><span class="p">]</span>
 <span class="c1"># #&lt;ROM::Struct::User id=1 name="Jane" email="jane@doe.org"</span>
-</code></pre><h2 id="dynamic-values-with-sequences-re-using-other-values-and-faker" class="header"><a name="dynamic-values-with-sequences-re-using-other-values-and-faker" class="anchor" href="#dynamic-values-with-sequences-re-using-other-values-and-faker">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="dynamic-values-with-sequences-re-using-other-values-and-faker" class="hd"><a name="dynamic-values-with-sequences-re-using-other-values-and-faker" class="anchor" href="#dynamic-values-with-sequences-re-using-other-values-and-faker">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Dynamic values with sequences, re-using other values and faker</h2>
@@ -54,7 +54,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
   <span class="n">f</span><span class="p">.</span><span class="nf">email</span> <span class="p">{</span> <span class="n">fake</span><span class="p">(</span><span class="ss">:internet</span><span class="p">,</span> <span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">age</span> <span class="p">{</span> <span class="n">fake</span><span class="p">(</span><span class="ss">:number</span><span class="p">,</span> <span class="ss">:between</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="p">}</span>
 <span class="k">end</span>
-</code></pre><h2 id="associations" class="header"><a name="associations" class="anchor" href="#associations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="associations" class="hd"><a name="associations" class="anchor" href="#associations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Associations</h2>
@@ -69,7 +69,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
   <span class="c1"># this will create 2 posts for a user</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">association</span><span class="p">(</span><span class="ss">:posts</span><span class="p">,</span> <span class="ss">count: </span><span class="mi">2</span><span class="p">)</span>
 <span class="k">end</span>
-</code></pre><h2 id="extending-existing-builders" class="header"><a name="extending-existing-builders" class="anchor" href="#extending-existing-builders">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="extending-existing-builders" class="hd"><a name="extending-existing-builders" class="anchor" href="#extending-existing-builders">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Extending existing builders</h2>
@@ -84,7 +84,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 <span class="no">MyFactory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">admin: :user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">admin</span> <span class="kp">true</span>
 <span class="k">end</span>
-</code></pre><h2 id="status-amp-roadmap" class="header"><a name="status-amp-roadmap" class="anchor" href="#status-amp-roadmap">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="status-amp-roadmap" class="hd"><a name="status-amp-roadmap" class="anchor" href="#status-amp-roadmap">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Status &amp; Roadmap</h2>
@@ -101,7 +101,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 <hr /></article><article class="article"><h1 class="article__title"><a href="/blog/rom-4-0-released/" class="article__title__link">ROM 4.0.0 released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on October 18, 2017 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>After over six months of work, we&#39;re pleased to announce the release of rom-rb 4.0.0! This is a major release which brings many improvements and new features. One of the biggest priorities of this release was to solidify and improve automatic mapping capabilities, by extending core API with features that were previously implemented only in rom-repository. This means that the most advanced features, such as automatic mappers or inferring struct objects, are now part of core API, and it makes using rom-rb much simpler. Apart from this, we also added Association API to the core, which enables associations for all adapters, and you can define associations between different databases.</p>
 
 <p>Here are some of the highlights of 4.0.0 release.</p>
-<h2 id="automatic-mapping" class="header"><a name="automatic-mapping" class="anchor" href="#automatic-mapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="automatic-mapping" class="hd"><a name="automatic-mapping" class="anchor" href="#automatic-mapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Automatic mapping</h2>
@@ -133,7 +133,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 
 <span class="o">&gt;</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">wrap</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">first</span>
 <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:user_id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:title</span><span class="o">=&gt;</span><span class="s2">"Jane's task"</span><span class="p">,</span> <span class="ss">:user</span><span class="o">=&gt;</span><span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane"</span><span class="p">}}</span>
-</code></pre><h2 id="auto-struct-mapping" class="header"><a name="auto-struct-mapping" class="anchor" href="#auto-struct-mapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="auto-struct-mapping" class="hd"><a name="auto-struct-mapping" class="anchor" href="#auto-struct-mapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Auto-struct mapping</h2>
@@ -167,7 +167,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 
 <span class="o">&gt;</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">wrap</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">first</span>
 <span class="o">=&gt;</span> <span class="c1">#&lt;ROM::Struct::Task id=1 user_id=1 title="Jane's task" user=#&lt;ROM::Struct::User id=1 name="Jane"&gt;&gt;</span>
-</code></pre><h2 id="support-for-custom-struct-classes" class="header"><a name="support-for-custom-struct-classes" class="anchor" href="#support-for-custom-struct-classes">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="support-for-custom-struct-classes" class="hd"><a name="support-for-custom-struct-classes" class="anchor" href="#support-for-custom-struct-classes">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Support for custom struct classes</h2>
@@ -210,7 +210,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 <span class="o">=&gt;</span> <span class="p">[</span><span class="s2">"Jane's task"</span><span class="p">]</span>
 </code></pre>
 <p>You can learn more about this feature <a href="/4.0/learn/core/structs/">in our updated docs</a></p>
-<h2 id="standalone-changesets" class="header"><a name="standalone-changesets" class="anchor" href="#standalone-changesets">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="standalone-changesets" class="hd"><a name="standalone-changesets" class="anchor" href="#standalone-changesets">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Standalone changesets</h2>
@@ -230,7 +230,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 <span class="c1"># {:id=&gt;2, :name=&gt;"John Doe"}</span>
 </code></pre>
 <p>See <a href="learn/core/changesets/">Changeset documentation for more information</a>.</p>
-<h2 id="and-more" class="header"><a name="and-more" class="anchor" href="#and-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="and-more" class="hd"><a name="and-more" class="anchor" href="#and-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>...and more</h2>
@@ -244,7 +244,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 <li>New APIs have been added to rom-sql, including <code>SQL::Relation#exists</code>, <code>SQL::Relation#each_batch</code>, <code>SQL::Relation#import</code> and <code>SQL::Relation#explain</code> (for PG)</li>
 <li>SQL conditions can be negated by using idiomatic <code>!</code> operator, ie <code>users.where { !admin.is(true) }</code></li>
 </ul>
-<h2 id="release-information-and-upgrading" class="header"><a name="release-information-and-upgrading" class="anchor" href="#release-information-and-upgrading">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="release-information-and-upgrading" class="hd"><a name="release-information-and-upgrading" class="anchor" href="#release-information-and-upgrading">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Release information and upgrading</h2>
@@ -260,7 +260,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_index"><div class=
 </ul>
 
 <p>If you&#39;re having problems with the upgrade, please seek for help on <a href="https://discourse.rom-rb.org">discussion forum</a>.</p>
-<h2 id="thank-you" class="header"><a name="thank-you" class="anchor" href="#thank-you">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="thank-you" class="hd"><a name="thank-you" class="anchor" href="#thank-you">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Thank you :)</h2>

@@ -13,7 +13,7 @@ types:</p>
 <li><code>ROM::Changeset::Delete</code> uses <code>Delete</code> commands</li>
 <li><code>ROM::Changeset</code> is a generic type that needs to be configured with a specific command type that you&#39;d like to use</li>
 </ul>
-<h2 id="defining-changeset-subclass-for-a-specific-relation" class="header"><a name="defining-changeset-subclass-for-a-specific-relation" class="anchor" href="#defining-changeset-subclass-for-a-specific-relation">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="defining-changeset-subclass-for-a-specific-relation" class="hd"><a name="defining-changeset-subclass-for-a-specific-relation" class="anchor" href="#defining-changeset-subclass-for-a-specific-relation">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Defining Changeset subclass for a specific relation</h2>
@@ -36,7 +36,7 @@ set up a custom changeset class that will do just that:</p>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
-</code></pre><h2 id="re-using-base-changeset-classes" class="header"><a name="re-using-base-changeset-classes" class="anchor" href="#re-using-base-changeset-classes">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="re-using-base-changeset-classes" class="hd"><a name="re-using-base-changeset-classes" class="anchor" href="#re-using-base-changeset-classes">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Re-using base changeset classes</h2>
@@ -66,7 +66,7 @@ without setting it up for any specific relation:</p>
 
 <span class="n">admin_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_admin</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[Admin] id=1 name="Jane" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
-</code></pre><h2 id="custom-changeset-with-a-restricted-relation" class="header"><a name="custom-changeset-with-a-restricted-relation" class="anchor" href="#custom-changeset-with-a-restricted-relation">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="custom-changeset-with-a-restricted-relation" class="hd"><a name="custom-changeset-with-a-restricted-relation" class="anchor" href="#custom-changeset-with-a-restricted-relation">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Custom changeset with a restricted relation</h2>
@@ -98,7 +98,7 @@ a changeset using <code>#by_pk</code> method, which is a common thing to do:</p>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane Doe" access_token="b9dd175aec90758b0841d09e4947724e"&gt;</span>
-</code></pre><h3 id="using-dependency-injection-with-changesets" class="header"><a name="using-dependency-injection-with-changesets" class="anchor" href="#using-dependency-injection-with-changesets">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="using-dependency-injection-with-changesets" class="hd"><a name="using-dependency-injection-with-changesets" class="anchor" href="#using-dependency-injection-with-changesets">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Using Dependency Injection with changesets</h3>

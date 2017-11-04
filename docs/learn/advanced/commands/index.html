@@ -18,7 +18,7 @@ receive a relation and execute their operation using that relation.</p>
 
 <p>Some adapters provide more for special operations - see your adapter’s
 documentation for details.</p>
-<h2 id="defining-commands" class="header"><a name="defining-commands" class="anchor" href="#defining-commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="defining-commands" class="hd"><a name="defining-commands" class="anchor" href="#defining-commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Defining Commands</h2>
@@ -40,7 +40,7 @@ it a symbol of the relation&#39;s name:</p>
     <span class="n">define</span><span class="p">(</span><span class="ss">:delete</span><span class="p">)</span>
  <span class="k">end</span>
 <span class="k">end</span>
-</code></pre><h3 id="single-results-vs-many-results" class="header"><a name="single-results-vs-many-results" class="anchor" href="#single-results-vs-many-results">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="single-results-vs-many-results" class="hd"><a name="single-results-vs-many-results" class="anchor" href="#single-results-vs-many-results">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Single Results vs Many Results</h3>
@@ -56,7 +56,7 @@ command definition.</p>
     <span class="c1"># ... etc</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre><h2 id="executing-commands" class="header"><a name="executing-commands" class="anchor" href="#executing-commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="executing-commands" class="hd"><a name="executing-commands" class="anchor" href="#executing-commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Executing Commands</h2>
@@ -104,7 +104,7 @@ Update or Delete.</p>
 <span class="n">update_user</span> <span class="o">=</span> <span class="n">rom_container</span><span class="p">.</span><span class="nf">command</span><span class="p">[</span><span class="ss">:users</span><span class="p">][</span><span class="ss">:update</span><span class="p">]</span>
 
 <span class="n">update_user</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">7</span><span class="p">).</span><span class="nf">call</span><span class="p">(</span><span class="ss">first_name: </span><span class="s1">'Kaylee'</span><span class="p">,</span> <span class="ss">last_name: </span><span class="s1">'Frye'</span><span class="p">)</span>
-</code></pre><h2 id="full-example" class="header"><a name="full-example" class="anchor" href="#full-example">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="full-example" class="hd"><a name="full-example" class="anchor" href="#full-example">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Full Example</h2>

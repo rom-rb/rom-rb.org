@@ -5,15 +5,15 @@
 
 ga('create', 'UA-2573270-5', 'auto');
 ga('send', 'pageview');</script></head><body class="current current_learn current_learn_introduction current_learn_introduction_active-record current_learn_introduction_active-record_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/current/learn" class="menu__item__link--is-active">Learn</a></li><li class="menu__item"><a href="/current/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h3 class="sidebar__version">Version: <select id="sidebar__version-switcher"><option value="/3.0/learn/introduction/active-record/index.html">3.0</option><option value="/4.0/learn/introduction/active-record/index.html">4.0</option><option selected="selected" value="/current/learn/introduction/active-record/index.html">current (4.0)</option></select></h3><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/current/learn/introduction/" class="sidebar__link--is-active">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/current/learn/introduction/philosophy/" class="sidebar__sub-link">Philosophy</a></li><li class="sidebar__sub-item"><a href="/current/learn/introduction/why/" class="sidebar__sub-link">Why ROM?</a></li><li class="sidebar__sub-item"><a href="/current/learn/introduction/overview/" class="sidebar__sub-link">Overview</a></li><li class="sidebar__sub-item"><a href="/current/learn/introduction/active-record/" class="sidebar__sub-link--is-active">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a href="/current/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/current/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/current/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/current/learn/core/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/current/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/current/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/current/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/current/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/current/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/current/learn/core/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/current/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/current/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/current/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/current/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/current/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/current/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/current/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/current/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/current/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/current/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/current/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/current/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/current/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/current/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/current/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/current/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/current/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/current/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/current/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/current/learn/glossary/" class="sidebar__link">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Introduction &raquo; Active Record and ROM</h1><p>This document explains basic differences between Rails&#39; Active Record ORM and ROM.</p>
-<h2 id="database-support" class="header"><a name="database-support" class="anchor" href="#database-support">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="database-support" class="hd"><a name="database-support" class="anchor" href="#database-support">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
-</a>Database Support</h2><h4 id="active-record" class="header"><a name="active-record" class="anchor" href="#active-record">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</a>Database Support</h2><h4 id="active-record" class="hd"><a name="active-record" class="anchor" href="#active-record">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Active Record</h4>
 <p>Supports only SQL.</p>
-<h4 id="rom" class="header"><a name="rom" class="anchor" href="#rom">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h4 id="rom" class="hd"><a name="rom" class="anchor" href="#rom">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>ROM</h4>
@@ -21,17 +21,17 @@ ga('send', 'pageview');</script></head><body class="current current_learn curren
 databases, CSV files, git repositories, remote HTTP APIs, anything. You can work
 with multiple databases at once and combine data in memory, if that&#39;s what you
 need.</p>
-<h2 id="data-access" class="header"><a name="data-access" class="anchor" href="#data-access">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="data-access" class="hd"><a name="data-access" class="anchor" href="#data-access">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
-</a>Data Access</h2><h4 id="active-record_1" class="header"><a name="active-record_1" class="anchor" href="#active-record_1">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</a>Data Access</h2><h4 id="active-record_1" class="hd"><a name="active-record_1" class="anchor" href="#active-record_1">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Active Record</h4>
 <p>Data access logic is part of the object and controls all reading and writing to
 the database. You use the same objects to create, read, update, and delete data.
 These objects are the models in traditional Rails applications.</p>
-<h4 id="rom_1" class="header"><a name="rom_1" class="anchor" href="#rom_1">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h4 id="rom_1" class="hd"><a name="rom_1" class="anchor" href="#rom_1">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>ROM</h4>
@@ -42,10 +42,10 @@ publicly accessible relation methods to return query results.</p>
 
 <p>Imagine that <code>ActiveRecord</code> models only exposed the scopes and scope methods to
 the rest of the application. This is what ROM relations are like.</p>
-<h2 id="models" class="header"><a name="models" class="anchor" href="#models">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="models" class="hd"><a name="models" class="anchor" href="#models">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
-</a>Models</h2><h4 id="active-record_2" class="header"><a name="active-record_2" class="anchor" href="#active-record_2">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</a>Models</h2><h4 id="active-record_2" class="hd"><a name="active-record_2" class="anchor" href="#active-record_2">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Active Record</h4>
@@ -58,7 +58,7 @@ renderers, serializers, and so on.</p>
 
 <p>All those objects that you create are nothing more than mapping. They take
 <code>ActiveRecord</code> objects and represent them in a context sensitive way.</p>
-<h4 id="rom_2" class="header"><a name="rom_2" class="anchor" href="#rom_2">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h4 id="rom_2" class="hd"><a name="rom_2" class="anchor" href="#rom_2">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>ROM</h4>
@@ -66,31 +66,31 @@ renderers, serializers, and so on.</p>
 the mappers and have no knowledge about persistence. You can map to whatever
 structure you want and in common use-cases you can use repositories to
 automatically map query results to simple struct-like objects.</p>
-<h2 id="validation" class="header"><a name="validation" class="anchor" href="#validation">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="validation" class="hd"><a name="validation" class="anchor" href="#validation">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
-</a>Validation</h2><h4 id="active-record_3" class="header"><a name="active-record_3" class="anchor" href="#active-record_3">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</a>Validation</h2><h4 id="active-record_3" class="hd"><a name="active-record_3" class="anchor" href="#active-record_3">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Active Record</h4>
 <p>Mixes domain-specific data validation with persistence layer. An active record
 object validates itself using its own validation rules.</p>
-<h4 id="rom_3" class="header"><a name="rom_3" class="anchor" href="#rom_3">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h4 id="rom_3" class="hd"><a name="rom_3" class="anchor" href="#rom_3">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>ROM</h4>
 <p>There&#39;s no validation concept built-in. Validations are handled externally by
 separate libraries and validated data can be passed down to the command layer to
 be persisted.</p>
-<h2 id="data-coercion" class="header"><a name="data-coercion" class="anchor" href="#data-coercion">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="data-coercion" class="hd"><a name="data-coercion" class="anchor" href="#data-coercion">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
-</a>Data Coercion</h2><h4 id="active-record_4" class="header"><a name="active-record_4" class="anchor" href="#active-record_4">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</a>Data Coercion</h2><h4 id="active-record_4" class="hd"><a name="active-record_4" class="anchor" href="#active-record_4">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Active Record</h4>
 <p>Handles coercion internally prior persisting data.</p>
-<h4 id="rom_4" class="header"><a name="rom_4" class="anchor" href="#rom_4">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h4 id="rom_4" class="hd"><a name="rom_4" class="anchor" href="#rom_4">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>ROM</h4>

@@ -5,14 +5,14 @@
 
 ga('create', 'UA-2573270-5', 'auto');
 ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released blog_rom-3-0-released_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/4.0/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/4.0/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link--is-active">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/announcing-rom-factory/" class="sidebar__link">Announcing rom-factory</a></li><li class="sidebar__item"><a href="/blog/rom-4-0-released/" class="sidebar__link">ROM 4.0.0 released</a></li><li class="sidebar__item"><a href="/blog/rom-repository-1-1-0-released/" class="sidebar__link">rom-repository 1.1.0 released</a></li><li class="sidebar__item"><a href="/blog/rom-3-0-released/" class="sidebar__link--is-active">ROM 3.0 Released</a></li><li class="sidebar__item"><a href="/blog/rom-2-0-0-released/" class="sidebar__link">ROM 2.0.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/tags/release" class="sidebar__link">release</a></li><li class="sidebar__item"><a href="/blog/tags/announcement" class="sidebar__link">announcement</a></li><li class="sidebar__item"><a href="/blog/tags/repository" class="sidebar__link">repository</a></li><li class="sidebar__item"><a href="/blog/tags/oss" class="sidebar__link">oss</a></li><li class="sidebar__item"><a href="/blog/tags/support" class="sidebar__link">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a href="#" class="button--secondary"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a href="/blog/rom-3-0-released/" class="article__title__link--is-active">ROM 3.0 Released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on January 30, 2017 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We&#39;re happy to announce the release of rom 3.0.0, a big release which comes with the first stable versions of rom-sql 1.0.0 and rom-repository 1.0.0. Changes and improvements in rom core gem focused mostly on extending functionality of relation Schema API and Command API, as well as removing all deprecated core APIs. The biggest highlight are new features in rom-sql and rom-repository.</p>
-<h2 id="extended-schemas" class="header"><a name="extended-schemas" class="anchor" href="#extended-schemas">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="extended-schemas" class="hd"><a name="extended-schemas" class="anchor" href="#extended-schemas">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Extended Schemas</h2>
 <p>Starting from rom 3.0.0 <strong>all relations, regardless of the adapter, have schemas</strong>. It means that Schema is now a 1st class API available in all adapters.</p>
 
 <p>Schemas now use adapter-specific attribute types, which allowed us to implement all kinds of new features in rom-sql that make building complex queries much simpler. We also improved schema inference and added support for more PostgreSQL types like <code>enum</code>, <code>point</code> or <code>inet</code>. Furthermore, it&#39;s now possible to use inference along with explicit attribute definitions, which is useful in cases where inferrer doesn&#39;t support some custom column type, or when you simply want to customize your schema.</p>
-<h3 id="advanced-projections" class="header"><a name="advanced-projections" class="anchor" href="#advanced-projections">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="advanced-projections" class="hd"><a name="advanced-projections" class="anchor" href="#advanced-projections">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Advanced projections</h3>
@@ -56,7 +56,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="c1"># ]</span>
 </code></pre>
 <p>This plays a major role in automatic mapping in repositories, as they can define structs with all attribute type information provided by relations.</p>
-<h3 id="support-for-sql-functions" class="header"><a name="support-for-sql-functions" class="anchor" href="#support-for-sql-functions">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="support-for-sql-functions" class="hd"><a name="support-for-sql-functions" class="anchor" href="#support-for-sql-functions">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Support for SQL functions</h3>
@@ -87,7 +87,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="k">end</span>
 </code></pre>
 <p>Maybe you noticed that we passed <code>tasks</code> relation object to <code>left_join</code>—this is another new feature.</p>
-<h3 id="improved-joins" class="header"><a name="improved-joins" class="anchor" href="#improved-joins">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="improved-joins" class="hd"><a name="improved-joins" class="anchor" href="#improved-joins">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Improved joins</h3>
@@ -126,7 +126,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="c1">#   INNER JOIN "users" ON ("users"."id" = "tasks"."user_id")</span>
 <span class="c1">#   WHERE ("priority" = 1) AND ("user_id" IN(1, 2, 3))</span>
 <span class="c1">#   ORDER BY "tasks"."id"</span>
-</code></pre><h3 id="custom-association-views" class="header"><a name="custom-association-views" class="anchor" href="#custom-association-views">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="custom-association-views" class="hd"><a name="custom-association-views" class="anchor" href="#custom-association-views">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Custom association views</h3>
@@ -156,7 +156,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="k">end</span>
 </code></pre>
 <p>We use View DSL in this case, as it provides schema information up-front, before a relation is even initialized. It&#39;s one of the core features in rom that allows defining composable relations. Associations are based on this feature, but you can use it without associations too.</p>
-<h3 id="bi-directional-coercions" class="header"><a name="bi-directional-coercions" class="anchor" href="#bi-directional-coercions">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="bi-directional-coercions" class="hd"><a name="bi-directional-coercions" class="anchor" href="#bi-directional-coercions">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Bi-directional coercions</h3>
@@ -177,12 +177,12 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="c1"># [{:address=&gt;#&lt;struct Address country="Poland", city="Krakow", street="Street 1"}]</span>
 </code></pre>
 <p>For now this is very explicit, in the near future we&#39;ll add various convention-based improvements, so that specifying <code>read</code> types is more concise.</p>
-<h2 id="improved-repositories" class="header"><a name="improved-repositories" class="anchor" href="#improved-repositories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="improved-repositories" class="hd"><a name="improved-repositories" class="anchor" href="#improved-repositories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Improved repositories</h2>
 <p>We added support for transactions, custom commands in changesets, run-time changeset mapping with custom blocks, associating data via changesets, asking for custom objects when committing a changeset... check out <a href="http://rom-rb.org/learn/repositories/changesets/">updated docs</a> to learn more, and here are some of the highlights.</p>
-<h3 id="comitting-changesets" class="header"><a name="comitting-changesets" class="anchor" href="#comitting-changesets">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="comitting-changesets" class="hd"><a name="comitting-changesets" class="anchor" href="#comitting-changesets">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Comitting changesets</h3>
@@ -195,7 +195,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">,</span> <span class="ss">email: </span><span class="s2">"jane@doe.org"</span><span class="p">).</span><span class="nf">commit</span>
 <span class="c1"># =&gt; {:id=&gt;1, :name=&gt;"Jane", :email=&gt;"jane@doe.org"}</span>
-</code></pre><h3 id="committing-changesets-via-repositories" class="header"><a name="committing-changesets-via-repositories" class="anchor" href="#committing-changesets-via-repositories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="committing-changesets-via-repositories" class="hd"><a name="committing-changesets-via-repositories" class="anchor" href="#committing-changesets-via-repositories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Committing changesets via repositories</h3>
@@ -209,7 +209,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" email="jane@doe.org"&gt;</span>
-</code></pre><h3 id="powerful-data-transformations" class="header"><a name="powerful-data-transformations" class="anchor" href="#powerful-data-transformations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="powerful-data-transformations" class="hd"><a name="powerful-data-transformations" class="anchor" href="#powerful-data-transformations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Powerful data transformations</h3>
@@ -231,7 +231,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="c1"># =&gt; {:id=&gt;1, :name=&gt;"Jane", address_city: "Krakow", address_country: "Poland", address_street: "Street 1", address_zipcode: "1234"}</span>
 </code></pre>
 <p>You can also pass an argument to <code>.map</code> and in that case you can use arbitrary code to perform a transformation. Check out <a href="http://rom-rb.org/learn/repositories/custom-changesets/">docs</a> to learn more.</p>
-<h2 id="support-for-nested-aggregates" class="header"><a name="support-for-nested-aggregates" class="anchor" href="#support-for-nested-aggregates">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="support-for-nested-aggregates" class="hd"><a name="support-for-nested-aggregates" class="anchor" href="#support-for-nested-aggregates">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Support for nested aggregates</h2>
@@ -243,7 +243,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">aggregate</span><span class="p">(</span><span class="ss">tasks: :tags</span><span class="p">)</span>
 </code></pre>
 <p>Check out <a href="http://www.rubydoc.info/gems/rom-repository/ROM/Repository/Root#aggregate-instance_method">Repository#aggregate</a> API docs for more information.</p>
-<h2 id="detailed-release-information" class="header"><a name="detailed-release-information" class="anchor" href="#detailed-release-information">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="detailed-release-information" class="hd"><a name="detailed-release-information" class="anchor" href="#detailed-release-information">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Detailed release information</h2>
@@ -257,14 +257,14 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 </ul>
 
 <p>Please check out <a href="http://rom-rb.org">rom-rb.org</a> as it was updated with more documentation!</p>
-<h2 id="upgrading" class="header"><a name="upgrading" class="anchor" href="#upgrading">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="upgrading" class="hd"><a name="upgrading" class="anchor" href="#upgrading">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Upgrading</h2>
 <p>Please do read <a href="https://github.com/rom-rb/rom-sql/wiki/Upgrading-from-0.9.x-to-1.0.0">rom-sql 1.0.0 upgrade guide</a> as it includes useful information. Making the transition should not be difficult, many applications (including big ones), have been already upgraded during beta/RC testing, and it was a smooth process.</p>
 
 <p>If you have problems with the upgrade, please report an issue or ask for help on <a href="https://discourse.rom-rb.org">the discussion forum</a>.</p>
-<h2 id="thank-you" class="header"><a name="thank-you" class="anchor" href="#thank-you">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="thank-you" class="hd"><a name="thank-you" class="anchor" href="#thank-you">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Thank you!</h2>
@@ -277,7 +277,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-3-0-released b
 <li><a href="https://github.com/Kukunin">Sergey Kukunin</a> for his help with <a href="https://github.com/solnic/transproc/blob/master/CHANGELOG.md#v100-2017-01-29">transproc 1.0.0</a> (yes, we released that too!) and helping with rom-repository mapping pipeline</li>
 <li><a href="https://github.com/nepalez/">Andrew Kozin</a> for his work on <a href="https://github.com/dry-rb/dry-initializer">dry-initializer</a> which now plays major role in <strong>many</strong> core objects in rom projects and allowed us to get rid of rom-support</li>
 </ul>
-<h2 id="what-happens-next" class="header"><a name="what-happens-next" class="anchor" href="#what-happens-next">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="what-happens-next" class="hd"><a name="what-happens-next" class="anchor" href="#what-happens-next">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>What happens next?</h2>

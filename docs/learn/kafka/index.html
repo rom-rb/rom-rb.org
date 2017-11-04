@@ -12,7 +12,7 @@ built on top of the <a href="https://github.com/bpot/poseidon">poseidon</a> ruby
 please feel free to ask your questions at the <a href="https://gitter.im/rom-rb/chat">ROM chatroom</a> and
 report issues <a href="https://github.com/rom-rb/rom-kafka">on github</a>.</p>
 </blockquote>
-<h2 id="intro" class="header"><a name="intro" class="anchor" href="#intro">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="intro" class="hd"><a name="intro" class="anchor" href="#intro">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Intro</h2>
@@ -30,7 +30,7 @@ can define is the topic (<a href="#relation">relation</a>), its <a href="#partit
 initial <a href="#offset">offset</a>, and <a href="#limit">limit</a> for number of messages to
 output.</p></li>
 </ul>
-<h2 id="setup" class="header"><a name="setup" class="anchor" href="#setup">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="setup" class="hd"><a name="setup" class="anchor" href="#setup">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Setup</h2>
@@ -57,7 +57,7 @@ set in the following ways:</p>
   <span class="ss">hosts:     </span><span class="p">[</span><span class="s1">'127.0.0.2:9093'</span><span class="p">],</span>
   <span class="ss">port:      </span><span class="mi">9092</span><span class="p">,</span>
   <span class="ss">client_id: :admin</span>
-</code></pre><h3 id="additional-options" class="header"><a name="additional-options" class="anchor" href="#additional-options">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="additional-options" class="hd"><a name="additional-options" class="anchor" href="#additional-options">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Additional options</h3>
@@ -138,7 +138,7 @@ set in the following ways:</p>
 <td>How long to block until the server sends data.  This is only enforced if min_bytes is &gt; 0.</td>
 </tr>
 </tbody></table>
-<h3 id="partitioner" class="header"><a name="partitioner" class="anchor" href="#partitioner">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="partitioner" class="hd"><a name="partitioner" class="anchor" href="#partitioner">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Partitioner</h3>
@@ -157,12 +157,12 @@ depending on number of letters in a key:</p>
 <span class="c1"># Suppose the topic "items" has 3 partitions (0 and 1).</span>
 <span class="c1"># Messages "bar" and "baz" will be added to the partition 1 ("foo".count % 2 = 1).</span>
 <span class="n">insert</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="ss">key: </span><span class="s2">"foo"</span><span class="p">).</span><span class="nf">call</span> <span class="s2">"bar"</span><span class="p">,</span> <span class="s2">"baz"</span>
-</code></pre><h3 id="compression" class="header"><a name="compression" class="anchor" href="#compression">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="compression" class="hd"><a name="compression" class="anchor" href="#compression">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Compression</h3>
 <p>To use snappy compression, install the <a href="https://github.com/miyucy/snappy">snappy</a> gem, or simply add gem &#39;snappy&#39; to your project&#39;s Gemfile.</p>
-<h2 id="relations" class="header"><a name="relations" class="anchor" href="#relations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="relations" class="hd"><a name="relations" class="anchor" href="#relations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Relations</h2>
@@ -203,7 +203,7 @@ methods using dataset modifiers:</p>
 <span class="c1">#      { value: "Hi!", topic: "greetings", key: nil, offset: 0 },</span>
 <span class="c1">#      { value: "Hello!", topic: "greetings", key: nil, offset: 1 }</span>
 <span class="c1">#    ]</span>
-</code></pre><h3 id="partition" class="header"><a name="partition" class="anchor" href="#partition">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="partition" class="hd"><a name="partition" class="anchor" href="#partition">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Partition</h3>
@@ -211,7 +211,7 @@ methods using dataset modifiers:</p>
 partition to read from:</p>
 <pre class="syntax ruby"><code><span class="c1"># Will read all messages from the partition 1 of the "greetings" topic</span>
 <span class="n">greetings</span><span class="p">.</span><span class="nf">call</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">to_a</span>
-</code></pre><h3 id="using-options" class="header"><a name="using-options" class="anchor" href="#using-options">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="using-options" class="hd"><a name="using-options" class="anchor" href="#using-options">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Using options</h3>
@@ -229,7 +229,7 @@ wait time for the server to responce.</p>
 <p>or you can update them with <code>using</code> method:</p>
 <pre class="syntax ruby"><code><span class="c1"># read all messages whatever length they have, and wait for the request up to second</span>
 <span class="n">greetings</span><span class="p">.</span><span class="nf">from</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nf">using</span><span class="p">(</span><span class="ss">min_bytes: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">max_wait_ms: </span><span class="mi">1_000</span><span class="p">).</span><span class="nf">call</span><span class="p">.</span><span class="nf">to_a</span>
-</code></pre><h3 id="offset" class="header"><a name="offset" class="anchor" href="#offset">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h3 id="offset" class="hd"><a name="offset" class="anchor" href="#offset">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Offset</h3>
@@ -262,7 +262,7 @@ from the next offset (only new ones).</p>
 </code></pre>
 <p>You can use info from the last extracted tuple to define an offset, from which
 to start the next time.</p>
-<h3 id="limit" class="header"><a name="limit" class="anchor" href="#limit">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="limit" class="hd"><a name="limit" class="anchor" href="#limit">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Limit</h3>
@@ -305,7 +305,7 @@ set <code>offset</code> explicitly after using of <code>limit</code> modifier.</
 <p>Also notice, that every time you use modifier, the new connection is
 re-established. That&#39;s why the <strong>rule of thumb</strong> is either not using modifiers
 at all, or set the offset explicitly for every call.</p>
-<h2 id="commands" class="header"><a name="commands" class="anchor" href="#commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="commands" class="hd"><a name="commands" class="anchor" href="#commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Commands</h2>
@@ -350,7 +350,7 @@ immutable messages to the log, but not to change or delete them.</p>
 doesn&#39;t read messages being written, and knows nothing about partitions and
 offsets that where assigned by the server. You have to read them explicitly if
 you need.</p>
-<h2 id="mappers" class="header"><a name="mappers" class="anchor" href="#mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="mappers" class="hd"><a name="mappers" class="anchor" href="#mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Mappers</h2>

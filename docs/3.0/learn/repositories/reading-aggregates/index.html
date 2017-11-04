@@ -13,7 +13,7 @@ associations in relation schemas, which are used to simplify reading aggregates.
 If an adapter doesn&#39;t support association in schemas, you can still load aggregates
 using <a href="http://www.rubydoc.info/gems/rom-repository/ROM/Repository/RelationProxy/Combine"><code>Repository#combine</code></a> interface,
 which is more advanced and flexible.</p>
-<h2 id="relation-schema" class="header"><a name="relation-schema" class="anchor" href="#relation-schema">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="relation-schema" class="hd"><a name="relation-schema" class="anchor" href="#relation-schema">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Relation Schema</h2>
@@ -60,7 +60,7 @@ let&#39;s define relations using <a href="/3.0/learn/getting-started/block-style
 <p>With associations defined in the relation schemas we established common queries
 that will be automatically used for composing relations into aggregates. Let&#39;s
 see how we can leverage that in repositories.</p>
-<h2 id="repository-aggregates" class="header"><a name="repository-aggregates" class="anchor" href="#repository-aggregates">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="repository-aggregates" class="hd"><a name="repository-aggregates" class="anchor" href="#repository-aggregates">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Repository Aggregates</h2>
@@ -92,7 +92,7 @@ means we&#39;re going to load a task with its user:</p>
 <p>Notice that in this case <code>User</code> struct is loaded as a child object where <code>Task</code>
 is a parent, thus <code>User</code> has <code>task_id</code> assigned, which is <strong>a virtual foreign key</strong>
 that doesn&#39;t really exist in our schema.</p>
-<h3 id="loading-aggregates-using-wrapping" class="header"><a name="loading-aggregates-using-wrapping" class="anchor" href="#loading-aggregates-using-wrapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h3 id="loading-aggregates-using-wrapping" class="hd"><a name="loading-aggregates-using-wrapping" class="anchor" href="#loading-aggregates-using-wrapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Loading aggregates using wrapping</h3>
@@ -109,7 +109,7 @@ that doesn&#39;t really exist in our schema.</p>
 <p>Notice that unlike with <code>aggregate</code> method, the parent object does not include <strong>a virtual foreign key</strong>.</p>
 
 <blockquote>
-<h4 id="performance-and-availability" class="header"><a name="performance-and-availability" class="anchor" href="#performance-and-availability">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h4 id="performance-and-availability" class="hd"><a name="performance-and-availability" class="anchor" href="#performance-and-availability">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Performance and availability</h4>
@@ -117,7 +117,7 @@ that doesn&#39;t really exist in our schema.</p>
 and <strong>it&#39;s significantly faster</strong> than using <code>aggregate</code>. Other adapters can implement this
 interface too, assuming it makes sense in case of a given data source.</p>
 </blockquote>
-<h2 id="learn-more" class="header"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="learn-more" class="hd"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Learn more</h2>

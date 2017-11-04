@@ -9,7 +9,7 @@ multiple relations into nested data structures or instantiating custom objects.
 Relations generate their mappers automatically for most common use cases, but
 mappers are separated from relations, which means you can always define your own
 mappers, whenever you have the need.</p>
-<h2 id="default-relation-mappers" class="header"><a name="default-relation-mappers" class="anchor" href="#default-relation-mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="default-relation-mappers" class="hd"><a name="default-relation-mappers" class="anchor" href="#default-relation-mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Default relation mappers</h2>
@@ -30,7 +30,7 @@ instead.</p>
 
 <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">combine</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">one</span>
 <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane"</span><span class="p">,</span> <span class="ss">:tasks</span><span class="o">=&gt;</span><span class="p">[{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:user_id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:title</span><span class="o">=&gt;</span><span class="s2">"One"</span><span class="p">},</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="ss">:user_id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:title</span><span class="o">=&gt;</span><span class="s2">"Two"</span><span class="p">}]}</span>
-</code></pre><h2 id="using-custom-mappers" class="header"><a name="using-custom-mappers" class="anchor" href="#using-custom-mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="using-custom-mappers" class="hd"><a name="using-custom-mappers" class="anchor" href="#using-custom-mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Using custom mappers</h2>
@@ -60,7 +60,7 @@ through your mapper:</p>
 <pre class="syntax ruby"><code><span class="n">users</span><span class="p">.</span><span class="nf">map_with</span><span class="p">(</span><span class="ss">:my_mapper</span><span class="p">).</span><span class="nf">to_a</span>
 </code></pre>
 <p><code>ROM::Transformer</code> is powered by <a href="https://github.com/solnic/transproc#transformer">transproc</a>.</p>
-<h2 id="learn-more" class="header"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="learn-more" class="hd"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Learn more</h2>

@@ -22,7 +22,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-6-0-released
 <li><a href="https://rubygems.org/gems/rom-csv">rom-csv</a></li>
 <li><a href="https://rubygems.org/gems/rom-yaml">rom-yaml</a></li>
 </ul>
-<h2 id="class-based-setup" class="header"><a name="class-based-setup" class="anchor" href="#class-based-setup">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="class-based-setup" class="hd"><a name="class-based-setup" class="anchor" href="#class-based-setup">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Class-based setup</h2>
@@ -34,7 +34,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-6-0-released
     <span class="n">restrict</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre><h2 id="lazy-relations-with-data-pipelining" class="header"><a name="lazy-relations-with-data-pipelining" class="anchor" href="#lazy-relations-with-data-pipelining">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="lazy-relations-with-data-pipelining" class="hd"><a name="lazy-relations-with-data-pipelining" class="anchor" href="#lazy-relations-with-data-pipelining">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Lazy-relations with data-pipelining</h2>
@@ -77,7 +77,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-6-0-released
 <pre class="syntax ruby"><code><span class="n">users_by_name</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:entity</span><span class="p">).</span><span class="nf">by_name</span>
 
 <span class="n">users_by_name</span><span class="p">[</span><span class="s1">'Jane'</span><span class="p">].</span><span class="nf">first</span>
-</code></pre><h2 id="improved-and-simplified-command-interface" class="header"><a name="improved-and-simplified-command-interface" class="anchor" href="#improved-and-simplified-command-interface">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="improved-and-simplified-command-interface" class="hd"><a name="improved-and-simplified-command-interface" class="anchor" href="#improved-and-simplified-command-interface">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Improved and simplified command interface</h2>
@@ -99,7 +99,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-6-0-released
 <span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">try</span> <span class="p">{</span> <span class="n">create_user</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span> <span class="p">}</span>
 </code></pre>
 <p>Command API is growing quickly and more database-specific features will be implemented soon on top of existing functionality.</p>
-<h2 id="improved-adapter-infrastructure" class="header"><a name="improved-adapter-infrastructure" class="anchor" href="#improved-adapter-infrastructure">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="improved-adapter-infrastructure" class="hd"><a name="improved-adapter-infrastructure" class="anchor" href="#improved-adapter-infrastructure">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Improved adapter infrastructure</h2>
@@ -127,7 +127,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-6-0-released
 <span class="k">end</span>
 </code></pre>
 <p>ROM&#39;s adapter ecosystem is growing fast - we have <a href="https://github.com/rom-rb/rom-redis">Redis</a>, <a href="https://github.com/maetl/rom-neo4j">Neo4j</a> and <a href="https://github.com/rom-rb/rom-influxdb">InfluxDB</a> in the works already and <a href="https://github.com/rom-rb/rom/issues?q=is%3Aopen+is%3Aissue+label%3Aadapter+label%3Ahelp-wanted">more</a> are planned.</p>
-<h2 id="form-objects-for-rails" class="header"><a name="form-objects-for-rails" class="anchor" href="#form-objects-for-rails">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="form-objects-for-rails" class="hd"><a name="form-objects-for-rails" class="anchor" href="#form-objects-for-rails">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Form objects for Rails</h2>
@@ -151,14 +151,14 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-6-0-released
     <span class="n">users</span><span class="p">.</span><span class="nf">try</span> <span class="p">{</span> <span class="n">users</span><span class="p">.</span><span class="nf">create</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="p">}</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre><h2 id="upgrading-from-0-5-0" class="header"><a name="upgrading-from-0-5-0" class="anchor" href="#upgrading-from-0-5-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="upgrading-from-0-5-0" class="hd"><a name="upgrading-from-0-5-0" class="anchor" href="#upgrading-from-0-5-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Upgrading from 0.5.0</h2>
 <p>The setup DSL works the same but you probably want to switch to class-based setup as it&#39;s easier to organize your code that way.</p>
 
 <p>Please let us know if you have any trouble with the upgrade on our <a href="https://gitter.im/rom-rb/chat">gitter</a> channel or submit an issue describing problems you&#39;re having.</p>
-<h2 id="about-1-0-0" class="header"><a name="about-1-0-0" class="anchor" href="#about-1-0-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="about-1-0-0" class="hd"><a name="about-1-0-0" class="anchor" href="#about-1-0-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>About 1.0.0</h2>
@@ -167,7 +167,7 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-6-0-released
 <p>Even though initially we planned to release 1.0.0 as soon as ROM proves itself on production, based on feedback from the community and discussing the release process we decided to give it few more months to push the first stable release.</p>
 
 <p>We prefer to polish the interfaces and implement a bunch of important missing features that will make ROM simpler to use. In addition to features it&#39;s also important to provide great documentation and user guides, which is one of the priorities of 1.0.0 release.</p>
-<h2 id="thank-you" class="header"><a name="thank-you" class="anchor" href="#thank-you">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="thank-you" class="hd"><a name="thank-you" class="anchor" href="#thank-you">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Thank you!</h2>

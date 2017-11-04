@@ -805,17 +805,17 @@ code {
     margin-left: 1rem;
     font-size: 0.65rem; }
 
-blockquote .header {
+blockquote .hd {
   margin-bottom: 0.35rem; }
-  blockquote .header:hover .anchor {
+  blockquote .hd:hover .anchor {
     display: none; }
 
-.header {
+.hd {
   display: block;
   margin-bottom: 1.2rem; }
-  .header .anchor {
+  .hd .anchor {
     padding-right: 2px;
     margin-left: -18px;
     display: none; }
-  .header:hover .anchor {
+  .hd:hover .anchor {
     display: inline-block; }
