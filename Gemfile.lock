@@ -25,10 +25,12 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.2.0.1)
+    eventmachine (1.2.0.1-x64-mingw32)
     execjs (2.7.0)
     fast_blank (1.0.0)
     fastimage (2.1.0)
     ffi (1.9.18)
+    ffi (1.9.18-x64-mingw32)
     haml (4.0.7)
       tilt
     hamster (3.0.0)
@@ -90,6 +92,8 @@ GEM
     minitest (5.10.3)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    nokogiri (1.8.0-x64-mingw32)
+      mini_portile2 (~> 2.2.0)
     padrino-helpers (0.13.3.4)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.13.3.4)
@@ -123,11 +127,15 @@ GEM
     tilt (2.0.8)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2017.3)
+      tzinfo (>= 1.0.0)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    wdm (0.1.1)
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   middleman (~> 4.0)
@@ -138,6 +146,8 @@ DEPENDENCIES
   pry-byebug
   redcarpet
   slim
+  tzinfo-data
+  wdm (>= 0.1.0)
 
 RUBY VERSION
    ruby 2.4.1p111
