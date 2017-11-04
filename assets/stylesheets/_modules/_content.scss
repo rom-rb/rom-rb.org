@@ -74,12 +74,21 @@
   margin-bottom: 2rem;
 
   h2 {
-    // width: 100%;
     margin-bottom: .5rem;
   }
   
   ol {
-    column-count: 3;
+    @include at(2) {
+      column-count: 1;
+    }
+    
+    @include at(2) {
+      column-count: 2;
+    }
+    
+    @include from(3) {
+      column-count: 3;
+    }
     margin-left: 0.5rem;
     padding-left: 1.5rem;
 
@@ -98,13 +107,10 @@
   border-radius: 0.3rem;
   
   .notice-title {
+    margin: -5px -12px 15px;
     border-top-left-radius: 0.3rem;
     border-top-right-radius: 0.3rem;
-    margin-top: -5px;
-    margin-left: -12px;
-    margin-right: -12px;
     padding: 3px 12px 3px 12px;
-    margin-bottom: 15px;
   }
 }
 
