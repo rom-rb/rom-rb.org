@@ -14,16 +14,18 @@ specializations, that can use database-specific features.</p>
 <li><code>:update</code> - a command which updates existing tuples</li>
 <li><code>:delete</code> - a command which deletes existing tuples</li>
 </ul>
-
-<h2>Working with commands</h2>
-
+<h2 id="working-with-commands" class="header"><a name="working-with-commands" class="anchor" href="#working-with-commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Working with commands</h2>
 <p>You can get a command object via <code>Relation#command</code> interface. All core command types are
 supported by this method.</p>
 
 <p>Assuming you have a users relation available:</p>
-
-<h3><code>:create</code> command example</h3>
-<pre class="syntax ruby"><code><span class="c1"># inserting a single tuple</span>
+<h3 id="code-create-code-command-example" class="header"><a name="code-create-code-command-example" class="anchor" href="#code-create-code-command-example">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a><code>:create</code> command example</h3><pre class="syntax ruby"><code><span class="c1"># inserting a single tuple</span>
 <span class="n">create_user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:create</span><span class="p">)</span>
 
 <span class="n">create_user</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
@@ -32,19 +34,22 @@ supported by this method.</p>
 <span class="n">create_user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">result: :many</span><span class="p">)</span>
 
 <span class="n">create_user</span><span class="p">.</span><span class="nf">call</span><span class="p">([{</span> <span class="ss">name: </span><span class="s2">"Jane"</span> <span class="p">},</span> <span class="p">{</span> <span class="ss">name: </span><span class="s2">"John"</span> <span class="p">}])</span>
-</code></pre>
-<h3><code>:update</code> command example</h3>
-<pre class="syntax ruby"><code><span class="n">update_user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">command</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span>
+</code></pre><h3 id="code-update-code-command-example" class="header"><a name="code-update-code-command-example" class="anchor" href="#code-update-code-command-example">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a><code>:update</code> command example</h3><pre class="syntax ruby"><code><span class="n">update_user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">command</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span>
 
 <span class="n">update_user</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">)</span>
-</code></pre>
-<h3><code>:delete</code> command example</h3>
-<pre class="syntax ruby"><code><span class="n">delete_user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">command</span><span class="p">(</span><span class="ss">:delete</span><span class="p">)</span>
+</code></pre><h3 id="code-delete-code-command-example" class="header"><a name="code-delete-code-command-example" class="anchor" href="#code-delete-code-command-example">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a><code>:delete</code> command example</h3><pre class="syntax ruby"><code><span class="n">delete_user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">command</span><span class="p">(</span><span class="ss">:delete</span><span class="p">)</span>
 
 <span class="n">delete_user</span><span class="p">.</span><span class="nf">call</span>
-</code></pre>
-<h2>Using custom command types</h2>
-
+</code></pre><h2 id="using-custom-command-types" class="header"><a name="using-custom-command-types" class="anchor" href="#using-custom-command-types">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Using custom command types</h2>
 <p>You can define custom command types too. This is useful when the logic is complex and you prefer
 to encapsulate it in a single class.</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">MyCommand</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">SQL</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span>
@@ -60,9 +65,10 @@ to encapsulate it in a single class.</p>
 <pre class="syntax ruby"><code><span class="n">my_command</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:my_command</span><span class="p">)</span>
 
 <span class="n">my_command</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
-</code></pre>
-<h2>Commands vs Changesets</h2>
-
+</code></pre><h2 id="commands-vs-changesets" class="header"><a name="commands-vs-changesets" class="anchor" href="#commands-vs-changesets">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Commands vs Changesets</h2>
 <p>Commands are the underlying abstraction for making changes in your database, whereas changesets
 should be treated as a more advanced abstraction, which provides additional data mapping functionality,
 and support for associating data.</p>

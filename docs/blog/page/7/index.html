@@ -14,14 +14,16 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
 <li><a href="https://rubygems.org/gems/rom-rails">rom-rails 0.3.1</a> - <a href="https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v031-2015-04-04">changelog</a></li>
 <li><a href="https://rubygems.org/gems/rom-lotus">rom-lotus 0.0.1</a> - <a href="https://github.com/rom-rb/rom-lotus/blob/master/CHANGELOG.md">changelog</a></li>
 </ul>
-
-<h2>Auto-mapping of command results</h2>
-
+<h2 id="auto-mapping-of-command-results" class="header"><a name="auto-mapping-of-command-results" class="anchor" href="#auto-mapping-of-command-results">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Auto-mapping of command results</h2>
 <p>The results of commands can now be mapped in the same way as relations, using <code>as</code> or <code>map_with</code>.</p>
 <pre class="syntax ruby"><code><span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:rel_name</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:mapper_name</span><span class="p">)</span>
-</code></pre>
-<h2>New migrations interface</h2>
-
+</code></pre><h2 id="new-migrations-interface" class="header"><a name="new-migrations-interface" class="anchor" href="#new-migrations-interface">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>New migrations interface</h2>
 <p>A database migration interface is now included in <code>rom-sql</code>. This is currently a thin wrapper around the excellent <a href="http://sequel.jeremyevans.net/rdoc/files/doc/migration_rdoc.html">Sequel Migrations API</a>.</p>
 
 <p>You can use migrations with one or more repositories as follows:</p>
@@ -56,9 +58,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
     <span class="no">ROM</span><span class="p">.</span><span class="nf">finalize</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Improvements to forms for Rails users</h2>
-
+</code></pre><h2 id="improvements-to-forms-for-rails-users" class="header"><a name="improvements-to-forms-for-rails-users" class="anchor" href="#improvements-to-forms-for-rails-users">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Improvements to forms for Rails users</h2>
 <p>There are several new changes that rationalize and improve the usability of the Rails forms API:</p>
 
 <ul>
@@ -114,9 +117,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
     <span class="n">users</span><span class="p">.</span><span class="nf">try</span> <span class="p">{</span> <span class="n">users</span><span class="p">.</span><span class="nf">update</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">set</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="p">}</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Lotus integration</h2>
-
+</code></pre><h2 id="lotus-integration" class="header"><a name="lotus-integration" class="anchor" href="#lotus-integration">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Lotus integration</h2>
 <p>And last but not least, <a href="https://github.com/rom-rb/rom-lotus">rom-lotus</a> is out shiny new integration with the <a href="http://lotusrb.org/">Lotus Framework</a>.</p>
 
 <p>A very basic setup example:</p>
@@ -135,13 +139,15 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
 <span class="k">end</span>
 </code></pre>
 <p>Expect to hear more about this as the integration evolves.</p>
-
-<h2>Upgrading to 0.6.1</h2>
-
+<h2 id="upgrading-to-0-6-1" class="header"><a name="upgrading-to-0-6-1" class="anchor" href="#upgrading-to-0-6-1">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Upgrading to 0.6.1</h2>
 <p>Please let us know if you have any trouble with the upgrade. Contact us directly via <a href="https://gitter.im/rom-rb/chat">Gitter</a> or <a href="https://github.com/rom-rb/rom/issues">submit an issue on GitHub</a> describing any problems you&#39;re having.</p>
-
-<h2>Onwards to 0.7</h2>
-
+<h2 id="onwards-to-0-7" class="header"><a name="onwards-to-0-7" class="anchor" href="#onwards-to-0-7">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Onwards to 0.7</h2>
 <p>We’re planning to focus heavily on improvements to mappers and commands in 0.7, which should get us significantly closer to figuring out what the shape of these APIs will be in 1.0.</p>
 
 <p>Thanks for your support!</p>
@@ -163,9 +169,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
 <li><a href="https://rubygems.org/gems/rom-csv">rom-csv</a></li>
 <li><a href="https://rubygems.org/gems/rom-yaml">rom-yaml</a></li>
 </ul>
-
-<h2>Class-based setup</h2>
-
+<h2 id="class-based-setup" class="header"><a name="class-based-setup" class="anchor" href="#class-based-setup">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Class-based setup</h2>
 <p>The biggest change in this release is the ability to define your own relation, mapper and command subclasses that ROM will instantiate for you and expose through its registry. The DSL-based setup is still available but using classes turned out to be a better approach in bigger contexts like web-applications.</p>
 
 <p>Here&#39;s a simple Relation subclass definition:</p>
@@ -174,9 +181,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
     <span class="n">restrict</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Lazy-relations with data-pipelining</h2>
-
+</code></pre><h2 id="lazy-relations-with-data-pipelining" class="header"><a name="lazy-relations-with-data-pipelining" class="anchor" href="#lazy-relations-with-data-pipelining">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Lazy-relations with data-pipelining</h2>
 <p>Previous version of ROM had the concept of Reader which turned out to be confusing. After lots of discussions it was replaced by a new interface for accessing relations. This change makes mapping relations explicit as you need to provide the name of mapper(s) that you want to use when loading a relation.</p>
 
 <p>Lazy relations can be used with any object that implements mapper interface but the simplest way to levarage this feature is to register ROM mappers for quick access:</p>
@@ -216,9 +224,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
 <pre class="syntax ruby"><code><span class="n">users_by_name</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:entity</span><span class="p">).</span><span class="nf">by_name</span>
 
 <span class="n">users_by_name</span><span class="p">[</span><span class="s1">'Jane'</span><span class="p">].</span><span class="nf">first</span>
-</code></pre>
-<h2>Improved and simplified command interface</h2>
-
+</code></pre><h2 id="improved-and-simplified-command-interface" class="header"><a name="improved-and-simplified-command-interface" class="anchor" href="#improved-and-simplified-command-interface">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Improved and simplified command interface</h2>
 <p>Commands are now composable and you can access them directly and call them. This makes it more obvious what&#39;s going on. We are still working on a generalized error/success handling that will be based on a 3rd party dependency since this is really out of ROM&#39;s scope.</p>
 
 <p>You can define your commands using class interfaces too:</p>
@@ -237,9 +246,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
 <span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">try</span> <span class="p">{</span> <span class="n">create_user</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span> <span class="p">}</span>
 </code></pre>
 <p>Command API is growing quickly and more database-specific features will be implemented soon on top of existing functionality.</p>
-
-<h2>Improved adapter infrastructure</h2>
-
+<h2 id="improved-adapter-infrastructure" class="header"><a name="improved-adapter-infrastructure" class="anchor" href="#improved-adapter-infrastructure">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Improved adapter infrastructure</h2>
 <p>Adapter infrastructure has been simplified so now an adapter can provide its <code>Repository</code> and <code>Relation</code> subclasses and register itself under specific identifier. It means that a ROM adapter is just a couple of extensions that allow you to use ROM with various data sources. If the adapter can work in full read/write mode it can also provide its own <code>Command</code> subclasses.</p>
 
 <p>Setting up an adapter is now simpler too - ROM doesn&#39;t make <em>any assumptions</em> about repository instantiation and you can also instaniate it yourself and pass the instance to <code>ROM.setup</code>. This feature is already used by rom-rails where you can configure your repositories in an initializer if you don&#39;t want ROM to infer configuration from <code>database.yml</code>.</p>
@@ -264,9 +274,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
 <span class="k">end</span>
 </code></pre>
 <p>ROM&#39;s adapter ecosystem is growing fast - we have <a href="https://github.com/rom-rb/rom-redis">Redis</a>, <a href="https://github.com/maetl/rom-neo4j">Neo4j</a> and <a href="https://github.com/rom-rb/rom-influxdb">InfluxDB</a> in the works already and <a href="https://github.com/rom-rb/rom/issues?q=is%3Aopen+is%3Aissue+label%3Aadapter+label%3Ahelp-wanted">more</a> are planned.</p>
-
-<h2>Form objects for Rails</h2>
-
+<h2 id="form-objects-for-rails" class="header"><a name="form-objects-for-rails" class="anchor" href="#form-objects-for-rails">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Form objects for Rails</h2>
 <p>This release also includes updates to rom-rails - the most notable change is the addition of <code>ROM::Model::Form</code> which allows you to define form objects that work nicely with ROM. It is using <code>Virtus</code> for params handling and <code>ActiveModel::Validations</code> for validations.</p>
 
 <p>Our <a href="http://rom-rb.org/tutorials/todo-app-with-rails/">Rails tutorial</a> was updated too and explains how to use form objects in ROM. Here&#39;s an example of a simple form object definition:</p>
@@ -287,23 +298,26 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_7 b
     <span class="n">users</span><span class="p">.</span><span class="nf">try</span> <span class="p">{</span> <span class="n">users</span><span class="p">.</span><span class="nf">create</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span> <span class="p">}</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Upgrading from 0.5.0</h2>
-
+</code></pre><h2 id="upgrading-from-0-5-0" class="header"><a name="upgrading-from-0-5-0" class="anchor" href="#upgrading-from-0-5-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Upgrading from 0.5.0</h2>
 <p>The setup DSL works the same but you probably want to switch to class-based setup as it&#39;s easier to organize your code that way.</p>
 
 <p>Please let us know if you have any trouble with the upgrade on our <a href="https://gitter.im/rom-rb/chat">gitter</a> channel or submit an issue describing problems you&#39;re having.</p>
-
-<h2>About 1.0.0</h2>
-
+<h2 id="about-1-0-0" class="header"><a name="about-1-0-0" class="anchor" href="#about-1-0-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>About 1.0.0</h2>
 <p>This has been amazing couple of months for ROM. The community is growing, we&#39;re seeing more and more people contributing to the project and geting great feedback from the real world usage.</p>
 
 <p>Even though initially we planned to release 1.0.0 as soon as ROM proves itself on production, based on feedback from the community and discussing the release process we decided to give it few more months to push the first stable release.</p>
 
 <p>We prefer to polish the interfaces and implement a bunch of important missing features that will make ROM simpler to use. In addition to features it&#39;s also important to provide great documentation and user guides, which is one of the priorities of 1.0.0 release.</p>
-
-<h2>Thank you!</h2>
-
+<h2 id="thank-you" class="header"><a name="thank-you" class="anchor" href="#thank-you">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Thank you!</h2>
 <p>Thank you to all the early adopters and new contributors. This release would not be possible without your help! It&#39;s amazing to see how the project evolves thanks to you.</p>
 
 <p>We have more great news, so stay tuned and watch this space :)</p>

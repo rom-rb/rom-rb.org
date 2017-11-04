@@ -24,9 +24,10 @@ and writing</li>
 </ul>
 
 <p>Let&#39;s build an adapter for a plain Ruby array, because why not.</p>
-
-<h2>Gateway</h2>
-
+<h2 id="gateway" class="header"><a name="gateway" class="anchor" href="#gateway">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Gateway</h2>
 <p>Adapter&#39;s gateway is used by ROM to retrieve datasets and inject them into
 adapter&#39;s relations as their data-access backends. Here&#39;s a simple
 implementation:</p>
@@ -61,9 +62,10 @@ implementation:</p>
 <span class="n">gateway</span><span class="p">.</span><span class="nf">dataset?</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">)</span> <span class="c1"># true</span>
 </code></pre>
 <p>This allows ROM to ask for specific datasets from your gateway.</p>
-
-<h2>Relation</h2>
-
+<h2 id="relation" class="header"><a name="relation" class="anchor" href="#relation">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Relation</h2>
 <p>Adapter-specific relation must exist because it can provide various features
 that only make sense for a concrete adapter. It can automatically forward method
 calls to the underlaying dataset in order to expose &quot;native&quot; interface to the
@@ -97,9 +99,10 @@ relation using <code>forward</code> macro:</p>
 infer component types specific to a given adapter. It&#39;s essential during the
 setup.</p>
 </blockquote>
-
-<h2>Registering Your Adapter</h2>
-
+<h2 id="registering-your-adapter" class="header"><a name="registering-your-adapter" class="anchor" href="#registering-your-adapter">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Registering Your Adapter</h2>
 <p>The adapter must register itself under specific identifier which then can be
 used to set up ROM components for that particular adapter.</p>
 
@@ -126,9 +129,10 @@ used to set up ROM components for that particular adapter.</p>
 
 <span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:users</span><span class="p">].</span><span class="nf">by_name</span><span class="p">(</span><span class="s1">'Jane'</span><span class="p">).</span><span class="nf">to_a</span>
 <span class="c1"># [{:name=&gt;"Jane"}]</span>
-</code></pre>
-<h2>Commands</h2>
-
+</code></pre><h2 id="commands" class="header"><a name="commands" class="anchor" href="#commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Commands</h2>
 <p>Adapter commands are optional because you don&#39;t always want to change data in a
 given datastore. If your datastore supports create/update/delete operations you
 can provide an interface for that using commands.</p>
@@ -139,9 +143,10 @@ relations.</p>
 
 <p>By convention all command classes live under <code>ROM::YourAdapter::Commands</code>
 namespace.</p>
-
-<h3>Common Command Behavior</h3>
-
+<h3 id="common-command-behavior" class="header"><a name="common-command-behavior" class="anchor" href="#common-command-behavior">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Common Command Behavior</h3>
 <p>Every ROM command has a couple of features available out-of-the-box:</p>
 
 <ul>
@@ -153,9 +158,10 @@ namespace.</p>
 <li><code>one?</code> - returns true if a command returns a single tuple</li>
 <li><code>many?</code>- returns true if a command returns more than one tuple</li>
 </ul>
-
-<h3>Extending Relation for Commands</h3>
-
+<h3 id="extending-relation-for-commands" class="header"><a name="extending-relation-for-commands" class="anchor" href="#extending-relation-for-commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Extending Relation for Commands</h3>
 <p>Commands will require an interface to insert, delete and update data and also
 <code>count</code>.</p>
 
@@ -177,9 +183,10 @@ namespace.</p>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h4>Commands::Create</h4>
-
+</code></pre><h4 id="commands-create" class="header"><a name="commands-create" class="anchor" href="#commands-create">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Commands::Create</h4>
 <p>To implement a create command:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom/commands/create'</span> <span class="c1"># require what you require!</span>
 
@@ -205,9 +212,10 @@ namespace.</p>
 
 <span class="nb">puts</span> <span class="n">users</span><span class="p">.</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
 <span class="c1"># [{:name=&gt;"Jane"}]</span>
-</code></pre>
-<h4>Commands::Delete</h4>
-
+</code></pre><h4 id="commands-delete" class="header"><a name="commands-delete" class="anchor" href="#commands-delete">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Commands::Delete</h4>
 <p>To implement a delete command:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom/commands/delete'</span>
 
@@ -235,9 +243,10 @@ namespace.</p>
 <p>Notice that here delete command yields tuples from its current <code>relation</code> but
 deletes it from the <code>source</code> relation, since this is our canonical source of
 data.</p>
-
-<h4>Commands::Update</h4>
-
+<h4 id="commands-update" class="header"><a name="commands-update" class="anchor" href="#commands-update">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Commands::Update</h4>
 <p>To implement an update command:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom/commands/update'</span>
 
@@ -264,9 +273,10 @@ data.</p>
 </code></pre>
 <p>Here we simply rely on <code>Hash#update</code> which mutates tuples using the input
 attributes.</p>
-
-<h3>Putting It All Together</h3>
-
+<h3 id="putting-it-all-together" class="header"><a name="putting-it-all-together" class="anchor" href="#putting-it-all-together">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Putting It All Together</h3>
 <p>Once your command classes are defined ROM will pick them up from your namespace
 and they will be available during setup:</p>
 <pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:array</span><span class="p">)</span>

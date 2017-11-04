@@ -16,9 +16,10 @@ files and define them as explicit classes.</p>
 with a framework, please refer to specific instructions under <a href="/current/learn/getting-started">Getting Started</a>
 section</p>
 </blockquote>
-
-<h2>Setup</h2>
-
+<h2 id="setup" class="header"><a name="setup" class="anchor" href="#setup">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Setup</h2>
 <p>To do setup in flat style, create a <code>ROM::Configuration</code> object. This is the
 same object that gets yielded into your block in block-style setup, so the API
 is identical.</p>
@@ -29,9 +30,10 @@ is identical.</p>
 <p>When you’re finished configuring, pass the configuration object to
 <code>ROM.container</code> to generate the finalized container. There are no differences in
 the internal semantics between block-style and flat-style setup.</p>
-
-<h3>Registering Components</h3>
-
+<h3 id="registering-components" class="header"><a name="registering-components" class="anchor" href="#registering-components">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Registering Components</h3>
 <p>ROM components need to be registered with the ROM configuration in order to be used.</p>
 <pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">,</span> <span class="s1">'memory://test'</span><span class="p">)</span>
 
@@ -47,17 +49,19 @@ them with the configuration directly:</p>
 <span class="n">configuration</span><span class="p">.</span><span class="nf">register_mapper</span><span class="p">(</span><span class="no">User</span><span class="o">::</span><span class="no">UserMapper</span><span class="p">)</span>
 </code></pre>
 <p>You can pass multiple components to each <code>register</code> call, as a list of arguments.</p>
-
-<h3>Auto-registration</h3>
-
+<h3 id="auto-registration" class="header"><a name="auto-registration" class="anchor" href="#auto-registration">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Auto-registration</h3>
 <p>ROM provides <code>auto_registration</code> as a convenience method for automatically
 <code>require</code>-ing and registering components that are not declared with the DSL. At
 a minimum, <code>auto_registration</code> requires a base directory. By default, it will
 load relations from <code>&lt;base&gt;/relations</code>, commands from <code>&lt;base&gt;/commands</code>, and
 mappers from <code>&lt;base&gt;/mappers</code>.</p>
-
-<h4>Namespaces inferred from directory structure</h4>
-
+<h4 id="namespaces-inferred-from-directory-structure" class="header"><a name="namespaces-inferred-from-directory-structure" class="anchor" href="#namespaces-inferred-from-directory-structure">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Namespaces inferred from directory structure</h4>
 <p>By default, auto-registration assumes that the directory structure reflects your module/class
 organization, for example:</p>
 <pre class="syntax ruby"><code><span class="c1"># lib/relations/users.rb</span>
@@ -94,9 +98,10 @@ the directory structure:</p>
 <p>In this scenario the <a href="/current/glossary/#dataset">Dataset</a> name will need to be set
 explicitly otherwise the fully qualified relation name will be used, in this case
 <code>:persistence_relations_users</code>.</p>
-
-<h4>Explicit namespace name</h4>
-
+<h4 id="explicit-namespace-name" class="header"><a name="explicit-namespace-name" class="anchor" href="#explicit-namespace-name">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Explicit namespace name</h4>
 <p>If your directory structure doesn&#39;t reflect module/class organization but you do namespace components,
 then you can set up auto-registration via <code>:namespace</code> option:</p>
 <pre class="syntax ruby"><code><span class="c1"># lib/relations/users.rb</span>
@@ -141,9 +146,10 @@ components name:</p>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h4>Turning namespace off</h4>
-
+</code></pre><h4 id="turning-namespace-off" class="header"><a name="turning-namespace-off" class="anchor" href="#turning-namespace-off">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Turning namespace off</h4>
 <p>If you keep all components under <code>{path}/(relations|commands|mappers)</code> directories and don&#39;t
 namespace them, then you can simply turn namespacing off:</p>
 <pre class="syntax ruby"><code><span class="c1"># lib/relations/users.rb</span>
@@ -153,9 +159,10 @@ namespace them, then you can simply turn namespacing off:</p>
 </code></pre><pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">)</span>
 <span class="n">configuration</span><span class="p">.</span><span class="nf">auto_registration</span><span class="p">(</span><span class="s1">'/path/to/lib'</span><span class="p">,</span> <span class="ss">namespace: </span><span class="kp">false</span><span class="p">)</span>
 <span class="n">container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
-</code></pre>
-<h2>Relations</h2>
-
+</code></pre><h2 id="relations" class="header"><a name="relations" class="anchor" href="#relations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Relations</h2>
 <p>Relations can be defined with a class extending <code>ROM::Relation</code> from the appropriate adapter.</p>
 <pre class="syntax ruby"><code><span class="c1"># Defines a Users relation for the SQL adapter</span>
 <span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
@@ -177,9 +184,10 @@ default options explicitly:</p>
   <span class="n">gateway</span> <span class="ss">:default</span>      <span class="c1"># the gateway name, as defined in setup</span>
   <span class="n">dataset</span> <span class="ss">:users</span>        <span class="c1"># eg. in sql, this is the table name</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Commands</h2>
-
+</code></pre><h2 id="commands" class="header"><a name="commands" class="anchor" href="#commands">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Commands</h2>
 <p>Just like Relations, Commands can be defined as explicit classes:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">CreateUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Commands</span><span class="o">::</span><span class="no">Create</span><span class="p">[</span><span class="ss">:memory</span><span class="p">]</span>
 

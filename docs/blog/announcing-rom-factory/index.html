@@ -7,9 +7,10 @@ ga('create', 'UA-2573270-5', 'auto');
 ga('send', 'pageview');</script></head><body class="blog blog_announcing-rom-factory blog_announcing-rom-factory_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/4.0/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/4.0/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link--is-active">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/announcing-rom-factory/" class="sidebar__link--is-active">Announcing rom-factory</a></li><li class="sidebar__item"><a href="/blog/rom-4-0-released/" class="sidebar__link">ROM 4.0.0 released</a></li><li class="sidebar__item"><a href="/blog/rom-repository-1-1-0-released/" class="sidebar__link">rom-repository 1.1.0 released</a></li><li class="sidebar__item"><a href="/blog/rom-3-0-released/" class="sidebar__link">ROM 3.0 Released</a></li><li class="sidebar__item"><a href="/blog/rom-2-0-0-released/" class="sidebar__link">ROM 2.0.0 Released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/tags/release" class="sidebar__link">release</a></li><li class="sidebar__item"><a href="/blog/tags/announcement" class="sidebar__link">announcement</a></li><li class="sidebar__item"><a href="/blog/tags/repository" class="sidebar__link">repository</a></li><li class="sidebar__item"><a href="/blog/tags/oss" class="sidebar__link">oss</a></li><li class="sidebar__item"><a href="/blog/tags/support" class="sidebar__link">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a href="#" class="button--secondary"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a href="/blog/announcing-rom-factory/" class="article__title__link--is-active">Announcing rom-factory</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on October 24, 2017 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We&#39;re happy to announce a new project that we&#39;ve been working on - rom-factory. The project was originally started by <a href="https://github.com/janjiss">Jānis Miezītis</a> back in 2016, and then it was moved to rom-rb organization in March 2017. As you can probably guess, rom-factory is a data generator library, similar to FactoryBot (previously known as FactoryGirl) or Fabrication. It&#39;s built on top of rom-rb and has a sweet integration with Faker gem.</p>
 
 <p>Let&#39;s see how it looks like.</p>
-
-<h2>Factories</h2>
-
+<h2 id="factories" class="header"><a name="factories" class="anchor" href="#factories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Factories</h2>
 <p>In rom-factory you can define as many factories as you want, we <strong>do not store them under one singleton object</strong>. After you got rom container set up, you can easily configure a factory:</p>
 <pre class="syntax ruby"><code><span class="no">MyFactory</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Factory</span><span class="p">.</span><span class="nf">configured</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
   <span class="n">c</span><span class="p">.</span><span class="nf">rom</span> <span class="o">=</span> <span class="n">your_rom_container</span>
@@ -32,9 +33,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_announcing-rom-fac
 <p>...or you can ask for a struct which will be persisted in your database:</p>
 <pre class="syntax ruby"><code><span class="no">MyFactory</span><span class="p">[</span><span class="ss">:user</span><span class="p">]</span>
 <span class="c1"># #&lt;ROM::Struct::User id=1 name="Jane" email="jane@doe.org"</span>
-</code></pre>
-<h2>Dynamic values with sequences, re-using other values and faker</h2>
-
+</code></pre><h2 id="dynamic-values-with-sequences-re-using-other-values-and-faker" class="header"><a name="dynamic-values-with-sequences-re-using-other-values-and-faker" class="anchor" href="#dynamic-values-with-sequences-re-using-other-values-and-faker">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Dynamic values with sequences, re-using other values and faker</h2>
 <p>Having static values is often not enough, which is why rom-factory has a couple of neat features which allow you to define dynamic values. The first one is sequencing:</p>
 <pre class="syntax ruby"><code><span class="no">MyFactory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">sequence</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="s2">"user-</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">@rom-rb.org"</span> <span class="p">}</span>
@@ -52,9 +54,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_announcing-rom-fac
   <span class="n">f</span><span class="p">.</span><span class="nf">email</span> <span class="p">{</span> <span class="n">fake</span><span class="p">(</span><span class="ss">:internet</span><span class="p">,</span> <span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">age</span> <span class="p">{</span> <span class="n">fake</span><span class="p">(</span><span class="ss">:number</span><span class="p">,</span> <span class="ss">:between</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="p">}</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Associations</h2>
-
+</code></pre><h2 id="associations" class="header"><a name="associations" class="anchor" href="#associations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Associations</h2>
 <p>Currently <code>has_many</code>, <code>has_one</code> and <code>belongs_to</code> are supported. Here are a couple examples:</p>
 <pre class="syntax ruby"><code><span class="no">MyFactory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="p">{</span> <span class="n">fake</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
@@ -66,9 +69,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_announcing-rom-fac
   <span class="c1"># this will create 2 posts for a user</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">association</span><span class="p">(</span><span class="ss">:posts</span><span class="p">,</span> <span class="ss">count: </span><span class="mi">2</span><span class="p">)</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Extending existing builders</h2>
-
+</code></pre><h2 id="extending-existing-builders" class="header"><a name="extending-existing-builders" class="anchor" href="#extending-existing-builders">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Extending existing builders</h2>
 <p>You can define a builder by extending another one, for example you may have a user and an admin, which sets <code>admin</code> attribute to <code>true</code>:</p>
 <pre class="syntax ruby"><code><span class="no">MyFactory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="p">{</span> <span class="n">fake</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
@@ -80,9 +84,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_announcing-rom-fac
 <span class="no">MyFactory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">admin: :user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
   <span class="n">f</span><span class="p">.</span><span class="nf">admin</span> <span class="kp">true</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Status &amp; Roadmap</h2>
-
+</code></pre><h2 id="status-amp-roadmap" class="header"><a name="status-amp-roadmap" class="anchor" href="#status-amp-roadmap">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Status &amp; Roadmap</h2>
 <p>This is still in beta phase, current release is 0.5.0. We&#39;re planning to turn this into a pure data generator which doesn&#39;t assume any specific persistence backend (currently it uses <em>and</em> requires rom-core). On top of this, we want to add support for persistence backends. Once this is done, we&#39;ll have 1.0.0 ready.</p>
 
 <p>For now, give it a try and tell us what you think. If you have any questions or problems, reach out on <a href="http://discourse.rom-rb.org">our discussion forum</a>.</p>

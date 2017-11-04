@@ -53,9 +53,10 @@ the original tuple and the new one, i.e.:</p>
 
 <span class="c1"># no UPDATE query is executed</span>
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">,</span> <span class="n">changeset</span><span class="p">)</span>
-</code></pre>
-<h2>Changeset Mapping</h2>
-
+</code></pre><h2 id="changeset-mapping" class="header"><a name="changeset-mapping" class="anchor" href="#changeset-mapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Changeset Mapping</h2>
 <p>Changeset has an extendible data-pipe mechanism available via <code>Changeset.map</code>
 (for preconfigured mapping) and <code>Changeset#map</code> (for on-demand run-time mapping).</p>
 
@@ -66,9 +67,10 @@ and in addition to that we have:</p>
 <li><code>:add_timestamps</code>–sets <code>created_at</code> and <code>updated_at</code> timestamps (don&#39;t forget to add those fields to the table in case of using <code>rom-sql</code>)</li>
 <li><code>:touch</code>–sets <code>updated_at</code> timestamp</li>
 </ul>
-
-<h3>Pre-configured mapping</h3>
-
+<h3 id="pre-configured-mapping" class="header"><a name="pre-configured-mapping" class="anchor" href="#pre-configured-mapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Pre-configured mapping</h3>
 <p>If you want to process data before sending them to be persisted, you can define
 a custom Changeset class and specify your own mapping. Let&#39;s say we have a nested
 hash with <code>address</code> key but we store it as a flat structure with address attributes
@@ -88,9 +90,10 @@ having <code>address_*</code> prefix:</p>
 <span class="c1"># { name: 'Jane', address_city: 'NYC', address_street: 'Street 1' }</span>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
-</code></pre>
-<h3>Custom mapping block</h3>
-
+</code></pre><h3 id="custom-mapping-block" class="header"><a name="custom-mapping-block" class="anchor" href="#custom-mapping-block">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Custom mapping block</h3>
 <p>If you don&#39;t want to use built-in transformations, simply configure a mapping and
 pass <code>tuple</code> argument to the map block:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">NewUserChangeset</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Changeset</span><span class="o">::</span><span class="no">Create</span>
@@ -113,9 +116,10 @@ pass <code>tuple</code> argument to the map block:</p>
 <p>Custom mapping blocks are executed in the context of your changeset objects,
 which means you have access to changeset&#39;s state</p>
 </blockquote>
-
-<h3>On-demand mapping</h3>
-
+<h3 id="on-demand-mapping" class="header"><a name="on-demand-mapping" class="anchor" href="#on-demand-mapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>On-demand mapping</h3>
 <p>There are situations where you would like to perform an additional mapping but adding
 a special changeset class would be an overkill. That&#39;s why it&#39;s possible to apply
 additional mappings at run-time without having to use a custom changeset class.
@@ -126,9 +130,10 @@ To do this simply use <code>Changeset#map</code> method:</p>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Joe" email="joe@doe.org" created_at=2016-07-22 14:45:02 +0200 updated_at=2016-07-22 14:45:02 +0200&gt;</span>
-</code></pre>
-<h3>Committing changesets</h3>
-
+</code></pre><h3 id="committing-changesets" class="header"><a name="committing-changesets" class="anchor" href="#committing-changesets">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Committing changesets</h3>
 <p>Changesets can be committed without the need to use repository command methods. The difference is that by committing a changeset you get back
 raw data returned from your database:</p>
 <pre class="syntax ruby"><code><span class="n">new_user</span> <span class="o">=</span> <span class="n">repo</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
@@ -139,9 +144,10 @@ raw data returned from your database:</p>
 
 <span class="n">new_user</span><span class="p">.</span><span class="nf">commit</span>
 <span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">4</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane"</span><span class="p">}</span>
-</code></pre>
-<h3>Learn more</h3>
-
+</code></pre><h3 id="learn-more" class="header"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Learn more</h3>
 <p>Check out API docs:</p>
 
 <ul>
@@ -151,9 +157,10 @@ raw data returned from your database:</p>
 <li><a href="http://api.rom-rb.org/rom-repository/ROM/Changeset/Delete">ROM::Changeset::Delete</a></li>
 <li><a href="http://api.rom-rb.org/rom-repository/ROM/Changeset/Associated">ROM::Changeset::Associated</a></li>
 </ul>
-
-<h3>Next</h3>
-
+<h3 id="next" class="header"><a name="next" class="anchor" href="#next">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Next</h3>
 <p>Now you can learn how to <a href="/4.0/learn/repositories/custom-changesets">define custom changeset classes</a>.</p>
 </div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/learn/repositories/changesets/index.html.slim" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Changesets" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
 on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,

@@ -804,3 +804,13 @@ code {
   .feedback .button, .feedback .button--secondary, .feedback .button--disabled {
     margin-left: 1rem;
     font-size: 0.65rem; }
+
+.header {
+  display: block;
+  margin-bottom: 1.2rem; }
+  .header .anchor {
+    padding-right: 2px;
+    margin-left: -18px;
+    display: none; }
+  .header:hover .anchor {
+    display: inline-block; }

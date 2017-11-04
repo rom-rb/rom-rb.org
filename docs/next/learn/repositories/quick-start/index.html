@@ -6,9 +6,10 @@
 ga('create', 'UA-2573270-5', 'auto');
 ga('send', 'pageview');</script></head><body class="next next_learn next_learn_repositories next_learn_repositories_quick-start next_learn_repositories_quick-start_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/next/learn" class="menu__item__link--is-active">Learn</a></li><li class="menu__item"><a href="/next/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h3 class="sidebar__version">Version: <select id="sidebar__version-switcher"><option value="/3.0/learn/repositories/quick-start/index.html">3.0</option><option value="/4.0/learn/repositories/quick-start/index.html">4.0</option><option value="/current/learn/repositories/quick-start/index.html">current (4.0)</option></select></h3><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/next/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/next/learn/introduction/philosophy/" class="sidebar__sub-link">Philosophy</a></li><li class="sidebar__sub-item"><a href="/next/learn/introduction/why/" class="sidebar__sub-link">Why ROM?</a></li><li class="sidebar__sub-item"><a href="/next/learn/introduction/overview/" class="sidebar__sub-link">Overview</a></li><li class="sidebar__sub-item"><a href="/next/learn/introduction/active-record/" class="sidebar__sub-link">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a href="/next/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/next/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/next/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/next/learn/core/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/next/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/next/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/next/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/next/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/next/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/next/learn/core/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/next/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/next/learn/repositories/" class="sidebar__link--is-active">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/next/learn/repositories/quick-start/" class="sidebar__sub-link--is-active">Quick Start</a></li><li class="sidebar__sub-item"><a href="/next/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/next/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/next/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/next/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/next/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/next/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/next/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/next/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/next/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/next/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/next/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/next/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/next/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/next/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/next/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/next/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/next/learn/glossary/" class="sidebar__link">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>Repositories &raquo; Quick Start</h1><p>This documentation uses <code>rom-sql</code> as an example. For in-depth information see
 documentation for specific databases.</p>
-
-<h2>Creating a schema</h2>
-
+<h2 id="creating-a-schema" class="header"><a name="creating-a-schema" class="anchor" href="#creating-a-schema">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Creating a schema</h2>
 <p>You can quickly create a schema inside the setup block. Let&#39;s configure our
 SQL gateway and create a <code>:users</code> table:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom'</span>
@@ -26,9 +27,10 @@ SQL gateway and create a <code>:users</code> table:</p>
 
   <span class="n">conf</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">Users</span><span class="p">)</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Repositories</h2>
-
+</code></pre><h2 id="repositories" class="header"><a name="repositories" class="anchor" href="#repositories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Repositories</h2>
 <p>A Repository (&quot;Repo&quot;) object provides a lot of conveniences for reading data
 with relations. Every repo can access one or more relations, depending on how
 you set it up.</p>
@@ -45,9 +47,10 @@ this gives access to all components within the container:</p>
 <pre class="syntax ruby"><code><span class="n">user_repo</span> <span class="o">=</span> <span class="no">UserRepo</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rom</span><span class="p">)</span>
 </code></pre>
 <p>Let&#39;s see how Create, Update and Delete commands work with repositories.</p>
-
-<h3>Create</h3>
-
+<h3 id="create" class="header"><a name="create" class="anchor" href="#create">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Create</h3>
 <p>A repo can be configured to provide access to <code>Create</code> commands:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-repository'</span>
 
@@ -61,9 +64,10 @@ this gives access to all components within the container:</p>
 </code></pre>
 <p>By default, repos return simple <code>ROM::Struct</code> objects. You&#39;ll learn more about them in
 <a href="/next/learn/repositories/reading-simple-objects">reading</a> section.</p>
-
-<h3>Update and Delete</h3>
-
+<h3 id="update-and-delete" class="header"><a name="update-and-delete" class="anchor" href="#update-and-delete">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Update and Delete</h3>
 <p>Update and Delete commands require restricting relations so that ROM knows exactly
 which records to modify. Provide :update and :delete with the symbol name of the
 method to call to get that restricted relation.</p>
@@ -87,9 +91,10 @@ update and delete commands in a repo:</p>
 
 <span class="c1"># and now let's delete the user</span>
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="nf">id</span><span class="p">)</span>
-</code></pre>
-<h2>Next</h2>
-
+</code></pre><h2 id="next" class="header"><a name="next" class="anchor" href="#next">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Next</h2>
 <p>Now that you know how to create tables and define repositories with full CRUD
 support, you can proceed to <a href="/next/learn/repositories/reading-simple-objects">reading</a> section.</p>
 </div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/next/learn/repositories/quick-start/index.html.slim" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Quick%20Start" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying

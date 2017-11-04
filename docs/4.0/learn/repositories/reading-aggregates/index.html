@@ -10,9 +10,10 @@ the root relation, and additional relations provide data for child nodes.</p>
 
 <p>This document uses <code>rom-sql</code> which provides support for defining canonical database
 associations in relation schemas, which are used to simplify reading aggregates.</p>
-
-<h2>Relation Schema</h2>
-
+<h2 id="relation-schema" class="header"><a name="relation-schema" class="anchor" href="#relation-schema">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Relation Schema</h2>
 <p>First, we want to define our canonical associations. We call them canonical since
 they are defined by your database schema. It&#39;s common to diverge from canonical
 associations and compose data in different ways, depending on your application needs;
@@ -56,9 +57,10 @@ let&#39;s define relations using <a href="/4.0/learn/getting-started/block-style
 <p>With associations defined in the relation schemas we established common queries
 that will be automatically used for composing relations into aggregates. Let&#39;s
 see how we can leverage that in repositories.</p>
-
-<h2>Repository Aggregates</h2>
-
+<h2 id="repository-aggregates" class="header"><a name="repository-aggregates" class="anchor" href="#repository-aggregates">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Repository Aggregates</h2>
 <p>Let&#39;s say we&#39;d like to expose an aggregate where a user is loaded with its tasks.
 We need to define a root repository with <code>:users</code> set up as the root and provide
 access to <code>:tasks</code> relation:</p>
@@ -84,9 +86,10 @@ means we&#39;re going to load a task with its user:</p>
 <p>Notice that in this case <code>User</code> struct is loaded as a child object where <code>Task</code>
 is a parent, thus <code>User</code> has <code>task_id</code> assigned, which is <strong>a virtual foreign key</strong>
 that doesn&#39;t really exist in our schema.</p>
-
-<h2>Learn more</h2>
-
+<h2 id="learn-more" class="header"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Learn more</h2>
 <p>Loading aggregates with repositories can be achieved in many different ways, for
 detailed information about invidual methods please refer to the API documentation:</p>
 

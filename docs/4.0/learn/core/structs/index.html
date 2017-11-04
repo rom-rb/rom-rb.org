@@ -17,9 +17,10 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 <blockquote>
 <p>Notice that you can use all 3 ways at the same time, depending on what makes sense in a given use case</p>
 </blockquote>
-
-<h2>Auto-struct</h2>
-
+<h2 id="auto-struct" class="header"><a name="auto-struct" class="anchor" href="#auto-struct">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Auto-struct</h2>
 <p>Auto-struct is a relation feature which can automatically transform plain relation tuples to struct objects. These objects are instances of <code>ROM::Struct</code> and have explicit attributes defined, based on information from relation schemas.</p>
 
 <p>You can enable this feature via <code>auto_struct(true)</code> in a relation class:</p>
@@ -40,9 +41,10 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 <blockquote>
 <p>This feature is <strong>enabled by default in repositories</strong></p>
 </blockquote>
-
-<h2>Auto-struct with custom classes</h2>
-
+<h2 id="auto-struct-with-custom-classes" class="header"><a name="auto-struct-with-custom-classes" class="anchor" href="#auto-struct-with-custom-classes">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Auto-struct with custom classes</h2>
 <p>Relations support configuring <code>struct_namespace</code>, it is set to <code>ROM::Struct</code> by default, which means struct classes are generated for you automatically within <code>ROM::Struct</code> namespace. If you want to provide your own struct classes, simply put them in a module and configure it as the <code>struct_namespace</code>.</p>
 
 <p>Let&#39;s say you have <code>Entities</code> namespace and would like to provide a custom <code>Entities::User</code> class:</p>
@@ -64,9 +66,10 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">one</span>
 <span class="n">user</span><span class="p">.</span><span class="nf">full_name</span>
 <span class="c1"># =&gt; "Jane Doe"</span>
-</code></pre>
-<h3>How struct classes are determined</h3>
-
+</code></pre><h3 id="how-struct-classes-are-determined" class="header"><a name="how-struct-classes-are-determined" class="anchor" href="#how-struct-classes-are-determined">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>How struct classes are determined</h3>
 <p>Mappers will look for struct classes based on <code>Relation#name</code>, but this is not restricted
 to canonical names of your relations, as they can be aliased too. For instance, you may
 define <code>:admins</code> relation, which is restricted to users with <code>type</code> set to <code>&quot;Admin&quot;</code>. Then
@@ -101,14 +104,17 @@ relation.</p>
 <span class="c1"># true</span>
 </code></pre>
 <blockquote>
-<h4>Usage with repositories</h4>
-
+<h4 id="usage-with-repositories" class="header"><a name="usage-with-repositories" class="anchor" href="#usage-with-repositories">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Usage with repositories</h4>
 <p>It is advised to configure struct_namespace in repositories, as it&#39;s the appropriate
 layer where application-specific data structures are coming from.</p>
 </blockquote>
-
-<h2>Mapping to custom objects</h2>
-
+<h2 id="mapping-to-custom-objects" class="header"><a name="mapping-to-custom-objects" class="anchor" href="#mapping-to-custom-objects">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Mapping to custom objects</h2>
 <p>You can ask a relation to instantiate your own objects via <code>Relation#map_to</code> interface.
 Your object class must have a constructor which accepts a hash with attributes.</p>
 
@@ -127,9 +133,10 @@ Your object class must have a constructor which accepts a hash with attributes.<
 
 <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">map_to</span><span class="p">(</span><span class="no">User</span><span class="p">)</span>
 <span class="c1"># =&gt; #&lt;User:0x007fa7eabf1a50 @attributes={:id=&gt;1, :name=&gt;"Jane"}&gt;</span>
-</code></pre>
-<h2>Learn more</h2>
-
+</code></pre><h2 id="learn-more" class="header"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Learn more</h2>
 <ul>
 <li><a href="http://api.rom-rb.org/rom-mapper/ROM//Struct">ROM::Struct</a></li>
 </ul>

@@ -11,9 +11,10 @@ relation specialization, exposing interfaces that make it easy to leverage the
 features of your database. At the same time, these relations encapsulate data
 access, so that details about how it&#39;s done don&#39;t leak into your application domain
 layer.</p>
-
-<h2>Relation classes</h2>
-
+<h2 id="relation-classes" class="header"><a name="relation-classes" class="anchor" href="#relation-classes">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Relation classes</h2>
 <p>In typical setup of an application using ROM, relations are defined as explicit
 classes. You can put them in separate files, namespace them or not, and configure
 them when it&#39;s needed (especially useful when using a legacy database with non-standard
@@ -24,9 +25,10 @@ data. Every relation <em>method</em> should return another relation, we call the
 <mark>relation views</mark>. These views can be defined in ways that make them
 <em>composable</em> by including join-keys in the resulting tuples. This is not limited
 to SQL, you can compose data from different sources.</p>
-
-<h3>Example relation class</h3>
-
+<h3 id="example-relation-class" class="header"><a name="example-relation-class" class="anchor" href="#example-relation-class">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Example relation class</h3>
 <p>Even when you use an adapter that can infer relations from your database schema,
 it is valuable to define relations classes explicitly. Let&#39;s say we have <code>:users</code>
 table in an SQL database, here&#39;s how you would define a relation class for it:</p>
@@ -40,9 +42,10 @@ table in an SQL database, here&#39;s how you would define a relation class for i
 adapter</li>
 <li><code>Users</code> class name is used by default to infer <code>dataset</code> name and set it to <code>:users</code></li>
 </ul>
-
-<h3>Relation methods</h3>
-
+<h3 id="relation-methods" class="header"><a name="relation-methods" class="anchor" href="#relation-methods">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Relation methods</h3>
 <p>Every method in a relation should return another relation, this happens automatically
 whenever you use a query interface provided by adapters. In our example we use
 <code>rom-sql</code>, let&#39;s define a relation view using SQL query DSL:</p>
@@ -51,9 +54,10 @@ whenever you use a query interface provided by adapters. In our example we use
     <span class="nb">select</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">).</span><span class="nf">order</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h3>Next</h3>
-
+</code></pre><h3 id="next" class="header"><a name="next" class="anchor" href="#next">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Next</h3>
 <p>Now let&#39;s see how you can use <a href="/3.0/learn/core/schemas">relation schemas</a>.</p>
 </div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/3.0/learn/core/relations/index.html.slim" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Relations" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
 on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,

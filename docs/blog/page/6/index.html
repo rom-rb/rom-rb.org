@@ -19,9 +19,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_6 b
 <li><a href="https://github.com/rom-rb/rom-couchdb">rom-couchdb</a></li>
 <li><a href="https://github.com/rom-rb/rom-git">rom-git</a></li>
 </ul>
-
-<h2>Support For Nested Input</h2>
-
+<h2 id="support-for-nested-input" class="header"><a name="support-for-nested-input" class="anchor" href="#support-for-nested-input">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Support For Nested Input</h2>
 <p>ROM commands are now even more powerful by allowing composition of multiple commands into one that can receive a nested input which will be used to insert data into multiple relations. This feature is compatible with combined relation mapping which means you can pipe results from a combined command through mappers just like in case of combined relations.</p>
 
 <p>When do you want to use this feature? Every time you want to persist entire object graph, in example a post with its tags or a user with an address.</p>
@@ -86,9 +87,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_6 b
 <span class="c1">#      ]</span>
 <span class="c1">#   }</span>
 <span class="c1"># ]</span>
-</code></pre>
-<h2>Mapper Steps</h2>
-
+</code></pre><h2 id="mapper-steps" class="header"><a name="mapper-steps" class="anchor" href="#mapper-steps">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Mapper Steps</h2>
 <p>Transforming data with mappers can be really complex and sometimes you may want to define multiple mapping steps. That&#39;s why we introduced a new interface in Mapper DSL where you can do just that:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
   <span class="n">step</span> <span class="k">do</span>
@@ -109,9 +111,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_6 b
 <span class="c1"># [{ :id =&gt; 1, :details =&gt; { :name =&gt; "Jane" } }]</span>
 </code></pre>
 <p>Typically you want to use this feature when mapping logic is too complex to be expressed using nested blocks. It&#39;s especially useful when dealing with multiple group/ungroup/wrap/unwrap/fold/unfold operations that simply cannot be defined as a deeply nested mapping definition block.</p>
-
-<h2>New Mapping Transformations</h2>
-
+<h2 id="new-mapping-transformations" class="header"><a name="new-mapping-transformations" class="anchor" href="#new-mapping-transformations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>New Mapping Transformations</h2>
 <p>We have 3 new transformations <code>fold</code>, <code>unfold</code> and <code>ungroup</code> which makes mappers even more powerful.</p>
 
 <p>Folding can be used to collapse values from multiple tuples under a single array attribute:</p>
@@ -150,17 +153,19 @@ ga('send', 'pageview');</script></head><body class="blog blog_page blog_page_6 b
   <span class="p">{</span> <span class="ss">title: </span><span class="s1">'Hello World'</span><span class="p">,</span> <span class="ss">tags: </span><span class="p">[{</span> <span class="ss">name: </span><span class="s1">'red'</span> <span class="p">},</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'green'</span> <span class="p">}]</span> <span class="p">}</span>
 <span class="p">]).</span><span class="nf">inspect</span>
 <span class="c1"># [{:tag_name=&gt;"red", :title=&gt;"Hello World"}, {:tag_name=&gt;"green", :title=&gt;"Hello World"}]</span>
-</code></pre>
-<h2>Guides</h2>
-
+</code></pre><h2 id="guides" class="header"><a name="guides" class="anchor" href="#guides">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Guides</h2>
 <p>ROM is growing really fast and there&#39;s a lot of functionality that is difficult to describe in API documentation. That&#39;s why we started a new <a href="http://rom-rb.org/guides">Guides</a> section on the official rom-rb.org website.</p>
 
 <p>You can already find a lot of information about ROM setup, adapters, relations, commands and mappers. We&#39;ll be adding more content and improving existing documentation based on the feedback so please check them out and let us know what you think.</p>
 
 <p>In the upcoming weeks you should also see new tutorials covering topics like building your own persistence layer with ROM, handling data import with ROM or how to use ROM with various JSON serializers like Roar or Yaks, so stay tuned!</p>
-
-<h2>Next Release</h2>
-
+<h2 id="next-release" class="header"><a name="next-release" class="anchor" href="#next-release">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Next Release</h2>
 <p>We have a pretty good understanding of what we want to achieve with the next 0.9.0 release which will improve the internal architecture of ROM. We&#39;re planning to split <code>rom</code> gem into <a href="https://github.com/rom-rb/rom/issues/256">smaller pieces</a> and introduce cleaner and more explicit interfaces for setting up ROM.</p>
 
 <p>Another planned change is introducing <a href="https://github.com/rom-rb/rom/issues/193">Policy Over Configuration</a> API which should improve ROM configuration and handling various conventions.</p>
@@ -188,9 +193,10 @@ adds new, great features on top of existing APIs.</p>
 </ul>
 
 <p>Let&#39;s see what this new release brings.</p>
-
-<h2>Explicit eager-loading</h2>
-
+<h2 id="explicit-eager-loading" class="header"><a name="explicit-eager-loading" class="anchor" href="#explicit-eager-loading">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Explicit eager-loading</h2>
 <p>Probably the most important addition in this release is the ability to eager-load entire object graph using the new <code>combine</code> interface. Previously the only way to load a nested data-structure into memory was to use a join. Starting from 0.7.0 you can combine relations together and map the resulting graph into an aggregate with ease. As a bonus side-effect it allows to &quot;join&quot; relations coming from different datastores in memory. This feature leverages data-pipeline feature of ROM that was introduced in 0.6.0.</p>
 
 <p>Let&#39;s see how this works:</p>
@@ -249,9 +255,10 @@ adds new, great features on top of existing APIs.</p>
 <span class="c1"># ]</span>
 </code></pre>
 <p>As you can see ROM executes the minimum amount of needed SQL queries. It shouldn&#39;t surprise given that you explicitly told ROM which relations should be used to load the data. As you can probably imagine you are free to use whatever strategy fits better in a particular use case. You can use combine, or you can use joins, or both at the same time. It doesn&#39;t really matter since it&#39;s just data flowing from one object to another producing end result - a nested data structure.</p>
-
-<h2>Mapping combined relations</h2>
-
+<h2 id="mapping-combined-relations" class="header"><a name="mapping-combined-relations" class="anchor" href="#mapping-combined-relations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Mapping combined relations</h2>
 <p>To map result from our previous example we can create a mapper using the mapping DSL named the same as in relations - <code>combine</code>:</p>
 <pre class="syntax ruby"><code><span class="no">Entity</span> <span class="o">=</span> <span class="no">Virtus</span><span class="p">.</span><span class="nf">model</span><span class="p">(</span><span class="ss">coerce: </span><span class="kp">false</span><span class="p">)</span>
 
@@ -287,9 +294,10 @@ adds new, great features on top of existing APIs.</p>
 <span class="c1">#   #&lt;User:0x007fc86a820250 @id=1, @name="Jane",</span>
 <span class="c1">#       @tasks=[#&lt;Task:0x007fc86a8221b8 @id=2, @title="Task for Jane"&gt;]&gt;</span>
 <span class="c1"># ]</span>
-</code></pre>
-<h2>More mapping goodies</h2>
-
+</code></pre><h2 id="more-mapping-goodies" class="header"><a name="more-mapping-goodies" class="anchor" href="#more-mapping-goodies">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>More mapping goodies</h2>
 <p>Mapper DSL was extended with a couple of nifty features, let&#39;s quickly go through them:</p>
 
 <p>Ability to reuse existing mappers:</p>
@@ -327,9 +335,10 @@ adds new, great features on top of existing APIs.</p>
 
 <span class="n">mapper</span><span class="p">.</span><span class="nf">call</span> <span class="p">[{</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">,</span> <span class="ss">address: </span><span class="p">{</span> <span class="ss">street: </span><span class="s1">'Street 1'</span><span class="p">,</span> <span class="ss">city: </span><span class="s1">'NYC'</span> <span class="p">}</span> <span class="p">}]</span>
 <span class="c1"># [{ :name =&gt; "Jane", :street =&gt; "Street 1", :city =&gt; "NYC" }]</span>
-</code></pre>
-<h3>Registering Custom Objects as Mappers</h3>
-
+</code></pre><h3 id="registering-custom-objects-as-mappers" class="header"><a name="registering-custom-objects-as-mappers" class="anchor" href="#registering-custom-objects-as-mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Registering Custom Objects as Mappers</h3>
 <p>Powerful ROM mapping DSL still not covering your specific needs? No worries, now you can register anything that responds to <code>#call(data)</code> as your mapper:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom'</span>
 
@@ -354,9 +363,10 @@ adds new, great features on top of existing APIs.</p>
 
 <span class="nb">puts</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:name_list</span><span class="p">).</span><span class="nf">to_a</span><span class="p">.</span><span class="nf">inspect</span>
 <span class="c1"># ["Jane", "John"]</span>
-</code></pre>
-<h3>Plugin Interface</h3>
-
+</code></pre><h3 id="plugin-interface" class="header"><a name="plugin-interface" class="anchor" href="#plugin-interface">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Plugin Interface</h3>
 <p>Last but not least - ROM now has a basic plugin interface. We already ported a couple of features to plugin infrastructure. You can start experimenting with it already:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom'</span>
 
@@ -375,9 +385,10 @@ adds new, great features on top of existing APIs.</p>
 <span class="k">end</span>
 </code></pre>
 <p>Plugins can be provided only for a specific adapter and are grouped by relation, command and mapper types.</p>
-
-<h3>Roadmap: Towards 1.0.0</h3>
-
+<h3 id="roadmap-towards-1-0-0" class="header"><a name="roadmap-towards-1-0-0" class="anchor" href="#roadmap-towards-1-0-0">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Roadmap: Towards 1.0.0</h3>
 <p>ROM is already a powerful toolkit for data mapping and a uniform interface to various different data sources.</p>
 
 <p>In the immediate future, version 0.8.0 will bring major improvements to the Command API and—as always—a bunch of smaller bug fixes and enhancements.</p>

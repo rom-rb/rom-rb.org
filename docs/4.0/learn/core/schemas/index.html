@@ -11,9 +11,10 @@ for example <code>rom-sql</code> extends schema DSL with support for database-sp
 <p>Apart from adapter-specific extensions, schemas can be <em>extended by you</em> since
 you can define your own <em>types</em> as well as your own custom methods available on
 attribute objects.</p>
-
-<h2>Why?</h2>
-
+<h2 id="why" class="header"><a name="why" class="anchor" href="#why">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Why?</h2>
 <p>First of all, because schemas give an explicit definition for the data structures
 a given relation returns.</p>
 
@@ -24,9 +25,10 @@ coercions when reading data.</p>
 
 <p>Furthermore, schemas can provide meta-data that can be used to automate many common
 tasks, like generating relations automatically for associations.</p>
-
-<h2>Defining schemas explicitly</h2>
-
+<h2 id="defining-schemas-explicitly" class="header"><a name="defining-schemas-explicitly" class="anchor" href="#defining-schemas-explicitly">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Defining schemas explicitly</h2>
 <p>The DSL is simple. Provide a symbol name with a type from the Types module:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:http</span><span class="p">]</span>
   <span class="n">schema</span> <span class="k">do</span>
@@ -35,9 +37,10 @@ tasks, like generating relations automatically for associations.</p>
     <span class="n">attribute</span> <span class="ss">:age</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Int</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Inferring schemas</h2>
-
+</code></pre><h2 id="inferring-schemas" class="header"><a name="inferring-schemas" class="anchor" href="#inferring-schemas">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Inferring schemas</h2>
 <p>If the adapter that you use supports inferring schemas, your schemas can be defined as:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
@@ -50,15 +53,17 @@ tasks, like generating relations automatically for associations.</p>
     <span class="n">attribute</span> <span class="ss">:meta</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">MyCustomMetaType</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Types namespace</h2>
-
+</code></pre><h2 id="types-namespace" class="header"><a name="types-namespace" class="anchor" href="#types-namespace">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Types namespace</h2>
 <p>All builtin types are defined in <code>ROM::Types</code> namespace, and individual adapters
 may provide their own namespace which extends the builtin one. For example <code>rom-sql</code>
 provides <code>ROM::SQL::Types</code> and <code>ROM::SQL::Types::PG</code>.</p>
-
-<h2>Primary keys</h2>
-
+<h2 id="primary-keys" class="header"><a name="primary-keys" class="anchor" href="#primary-keys">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Primary keys</h2>
 <p>You can set up a primary key, either a single attribute or a composite:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:http</span><span class="p">]</span>
   <span class="n">schema</span> <span class="k">do</span>
@@ -83,9 +88,10 @@ provides <code>ROM::SQL::Types</code> and <code>ROM::SQL::Types::PG</code>.</p>
 <blockquote>
 <p><code>primary_key</code> is a shortcut for the annotation: Types::Int.meta(primary_key: true)</p>
 </blockquote>
-
-<h2>Foreign Keys</h2>
-
+<h2 id="foreign-keys" class="header"><a name="foreign-keys" class="anchor" href="#foreign-keys">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Foreign Keys</h2>
 <p>You can set up foreign keys pointing to a specific relation:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Posts</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:http</span><span class="p">]</span>
   <span class="n">schema</span> <span class="k">do</span>
@@ -98,9 +104,10 @@ provides <code>ROM::SQL::Types</code> and <code>ROM::SQL::Types::PG</code>.</p>
 <blockquote>
 <p><code>foreign_key</code> is a shortcut for the annotation: Types::Int.meta(foreign_key: true, relation: :users)</p>
 </blockquote>
-
-<h2>Annotations</h2>
-
+<h2 id="annotations" class="header"><a name="annotations" class="anchor" href="#annotations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Annotations</h2>
 <p>Schema types provide an API for adding arbitrary meta-information. This is mostly
 useful for adapters, or anything that may need to introspect relation schemas.</p>
 
@@ -114,9 +121,10 @@ useful for adapters, or anything that may need to introspect relation schemas.</
 <p>Here we defined a <code>:namespace</code> meta-information, that can be used accessed via
 <code>:name</code> type:</p>
 <pre class="syntax ruby"><code><span class="no">Users</span><span class="p">.</span><span class="nf">schema</span><span class="p">[</span><span class="ss">:name</span><span class="p">].</span><span class="nf">meta</span><span class="p">[</span><span class="ss">:namespace</span><span class="p">]</span> <span class="c1"># 'details'</span>
-</code></pre>
-<h2>Using <code>write</code> types</h2>
-
+</code></pre><h2 id="using-code-write-code-types" class="header"><a name="using-code-write-code-types" class="anchor" href="#using-code-write-code-types">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Using <code>write</code> types</h2>
 <p>Relations commands will automatically use schema attributes when processing the input.
 This allows us to perform database-specific coercions, setting default values or applying
 low-level constraints.</p>
@@ -135,9 +143,10 @@ low-level constraints.</p>
 <p>Now when you persist data using <a href="/4.0/learn/repositories">repositories</a> or
 <a href="/4.0/learn/advanced/custom-commands">custom commands</a>, your schema will be used
 to process the input data, and our <code>:id</code> value will be handled by the <code>UUID</code> type.</p>
-
-<h2>Using <code>read</code> types</h2>
-
+<h2 id="using-code-read-code-types" class="header"><a name="using-code-read-code-types" class="anchor" href="#using-code-read-code-types">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Using <code>read</code> types</h2>
 <p>Apart from <code>write</code> types, you can also specify <code>read</code> types, these are used by relations
 when they read data from a database. You can define them using <code>:read</code> option:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:http</span><span class="p">]</span>
@@ -149,9 +158,10 @@ when they read data from a database. You can define them using <code>:read</code
 <span class="k">end</span>
 </code></pre>
 <p>Now when <code>Users</code> relation reads it data, <code>birthday</code> values will be processed via <code>Types::Coercible::Date</code>.</p>
-
-<h2>Type System</h2>
-
+<h2 id="type-system" class="header"><a name="type-system" class="anchor" href="#type-system">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Type System</h2>
 <p>Schemas use a type system from <a href="http://dry-rb.org/gems/dry-types">dry-types</a> and
 you can define your own schema types however you want. What types you need really
 depends on your application requirements, the adapter you&#39;re using, specific use cases
@@ -175,9 +185,10 @@ to validate the data prior sending them to a command, but there might be use cas
 where you expect data to be valid already, and any type error <em>is indeed an exception</em>
 and you want your system to crash</li>
 </ul>
-
-<h2>Learn more</h2>
-
+<h2 id="learn-more" class="header"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Learn more</h2>
 <p>You can learn more about adapter-specific schemas:</p>
 
 <ul>

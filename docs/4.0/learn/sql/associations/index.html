@@ -5,9 +5,10 @@
 
 ga('create', 'UA-2573270-5', 'auto');
 ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/4.0/learn" class="menu__item__link--is-active">Learn</a></li><li class="menu__item"><a href="/4.0/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h3 class="sidebar__version">Version: <select id="sidebar__version-switcher"><option value="/3.0/learn/sql/associations/index.html">3.0</option><option selected="selected" value="/4.0/learn/sql/associations/index.html">4.0</option><option value="/current/learn/sql/associations/index.html">current (4.0)</option></select></h3><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/4.0/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/philosophy/" class="sidebar__sub-link">Philosophy</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/why/" class="sidebar__sub-link">Why ROM?</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/overview/" class="sidebar__sub-link">Overview</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/active-record/" class="sidebar__sub-link">Active Record and ROM</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/core/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/sql/" class="sidebar__link--is-active">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/associations/" class="sidebar__sub-link--is-active">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/glossary/" class="sidebar__link">Glossary</a></li></ul></div></div><div class="page__content"><div class="content"><h1>SQL &raquo; Associations</h1><p>Relation schemas in SQL land can be used to define canonical associations. These definitions play important role in automatic mapping of aggregates.</p>
-
-<h2>belongs_to (many-to-one)</h2>
-
+<h2 id="belongs_to-many-to-one" class="header"><a name="belongs_to-many-to-one" class="anchor" href="#belongs_to-many-to-one">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>belongs_to (many-to-one)</h2>
 <p>The <code>belongs_to</code> definition establishes a many-to-one association type.</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Post</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
@@ -18,13 +19,16 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
 <span class="k">end</span>
 </code></pre>
 <blockquote>
-<h4>Naming convention</h4>
-
+<h4 id="naming-convention" class="header"><a name="naming-convention" class="anchor" href="#naming-convention">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Naming convention</h4>
 <p>This method is a shortcut for <code>belongs_to :users, as: :user</code></p>
 </blockquote>
-
-<h2>has_many (one-to-many)</h2>
-
+<h2 id="has_many-one-to-many" class="header"><a name="has_many-one-to-many" class="anchor" href="#has_many-one-to-many">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>has_many (one-to-many)</h2>
 <p>The <code>has_many</code> definition establishes a one-to-many association type.</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
@@ -33,9 +37,10 @@ ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div c
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>has_many-through (many-to-many)</h2>
-
+</code></pre><h2 id="has_many-through-many-to-many" class="header"><a name="has_many-through-many-to-many" class="anchor" href="#has_many-through-many-to-many">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>has_many-through (many-to-many)</h2>
 <p>The <code>has_many</code> definition supports <code>:through</code> option which establishes a
 many-to-many association type.</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
@@ -54,9 +59,10 @@ many-to-many association type.</p>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>has_one (one-to-one)</h2>
-
+</code></pre><h2 id="has_one-one-to-one" class="header"><a name="has_one-one-to-one" class="anchor" href="#has_one-one-to-one">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>has_one (one-to-one)</h2>
 <p>The <code>has_one</code> definition establishes a one-to-one association type.</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
@@ -67,13 +73,16 @@ many-to-many association type.</p>
 <span class="k">end</span>
 </code></pre>
 <blockquote>
-<h4>Naming convention</h4>
-
+<h4 id="naming-convention_1" class="header"><a name="naming-convention_1" class="anchor" href="#naming-convention_1">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Naming convention</h4>
 <p>This method is a shortcut for <code>has_one :accounts, as: :account</code></p>
 </blockquote>
-
-<h2>has_one-through (one-to-one-through)</h2>
-
+<h2 id="has_one-through-one-to-one-through" class="header"><a name="has_one-through-one-to-one-through" class="anchor" href="#has_one-through-one-to-one-through">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>has_one-through (one-to-one-through)</h2>
 <p>The <code>has_one</code> definition supports <code>:through</code> option which establishes a
 one-to-one-through association type.</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
@@ -92,9 +101,10 @@ one-to-one-through association type.</p>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Aliasing an association</h2>
-
+</code></pre><h2 id="aliasing-an-association" class="header"><a name="aliasing-an-association" class="anchor" href="#aliasing-an-association">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Aliasing an association</h2>
 <p>If you want to use a different name for an association, you can use <code>:as</code> option.
 All association types support this feature.</p>
 
@@ -113,9 +123,10 @@ them <code>:authors</code>:</p>
 an aggregate with posts and its authors, the attribute name in post structs
 will be called <strong>author</strong></p>
 </blockquote>
-
-<h2>Extending associations with custom views</h2>
-
+<h2 id="extending-associations-with-custom-views" class="header"><a name="extending-associations-with-custom-views" class="anchor" href="#extending-associations-with-custom-views">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Extending associations with custom views</h2>
 <p>You can use <code>:view</code> option and specify which relation view should be used to extend
 default association relation. Let&#39;s say you have users with many accounts through
 users_accounts and you want to add attributes from the join relation to accounts:</p>
@@ -137,9 +148,10 @@ users_accounts and you want to add attributes from the join relation to accounts
 </code></pre>
 <p>This way when you load users with their accounts, they will include <code>:position</code>
 attribute from the join table and will be ordered by that attribute.</p>
-
-<h2>Overridding associations with custom views</h2>
-
+<h2 id="overridding-associations-with-custom-views" class="header"><a name="overridding-associations-with-custom-views" class="anchor" href="#overridding-associations-with-custom-views">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Overridding associations with custom views</h2>
 <p>You can use <code>:override</code> option along with <code>:view</code> and specify which relation view
 should be used to <strong>override</strong> default association relation. Let&#39;s say we have <code>Users</code>
 that have many <code>Accounts</code> and we want to provide our custom query to fetch all accounts
@@ -171,9 +183,10 @@ association object, and a loaded users relation.</p>
 to merge data into nested structures. Typically, combine keys are simply the same
 as join keys. See <code>Combine keys vs join keys</code> sub-section to learn more</li>
 </ul>
-
-<h2>Using associations to manually preload relations</h2>
-
+<h2 id="using-associations-to-manually-preload-relations" class="header"><a name="using-associations-to-manually-preload-relations" class="anchor" href="#using-associations-to-manually-preload-relations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Using associations to manually preload relations</h2>
 <p>You can reuse queries that associations use in your own methods too via <code>assoc</code>
 shortcut method:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
@@ -187,9 +200,10 @@ shortcut method:</p>
     <span class="n">assoc</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">where</span><span class="p">(</span><span class="ss">admin: </span><span class="kp">true</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Setting a custom foreign-key</h2>
-
+</code></pre><h2 id="setting-a-custom-foreign-key" class="header"><a name="setting-a-custom-foreign-key" class="anchor" href="#setting-a-custom-foreign-key">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Setting a custom foreign-key</h2>
 <p>By default, foreign keys found in schemas are used, but you can provide custom names too via
 <code>:foreign_key</code> option:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Flights</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
@@ -200,9 +214,10 @@ shortcut method:</p>
     <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<h2>Using a relation named differently from the table</h2>
-
+</code></pre><h2 id="using-a-relation-named-differently-from-the-table" class="header"><a name="using-a-relation-named-differently-from-the-table" class="anchor" href="#using-a-relation-named-differently-from-the-table">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Using a relation named differently from the table</h2>
 <p>It&#39;s a common case for legacy databases to have tables named differently from relations. Your legacy table name must be the first argument and the corresponding relation name must go with <code>:relation</code> option:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
@@ -215,9 +230,10 @@ shortcut method:</p>
 <blockquote>
 <p>All association types support this option</p>
 </blockquote>
-
-<h2>Learn more</h2>
-
+<h2 id="learn-more" class="header"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Learn more</h2>
 <p>Check out API documentation:</p>
 
 <ul>

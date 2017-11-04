@@ -36,9 +36,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 <li><a href="http://github.com/rom-rb/rom-http">rom-http</a> - an abstract HTTP adapter useful for implementing concrete adapters for HTTP APIs</li>
 <li><a href="http://github.com/rom-rb/rom-rethinkdb">rom-rethinkdb</a> - an adapter for RethinkDB</li>
 </ul>
-
-<h2>Repository</h2>
-
+<h2 id="repository" class="header"><a name="repository" class="anchor" href="#repository">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Repository</h2>
 <p>Probably the most significant addition coming with this release is rom-repository. Using lower-level APIs and configuring mappers manually is tedious in most of the cases that&#39;s why Repository was introduced.</p>
 
 <p>Repository interface is very simple and built on top of Relation and Mapper API. It allows you to easily work with relations and have results automatically mapped to struct-like objects. There are a couple of neat plugins that ship with this gem which make relation composition ridiculously simple.</p>
@@ -58,9 +59,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 <span class="c1"># [#&lt;ROM::Struct[User] id=1 name="Jane" tasks=[#&lt;ROM::Struct[Task] id=2 user_id=1 title="Jane Task"&gt;]&gt;, #&lt;ROM::Struct[User] id=2 name="Joe" tasks=[#&lt;ROM::Struct[Task] id=1 user_id=2 title="Joe Task"&gt;]&gt;]</span>
 </code></pre>
 <p>Please refer to <a href="http://rom-rb.org/guides/basics/repositories/">Repository Guide</a> for the rationale and more information.</p>
-
-<h2>Multi-Environment Support</h2>
-
+<h2 id="multi-environment-support" class="header"><a name="multi-environment-support" class="anchor" href="#multi-environment-support">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Multi-Environment Support</h2>
 <p>Initially, ROM supported its setup process through a global environment object. This was a good start that worked well with frameworks like Rails that expect globally accessible objects; however, we&#39;re pushing towards removing global state as much as possible.</p>
 
 <p>For that reason in ROM 0.9.0 you can configure the environment as a standalone object, which comes with the benefit of being able to have more than one environment. Why would you want to have many environments? For example for database sharding, or separating components within your application where data comes from different sources and you want to keep them isolated.</p>
@@ -94,9 +96,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 <span class="n">query_container</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="c1"># access to defined relations</span>
 </code></pre>
 <p>Global setup process still works, but please refer to <a href="https://github.com/rom-rb/rom/wiki/Upgrade-Guides">upgrade guide</a> if you are using ROM standalone without any framework integration.</p>
-
-<h2>Gateway Configuration Support</h2>
-
+<h2 id="gateway-configuration-support" class="header"><a name="gateway-configuration-support" class="anchor" href="#gateway-configuration-support">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Gateway Configuration Support</h2>
 <p>A new interface for configuring individual adapter gateways has been added. For now the only customization you can make is configuring how relation inferrence should work:</p>
 <pre class="syntax ruby"><code><span class="c1"># disable inferring relations from schema</span>
 <span class="no">ROM</span><span class="p">.</span><span class="nf">setup</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="p">[</span>
@@ -114,9 +117,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 <span class="p">])</span>
 </code></pre>
 <p>This feature is useful when you have a big database and you don&#39;t want to use ROM to deal with all of your relations.</p>
-
-<h2>Extracted Standalone Mappers</h2>
-
+<h2 id="extracted-standalone-mappers" class="header"><a name="extracted-standalone-mappers" class="anchor" href="#extracted-standalone-mappers">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Extracted Standalone Mappers</h2>
 <p>You can now install rom-mapper as a standalone gem and use the powerful mapping DSL:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-mapper'</span>
 
@@ -137,9 +141,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 <span class="c1"># [{:title=&gt;"Hello World", :author=&gt;{:name=&gt;"Jane", :email=&gt;"jane@doe.org"}}]</span>
 </code></pre>
 <p>Mappers are very powerful, make sure to check out the <a href="http://rom-rb.org/guides/basics/mappers/">Mapper Guides</a>.</p>
-
-<h2>All Relations Are Lazy</h2>
-
+<h2 id="all-relations-are-lazy" class="header"><a name="all-relations-are-lazy" class="anchor" href="#all-relations-are-lazy">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>All Relations Are Lazy</h2>
 <p>Before 0.9.0, ROM had a separate layer for decorating your relations with a lazy-proxy wrapper. This has caused some confusion and unnecessary complexity, as the relations you defined were not the same thing that the <code>#relation()</code> method returned. It also turned out that implementing rom-repository was more difficult than it should have been.</p>
 
 <p>That&#39;s why in ROM 0.9.0 all relations have lazy interface. It means that every relation method you define is auto-curried:</p>
@@ -156,18 +161,20 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 <span class="n">user_by_name</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_name</span> <span class="c1"># returns auto-curried relation</span>
 
 <span class="n">user_by_name</span><span class="p">[</span><span class="s1">'Jane'</span><span class="p">].</span><span class="nf">one!</span> <span class="c1"># call later on to apply the required argument</span>
-</code></pre>
-<h2>Adapter Query DSL is Public</h2>
-
+</code></pre><h2 id="adapter-query-dsl-is-public" class="header"><a name="adapter-query-dsl-is-public" class="anchor" href="#adapter-query-dsl-is-public">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Adapter Query DSL is Public</h2>
 <p>Starting from ROM 0.9.0, the query interface exposed by individual adapters is public, <strong>but</strong> it is not recommended to use it directly in your application. Relations should be used to encapsulate data access properly and query DSLs should not leak to the application layer.</p>
 <pre class="syntax ruby"><code><span class="c1"># this is considered as a smell</span>
 <span class="n">users</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
 
 <span class="c1"># that's the proper way™</span>
 <span class="n">users</span><span class="p">.</span><span class="nf">by_name</span><span class="p">(</span><span class="s2">"Jane"</span><span class="p">)</span>
-</code></pre>
-<h2>Extracted Model Extensions</h2>
-
+</code></pre><h2 id="extracted-model-extensions" class="header"><a name="extracted-model-extensions" class="anchor" href="#extracted-model-extensions">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Extracted Model Extensions</h2>
 <p>A couple of useful extensions have been extracted from the rom-rails gem into rom-model. These are standalone components that are based on Virtus and ActiveModel. We have an ambitious plan to rewrite it in the future on top of more powerful tools. Please refer to rom-model <a href="https://github.com/rom-rb/rom-model#rommodel">README</a> for more information.</p>
 
 <p>Right now you can use <code>Attributes</code> and enhanced <code>Validator</code> objects with nice support for embedded validations:</p>
@@ -199,9 +206,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 
 <span class="n">validator</span> <span class="o">=</span> <span class="no">PostValidator</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
 <span class="n">validator</span><span class="p">.</span><span class="nf">valid?</span>
-</code></pre>
-<h2>HTTP Adapter</h2>
-
+</code></pre><h2 id="http-adapter" class="header"><a name="http-adapter" class="anchor" href="#http-adapter">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>HTTP Adapter</h2>
 <p>The new, abstract <code>rom-http</code> adapter is a fantastic addition to the growing list of ROM adapters. It gives you a solid foundation for building a custom adapter which needs to talk via HTTP protocol. It&#39;s pretty flexible, and works like any other rom adapter - which means that you can use either the lower-level relation and mapping APIs or set it up with <code>rom-repository</code> and auto-mapping.</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'json'</span>
 <span class="nb">require</span> <span class="s1">'http'</span>
@@ -236,17 +244,19 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 
 <span class="n">container</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">).</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">to_a</span>
 <span class="c1"># =&gt; GET http://jsonplaceholder.typicode.com/users/1 [ Accept: application/json ]</span>
-</code></pre>
-<h2>Support Campaign</h2>
-
+</code></pre><h2 id="support-campaign" class="header"><a name="support-campaign" class="anchor" href="#support-campaign">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Support Campaign</h2>
 <p>As announced <a href="https://github.com/rom-rb/rom-model#rommodel">a couple of weeks ago</a>, we&#39;re running a campaign for <a href="http://salt.bountysource.com/teams/rom-rb">sustainable development</a>. We already have people who&#39;ve decided to donate - thank you <strong>so much</strong> for your support.</p>
 
 <p>With ROM 0.9.0 we&#39;re close to the first stable 1.0.0 release, but there&#39;s still a lot to be done. Please consider supporting this great effort.</p>
 
 <p>Please also remember that ROM is a project open for contributions and currently we have 24 repositories under our GitHub organization. There are many adapters looking for maintainers, there are many smaller tasks to do in core libraries, framework integrations and other extensions. Please get in touch if you&#39;re interested in contributing &lt;3.</p>
-
-<h2>Reporting Issues and Support</h2>
-
+<h2 id="reporting-issues-and-support" class="header"><a name="reporting-issues-and-support" class="anchor" href="#reporting-issues-and-support">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Reporting Issues and Support</h2>
 <p>All repositories now have their own issue trackers enabled on GitHub. If you find a bug, or have problems using ROM, please report an issue for a specific project. If you&#39;re not sure which project it relates to, just report it in the main <a href="https://github.com/rom-rb/rom/issues">rom issue tracker</a>, and we&#39;ll move it to the right place if needed.</p>
 
 <p>For any random questions and support requests you can talk to us on <a href="http://gitter.im/rom-rb/chat">gitter</a>.</p>
@@ -254,9 +264,10 @@ ga('send', 'pageview');</script></head><body class="blog blog_rom-0-9-0-released
 <p><s>Last but not least - we&#39;re looking for help in setting up a Discourse instance on DigitalOcean to make it simpler for people to discuss things as an alternative to gitter.</s></p>
 
 <p>We&#39;ve got <a href="http://discourse.rom-rb.org">a discourse</a> instance up and running :)</p>
-
-<h2>ROM 1.0.0 - See You at ROSSConf!</h2>
-
+<h2 id="rom-1-0-0-see-you-at-rossconf" class="header"><a name="rom-1-0-0-see-you-at-rossconf" class="anchor" href="#rom-1-0-0-see-you-at-rossconf">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>ROM 1.0.0 - See You at ROSSConf!</h2>
 <p>In case you missed it, ROM is part of the second edition of <a href="http://www.rossconf.io/event/berlin/">ROSSConf in Berlin</a>, where you&#39;ll have a chance to contribute to the project. We have a crazy plan to release 1.0.0 during the event or at least close all the remaining issues and get an RC out of the door. :)</p>
 
 <p>We&#39;ll be working on the list of issues scheduled for 1.0.0, thus it is important to get as much feedback as possible from <strong>you</strong>.</p>
