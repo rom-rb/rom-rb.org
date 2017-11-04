@@ -8,12 +8,12 @@ module MarkdownPreprocessors
     rendered_doc = warning(rendered_doc, parser)
   end
   
-  # Preprocessor to wrap the contents of '$TOC' in a nice notice box
+  # Preprocessor to add quick links at the top of a docs page.
   #
   # @example
   #   $TOC
-  #    Multi-line notice message which will display in
-  #    in a nice blue notice box.
+  #     1. [Introduction](#introduction)
+  #     2. [Getting Started](#getting-started)
   #   $TOC
   def table_of_contents(document, markdown)
     document.gsub(/^(?:^)\$TOC(.*?)\$TOC *(\r|\n|$)?+/msu) do
