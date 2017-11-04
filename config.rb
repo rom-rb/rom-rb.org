@@ -1,9 +1,13 @@
+require 'em/pure_ruby'
+
 # This is a monkey-patch to fix the problem with double-watching
 # symlinked directories
-WATCHED_PATHS = Dir["*"] -
-                %w(source node_modules vendor) +
-                Dir["source/*"] -
-                %w(source/current source/next source/learn source/guides)
+WATCHED_PATHS = (
+                  Dir["*"] -
+                  %w(source node_modules vendor) +
+                  Dir["source/*"] -
+                  %w(source/current source/next source/learn source/guides)
+                ). select {|f| File.directory?(f) }
 
 class ::Middleman::SourceWatcher
   # The default source watcher implementation. Watches a directory on disk
@@ -172,7 +176,7 @@ activate :directory_indexes
 
 activate :external_pipeline,
   name: :webpack,
-  command: build? ? './node_modules/webpack/bin/webpack.js --bail' : './node_modules/webpack/bin/webpack.js --watch -d',
+  command: build? ? 'node ./node_modules/webpack/bin/webpack.js --bail' : 'node ./node_modules/webpack/bin/webpack.js --watch -d',
   source: 'tmp/dist',
   latency: 1
 
