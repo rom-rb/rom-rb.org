@@ -44,24 +44,20 @@ Outdated (help wanted!) adapters:
 > API, or need the expandability of MongoDB and CouchDB. It's up to you to
 > choose the appropriate solution for your application's needs.
 
-## Install rom-repository
+## Install rom
 
-Simply install `rom-repository` or add it to your `Gemfile`. Adapters will be
-auto-loaded based on configuration settings.
+Simply install `rom` or add it to your `Gemfile`. Adapters will be auto-loaded based on configuration settings. 
 
-For example, if you'd like to use ROM with an SQL database, add following gems to
-you `Gemfile`:
+For example, if you'd like to use ROM with an SQL database, add following gems to you `Gemfile`:
 
 ``` ruby
-gem 'rom-repository'
+gem 'rom'
 gem 'rom-sql'
 ```
 
 ## Next
 
-ROM needs a setup phase to provide a persistence environment for your entities.
-The end result is the **container**, an object that provides access to relations
-and commands, and integrates the two with your mappers.
+ROM needs a setup phase to provide a persistence environment for your entities. The end result is the **container**, an object that provides access to relations and commands, and integrates the two with your mappers.
 
 Depending on your application needs, you may want to use different setup strategies:
 
@@ -70,5 +66,4 @@ Depending on your application needs, you may want to use different setup strateg
 * [Explicit](/%{version}/learn/advanced/explicit-setup) - suitable for custom environments (**advanced usage**)
 
 > Note: Most guide examples are written specifically for the `rom-sql` adapter.
-> If you are using a different one, consult that adapter's documentation as
-> well.
+> If you are using a different one, consult that adapter's documentation as well.
