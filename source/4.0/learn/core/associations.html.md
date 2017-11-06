@@ -75,8 +75,8 @@ end
 users = rom.relations[:users]
 tasks = rom.relations[:tasks]
 
-[{ id: 1, name: "Jane" }, { id: 2, name: "John" }].each { |tuple| users << tuple }
-[{ id: 1, user_id: 1, title: "Jane's task" }, { id: 2, user_id: 2, title: "John's task" }].each { |tuple| tasks << tuple }
+[{ id: 1, name: "Jane" }, { id: 2, name: "John" }].each { |tuple| users.insert(tuple) }
+[{ id: 1, user_id: 1, title: "Jane's task" }, { id: 2, user_id: 2, title: "John's task" }].each { |tuple| tasks.insert(tuple) }
 
 # load all tasks for all users
 tasks.for_users(users.associations[:tasks], users).to_a
@@ -135,8 +135,8 @@ end
 users = rom.relations[:users]
 tasks = rom.relations[:tasks]
 
-[{ id: 1, name: "Jane" }, { id: 2, name: "John" }].each { |tuple| users << tuple }
-[{ id: 1, user_id: 1, title: "Jane's task" }, { id: 2, user_id: 2, title: "John's task" }].each { |tuple| tasks << tuple }
+[{ id: 1, name: "Jane" }, { id: 2, name: "John" }].each { |tuple| users.insert(tuple) }
+[{ id: 1, user_id: 1, title: "Jane's task" }, { id: 2, user_id: 2, title: "John's task" }].each { |tuple| tasks.insert(tuple) }
 
 users.combine(:tasks).to_a
 # [{:id=>1, :name=>"Jane", :tasks=>[{:id=>1, :user_id=>1, :title=>"Jane's task"}]}, {:id=>2, :name=>"John", :tasks=>[{:id=>2, :user_id=>2, :title=>"John's task"}]}]
