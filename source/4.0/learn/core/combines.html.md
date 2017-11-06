@@ -3,20 +3,32 @@ chapter: Core
 title: Combines
 ---
 
-Combines are a feature provided by [relations](/%{version}/learn/core/relations) that take
-advantage of [associations](/%{version}/learn/core/associations) between relations to
-reliably stitch (aka combine) complex data together. Before you can combine relations,
-associations for those relations must be configured in the relation schema.
+$TOC
+  1. [Basic Combine](#basic-combine)
+  2. [Nested Combine](#nested-combine)
+  3. [Adjusted Combine](#adjusted-combine)
+$TOC
 
-`Relation#combine` is adapter agnostic and acts an abstraction over similar but more
-adapter specific features. The most notable example being
-[Joins](/%{version}/learn/sql/joins) in `rom-sql`.
+Combines are a feature provided by [relations](/%{version}/learn/core/relations)
+that take advantage of [associations](/%{version}/learn/core/associations)
+between relations to reliably merge (aka combine) and construct complex nested
+data structures.
 
-It might be a bit of a paradigm shift, but it's important to realize ROM will
-never load relation data unless it is explicitly told to do so, which is in stark
-contrast with other ORMs such as Active Record for Rails. Since composing data is
-so quick and easy, lazy loading is not needed preventing a whole class of issues
-such as N+1 query performance problems.
+In cases where there is a need to load some data along with its dependent nested
+data then <mark>Relation#combine</mark> is the tool to reach for. It might be a
+bit of a paradigm shift, but it's important to realize ROM will **never** load
+associated data unless it is explicitly told to do so.
+
+This idea is in stark contrast with other ORMs such as Active Record for Rails
+which offer lazy loading by default. Since composing data is so quick and easy
+lazy loading is not needed preventing a whole class of issues such as N+1
+query performance problems.
+
+^
+  Before you can combine relations an association has to be configured in
+  the relations' schema. See [associations](/%{version}/learn/core/associations)
+  for more details.
+^
 
 ## Basic Combine
 
@@ -192,8 +204,10 @@ user_relation
 ```
 
 Admittedly the combine can become a bit messy when dealing with nested
-relations, however we gain the ability to join together complex nested data
-very easily.
+relations, however if the nested combine becomes too unwieldy it might suggest
+you're using the relation to select too much multi-purpose data. Our advice
+would be to reevaluate the purpose of the final entity and see if it can be
+broken into smaller, easily retrieved entities.
 
 ### Adjusted Combine
 
