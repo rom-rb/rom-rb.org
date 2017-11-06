@@ -257,9 +257,11 @@ user_relation
 #      :project_tasks=>[{:id=>3, :project_id=>2}, {:id=>4, :project_id=>2}]}]}
 ```
 
-> NOTE: when adjusting combines, the order of `#combine` and `#node` is important.
-> `#node` must come after `#combine` in the call chain otherwise
-> the *block* will be ignored and the adjustment will fail
+^
+  When adjusting combines, the order of `#combine` and `#node` is important.
+  `#node` must come after `#combine` in the call chain otherwise
+  the *block* will be ignored and the adjustment will fail
+^
 
 ## Learn More
 
