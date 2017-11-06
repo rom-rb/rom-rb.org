@@ -266,5 +266,6 @@ user_relation
 ## Learn More
 
 You can learn more about `#node` and its method signatures:
-- [api::rom::Relation/Combined](Combined)
+
+- [api::rom::Relation/Combined](#node)
 
