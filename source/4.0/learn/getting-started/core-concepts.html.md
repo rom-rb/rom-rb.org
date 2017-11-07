@@ -43,25 +43,34 @@ is a basic explanation of each component.
             selections, the relations `#each` method is called which triggers
             the <mark>dataset</mark> to fetch the data.
 
-**Step 4.** Raw data is collected from the datastore and passed up to the relation.
+**Step 4.** Raw data in the form of tuples are collected from the datastore and
+            returned to the relation. Before proceeding each tuple is passed
+            through an <mark>output schema</mark>.
 
-**Step 5.** The relation, if mappers are configured, maps the raw data into an
-            output entity.
+**Step 5.** The relation, if mappers are configured, maps the tuples into an
+            output entity/entities.
 
-**Step 6.** The repository passes the entity on through to the Application Domain.
+**Step 6.** The repository passes the entity/entities on through to the
+            Application Domain.
 
 ### Writing Data
 
-**Step 7.** Application Domain requests an entity to be updated.
+Writing data with ROM is fundamentally a process of applying commands to relations
+in order to modify the stored data. 
 
-**Step 8.** In a method on the repository, you can either use changesets or direct
-            commands to make changes to the datastore.
+**Step 7.** Application Domain has a need to update an entity.
+
+**Step 8.** The repository, accepting either an entity object or a raw `Hash`
+            representing the entity configures either a changeset or direct
+            command on relation to make changes to the datastore.
 
 **Step 8.1.** Before the Changeset passes itself to the underlying command, you
               can map the Changeset data into a structure that's more akin to what
               your datastore looks like.
 
-**Step 9.** Command executes against the datastore and updates the data.
+**Step 9.** Command processes one or more tuples through the
+            <mark>input schema</mark> then executes against the datastore which
+            updates the data.
 
 
 ## Repositories
@@ -93,13 +102,8 @@ attributes and their values. In ROM it is an object that responds to `#each`
 which yields hashes. It is backed by a [dataset object](#datasets) provided by
 the adapter.
 
-<!-- Relations provide methods called <mark>relation views</mark> which are used
-to expose a clear API for reading data while also hiding details on how that
-data is actually read. A powerful by-product of relation views is that they're
-*composable* and can be chained together to product flexible queries that
-take advantage of your datastore. -->
 
-A example of relations are tables in a SQL server. Tables can reference
+An example of relations are tables in a SQL server. Tables can reference
 other tables and sometimes all of the pieces for some "view" of the data are
 spread out among two or more tables (think Multi Table Inheritance). In
 situations like this ROM really shines because relations can be created for
