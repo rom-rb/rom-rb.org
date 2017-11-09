@@ -26,7 +26,7 @@ The following diagram shows an overview of the ROM architecture and provides an
 outline of how data flows within a ROM based data access layer. Further down
 is a basic explanation of each component.
 
-![ROM Design Overview](images/rom-overview.jpg)
+![ROM Design Overview](images/rom-overview.svg)
 
 ## Data flow
 
