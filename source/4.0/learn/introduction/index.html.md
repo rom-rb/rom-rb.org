@@ -3,7 +3,6 @@ chapter: Introduction
 sections:
   - philosophy
   - why
-  - overview
   - active-record
 ---
 
