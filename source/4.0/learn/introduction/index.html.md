@@ -7,16 +7,16 @@ sections:
 $TOC
   1. [What is ROM](#what-is-rom)
   2. [The Problem with ORMs](#the-problem-with-orms)
-  3. [Why We are Different](#why-we-are-different)
-  4. [Our Design](#our-design)
+  3. [Why use ROM](#why-use-rom)
+  4. [Principles & Design](#principles-amp-design)
   5. [Our Inspiration](#inspirations-ideas-and-friends)
 $TOC
 
 ## What is ROM
 
-Ruby Object Mapper (ROM) is a *fast* Ruby persistence library with the goal to
-provide powerful object mapping capabilities without limiting the full *power* of
-your datastore.
+Ruby Object Mapper; ROM for short, is a *fast* ruby persistence library with
+the goal of providing powerful object mapping capabilities without limiting the
+full *power* of the underlying datastore.
 
 More specifically, ROM exists to:
 
@@ -30,16 +30,10 @@ More specifically, ROM exists to:
 
 Object hierarchies are very different from relational hierarchies. 
 Relational hierarchies focus on data and its relationships with other data,
-whereas objects hold not only data but behavior centered around that data.
+whereas objects hold not only data but behavior centered around that data. The
+image below attempts to visualize the differences.
 
-A visual example of this can be seen below:
-
-![objects vs relations](images/objects-vs-relations.jpg)
-
-Taking a look at the Address entity on the left, you'll see that to
-rehydrate an Address, data is needed from Addresses and PostCodes on the right.
-While it's a trivial example, it does illustrate the nested nature of objects
-vs the reference nature of stored data.
+![Objects vs Relations](images/objects-vs-relations.jpg)
 
 A fundamental flaw behind ORMs is this idea that it's easy to:
 
@@ -51,50 +45,82 @@ A fundamental flaw behind ORMs is this idea that it's easy to:
    structures (the
    [DataMapper](https://en.wikipedia.org/wiki/Data_mapper_pattern) pattern)
 
-Both strategies tend to start out fine, but can quickly become cumbersome as a
-small application transitions into a medium-to-large application.
+Both strategies tend to start out fine, but quickly become cumbersome as an 
+application transitions to a medium-to-large application.
 
 ActiveRecord style mapping limits your application's modeling to what's
 convenient for the database. Your entities tend to map one-to-one with the
-tables in the database, and therein lies the problem with the strategy. Many
-times, an entity is broken up and stored in multiple tables; following the rules
-of data normalization. The ActiveRecord pattern then, by its very nature, causes
-the application domain to infect itself with intimate knowledge about
-rehydrating entities which sets off a chain of events that ultimately lead to
-much unnecessary pain, especially when we all know applications
-inevitably change.
+tables, and therein lies the problem with the strategy. Many times, an entity is
+broken up and stored in multiple tables; following the rules of data
+normalization. The ActiveRecord pattern then causes the application domain to
+infect itself with intimate knowledge about the entities persistence structure
+which sets off a chain of events that ultimately lead to much unnecessary pain.
 
 The DataMapper pattern, while one step better than ActiveRecord style mapping,
-still retains the complexity and ambiguity of managing mutable objects.
+still has its focus trained onto creating and managing objects. This pattern
+tries to abstract the underlying datastore away which inevitably leads to
+performance issues, which either results in bypassing the ORM entirely or to
+implementing global tracking state such as identity maps which intern creates
+subtle bugs and forces all sorts of nastiness such as dirty tracking.  
 
-Of course, the problems discussed above can be mitigated by custom translation
-layers or custom abstractions but at that point you're just creating a custom
-ORM over your old ORM. Simply put, mapping relations to objects and vice versa
-is a hard, unsolved problem.
+Of course, the problems discussed above can often be mitigated by veteran
+developers but more often than not, development is slowed due to bug hunting
+and increased complexity.
+
+## Why use ROM
+
+ROM provides an alternative way of handling persistence and related concerns.
+It focuses on *simplicity* by providing enough *abstractions* to help you
+efficiently turn your raw data into meaningful information. 
+
+While most ORM focus on objects and state tracking, ROM focuses on data and
+transformations. Users of ROM implement `Relations` which map one-to-one with
+datasets (eg: tables). Then using the relations you can associate them with
+other relations and query the dataset using the direct features offered by the
+datastore. Once raw data has been loaded it gets coerced into configured
+datatypes and from there can mapped into whatever format is needed by the
+application domain including custom type objects, helpful ROM Structs or plain
+old ruby hashes.
+
+The important concept above is during the entire process there is no dirty
+tracking, no identity management, no mutable state or anything else. Just *pure*
+data being loaded and mapped as result of a **direct** request made from the
+application domain. Data can be properly persisted taking advantage of the
+features provided by the datastore and our application domain can receive that
+data in any form it needs. Furthermore you get the added benefits of:
+
+  * decoupling our application from our persistence layer without sacrificing
+    its power features, and
+    
+  * bypassing the critical problems associated with object relational mapping.
+
+Most likely, a large contingent of developers will see the added abstractions as
+extraneous boilerplate. For those people we ask that you give ROM a chance,
+embrace its patterns and principles and see just how much easier it is pull and
+transform your data. For those who have been burned by *simple* ORMs in the
+past, ROM represents a real, solid alternative. 
 
 
-## Why We are Different
-
-ROM focuses on *simplicity* by providing enough *abstractions* to help you
-efficiently turn your raw data into meaningful information.
-
-Unlike most ORMs where you configure how the object should look and the ORM
-goes off and tries to pull it all together, ROM takes a difference approach.
-With ROM you use `Relations` which map one-to-one with datasets (eg: tables). 
-Then using the relations you can on-the-fly query the dataset
-
-These
-relations provide apis to describe what the incoming data types should be as well
-as any relationships to other data that may be present. 
-
-
-## Our Design
+## Principles & Design
 
 ROM leverages Ruby’s linguistic strengths with a blend of Object Oriented and
 Functional styles. Following a powerful composition pattern, every ROM object
 shares a common pipeline interface and returns data without side-effects. It’s
 also built with dependency-injection in mind; there are no public class-level
 interfaces beyond the setup interface.
+
+All ROM components are stand-alone; they are loosely coupled, can be used
+independently, and follow the single responsibility principle. A single object
+that handles coercion, state, persistence, validation, and all-important
+business logic rapidly becomes complex. Instead, ROM provides the infrastructure
+that allows you to easily create small, dedicated classes for handling each
+concern individually, and then tie them together in a developer-friendly ways.
+
+Above all else ROM favours:
+
+* **Explicitness** over "magic" whenever possible
+* **Speed**, because performance is a *feature*
+* **Flexibility** in your domain layer's design
 
 
 ## Inspirations, Ideas, and Friends
@@ -116,12 +142,8 @@ them here. Left for future changes. -->
 
 ## NEXT
 
-Check out ROM's [**Philosophy**](/%{version}/learn/introduction/philosophy) to know more
-about the philosophy behind ROM and the project's origins, or dive straight into
-code with the [**Getting Started**](/%{version}/learn/getting-started) guide.
-
-
-<!--- RANDOM NOTES BELOW   ------>
-
-Walks you into a pit of success
-
+If you're coming from Rails a good place to start is our 
+[**ROM Rails Comparison Guide**](/%{version}/learn/introduction/active-record)
+otherwise checkout the
+[**Core Concepts**](/%{version}/learn/getting-started/core-concepts)
+guide to get an overview of all the major parts in ROM.
