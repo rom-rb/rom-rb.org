@@ -7,6 +7,7 @@ This article assumes:
 
 * You have a database called `my_db`
 * There's a table called `users` with `name` column
+* You have the `rom` and `rom-sql` gems installed
 
 To connect to your database and define a repository for `users` table, simply do:
 
