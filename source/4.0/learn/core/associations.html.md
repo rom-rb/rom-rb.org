@@ -147,6 +147,6 @@ users.where(name: "John").combine(:tasks).to_a
 
 ## Learn more
 
-* [api::rom-core::Schema](AssociationsDSL)
-* [api::rom-core::Relation](#combine)
-* [api::rom-core::Relation](#wrap)
+* [api::rom::Schema](AssociationsDSL)
+* [api::rom::Relation](#combine)
+* [api::rom::Relation](#wrap)
