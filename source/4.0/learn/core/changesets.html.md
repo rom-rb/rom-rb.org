@@ -183,9 +183,9 @@ task
 
 ## Learn more
 
-* [api::rom-changeset](Changeset)
-* [api::rom-changeset::Changeset](Create)
-* [api::rom-changeset::Changeset](Update)
-* [api::rom-changeset::Changeset](Delete)
-* [api::rom-changeset::Changeset](Associated)
+* [api::rom](Changeset)
+* [api::rom::Changeset](Create)
+* [api::rom::Changeset](Update)
+* [api::rom::Changeset](Delete)
+* [api::rom::Changeset](Associated)
 

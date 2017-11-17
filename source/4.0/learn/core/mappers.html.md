@@ -73,9 +73,9 @@ users.map_with(:my_mapper).to_a
 ## Learn more
 
 * [Structs](%{version}/learn/core/structs)
-* [api::rom-core::Relation](.schema)
-* [api::rom-core::Relation](.auto_struct)
-* [api::rom-core::Relation](.struct_namespace)
-* [api::rom-core::Relation](#map_to)
-* [api::rom-core::Relation](#map_with)
-* [api::rom-mapper](Transformer)
+* [api::rom::Relation](.schema)
+* [api::rom::Relation](.auto_struct)
+* [api::rom::Relation](.struct_namespace)
+* [api::rom::Relation](#map_to)
+* [api::rom::Relation](#map_with)
+* [api::rom](Transformer)
