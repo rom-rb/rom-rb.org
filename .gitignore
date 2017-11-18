@@ -11,6 +11,7 @@
 /.sass-cache
 /.cache
 /tmp
+.tmp
 
 # Ignore node packages
 /node_modules
