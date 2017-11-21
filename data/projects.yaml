@@ -3,6 +3,8 @@
 -
   name: rom-sql
 -
+  name: rom-elasticsearch
+-
   name: rom-cassandra
 -
   name: rom-couchdb
