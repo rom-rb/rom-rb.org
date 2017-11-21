@@ -15,7 +15,7 @@ Compatible with rom 4.0:
 |Adapter|Install Command|On production?|
 |-------|---------------|---|
 |SQL|`gem install rom-sql`| √ |
-|SQL|`gem install rom-elasticsearch`| √ |
+|Elasticsearch|`gem install rom-elasticsearch`| √ |
 
 Compatible with rom 3.0:
 
