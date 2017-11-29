@@ -73,7 +73,6 @@ rom = ROM.container(:sql, 'sqlite::memory') do |config|
   
   config.relation(:users) do
     schema(infer: true)
-    auto_struct true
   end
 end
 
