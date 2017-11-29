@@ -70,6 +70,10 @@ rom = ROM.container(:sql, 'sqlite::memory') do |config|
     column :name, String, null: false
     column :email, String, null: false
   end
+  
+  config.relation(:users) do
+    schema(infer: true)
+  end
 end
 
 class UserRepo < ROM::Repository[:users]
