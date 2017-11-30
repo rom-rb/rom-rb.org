@@ -136,7 +136,7 @@ helpers do
   end
 
   def current_source_file
-    "#{current_path}.slim"
+    (Pathname(current_path).dirname + Pathname(current_page.source_file).basename).to_s
   end
 
   def projects
