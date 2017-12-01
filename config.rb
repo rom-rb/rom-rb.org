@@ -130,13 +130,13 @@ helpers do
     link_to "Provide feedback!", GH_NEW_ISSUE_URL % tokens, class: "button"
   end
 
-  GH_EDIT_FILE_URL = "https://github.com/rom-rb/rom-rb.org/blob/master/source/%{current_path}".freeze
+  GH_EDIT_FILE_URL = "https://github.com/rom-rb/rom-rb.org/blob/master%{current_path}".freeze
   def edit_file_link
     link_to "Edit on GitHub", GH_EDIT_FILE_URL % { current_path: current_source_file}, class: "button"
   end
 
   def current_source_file
-    (Pathname(current_path).dirname + Pathname(current_page.source_file).basename).to_s
+    current_page.source_file.gsub(Dir.pwd, '')
   end
 
   def projects
