@@ -55,4 +55,8 @@
       @extend .sidebar__link--is-active;
     }
   }
+
+  &__version select {
+    letter-spacing: 0;
+  }
 }
