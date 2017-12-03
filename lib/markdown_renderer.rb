@@ -35,8 +35,8 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
 
   def link(link, title, content)
     if content.start_with?('api::')
-      _, project, klass = content.split('::')
-      link_to_api(project, klass, link)
+      _, project, path = content.split('::')
+      link_to_api(project, path, target)
     elsif link['%{version}']
       super(link % { version: scope.version }, title, content)
     else
@@ -44,23 +44,18 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     end
   end
 
-  def link_to_api(project, klass, meth)
-    if meth.start_with?('#') || meth.start_with?('.')
-      content = "#{klass}#{meth}"
-      path = klass.gsub('::', '/') if klass
+  def link_to_api(project, path, target)
+    klass = path.gsub('/', '::') if path
+
+    if target.start_with?('#') || target.start_with?('.')
+      content = "#{klass}#{target}"
 
       link(
-        config.api_anchor_url_template % { project: project, path: path, anchor: anchor(meth) },
+        config.api_anchor_url_template % { project: project, path: path, anchor: anchor(target) },
         nil, content
       )
     else
-      if klass
-        content = "ROM::#{klass}::#{meth}"
-        path = "#{klass.gsub('::', '/')}/#{meth}"
-      else
-        content = "ROM::#{meth}"
-        path = meth
-      end
+      content = ['ROM', *klass, target].join('::')
 
       link(
         config.api_url_template % { project: project, path: path },
