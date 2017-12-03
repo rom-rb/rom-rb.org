@@ -45,7 +45,7 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
   end
 
   def link_to_api(project, klass, meth)
-    path = klass ? klass.gsub('::', '/') : ''
+    path = klass.gsub('::', '/') if klass
 
     anchor = if meth.include?('#')
                "#{meth}-instance_method".gsub('#', '')
@@ -54,17 +54,17 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
              end
 
     if anchor
-      content = path.empty? ? meth : "#{path.gsub('/', '::')}#{meth}"
+      content = path ? "#{path.gsub('/', '::')}#{meth}" : meth
 
       link(
         config.api_anchor_url_template % { project: project, path: path, anchor: anchor },
         nil, content
       )
     else
-      content = path.empty? ? "ROM::#{meth}" : "ROM::#{path.gsub('/', '::')}::#{meth}"
+      content = path ? "ROM::#{path.gsub('/', '::')}::#{meth}" : "ROM::#{meth}"
 
       link(
-        config.api_url_template % { project: project, path: "#{path}/#{meth}" },
+        config.api_url_template % { project: project, path: [*path, meth].join("/") },
         nil, content
       )
     end
