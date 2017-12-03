@@ -76,16 +76,16 @@
   h2 {
     margin-bottom: .5rem;
   }
-  
+
   ol {
     @include at(2) {
       column-count: 1;
     }
-    
+
     @include at(2) {
       column-count: 2;
     }
-    
+
     @include from(3) {
       column-count: 3;
     }
@@ -105,7 +105,7 @@
   line-height: 24px;
   margin-bottom: 24px;
   border-radius: 0.3rem;
-  
+
   .notice-title {
     margin: -5px -12px 15px;
     border-top-left-radius: 0.3rem;
@@ -117,7 +117,7 @@
 .info-notice {
   color: palette(blue, dark);
   background-color: palette(blue, extra-light);
-  
+
   .notice-title {
     color: #FFF;
     background-color: palette(blue, light);
@@ -127,7 +127,7 @@
 .warning-notice {
   color: palette(red, dark);
   background-color: palette(red, extra-light);
-  
+
   .notice-title {
     color: #FFF;
     background-color: palette(red, light);
