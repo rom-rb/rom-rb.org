@@ -36,7 +36,7 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
   def link(link, title, content)
     if content.start_with?('api::')
       _, project, path = content.split('::')
-      link_to_api(project, path, target)
+      link_to_api(project, path, link)
     elsif link['%{version}']
       super(link % { version: scope.version }, title, content)
     else
