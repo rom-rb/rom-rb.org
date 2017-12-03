@@ -4,7 +4,7 @@ require_relative './markdown_preprocessors'
 
 class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
   include MarkdownPreprocessors
-  
+
   DEFAULT_OPTS = {
     tables: true,
     autolink: true,
@@ -45,26 +45,25 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
   end
 
   def link_to_api(project, klass, meth)
-    path = klass.gsub('::', '/') if klass
-
-    anchor = if meth.include?('#')
-               "#{meth}-instance_method".gsub('#', '')
-             elsif meth.include?('.')
-               "#{meth}-class_method".gsub('#', '')
-             end
-
-    if anchor
-      content = path ? "#{path.gsub('/', '::')}#{meth}" : meth
+    if meth.start_with?('#') || meth.start_with?('.')
+      content = "#{klass}#{meth}"
+      path = klass.gsub('::', '/') if klass
 
       link(
-        config.api_anchor_url_template % { project: project, path: path, anchor: anchor },
+        config.api_anchor_url_template % { project: project, path: path, anchor: anchor(meth) },
         nil, content
       )
     else
-      content = path ? "ROM::#{path.gsub('/', '::')}::#{meth}" : "ROM::#{meth}"
+      if klass
+        content = "ROM::#{klass}::#{meth}"
+        path = "#{klass.gsub('::', '/')}/#{meth}"
+      else
+        content = "ROM::#{meth}"
+        path = meth
+      end
 
       link(
-        config.api_url_template % { project: project, path: [*path, meth].join("/") },
+        config.api_url_template % { project: project, path: path },
         nil, content
       )
     end
@@ -80,6 +79,14 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
      eos
+  end
+
+  def anchor(meth)
+    if meth.start_with?('#')
+      "#{meth[1..-1]}-instance_method"
+    elsif meth.start_with?('.')
+      "#{meth[1..-1]}-class_method"
+    end
   end
 
   def headers
