@@ -40,7 +40,7 @@ tracker](https://github.com/rom-rb/rom-rb.org/issues).
   isn't documented or requires more information, please click the  "Provide
   Feedback" buttons at the bottom of the pages and let us know. In the mean time
   you may need to look towards
-  [Sequels](http://sequel.jeremyevans.net/documentation.html) Databases &
+  [Sequel's](http://sequel.jeremyevans.net/documentation.html) Databases &
   Datasets documentation for further guidance.
 ^
 
@@ -67,7 +67,7 @@ for immediate use via the `:sql` identifier.
 
 ^
   Each database type requires a separate driver gem to also be installed. 
-  Be sure to checkout the documentation of your preferred database for
+  Be sure to check out the documentation of your preferred database for
   more information.
 ^
 
@@ -83,10 +83,10 @@ The adapter name for the SQL Adapter is always <mark>:sql</mark> which makes
 things easy; whereas connection strings are database driver specific. Connection
 strings tell the SQL Adapter which driver to use for the connection along with
 the port and host address of the database server. Connection strings can also
-be used to set most available options however it's generally better to keep
-the connection string short and focused on network routing. Additional options
-can be provided in a convenient hash structure or by named parameters on the
-configuration method signature.
+be used to set most of the available options, however it's generally better to
+keep the connection string short and focused on network routing. Additional
+options can be provided in a convenient hash structure or by named parameters
+on the configuration method signature.
 
 An example of this can be seen below:
 
@@ -182,7 +182,7 @@ The only supported structure for connecting to PostgreSQL databases is the
 Connection String URI format:
 
 ```
-'postgresql://[user[:password]@][host][:port][,...][/database][?param1=value1&...]'
+'postgres://[user[:password]@][host][:port][,...][/database][?param1=value1&...]'
 ```
 
 For more detailed information on connections strings see the PostgreSQL
@@ -594,7 +594,7 @@ to this type of database.
 ^
 
 For more information see 
-[Sequels SQLite](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-sqlite)
+[Sequel's SQLite](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-sqlite)
 documentation or for URI file formats see
 [URI Filenames in SQLite](https://www.sqlite.org/uri.html)
 
@@ -776,7 +776,7 @@ ones documented here.
 
 These drivers have not been documented because their use is fairly uncommon
 however they should work and documentation for connecting with each of these
-drivers can be found in Sequels 
+drivers can be found in Sequel's 
 [Opening Databases](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html)
 document.
 
@@ -786,7 +786,7 @@ document.
 
 In a JRuby environment, it's best to use the `JDBC` driver available to
 you via the Java SDK. Support for databases in JRuby is handled via
-Sequels JDBC sub adapters. 
+Sequel's JDBC sub adapters. 
 
 A list of supported databases can be found below along with additional
 requirements:
@@ -820,7 +820,7 @@ jdbc:sqlite::memory
 ```
 
 For more information see 
-[Sequels JDBC](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-jdbc+)
+[Sequel's JDBC](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-jdbc+)
 and
 [Java SE - Database](http://www.oracle.com/technetwork/java/javase/jdbc/index.html)
 documentation

@@ -19,7 +19,7 @@ however, in the early days of every project, using canonical associations is all
 you need, so let's start with that!
 
 We're going to define `:users` that have many `:tasks`. To keep things simpler
-let's define relations using [block-style setup](/%{version}/learn/getting-started/block-style-setup):
+let's define relations using [block-style setup](/%{version}/learn/getting-started/setup-dsl):
 
 ``` ruby
 require 'rom'

@@ -36,7 +36,7 @@ is a basic explanation of each component.
             calls into the appropriate repository and asks for an entity
         
 **Step 2.** The Repository accepts the request and combines all of the
-            related associations together to create a datastore specific query
+            related associations together to create a datastore-specific query
             for the data
         
 **Step 3.** Once a relation has been composed of all needed restrictions or 
@@ -61,7 +61,7 @@ in order to modify the stored data.
 **Step 7.** Application Domain has a need to update an entity.
 
 **Step 8.** The repository, accepting either an entity object or a raw `Hash`
-            representing the entity configures either a changeset or direct
+            representing the entity, configures either a changeset or direct
             command on relation to make changes to the datastore.
 
 **Step 8.1.** Before the Changeset passes itself to the underlying command, you
