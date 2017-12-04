@@ -20,7 +20,7 @@ end
 ```
 
 > #### Naming convention
-> This method is a shortcut for `belongs_to :users, as: :user`
+> This method is a shortcut for `many_to_one :users, as: :user`
 
 ## has_many (one-to-many)
 
