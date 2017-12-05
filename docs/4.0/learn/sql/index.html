@@ -39,7 +39,7 @@ tracker</a>.</p>
   isn&#39;t documented or requires more information, please click the  &quot;Provide
   Feedback&quot; buttons at the bottom of the pages and let us know. In the mean time
   you may need to look towards
-  <a href="http://sequel.jeremyevans.net/documentation.html">Sequels</a> Databases &amp;
+  <a href="http://sequel.jeremyevans.net/documentation.html">Sequel&#39;s</a> Databases &amp;
   Datasets documentation for further guidance.</p>
 
 </div>
@@ -66,7 +66,7 @@ for immediate use via the <code>:sql</code> identifier.</p>
     <i class="fa fa-info-circle"></i> Note
   </div>
   <p>Each database type requires a separate driver gem to also be installed. 
-  Be sure to checkout the documentation of your preferred database for
+  Be sure to check out the documentation of your preferred database for
   more information.</p>
 
 </div>
@@ -86,10 +86,10 @@ for immediate use via the <code>:sql</code> identifier.</p>
 things easy; whereas connection strings are database driver specific. Connection
 strings tell the SQL Adapter which driver to use for the connection along with
 the port and host address of the database server. Connection strings can also
-be used to set most available options however it&#39;s generally better to keep
-the connection string short and focused on network routing. Additional options
-can be provided in a convenient hash structure or by named parameters on the
-configuration method signature.</p>
+be used to set most of the available options, however it&#39;s generally better to
+keep the connection string short and focused on network routing. Additional
+options can be provided in a convenient hash structure or by named parameters
+on the configuration method signature.</p>
 
 <p>An example of this can be seen below:</p>
 <pre class="syntax ruby"><code>  <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
@@ -182,7 +182,7 @@ configure the connection between ROM and the database.</p>
 
 <p>The only supported structure for connecting to PostgreSQL databases is the 
 Connection String URI format:</p>
-<pre class="syntax plaintext"><code>'postgresql://[user[:password]@][host][:port][,...][/database][?param1=value1&amp;...]'
+<pre class="syntax plaintext"><code>'postgres://[user[:password]@][host][:port][,...][/database][?param1=value1&amp;...]'
 </code></pre>
 <p>For more detailed information on connections strings see the PostgreSQL
 <a href="https://www.postgresql.org/docs/current/static/libpq-connect.html#idm46046870061920">Connection URI</a>
@@ -594,7 +594,7 @@ to this type of database.</p>
 </div>
 
 <p>For more information see 
-<a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-sqlite">Sequels SQLite</a>
+<a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-sqlite">Sequel&#39;s SQLite</a>
 documentation or for URI file formats see
 <a href="https://www.sqlite.org/uri.html">URI Filenames in SQLite</a></p>
 <h4 id="quick-connect_2" class="hd"><a name="quick-connect_2" class="anchor" href="#quick-connect_2">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
@@ -775,7 +775,7 @@ ones documented here.</p>
 
 <p>These drivers have not been documented because their use is fairly uncommon
 however they should work and documentation for connecting with each of these
-drivers can be found in Sequels 
+drivers can be found in Sequel&#39;s 
 <a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html">Opening Databases</a>
 document.</p>
 <h3 id="jruby" class="hd"><a name="jruby" class="anchor" href="#jruby">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
@@ -786,7 +786,7 @@ document.</p>
 
 <p>In a JRuby environment, it&#39;s best to use the <code>JDBC</code> driver available to
 you via the Java SDK. Support for databases in JRuby is handled via
-Sequels JDBC sub adapters. </p>
+Sequel&#39;s JDBC sub adapters. </p>
 
 <p>A list of supported databases can be found below along with additional
 requirements:</p>
@@ -843,7 +843,7 @@ jdbc:mysql://localhost/database?user=root&amp;password=root
 jdbc:sqlite::memory
 </code></pre>
 <p>For more information see 
-<a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-jdbc+">Sequels JDBC</a>
+<a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-jdbc+">Sequel&#39;s JDBC</a>
 and
 <a href="http://www.oracle.com/technetwork/java/javase/jdbc/index.html">Java SE - Database</a>
 documentation</p>
