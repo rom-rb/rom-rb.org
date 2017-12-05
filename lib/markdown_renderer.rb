@@ -56,6 +56,7 @@ class MarkdownRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
       )
     else
       content = ['ROM', *klass, target].join('::')
+      path    = [*path, target].join("/")
 
       link(
         config.api_url_template % { project: project, path: path },
