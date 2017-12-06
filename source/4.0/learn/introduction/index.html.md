@@ -51,13 +51,13 @@ ActiveRecord style mapping has the benefit of aiding in rapid prototyping works
 great in basic CRUD scenarios but it limits application modeling to what's
 convenient for the database. Entities will tend to map one-to-one with tables
 which leads to knowledge of the persistence structure infecting the application
-domain leading to change resistant software.
+domain, leading to code that's difficult to change.
 
 The DataMapper pattern, while one step better than ActiveRecord style mapping,
 still has its focus trained onto creating and managing objects. The pattern
 solves the one-to-one mapping issue but in doing so creates a host of others.
 The whole apparatus needed to manage all of those objects inevitably leads to
-performance issues and global state tracking which results in developers
+performance issues and object state tracking which results in developers
 bypassing the ORM entirely.
 
 The problems with ORMs are numerous and the above issues only begin to scratch
@@ -89,7 +89,7 @@ features provided by the datastore and the application domain can receive that
 data in any form it needs. Furthermore you get the added benefits of:
 
   * decoupling the application from the persistence layer without sacrificing
-  * flexibility, and
+    flexibility, and
 
   * bypassing the critical problems associated with object relational mapping.
 
