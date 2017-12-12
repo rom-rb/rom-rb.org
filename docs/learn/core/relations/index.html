@@ -23,16 +23,16 @@ naming conventions).</p>
 <p>The most important responsibility of relations is to expose a clear API for reading
 data. Every relation <em>method</em> should return another relation, we call them
 <mark>relation views</mark>. These views can be defined in ways that make them
-<em>composable</em> by including join-keys in the resulting tuples. This is not limited
+<em>composable</em> by including combine-keys in the resulting tuples. This is not limited
 to SQL, you can compose data from different sources.</p>
 <h3 id="example-relation-class" class="hd"><a name="example-relation-class" class="anchor" href="#example-relation-class">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Example relation class</h3>
-<p>Even when you use an adapter that can infer relations from your database schema,
-it is valuable to define relations classes explicitly. Let&#39;s say we have <code>:users</code>
-table in an SQL database, here&#39;s how you would define a relation class for it:</p>
+<p>Let&#39;s say we have <code>:users</code> table in an SQL database, here&#39;s how you would define
+a relation class for it:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
 <span class="k">end</span>
 </code></pre>
 <p>Notice two things:</p>
@@ -41,6 +41,8 @@ table in an SQL database, here&#39;s how you would define a relation class for i
 <li><code>ROM::Relation[:sql]</code> uses <code>:sql</code> identifier to resolve relation type for <code>rom-sql</code>
 adapter</li>
 <li><code>Users</code> class name is used by default to infer <code>dataset</code> name and set it to <code>:users</code></li>
+<li><code>schema</code> is configured to be inferred from the database schema, and it will include
+attributes based on all table columns</li>
 </ul>
 <h3 id="relation-methods" class="hd"><a name="relation-methods" class="anchor" href="#relation-methods">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
@@ -48,12 +50,46 @@ adapter</li>
 </a>Relation methods</h3>
 <p>Every method in a relation should return another relation, this happens automatically
 whenever you use a query interface provided by adapters. In our example we use
-<code>rom-sql</code>, let&#39;s define a relation view using SQL query DSL:</p>
+<code>rom-sql</code>, let&#39;s define a relation view called <code>listing</code>, using SQL query DSL:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span>
   <span class="k">def</span> <span class="nf">listing</span>
     <span class="nb">select</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">).</span><span class="nf">order</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
+</code></pre><h2 id="materializing-relations" class="hd"><a name="materializing-relations" class="anchor" href="#materializing-relations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Materializing relations</h2>
+<p>To materialize a relation means asking it to load its data from a database. Relations can be materialized in a couple of ways, and you should be cautious about when it&#39;s happening, so that the minimum amount of interactions with a database takes place.</p>
+<h3 id="getting-all-results" class="hd"><a name="getting-all-results" class="anchor" href="#getting-all-results">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Getting all results</h3>
+<p>To get all results, simply coerce a relation to an array via <code>Relation#to_a</code>:</p>
+<pre class="syntax ruby"><code><span class="n">users</span><span class="p">.</span><span class="nf">to_a</span>
+<span class="o">=&gt;</span> <span class="p">[{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane Doe"</span><span class="p">},</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">2</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"John Doe"</span><span class="p">}]</span>
+</code></pre><h3 id="getting-a-single-result" class="hd"><a name="getting-a-single-result" class="anchor" href="#getting-a-single-result">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Getting a single result</h3>
+<p>To materialize a relation and retrieve just a single result, use <code>#one</code> or <code>#one!</code>:</p>
+<pre class="syntax ruby"><code><span class="c1"># Produces a single result or nil if none found.</span>
+<span class="c1"># Raises an error if there are more than one.</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">one</span>
+
+<span class="c1"># Produces a single tuple.</span>
+<span class="c1"># Raises an error if there are 0 results or more than one.</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">one!</span>
+</code></pre><h3 id="iteration" class="hd"><a name="iteration" class="anchor" href="#iteration">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Iteration</h3>
+<p>If you start iterating over a relation via <code>Relation#each</code>, the relation will get its data via <code>#to_a</code> and yield results to the block.</p>
+<pre class="syntax ruby"><code><span class="n">users</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+ <span class="nb">puts</span> <span class="n">user</span><span class="p">[</span><span class="ss">:name</span><span class="p">]</span>
+<span class="k">end</span>
+<span class="c1"># Jane Doe</span>
+<span class="c1"># John Doe</span>
 </code></pre><h3 id="next" class="hd"><a name="next" class="anchor" href="#next">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>

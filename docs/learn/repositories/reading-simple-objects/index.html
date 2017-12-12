@@ -8,7 +8,16 @@ ga('send', 'pageview');</script></head><body class="learn learn_repositories lea
 the data. One rough guideline is to make a repository for each concept within
 your app:</p>
 <pre class="syntax ruby"><code><span class="c1"># Assuming a database with tables 'users' and 'projects'</span>
-<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span>
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="n">auto_struct</span> <span class="kp">true</span>
+  <span class="k">end</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:projects</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="n">auto_struct</span> <span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 
 <span class="c1"># Perhaps one Repo to handle users</span>
 <span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
@@ -43,23 +52,7 @@ For example, the <code>rom-sql</code> adapter provides methods like <code>Relati
 </code></pre>
 <p>Read your adapter&#39;s documentation to see the full listing of its Relation
 methods.</p>
-<h2 id="single-results-vs-many-results" class="hd"><a name="single-results-vs-many-results" class="anchor" href="#single-results-vs-many-results">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
-       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
-       </svg>
-</a>Single Results vs Many Results</h2>
-<p>Every relation is lazy loading and most methods return another relation. To
-materialize the relation and get actual data, use <code>#one</code>, <code>#one!</code>, or <code>#to_a</code>.</p>
-<pre class="syntax ruby"><code><span class="c1"># Produces a single tuple or nil if none found.</span>
-<span class="c1"># Raises an error if there are more than one.</span>
-<span class="n">users</span><span class="p">.</span><span class="nf">one</span>
-
-<span class="c1"># Produces a single tuple.</span>
-<span class="c1"># Raises an error if there are 0 results or more than one.</span>
-<span class="n">users</span><span class="p">.</span><span class="nf">one!</span>
-
-<span class="c1"># Produces an array of tuples, possibly empty.</span>
-<span class="n">users</span><span class="p">.</span><span class="nf">to_a</span>
-</code></pre><h2 id="full-example" class="hd"><a name="full-example" class="anchor" href="#full-example">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+<h2 id="full-example" class="hd"><a name="full-example" class="anchor" href="#full-example">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Full Example</h2>
@@ -71,6 +64,10 @@ materialize the relation and get actual data, use <code>#one</code>, <code>#one!
     <span class="n">primary_key</span> <span class="ss">:id</span>
     <span class="n">column</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
     <span class="n">column</span> <span class="ss">:email</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+  <span class="k">end</span>
+
+  <span class="n">config</span><span class="p">.</span><span class="nf">relation</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
@@ -102,31 +99,6 @@ behind our own repository interface.</p>
 
 <span class="n">user_repo</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1">#=&gt; {id: 1, first_name: 'Malcolm', last_name: 'Reynolds'}</span>
-</code></pre><h2 id="mapping-to-custom-objects" class="hd"><a name="mapping-to-custom-objects" class="anchor" href="#mapping-to-custom-objects">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
-       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
-       </svg>
-</a>Mapping To Custom Objects</h2>
-<p>Repositories can map relations to your custom objects. As a general best-practice
-every public repository method should return materialized, domain objects.</p>
-
-<blockquote>
-<p>You can use any object type where constructor accepts a hash with attributes.</p>
-</blockquote>
-
-<p>Let&#39;s tweak our <code>UserRepo#query</code> method to return our own user models:</p>
-<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">User</span>
-  <span class="kp">attr_reader</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span>
-
-  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
-    <span class="vi">@id</span><span class="p">,</span> <span class="vi">@name</span><span class="p">,</span> <span class="vi">@email</span> <span class="o">=</span> <span class="n">attributes</span><span class="p">.</span><span class="nf">values_at</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:email</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
-  <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
-    <span class="n">users</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">conditions</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="no">User</span><span class="p">)</span>
-  <span class="k">end</span>
-<span class="k">end</span>
 </code></pre><h2 id="next" class="hd"><a name="next" class="anchor" href="#next">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>

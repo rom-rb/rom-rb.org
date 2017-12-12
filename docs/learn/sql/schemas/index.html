@@ -47,28 +47,29 @@ coercions when relations read their data, you can do it via <code>:read</code> t
 will be automatically coerced before executing commands, so you don&#39;t have to
 handle that yourself.</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-sql'</span>
-<span class="nb">require</span> <span class="s1">'rom/sql/types/pg'</span>
 
 <span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span> <span class="k">do</span>
-    <span class="n">attribute</span> <span class="ss">:meta</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PG</span><span class="o">::</span><span class="no">JSON</span>
-    <span class="n">attribute</span> <span class="ss">:tags</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PG</span><span class="o">::</span><span class="no">Array</span>
-    <span class="n">attribute</span> <span class="ss">:info</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PG</span><span class="o">::</span><span class="no">Hash</span>
+    <span class="n">attribute</span> <span class="ss">:meta</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PG</span><span class="o">::</span><span class="no">JSONB</span>
+    <span class="n">attribute</span> <span class="ss">:tags</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PG</span><span class="o">::</span><span class="no">Array</span><span class="p">(</span><span class="s1">'varchar'</span><span class="p">)</span>
+    <span class="n">attribute</span> <span class="ss">:info</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">PG</span><span class="o">::</span><span class="no">HStore</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
 <span class="no">Users</span><span class="p">.</span><span class="nf">schema</span><span class="p">[</span><span class="ss">:meta</span><span class="p">][{</span> <span class="ss">name: </span><span class="s1">'Jane'</span> <span class="p">}].</span><span class="nf">class</span>
-<span class="c1"># Sequel::Postgres::JSONHash</span>
+<span class="c1"># Sequel::Postgres::JSONBHash</span>
 
 <span class="no">Users</span><span class="p">.</span><span class="nf">schema</span><span class="p">[</span><span class="ss">:meta</span><span class="p">][[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]].</span><span class="nf">class</span>
-<span class="c1"># Sequel::Postgres::JSONArray</span>
+<span class="c1"># Sequel::Postgres::JSONBArray</span>
 
 <span class="no">Users</span><span class="p">.</span><span class="nf">schema</span><span class="p">[</span><span class="ss">:tags</span><span class="p">][</span><span class="sx">%w(red green blue)</span><span class="p">].</span><span class="nf">class</span>
-<span class="c1"># Sequel::Postgres::JSONArray</span>
+<span class="c1"># =&gt; Sequel::Postgres::PGArray</span>
 
 <span class="no">Users</span><span class="p">.</span><span class="nf">schema</span><span class="p">[</span><span class="ss">:info</span><span class="p">][{</span> <span class="ss">some: </span><span class="s1">'info'</span> <span class="p">}].</span><span class="nf">class</span>
-<span class="c1"># Sequel::Postgres::JSONHash</span>
-</code></pre></div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/learn/sql/schemas.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Schemas" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+<span class="c1"># =&gt; Sequel::Postgres::HStore</span>
+</code></pre>
+<p>For getting <code>hstore</code> to work be sure you have the <code>pg_hstore</code> extension loaded.</p>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/learn/sql/schemas.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Schemas" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
 on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
 please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
 opencollective.com/rom</a>.</p>

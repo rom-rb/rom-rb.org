@@ -23,7 +23,7 @@ solve this you often need to qualify and rename columns.</p>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">with_tasks</span>
-    <span class="n">join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">).</span><span class="nf">qualified</span>
+    <span class="n">join</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">,</span> <span class="ss">user_id: :id</span><span class="p">)</span>
 
     <span class="c1"># the same will be done when you use a shortcut:</span>
     <span class="n">join</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
@@ -41,7 +41,7 @@ solve this you often need to qualify and rename columns.</p>
   <span class="k">end</span>
 
   <span class="k">def</span> <span class="nf">with_tasks</span>
-    <span class="n">prefix</span><span class="p">(</span><span class="ss">:user</span><span class="p">).</span><span class="nf">qualified</span>
+    <span class="n">prefix</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span>
   <span class="k">end</span>
   <span class="c1"># produces "SELECT users.id AS user_id, users.name AS user_name ..."</span>
 <span class="k">end</span>

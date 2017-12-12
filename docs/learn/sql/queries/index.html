@@ -71,7 +71,7 @@ You can use it for simple selection of columns, or results of SQL functions.</p>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
 
   <span class="k">def</span> <span class="nf">index</span>
-    <span class="nb">select</span> <span class="p">{</span> <span class="p">[</span><span class="nb">id</span><span class="p">.</span><span class="nf">qualified</span><span class="p">,</span> <span class="nb">name</span><span class="p">.</span><span class="nf">qualified</span><span class="p">]</span> <span class="p">}</span>
+    <span class="nb">select</span> <span class="p">{</span> <span class="p">[</span><span class="nb">id</span><span class="p">,</span> <span class="nb">name</span><span class="p">]</span> <span class="p">}</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre><h3 id="projecting-function-results" class="hd"><a name="projecting-function-results" class="anchor" href="#projecting-function-results">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
@@ -126,16 +126,6 @@ conditions or a block for more advanced usage.</p>
     <span class="c1"># ... WHERE ("id" IN (1, 2)) ...</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
-<p>If you want to qualify column, you need to use schema attributes instead of plain symbols:</p>
-<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
-  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
-
-  <span class="k">def</span> <span class="nf">by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-    <span class="n">where</span><span class="p">(</span><span class="nb">self</span><span class="p">[</span><span class="ss">:name</span><span class="p">].</span><span class="nf">qualified</span> <span class="o">=&gt;</span> <span class="nb">name</span><span class="p">)</span>
-    <span class="c1"># ... WHERE ("users"."name" = 'Jane') ...</span>
-  <span class="k">end</span>
-<span class="k">end</span>
 </code></pre><h3 id="complex-conditions" class="hd"><a name="complex-conditions" class="anchor" href="#complex-conditions">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
@@ -174,10 +164,10 @@ and supports creating aggregate functions for your conditions:</p>
       <span class="c1"># ... HAVING (count("id") &gt;= 1) ...</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre><h2 id="orders" class="hd"><a name="orders" class="anchor" href="#orders">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre><h2 id="order" class="hd"><a name="order" class="anchor" href="#order">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
-</a>Orders</h2>
+</a>Order</h2>
 <p><code>order</code> method with block will order your query:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>

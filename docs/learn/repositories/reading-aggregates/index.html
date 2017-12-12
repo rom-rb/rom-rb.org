@@ -9,10 +9,7 @@ we call <strong>aggregates</strong>, where the root is constructed from the data
 the root relation, and additional relations provide data for child nodes.</p>
 
 <p>This document uses <code>rom-sql</code> which provides support for defining canonical database
-associations in relation schemas, which are used to simplify reading aggregates.
-If an adapter doesn&#39;t support association in schemas, you can still load aggregates
-using <a href="http://www.rubydoc.info/gems/rom-repository/ROM/Repository/RelationProxy/Combine"><code>Repository#combine</code></a> interface,
-which is more advanced and flexible.</p>
+associations in relation schemas, which are used to simplify reading aggregates.</p>
 <h2 id="relation-schema" class="hd"><a name="relation-schema" class="anchor" href="#relation-schema">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
@@ -24,7 +21,7 @@ however, in the early days of every project, using canonical associations is all
 you need, so let&#39;s start with that!</p>
 
 <p>We&#39;re going to define <code>:users</code> that have many <code>:tasks</code>. To keep things simpler
-let&#39;s define relations using <a href="/4.0/learn/getting-started/block-style-setup">block-style setup</a>:</p>
+let&#39;s define relations using <a href="/4.0/learn/getting-started/setup-dsl">block-style setup</a>:</p>
 <pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom'</span>
 
 <span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
@@ -68,8 +65,6 @@ see how we can leverage that in repositories.</p>
 We need to define a root repository with <code>:users</code> set up as the root and provide
 access to <code>:tasks</code> relation:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">UserRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:users</span><span class="p">]</span>
-  <span class="c1"># we configure this explicitly so we can see that this repo will work with tasks relation too</span>
-  <span class="n">relations</span> <span class="ss">:tasks</span>
 <span class="k">end</span>
 </code></pre>
 <p>Now loading an aggregate is as simple as this:</p>
@@ -81,7 +76,6 @@ access to <code>:tasks</code> relation:</p>
 <p>We can do the other way around, starting with <code>:tasks</code> relation as the root, which
 means we&#39;re going to load a task with its user:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">TaskRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:tasks</span><span class="p">]</span>
-  <span class="n">relations</span> <span class="ss">:users</span>
 <span class="k">end</span>
 
 <span class="n">task_repo</span> <span class="o">=</span> <span class="no">TaskRepo</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">rom</span><span class="p">)</span>
@@ -92,31 +86,6 @@ means we&#39;re going to load a task with its user:</p>
 <p>Notice that in this case <code>User</code> struct is loaded as a child object where <code>Task</code>
 is a parent, thus <code>User</code> has <code>task_id</code> assigned, which is <strong>a virtual foreign key</strong>
 that doesn&#39;t really exist in our schema.</p>
-<h3 id="loading-aggregates-using-wrapping" class="hd"><a name="loading-aggregates-using-wrapping" class="anchor" href="#loading-aggregates-using-wrapping">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
-       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
-       </svg>
-</a>Loading aggregates using wrapping</h3>
-<p>An alternative, and faster, way of loading <strong>parent objects</strong> is to use <code>wrap_parent</code> method:</p>
-<pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">TaskRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:tasks</span><span class="p">]</span>
-  <span class="k">def</span> <span class="nf">by_id_with_user</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-    <span class="n">tasks</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">wrap_parent</span><span class="p">(</span><span class="ss">user: </span><span class="n">task_repo</span><span class="p">.</span><span class="nf">users</span><span class="p">).</span><span class="nf">one</span>
-  <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="n">task_repo</span><span class="p">.</span><span class="nf">by_id_with_user</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
-<span class="c1"># =&gt; #&lt;ROM::Struct[Task] id=1 user_id=1 title="Jane Task" user=#&lt;ROM::Struct[User] id=1 name="jane" email="jane@doe.org"&gt;&gt;</span>
-</code></pre>
-<p>Notice that unlike with <code>aggregate</code> method, the parent object does not include <strong>a virtual foreign key</strong>.</p>
-
-<blockquote>
-<h4 id="performance-and-availability" class="hd"><a name="performance-and-availability" class="anchor" href="#performance-and-availability">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
-       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
-       </svg>
-</a>Performance and availability</h4>
-<p><code>wrap_parent</code> is <strong>only available in rom-sql</strong>, which uses a join instead of eager-loading
-and <strong>it&#39;s significantly faster</strong> than using <code>aggregate</code>. Other adapters can implement this
-interface too, assuming it makes sense in case of a given data source.</p>
-</blockquote>
 <h2 id="learn-more" class="hd"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
@@ -125,11 +94,9 @@ interface too, assuming it makes sense in case of a given data source.</p>
 detailed information about invidual methods please refer to the API documentation:</p>
 
 <ul>
-<li><a href="http://api.rom-rb.org/rom-repository/ROM/Repository/Root#aggregate-instance_method">Repository::Root#aggregate</a></li>
-<li><a href="http://api.rom-rb.org/rom-repository/ROM/Repository/RelationProxy#combine_children-instance_method">Repository::RelationProxy#combine_children</a></li>
-<li><a href="http://api.rom-rb.org/rom-repository/ROM/Repository/RelationProxy#combine_parents-instance_method">Repository::RelationProxy#combine_parents</a></li>
-<li><a href="http://api.rom-rb.org/rom-repository/ROM/Repository/RelationProxy#combine-instance_method">Repository::RelationProxy#combine</a></li>
-<li><a href="http://api.rom-rb.org/rom-repository/ROM/Repository/RelationProxy#wrap_parent-instance_method">Repository::RelationProxy#wrap_parent</a></li>
+<li><a href="http://api.rom-rb.org/rom/ROM/Relation#combine-instance_method">Relation#combine</a></li>
+<li><a href="http://api.rom-rb.org/rom/ROM/Relation#wrap-instance_method">Relation#wrap</a></li>
+<li><a href="http://api.rom-rb.org/rom/ROM/Repository/Root#aggregate-instance_method">Repository::Root#aggregate</a></li>
 </ul>
 </div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/learn/repositories/reading-aggregates.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Reading%20Aggregates" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
 on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,

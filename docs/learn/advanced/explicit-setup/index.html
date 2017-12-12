@@ -10,8 +10,10 @@ individual component definitions, like relations or commands, into separate
 files and define them as explicit classes.</p>
 
 <blockquote>
-<p>ROM &amp; Frameworks</p>
-
+<h4 id="rom-amp-frameworks" class="hd"><a name="rom-amp-frameworks" class="anchor" href="#rom-amp-frameworks">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>ROM &amp; Frameworks</h4>
 <p>Framework integrations <strong>take care of the setup for you</strong>. If you want to use ROM
 with a framework, please refer to specific instructions under <a href="/4.0/learn/getting-started">Getting Started</a>
 section</p>
@@ -66,7 +68,7 @@ mappers from <code>&lt;base&gt;/mappers</code>.</p>
 organization, for example:</p>
 <pre class="syntax ruby"><code><span class="c1"># lib/relations/users.rb</span>
 <span class="k">module</span> <span class="nn">Relations</span>
-  <span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:memory</span><span class="p">]</span>
     <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
@@ -77,7 +79,28 @@ organization, for example:</p>
 <pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">)</span>
 <span class="n">configuration</span><span class="p">.</span><span class="nf">auto_registration</span><span class="p">(</span><span class="s1">'/path/to/lib'</span><span class="p">)</span>
 <span class="n">container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
-</code></pre><h4 id="explicit-namespace-name" class="hd"><a name="explicit-namespace-name" class="anchor" href="#explicit-namespace-name">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+</code></pre>
+<p>In special cases where the components are located deeper in the file structure all you have
+to do is provide the path to the outer most module and the rest will be inferred from
+the directory structure:</p>
+<pre class="syntax ruby"><code><span class="c1"># lib/persistence/relations/users.rb</span>
+<span class="k">module</span> <span class="nn">Persistence</span>
+  <span class="k">module</span> <span class="nn">Relations</span>
+    <span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:memory</span><span class="p">]</span>
+      <span class="n">schema</span><span class="p">(</span><span class="ss">:users</span><span class="p">,</span> <span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="c1"># Notice the dataset name is set explicitly</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">)</span>
+<span class="n">configuration</span><span class="p">.</span><span class="nf">auto_registration</span><span class="p">(</span><span class="s1">'root_dir/lib/persistence/'</span><span class="p">)</span>
+<span class="n">container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+
+</code></pre>
+<p>In this scenario the <a href="/4.0/glossary/#dataset">Dataset</a> name will need to be set
+explicitly otherwise the fully qualified relation name will be used, in this case
+<code>:persistence_relations_users</code>.</p>
+<h4 id="explicit-namespace-name" class="hd"><a name="explicit-namespace-name" class="anchor" href="#explicit-namespace-name">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Explicit namespace name</h4>
@@ -92,10 +115,39 @@ then you can set up auto-registration via <code>:namespace</code> option:</p>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre>
-<p>Since we use <code>Persistence</code> as our namespace, we need to set it explicitly:</p>
+<p>Notice that the directory structure is different from our module structure. Since we use <code>Persistence</code>
+as our namespace, we need to set it explicitly so ROM can locate our relation after loading:</p>
 <pre class="syntax ruby"><code><span class="n">configuration</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:memory</span><span class="p">)</span>
 <span class="n">configuration</span><span class="p">.</span><span class="nf">auto_registration</span><span class="p">(</span><span class="s1">'/path/to/lib'</span><span class="p">,</span> <span class="ss">namespace: </span><span class="s1">'Persistence'</span><span class="p">)</span>
 <span class="n">container</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+</code></pre>
+<p>Keep in mind with this namespace strategy, each component must be located under a module matching the
+components name:</p>
+<pre class="syntax ruby"><code><span class="c1"># Commands</span>
+<span class="c1"># lib/commands/update_user_command.rb</span>
+<span class="k">module</span> <span class="nn">Persistence</span>
+  <span class="k">module</span> <span class="nn">Commands</span>
+    <span class="k">class</span> <span class="nc">UpdateUserCommand</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">SQL</span><span class="ss">:Commands</span><span class="o">::</span><span class="no">Create</span>
+      <span class="n">relation</span> <span class="ss">:users</span>
+      <span class="n">register_as</span> <span class="ss">:update_user_command</span>
+
+      <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">tuple</span><span class="p">);</span> <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Mappers</span>
+<span class="c1"># lib/mappers/user_mapper.rb</span>
+<span class="k">module</span> <span class="nn">Persistence</span>
+  <span class="k">module</span> <span class="nn">Mappers</span>
+    <span class="k">class</span> <span class="nc">UserMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Transformer</span>
+      <span class="n">relation</span> <span class="ss">:users</span>
+      <span class="n">register_as</span> <span class="ss">:user_mapper</span>
+
+      <span class="n">map_array</span> <span class="k">do</span><span class="p">;</span> <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 </code></pre><h4 id="turning-namespace-off" class="hd"><a name="turning-namespace-off" class="anchor" href="#turning-namespace-off">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>

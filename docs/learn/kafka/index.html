@@ -338,7 +338,7 @@ immutable messages to the log, but not to change or delete them.</p>
 <p>In case of success the command returns an array of messages added to Kafka:</p>
 <pre class="syntax ruby"><code><span class="c1"># After the setup</span>
 <span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:kafka</span><span class="p">,</span> <span class="s1">'127.0.0.1'</span><span class="p">,</span> <span class="ss">client_id: :admin</span><span class="p">)</span>
-<span class="n">greet</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">command</span><span class="p">(</span><span class="ss">:greetings</span><span class="p">).</span><span class="nf">greet</span>
+<span class="n">greet</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">commands</span><span class="p">[</span><span class="ss">:greetings</span><span class="p">][</span><span class="ss">:greet</span><span class="p">]</span>
 
 <span class="n">greet</span><span class="p">.</span><span class="nf">call</span> <span class="s2">"Hi, Joe"</span><span class="p">,</span> <span class="s2">"How're you?"</span>
 <span class="c1"># =&gt; [</span>
