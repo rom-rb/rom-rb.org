@@ -42,7 +42,7 @@ page '/guides/*', layout: 'guide', data: { sidebar: '3.0/guides/sidebar' }
 page '/blog/*', data: { sidebar: 'blog/sidebar' }
 
 Site.projects.each do |project|
-  proxy "/api/#{project.name}/index.html", '/api/project.html', layout: 'api', locals: { project: project }
+  proxy "/api/#{project.name}/index.html", '/api/project.html', layout: 'api', locals: { project: project }, ignore: true
 end
 
 def next?
