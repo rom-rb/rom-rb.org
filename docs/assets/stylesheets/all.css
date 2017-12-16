@@ -787,7 +787,7 @@ code {
   padding: 1.6rem;
   padding-bottom: 3.2rem; }
   .page .grid {
-    max-width: 100%; }
+    max-width: 1165px; }
   @media (min-width: 668px) {
     .page__sidebar {
       -moz-box-sizing: border-box;
@@ -841,6 +841,8 @@ code {
     margin-bottom: 0rem; }
   .sidebar__sub-link {
     font-weight: 400; }
+  .sidebar__version select {
+    letter-spacing: 0; }
 
 .feedback {
   margin-top: 1rem; }
