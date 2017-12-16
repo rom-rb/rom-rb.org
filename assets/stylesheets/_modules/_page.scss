@@ -1,10 +1,12 @@
+$page-width: 1165px;
+
 .page {
   background-color: palette(beige);
   padding: rhythm(1);
   padding-bottom: rhythm(2);
 
   .grid {
-    max-width: 1165px;
+    max-width: $page-width;
   }
 
   &__sidebar {
