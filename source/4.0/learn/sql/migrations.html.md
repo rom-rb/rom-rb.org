@@ -19,6 +19,7 @@ require 'rom/sql/rake_task'
 namespace :db do
   task :setup do
     # your ROM setup code
+    ROM::SQL::RakeSupport.env = ROM.container(:sql, 'postgres://localhost/rom')
   end
 end
 ```
