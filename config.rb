@@ -1,5 +1,3 @@
-require 'em/pure_ruby'
-
 # This is a monkey-patch to fix the problem with double-watching
 # symlinked directories
 WATCHED_PATHS = (
