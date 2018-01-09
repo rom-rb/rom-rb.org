@@ -45,6 +45,7 @@ many-to-many association type.
 class Users < ROM::Relation[:sql]
   schema(infer: true) do
     associations do
+      has_many :users_tasks
       has_many :tasks, through: :users_tasks
     end
   end
