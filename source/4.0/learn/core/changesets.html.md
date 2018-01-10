@@ -164,7 +164,7 @@ changesets and commit them in a transaction:
 
 ``` ruby
 task = tasks.transaction do
-  user = users.changeset(:create, name: 'Jane')
+  user = users.changeset(:create, name: 'Jane').commit
 
   new_task = tasks.changeset(:create, title: 'Task One').associate(user)
 
