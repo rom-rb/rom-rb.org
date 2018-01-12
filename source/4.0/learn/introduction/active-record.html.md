@@ -14,17 +14,17 @@ $TOC
 
 Rails ActiveRecord is the most popular persistence
 framework in ruby land. Deployed inside the majority of rails applications
-across the web, it provides API's for quick and simple data access making it a
-great good solution for constructing CRUD style applications.
+across the web, it provides APIs for quick and simple data access making it a
+great solution for constructing CRUD style applications.
 
 Our intention for this guide is to act as a primer for anyone familiar with
 Rails' ActiveRecord and looking for a quick start guide. Examples in each set will
 show how ActiveRecord accomplishes each task followed by an example
 with the equivalent using ROM.
 
-All ROM examples are based on `rom-sql` which is an adapter needed to use
-SQL databases with ROM. Information on installing on installing and
-configuring rom-sql for your database can be found in the
+All ROM examples are based on `rom-sql` which is an adapter needed to use SQL
+databases with ROM. Information on installing and configuring rom-sql for your
+database can be found in the
 [SQL](/%{version}/learn/sql) guide.
 
 ^
@@ -40,7 +40,7 @@ configuring rom-sql for your database can be found in the
 ^
 
 ^
-  Both frameworks have many similar API's but philosophically they are
+  Both frameworks have many similar APIs but philosophically they are
   completely different. In this guide, we attempt to highlight these differences
   and provide context for why we chose a different path. That is not to say ROM
   is better than ActiveRecord or vise-versa, it's that they're different and
@@ -53,11 +53,11 @@ configuring rom-sql for your database can be found in the
 The first difference is ROM doesn't really have a concept of models. ROM objects
 are instantiated by the mappers and have no knowledge about persistence. You can
 map to whatever structure you want and in common use-cases you can use
-repositories to automatically map query results to simple struct-like objects.
+relations to automatically map query results to simple struct-like objects.
 
-The closest implementation to models would be would be `ROM::Struct`, which is
-essentially a nice hash with callable attributes and the ability to add custom
-behavior. More on ROM Structs later.
+The closest implementation to models would be `ROM::Struct`, which is
+essentially a data object with attribute readers, coercible to a hash.
+More on ROM Structs later.
 
 <h4 class="text-center">Active Record</h4>
 ```ruby
@@ -67,18 +67,18 @@ end
 
 <h4 class="text-center">ROM</h4>
 ```ruby
-class User < ROM::Relation[:sql]
+class Users < ROM::Relation[:sql]
   schema(infer: true)
 end
 ```
 
 As you can see, ActiveRecord and ROM have similar boilerplate and as this guide
-progresses both will use similar API's to accomplish the same tasks. The
+progresses both will use similar APIs to accomplish the same tasks. The
 difference between models and relations lies within their scope and intended
 purposes. ActiveRecord models represent an all encompassing thing that contains
 *state*, *behavior*, *identity*, *persistence logic* and *validations* whereas
 ROM relations describe how data is connected to other relations and provides
-stateless API's for applying *views* of that data on demand.
+stateless APIs for applying *views* of that data on demand.
 
 ### Models vs ROM Structs
 
@@ -119,7 +119,7 @@ class Users < ROM::Relation[:sql]
 end
 
 module Entities
-  class Users < ROM::Struct
+  class User < ROM::Struct
     def first_name
       name.split(' ').first
     end
@@ -213,7 +213,7 @@ User.where("admin IS ? OR moderator IS ?", true, true)
 
 <h4 class="text-center">ROM</h4>
 ```ruby
-users_relation.where { admin.is(true).or(moderator.is(true)) }
+users_relation.where { admin.is(true) | (moderator.is(true)) }
 ```
 
 For several SQL keywords, such as `select` & `where`, ROM provides a DSL for
@@ -298,7 +298,7 @@ that are initialized in an invalid state. If a developer is sufficiently
 validating data at the boundaries of the application then updating or creating
 a record without loading it should be no problem and in fact preferable.
 
-### Create Nested Objects
+<!-- ### Create Nested Objects
 
 <h4 class="text-center">Active Record</h4>
 ```ruby
@@ -367,7 +367,7 @@ ROM relations are not expected to handle raw input from a multitude of external
 sources and they're not expected to handle an object that could be in any random
 state at any time. Changesets utilize relation schemas to be sure that each attribute is
 the correct data type and when composed with `#combine` they know to expect
-associated relations. 
+associated relations.  -->
 
 ## Validation
 
@@ -527,6 +527,14 @@ users.map_with(:encryption)
 ```
 
 ### Transform Data Before Persisting
+
+Not only can data be transformed when reading records from the database, they
+can also be transformed just before storage as well. Changesets offer a built in
+method for executing a set of transformations that can be used to make minor
+adjustments such as the example below, where an attribute needs to be renamed.
+They can also handle more powerful transformations such as flattening nested
+objects. For more information on available transformations see 
+[Transproc](https://github.com/solnic/transproc)
 
 ```ruby
 class NewUser < ROM::Changeset::Create
