@@ -557,6 +557,8 @@ code {
     padding: 1.6rem; }
     .content blockquote:last-child {
       margin-bottom: 0rem; }
+  .content .text-center {
+    text-align: center; }
 
 .toc {
   margin-bottom: 2rem; }
