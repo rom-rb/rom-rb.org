@@ -174,7 +174,7 @@ User
   .where(name: name)
   .first
 
-#> #<Users id: nil, name: "Jane">
+#> #<User id: nil, name: "Jane">
 #
 # Little bit later... 🔥🔥 BOOM! 🔥🔥
 # ActiveModel::MissingAttributeError
