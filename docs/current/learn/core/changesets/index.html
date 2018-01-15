@@ -157,7 +157,7 @@ method, which will automatically set foreign keys for you, based on schema assoc
 <p>With associations established in the schema, we can easily associate data using
 changesets and commit them in a transaction:</p>
 <pre class="syntax ruby"><code><span class="n">task</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
-  <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">).</span><span class="nf">commit</span>
 
   <span class="n">new_task</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Task One'</span><span class="p">).</span><span class="nf">associate</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
 
