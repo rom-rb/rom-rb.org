@@ -169,46 +169,18 @@ users_relation.where(name: "Jane").first
 
 <h4 class="text-center">Active Record</h4>
 ```ruby
-user_entity = User.select("name").where(name: name).first
+User.select("name").where(name: name).first
+
 #> #<User id: nil, name: "Jane">
-
-# Little bit later...
-user_entity.email_address
-
-# 🔥🔥 BOOM! 🔥🔥
-# ActiveModel::MissingAttributeError
 ```
 
 
 <h4 class="text-center">ROM</h4>
 ```ruby
-users_relation
-  .select(:name)
-  .where(name: name)
-  .one
+users_relation.select(:name).where(name: name).one
 
 #> #<ROM::Struct::User name="Jane">
 ```
-
-The ActiveRecord example above is a bit contrived, but with a bit of context
-it hits to the heart of the different methodologies employed by ROM vs ActiveRecord.
-
-When designing an ActiveRecord model the developer needs to take into account
-every different way that a model will be used in every context. This means
-either loading too much data that isn't needed to satisfy strict validations or
-making those validations so vague as to allow for different data configurations
-rendering them effectively meaningless forcing the need to test the model every
-time before use.
-
-Since it's easy with ROM to load only pertinent data, we focus on allowing
-the user to map data into their desired format. Then using context aware
-validations at the system boundaries, developers can trust the data is correct
-and utilize it without fear.
-
-To be clear, in the above examples ROM would raise a similar error as well, the
-key difference is *context*. When loading data with ROM, a developer would
-only load the data needed for that context, conveniently avoiding the exception
-instead of relying on a god object that may or may not be in the correct state.
 
 ### Query with Complex Conditions
 
