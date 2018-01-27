@@ -87,6 +87,22 @@ helpers do
     current_page.data.title.nil? ? 'ROM' : "ROM - #{current_page.data.title}"
   end
 
+  def og_url
+    Site.development? ? current_page.url : "http://rom-rb.org#{current_page.url}"
+  end
+
+  def og_description
+    if current_page.data.description.nil?
+      "An open-source persistence and mapping toolkit for Ruby built for speed and simplicity."
+    else
+      current_page.data.description
+    end
+  end
+
+  def og_image
+    "http://rom-rb.org/images/logo--card.png"
+  end
+
   def copyright
     "&copy; 2014-#{Time.now.year} Ruby Object Mapper."
   end
