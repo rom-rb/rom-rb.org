@@ -19,6 +19,8 @@ sets up ROM.</p>
 <span class="n">namespace</span> <span class="ss">:db</span> <span class="k">do</span>
   <span class="n">task</span> <span class="ss">:setup</span> <span class="k">do</span>
     <span class="c1"># your ROM setup code</span>
+    <span class="c1"># Usually something like this:</span>
+    <span class="c1"># ROM::SQL::RakeSupport.env = ROM.container(...)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre>
@@ -27,15 +29,32 @@ sets up ROM.</p>
 <ul>
 <li><code>rake db:create_migration[create_users]</code> - create migration file under
 <code>db/migrate</code></li>
-<li><code>rake db:migrate</code> - runs migrations</li>
+<li><code>rake db:migrate</code> - runs migrations located in <code>db/migrate</code></li>
 <li><code>rake db:clean</code> - removes all tables</li>
 <li><code>rake db:reset</code> - removes all tables and re-runs migrations</li>
 </ul>
+<h3 id="file-based-migrations" class="hd"><a name="file-based-migrations" class="anchor" href="#file-based-migrations">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>File-based migrations</h3>
+<p>Migrations created with a command such as <code>rake db:create_migration[create_users]</code> will be placed at under the <code>db/migrate</code> folder at the root of your project.</p>
+
+<p>These migrations should follow this syntax:</p>
+<pre class="syntax ruby"><code><span class="no">ROM</span><span class="o">::</span><span class="no">SQL</span><span class="p">.</span><span class="nf">migration</span> <span class="k">do</span>
+  <span class="n">change</span> <span class="k">do</span>
+    <span class="n">create_table</span> <span class="ss">:users</span> <span class="k">do</span>
+      <span class="n">primary_key</span> <span class="ss">:id</span>
+      <span class="n">column</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">String</span><span class="p">,</span> <span class="ss">null: </span><span class="kp">false</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<p>Filenames for migrations begin with the datestamp following this convention <code>date +%Y%m%d%H%M%S</code>. That is: 4 digits for the year, followed by 2 digits for the month, day, hour, minute and second the migration was created. This provides an order to the migrations so you can migrate and build your database up piece-by-piece in the same order every time.</p>
 <h3 id="using-gateway-migration-interface" class="hd"><a name="using-gateway-migration-interface" class="anchor" href="#using-gateway-migration-interface">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
        <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
        </svg>
 </a>Using Gateway Migration Interface</h3>
-<p>You can use migrations using gateway&#39;s interface:</p>
+<p>You can also use migrations by using a gateway&#39;s interface:</p>
 <pre class="syntax ruby"><code><span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/rom'</span><span class="p">)</span>
 
 <span class="n">gateway</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">gateways</span><span class="p">[</span><span class="ss">:default</span><span class="p">]</span>
@@ -50,7 +69,15 @@ sets up ROM.</p>
 <span class="k">end</span>
 
 <span class="n">migration</span><span class="p">.</span><span class="nf">apply</span><span class="p">(</span><span class="n">gateway</span><span class="p">.</span><span class="nf">connection</span><span class="p">,</span> <span class="ss">:up</span><span class="p">)</span>
-</code></pre></div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/4.0/learn/sql/migrations.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Migrations" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+</code></pre><h2 id="learn-more" class="hd"><a name="learn-more" class="anchor" href="#learn-more">       <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+       <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+       </svg>
+</a>Learn more</h2>
+<ul>
+<li><a href="http://api.rom-rb.org/rom-sql/ROM/SQL/Migration">ROM::SQL::Migration</a></li>
+<li><a href="https://github.com/jeremyevans/sequel/blob/master/doc/schema_modification.rdoc">Sequel migration documentation</a></li>
+</ul>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/4.0/learn/sql/migrations.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Migrations" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
 on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
 please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
 opencollective.com/rom</a>.</p>
