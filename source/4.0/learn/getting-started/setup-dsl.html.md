@@ -27,6 +27,11 @@ ROM.container(:sql, 'sqlite::memory') do |config|
   # define relations and commands here...
 end
 
+# when using SQLite with a file be sure to use the file's full path
+rom = ROM.container(:sql, 'sqlite:///Users/you/full/path/test.db') do |config|
+  # define relations and commands here...
+end
+
 # You can provide additional connection options too
 ROM.container(:sql, 'postgres://localhost/my_db', extensions: [:pg_json]) do |config|
   # define relations and commands here...
