@@ -444,7 +444,7 @@ users_relation.select_append {
 <h4 class="text-center">Active Record</h4>
 ```ruby
 class User < ApplicationRecord
-  self.table_name = 'SomehorriblyNamedUseRtable'
+  self.table_name = 'SomeHorriblyNamedUserTable'
   self.primary_key = 'UserIdentifier'
 
   alias_attribute :id, :UserIdentifier
@@ -465,7 +465,7 @@ User.where('name IS ?', 'Jane').first
 <h4 class="text-center">ROM</h4>
 ```ruby
 class Users < ROM::Relation[:sql]
-  schema(:SomehorriblyNamedUseRtable, as: :users) do
+  schema(:SomeHorriblyNamedUserTable, as: :users) do
     attribute :UserIdentifier, Serial.meta(alias: :id)
     attribute :UserName, String.meta(alias: :name)
   end
