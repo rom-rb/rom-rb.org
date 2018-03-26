@@ -73,6 +73,8 @@ and in addition to that we have:
 * `:add_timestamps`–sets `created_at` and `updated_at` timestamps (don't forget to add those fields to the table in case of using `rom-sql`)
 * `:touch`–sets `updated_at` timestamp
 
+You can override the timestamps by simply setting them in the input data.
+
 ### Pre-configured mapping
 
 If you want to process data before sending them to be persisted, you can define
