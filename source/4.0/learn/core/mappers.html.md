@@ -51,6 +51,8 @@ doesn't provide enough functionality that's needed to get desired data structure
 you can define mapper classes and configure mapping there.
 
 ``` ruby
+require 'rom/transformer'
+
 class MyMapper < ROM::Transformer
   relation :users
   register_as :my_mapper
