@@ -14,11 +14,11 @@ Let's see how it looks like.
 In rom-factory you can define as many factories as you want, we **do not store them under one singleton object**. After you got rom container set up, you can easily configure a factory:
 
 ``` ruby
-MyFactory = ROM::Factory.configured do |c|
+MyFactory = ROM::Factory.configure do |c|
   c.rom = your_rom_container
 end
 
-AnotherFactory = ROM::Factory.configured do |c|
+AnotherFactory = ROM::Factory.configure do |c|
   c.rom = your_rom_container
 end
 ```
