@@ -22,7 +22,9 @@ You can enable this feature via `auto_struct(true)` in a relation class:
 ``` ruby
 class Users < ROM::Relation[:sql]
   schema(infer: true) do
-    has_many :tasks
+    associations do
+      has_many :tasks
+    end
   end
   
   auto_struct(true)
