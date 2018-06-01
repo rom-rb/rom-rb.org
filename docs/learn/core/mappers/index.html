@@ -21,7 +21,9 @@ instead.</p>
 <p>Here&#39;s how default mapping looks like, assuming you have a users relation available:</p>
 <pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
   <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
-    <span class="n">has_many</span> <span class="ss">:tasks</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span> <span class="ss">:tasks</span>
+    <span class="k">end</span>
   <span class="k">end</span>
 <span class="k">end</span>
 

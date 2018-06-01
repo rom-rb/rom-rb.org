@@ -12,11 +12,11 @@ ga('send', 'pageview');</script></head><body class="blog blog_announcing-rom-fac
        </svg>
 </a>Factories</h2>
 <p>In rom-factory you can define as many factories as you want, we <strong>do not store them under one singleton object</strong>. After you got rom container set up, you can easily configure a factory:</p>
-<pre class="syntax ruby"><code><span class="no">MyFactory</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Factory</span><span class="p">.</span><span class="nf">configured</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+<pre class="syntax ruby"><code><span class="no">MyFactory</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Factory</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
   <span class="n">c</span><span class="p">.</span><span class="nf">rom</span> <span class="o">=</span> <span class="n">your_rom_container</span>
 <span class="k">end</span>
 
-<span class="no">AnotherFactory</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Factory</span><span class="p">.</span><span class="nf">configured</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
+<span class="no">AnotherFactory</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Factory</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">c</span><span class="o">|</span>
   <span class="n">c</span><span class="p">.</span><span class="nf">rom</span> <span class="o">=</span> <span class="n">your_rom_container</span>
 <span class="k">end</span>
 </code></pre>
