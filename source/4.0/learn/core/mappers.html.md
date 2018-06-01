@@ -21,7 +21,9 @@ Here's how default mapping looks like, assuming you have a users relation availa
 ``` ruby
 class Users < ROM::Relation[:sql]
   schema(infer: true) do
-    has_many :tasks
+    associations do
+      has_many :tasks
+    end
   end
 end
 
