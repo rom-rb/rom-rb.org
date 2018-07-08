@@ -416,12 +416,12 @@ see the [MySQL2](https://github.com/brianmario/mysql2) project site
   </tr>
   
   <tr>
-    <td>Boolean</td>
+    <td>:secure_auth</td>
     <td>
       When enabled the server will refuse connection if the
       account password is stored in old pre-MySQL 4.1 format.
     </td>
-    <td>:secure_auth</td>
+    <td>Boolean</td>
     <td>true</td>
   </tr>
   
