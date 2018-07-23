@@ -103,7 +103,7 @@ delete_user.by_id(2).call
 # or many
 delete_users = rom_container.commands[:users][:delete]
 
-delete_users.by_first_name(first_name: 'Lawrence').call
+delete_users.by_first_name('Lawrence').call
 
 # update is the same, and takes the new data as a parameter to #call
 update_user = rom_container.command[:users][:update]
