@@ -43,6 +43,12 @@ Site.projects.each do |project|
   proxy "/api/#{project.name}/index.html", '/api/project.html', layout: 'api', locals: { project: project }, ignore: true
 end
 
+# This is silly, but I can't figure out how to access `Application` instance
+# in Site class, so whatever
+configure :build do
+  ENV['BUILD'] = 'true'
+end
+
 def next?
   ENV['NEXT'] == 'true'
 end

@@ -14,7 +14,7 @@ module Site
   end
 
   def self.development?
-    Middleman::Application.config.environment == :development
+    ENV['BUILD'] != 'true'
   end
 
   class Project
