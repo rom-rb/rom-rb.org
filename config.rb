@@ -50,7 +50,7 @@ end
 if next?
   set :api_base_url, "http://www.rubydoc.info/#{next? ? 'github/rom-rb' : 'gems'}"
 else
-  set :api_base_url, "http://api.rom-rb.org"
+  set :api_base_url, "https://api.rom-rb.org"
 end
 
 set :api_url_template, "#{config.api_base_url}/%{project}/ROM/%{path}"

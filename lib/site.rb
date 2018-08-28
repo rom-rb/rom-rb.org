@@ -14,7 +14,7 @@ module Site
   end
 
   def self.development?
-    ENV['BUILD'] != 'true'
+    Middleman::Application.config.environment == :development
   end
 
   class Project
@@ -70,7 +70,7 @@ module Site
     end
 
     def api_host_url
-      Site.development? ? "http://localhost:4000/docs" : "http://api.rom-rb.org"
+      Site.development? ? "http://localhost:4000/docs" : "https://api.rom-rb.org"
     end
   end
 end
