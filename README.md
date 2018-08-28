@@ -1,6 +1,10 @@
-# rom-rb.org
+[travis]: https://travis-ci.org/rom-rb/rom
 
-Official Ruby Object Mapper website.
+# rom-rb.org [![Gitter chat](https://badges.gitter.im/rom-rb/chat.svg)](https://gitter.im/rom-rb/chat)
+
+[![Build Status](https://travis-ci.org/rom-rb/rom-rb.org.svg?branch=master)][travis]
+
+The official rom-rb website.
 
 ## Build Instructions
 
