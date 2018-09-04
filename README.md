@@ -1,4 +1,4 @@
-[travis]: https://travis-ci.org/rom-rb/rom
+[travis]: https://travis-ci.org/rom-rb/rom-rb.org
 
 # rom-rb.org [![Gitter chat](https://badges.gitter.im/rom-rb/chat.svg)](https://gitter.im/rom-rb/chat)
 
