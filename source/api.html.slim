@@ -9,4 +9,4 @@ markdown:
 
 ul
   - projects.each do |project|
-    li = link_to project.name, "/api/#{project.name}"
+    li = link_to project.name, project.api_url
