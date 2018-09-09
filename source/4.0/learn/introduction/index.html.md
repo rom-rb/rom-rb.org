@@ -46,7 +46,7 @@ pattern); or
 Both strategies tend to start out fine, but can quickly become cumbersome as an
 application transitions to a medium-to-large application.
 
-ActiveRecord style mapping has the benefit of aiding in rapid prototyping works
+ActiveRecord style mapping has the benefit of aiding in rapid prototyping, which works
 great in basic CRUD scenarios but it limits application modeling to what's
 convenient for the database. Entities will tend to map one-to-one with tables,
 which leads to knowledge of the persistence structure infecting the application
