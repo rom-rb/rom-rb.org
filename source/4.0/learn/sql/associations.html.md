@@ -10,7 +10,7 @@ Relation schemas in SQL land can be used to define canonical associations. These
 The `belongs_to` definition establishes a many-to-one association type.
 
 ``` ruby
-class Post < ROM::Relation[:sql]
+class Posts < ROM::Relation[:sql]
   schema(infer: true) do
     associations do
       belongs_to :user
@@ -111,7 +111,7 @@ For example, we have `:posts` belonging to `:users` but we'd like to call
 them `:authors`:
 
 ``` ruby
-class Post < ROM::Relation[:sql]
+class Posts < ROM::Relation[:sql]
   schema(infer: true) do
     associations do
       belongs_to :user, as: :author
