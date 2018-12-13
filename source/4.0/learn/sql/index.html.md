@@ -170,6 +170,12 @@ configure the connection between ROM and the database.
     <td>Port number used during connection.</td>
   </tr>
   
+  <tr>
+    <td>:max_connections</td>
+    <td>Integer</td>
+    <td>The maximum number of connections the connection pool will open (default 4).</td>
+  </tr>
+  
 </tbody>
 </table>
 
