@@ -3,45 +3,50 @@ chapter: SQL How To
 title: Use complex where clauses with joins
 ---
 
-This article assumes:
 
-* You have a `users` table
-* You have a `posts_users` table 
+Suppose you have an application which has `features` and `users`.
+Some features are restricted to certain users while others are open to everyone.
 
-Let's imagine that you have some Users and each has many Posts associated. You decided to implement this relation 
-with a join table `posts_users`, that has in its attributes both `user_id` and `post_id`.
+* You have a `features` table, which has an `id` and `name`
+* You have a `feature_restrictions` table, which has an `user_id` and `feature_id`
 
-Let's imagine that you want to get all the `post_id` associated to some user and all Users who don't 
-have any `post_id`.
+When a feature has no `feature_restriction`, the feature is available to everyone. When a feature has a `feature_restriction`,
+only the specified `user_id` can access the feature.
+
+We'd like to have one method that returns the available `features` for a given `user_id`.
+That means features that are unrestricted AND features that are restricted to the given user.
+
+This can easily be achieved with a `left_join` and a `where` clause:
 
 ``` ruby
 module Relations
-  class Users < ROM::Relation[:sql]
-    attribute :id, ROM::Types::Int
+  class Features < ROM::Relation[:sql]
+    schema(:features) do
+      attribute :id, ROM::Types::Int
+      attribute :name, ROM::Types::String
 
-    schema(:users) do
       associations do
-        has_many :posts_users
+        has_many :feature_restrictions
       end
     end
 
-    def get_post_by_id_or_nil(post_id)
+    def available_features(user_id)
       distinct
-        .left_join(:posts_users)
+        .left_join(:feature_restrictions)
         .where do |r|
-          r[:posts_users][:post_id].is(nil) |
-            r[:posts_users][:post_id].is(post_id)
+          r[:feature_restrictions][:user_id].is(nil) |
+            r[:feature_restrictions][:user_id].is(user_id)
         end
     end
   end
 
-  class PostsUsers < ROM::Relation[:sql]
-    schema(:posts_users) do
-      attribute :post_id, ROM::Types::Int
+  class FeatureRestrictions < ROM::Relation[:sql]
+    schema(:users) do
+      attribute :feature_id, ROM::Types::Int
       attribute :user_id, ROM::Types::Int
 
       associations do
-        belongs_to :user
+        belongs_to :feature
       end
     end
   end
