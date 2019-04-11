@@ -35,7 +35,7 @@ module Relations
         .left_join(:feature_restrictions)
         .where do |r|
           r[:feature_restrictions][:user_id].is(nil) |
-            r[:posts_users][:user_id].is(user_id)
+            r[: feature_restrictions][:user_id].is(user_id)
         end
     end
   end
