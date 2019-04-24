@@ -1,6 +1,7 @@
 [travis]: https://travis-ci.org/rom-rb/rom-rb.org
+[chat]: https://rom-rb.zulipchat.com
 
-# rom-rb.org [![Gitter chat](https://badges.gitter.im/rom-rb/chat.svg)](https://gitter.im/rom-rb/chat)
+# rom-rb.org [![Join the chat at https://rom-rb.zulipchat.com](https://img.shields.io/badge/rom--rb-join%20chat-942283.svg)][chat]
 
 [![Build Status](https://travis-ci.org/rom-rb/rom-rb.org.svg?branch=master)][travis]
 
