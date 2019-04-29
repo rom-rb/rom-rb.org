@@ -27,10 +27,10 @@ Afterwards either load `rom-http` through your bundler setup or manually in your
 script like so:
 
 ```ruby
-require 'rom-sql'
+require 'rom-http'
 ```
 
-Once loaded the SQL Adapter will register itself with ROM and become available 
+Once loaded the http Adapter will register itself with ROM and become available 
 for immediate use via the `:http` identifier.
 
 ## Connection
