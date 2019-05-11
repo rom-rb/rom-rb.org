@@ -466,8 +466,8 @@ User.where('name IS ?', 'Jane').first
 ```ruby
 class Users < ROM::Relation[:sql]
   schema(:SomeHorriblyNamedUserTable, as: :users) do
-    attribute :UserIdentifier, Serial.meta(alias: :id)
-    attribute :UserName, String.meta(alias: :name)
+    attribute :UserIdentifier, alias: :id
+    attribute :UserName, alias: :name
   end
 end
 
@@ -476,10 +476,10 @@ users_relation.where(name: 'Jane').first
 #> #<ROM::Struct::User id=1 name="Jane">
 ```
 
-ROM makes working with legacy schemas a breeze. All that's needed it to define
-attributes on the relations schema along with
-return types and aliases. Afterwards just reuse the aliased names throughout
-your ROM queries - *quick* and *easy*.
+ROM makes working with legacy schemas a breeze. All that's needed is
+to define attributes on the relations schema along with their
+aliases. Afterwards just reuse the aliased names throughout your ROM
+queries - *quick* and *easy*.
 
 Working with ActiveRecord in this regard is a bit more difficult. While you
 can alias attributes, there is no real supported method for changing attribute
