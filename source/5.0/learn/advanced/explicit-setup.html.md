@@ -147,7 +147,7 @@ module Persistence
     class UpdateUserCommand < ROM::SQL:Commands::Create
       relation :users
       register_as :update_user_command
-      
+
       def execute(tuple); end
     end
   end
@@ -160,7 +160,7 @@ module Persistence
     class UserMapper < ROM::Transformer
       relation :users
       register_as :user_mapper
-      
+
       map_array do; end
     end
   end
@@ -209,9 +209,16 @@ default options explicitly:
 
 ```ruby
 class Users < ROM::Relation[:sql]
-  register_as :users    # the registered name; eg. for use in Repository’s relations(...) method
-  gateway :default      # the gateway name, as defined in setup
-  dataset :users        # eg. in sql, this is the table name
+  gateway :default # the gateway name, as defined in setup
+
+  # the first argument to schema() is the dataset name;
+  # by default it is inferred from the class name
+  #
+  # `as:` provides the registered name;
+  # under this name the relation will be available in repositories
+  schema(:users, as: :users) do
+    # ...
+  end
 end
 ```
 
