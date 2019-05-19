@@ -90,7 +90,7 @@ class Users < ROM::Relation[:sql]
   schema(infer: true)
 
   def index
-    select { [name, int::count(id).as(:count)] }.group(:id)
+    select { [name, integer::count(id).as(:count)] }.group(:id)
     # SELECT "name", COUNT("id") AS "count" ...
   end
 end
@@ -173,7 +173,7 @@ class Users < ROM::Relation[:sql]
   schema(infer: true)
 
   def email_duplicates
-    select { [email, int::count(id).as(:count)] }.
+    select { [email, integer::count(id).as(:count)] }.
       group(:email).
       having { count(id) >= 1 }
       # ... HAVING (count("id") >= 1) ...
