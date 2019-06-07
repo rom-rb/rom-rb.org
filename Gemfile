@@ -13,6 +13,9 @@ gem 'nokogiri'
 gem 'slim'
 gem 'redcarpet'
 
+# Checks html markup
+gem 'html-proofer'
+
 group :development do
   gem 'pry-byebug'
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?
