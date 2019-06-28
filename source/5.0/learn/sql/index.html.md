@@ -14,7 +14,7 @@ sections:
 
 $TOC
   1. [Installing](#installing)
-  2. [Connecting to a Database](#connection-to-a-database)
+  2. [Connecting to a Database](#connecting-to-a-database)
   3. [PostgreSQL](#postgresql)
   4. [MySQL](#mysql)
   5. [SQLite](#sqlite)
