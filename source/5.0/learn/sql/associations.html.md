@@ -242,7 +242,7 @@ end
 Check out API documentation:
 
 * [api::rom-sql::SQL/Schema](AssociationsDSL)
-* [api::rom-sql::SQL/Association](OneToMany)
-* [api::rom-sql::SQL/Association](OneToOne)
-* [api::rom-sql::SQL/Association](ManyToOne)
-* [api::rom-sql::SQL/Association](ManyToMany)
+* [api::rom-sql::SQL/Associations](OneToMany)
+* [api::rom-sql::SQL/Associations](OneToOne)
+* [api::rom-sql::SQL/Associations](ManyToOne)
+* [api::rom-sql::SQL/Associations](ManyToMany)
