@@ -2,6 +2,7 @@
 title: Guides
 sections:
   - sql-quick-start
+  - sql-how-to
 ---
 
 Guides are a collection of short articles explaining how to achieve common tasks
