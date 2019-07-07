@@ -24,7 +24,7 @@ Report bugs and offer feedback on features via [GitHub Issues](https://github.co
 
 Look for issues marked with [help wanted](https://github.com/rom-rb/rom/labels/help%20wanted). That’s a sign that a unit of work is up for grabs.
 
-Before diving into code contributions, it’s best to check in [on Gitter](https://gitter.im/rom-rb/chat) or post a comment on the relevant GitHub issue to let others know you’re interested and ensure you understand the context.
+Before diving into code contributions, it’s best to check in [on chat](https://rom-rb.zulipchat.com) or post a comment on the relevant GitHub issue to let others know you’re interested and ensure you understand the context.
 
 # Code of Conduct
 
