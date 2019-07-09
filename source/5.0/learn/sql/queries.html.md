@@ -175,8 +175,8 @@ class Users < ROM::Relation[:sql]
   def email_duplicates
     select { [email, integer::count(id).as(:count)] }.
       group(:email).
-      having { count(id) >= 1 }
-      # ... HAVING (count("id") >= 1) ...
+      having { count(id) >= 2 }
+      # ... HAVING (count("id") >= 2) ...
   end
 end
 ```
