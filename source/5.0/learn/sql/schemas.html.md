@@ -37,9 +37,9 @@ class Posts < ROM::Relation[:sql]
   end
 end
 
-id = users.insert(title: 'Hello World', status: :draft)
+id = posts.insert(title: 'Hello World', status: :draft)
 
-users.by_pk(1).one
+posts.by_pk(1).one
 # => {:id => 1, :title => "Hello World", status: :draft }
 ```
 
