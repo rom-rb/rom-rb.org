@@ -131,7 +131,7 @@ module Entities
 end
 
 user = users_relation.first
-#> #<Entitites::User id=1 name="Jane Doe">
+#> #<Entities::User id=1 name="Jane Doe">
 
 user.first_name
 #> "Jane"
