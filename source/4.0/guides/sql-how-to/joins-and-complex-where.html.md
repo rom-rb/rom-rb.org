@@ -55,5 +55,4 @@ end
 
 ## Learn more
 
-* [Repositories Quick Start](/learn/repositories/quick-start)
-* [api::rom-sql::SQL](Gateway)
+* [API docs rom-sql Relation#where](https://www.rubydoc.info/github/rom-rb/rom-sql/ROM/SQL/Relation/Reading#where-instance_method)
