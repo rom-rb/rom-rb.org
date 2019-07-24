@@ -58,7 +58,7 @@ Here's an example how you could define a relation to fetch organizations from Gi
 ```ruby
 module GitHub
   module Resources
-    class Organizations < ROM::Relations[:http]
+    class Organizations < ROM::Relation[:http]
       schema(:orgs) do
         attribute :id, Types::JSON::Integer
         attribute :name, Types::JSON::String
