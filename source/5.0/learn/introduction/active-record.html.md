@@ -33,7 +33,7 @@ database can be found in the
   each component registered.
 
   For information on how to configure a ROM environment see either
-  [Setup DSL](/%{version}/learn/getting-started/setup-sql)
+  [Setup DSL](/%{version}/learn/getting-started/setup-dsl)
   or
   [Rails Setup](/%{version}/learn/getting-started/rails-setup)
   guides.
