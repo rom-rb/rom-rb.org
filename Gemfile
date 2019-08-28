@@ -3,10 +3,10 @@ source 'https://rubygems.org'
 ruby '>= 2.4.1'
 
 # Middleman gems
-gem 'middleman', '~> 4.0'
-gem 'middleman-livereload'
+gem 'middleman', '5.0.0.rc.1'
 gem 'middleman-syntax'
 gem 'middleman-blog'
+gem "middleman-docsite", git: "https://github.com/solnic/middleman-docsite", branch: "master"
 gem 'nokogiri'
 
 # Styling
