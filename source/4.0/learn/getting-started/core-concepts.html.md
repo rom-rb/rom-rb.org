@@ -89,7 +89,7 @@ To learn more about repositories, how to use them and their role in a system
 developed using ROM, check out the
 [Repositories](/%{version}/learn/repositories) section.
 
-^
+^INFO
   Repositories are completely optional and while they provide powerful features
   for encapsulating data access logic, they may not make sense for some 
   simple CRUD applications or one-off scripts.
@@ -162,7 +162,7 @@ potentially new command types. Furthermore, an adapter can provide extra
 features that are needed to work with a given database type. For example,
 `rom-sql` provides Migration API for managing the schema in a SQL database.
 
-^
+^INFO
   **Remember** all of the abstractions provided by ROM are ultimately there
   to separate any hard dependencies higher up in the application stack. So
   when creating relations, take advantage of that separation by not leaking

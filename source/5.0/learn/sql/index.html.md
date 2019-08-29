@@ -35,7 +35,7 @@ relied upon for functionality. If <mark>rom-sql</mark> is missing functionality
 that can be accomplished in Sequel then please leave a report in our [issue
 tracker](https://github.com/rom-rb/rom-rb.org/issues).
 
-^
+^INFO
   The SQL Adapter documentation is still being created & revised. If something
   isn't documented or requires more information, please click the  "Provide
   Feedback" buttons at the bottom of the pages and let us know. In the mean time
@@ -45,6 +45,7 @@ tracker](https://github.com/rom-rb/rom-rb.org/issues).
 ^
 
 ## Installing
+
 *Depends on:* `ruby v2.3.0` or greater
 
 To install <mark>rom-sql</mark> add the following to your
@@ -65,7 +66,7 @@ require 'rom-sql'
 Once loaded the SQL Adapter will register itself with ROM and become available 
 for immediate use via the `:sql` identifier.
 
-^
+^INFO
   Each database type requires a separate driver gem to also be installed. 
   Be sure to check out the documentation of your preferred database for
   more information.
@@ -591,18 +592,18 @@ are no configuration options supported through the uri. The below
 [Quick Connect](#quick-connect_2) examples should offer enough information on how to connect
 to this type of database.
 
-^
+^INFO
   By default a SQLite in-memory database is restricted to a single connection.
   This is a restriction imposed by SQLite itself and for this reason,
   Sequel sets the maximum number of connections in the connection pool to `1`.
   Overriding the connection pool limit will result in weird behavior as new
   connections will be to separate memory databases. 
-^
 
 For more information see 
 [Sequel's SQLite](http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-sqlite)
 documentation or for URI file formats see
 [URI Filenames in SQLite](https://www.sqlite.org/uri.html)
+^
 
 #### Quick Connect
 
