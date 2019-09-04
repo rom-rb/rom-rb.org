@@ -194,7 +194,7 @@ Here are a couple of guidelines that should help you in making right decisions:
   `draft` as the default value for post's `:status` attribute is part of your domain
   more than it is part of your persistence layer.
 * Strict types *can be used* and they will raise `TypeError` when invalid data
-  was accidentely passed to a command. Use this with caution, typically you want
+  was accidentally passed to a command. Use this with caution, typically you want
   to validate the data prior sending them to a command, but there might be use cases
   where you expect data to be valid already, and any type error *is indeed an exception*
   and you want your system to crash
