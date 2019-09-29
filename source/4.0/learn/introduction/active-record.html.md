@@ -27,7 +27,7 @@ databases with ROM. Information on installing and configuring rom-sql for your
 database can be found in the
 [SQL](/%{version}/learn/sql) guide.
 
-^
+^INFO
   Examples below assume a configured environment for each
   framework. For ROM examples this means an initialized `ROM::Container` with
   each component registered.
@@ -39,14 +39,13 @@ database can be found in the
   guides.
 ^
 
-^
+^INFO
   Both frameworks have many similar APIs but philosophically they are
   completely different. In this guide, we attempt to highlight these differences
   and provide context for why we chose a different path. That is not to say ROM
   is better than ActiveRecord or vise-versa, it's that they're different and
   each has its own strengths and weaknesses. 
 ^
-
 
 ## Models vs Relations
 
@@ -60,12 +59,14 @@ essentially a data object with attribute readers, coercible to a hash.
 More on ROM Structs later.
 
 <h4 class="text-center">Active Record</h4>
+
 ```ruby
 class User < ApplicationRecord
 end
 ```
 
 <h4 class="text-center">ROM</h4>
+
 ```ruby
 class Users < ROM::Relation[:sql]
   schema(infer: true)
@@ -88,6 +89,7 @@ a relation. A custom type or plain hash can also be used instead, but ROM
 structs offer a fast alternative without having to write a lot of boilerplate.
 
 <h4 class="text-center">Active Record</h4>
+
 ```ruby
 class User < ApplicationRecord
   def first_name
@@ -109,8 +111,8 @@ user.last_name
 #> "Doe"
 ```
 
-
 <h4 class="text-center">ROM</h4>
+
 ```ruby
 class Users < ROM::Relation[:sql]
   struct_namespace Entities
@@ -153,11 +155,11 @@ Once you have a relation, it becomes almost trivial to start querying for
 information in a similar fashion as ActiveRecord. A basic example below:
 
 <h4 class="text-center">Active Record</h4>
+
 ```ruby
 User.where(name: "Jane").first
 #> #<User id: 1, name: "Jane">
 ```
-
 
 <h4 class="text-center">ROM</h4>
 ```ruby

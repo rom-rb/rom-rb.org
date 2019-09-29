@@ -27,7 +27,7 @@ databases with ROM. Information on installing and configuring rom-sql for your
 database can be found in the
 [SQL](/%{version}/learn/sql) guide.
 
-^
+^INFO
   Examples below assume a configured environment for each
   framework. For ROM examples this means an initialized `ROM::Container` with
   each component registered.
@@ -39,7 +39,7 @@ database can be found in the
   guides.
 ^
 
-^
+^INFO
   Both frameworks have many similar APIs but philosophically they are
   completely different. In this guide, we attempt to highlight these differences
   and provide context for why we chose a different path. That is not to say ROM

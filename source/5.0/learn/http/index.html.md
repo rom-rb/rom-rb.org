@@ -41,16 +41,16 @@ When you set up an `HTTP` gateway, you need to specify at the URI. Let's say we 
 config = ROM::Configuration.new(:http, uri: "https://api.github.com", handlers: :json)
 ```
 
-^
-Setting up a gateway assumes that all registered relations will use the `uri` as the `base_path` for all requests.
+^INFO
+  Setting up a gateway assumes that all registered relations will use the `uri` as the `base_path` for all requests.
 ^
 
 ## Relations
 
 When you define relations for `HTTP` adapter, you need to specify the schemas as there's no way to infer them.
 
-^
-By defining schemas you tell `ROM` which attributes you're interested in, everything else will be rejected from the original responses.
+^INFO
+  By defining schemas you tell `ROM` which attributes you're interested in, everything else will be rejected from the original responses.
 ^
 
 Here's an example how you could define a relation to fetch organizations from GitHub:
@@ -103,8 +103,8 @@ ROM::HTTP::Handlers.register(:my_handlers,
 
 Then you can use `:my_handlers` when setting up a gateway.
 
-^
-Your custom handlers must be compatible with the required interface. Refer to [the built-in JSON handlers](https://github.com/rom-rb/rom-http/blob/master/lib/rom/http/handlers/json.rb) to get the idea.
+^INFO
+  Your custom handlers must be compatible with the required interface. Refer to [the built-in JSON handlers](https://github.com/rom-rb/rom-http/blob/master/lib/rom/http/handlers/json.rb) to get the idea.
 ^
 
 ## Learn more
