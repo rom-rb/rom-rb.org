@@ -94,7 +94,9 @@ class UsersGroups < ROM::Relation[:http]
 end
 ```
 
-> `primary_key` is a shortcut for the annotation: Types::Int.meta(primary_key: true)
+^INFO
+`primary_key` is a shortcut for the annotation: Types::Int.meta(primary_key: true)
+^
 
 ## Foreign Keys
 
@@ -110,7 +112,9 @@ class Posts < ROM::Relation[:http]
 end
 ```
 
-> `foreign_key` is a shortcut for the annotation: Types::Int.meta(foreign_key: true, relation: :users)
+^INFO
+`foreign_key` is a shortcut for the annotation: Types::Int.meta(foreign_key: true, relation: :users)
+^
 
 ## Annotations
 

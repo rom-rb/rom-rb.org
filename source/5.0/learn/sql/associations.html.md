@@ -19,8 +19,11 @@ class Posts < ROM::Relation[:sql]
 end
 ```
 
-> #### Naming convention
-> This method is a shortcut for `many_to_one :users, as: :user`
+^INFO
+#### Naming convention
+
+This method is a shortcut for `many_to_one :users, as: :user`.
+^
 
 ## has_many (one-to-many)
 
@@ -75,8 +78,11 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-> #### Naming convention
-> This method is a shortcut for `has_one :accounts, as: :account`
+^INFO
+#### Naming convention
+
+This method is a shortcut for `has_one :accounts, as: :account`.
+^
 
 ## has_one-through (one-to-one-through)
 
@@ -120,9 +126,9 @@ class Posts < ROM::Relation[:sql]
 end
 ```
 
-> The alias is used by auto-mapping, which means that in our example, if you load
-> an aggregate with posts and its authors, the attribute name in post structs
-> will be called **author**
+^INFO
+The alias is used by auto-mapping, which means that in our example, if you load an aggregate with posts and its authors, the attribute name in post structs will be called **author**.
+^
 
 ## Extending associations with custom views
 
@@ -235,7 +241,9 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
-> All association types support this option
+^INFO
+All association types support this option.
+^
 
 ## Learn more
 

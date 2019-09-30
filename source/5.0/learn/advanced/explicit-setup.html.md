@@ -8,11 +8,11 @@ access databases, in a typical application setup, you want to break down
 individual component definitions, like relations or commands, into separate
 files and define them as explicit classes.
 
-> #### ROM & Frameworks
->
-> Framework integrations **take care of the setup for you**. If you want to use ROM
-> with a framework, please refer to specific instructions under [Getting Started](/%{version}/learn/getting-started)
-> section
+^INFO
+#### ROM & Frameworks
+
+Framework integrations **take care of the setup for you**. If you want to use ROM with a framework, please refer to specific instructions under [Getting Started](/%{version}/learn/getting-started) section.
+^
 
 ## Setup
 
@@ -244,6 +244,6 @@ class CreateUser < ROM::Commands::Create[:memory]
 end
 ```
 
-> Typically, you're going to use [repository command interface and changesets](/%{version}/learn/repositories/quick-start);
-> custom command classes are useful when the built-in command support in
-> repositories doesn't meet your requirements
+^INFO
+Typically, you're going to use [repository command interface and changesets](/%{version}/learn/repositories/quick-start); custom command classes are useful when the built-in command support in repositories doesn't meet your requirements.
+^

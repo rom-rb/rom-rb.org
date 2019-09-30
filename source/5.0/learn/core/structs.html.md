@@ -40,7 +40,7 @@ users.by_pk(1).combine(:tasks).one
 ```
 
 ^WARNING
-  This feature is **enabled by default in repositories**
+This feature is **enabled by default in repositories**.
 ^
 
 ## Auto-struct with custom classes
@@ -108,9 +108,11 @@ admin.admin?
 # true
 ```
 
-> #### Usage with repositories
-> It is advised to configure struct_namespace in repositories, as it's the appropriate
-> layer where application-specific data structures are coming from.
+^INFO
+#### Usage with repositories
+
+It is recommended to configure `struct_namespace` in repositories, as it's the appropriate layer where application-specific data structures are coming from.
+^
 
 ## Mapping to custom objects
 

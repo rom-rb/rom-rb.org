@@ -19,7 +19,7 @@ supported by this method.
 
 Assuming you have a users relation available:
 
-### `:create` command example
+### `:create`
 
 ``` ruby
 # inserting a single tuple
@@ -33,7 +33,7 @@ create_user = users.command(:create, result: :many)
 create_user.call([{ name: "Jane" }, { name: "John" }])
 ```
 
-### `:update` command example
+### `:update`
 
 ``` ruby
 update_user = users.by_pk(1).command(:update)
@@ -41,7 +41,7 @@ update_user = users.by_pk(1).command(:update)
 update_user.call(name: "Jane Doe")
 ```
 
-### `:delete` command example
+### `:delete`
 
 ``` ruby
 delete_user = users.by_pk(1).command(:delete)
@@ -79,8 +79,10 @@ Commands are the underlying abstraction for making changes in your database, whe
 should be treated as a more advanced abstraction, which provides additional data mapping functionality,
 and support for associating data.
 
+^INFO
 For consistency, you should consider using changesets instead of commands; however, if you're processing
 larger amounts of data, and performance is a concern, you may want to use commands instead.
+^
 
 Here are benchmarks showing you roughly performance difference between the two:
 

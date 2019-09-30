@@ -19,25 +19,26 @@ with your database schema.
 
 Assuming you have a users relation available:
 
-### `:create` example
+### `:create`
 
 ``` ruby
 users.changeset(:create, name: "Jane").commit
 => {:id=>1, :name=>"Jane"}
 ```
 
-### `:update` example
+### `:update`
 
 ``` ruby
 users.by_pk(4).changeset(:update, name: "Jane Doe").commit
 => {:id=>4, :name=>"Jane Doe"}
 ```
 
-> #### Checking diffs
-> Update changesets check the difference between the original tuple and new data.
-> If there's no diff, an update changeset **will not execute its command**
+^WARNING
+#### Checking diffs
+  Update changesets check the difference between the original tuple and new data. If there's no diff, an update changeset **will not execute its command**.
+^
 
-### `:delete` example
+### `:delete`
 
 ``` ruby
 users.by_pk(4).changeset(:delete).commit
@@ -115,8 +116,9 @@ user_repo.create(changeset)
 # => #<ROM::Struct[User] id=1 name="Jane" created_on=2017-01-21>
 ```
 
-> Custom mapping blocks are executed in the context of your changeset objects,
-> which means you have access to changeset's state
+^INFO
+Custom mapping blocks are executed in the context of your changeset objects, which means you have access to changeset's state.
+^
 
 ### On-demand mapping
 
@@ -175,11 +177,11 @@ task
 # {:id=>1, :user_id=>1, :title=>"Task One"}
 ```
 
-> ### Association name
->
-> Notice that `associate` method can accept a rom struct and it will try to infer
-> association name from it. If this fails because you have an aliased association
-> then pass association name explicitly as the second argument, ie: `associate(user, :author)`
+^INFO
+#### Association name
+
+Notice that `associate` method can accept a rom struct and it will try to infer association name from it. If this fails because you have an aliased association then pass association name explicitly as the second argument, ie: `associate(user, :author)`.
+^
 
 ## Learn more
 
@@ -188,4 +190,3 @@ task
 * [api::rom::Changeset](Update)
 * [api::rom::Changeset](Delete)
 * [api::rom::Changeset](Associated)
-

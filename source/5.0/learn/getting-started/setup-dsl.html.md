@@ -6,20 +6,19 @@ title: Setup DSL
 This guide explains how to quickly configure ROM using setup DSL, which is suitable for
 simple scripts.
 
-> #### ROM & frameworks
->
-> If want to use ROM with a framework, see specific instructions in the getting
-> started section.
+^INFO
+#### ROM & frameworks
 
-> #### Configuration
->
-> The configuration options explained in this document are the same for
-> [Explicit Setup](/%{version}/learn/advanced/explicit-setup) using `ROM::Configuration` object
+If you want to use ROM with a framework, see specific instructions in the getting started section.
+
+#### Configuration
+
+The configuration options explained in this document are the same for [Explicit Setup](/%{version}/learn/advanced/explicit-setup) using `ROM::Configuration` object.
+^
 
 ## Connect to a single database
 
-Call `ROM.container` with the adapter symbol and configuration details for that
-adapter:
+Call `ROM.container` with the adapter symbol and configuration details for that adapter:
 
 ```ruby
 # This creates a rom-sql adapter backed by SQLite in-memory database
@@ -78,12 +77,14 @@ rom = ROM.container(:sql, 'sqlite::memory') do |config|
 end
 ```
 
-> ActiveRecord and DataMapper provide global access to their components, but this
-> is considered a bad practice in modern standards. ROM creates an isolated, local
-> container without polluting global namespaces. This allows you to easily pass
-> it around without being worried about accidental side-effects like conflicting
-> database connections or configurations being overridden in a non-thread-safe
-> way
+^WARNING
+ActiveRecord and DataMapper provide global access to their components, but this
+is considered a bad practice in modern standards. ROM creates an isolated, local
+container without polluting global namespaces. This allows you to easily pass
+it around without being worried about accidental side-effects like conflicting
+database connections or configurations being overridden in a non-thread-safe
+way.
+^
 
 ## Next
 

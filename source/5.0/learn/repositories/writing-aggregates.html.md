@@ -6,9 +6,9 @@ title: Writing Aggregates
 Repositories provide a command builder interface which you can use to construct
 complex commands that can persist nested data, which reflect aggregate structures.
 
-> This API is limited to `Create` commands only.
-> Use [changesets](/%{version}/learn/core/changesets) if you need more flexibility
-> and control
+^WARNING
+This API is limited to `Create` commands only. Use [changesets](/%{version}/learn/core/changesets) if you need more flexibility and control.
+^
 
 ## has_many example
 
