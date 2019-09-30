@@ -11,7 +11,9 @@ You can work with structs in 3 different ways:
 2. Use `auto_struct` with custom struct classes - a nice middle-ground where you benefit from dynamic mapping but you also have access to your own methods
 3. Use custom objects - the most advanced technique, where data are mapped to your own objects. This approach should be used in mature projects where complete separation from persistence layer is going to be beneficial.
 
-> Notice that you can use all 3 ways at the same time, depending on what makes sense in a given use case
+^INFO
+  Notice that you can use all 3 ways at the same time, depending on what makes sense in a given use case
+^
 
 ## Auto-struct
 
@@ -37,7 +39,9 @@ users.by_pk(1).combine(:tasks).one
 => #<User id=1 name="Jane" tasks=[#<Task id=1 user_id=1 title="Jane's Task">]>
 ```
 
-> This feature is **enabled by default in repositories**
+^WARNING
+  This feature is **enabled by default in repositories**
+^
 
 ## Auto-struct with custom classes
 
