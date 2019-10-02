@@ -16,7 +16,7 @@ Dive deeper into the ROM ecosystem by writing an adapter for a new data source.
 
 ## Community
 
-Join [the conversation on Gitter](https://gitter.im/rom-rb/chat) to discuss anything related to ROM.
+Join [the conversation on Zulip](https://rom-rb.zulipchat.com) to discuss anything related to ROM.
 
 Report bugs and offer feedback on features via [GitHub Issues](https://github.com/rom-rb/rom/issues).
 
