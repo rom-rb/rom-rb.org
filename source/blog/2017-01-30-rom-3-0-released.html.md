@@ -301,6 +301,6 @@ Special thanks go to (in no particular order):
 
 We have big plans for future releases, but hopefully we'll manage to provide more frequent, incremental improvements now that rom-sql and rom-repository are stable. More details will be revealed soon, stay tuned!
 
-I hope you'll find this release useful, if you have problems or any kind of feedback, please report issues or just [talk to us](https://gitter.im/rom-rb/chat).
+I hope you'll find this release useful, if you have problems or any kind of feedback, please report issues or just [talk to us](https://rom-rb.zulipchat.com).
 
 If you happen to attend [RubyConf AU](http://rubyconf.org.au) next week, be sure to say hi! :)

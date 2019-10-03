@@ -7,7 +7,7 @@ ROM supports [Apache Kafka][kafka] via [rom-kafka][rom-kafka] adapter, that is
 built on top of the [poseidon][poseidon] ruby driver.
 
 ^INFO
-Before v0.1.0 the adapter is still in alpha. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom][rom-gitter] and report issues [on github][rom-kafka].
+Before v0.1.0 the adapter is still in alpha. If you find any inconsistency, please feel free to ask your questions at the [ROM chatroom][rom-zulip] and report issues [on github][rom-kafka].
 ^
 
 ## Intro
@@ -319,7 +319,7 @@ Mappers can be applied to relations and commands in a
 [poseidon]: https://github.com/bpot/poseidon
 [rom-commands]: http://rom-rb.org/guides/basics/commands/
 [rom-github]: https://github.com/rom-rb/rom
-[rom-gitter]: https://gitter.im/rom-rb/chat
+[rom-zulip]: https://rom-rb.zulipchat.com
 [rom-kafka]: https://github.com/rom-rb/rom-kafka
 [rom-mappers]: http://rom-rb.org/guides/basics/mappers
 [rom-relations]: http://rom-rb.org/guides/basics/relations/

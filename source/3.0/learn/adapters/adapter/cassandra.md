@@ -277,7 +277,7 @@ gateway.migrate path: "db/migrate", logger: logger, version: 20151231235959
 [CQL builder UPDATE wiki page]: https://github.com/nepalez/query_builder/wiki/UPDATE
 [CQL builder wiki]: https://github.com/nepalez/query_builder/wiki/Home
 [CQL builder]: https://github.com/nepalez/query_builder
-[ROM chatroom]: https://gitter.im/rom-rb/chat
+[ROM chatroom]: https://rom-rb.zulipchat.com
 [ROM project on Github]: https://github.com/rom-rb/rom
 [rom-cassandra]: https://github.com/rom-rb/rom-cassandra
 [ruby driver]: https://github.com/datastax/ruby-driver

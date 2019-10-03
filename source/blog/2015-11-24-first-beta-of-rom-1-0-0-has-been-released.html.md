@@ -225,7 +225,7 @@ end
 
 Please try out the beta releases and provide feedback. Once we are sure that it works for everybody we'll be able to push the first RC and hopefully follow-up with the final 1.0.0 release shortly after the RC. Other gems that are now released as betas will be bumped to final versions and depend on rom 1.0.0 final.
 
-The final release also means a major update of [rom-rb.org](http://rom-rb.org) along with a new set of documentation, guides and tutorials. This is still a work in progress and needs help, please [get in touch](https://gitter.im/rom-rb/chat) if you're interested in helping out.
+The final release also means a major update of [rom-rb.org](http://rom-rb.org) along with a new set of documentation, guides and tutorials. This is still a work in progress and needs help, please [get in touch](https://rom-rb.zulipchat.com) if you're interested in helping out.
 
 Once rom 1.0.0 is out there will be major focus on rom-sql and rom-repository. There's a plan to [improve query DSL](https://github.com/rom-rb/rom-sql/issues/48) in rom-sql and provide full CRUD interface for repositories that should be handy for simple applications.
 
