@@ -1,0 +1,35 @@
+name: Auto deployment to GitHub pages
+
+on:
+  push:
+    branches:
+      - master
+  repository_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install Ruby
+      uses: actions/setup-ruby@v1
+      with:
+        version: 2.6.x
+    - name: Update bundler
+      run: gem update bundler
+    - name: Setup Ruby dependencies
+      run: bundle install --jobs 4 --retry 3 --without development
+    - name: Install Node
+      uses: actions/setup-node@v1
+      with:
+        version: 7.9.0
+    - name: Setup Node Dependencies
+      run: yarn install
+    - name: Build Middleman site
+      run: bundle exec middleman build
+    - name: GitHub Pages Deploy
+      uses: peaceiris/actions-gh-pages@v1.1.0
+      env:
+        GITHUB_TOKEN: ${{secrets.GH_PAT}}
+        PUBLISH_BRANCH: "gh-pages"
+        PUBLISH_DIR: "docs"
