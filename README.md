@@ -1,9 +1,9 @@
-[travis]: https://travis-ci.com/rom-rb/rom-rb.org
+[actions]: https://github.com/rom-rb/rom-rb.org/actions
 [chat]: https://rom-rb.zulipchat.com
 
 # rom-rb.org [![Join the chat at https://rom-rb.zulipchat.com](https://img.shields.io/badge/rom--rb-join%20chat-942283.svg)][chat]
 
-[![Build Status](https://travis-ci.com/rom-rb/rom-rb.org.svg?branch=master)][travis]
+[![Deploy Status](https://github.com/rom-rb/rom-rb.org/workflows/deploy/badge.svg)][actions]
 
 The official rom-rb website.
 
