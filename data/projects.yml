@@ -1,40 +1,73 @@
--
-  name: rom
--
-  name: rom-sql
--
-  name: rom-elasticsearch
--
-  name: rom-cassandra
--
-  name: rom-couchdb
--
-  name: rom-csv
--
-  name: rom-event_store
--
-  name: rom-git
--
-  name: rom-http
--
-  name: rom-influxdb
--
-  name: rom-json
--
-  name: rom-kafka
--
-  name: rom-mongo
--
-  name: rom-neo4j
--
-  name: rom-rails
--
-  name: rom-redis
--
-  name: rom-rethinkdb
--
-  name: rom-roda
--
-  name: rom-yaml
--
-  name: rom-yesql
+- name: rom
+  repo: https://github.com/rom-rb/rom.git
+- name: rom-core
+  slug: core
+  repo:
+    url: https://github.com/rom-rb/rom.git
+    dir: core
+  versions:
+    -
+      value: "5.1"
+      branch: "docsites"
+- name: rom-repository
+  slug: repository
+  repo:
+    url: https://github.com/rom-rb/rom.git
+    dir: repository
+  versions:
+    -
+      value: "5.1"
+      branch: "docsites"
+- name: rom-changeset
+  slug: changeset
+  repo:
+    url: https://github.com/rom-rb/rom.git
+    dir: changeset
+  versions:
+    -
+      value: "5.1"
+      branch: "docsites"
+- name: rom-rails
+  slug: rails
+  repo: https://github.com/rom-rb/rom-rails.git
+  versions:
+    -
+      value: '2.2'
+      branch: docsite
+- name: rom-sql
+  slug: sql
+  repo: https://github.com/rom-rb/rom-sql.git
+  versions:
+    -
+      value: '3.1'
+      branch: docsite
+- name: rom-http
+  slug: http
+  repo: https://github.com/rom-rb/rom-http.git
+  versions:
+    -
+      value: '0.8'
+      branch: docsite
+- name: rom-factory
+  slug: factory
+  repo: https://github.com/rom-rb/rom-factory.git
+  versions:
+    -
+      value: '0.9'
+      branch: master
+
+- name: rom-elasticsearch
+- name: rom-cassandra
+- name: rom-couchdb
+- name: rom-csv
+- name: rom-event_store
+- name: rom-git
+- name: rom-influxdb
+- name: rom-json
+- name: rom-kafka
+- name: rom-mongo
+- name: rom-neo4j
+- name: rom-redis
+- name: rom-rethinkdb
+- name: rom-yaml
+- name: rom-yesql

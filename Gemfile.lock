@@ -151,6 +151,7 @@ GEM
     public_suffix (4.0.1)
     rack (2.0.8)
     rainbow (3.0.0)
+    rake (13.0.0)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -192,6 +193,7 @@ DEPENDENCIES
   middleman-syntax
   nokogiri
   pry-byebug
+  rake
   redcarpet
   slim
 

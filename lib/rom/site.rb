@@ -7,4 +7,5 @@ require 'rom/site/markdown'
 
 Middleman::Docsite.configure do |config|
   config.project_class = ROM::Site::Project
+  config.projects_subdir = 'learn'
 end

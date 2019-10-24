@@ -8,6 +8,14 @@ module ROM
       def org
         'rom-rb'
       end
+
+      def versioned?
+        !versions.nil?
+      end
+
+      def latest_path
+        "/learn/#{slug}/#{latest_version}"
+      end
     end
   end
 end

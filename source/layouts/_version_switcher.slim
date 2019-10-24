@@ -1,5 +1,8 @@
-h3.sidebar__version
-  'Version:
+h4.sidebar__version
+  'Older versions:
   select#sidebar__version-switcher
-    - version_variants.each do |code, name|
-      option value="/#{ current_path.sub(version, code) }" selected=("selected" if versions_match?(code, version)) = name
+    option disabled="disabled" selected="selected" = '-- select --'
+    - version_variants.each do |value|
+        - new_path = (version ? "/#{current_path.sub(version, value)}" : "/#{value}/#{current_path}").gsub('index.html', '')
+        option value=new_path selected=("selected" if versions_match?(version, value))
+          = value

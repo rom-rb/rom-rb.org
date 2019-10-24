@@ -22,15 +22,15 @@ table
       th Test Coverage
       th Doc Coverage
   tbody
-    - projects.each do |project|
+    - projects.reject(&:sub_project?).sort_by(&:name).each do |project|
       tr
         td
-          a href=project.github_url = project
+          a href=project.github_url = project.name
         td
           a href=project.rubygems_url
             img src=project.version_badge
         td
-          a href="https://github.com/rom-rb/#{project}"
+          a href="https://github.com/rom-rb/#{project.name}"
             img src=project.ci_badge
         td
           a href=project.codeclimate_url

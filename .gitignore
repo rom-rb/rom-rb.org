@@ -16,3 +16,9 @@
 # Ignore node packages
 /node_modules
 docs
+
+# docsite repo clones
+projects/*
+
+# local docsite symlinks
+source/learn/*

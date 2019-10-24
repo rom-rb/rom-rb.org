@@ -1,0 +1,15 @@
+h2.sidebar__header--first Learn
+
+ul.sidebar__items
+  - learn_root_resources.each do |resource|
+    li.sidebar__item
+      = nav_link_to resource.data.chapter, resource.url, class: 'sidebar__link'
+      - if resource.data.sections
+        ul.sidebar__sub-items
+          - resource.data.sections.each do |section|
+            li.sidebar__sub-item
+              - section_url = "#{resource.url}#{section}/index.html".gsub(/^\//, '')
+              - section_resource = sitemap.find_resource_by_destination_path(section_url)
+              = nav_link_to section_resource.data.title, section_resource.url, class: 'sidebar__sub-link'
+
+= partial 'layouts/version_switcher'
