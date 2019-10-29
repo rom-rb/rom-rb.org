@@ -199,6 +199,47 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
+## Using Common Table Expressions in a Relation
+
+Since you can use `Relation#new(dataset)` to create a relation using a Sequel
+dataset which uses a CTE. The only caveat is that _you_ are responsible for
+ensuring that the resulting schema is compatible with the current one (as in,
+the one which is defined in the relation object that you use).
+
+For more information, [see this forum question](https://discourse.rom-rb.org/t/custom-query-i-e-with-recursive/298/2).
+
+```ruby
+module Authentication
+  module Relations
+    class Accounts < ROM::Relation[:sql]
+      schema :accounts, infer: false do
+        attribute :id, Types::Int
+        attribute :name, Types::String
+        attribute :status_id, Types::ForeignKey(:account_statuses)
+      end
+
+      def verified_admin_accounts
+        admin_accounts_cte = db[:accounts].with(:accounts, db[:accounts].where(admin: true))
+        conditions = { db[:account_statuses][:name] => 'Verified' }
+        ds = admin.join(:account_statuses, id: :status_id, conditions)
+
+        # Create the relation using our own custom dataset.
+        #
+        # Note: We must ensure that the dataset schema matches the relation
+        #       schema so ROM can perform the proper mappings.
+        new(ds.select(qualified_columns))
+      end
+
+      private
+
+      def db
+        dataset.db
+      end
+    end
+  end
+end
+```
+
 ## Learn more
 
 Check out API documentation:
