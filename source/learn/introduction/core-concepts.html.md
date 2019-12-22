@@ -1,5 +1,5 @@
 ---
-chapter: Getting Started
+chapter: Introduction
 title: Core Concepts
 ---
 
@@ -9,13 +9,13 @@ $TOC
   3. [Repositories](#repositories)
   4. [Relations](#relations)
   5. [Commands](#commands)
-  6. [Mappers](#relation-mappers)    
+  6. [Mappers](#relation-mappers)
   7. [Changesets](#changesets)
-  8. [Adapters](#adapters)  
+  8. [Adapters](#adapters)
 $TOC
 
 Before you start writing any data access code with ROM, it's a good idea to
-get a high level overview of what each major component is and its overall 
+get a high level overview of what each major component is and its overall
 purpose.
 
 ROM fundamentally is a series of abstractions built on one another to create
@@ -34,12 +34,12 @@ is a basic explanation of each component.
 
 **Step 1:** Application Domain has a need for a particular entity/entities so it
             calls into the appropriate repository and asks for an entity
-        
+
 **Step 2.** The Repository accepts the request and combines all of the
             related associations together to create a datastore-specific query
             for the data
-        
-**Step 3.** Once a relation has been composed of all needed restrictions or 
+
+**Step 3.** Once a relation has been composed of all needed restrictions or
             selections, the relations `#each` method is called which triggers
             the <mark>dataset</mark> to fetch the data.
 
@@ -56,7 +56,7 @@ is a basic explanation of each component.
 ### Writing Data
 
 Writing data with ROM is fundamentally a process of applying commands to relations
-in order to modify the stored data. 
+in order to modify the stored data.
 
 **Step 7.** Application Domain has a need to update an entity.
 
@@ -91,7 +91,7 @@ developed using ROM, check out the
 
 ^INFO
   Repositories are completely optional and while they provide powerful features
-  for encapsulating data access logic, they may not make sense for some 
+  for encapsulating data access logic, they may not make sense for some
   simple CRUD applications or one-off scripts.
 ^
 
@@ -156,7 +156,7 @@ To learn more about changesets, check out the
 
 ROM uses adapters to connect to different data sources (a database, a csv file -
 it doesn't matter) and exposes a native CRUD interface to its relations. Every
-adapter has extension points to support database-specific functionality. 
+adapter has extension points to support database-specific functionality.
 It provides its own relation types, extensions for built-in commands, and
 potentially new command types. Furthermore, an adapter can provide extra
 features that are needed to work with a given database type. For example,
@@ -173,7 +173,7 @@ features that are needed to work with a given database type. For example,
 
 An object that encapsulates access to a specific persistence backend. ROM
 supports loading multiple gateways allowing an application to pull from
-multiple data sources easily, including cross-datastore relations. 
+multiple data sources easily, including cross-datastore relations.
 
 Gateways are provided by the adapter and after ROM finishing loading they're
 generally hidden behind the scenes.

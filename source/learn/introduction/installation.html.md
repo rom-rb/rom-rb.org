@@ -1,6 +1,5 @@
 ---
-position: 2
-chapter: Getting Started
+chapter: Introduction
 title: Installation
 sections:
   - core-concepts
@@ -9,14 +8,23 @@ sections:
 Choose one or more adapters that you intend to use, and run the install command
 for each one (or add it to your `Gemfile`)
 
-Compatible with rom 4.0:
+Compatible with `rom 5.0`:
+
+|Adapter|Install Command|On production?|
+|-------|---------------|---|
+|SQL|`gem install rom-sql`| √ |
+|Elasticsearch|`gem install rom-elasticsearch`| √ |
+|HTTP|`gem install rom-http`| √ |
+|YAML|`gem install rom-yaml`| √ |
+
+Compatible with `rom 4.0`:
 
 |Adapter|Install Command|On production?|
 |-------|---------------|---|
 |SQL|`gem install rom-sql`| √ |
 |Elasticsearch|`gem install rom-elasticsearch`| √ |
 
-Compatible with rom 3.0:
+Compatible with `rom 3.0`:
 
 |Adapter|Install Command|On production?|
 |-------|---------------|---|
@@ -62,9 +70,9 @@ ROM needs a setup phase to provide a persistence environment for your entities. 
 
 Depending on your application needs, you may want to use different setup strategies:
 
-* [Setup DSL](/%{version}/learn/getting-started/setup-dsl) - suitable for small scripts
-* [Rails](/%{version}/learn/getting-started/rails-setup) - setup integrated with Rails
-* [Explicit](/%{version}/learn/advanced/explicit-setup) - suitable for custom environments (**advanced usage**)
+* [Quick setup](/learn/core/5.1/quick-setup) - suitable for small scripts
+* [Framework setup](/learn/core/5.1/framework-setup) - suitable for custom environments (**advanced usage** only needed when your framework does not provide integration with ROM)
+* [Rails](/learn/rails) - setup integrated with Rails
 
 ^INFO
 Most guide examples are written specifically for the `rom-sql` adapter. If you are using a different one, consult that adapter's documentation as well.

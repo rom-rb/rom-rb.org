@@ -2,7 +2,10 @@
 position: 1
 chapter: Introduction
 sections:
+  - installation
+  - core-concepts
   - active-record
+  - glossary
 ---
 
 $TOC
@@ -15,7 +18,7 @@ $TOC
 
 ## What is ROM
 
-Ruby Object Mapper (ROM) is a *fast* ruby persistence library with
+Ruby Object Mapper (rom-rb) is a *fast* ruby persistence library with
 the goal of providing powerful object mapping capabilities without limiting the
 full *power* of the underlying datastore.
 

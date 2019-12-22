@@ -1,6 +1,6 @@
 ---
-position: 11
-chapter: Glossary
+chapter: Introduction
+title: Glossary
 ---
 
 This document explains basic terms used in ROM.
