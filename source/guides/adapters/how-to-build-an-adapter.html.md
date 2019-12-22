@@ -1,6 +1,6 @@
 ---
-chapter: How to Build a ROM Adapter
-title: Adapters
+chapter: Adapters
+title: How to build a simple adapter
 ---
 
 ROM makes very little assumptions about its adapters that's why it is simple to
