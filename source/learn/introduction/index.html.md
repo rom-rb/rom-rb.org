@@ -29,7 +29,7 @@ More specifically, ROM exists to:
 
 ## The Problem with ORMs
 
-Object hierarchies are very different from relational hierarchies. Relational hierarchies focus on data and its relationships whereas objects not only manage data, but also their *identity* and the *behavior* centered around that data. When attempting to reconcile those difference and map one to the other, we as developers end up *splatting* against a concrete wall.
+Object hierarchies are very different from relational hierarchies. Relational hierarchies focus on data and its relationships, whereas objects manage not only data, but also their *identity* and the *behavior* centered around that data. When attempting to reconcile those differences and map one to the other, we as developers end up *splatting* against a concrete wall.
 
 We believe the cause can be attributed to a fundamental flaw behind ORMs; that is this idea that it's easy to:
 
@@ -37,13 +37,13 @@ We believe the cause can be attributed to a fundamental flaw behind ORMs; that i
 
 2. Introduce machinery to translate between objects and persistence structures (the [DataMapper](https://en.wikipedia.org/wiki/Data_mapper_pattern) pattern)
 
-Both strategies tend to start out fine, but can quickly become cumbersome as an application transitions to a medium-to-large application.
+Both strategies tend to start out fine but can quickly become cumbersome as an application transitions to a medium-to-large application.
 
-ActiveRecord style mapping has the benefit of aiding in rapid prototyping, which works great in basic CRUD scenarios but it limits application modeling to what's convenient for the database. Entities will tend to map one-to-one with tables, which leads to knowledge of the persistence structure infecting the application domain, leading to code that's difficult to change.
+ActiveRecord style mapping has the benefit of aiding in rapid prototyping, which works great in basic CRUD scenarios, but it limits application modeling to what's convenient for the database. Entities will tend to map one-to-one with tables, which leads to knowledge of the persistence structure infecting the application domain, leading to code that's difficult to change.
 
-The DataMapper pattern, while one step better than ActiveRecord style mapping, still has its focus trained onto creating and managing objects. The pattern solves the one-to-one mapping issue but in doing so creates a host of others. The whole apparatus needed to manage all of those objects inevitably leads to performance issues and object state tracking which results in developers bypassing the ORM entirely.
+The DataMapper pattern, while one step better than ActiveRecord style mapping, still has its focus trained onto creating and managing objects. The pattern solves the one-to-one mapping issue but, in doing so, creates a host of others. The whole apparatus needed to manage all of those objects inevitably leads to performance issues and object state tracking, which results in developers bypassing the ORM entirely.
 
-The problems with ORMs are numerous and the above issues only begin to scratch the surface. If you're interested in further reading on the subject, we suggest:
+The problems with ORMs are numerous, and the above issues only begin to scratch the surface. If you're interested in further reading on the subject, we suggest:
 
 * [ORM Hate by Martin Fowler](https://martinfowler.com/bliki/OrmHate.html)
 * [The Vietnam of Computer Science by Ted Neward](http://blogs.tedneward.com/post/the-vietnam-of-computer-science/)
@@ -52,20 +52,20 @@ The problems with ORMs are numerous and the above issues only begin to scratch t
 
 ROM provides an alternative way of handling persistence and related concerns. It focuses on *simplicity* by providing enough *abstractions* to help you efficiently **turn your raw data into meaningful information**.
 
-While many ORMs focus on objects and state tracking, **ROM focuses on data and transformations**. Users of ROM implement `Relations`, which give access to data. Then using the relations you can associate them with other relations and query the data using features offered by the datastore. Once raw data has been loaded, it gets coerced into configured data types, and from there can be mapped into whatever format is needed by the application domain, including plain ruby hashes, convenient ROM Structs or custom objects.
+While many ORMs focus on objects and state tracking, **ROM focuses on data and transformations**. Users of ROM implement `Relations`, which give access to data. Then using the relations you can associate them with other relations and query the data using features offered by the datastore. Once raw data has been loaded, it gets coerced into configured data types, and from there can be mapped into whatever format is needed by the application domain, including plain ruby hashes, convenient ROM Structs, or custom objects.
 
-The important concept above is that during the entire process there is no dirty tracking, no identity management and no mutable state. Just *pure* data being loaded and mapped as result of a **direct** request made from the application domain. Data can be persisted in ways that take advantage of the features provided by the datastore and the application domain can receive that data in any form it needs. Furthermore, you get the added benefits of:
+The important concept above is that during the entire process there is no dirty tracking, no identity management, and no mutable state. Just *pure* data being loaded and mapped as a result of a **direct** request made from the application domain. Data can be persisted in ways that take advantage of the features provided by the datastore, and the application domain can receive that data in any form it needs. Furthermore, you get the added benefits of:
 
 * decoupling the application from the persistence layer without sacrificing flexibility, and
 * bypassing the critical problems associated with object relational mapping and mutable state
 
-Most likely, a decent percentage of developers will see the added abstractions as extraneous boilerplate. For those people we ask that you give ROM a chance, embrace its patterns and principles and see just how much easier it is to pull and transform your data. For those who have been burned by *simple* ORMs in the past, ROM represents a real, solid alternative.
+Most likely, a decent percentage of developers will see the added abstractions as extraneous boilerplate. For those people, we ask that you give ROM a chance, embrace its patterns and principles and see just how much easier it is to pull and transform your data. For those who have been burned by *simple* ORMs in the past, ROM represents a real, solid alternative.
 
 ## Principles & Design
 
 ROM leverages Ruby’s linguistic strengths with a blend of Object Oriented and Functional styles. Following a powerful composition pattern, every ROM object shares a common pipeline interface and returns data without side-effects.
 
-All ROM components are stand-alone; they are loosely coupled, can be used independently, and follow the single responsibility principle. A single object that handles coercion, state, persistence, validation, and all-important business logic rapidly becomes complex. Instead, ROM provides the infrastructure that allows you to easily create small, dedicated classes for handling each concern individually, and then ties them together in a developer-friendly ways.
+All ROM components are stand-alone; they are loosely coupled, can be used independently, and follow the single responsibility principle. A single object that handles coercion, state, persistence, validation, and all-important business logic rapidly becomes complex. Instead, ROM provides the infrastructure that allows you to easily create small, dedicated classes for handling each concern individually, and then ties them together in a developer-friendly way.
 
 Above all else ROM favors:
 

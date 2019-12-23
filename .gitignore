@@ -22,3 +22,6 @@ projects/*
 
 # local docsite symlinks
 source/learn/*
+
+# Ignore local vscode settings
+.vscode

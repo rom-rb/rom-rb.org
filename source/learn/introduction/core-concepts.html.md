@@ -15,7 +15,7 @@ $TOC
 $TOC
 
 Before you start writing any data access code with ROM, it's a good idea to
-get a high level overview of what each major component is and its overall
+get a high-level overview of what each major component is and its overall
 purpose.
 
 ROM fundamentally is a series of abstractions built on one another to create
@@ -32,19 +32,19 @@ is a basic explanation of each component.
 
 ### Reading Data
 
-**Step 1:** Application Domain has a need for a particular entity/entities so it
+**Step 1:** Application Domain has a need for a particular entity/entities, so it
             calls into the appropriate repository and asks for an entity
 
 **Step 2.** The Repository accepts the request and combines all of the
-            related associations together to create a datastore-specific query
+            related associations to create a datastore-specific query
             for the data
 
 **Step 3.** Once a relation has been composed of all needed restrictions or
-            selections, the relations `#each` method is called which triggers
+            selections, the relations `#each` method is called, which triggers
             the <mark>dataset</mark> to fetch the data.
 
 **Step 4.** Raw data in the form of tuples are collected from the datastore and
-            returned to the relation. Before proceeding each tuple is passed
+            returned to the relation. Before proceeding, each tuple is passed
             through an <mark>output schema</mark>.
 
 **Step 5.** The relation, if mappers are configured, maps the tuples into an
@@ -69,28 +69,28 @@ in order to modify the stored data.
               your datastore looks like.
 
 **Step 9.** Command processes one or more tuples through the
-            <mark>input schema</mark> then executes against the datastore which
+            <mark>input schema</mark> then executes against the datastore, which
             updates the data.
 
 
 ## Repositories
 
 Repositories provide a powerful CRUD interface built on top of relation,
-mapping and command APIs. They give you a simple way for composing data
+mapping, and command APIs. They give you a simple way of composing data
 provided by relations, automatically mapping data to structs or custom object
-types and expose simple access to commands with support for changesets.
+types, and expose simple access to commands with support for changesets.
 
 An important function of repositories is to act as a boundary between the data
 access logic and Application Domain logic. This boundary helps to reduce
 the complexity of rehydrating your entities and keeps a direct dependency
 on a particular datastore out of your domain.
 
-To learn more about repositories, how to use them and their role in a system
+To learn more about repositories, how to use them, and their role in a system
 developed using ROM, check out the
 [Repositories](/%{version}/learn/repositories) section.
 
 ^INFO
-  Repositories are completely optional and while they provide powerful features
+  Repositories are entirely optional, and while they provide powerful features
   for encapsulating data access logic, they may not make sense for some
   simple CRUD applications or one-off scripts.
 ^
@@ -98,15 +98,15 @@ developed using ROM, check out the
 ## Relations
 
 A relation is defined as a set of tuples identified by unique pairs of
-attributes and their values. In ROM it is an object that responds to `#each`
+attributes and their values. In ROM, it is an object that responds to `#each`,
 which yields hashes. It is backed by a [dataset object](#datasets) provided by
 the adapter.
 
 
 An example of relations are tables in a SQL server. Tables can reference
-other tables and sometimes all of the pieces for some "view" of the data are
+other tables, and sometimes all of the pieces for some "view" of the data are
 spread out among two or more tables (think Multi Table Inheritance). In
-situations like this ROM really shines because relations can be created for
+situations like this, ROM really shines because relations can be created for
 each table and composed together to pull the data into a coherent form then
 finally mapped to an output object which your application can depend on safely
 without worrying about shared state, sessions or identity mapping commonly
@@ -119,7 +119,7 @@ To learn more about relations, check out the
 ## Commands
 
 Commands in ROM are intended to safely modify data. Commands can be used to
-create, update and delete. They are usually provided by the adapter, but you may
+create, update, and delete. They are usually provided by the adapter, but you may
 define your own.
 
 To learn more about commands, check out the
@@ -128,10 +128,10 @@ To learn more about commands, check out the
 
 ## Relation Mappers
 
-A mapper is an object that takes a relation and maps it into a different
-representation. Mappers are generated automatically and in typical
-cases you don't have to define them; however, ROM provides a DSL to define custom
-mappings or you can register your own mapper objects for custom, non-standard
+A mapper is an object that takes relation and maps it into a different
+representation. Mappers are generated automatically, and in typical
+cases, you don't have to define them. However, ROM provides a DSL to define custom
+mappings, or you can register your mapper objects for custom, non-standard
 queries, or complex cross-datastore mappings.
 
 To learn more about mappers, check out the
@@ -146,7 +146,7 @@ compatible with your database schema before it passes into a command.
 
 Changesets also make updating aggregate entities much easier by automatically
 handling associations between multiple relations. This makes deconstructing
-a complex entity and updating its individual pieces much easier.
+a complex entity and updating its pieces much more straightforward.
 
 To learn more about changesets, check out the
 [Changesets](/%{version}/learn/core/changesets) guide.
@@ -163,7 +163,7 @@ features that are needed to work with a given database type. For example,
 `rom-sql` provides Migration API for managing the schema in a SQL database.
 
 ^INFO
-  **Remember** all of the abstractions provided by ROM are ultimately there
+  **Remember**, all of the abstractions provided by ROM are ultimately there
   to separate any hard dependencies higher up in the application stack. So
   when creating relations, take advantage of that separation by not leaking
   adapter implementation details.
@@ -175,7 +175,7 @@ An object that encapsulates access to a specific persistence backend. ROM
 supports loading multiple gateways allowing an application to pull from
 multiple data sources easily, including cross-datastore relations.
 
-Gateways are provided by the adapter and after ROM finishing loading they're
+Gateways are provided by the adapter, and after ROM finishing loading, they're
 generally hidden behind the scenes.
 
 ### Datasets
@@ -185,9 +185,6 @@ act as the middle-man between relations and datastores.
 
 For example, in the SQL adapter, datasets provide the <mark>join</mark>
 functionality where columns in other tables can be joined together via
-<mark>foreign_keys</mark>. This is a prime example of relations (thru datasets)
+<mark>foreign_keys</mark>. This is a prime example of relations (through datasets)
 taking advantage of what the storage engine can offer while also hiding those
 implementation details away from the application.
-
-
-

@@ -3,7 +3,7 @@ chapter: Introduction
 title: Glossary
 ---
 
-This document explains basic terms used in ROM.
+This document explains the basic terms used in ROM.
 
 #### Relation
 
@@ -17,16 +17,16 @@ that responds to `call` can be a mapper in ROM.
 
 #### Command
 
-An object that executes a datastore-specific operation in order to create, update
+An object that executes a datastore-specific operation to create, update,
 or delete tuples in a relation. Commands execute operations using relation
-interface which is datastore-specific; however, on the surface they simply respond
+interface, which is datastore-specific; however, on the surface, they simply respond
 to `call`.
 
 Every adapter *can provide custom command types*.
 
 #### Tuple
 
-An element in a relation. Typically represented by a hash object.
+An element in a relation. It's typically represented by a hash object.
 
 #### Datastore
 
@@ -43,7 +43,7 @@ the SQL gateway provides access to database tables via its [datasets](#dataset)
 A raw source of data with an interface specific for a given datastore. Relations
 use datasets to fetch data from persistence backends, like databases. Dataset's
 interface is not directly exposed to the application layer; however, it is
-available as private interface of relations.
+available as a private interface of relations.
 
 #### Adapter
 
@@ -58,16 +58,16 @@ and extendible.
 
 #### Callable Functional Objects
 
-Relation, mapper and command objects are callable and work as functions, they
-receive input and return output with no run-time side-effects. Furthermore all
-objects don't have mutable state and it's safe to memoize them and rely on
+Relation, mapper, and command objects are callable and work as functions, they
+receive input and return output with no run-time side-effects. Furthermore, all
+objects don't have a mutable state, and it's safe to memoize them and rely on
 consistent behavior.
 
 #### Data Pipeline
 
-Relations, mappers and commands can be composed into a data pipeline which is a
+Relations, mappers and commands can be composed into a data pipeline, which is a
 simple idea that one object returns a relation and passes it to another. All objects
-respond to `call` and accept a relation and implement common `>>` operator which
+respond to `call` and accept a relation and implement common `>>` operator, which
 is used to construct the pipeline.
 
 #### Graph
