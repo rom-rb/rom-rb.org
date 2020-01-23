@@ -17,7 +17,7 @@ page '/blog/*', data: { sidebar: 'blog/sidebar' }
 
 # Pre-docsite docs with global versions
 page '/3.0/learn/*', layout: 'guide', data: { sidebar: '3.0/learn/sidebar' }
-page '/3.0/guides/*', layout: 'guide', data: { sidebar: '3.0/guide/sidebar' }
+page '/3.0/guides/*', layout: 'guide', data: { sidebar: '3.0/guides/sidebar' }
 page '/4.0/learn/*', layout: 'guide', data: { sidebar: '4.0/learn/sidebar' }
 page '/4.0/guides/*', layout: 'guide', data: { sidebar: '4.0/guides/sidebar' }
 page '/5.0/learn/*', layout: 'guide', data: { sidebar: '5.0/learn/sidebar' }
