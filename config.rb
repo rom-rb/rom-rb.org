@@ -244,14 +244,6 @@ if Middleman::Docsite.development?
   require 'html-proofer'
 
   after_build do
-    begin
-      configuration = {
-        assume_extension: true,
-        allow_hash_href: true, # allow `#` in href
-        empty_alt_ignore: true # allow blank alt tag in images
-      }
-      HTMLProofer.check_directory(config[:build_dir], configuration).run
-    rescue RuntimeError
-    end
+    Middleman::Docsite.check_links(file_ignore: [/blog/])
   end
 end
