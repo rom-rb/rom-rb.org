@@ -169,7 +169,7 @@ helpers do
   end
 
   def version
-    current_path[%r{(\d\.\d)}]
+    current_path[%r{(\d+\.\d+)}]
   end
 
   def versions_match?(v1, v2)
