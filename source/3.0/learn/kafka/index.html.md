@@ -22,7 +22,7 @@ adapters do for corresponding datastores with some specifics:
   database. Kafka only supports reading a sequence of messages from a *topic*'s
   *partition*, starting from some *offset* . You can neither reorder messages or
   filter them in any way. That operations are up to domain application. All you
-  can define is the topic ([relation](#relation)), its [partition](#partition),
+  can define is the topic ([relations](#relations)), its [partition](#partition),
   initial [offset](#offset), and [limit](#limit) for number of messages to
   output.
 
