@@ -240,12 +240,3 @@ begin
   require 'pry-byebug'
 rescue LoadError
 end
-
-if Middleman::Docsite.development?
-  # Find broken links in documentation
-  require 'html-proofer'
-
-  after_build do
-    Middleman::Docsite.check_links(file_ignore: [/blog/])
-  end
-end
