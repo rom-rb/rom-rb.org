@@ -45,9 +45,10 @@ jobs:
     - name: Symlink project docsites
       run: bundle exec rake projects:symlink
     - name: Build Middleman site
-      run: bundle exec middleman build --verbose
-    - name: GitHub Pages Deploy
-      uses: maxheld83/ghpages@v0.2.1
-      env:
-        GH_PAT: ${{secrets.GH_PAT}}
-        BUILD_DIR: "docs"
+      run: bundle exec middleman build
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{secrets.ACCESS_TOKEN}}
+        BRANCH: gh-pages
+        FOLDER: docs
