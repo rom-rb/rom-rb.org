@@ -8,7 +8,7 @@
   versions:
     -
       value: '5.2'
-      branch: "docsites"
+      branch: 'release-5.2'
 - name: rom-repository
   slug: repository
   repo:
@@ -17,7 +17,7 @@
   versions:
     -
       value: '5.2'
-      branch: "docsites"
+      branch: 'release-5.2'
 - name: rom-changeset
   slug: changeset
   repo:
@@ -26,35 +26,35 @@
   versions:
     -
       value: '5.2'
-      branch: "docsites"
+      branch: 'release-5.2'
 - name: rom-rails
   slug: rails
   repo: https://github.com/rom-rb/rom-rails.git
   versions:
     -
       value: '2.2'
-      branch: docsite
+      branch: 'release-2.2'
 - name: rom-sql
   slug: sql
   repo: https://github.com/rom-rb/rom-sql.git
   versions:
     -
       value: '3.2'
-      branch: docsite
+      branch: 'release-3.2'
 - name: rom-http
   slug: http
   repo: https://github.com/rom-rb/rom-http.git
   versions:
     -
       value: '0.8'
-      branch: docsite
+      branch: 'release-0.8'
 - name: rom-factory
   slug: factory
   repo: https://github.com/rom-rb/rom-factory.git
   versions:
     -
-      value: '0.9'
-      branch: master
+      value: '0.10'
+      branch: 'release-0.10'
 
 - name: rom-elasticsearch
 - name: rom-cassandra
