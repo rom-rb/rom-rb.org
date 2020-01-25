@@ -24,5 +24,5 @@ user_repo = UserRepo.new(rom)
 
 ## Learn more
 
-* [Repositories Quick Start](/learn/repositories/quick-start)
+* [Repositories Quick Start](/3.0/learn/repositories/quick-start)
 * [api::rom-sql::SQL](Gateway)

@@ -1,9 +1,7 @@
-= partial 'layouts/version_switcher'
-
 h2.sidebar__header--first Guides
 
 ul.sidebar__items
-  - sections_as_resources(guides_root_resource).each do |resource|
+  - sections_as_resources(legacy_guides_root_resource).each do |resource|
     li.sidebar__item
       = nav_link_to resource.data.chapter, resource.url, class: 'sidebar__link'
       - unless resource.data.sections.nil?
@@ -11,3 +9,5 @@ ul.sidebar__items
           - sections_as_resources(resource).each do |subresource|
             li.sidebar__sub-item
               = nav_link_to subresource.data.title, subresource.url, class: 'sidebar__sub-link'
+
+= partial 'layouts/version_switcher'

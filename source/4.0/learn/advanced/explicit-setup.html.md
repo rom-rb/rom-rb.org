@@ -106,7 +106,7 @@ container = ROM.container(configuration)
 
 ```
 
-In this scenario the [Dataset](/%{version}/glossary/#dataset) name will need to be set
+In this scenario the [Dataset](/%{version}/learn/glossary/#dataset) name will need to be set
 explicitly otherwise the fully qualified relation name will be used, in this case
 `:persistence_relations_users`.
 
@@ -147,7 +147,7 @@ module Persistence
     class UpdateUserCommand < ROM::SQL:Commands::Create
       relation :users
       register_as :update_user_command
-      
+
       def execute(tuple); end
     end
   end
@@ -160,7 +160,7 @@ module Persistence
     class UserMapper < ROM::Transformer
       relation :users
       register_as :user_mapper
-      
+
       map_array do; end
     end
   end
@@ -201,11 +201,7 @@ class Posts < ROM::Relation[:http]
 end
 ```
 
-Relations can declare the specific
-[gateway](http://rom-rb.org/learn/glossary#gateway) and
-[dataset](http://rom-rb.org/introduction/glossary/#dataset) it takes data from,
-as well as the registered name of the relation. The following example sets the
-default options explicitly:
+Relations can declare the specific [gateway](/4.0/learn/glossary#gateway) and [dataset](/4.0/learn/glossary#dataset) it takes data from, as well as the registered name of the relation. The following example sets the default options explicitly:
 
 ```ruby
 class Users < ROM::Relation[:sql]

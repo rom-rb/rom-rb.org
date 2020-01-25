@@ -1,4 +1,7 @@
 = wrap_layout :content do
   - if current_page.data.chapter
-    h1 == [current_page.data.chapter, current_page.data.title].compact.join(' &raquo; ')
+    - if version
+      .current-version-banner
+        p.button == "Version #{version}"
+    h1 == guide_title
   = yield

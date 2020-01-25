@@ -22,7 +22,7 @@ adapters do for corresponding datastores with some specifics:
   database. Kafka only supports reading a sequence of messages from a *topic*'s
   *partition*, starting from some *offset* . You can neither reorder messages or
   filter them in any way. That operations are up to domain application. All you
-  can define is the topic ([relation](#relation)), its [partition](#partition),
+  can define is the topic ([relation](#relations)), its [partition](#partition),
   initial [offset](#offset), and [limit](#limit) for number of messages to
   output.
 
@@ -317,11 +317,11 @@ Mappers can be applied to relations and commands in a
 
 [kafka]: http://kafka.apache.org/
 [poseidon]: https://github.com/bpot/poseidon
-[rom-commands]: http://rom-rb.org/guides/basics/commands/
+[rom-commands]: /%{version}/learn/core/commands
 [rom-github]: https://github.com/rom-rb/rom
 [rom-zulip]: https://rom-rb.zulipchat.com
 [rom-kafka]: https://github.com/rom-rb/rom-kafka
-[rom-mappers]: http://rom-rb.org/guides/basics/mappers
-[rom-relations]: http://rom-rb.org/guides/basics/relations/
-[rom-setup]: http://rom-rb.org/guides/basics/setup
+[rom-mappers]: /%{version}/learn/core/mappers
+[rom-relations]: /%{version}/learn/core/relations
+[rom-setup]: /%{version}/learn/getting-started/setup-dsl
 [snappy]: https://github.com/miyucy/snappy
