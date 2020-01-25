@@ -317,11 +317,11 @@ Mappers can be applied to relations and commands in a
 
 [kafka]: http://kafka.apache.org/
 [poseidon]: https://github.com/bpot/poseidon
-[rom-commands]: /%{version}/learn/core/commands
+[rom-commands]: /%{version}/learn/advanced/commands
 [rom-github]: https://github.com/rom-rb/rom
 [rom-zulip]: https://rom-rb.zulipchat.com
 [rom-kafka]: https://github.com/rom-rb/rom-kafka
-[rom-mappers]: /%{version}/learn/core/mappers
+[rom-mappers]: /%{version}/learn/advanced/mappers
 [rom-relations]: /%{version}/learn/core/relations
 [rom-setup]: /%{version}/learn/getting-started/setup-dsl
 [snappy]: https://github.com/miyucy/snappy
