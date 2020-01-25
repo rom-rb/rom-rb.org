@@ -37,6 +37,6 @@ end
 namespace :check_links do
   desc 'Check links'
   task :internal do
-    check_links(disable_external: true)
+    check_links(disable_external: true, file_ignore: [/blog/])
   end
 end
