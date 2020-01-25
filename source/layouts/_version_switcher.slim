@@ -1,8 +1,6 @@
 h4.sidebar__version
-  'Older versions:
-  select#sidebar__version-switcher
-    option disabled="disabled" selected="selected" = '-- select --'
+  'Previous versions:
+  ul#sidebar__old-versions-nav
     - version_variants.each do |value|
-        - new_path = (version ? "/#{current_path.sub(version, value)}" : "/#{value}/#{current_path}").gsub('index.html', '')
-        option value=new_path selected=("selected" if versions_match?(version, value))
-          = value
+        li
+          a href="/#{value}/learn" = value
