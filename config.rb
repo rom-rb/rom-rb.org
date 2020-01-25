@@ -134,6 +134,10 @@ helpers do
     current_page.data.title.nil? ? 'ROM' : "ROM - #{current_page.data.title}"
   end
 
+  def guide_title
+    [current_page.data.chapter, current_page.data.title].compact.join(' &raquo; ')
+  end
+
   def og_url
     Middleman::Docsite.development? ? current_page.url : "http://rom-rb.org#{current_page.url}"
   end
