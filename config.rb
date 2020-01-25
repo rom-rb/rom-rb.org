@@ -37,22 +37,7 @@ Middleman::Docsite.projects.select(&:versioned?).each do |project|
   )
 end
 
-# This is silly, but I can't figure out how to access `Application` instance
-# in Site class, so whatever
-configure :build do
-  ENV['BUILD'] = 'true'
-end
-
-def next?
-  ENV['NEXT'] == 'true'
-end
-
-if next?
-  set :api_base_url, "http://www.rubydoc.info/#{next? ? 'github/rom-rb' : 'gems'}"
-else
-  set :api_base_url, 'https://api.rom-rb.org'
-end
-
+set :api_base_url, 'https://api.rom-rb.org'
 set :api_url_template, "#{config.api_base_url}/%{project}/ROM/%{path}"
 set :api_anchor_url_template, "#{config.api_base_url}/%{project}/ROM/%{path}#%{anchor}"
 
