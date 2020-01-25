@@ -30,6 +30,10 @@ module ROM
       def github_url
         repo.is_a?(Hash) ? repo[:url].gsub('.git', '') : super
       end
+
+      def api_host_url
+        "https://api.#{org}.org"
+      end
     end
   end
 end
