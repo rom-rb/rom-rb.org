@@ -105,7 +105,7 @@ user.last_name
 #> "Doe"
 ```
 
-For a brief overview and links to more in-depth information about relations see the Relations section in our [Core concepts](//learn/introduction/core-concepts#relations) guide.
+For a brief overview and links to more in-depth information about relations see the Relations in our [Core](/learn/core/5.2/relations) section.
 
 ## Queries
 
@@ -436,4 +436,4 @@ users_relation.changeset(NewUser, user_name: "Jane").commit
 
 ## NEXT
 
-To further understand ROM it is recommended to review the [Core concepts](/learn/introduction/core-concepts) page followed by the guides under Core.
+To further understand ROM it is recommended to review the [Core section](/learn/core/5.2) page followed by the guides under Core.

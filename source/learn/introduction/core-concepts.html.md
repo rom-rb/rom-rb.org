@@ -87,7 +87,7 @@ on a particular datastore out of your domain.
 
 To learn more about repositories, how to use them, and their role in a system
 developed using ROM, check out the
-[Repositories](/%{version}/learn/repositories) section.
+[Repositories](/learn/repository/5.2) section.
 
 ^INFO
   Repositories are entirely optional, and while they provide powerful features
@@ -113,7 +113,7 @@ without worrying about shared state, sessions or identity mapping commonly
 used in other ORMs.
 
 To learn more about relations, check out the
-[Relations](/%{version}/learn/core/relations) guide.
+[Relations](/learn/core/5.2/relations) guide.
 
 
 ## Commands
@@ -123,7 +123,7 @@ create, update, and delete. They are usually provided by the adapter, but you ma
 define your own.
 
 To learn more about commands, check out the
-[Commands](/%{version}/learn/core/commands) guide.
+[Commands](/learn/core/5.2/commands) guide.
 
 
 ## Relation Mappers
@@ -135,7 +135,7 @@ mappings, or you can register your mapper objects for custom, non-standard
 queries, or complex cross-datastore mappings.
 
 To learn more about mappers, check out the
-[Mappers](/%{version}/learn/core/mappers) guide.
+[Mappers](/learn/core/5.2/mappers) guide.
 
 ## Changesets
 
@@ -149,7 +149,7 @@ handling associations between multiple relations. This makes deconstructing
 a complex entity and updating its pieces much more straightforward.
 
 To learn more about changesets, check out the
-[Changesets](/%{version}/learn/core/changesets) guide.
+[Changesets](/learn/core/5.2/changesets) guide.
 
 
 ## Adapters
