@@ -19,3 +19,24 @@ namespace :projects do
     end
   end
 end
+
+require 'html-proofer'
+
+def check_links(opts = {})
+  HTMLProofer.check_directory('docs',
+    { build_dir: 'docs',
+      assume_extension: true,
+      allow_hash_href: true,
+      empty_alt_ignore: true }.merge(opts)
+  ).run
+rescue => e
+  puts e.message
+  exit(1)
+end
+
+namespace :check_links do
+  desc 'Check links'
+  task :internal do
+    check_links(disable_external: true)
+  end
+end
