@@ -106,7 +106,7 @@ container = ROM.container(configuration)
 
 ```
 
-In this scenario the [Dataset](/%{version}/glossary/#dataset) name will need to be set
+In this scenario the [Dataset](/%{version}/learn/glossary/#dataset) name will need to be set
 explicitly otherwise the fully qualified relation name will be used, in this case
 `:persistence_relations_users`.
 

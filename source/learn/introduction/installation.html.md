@@ -70,8 +70,8 @@ ROM needs a setup phase to provide a persistence environment for your entities. 
 
 Depending on your application needs, you may want to use different setup strategies:
 
-* [Quick setup](/learn/core/5.1/quick-setup) - suitable for small scripts
-* [Framework setup](/learn/core/5.1/framework-setup) - suitable for custom environments (**advanced usage** only needed when your framework does not provide integration with ROM)
+* [Quick setup](/learn/core/5.2/quick-setup) - suitable for small scripts
+* [Framework setup](/learn/core/5.2/framework-setup) - suitable for custom environments (**advanced usage** only needed when your framework does not provide integration with ROM)
 * [Rails](/learn/rails) - setup integrated with Rails
 
 ^INFO
