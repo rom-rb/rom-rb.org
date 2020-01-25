@@ -26,7 +26,7 @@ jobs:
     - name: Setup Node Dependencies
       run: yarn install
     - name: Build Middleman site
-      run: bundle exec middleman build
+      run: bundle exec middleman build --verbose
     - name: GitHub Pages Deploy
       uses: peaceiris/actions-gh-pages@v1.1.0
       env:
