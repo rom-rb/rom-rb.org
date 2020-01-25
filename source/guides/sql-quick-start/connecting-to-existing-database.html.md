@@ -30,5 +30,5 @@ jane = users.where(name: "Jane").one
 
 ## Learn more
 
-* [Repositories Quick Start](/learn/repositories/quick-start)
+* [Repositories Quick Start](/learn/repository/5.1/quick-start)
 * [api::rom-sql::SQL](Gateway)

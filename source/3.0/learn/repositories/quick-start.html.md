@@ -107,4 +107,4 @@ user_repo.delete(user.id)
 Now that you know how to create tables and define repositories with full CRUD
 support, you can proceed to [reading][reading-simple-objects] section.
 
-[reading-simple-objects]: /learn/repositories/reading-simple-objects
+[reading-simple-objects]: /3.0/learn/repositories/reading-simple-objects

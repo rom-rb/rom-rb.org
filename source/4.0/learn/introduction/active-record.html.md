@@ -33,7 +33,7 @@ database can be found in the
   each component registered.
 
   For information on how to configure a ROM environment see either
-  [Setup DSL](/%{version}/learn/getting-started/setup-sql)
+  [Setup DSL](/%{version}/learn/getting-started/setup-dsl)
   or
   [Rails Setup](/%{version}/learn/getting-started/rails-setup)
   guides.
@@ -44,7 +44,7 @@ database can be found in the
   completely different. In this guide, we attempt to highlight these differences
   and provide context for why we chose a different path. That is not to say ROM
   is better than ActiveRecord or vise-versa, it's that they're different and
-  each has its own strengths and weaknesses. 
+  each has its own strengths and weaknesses.
 ^
 
 ## Models vs Relations
@@ -199,12 +199,12 @@ users_relation.where { admin.is(true) | (moderator.is(true)) }
 
 For several SQL keywords, such as `select` & `where`, ROM provides a DSL for
 blocks. The benefit is the ability to use any SQL functions supported by your
-database. 
+database.
 
 ## Associations
 
 Similar to ActiveRecord, ROM uses associations as a means of describing the
-interconnections between data. 
+interconnections between data.
 
 <!--
   NOTE: Expand on this section with examples on how associations work
@@ -248,7 +248,7 @@ users_relation
 
 Changesets are an abstraction created over commands which are what actually
 manipulate stored records. They are preferred over commands due to additional
-functionality they provide. 
+functionality they provide.
 
 
 ### Updating Simple Objects
@@ -272,7 +272,7 @@ users_relation
 #> #<ROM::Struct::User id=1 name="Jane Doe">
 ```
 
-It should be noted that updating a record in ActiveRecord generally requires 
+It should be noted that updating a record in ActiveRecord generally requires
 that record to first be loaded then updated then committed. We view this as
 a bad practice as it leads to more round trips from the database and entities
 that are initialized in an invalid state. If a developer is sufficiently
@@ -396,9 +396,9 @@ end
 
 class Tasks < ROM::Relation[:yaml]
   gateway :external
-  
+
   schema(infer: true)
-  
+
   def for_users(_assoc, users)
     tasks.restrict(UserId: users.pluck(:id))
   end
@@ -514,7 +514,7 @@ can also be transformed just before storage as well. Changesets offer a built in
 method for executing a set of transformations that can be used to make minor
 adjustments such as the example below, where an attribute needs to be renamed.
 They can also handle more powerful transformations such as flattening nested
-objects. For more information on available transformations see 
+objects. For more information on available transformations see
 [Transproc](https://github.com/solnic/transproc)
 
 ```ruby
@@ -529,6 +529,6 @@ users_relation.changeset(NewUser, user_name: "Jane").commit
 
 ## NEXT
 
-To further understand ROM it is recommended to review the 
+To further understand ROM it is recommended to review the
 [Core Concepts](/%{version}/learn/getting-started/core-concepts) page
-followed by the guides under Core. 
+followed by the guides under Core.

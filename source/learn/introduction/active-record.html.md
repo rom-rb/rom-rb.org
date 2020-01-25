@@ -21,7 +21,7 @@ All ROM examples are based on `rom-sql` which is an adapter needed to use SQL da
 ^INFO
 Examples below assume a configured environment for each framework. For ROM examples this means an initialized `ROM::Container` with each component registered.
 
-For information on how to configure ROM see either [Quick setup](/learn/core/#{version}/quick-setup) or [Rails](/learn/rails) guides.
+For information on how to configure ROM see either [Quick setup](/learn/core/5.2/quick-setup) or [Rails](/learn/rails) guides.
 ^
 
 ^INFO

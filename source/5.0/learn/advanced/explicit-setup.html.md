@@ -106,7 +106,7 @@ container = ROM.container(configuration)
 
 ```
 
-In this scenario the [Dataset](/%{version}/glossary/#dataset) name will need to be set
+In this scenario the [Dataset](/%{version}/glossary#dataset) name will need to be set
 explicitly otherwise the fully qualified relation name will be used, in this case
 `:persistence_relations_users`.
 
@@ -202,8 +202,8 @@ end
 ```
 
 Relations can declare the specific
-[gateway](http://rom-rb.org/learn/glossary#gateway) and
-[dataset](http://rom-rb.org/introduction/glossary/#dataset) it takes data from,
+[gateway](/5.0/learn/glossary#gateway) and
+[dataset](/5.0/learn/glossary#dataset) it takes data from,
 as well as the registered name of the relation. The following example sets the
 default options explicitly:
 

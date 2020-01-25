@@ -159,7 +159,7 @@ end
 ```
 
 Now when you persist data using [repositories](/%{version}/learn/repositories) or
-[custom commands](/%{version}/learn/advanced/custom-commands), your schema will be used
+[commands](/%{version}/learn/core/commands), your schema will be used
 to process the input data, and our `:id` value will be handled by the `UUID` type.
 
 ## Using `read` types
