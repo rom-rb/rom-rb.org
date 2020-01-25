@@ -149,7 +149,7 @@ handling associations between multiple relations. This makes deconstructing
 a complex entity and updating its pieces much more straightforward.
 
 To learn more about changesets, check out the
-[Changesets](/learn/core/5.2/changesets) guide.
+[Changesets](/learn/changeset/5.2) guide.
 
 
 ## Adapters
