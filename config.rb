@@ -191,9 +191,26 @@ helpers do
     link_to 'Provide feedback!', GH_NEW_ISSUE_URL % tokens, class: 'button'
   end
 
-  GH_EDIT_FILE_URL = 'https://github.com/rom-rb/rom-rb.org/blob/master%{current_path}'
+  def current_branch
+    @current_branch ||= `git branch`.chomp.split("\n").map(&:strip).grep(/^\*/)[0].split.last
+  end
+
+  GH_EDIT_FILE_URL = 'https://github.com/rom-rb/rom-rb.org/blob/%{branch}%{current_path}'
   def edit_file_link
-    link_to 'Edit on GitHub', GH_EDIT_FILE_URL % { current_path: current_source_file }, class: 'button'
+    match = current_source_file[%r[(\w+)/(\d+\.\d+)]]
+
+    project_slug, version = match ? match.split('/') : []
+
+    url =
+      if project_slug != "source" && version
+        project = docsite_projects.detect { |p| p.slug.eql?(project_slug) }
+
+        project.file_url(version, current_source_file)
+      else
+        GH_EDIT_FILE_URL % { branch: current_branch, current_path: current_source_file }
+      end
+
+    link_to 'Edit on GitHub', url, class: 'button'
   end
 
   def current_source_file
