@@ -199,6 +199,27 @@ class Users < ROM::Relation[:sql]
 end
 ```
 
+## Nullify
+
+`nullify` makes it trivial to implement the Null Object pattern on rom-sql
+relations.  After calling `nullify`, there will never issue a query to the database.
+
+[Check out the Sequql docs for more information.](http://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/null_dataset_rb.html)
+
+``` ruby
+class Tasks < ROM::Relation[:sql]
+  schema(infer: true)
+
+  def for_working_status(status)
+    return nullify if status == :on_vacation
+    self
+  end
+end
+
+tasks = ROM.env.relations[:tasks]
+tasks.for_working_status(:on_vacation).count # => 0
+```
+
 ## Learn more
 
 Check out API documentation:
