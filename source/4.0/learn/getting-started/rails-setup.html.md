@@ -75,7 +75,7 @@ In your controllers you can access ROM container by `rom` variable:
 ``` ruby
 class UsersController < ApplicationController
   def show
-    @user = rom.relation(:users).by_id(params[:id]).one
+    @user = rom.relation[:users].by_id(params[:id]).one
   end
 end
 ```
