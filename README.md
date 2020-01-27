@@ -3,7 +3,7 @@
 
 # rom-rb.org [![Join the chat at https://rom-rb.zulipchat.com](https://img.shields.io/badge/rom--rb-join%20chat-942283.svg)][chat]
 
-[![Deploy Status](https://github.com/rom-rb/rom-rb.org/workflows/deploy/badge.svg)][actions]
+![ci](https://github.com/rom-rb/rom-rb.org/workflows/ci/badge.svg)
 
 The official rom-rb website.
 
