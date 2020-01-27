@@ -20,12 +20,7 @@ The official rom-rb website.
    ```shell
    npm install
    ```
-
-   or
-
-   ```shell
-   yarn
-   ```
+   
 
 3. Serve locally at [http://localhost:4567](http://localhost:4567):
 
@@ -33,7 +28,7 @@ The official rom-rb website.
    bundle exec middleman server
    ```
 
-   or build to `/build`:
+   or build to `/docs`:
 
    ```shell
    bundle exec middleman build
