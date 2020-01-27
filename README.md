@@ -22,7 +22,13 @@ The official rom-rb website.
    ```
    
 
-3. Serve locally at [http://localhost:4567](http://localhost:4567):
+3. Clone and symlink docsites from individual rom-rb repositories:
+
+```
+bundle exec projects:symlink
+```
+   
+4. Serve locally at [http://localhost:4567](http://localhost:4567):
 
    ```shell
    bundle exec middleman server
