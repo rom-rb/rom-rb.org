@@ -9,6 +9,10 @@ This document explains basic terms used in ROM.
 An object that represents data in your system, implements `each` and yields
 [tuples](#tuple).
 
+#### Repository
+
+An object that uses _relations_ to interact with a datastore.  A repository is a class that is used to define a clear API between your database and your application.
+
 #### Mapper
 
 An object that receives a relation and maps it to another representation. Anything
