@@ -68,14 +68,14 @@ By default, auto-registration assumes that the directory structure reflects your
 organization, for example:
 
 ``` ruby
-# lib/relations/users.rb
-module Relations
-  class Users < ROM::Relation[:sql]
-    schema(infer: true)
+# lib/persistence/relations/users.rb
+module Persistence
+  module Relations
+    class Users < ROM::Relation[:sql]
+      schema(:users, infer: true)
+    end
   end
 end
-
-# lib/relations
 ```
 
 Then to set up auto-registration simply provide the root path to your components directory:
