@@ -204,7 +204,7 @@ end
 `nullify` makes it trivial to implement the Null Object pattern on rom-sql
 relations.  After calling `nullify`, there will never issue a query to the database.
 
-[Check out the Sequql docs for more information.](http://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/null_dataset_rb.html)
+[Check out the Sequel docs for more information.](http://sequel.jeremyevans.net/rdoc-plugins/files/lib/sequel/extensions/null_dataset_rb.html)
 
 ``` ruby
 class Tasks < ROM::Relation[:sql]
