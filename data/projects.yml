@@ -67,7 +67,6 @@
 - name: rom-kafka
 - name: rom-mongo
 - name: rom-neo4j
-- name: rom-redis
 - name: rom-rethinkdb
 - name: rom-yaml
 - name: rom-yesql
