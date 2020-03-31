@@ -317,7 +317,7 @@ configuration.register_command(CreateUser)
 configuration.register_command(UpdateUser)
 configuration.register_command(DeleteUser)
 
-rom = ROM.create_container(configuration)
+rom = ROM.container(configuration)
 
 create_users = rom.commands[:users][:create]
 update_user = rom.commands[:users][:update]
