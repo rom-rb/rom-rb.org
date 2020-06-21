@@ -105,7 +105,7 @@ previous example to this:
 ``` ruby
 require "rom"
 
-ROM.container(:sql, 'sqlite::memory') do |config|
+rom = ROM.container(:sql, 'sqlite::memory') do |config|
   config.gateways[:default].create_table(:users) do
     primary_key :id
     column :name, String
