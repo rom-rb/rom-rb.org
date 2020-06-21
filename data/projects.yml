@@ -2,37 +2,39 @@
   repo: https://github.com/rom-rb/rom.git
 - name: rom-core
   slug: core
-  repo:
-    url: https://github.com/rom-rb/rom.git
-    dir: core
+  repo: https://github.com/rom-rb/rom.git
   versions:
-    -
-      value: '5.2'
+    - value: 'master'
+      branch: 'master'
+      component: true
+    - value: '5.2'
       branch: 'release-5.2'
+      dir: core
 - name: rom-repository
   slug: repository
-  repo:
-    url: https://github.com/rom-rb/rom.git
-    dir: repository
+  repo: https://github.com/rom-rb/rom.git
   versions:
-    -
-      value: '5.2'
+    - value: 'master'
+      branch: 'master'
+      component: true
+    - value: '5.2'
       branch: 'release-5.2'
+      dir: repository
 - name: rom-changeset
   slug: changeset
-  repo:
-    url: https://github.com/rom-rb/rom.git
-    dir: changeset
+  repo: https://github.com/rom-rb/rom.git
   versions:
-    -
-      value: '5.2'
+    - value: 'master'
+      branch: 'master'
+      component: true
+    - value: '5.2'
       branch: 'release-5.2'
+      dir: changeset
 - name: rom-rails
   slug: rails
   repo: https://github.com/rom-rb/rom-rails.git
   versions:
-    -
-      value: '2.2'
+    - value: '2.2'
       branch: 'release-2.2'
 - name: rom-sql
   slug: sql
@@ -45,17 +47,14 @@
   slug: http
   repo: https://github.com/rom-rb/rom-http.git
   versions:
-    -
-      value: '0.8'
+    - value: '0.8'
       branch: 'release-0.8'
 - name: rom-factory
   slug: factory
   repo: https://github.com/rom-rb/rom-factory.git
   versions:
-    -
-      value: '0.10'
+    - value: '0.10'
       branch: 'release-0.10'
-
 - name: rom-elasticsearch
 - name: rom-cassandra
 - name: rom-couchdb
