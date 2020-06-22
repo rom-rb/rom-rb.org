@@ -13,6 +13,13 @@ module ROM
         !versions.nil?
       end
 
+      def sub_project?
+        versioned? && (
+          versions.any? { |v| v.key?(:dir) } ||
+          versions.any? { |v| v[:component].equal?(true) }
+        )
+      end
+
       def latest_path
         "/learn/#{slug}/#{latest_version}"
       end
