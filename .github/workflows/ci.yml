@@ -40,7 +40,7 @@ jobs:
     - name: Install Node
       uses: actions/setup-node@v1
       with:
-        version: "12.10.0"
+        node-version: "12.10.0"
     - name: Restore npm package cache
       uses: actions/cache@v1
       with:
