@@ -175,7 +175,7 @@ An object that encapsulates access to a specific persistence backend. ROM
 supports loading multiple gateways allowing an application to pull from
 multiple data sources easily, including cross-datastore relations.
 
-Gateways are provided by the adapter, and after ROM finishing loading, they're
+Gateways are provided by the adapter, and after ROM finishes loading, they're
 generally hidden behind the scenes.
 
 ### Datasets
