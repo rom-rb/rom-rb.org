@@ -111,7 +111,7 @@ ROM.env.relations[:users]
 ## Defining Commands
 
 Command class definitions are automatically loaded from `app/commands`.
-The following code defines a command which inserts data into `users` relation:
+The following code defines a command which inserts data into the `users` relation:
 
 ``` ruby
 # app/commands/create_user.rb
