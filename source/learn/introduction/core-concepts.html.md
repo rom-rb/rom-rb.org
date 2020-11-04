@@ -128,7 +128,7 @@ To learn more about commands, check out the
 
 ## Relation Mappers
 
-A mapper is an object that takes relation and maps it into a different
+A mapper is an object that takes a relation and maps it onto a different
 representation. Mappers are generated automatically, and in typical
 cases, you don't have to define them. However, ROM provides a DSL to define custom
 mappings, or you can register your mapper objects for custom, non-standard
