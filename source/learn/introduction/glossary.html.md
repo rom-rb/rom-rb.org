@@ -22,7 +22,7 @@ that responds to `call` can be a mapper in ROM.
 #### Command
 
 An object that executes a datastore-specific operation to create, update,
-or delete tuples in a relation. Commands execute operations using relation
+or delete tuples in a relation. Commands execute operations using the relation
 interface, which is datastore-specific; however, on the surface, they simply respond
 to `call`.
 
