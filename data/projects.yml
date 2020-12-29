@@ -43,6 +43,9 @@
     -
       value: '3.2'
       branch: 'release-3.2'
+    -
+      value: '3.3'
+      branch: 'release-3.3'
 - name: rom-http
   slug: http
   repo: https://github.com/rom-rb/rom-http.git
