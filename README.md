@@ -25,7 +25,7 @@ The official rom-rb website.
 3. Clone and symlink docsites from individual rom-rb repositories:
 
 ```
-bundle exec projects:symlink
+bundle exec rake projects:symlink
 ```
    
 4. Serve locally at [http://localhost:4567](http://localhost:4567):
