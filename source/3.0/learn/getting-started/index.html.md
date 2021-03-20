@@ -46,7 +46,7 @@ Simply install `rom` or add it to your `Gemfile`. Adapters will be auto-loaded b
 For example, if you'd like to use ROM with an SQL database, add following gems to you `Gemfile`:
 
 ``` ruby
-gem 'rom`
+gem 'rom'
 gem 'rom-sql'
 ```
 
