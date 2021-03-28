@@ -35,7 +35,7 @@ module ROM
       end
 
       def github_url
-        repo.is_a?(Hash) ? repo[:url].gsub('.git', '') : super
+        repo? ? repo.gsub('.git', '') : super
       end
 
       def api_host_url
