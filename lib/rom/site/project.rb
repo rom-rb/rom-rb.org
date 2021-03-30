@@ -25,8 +25,9 @@ module ROM
       end
 
       def file_url(version, source_file)
-        branch = versions.detect { |v| v[:value].eql?(version) }[:branch]
-        dir = repo.is_a?(Hash) ? "#{repo[:dir]}/" : ""
+        v = versions.detect { |v| v[:value].eql?(version) }
+        branch = v[:branch]
+        dir = v[:dir] ? "#{v[:dir]}/" : ""
 
         repo_path = "#{github_url}/blob/#{branch}/#{dir}docsite/source"
         file_path = source_file.split("/#{version}/")[1..-1].join("/")
@@ -35,7 +36,7 @@ module ROM
       end
 
       def github_url
-        repo.is_a?(Hash) ? repo[:url].gsub('.git', '') : super
+        repo? ? repo.gsub('.git', '') : super
       end
 
       def api_host_url
