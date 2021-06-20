@@ -69,10 +69,10 @@ the surface. If you're interested in further reading on the subject, we suggest:
 
 ROM provides an alternative way of handling persistence and related concerns.
 It focuses on *simplicity* by providing enough *abstractions* to help you
-efficiently **turn your raw data into meaningful information**. 
+efficiently **turn your raw data into meaningful information**.
 
 While many ORMs focus on objects and state tracking, **ROM focuses on data and
-transformations**. Users of ROM implement `Relations`, which give access to data. 
+transformations**. Users of ROM implement `Relations`, which give access to data.
 Then using the relations you can associate them with other relations and query
 the data using features offered by the datastore. Once raw data has been loaded,
 it gets coerced into configured data types, and from there can be mapped into
@@ -83,7 +83,7 @@ The important concept above is that during the entire process there is no dirty
 tracking, no identity management and no mutable state. Just *pure* data being
 loaded and mapped as result of a **direct** request made from the application
 domain. Data can be persisted in ways that take advantage of the features
-provided by the datastore and the application domain can receive that data in 
+provided by the datastore and the application domain can receive that data in
 any form it needs. Furthermore, you get the added benefits of:
 
 * decoupling the application from the persistence layer without sacrificing
@@ -95,7 +95,7 @@ Most likely, a decent percentage of developers will see the added abstractions
 as extraneous boilerplate. For those people we ask that you give ROM a chance,
 embrace its patterns and principles and see just how much easier it is to pull
 and transform your data. For those who have been burned by *simple* ORMs in the
-past, ROM represents a real, solid alternative. 
+past, ROM represents a real, solid alternative.
 
 
 ## Principles & Design
@@ -125,10 +125,9 @@ Like ROM & its fundamental ideas? You should check these out, too:
 * [Rich Hickey on state, immutability, and how to leverage OO principles](http://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey)
 * [Gary Bernhardt on boundaries, immutability, and clean design](https://www.youtube.com/watch?v=yTkzNHF6rMs)
 * [Rich Hickey on the importance of simplicity for cognition](https://www.youtube.com/watch?v=rI8tNMsozo0)
-* [Robert C. Martin (“Uncle Bob”) on hexagonal architecture](https://www.youtube.com/watch?v=WpkDN78P884)
 * [Brad Urani on ActiveRecord vs. Ecto: A Tale of Two ORMs](http://confreaks.tv/videos/railsconf2016-activerecord-vs-ecto-a-tale-of-two-orms)
 
-<!-- ## Criticisms 
+<!-- ## Criticisms
 
 Should collect a number of criticisms lobbed against ROM and attempt to answer
 them here. Left for future changes. -->
@@ -136,7 +135,7 @@ them here. Left for future changes. -->
 
 ## NEXT
 
-If you're coming from Rails a good place to start is our 
+If you're coming from Rails a good place to start is our
 [**ROM Rails Comparison Guide**](/%{version}/learn/introduction/active-record)
 otherwise checkout the
 [**Core Concepts**](/%{version}/learn/getting-started/core-concepts)

@@ -44,5 +44,4 @@ Like ROM & its fundamental ideas? You should check these out, too:
 * [Rich Hickey on state, immutability, and how to leverage OO principles](http://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey)
 * [Gary Bernhardt on boundaries, immutability, a clean design](https://www.youtube.com/watch?v=yTkzNHF6rMs)
 * [Rich Hickey on the importance of simplicity for cognition](https://www.youtube.com/watch?v=rI8tNMsozo0)
-* [Robert C. Martin (“Uncle Bob”) on hexagonal architecture](https://www.youtube.com/watch?v=WpkDN78P884)
 * [Brad Urani on ActiveRecord vs. Ecto: A Tale of Two ORMs](http://confreaks.tv/videos/railsconf2016-activerecord-vs-ecto-a-tale-of-two-orms)
