@@ -1,0 +1,56 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Order with attribute of an associated record</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/4.0/guides/sql-how-to/order-by-nested-association-attribute/" name="og:url" /><meta content="ROM - Order with attribute of an associated record" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Guides</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/4.0/guides/sql-quick-start/" class="sidebar__link">SQL Quick Start</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/guides/sql-quick-start/connecting-to-existing-database/" class="sidebar__sub-link">Connecting to existing database</a></li></ul></li><li class="sidebar__item"><a href="/4.0/guides/sql-how-to/" class="sidebar__link--is-active">SQL How To</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/guides/sql-how-to/order-by-nested-association-attribute/" class="sidebar__sub-link--is-active">Order with attribute of an associated record</a></li></ul></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 4.0</p></div><h1>SQL How To &raquo; Order with attribute of an associated record</h1><p>This article assumes:</p>
+
+<ul>
+<li>You have a <code>users</code> table</li>
+<li>You have a <code>teams</code> table </li>
+</ul>
+
+<p>We have Users, each users is associated to a Team. Let&#39;s imagine we want to get all the users, 
+but we want them ordered by Team name, and if they&#39;re in the same team, we want them to be 
+ordered by creation date. Here are our relations:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">Relations</span>
+  <span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+    <span class="n">attribute</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Types</span><span class="o">::</span><span class="no">DateTime</span>
+
+    <span class="n">schema</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">associations</span> <span class="k">do</span>
+        <span class="n">belongs_to</span> <span class="ss">:team</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">class</span> <span class="nc">Teams</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+    <span class="n">schema</span><span class="p">(</span><span class="ss">:teams</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Types</span><span class="o">::</span><span class="no">String</span>
+
+      <span class="n">associations</span> <span class="k">do</span>
+        <span class="n">has_many</span> <span class="ss">:users</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>And here is the code to get such ordering:</p>
+<div class="highlight"><pre class="syntax plaintext"><code>2.5.3 :003 &gt; users.join(:teams).order(teams[:name], :created_at)
+ =&gt; #&lt;Relations::Users name=ROM::Relation::Name(users) dataset=#&lt;Sequel::Mysql2::Dataset: "SELECT `users`.`id`, 
+ `users`.`name`, `users`.`created_at`, `users`.`team_id` FROM `users` INNER JOIN `teams` ON (`users`.`team_id` = 
+ `teams`.`id`) ORDER BY `teams`.`name`, `created_at`"&gt;&gt;
+2.5.3 :004 &gt; users.combine(:teams).join(:teams).order(teams[:name], :created_at).to_a
+ =&gt; [#&lt;ROM::Struct::User id=1 name="John Doe" created_at=2019-07-07 15:54:14 +0200 team_id=1 team=#&lt;ROM::Struct::Team 
+ id=1 name="A team"&gt;&gt;, #&lt;ROM::Struct::User id=3 name="Jack Doe" created_at=2019-07-07 15:54:27 +0200 team_id=1 
+ team=#&lt;ROM::Struct::Team id=1 name="A team"&gt;&gt;, #&lt;ROM::Struct::User id=2 name="Jane Doe" created_at=2019-07-07 15:54:22 
+ +0200 team_id=2 team=#&lt;ROM::Struct::Team id=2 name="B team"&gt;&gt;]
+</code></pre></div>
+<p>If you want to know more about how you can use &quot;#order&quot; method, you can take a look at the 
+<a href="https://api.rom-rb.org/rom-sql/ROM/SQL/Relation/Reading.html#order-instance_method">API docs</a>.</p>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/4.0/guides/sql-how-to/order-by-nested-association-attribute.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Order%20with%20attribute%20of%20an%20associated%20record" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Combines</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/5.0/learn/core/combines/" name="og:url" /><meta content="ROM - Combines" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="x5"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/5.0/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/introduction/active-record/" class="sidebar__sub-link">Compared to ActiveRecord</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/getting-started/core-concepts/" class="sidebar__sub-link">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/core/" class="sidebar__link--is-active">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/combines/" class="sidebar__sub-link--is-active">Combines</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/http/" class="sidebar__link">HTTP</a></li><li class="sidebar__item"><a href="/5.0/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/glossary/" class="sidebar__link">Glossary</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 5.0</p></div><h1>Core &raquo; Combines</h1><div class="toc">
+  <h2 id="toc">Contents</h2>
+  <ol>
+<li><a href="#basic-combine">Basic Combine</a></li>
+<li><a href="#nested-combine">Nested Combine</a></li>
+<li><a href="#adjusted-combine">Adjusted Combine</a></li>
+</ol>
+
+</div>
+
+<p>Combines are a feature provided by <a href="/5.0/learn/core/relations">relations</a>
+that take advantage of <a href="/5.0/learn/core/associations">associations</a>
+between relations to reliably merge (aka combine) and construct complex nested
+data structures.</p>
+
+<p>In cases where there is a need to load some data along with its dependent nested
+data then <mark>Relation#combine</mark> is the tool to reach for. It might be a
+bit of a paradigm shift, but it&#39;s important to realize ROM will <strong>never</strong> load
+associated data unless it is explicitly told to do so.</p>
+
+<p>This idea is in stark contrast with other ORMs such as Active Record for Rails
+which offer lazy loading by default. Since composing data is so quick and easy
+lazy loading is not needed preventing a whole class of issues such as N+1
+query performance problems.</p>
+
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p>Before you can combine relations an association has to be configured in
+  the relations&#39; schema. See <a href="/5.0/learn/core/associations">associations</a>
+  for more details.</p>
+
+</div>
+<h2 id="basic-combine" class="hd"><a name="basic-combine" class="anchor" href="#basic-combine">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Basic Combine</h2>
+<p>Suppose we have a set of relations <code>:projects</code>, <code>:project_tasks</code>, <code>:users</code> and a 
+dataset defined as such:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="c1"># Dataset representation</span>
+
+<span class="c1"># purely a visual representation of the data</span>
+<span class="c1"># as it would sit in the database</span>
+<span class="n">users</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">username: </span><span class="s1">'briang'</span><span class="p">},</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">username: </span><span class="s1">'mary_matrix'</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">projects</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">user_id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Kinda Lame Project'</span><span class="p">},</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">user_id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Super Important Project'</span><span class="p">},</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">3</span><span class="p">,</span> <span class="ss">user_id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Secret Mega Project'</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">project_tasks</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">project_id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'Project 1, Task 1'</span><span class="p">},</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">project_id: </span><span class="mi">1</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'Project 1, Task 2'</span><span class="p">},</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">3</span><span class="p">,</span> <span class="ss">project_id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'Project 2, Task 1'</span><span class="p">},</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">4</span><span class="p">,</span> <span class="ss">project_id: </span><span class="mi">2</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'Project 2, Task 2'</span><span class="p">},</span>
+  <span class="p">{</span><span class="ss">id: </span><span class="mi">5</span><span class="p">,</span> <span class="ss">project_id: </span><span class="mi">3</span><span class="p">,</span> <span class="ss">description: </span><span class="s1">'Project 3, Task 1'</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="c1"># Relations</span>
+<span class="k">class</span> <span class="nc">Projects</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span>   <span class="ss">:project_tasks</span>
+      <span class="n">belongs_to</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">as: :user</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">ProjectTasks</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">belongs_to</span> <span class="ss">:projects</span><span class="p">,</span> <span class="ss">as: :project</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span> <span class="ss">:projects</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c1"># rom-sql by default provides a relation view called 'by_pk(id)'</span>
+  <span class="c1"># which does the same thing as this however for clarities sake</span>
+  <span class="c1"># we've included this relation view</span>
+  <span class="k">def</span> <span class="nf">by_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">id: </span><span class="nb">id</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>To load a specific user with all of their projects is pretty easy in ROM:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="c1"># Example: 1</span>
+<span class="n">users_relation</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">one</span>
+<span class="c1"># =&gt; {:id=&gt;2, :username=&gt;"mary_matrix"}</span>
+
+<span class="c1"># Example: 2</span>
+<span class="n">users_relation</span><span class="p">.</span><span class="nf">combine</span><span class="p">(</span><span class="ss">:projects</span><span class="p">).</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">one</span>
+<span class="c1"># =&gt; {:id=&gt;2, </span>
+<span class="c1">#     :username=&gt;"mary_matrix", </span>
+<span class="c1">#     :projects=&gt;[{:id=&gt;2, :user_id=&gt;2, :name=&gt;"Super Important Project"}]}</span>
+</code></pre></div>
+<p>As you can see from the output in the first example, only the data available in the user
+relation is available where as in the second example the user with their projects are
+included in the output. It&#39;s important to note that while the project records are
+in the output, no project task records are. This again is because ROM only loads the data
+you&#39;ve requested. So what if you want to load a user with all of their projects and tasks?</p>
+<h3 id="nested-combine" class="hd"><a name="nested-combine" class="anchor" href="#nested-combine">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Nested Combine</h3>
+<p>Using the same relations as defined in the <a href="#basic-combine">Basic Combine</a> section we
+can combine as many relations as we wish at any arbitrary depth:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">user_relation</span><span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">combine</span><span class="p">(</span><span class="ss">projects: :project_tasks</span><span class="p">).</span><span class="nf">one</span>
+
+<span class="c1"># =&gt; {:id=&gt;2, </span>
+<span class="c1">#     :username=&gt;"mary_matrix", </span>
+<span class="c1">#     :projects=&gt;[</span>
+<span class="c1">#       {</span>
+<span class="c1">#         :id=&gt;2, </span>
+<span class="c1">#         :user_id=&gt;2, </span>
+<span class="c1">#         :name=&gt;"Super Important Project", </span>
+<span class="c1">#         :project_tasks=&gt;[</span>
+<span class="c1">#           {</span>
+<span class="c1">#             :id=&gt;3, </span>
+<span class="c1">#             :project_id=&gt;2, </span>
+<span class="c1">#             :description=&gt;"Project 2, Task 1"</span>
+<span class="c1">#           }, </span>
+<span class="c1">#           {</span>
+<span class="c1">#            :id=&gt;4,</span>
+<span class="c1">#            :project_id=&gt;2, </span>
+<span class="c1">#            :description=&gt;"Project 2,Task 2"</span>
+<span class="c1">#           }</span>
+<span class="c1">#         ]</span>
+<span class="c1">#       }</span>
+<span class="c1">#     ]</span>
+<span class="c1">#   }</span>
+</code></pre></div>
+<p>Nested combines allow developers to create properly normalized data sets and then query them with
+ease. Since <code>Relation#combine</code> accepts a hash we could combine many more relations if we needed.</p>
+
+<p>For instance, say every project and project task required a &#39;reviewer&#39; to be tracked on
+the record; something like this:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Projects</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span>   <span class="ss">:project_tasks</span>
+      <span class="n">belongs_to</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">as: :user</span>
+      <span class="n">belongs_to</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">as: :reviewed_by</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">ProjectTasks</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">belongs_to</span> <span class="ss">:projects</span><span class="p">,</span> <span class="ss">as: :project</span>
+      <span class="n">belongs_to</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">as: :reviewed_by</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>We can then combine a set of nested relations by passing combine a <code>Hash</code> made of
+sub hashes or arrays matching the nested structure of our relations. As an example:</p>
+<div class="highlight"><pre class="syntax ruby"><code>
+<span class="n">user_relation</span>
+  <span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">combine</span><span class="p">(</span><span class="ss">projects: </span><span class="p">[{</span><span class="ss">project_tasks: :reviewed_by</span><span class="p">},</span> <span class="ss">:reviewed_by</span><span class="p">])</span>
+  <span class="p">.</span><span class="nf">one</span>
+
+<span class="c1"># {:id=&gt;2,</span>
+<span class="c1">#  :username=&gt;"mary_matrix",</span>
+<span class="c1">#  :projects=&gt;</span>
+<span class="c1">#   [{:id=&gt;2,</span>
+<span class="c1">#     :user_id=&gt;2,</span>
+<span class="c1">#     :reviewed_by_id=&gt;1,</span>
+<span class="c1">#     :name=&gt;"Super Important Project",</span>
+<span class="c1">#     :project_tasks=&gt;</span>
+<span class="c1">#      [{:id=&gt;3,</span>
+<span class="c1">#        :project_id=&gt;2,</span>
+<span class="c1">#        :reviewed_by_id=&gt;1,</span>
+<span class="c1">#        :description=&gt;"Project 2, Task 1",</span>
+<span class="c1">#        :reviewed_by=&gt;{:id=&gt;1, :username=&gt;"briang"}},</span>
+<span class="c1">#       {:id=&gt;4,</span>
+<span class="c1">#        :project_id=&gt;2,</span>
+<span class="c1">#        :reviewed_by_id=&gt;1,</span>
+<span class="c1">#        :description=&gt;"Project 2, Task 2",</span>
+<span class="c1">#        :reviewed_by=&gt;{:id=&gt;1, :username=&gt;"briang"}}],</span>
+<span class="c1">#     :reviewed_by=&gt;{:id=&gt;2, :username=&gt;"mary_matrix"}}]}</span>
+</code></pre></div>
+<p>Admittedly the combine can become a bit messy when dealing with nested
+relations, however if the nested combine becomes too unwieldy it might suggest
+you&#39;re using the relation to select too much multi-purpose data. Our advice
+would be to reevaluate the purpose of the final entity and see if it can be
+broken into smaller, easily retrieved entities.</p>
+<h3 id="adjusted-combine" class="hd"><a name="adjusted-combine" class="anchor" href="#adjusted-combine">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Adjusted Combine</h3>
+<p>Sometimes you only want a subset of the data in a nested relation or you
+want to restrict a nested relation to only return certain matching data.</p>
+
+<p>Luckily with ROM that can easily be accomplished with the use of <code>Relation#node</code>, or
+more accurately <code>Relation::Combined#node</code>. The node method allows for the adjustment
+of all the relations in the composition.</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">user_relation</span>
+  <span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">combine</span><span class="p">(</span><span class="ss">projects: :project_tasks</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">node</span><span class="p">(</span><span class="ss">projects: :project_tasks</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">project_tasks_relation</span><span class="o">|</span>
+    <span class="n">project_tasks_relation</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">description: </span><span class="s1">'Project 1, Task 2'</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="p">.</span><span class="nf">one</span>
+
+<span class="c1"># {:id=&gt;1,</span>
+<span class="c1">#   :username=&gt;"briang",</span>
+<span class="c1">#   :projects=&gt;</span>
+<span class="c1">#    [{:id=&gt;1,</span>
+<span class="c1">#      :user_id=&gt;1,</span>
+<span class="c1">#      :reviewed_by_id=&gt;2,</span>
+<span class="c1">#      :name=&gt;"Kinda Lame Project",</span>
+<span class="c1">#      :project_tasks=&gt;</span>
+<span class="c1">#       [{:id=&gt;2,</span>
+<span class="c1">#         :project_id=&gt;1,</span>
+<span class="c1">#         :reviewed_by_id=&gt;2,</span>
+<span class="c1">#         :description=&gt;"Project 1, Task 2"}]},   &lt;-- LOOK HERE</span>
+<span class="c1">#     {:id=&gt;3,</span>
+<span class="c1">#      :user_id=&gt;1,</span>
+<span class="c1">#      :reviewed_by_id=&gt;2,</span>
+<span class="c1">#      :name=&gt;"Secret Mega Project",</span>
+<span class="c1">#      :project_tasks=&gt;[]}]}</span>
+</code></pre></div>
+<p>Here we can see that a restriction was applied to project tasks and only the task matching
+our restriction was loaded.</p>
+
+<p>To grab only a subset of the data associated with a nested relation we can adjust the
+projection by using <code>select</code>:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">user_relation</span>
+  <span class="p">.</span><span class="nf">by_id</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">combine</span><span class="p">(</span><span class="ss">projects: :project_tasks</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">node</span><span class="p">(</span><span class="ss">projects: :project_tasks</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">project_tasks_relation</span><span class="o">|</span>
+    <span class="n">project_tasks_relation</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:project_id</span><span class="p">)</span>
+  <span class="p">}</span>
+  <span class="p">.</span><span class="nf">one</span>
+
+<span class="c1">#  {:id=&gt;2,</span>
+<span class="c1">#   :username=&gt;"mary_matrix",</span>
+<span class="c1">#   :projects=&gt;</span>
+<span class="c1">#    [{:id=&gt;2,</span>
+<span class="c1">#      :user_id=&gt;2,</span>
+<span class="c1">#      :reviewed_by_id=&gt;1,</span>
+<span class="c1">#      :name=&gt;"Super Important Project",</span>
+<span class="c1">#      :project_tasks=&gt;[{:id=&gt;3, :project_id=&gt;2}, {:id=&gt;4, :project_id=&gt;2}]}]}</span>
+</code></pre></div>
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p>When adjusting combines, the order of <code>#combine</code> and <code>#node</code> is important.
+  <code>#node</code> must come after <code>#combine</code> in the call chain otherwise
+  the <em>block</em> will be ignored and the adjustment will fail</p>
+
+</div>
+<h2 id="learn-more" class="hd"><a name="learn-more" class="anchor" href="#learn-more">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Learn More</h2>
+<p>You can learn more about <code>#node</code> and its method signatures:</p>
+
+<ul>
+<li><a href="https://api.rom-rb.org/rom/ROM/Relation/Combined#node-instance_method">Relation::Combined#node</a></li>
+</ul>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/5.0/learn/core/combines.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Combines" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

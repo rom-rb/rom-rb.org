@@ -1,0 +1,505 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Compared to ActiveRecord</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/5.0/learn/introduction/active-record/" name="og:url" /><meta content="ROM - Compared to ActiveRecord" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="x5"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/5.0/learn/introduction/" class="sidebar__link--is-active">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/introduction/active-record/" class="sidebar__sub-link--is-active">Compared to ActiveRecord</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/getting-started/core-concepts/" class="sidebar__sub-link">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/core/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/combines/" class="sidebar__sub-link">Combines</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/http/" class="sidebar__link">HTTP</a></li><li class="sidebar__item"><a href="/5.0/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/5.0/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/5.0/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/5.0/learn/glossary/" class="sidebar__link">Glossary</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 5.0</p></div><h1>Introduction &raquo; Compared to ActiveRecord</h1><div class="toc">
+  <h2 id="toc">Contents</h2>
+  <ol>
+<li><a href="#models-vs-relations">Models vs Relations</a></li>
+<li><a href="#queries">Queries</a></li>
+<li><a href="#associations">Associations</a></li>
+<li><a href="#persistence">Persistence</a></li>
+<li><a href="#validation">Validation</a></li>
+<li><a href="#where-rom-shines">Where ROM Shines</a></li>
+</ol>
+
+</div>
+
+<p>Rails ActiveRecord is the most popular persistence
+framework in ruby land. Deployed inside the majority of rails applications
+across the web, it provides APIs for quick and simple data access making it a
+great solution for constructing CRUD style applications.</p>
+
+<p>Our intention for this guide is to act as a primer for anyone familiar with
+Rails&#39; ActiveRecord and looking for a quick start guide. Examples in each set will
+show how ActiveRecord accomplishes each task followed by an example
+with the equivalent using ROM.</p>
+
+<p>All ROM examples are based on <code>rom-sql</code> which is an adapter needed to use SQL
+databases with ROM. Information on installing and configuring rom-sql for your
+database can be found in the
+<a href="/5.0/learn/sql">SQL</a> guide.</p>
+
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p>Examples below assume a configured environment for each
+  framework. For ROM examples this means an initialized <code>ROM::Container</code> with
+  each component registered.</p>
+
+<p>For information on how to configure a ROM environment see either
+  <a href="/5.0/learn/getting-started/setup-dsl">Setup DSL</a>
+  or
+  <a href="/5.0/learn/getting-started/rails-setup">Rails Setup</a>
+  guides.</p>
+
+</div>
+
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p>Both frameworks have many similar APIs but philosophically they are
+  completely different. In this guide, we attempt to highlight these differences
+  and provide context for why we chose a different path. That is not to say ROM
+  is better than ActiveRecord or vise-versa, it&#39;s that they&#39;re different and
+  each has its own strengths and weaknesses. </p>
+
+</div>
+<h2 id="models-vs-relations" class="hd"><a name="models-vs-relations" class="anchor" href="#models-vs-relations">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Models vs Relations</h2>
+<p>The first difference is ROM doesn&#39;t really have a concept of models. ROM objects
+are instantiated by the mappers and have no knowledge about persistence. You can
+map to whatever structure you want and in common use-cases you can use
+relations to automatically map query results to simple struct-like objects.</p>
+
+<p>The closest implementation to models would be <code>ROM::Struct</code>, which is
+essentially a data object with attribute readers, coercible to a hash.
+More on ROM Structs later.</p>
+
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+<span class="k">end</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>As you can see, ActiveRecord and ROM have similar boilerplate and as this guide
+progresses both will use similar APIs to accomplish the same tasks. The
+difference between models and relations lies within their scope and intended
+purposes. ActiveRecord models represent an all encompassing thing that contains
+<em>state</em>, <em>behavior</em>, <em>identity</em>, <em>persistence logic</em> and <em>validations</em> whereas
+ROM relations describe how data is connected to other relations and provides
+stateless APIs for applying <em>views</em> of that data on demand.</p>
+<h3 id="models-vs-rom-structs" class="hd"><a name="models-vs-rom-structs" class="anchor" href="#models-vs-rom-structs">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Models vs ROM Structs</h3>
+<p>The most direct analog to ActiveRecord models in ROM is a <code>ROM::Struct</code>. ROM
+structs provide a quick method for adding behavior to mapped data returned from
+a relation. A custom type or plain hash can also be used instead, but ROM
+structs offer a fast alternative without having to write a lot of boilerplate.</p>
+
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="k">def</span> <span class="nf">first_name</span>
+    <span class="nb">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">).</span><span class="nf">first</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">last_name</span>
+    <span class="nb">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">).</span><span class="nf">last</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">first</span>
+<span class="c1">#&gt; #&lt;User id: 1, name: "Jane Doe"&gt;</span>
+
+<span class="n">user</span><span class="p">.</span><span class="nf">first_name</span>
+<span class="c1">#&gt; "Jane"</span>
+
+<span class="n">user</span><span class="p">.</span><span class="nf">last_name</span>
+<span class="c1">#&gt; "Doe"</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">struct_namespace</span> <span class="no">Entities</span>
+
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nn">Entities</span>
+  <span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Struct</span>
+    <span class="k">def</span> <span class="nf">first_name</span>
+      <span class="nb">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">).</span><span class="nf">first</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">last_name</span>
+      <span class="nb">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">' '</span><span class="p">).</span><span class="nf">last</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="n">users_relation</span><span class="p">.</span><span class="nf">first</span>
+<span class="c1">#&gt; #&lt;Entities::User id=1 name="Jane Doe"&gt;</span>
+
+<span class="n">user</span><span class="p">.</span><span class="nf">first_name</span>
+<span class="c1">#&gt; "Jane"</span>
+
+<span class="n">user</span><span class="p">.</span><span class="nf">last_name</span>
+<span class="c1">#&gt; "Doe"</span>
+</code></pre></div>
+<p>For a brief overview and links to more in-depth information about relations see
+the Relations section in our
+<a href="/5.0/learn/getting-started/core-concepts#relations">Core Concepts</a>
+guide.</p>
+<h2 id="queries" class="hd"><a name="queries" class="anchor" href="#queries">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Queries</h2><h3 id="basic-queries" class="hd"><a name="basic-queries" class="anchor" href="#basic-queries">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Basic Queries</h3>
+<p>Once you have a relation, it becomes almost trivial to start querying for
+information in a similar fashion as ActiveRecord. A basic example below:</p>
+
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">User</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1">#&gt; #&lt;User id: 1, name: "Jane"&gt;</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">users_relation</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">).</span><span class="nf">first</span>
+<span class="c1">#&lt;ROM::Struct::User id=1 name="Jane"&gt;</span>
+</code></pre></div><h3 id="query-subset-of-data" class="hd"><a name="query-subset-of-data" class="anchor" href="#query-subset-of-data">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Query Subset of Data</h3>
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">User</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="s2">"name"</span><span class="p">).</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">).</span><span class="nf">first</span>
+
+<span class="c1">#&gt; #&lt;User id: nil, name: "Jane"&gt;</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">users_relation</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="ss">:name</span><span class="p">).</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">).</span><span class="nf">one</span>
+
+<span class="c1">#&gt; #&lt;ROM::Struct::User name="Jane"&gt;</span>
+</code></pre></div><h3 id="query-with-complex-conditions" class="hd"><a name="query-with-complex-conditions" class="anchor" href="#query-with-complex-conditions">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Query with Complex Conditions</h3>
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">User</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s2">"admin IS ? OR moderator IS ?"</span><span class="p">,</span> <span class="kp">true</span><span class="p">,</span> <span class="kp">true</span><span class="p">)</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">users_relation</span><span class="p">.</span><span class="nf">where</span> <span class="p">{</span> <span class="n">admin</span><span class="p">.</span><span class="nf">is</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">moderator</span><span class="p">.</span><span class="nf">is</span><span class="p">(</span><span class="kp">true</span><span class="p">))</span> <span class="p">}</span>
+</code></pre></div>
+<p>For several SQL keywords, such as <code>select</code> &amp; <code>where</code>, ROM provides a DSL for
+blocks. The benefit is the ability to use any SQL functions supported by your
+database. </p>
+<h2 id="associations" class="hd"><a name="associations" class="anchor" href="#associations">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Associations</h2>
+<p>Similar to ActiveRecord, ROM uses associations as a means of describing the
+interconnections between data. </p>
+
+<!--
+  NOTE: Expand on this section with examples on how associations work
+        and how to configure them properly.
+-->
+<h3 id="join-query" class="hd"><a name="join-query" class="anchor" href="#join-query">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Join Query</h3>
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">Article</span><span class="p">.</span><span class="nf">joins</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">articles_relation</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="ss">:users</span><span class="p">)</span>
+</code></pre></div>
+<p>Obviously the join interface for both frameworks can support different configurations
+to handle different types of joins, however this example illustrates that other than
+a minor name change, in the majority of use-cases they will act the same.</p>
+<h2 id="persistence" class="hd"><a name="persistence" class="anchor" href="#persistence">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Persistence</h2><h3 id="creating-simple-objects" class="hd"><a name="creating-simple-objects" class="anchor" href="#creating-simple-objects">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Creating Simple Objects</h3>
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">User</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
+<span class="c1">#&gt; #&lt;User id: 1, name: "Jane"&gt;</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">users_relation</span>
+  <span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">commit</span>
+<span class="c1">#&gt; #&lt;ROM::Struct::User id=1 name="Jane"&gt;</span>
+</code></pre></div>
+<p>Changesets are an abstraction created over commands which are what actually
+manipulate stored records. They are preferred over commands due to additional
+functionality they provide. </p>
+<h3 id="updating-simple-objects" class="hd"><a name="updating-simple-objects" class="anchor" href="#updating-simple-objects">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Updating Simple Objects</h3>
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">user</span> <span class="o">=</span> <span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
+<span class="n">user</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">)</span>
+
+<span class="c1">#&gt; #&lt;User id=1 name="Jane Doe"&gt;</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">users_relation</span>
+  <span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:update</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">commit</span>
+
+<span class="c1">#&gt; #&lt;ROM::Struct::User id=1 name="Jane Doe"&gt;</span>
+</code></pre></div>
+<p>It should be noted that updating a record in ActiveRecord generally requires 
+that record to first be loaded then updated then committed. We view this as
+a bad practice as it leads to more round trips from the database and entities
+that are initialized in an invalid state. If a developer is sufficiently
+validating data at the boundaries of the application then updating or creating
+a record without loading it should be no problem and in fact preferable.</p>
+
+<!-- ### Create Nested Objects
+
+<h4 class="text-center">Active Record</h4>
+```ruby
+class User < ApplicationRecord
+  has_many :tasks
+
+  accepts_nested_attributes_for :tasks
+end
+
+class Task < ApplicationRecord
+  belongs_to :user
+end
+
+user_data = {
+  name: "Joe",
+  tasks_attributes: [ {title: "Task 1"} ]
+}
+
+user = User.create(user_data)
+```
+
+%
+  REVIEW NOTES: The following example is broken ensure it works before
+  publishing.
+%
+
+<h4 class="text-center">ROM</h4>
+```ruby
+class Users < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      has_many :tasks
+    end
+  end
+end
+
+class Tasks < ROM::Relation[:sql]
+  schema(infer: true) do
+    associations do
+      belongs_to :user
+    end
+  end
+end
+
+user_data = {
+  name: "Joe",
+  tasks: [ {title: "Task 1"} ]
+}
+
+users_relation
+  .combine(:tasks)
+  .changeset(:create, user_data)
+  .commit
+
+#> #<ROM::Struct::User id=4 name="Joe" tasks= [
+#>  #<ROM::Struct::Task id=3 user_id=4 title="Task 1">
+#> ]>
+```
+
+Instead of requiring changes to a relation to handle nested attributes, a ROM
+relation can leverage its existing associations to determine nested input and
+changesets can wire up any ids needed by sub records.
+
+This is all possible without a tool like `accepts_nested_attributes_for` because
+ROM relations are not expected to handle raw input from a multitude of external
+sources and they're not expected to handle an object that could be in any random
+state at any time. Changesets utilize relation schemas to be sure that each attribute is
+the correct data type and when composed with `#combine` they know to expect
+associated relations.  -->
+<h2 id="validation" class="hd"><a name="validation" class="anchor" href="#validation">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Validation</h2>
+<p>ActiveRecord mixes domain-specific data validation with persistence layer. An
+active record object validates itself using its own validation rules. We feel
+this ultimately ends up complicating persistence logic especially when tuning
+queries in larger projects as the single source of validation needs to work in
+every context the model is used.</p>
+
+<p>ROM on the other hand does not have a validation concept built-in. Validations
+in ROM projects need to be handled externally by separate libraries and
+validated data can be passed down to the command layer to be persisted. We
+expect users to validate data at the system boundaries using rules that
+make sense in the current context.</p>
+<h2 id="where-rom-shines" class="hd"><a name="where-rom-shines" class="anchor" href="#where-rom-shines">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Where ROM Shines</h2><h3 id="database-support" class="hd"><a name="database-support" class="anchor" href="#database-support">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Database Support</h3>
+<p>As long as there is an adapter, ROM can theoretically support any datastore.</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:mongo</span><span class="p">]</span>
+  <span class="n">schema</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:_id</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">ObjectID</span>
+    <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h3 id="cross-database-associations" class="hd"><a name="cross-database-associations" class="anchor" href="#cross-database-associations">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Cross Database Associations</h3>
+<p>Couple multi-database support with cross database associations and suddenly
+a world of opportunity opens up.</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">override: </span><span class="kp">true</span><span class="p">,</span> <span class="ss">view: :for_users</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Tasks</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:yaml</span><span class="p">]</span>
+  <span class="n">gateway</span> <span class="ss">:external</span>
+
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">for_users</span><span class="p">(</span><span class="n">_assoc</span><span class="p">,</span> <span class="n">users</span><span class="p">)</span>
+    <span class="n">tasks</span><span class="p">.</span><span class="nf">restrict</span><span class="p">(</span><span class="no">UserId</span><span class="p">:</span> <span class="n">users</span><span class="p">.</span><span class="nf">pluck</span><span class="p">(</span><span class="ss">:id</span><span class="p">))</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h3 id="mapping-custom-models" class="hd"><a name="mapping-custom-models" class="anchor" href="#mapping-custom-models">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Mapping Custom Models</h3><div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">CustomUser</span> <span class="o">&lt;</span> <span class="no">MySuperModelLibary</span>
+<span class="k">end</span>
+
+<span class="n">users_relation</span><span class="p">.</span><span class="nf">map_to</span><span class="p">(</span><span class="no">CustomUser</span><span class="p">).</span><span class="nf">first</span>
+
+<span class="c1">#&gt; #&lt;CustomUser id="1", username="Joe"&gt;</span>
+</code></pre></div>
+<p>ROM does not care what your final output object is as long as it accepts a hash
+of all the attributes and their values. Coupled with other mappers, the output
+from a query can be incredibly flexible.</p>
+<h3 id="sql-functions" class="hd"><a name="sql-functions" class="anchor" href="#sql-functions">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>SQL Functions</h3>
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">User</span>
+  <span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="s2">"*, concat(first_name, ' ', last_name) as 'full_name')"</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">first</span>
+
+<span class="c1">#&gt; #&lt;User id=1 full_name="Jane Doe"&gt;</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">users_relation</span><span class="p">.</span><span class="nf">select_append</span> <span class="p">{</span>
+  <span class="n">str</span><span class="o">::</span><span class="n">first_name</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="s1">' '</span><span class="p">,</span> <span class="n">last_name</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:full_name</span><span class="p">)</span>
+<span class="p">}.</span><span class="nf">first</span>
+
+<span class="c1">#&gt; #&lt;ROM::Struct::User id=1, full_name="Jane Doe"&gt;</span>
+</code></pre></div><h3 id="legacy-schemas" class="hd"><a name="legacy-schemas" class="anchor" href="#legacy-schemas">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Legacy Schemas</h3>
+<h4 class="text-center">Active Record</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">table_name</span> <span class="o">=</span> <span class="s1">'SomeHorriblyNamedUserTable'</span>
+  <span class="nb">self</span><span class="p">.</span><span class="nf">primary_key</span> <span class="o">=</span> <span class="s1">'UserIdentifier'</span>
+
+  <span class="n">alias_attribute</span> <span class="ss">:id</span><span class="p">,</span> <span class="ss">:UserIdentifier</span>
+  <span class="n">alias_attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:UserName</span>
+<span class="k">end</span>
+
+<span class="no">User</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">)</span>
+
+<span class="c1">#&gt; #&lt;User UserIdentifier: "2", UserName: "Jane"&gt;</span>
+
+<span class="no">User</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="s1">'name IS ?'</span><span class="p">,</span> <span class="s1">'Jane'</span><span class="p">).</span><span class="nf">first</span>
+
+<span class="c1"># 🔥🔥 KA-BOOM! 🔥🔥</span>
+<span class="c1"># ActiveRecord::StatementInvalid: no such column</span>
+</code></pre></div>
+<h4 class="text-center">ROM</h4>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">:SomeHorriblyNamedUserTable</span><span class="p">,</span> <span class="ss">as: :users</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">attribute</span> <span class="ss">:UserIdentifier</span><span class="p">,</span> <span class="ss">alias: :id</span>
+    <span class="n">attribute</span> <span class="ss">:UserName</span><span class="p">,</span> <span class="ss">alias: :name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users_relation</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">).</span><span class="nf">first</span>
+
+<span class="c1">#&gt; #&lt;ROM::Struct::User id=1 name="Jane"&gt;</span>
+</code></pre></div>
+<p>ROM makes working with legacy schemas a breeze. All that&#39;s needed is
+to define attributes on the relations schema along with their
+aliases. Afterwards just reuse the aliased names throughout your ROM
+queries - <em>quick</em> and <em>easy</em>.</p>
+
+<p>Working with ActiveRecord in this regard is a bit more difficult. While you
+can alias attributes, there is no real supported method for changing attribute
+names. Worse yet, ActiveRecord breaks the rule of Least Surprise because while
+some parts of the ActiveRecord API takes <code>alias_attribute</code> into account,
+<a href="https://github.com/rails/arel">arel</a>
+does not, causing performance tuning SQL queries to fall back on the
+ugly database attribute names you were trying to avoid.</p>
+<h3 id="custom-mappers" class="hd"><a name="custom-mappers" class="anchor" href="#custom-mappers">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Custom Mappers</h3><div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">EncryptionMapper</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Mapper</span>
+  <span class="n">register_as</span> <span class="ss">:encryption</span>
+
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">relation</span><span class="p">)</span>
+    <span class="n">relation</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">tuple</span><span class="o">|</span>
+      <span class="c1"># do whatever you want</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">map_with</span><span class="p">(</span><span class="ss">:encryption</span><span class="p">)</span>
+</code></pre></div><h3 id="transform-data-before-persisting" class="hd"><a name="transform-data-before-persisting" class="anchor" href="#transform-data-before-persisting">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Transform Data Before Persisting</h3>
+<p>Not only can data be transformed when reading records from the database, they
+can also be transformed just before storage as well. Changesets offer a built in
+method for executing a set of transformations that can be used to make minor
+adjustments such as the example below, where an attribute needs to be renamed.
+They can also handle more powerful transformations such as flattening nested
+objects. For more information on available transformations see 
+<a href="https://github.com/solnic/transproc">Transproc</a></p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">NewUser</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Changeset</span><span class="o">::</span><span class="no">Create</span>
+  <span class="n">map</span> <span class="k">do</span>
+    <span class="n">rename_keys</span> <span class="ss">user_name: :name</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users_relation</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUser</span><span class="p">,</span> <span class="ss">user_name: </span><span class="s2">"Jane"</span><span class="p">).</span><span class="nf">commit</span>
+</code></pre></div><h2 id="next" class="hd"><a name="next" class="anchor" href="#next">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>NEXT</h2>
+<p>To further understand ROM it is recommended to review the 
+<a href="/5.0/learn/getting-started/core-concepts">Core Concepts</a> page
+followed by the guides under Core. </p>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/5.0/learn/introduction/active-record.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Compared%20to%20ActiveRecord" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

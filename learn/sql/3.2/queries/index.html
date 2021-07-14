@@ -1,0 +1,196 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Queries</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/learn/sql/3.2/queries/" name="og:url" /><meta content="ROM - Queries" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_sql learn_sql_3"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link--is-active">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/introduction/installation/" class="sidebar__sub-link">Installation</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/core-concepts/" class="sidebar__sub-link">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/active-record/" class="sidebar__sub-link">Compared to ActiveRecord</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/glossary/" class="sidebar__sub-link">Glossary</a></li></ul></li><li class="sidebar__item"><a href="/learn/core/5.2/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/core/5.2/quick-setup/" class="sidebar__sub-link">Quick setup</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/combines/" class="sidebar__sub-link">Combines</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/mappers/" class="sidebar__sub-link">Mappers</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/framework-setup/" class="sidebar__sub-link">Framework setup</a></li></ul></li><li class="sidebar__item"><a href="/learn/repository/5.2/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/repository/5.2/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/learn/changeset/5.2/" class="sidebar__link">Changeset</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/changeset/5.2/mapping/" class="sidebar__sub-link">Mapping</a></li><li class="sidebar__sub-item"><a href="/learn/changeset/5.2/associations/" class="sidebar__sub-link">Associations</a></li></ul></li><li class="sidebar__item"><a href="/learn/rails/2.2/" class="sidebar__link">Rails</a></li><li class="sidebar__item"><a href="/learn/sql/3.3/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/sql/3.3/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/learn/http/0.8/" class="sidebar__link">HTTP</a></li><li class="sidebar__item"><a href="/learn/factory/0.10/" class="sidebar__link">Factory</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 3.2</p></div><h1>SQL &raquo; Queries</h1><h2 id="default-code-by_pk-code-method" class="hd"><a name="default-code-by_pk-code-method" class="anchor" href="#default-code-by_pk-code-method">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Default <code>by_pk</code> method</h2>
+<p>All relations come with the default <code>#by_pk</code> method. It supports composite PKs too.</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="c1"># with a single PK</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># with a composite [post_id, tag_id] PK</span>
+<span class="n">posts_tags</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div><h2 id="selecting-columns" class="hd"><a name="selecting-columns" class="anchor" href="#selecting-columns">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Selecting columns</h2>
+<p>To explicitly select columns you can either use a list of symbols or relation schema:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="nb">select</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+
+    <span class="c1"># or</span>
+
+    <span class="nb">select</span><span class="p">(</span><span class="o">*</span><span class="n">schema</span><span class="p">.</span><span class="nf">project</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">))</span>
+
+    <span class="c1"># or</span>
+
+    <span class="nb">select</span><span class="p">(</span><span class="nb">self</span><span class="p">[</span><span class="ss">:id</span><span class="p">],</span> <span class="nb">self</span><span class="p">[</span><span class="ss">:name</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>In a basic case, which is selecting unqualified columns using their canonical names,
+a list of symbols is all you need. Schemas and their attributes are useful in more
+complex cases, so it&#39;s beneficial to know that you can use them in <code>select</code> method.</p>
+<h2 id="appending-more-columns" class="hd"><a name="appending-more-columns" class="anchor" href="#appending-more-columns">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Appending more columns</h2>
+<p>If you have a relation with some columns already selected and you want to add more,
+you can use <code>select_append</code> method:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="nb">select</span><span class="p">(</span><span class="ss">:id</span><span class="p">,</span> <span class="ss">:name</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">details</span>
+    <span class="n">index</span><span class="p">.</span><span class="nf">select_append</span><span class="p">(</span><span class="ss">:email</span><span class="p">,</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="ss">:updated_at</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h2 id="projection-dsl" class="hd"><a name="projection-dsl" class="anchor" href="#projection-dsl">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Projection DSL</h2>
+<p>Both <code>select</code> and <code>select_append</code> accept a block which exposes projection DSL.
+You can use it for simple selection of columns, or results of SQL functions.</p>
+<h3 id="projecting-attributes" class="hd"><a name="projecting-attributes" class="anchor" href="#projecting-attributes">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Projecting attributes</h3>
+<p>Within the block you can refer to relation attributes by their names and use
+<a href="https://api.rom-rb.org/rom-sql/ROM/SQL/Attribute">ROM::SQL::Attribute</a> API for projections:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="nb">select</span> <span class="p">{</span> <span class="p">[</span><span class="nb">id</span><span class="p">,</span> <span class="nb">name</span><span class="p">]</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h3 id="projecting-function-results" class="hd"><a name="projecting-function-results" class="anchor" href="#projecting-function-results">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Projecting function results</h3>
+<p>Apart from returning column values, you can also project function results:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="nb">select</span> <span class="p">{</span> <span class="p">[</span><span class="nb">name</span><span class="p">,</span> <span class="n">integer</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:count</span><span class="p">)]</span> <span class="p">}.</span><span class="nf">group</span><span class="p">(</span><span class="ss">:id</span><span class="p">)</span>
+    <span class="c1"># SELECT "name", COUNT("id") AS "count" ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Functions can accept any number of arguments:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="nb">select</span> <span class="p">{</span> <span class="n">string</span><span class="o">::</span><span class="n">concat</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">,</span> <span class="nb">name</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:uid</span><span class="p">)</span> <span class="p">}</span>
+    <span class="c1"># SELECT CONCAT("id", '-', "name") AS "uid" ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h2 id="restricting-relations" class="hd"><a name="restricting-relations" class="anchor" href="#restricting-relations">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Restricting relations</h2>
+<p>To restrict a relation you can use <code>where</code> method which accepts a hash with
+conditions or a block for more advanced usage.</p>
+<h3 id="simple-conditions" class="hd"><a name="simple-conditions" class="anchor" href="#simple-conditions">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Simple conditions</h3>
+<p>If you pass a hash to <code>where</code> all conditions will be translated into SQL and ANDed together:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">)</span>
+    <span class="c1"># ... WHERE ("name" = 'Jane') ...</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">admin_by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">name: </span><span class="nb">name</span><span class="p">,</span> <span class="ss">admin: </span><span class="kp">true</span><span class="p">)</span>
+    <span class="c1"># ... WHERE ("name" = 'Jane') AND ("admin" IS TRUE) ...</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">by_ids</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span>
+    <span class="n">where</span><span class="p">(</span><span class="ss">ids: </span><span class="n">ids</span><span class="p">)</span>
+    <span class="c1"># ... WHERE ("id" IN (1, 2)) ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h3 id="complex-conditions" class="hd"><a name="complex-conditions" class="anchor" href="#complex-conditions">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Complex conditions</h3>
+<p>If you pass a block to <code>where</code> you can use restriction DSL to compose more complex conditions:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">query</span>
+    <span class="n">where</span> <span class="p">{</span> <span class="p">(</span><span class="nb">id</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="nb">id</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="p">}</span>
+    <span class="c1"># (("id" &lt; 10) OR ("id" &gt; 20))</span>
+
+    <span class="n">where</span> <span class="p">{</span> <span class="nb">id</span><span class="p">.</span><span class="nf">not</span><span class="p">(</span><span class="mi">10</span><span class="o">..</span><span class="mi">20</span><span class="p">)</span> <span class="p">}</span>
+    <span class="c1"># (("id" &lt; 10) OR ("id" &gt; 20))</span>
+
+    <span class="n">where</span> <span class="p">{</span> <span class="nb">id</span><span class="p">.</span><span class="nf">in</span><span class="p">(</span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">id</span><span class="p">.</span><span class="nf">in</span><span class="p">(</span><span class="mi">20</span><span class="o">..</span><span class="mi">100</span><span class="p">)</span> <span class="p">}</span>
+    <span class="c1"># (("id" &gt;= 1) AND ("id" &lt;= 10) AND ("id" &gt;= 20) AND ("id" &lt;= 100))</span>
+
+    <span class="n">where</span> <span class="p">{</span> <span class="nb">name</span><span class="p">.</span><span class="nf">ilike</span><span class="p">(</span><span class="s1">'%an%'</span><span class="p">)</span> <span class="p">}</span>
+    <span class="c1"># ("name" ILIKE '%an%' ESCAPE '\\')</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h2 id="aggregations-and-having" class="hd"><a name="aggregations-and-having" class="anchor" href="#aggregations-and-having">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Aggregations and HAVING</h2>
+<p>To create <code>HAVING</code> clause simply use <code>having</code> method, which works in a similar way as <code>where</code>
+and supports creating aggregate functions for your conditions:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">email_duplicates</span>
+    <span class="nb">select</span> <span class="p">{</span> <span class="p">[</span><span class="n">email</span><span class="p">,</span> <span class="n">integer</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">).</span><span class="nf">as</span><span class="p">(</span><span class="ss">:count</span><span class="p">)]</span> <span class="p">}.</span>
+      <span class="nf">group</span><span class="p">(</span><span class="ss">:email</span><span class="p">).</span>
+      <span class="nf">having</span> <span class="p">{</span> <span class="n">count</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="p">}</span>
+      <span class="c1"># ... HAVING (count("id") &gt;= 2) ...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h2 id="order" class="hd"><a name="order" class="anchor" href="#order">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Order</h2>
+<p><code>order</code> method with block will order your query:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">query</span>
+    <span class="n">order</span> <span class="p">{</span> <span class="n">created_at</span><span class="p">.</span><span class="nf">desc</span> <span class="p">}</span>
+    <span class="c1"># ... ORDER BY "created_at" DESC</span>
+
+    <span class="n">order</span> <span class="p">{</span> <span class="n">created_at</span><span class="p">.</span><span class="nf">asc</span> <span class="p">}</span>
+    <span class="c1"># ... ORDER BY "created_at" ASC</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><h2 id="learn-more" class="hd"><a name="learn-more" class="anchor" href="#learn-more">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Learn more</h2>
+<p>Check out API documentation:</p>
+
+<ul>
+<li><a href="https://api.rom-rb.org/rom-sql/ROM/SQL/Relation/Reading">ROM::SQL::Relation::Reading</a></li>
+</ul>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-sql/blob/release-3.2/docsite/source/queries.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Queries" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

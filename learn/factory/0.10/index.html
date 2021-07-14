@@ -1,0 +1,159 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/learn/factory/0.10/" name="og:url" /><meta content="ROM" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_factory learn_factory_0"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link--is-active">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/introduction/installation/" class="sidebar__sub-link">Installation</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/core-concepts/" class="sidebar__sub-link">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/active-record/" class="sidebar__sub-link">Compared to ActiveRecord</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/glossary/" class="sidebar__sub-link">Glossary</a></li></ul></li><li class="sidebar__item"><a href="/learn/core/5.2/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/core/5.2/quick-setup/" class="sidebar__sub-link">Quick setup</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/combines/" class="sidebar__sub-link">Combines</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/mappers/" class="sidebar__sub-link">Mappers</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/framework-setup/" class="sidebar__sub-link">Framework setup</a></li></ul></li><li class="sidebar__item"><a href="/learn/repository/5.2/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/repository/5.2/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/learn/changeset/5.2/" class="sidebar__link">Changeset</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/changeset/5.2/mapping/" class="sidebar__sub-link">Mapping</a></li><li class="sidebar__sub-item"><a href="/learn/changeset/5.2/associations/" class="sidebar__sub-link">Associations</a></li></ul></li><li class="sidebar__item"><a href="/learn/rails/2.2/" class="sidebar__link">Rails</a></li><li class="sidebar__item"><a href="/learn/sql/3.3/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/sql/3.3/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/learn/http/0.8/" class="sidebar__link">HTTP</a></li><li class="sidebar__item"><a href="/learn/factory/0.10/" class="sidebar__link--is-active">Factory</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 0.10</p></div><h1>Factory</h1><h1 id="rom-factory" class="hd"><a name="rom-factory" class="anchor" href="#rom-factory">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>rom-factory</h1>
+<p><code>rom-factory</code> provides a simple API for creating and persisting <code>ROM::Struct</code>&#39;s. If you already know FactoryBot you&#39;ll definitely understand the concept.</p>
+<h2 id="installation" class="hd"><a name="installation" class="anchor" href="#installation">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Installation</h2>
+<p>First of all you need to define a ROM Container for Factory. For example if you are using <code>rspec</code>, you can add these lines to <code>spec_helper.rb</code>. Also you need to require here all files with Factories.</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Factory</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">rom</span> <span class="o">=</span> <span class="n">my_rom_container</span>
+<span class="k">end</span>
+
+<span class="no">Dir</span><span class="p">[</span><span class="no">File</span><span class="p">.</span><span class="nf">dirname</span><span class="p">(</span><span class="kp">__FILE__</span><span class="p">)</span> <span class="o">+</span> <span class="s1">'/support/factories/*.rb'</span><span class="p">].</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span> <span class="nb">require</span> <span class="n">file</span> <span class="p">}</span>
+</code></pre></div><h2 id="usage" class="hd"><a name="usage" class="anchor" href="#usage">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Usage</h2><h3 id="define-factory" class="hd"><a name="define-factory" class="anchor" href="#define-factory">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Define factory</h3><div class="highlight"><pre class="syntax ruby"><code><span class="c1"># 'spec/support/factories/users.rb'</span>
+
+<span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'John'</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">age</span> <span class="mi">42</span>
+<span class="k">end</span>
+</code></pre></div><h4 id="specify-relations" class="hd"><a name="specify-relations" class="anchor" href="#specify-relations">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Specify relations</h4>
+<p>You can specify ROM relation if you want. It&#39;ll be pluralized factory name by default.</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">relation: :people</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'John'</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">age</span> <span class="mi">42</span>
+<span class="k">end</span>
+</code></pre></div><h4 id="specify-namespace-for-your-structs" class="hd"><a name="specify-namespace-for-your-structs" class="anchor" href="#specify-namespace-for-your-structs">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Specify namespace for your structs</h4>
+<p>Struct <code>User</code> will be find in MyApp::Entities namespace</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">struct_namespace: </span><span class="no">MyApp</span><span class="o">::</span><span class="no">Entities</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="c1"># ...</span>
+<span class="k">end</span>
+</code></pre></div><h4 id="sequences" class="hd"><a name="sequences" class="anchor" href="#sequences">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Sequences</h4>
+<p>You can use sequences for uniq fields</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'John'</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">sequence</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">n</span><span class="o">|</span> <span class="s2">"john</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">@example.com"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div><h4 id="timestamps" class="hd"><a name="timestamps" class="anchor" href="#timestamps">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Timestamps</h4><div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'John'</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">timestamps</span>
+  <span class="c1"># same as</span>
+  <span class="c1"># f.created_at { Time.now }</span>
+  <span class="c1"># f.updated_at { Time.now }</span>
+<span class="k">end</span>
+</code></pre></div><h4 id="associations" class="hd"><a name="associations" class="anchor" href="#associations">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Associations</h4>
+<ul>
+<li>belongs_to</li>
+</ul>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:group</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'Admins'</span>
+<span class="k">end</span>
+
+<span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'John'</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">association</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>
+<ul>
+<li>has_many</li>
+</ul>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:group</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'Admins'</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">association</span><span class="p">(</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">count: </span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'John'</span>
+<span class="k">end</span>
+</code></pre></div><h4 id="extend-already-existing-factory" class="hd"><a name="extend-already-existing-factory" class="anchor" href="#extend-already-existing-factory">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Extend already existing factory</h4><div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'John'</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">admin</span> <span class="kp">false</span>
+<span class="k">end</span>
+
+<span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">admin: :user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">admin</span> <span class="kp">true</span>
+<span class="k">end</span>
+
+<span class="c1"># Factory.structs(:admin)</span>
+</code></pre></div><h4 id="traits" class="hd"><a name="traits" class="anchor" href="#traits">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Traits</h4><div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">name</span> <span class="s1">'John'</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">admin</span> <span class="kp">false</span>
+
+  <span class="n">f</span><span class="p">.</span><span class="nf">trait</span> <span class="ss">:with_age</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">age</span> <span class="mi">42</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># Factory.structs(:user, :with_age)</span>
+</code></pre></div><h4 id="build-in-a-href-https-github-com-faker-ruby-faker-faker-a-objects" class="hd"><a name="build-in-a-href-https-github-com-faker-ruby-faker-faker-a-objects" class="anchor" href="#build-in-a-href-https-github-com-faker-ruby-faker-faker-a-objects">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Build-in <a href="https://github.com/faker-ruby/faker">Faker</a> objects</h4><div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">email</span> <span class="p">{</span> <span class="n">fake</span><span class="p">(</span><span class="ss">:internet</span><span class="p">,</span> <span class="ss">:email</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div><h4 id="dependent-attributes" class="hd"><a name="dependent-attributes" class="anchor" href="#dependent-attributes">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Dependent attributes</h4>
+<p>Attributes can be based on the values of other attributes:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="no">Factory</span><span class="p">.</span><span class="nf">define</span><span class="p">(</span><span class="ss">:user</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">full_name</span> <span class="p">{</span> <span class="n">fake</span><span class="p">(</span><span class="ss">:name</span><span class="p">)</span> <span class="p">}</span>
+  <span class="c1"># Dependent attributes are inferred from the block parameter names:</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">login</span> <span class="p">{</span> <span class="o">|</span><span class="n">full_name</span><span class="o">|</span> <span class="n">full_name</span><span class="p">.</span><span class="nf">downcase</span><span class="p">.</span><span class="nf">gsub</span><span class="p">(</span><span class="sr">/\s+/</span><span class="p">,</span> <span class="s1">'_'</span><span class="p">)</span> <span class="p">}</span>
+  <span class="c1"># Works with sequences too:</span>
+  <span class="n">f</span><span class="p">.</span><span class="nf">sequence</span><span class="p">(</span><span class="ss">:email</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">n</span><span class="p">,</span> <span class="n">login</span><span class="o">|</span> <span class="s2">"</span><span class="si">#{</span><span class="n">login</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">@example.com"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre></div><h3 id="build-and-persist-objects" class="hd"><a name="build-and-persist-objects" class="anchor" href="#build-and-persist-objects">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Build and persist objects</h3><div class="highlight"><pre class="syntax ruby"><code><span class="c1"># Create in-memory object</span>
+<span class="no">Factory</span><span class="p">.</span><span class="nf">structs</span><span class="p">[</span><span class="ss">:user</span><span class="p">]</span>
+
+<span class="c1"># Override attributes in the in-memory object</span>
+<span class="no">Factory</span><span class="p">.</span><span class="nf">structs</span><span class="p">[</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">id: </span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Persist struct in database</span>
+<span class="no">Factory</span><span class="p">[</span><span class="ss">:user</span><span class="p">]</span>
+
+<span class="c1"># Override attributes</span>
+<span class="no">Factory</span><span class="p">[</span><span class="ss">:user</span><span class="p">,</span> <span class="ss">age: </span><span class="mi">24</span><span class="p">]</span>
+</code></pre></div></div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-factory/blob/release-0.10/docsite/source/index.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

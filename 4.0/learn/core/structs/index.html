@@ -1,0 +1,149 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Structs</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/4.0/learn/core/structs/" name="og:url" /><meta content="ROM - Structs" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/4.0/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/active-record/" class="sidebar__sub-link">Compared to ActiveRecord</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/core-concepts/" class="sidebar__sub-link">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/core/" class="sidebar__link--is-active">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/combines/" class="sidebar__sub-link">Combines</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/structs/" class="sidebar__sub-link--is-active">Structs</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/glossary/" class="sidebar__link">Glossary</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 4.0</p></div><h1>Core &raquo; Structs</h1><p>Relations return plain hashes by default, but it&#39;s more common to use simple objects with attribute readers to represent data in your application. These objects should be treated as pure data structures, that don&#39;t have to be mutated at run-time, and don&#39;t depend on any external systems (such as mailers, API clients, message buses etc.). Their methods should only deal with the attributes they encapsulate. It&#39;s also common to use structs as aggregate roots, in which case they may provide methods to simplify accessing data represented by aggregate children.</p>
+
+<p>You can work with structs in 3 different ways:</p>
+
+<ol>
+<li>Rely on <code>auto_struct</code> without defining custom struct classes - this works very well in the beginning of a project, where you don&#39;t need your own methods at all</li>
+<li>Use <code>auto_struct</code> with custom struct classes - a nice middle-ground where you benefit from dynamic mapping but you also have access to your own methods</li>
+<li>Use custom objects - the most advanced technique, where data are mapped to your own objects. This approach should be used in mature projects where complete separation from persistence layer is going to be beneficial.</li>
+</ol>
+
+<blockquote>
+<p>Notice that you can use all 3 ways at the same time, depending on what makes sense in a given use case</p>
+</blockquote>
+<h2 id="auto-struct" class="hd"><a name="auto-struct" class="anchor" href="#auto-struct">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Auto-struct</h2>
+<p>Auto-struct is a relation feature which can automatically transform plain relation tuples to struct objects. These objects are instances of <code>ROM::Struct</code> and have explicit attributes defined, based on information from relation schemas.</p>
+
+<p>You can enable this feature via <code>auto_struct(true)</code> in a relation class:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span> <span class="ss">:tasks</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">auto_struct</span><span class="p">(</span><span class="kp">true</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">one</span>
+<span class="o">=&gt;</span> <span class="c1">#&lt;User id=1 name="Jane"&gt;</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">combine</span><span class="p">(</span><span class="ss">:tasks</span><span class="p">).</span><span class="nf">one</span>
+<span class="o">=&gt;</span> <span class="c1">#&lt;User id=1 name="Jane" tasks=[#&lt;Task id=1 user_id=1 title="Jane's Task"&gt;]&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>This feature is <strong>enabled by default in repositories</strong></p>
+</blockquote>
+<h2 id="auto-struct-with-custom-classes" class="hd"><a name="auto-struct-with-custom-classes" class="anchor" href="#auto-struct-with-custom-classes">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Auto-struct with custom classes</h2>
+<p>Relations support configuring <code>struct_namespace</code>, it is set to <code>ROM::Struct</code> by default, which means struct classes are generated for you automatically within <code>ROM::Struct</code> namespace. If you want to provide your own struct classes, simply put them in a module and configure it as the <code>struct_namespace</code>.</p>
+
+<p>Let&#39;s say you have <code>Entities</code> namespace and would like to provide a custom <code>Entities::User</code> class:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">Entities</span>
+  <span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Struct</span>
+    <span class="k">def</span> <span class="nf">full_name</span>
+      <span class="s2">"</span><span class="si">#{</span><span class="n">first_name</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">last_name</span><span class="si">}</span><span class="s2">"</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="n">struct_namespace</span> <span class="no">Entities</span>
+  <span class="n">auto_struct</span> <span class="kp">true</span>
+<span class="k">end</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">one</span>
+<span class="n">user</span><span class="p">.</span><span class="nf">full_name</span>
+<span class="c1"># =&gt; "Jane Doe"</span>
+</code></pre></div><h3 id="how-struct-classes-are-determined" class="hd"><a name="how-struct-classes-are-determined" class="anchor" href="#how-struct-classes-are-determined">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>How struct classes are determined</h3>
+<p>Mappers will look for struct classes based on <code>Relation#name</code>, but this is not restricted
+to canonical names of your relations, as they can be aliased too. For instance, you may
+define <code>:admins</code> relation, which is restricted to users with <code>type</code> set to <code>&quot;Admin&quot;</code>. Then
+if you have a <code>Entities::Admin</code> class, it will be used as the struct class for <code>:admins</code>
+relation.</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">Entities</span>
+  <span class="k">class</span> <span class="nc">User</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Struct</span>
+    <span class="k">def</span> <span class="nf">admin?</span>
+      <span class="kp">false</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">class</span> <span class="nc">Admin</span> <span class="o">&lt;</span> <span class="no">User</span>
+    <span class="k">def</span> <span class="nf">admin?</span>
+      <span class="kp">true</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Admins</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">dataset</span> <span class="p">{</span> <span class="n">where</span><span class="p">(</span><span class="ss">type: </span><span class="s2">"Admin"</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">schema</span><span class="p">(</span><span class="ss">:users</span><span class="p">,</span> <span class="ss">as: :admins</span><span class="p">,</span> <span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span>
+
+  <span class="n">struct_namespace</span> <span class="no">Entities</span>
+  <span class="n">auto_struct</span> <span class="kp">true</span>
+<span class="k">end</span>
+
+<span class="n">admin</span> <span class="o">=</span> <span class="n">admins</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">one</span>
+
+<span class="n">admin</span><span class="p">.</span><span class="nf">admin?</span>
+<span class="c1"># true</span>
+</code></pre></div>
+<blockquote>
+<h4 id="usage-with-repositories" class="hd"><a name="usage-with-repositories" class="anchor" href="#usage-with-repositories">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Usage with repositories</h4>
+<p>It is advised to configure struct_namespace in repositories, as it&#39;s the appropriate
+layer where application-specific data structures are coming from.</p>
+</blockquote>
+<h2 id="mapping-to-custom-objects" class="hd"><a name="mapping-to-custom-objects" class="anchor" href="#mapping-to-custom-objects">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Mapping to custom objects</h2>
+<p>You can ask a relation to instantiate your own objects via <code>Relation#map_to</code> interface.
+Your object class must have a constructor which accepts a hash with attributes.</p>
+
+<p>Here&#39;s a simple example:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">User</span>
+  <span class="nb">attr_reader</span> <span class="ss">:attributes</span>
+
+  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+    <span class="vi">@attributes</span> <span class="o">=</span> <span class="n">attributes</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">[]</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+    <span class="n">attributes</span><span class="p">[</span><span class="nb">name</span><span class="p">]</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">map_to</span><span class="p">(</span><span class="no">User</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;User:0x007fa7eabf1a50 @attributes={:id=&gt;1, :name=&gt;"Jane"}&gt;</span>
+</code></pre></div><h2 id="learn-more" class="hd"><a name="learn-more" class="anchor" href="#learn-more">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Learn more</h2>
+<ul>
+<li><a href="https://api.rom-rb.org/rom/ROM/Struct">ROM::Struct</a></li>
+</ul>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/4.0/learn/core/structs.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Structs" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

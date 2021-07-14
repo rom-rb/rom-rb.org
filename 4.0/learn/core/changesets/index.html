@@ -1,0 +1,194 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Changesets</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/4.0/learn/core/changesets/" name="og:url" /><meta content="ROM - Changesets" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/4.0/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/active-record/" class="sidebar__sub-link">Compared to ActiveRecord</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/core-concepts/" class="sidebar__sub-link">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/core/" class="sidebar__link--is-active">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/combines/" class="sidebar__sub-link">Combines</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/changesets/" class="sidebar__sub-link--is-active">Changesets</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/glossary/" class="sidebar__link">Glossary</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 4.0</p></div><h1>Core &raquo; Changesets</h1><p>Changesets are an advanced abstraction for making changes in your database. They
+work on top of commands, and provide additional data mapping functionality and 
+have support for associating data.</p>
+
+<p>Built-in changesets support all core command types, you can also define custom
+changeset classes and connect them to custom commands.</p>
+<h2 id="working-with-changesets" class="hd"><a name="working-with-changesets" class="anchor" href="#working-with-changesets">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Working with changesets</h2>
+<p>You can get a changeset object via <code>Relation#changeset</code> interface. A changeset object
+wraps input data, and may optionally convert it into a representation that&#39;s compatible
+with your database schema.</p>
+
+<p>Assuming you have a users relation available:</p>
+<h3 id="code-create-code-example" class="hd"><a name="code-create-code-example" class="anchor" href="#code-create-code-example">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a><code>:create</code> example</h3><div class="highlight"><pre class="syntax ruby"><code><span class="n">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">).</span><span class="nf">commit</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">1</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane"</span><span class="p">}</span>
+</code></pre></div><h3 id="code-update-code-example" class="hd"><a name="code-update-code-example" class="anchor" href="#code-update-code-example">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a><code>:update</code> example</h3><div class="highlight"><pre class="syntax ruby"><code><span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:update</span><span class="p">,</span> <span class="ss">name: </span><span class="s2">"Jane Doe"</span><span class="p">).</span><span class="nf">commit</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">4</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane Doe"</span><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<h4 id="checking-diffs" class="hd"><a name="checking-diffs" class="anchor" href="#checking-diffs">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Checking diffs</h4>
+<p>Update changesets check the difference between the original tuple and new data.
+If there&#39;s no diff, an update changeset <strong>will not execute its command</strong></p>
+</blockquote>
+<h3 id="code-delete-code-example" class="hd"><a name="code-delete-code-example" class="anchor" href="#code-delete-code-example">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a><code>:delete</code> example</h3><div class="highlight"><pre class="syntax ruby"><code><span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:delete</span><span class="p">).</span><span class="nf">commit</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="ss">:id</span><span class="o">=&gt;</span><span class="mi">4</span><span class="p">,</span> <span class="ss">:name</span><span class="o">=&gt;</span><span class="s2">"Jane Doe"</span><span class="p">}</span>
+
+<span class="n">users</span><span class="p">.</span><span class="nf">by_pk</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:delete</span><span class="p">).</span><span class="nf">commit</span>
+<span class="c1"># =&gt; nil</span>
+</code></pre></div><h3 id="restricting-relations-for-changesets" class="hd"><a name="restricting-relations-for-changesets" class="anchor" href="#restricting-relations-for-changesets">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Restricting relations for changesets</h3>
+<p>In the examples above, we used <code>Relation#by_pk</code> method, this is a built-in method which
+restricts a relation by its primary key; however, you can use any method that&#39;s available,
+including native adapter query methods.</p>
+<h2 id="changeset-mapping" class="hd"><a name="changeset-mapping" class="anchor" href="#changeset-mapping">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Changeset Mapping</h2>
+<p>Changesets have an extendible data-pipe mechanism available via <code>Changeset.map</code>
+(for preconfigured mapping) and <code>Changeset#map</code> (for on-demand run-time mapping).</p>
+
+<p>Changeset mappings support all transformation functions from <a href="https://github.com/solnic/transproc">transproc</a> project,
+and in addition to that we have:</p>
+
+<ul>
+<li><code>:add_timestamps</code>–sets <code>created_at</code> and <code>updated_at</code> timestamps (don&#39;t forget to add those fields to the table in case of using <code>rom-sql</code>)</li>
+<li><code>:touch</code>–sets <code>updated_at</code> timestamp</li>
+</ul>
+<h3 id="pre-configured-mapping" class="hd"><a name="pre-configured-mapping" class="anchor" href="#pre-configured-mapping">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Pre-configured mapping</h3>
+<p>If you want to process data before sending them to be persisted, you can define
+a custom Changeset class and specify your own mapping. Let&#39;s say we have a nested
+hash with <code>address</code> key but we store it as a flat structure with address attributes
+having <code>address_*</code> prefix:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">NewUserChangeset</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Changeset</span><span class="o">::</span><span class="no">Create</span>
+  <span class="n">map</span> <span class="k">do</span>
+    <span class="n">unwrap</span> <span class="ss">:address</span><span class="p">,</span> <span class="ss">prefix: </span><span class="kp">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Then we can ask users relation for your changeset:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">,</span> <span class="ss">address: </span><span class="p">{</span> <span class="ss">city: </span><span class="s1">'NYC'</span><span class="p">,</span> <span class="ss">street: </span><span class="s1">'Street 1'</span> <span class="p">}</span> <span class="p">}</span>
+
+<span class="n">changeset</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">,</span> <span class="n">user_data</span><span class="p">)</span>
+
+<span class="n">changeset</span><span class="p">.</span><span class="nf">to_h</span>
+<span class="c1"># { name: 'Jane', address_city: 'NYC', address_street: 'Street 1' }</span>
+
+<span class="n">changeset</span><span class="p">.</span><span class="nf">commit</span>
+</code></pre></div><h3 id="custom-mapping-block" class="hd"><a name="custom-mapping-block" class="anchor" href="#custom-mapping-block">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Custom mapping block</h3>
+<p>If you don&#39;t want to use built-in transformations, simply configure a mapping and
+pass <code>tuple</code> argument to the map block:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">NewUserChangeset</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Changeset</span><span class="o">::</span><span class="no">Create</span>
+  <span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">tuple</span><span class="o">|</span>
+    <span class="n">tuple</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="ss">created_on: </span><span class="no">Date</span><span class="p">.</span><span class="nf">today</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">user_data</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">name: </span><span class="s1">'Jane'</span> <span class="p">}</span>
+
+<span class="n">changeset</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="no">NewUserChangeset</span><span class="p">,</span> <span class="n">user_data</span><span class="p">)</span>
+
+<span class="n">changeset</span><span class="p">.</span><span class="nf">to_h</span>
+<span class="c1"># { name: 'Jane', created_on: &lt;Date: 2017-01-21 ((2457775j,0s,0n),+0s,2299161j)&gt; }</span>
+
+<span class="n">user_repo</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Jane" created_on=2017-01-21&gt;</span>
+</code></pre></div>
+<blockquote>
+<p>Custom mapping blocks are executed in the context of your changeset objects,
+which means you have access to changeset&#39;s state</p>
+</blockquote>
+<h3 id="on-demand-mapping" class="hd"><a name="on-demand-mapping" class="anchor" href="#on-demand-mapping">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>On-demand mapping</h3>
+<p>There are situations where you would like to perform an additional mapping but adding
+a special changeset class would be an overkill. That&#39;s why it&#39;s possible to apply
+additional mappings at run-time without having to use a custom changeset class.
+To do this simply use <code>Changeset#map</code> method:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">changeset</span> <span class="o">=</span> <span class="n">users</span>
+  <span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Joe'</span><span class="p">,</span> <span class="ss">email: </span><span class="s1">'joe@doe.org'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="ss">:add_timestamps</span><span class="p">)</span>
+
+<span class="n">changeset</span><span class="p">.</span><span class="nf">commit</span><span class="p">(</span><span class="n">changeset</span><span class="p">)</span>
+<span class="c1"># =&gt; #&lt;ROM::Struct[User] id=1 name="Joe" email="joe@doe.org" created_at=2016-07-22 14:45:02 +0200 updated_at=2016-07-22 14:45:02 +0200&gt;</span>
+</code></pre></div><h3 id="associating-data" class="hd"><a name="associating-data" class="anchor" href="#associating-data">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Associating data</h3>
+<p>Changesets can be associated with each other using <code>Changeset#associate</code>
+method, which will automatically set foreign keys for you, based on schema associations.</p>
+
+<p>Let&#39;s define <code>:users</code> relation that has many <code>:tasks</code>:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">Users</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">has_many</span> <span class="ss">:tasks</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Tasks</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relation</span><span class="p">[</span><span class="ss">:sql</span><span class="p">]</span>
+  <span class="n">schema</span><span class="p">(</span><span class="ss">infer: </span><span class="kp">true</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">associations</span> <span class="k">do</span>
+      <span class="n">belongs_to</span> <span class="ss">:user</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>With associations established in the schema, we can easily associate data using
+changesets and commit them in a transaction:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">task</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">transaction</span> <span class="k">do</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="n">users</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">name: </span><span class="s1">'Jane'</span><span class="p">).</span><span class="nf">commit</span>
+
+  <span class="n">new_task</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">.</span><span class="nf">changeset</span><span class="p">(</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">title: </span><span class="s1">'Task One'</span><span class="p">).</span><span class="nf">associate</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+
+  <span class="n">new_task</span><span class="p">.</span><span class="nf">commit</span>
+<span class="k">end</span>
+
+<span class="n">task</span>
+<span class="c1"># {:id=&gt;1, :user_id=&gt;1, :title=&gt;"Task One"}</span>
+</code></pre></div>
+<blockquote>
+<h3 id="association-name" class="hd"><a name="association-name" class="anchor" href="#association-name">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Association name</h3>
+<p>Notice that <code>associate</code> method can accept a rom struct and it will try to infer
+association name from it. If this fails because you have an aliased association
+then pass association name explicitly as the second argument, ie: <code>associate(user, :author)</code></p>
+</blockquote>
+<h2 id="learn-more" class="hd"><a name="learn-more" class="anchor" href="#learn-more">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Learn more</h2>
+<ul>
+<li><a href="https://api.rom-rb.org/rom/ROM/Changeset">ROM::Changeset</a></li>
+<li><a href="https://api.rom-rb.org/rom/ROM/Changeset/Create">ROM::Changeset::Create</a></li>
+<li><a href="https://api.rom-rb.org/rom/ROM/Changeset/Update">ROM::Changeset::Update</a></li>
+<li><a href="https://api.rom-rb.org/rom/ROM/Changeset/Delete">ROM::Changeset::Delete</a></li>
+<li><a href="https://api.rom-rb.org/rom/ROM/Changeset/Associated">ROM::Changeset::Associated</a></li>
+</ul>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/4.0/learn/core/changesets.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Changesets" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

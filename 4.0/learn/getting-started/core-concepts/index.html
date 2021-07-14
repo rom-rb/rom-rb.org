@@ -1,0 +1,214 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Core Concepts</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/4.0/learn/getting-started/core-concepts/" name="og:url" /><meta content="ROM - Core Concepts" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/4.0/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/active-record/" class="sidebar__sub-link">Compared to ActiveRecord</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/getting-started/" class="sidebar__link--is-active">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/core-concepts/" class="sidebar__sub-link--is-active">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/core/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/combines/" class="sidebar__sub-link">Combines</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/glossary/" class="sidebar__link">Glossary</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 4.0</p></div><h1>Getting Started &raquo; Core Concepts</h1><div class="toc">
+  <h2 id="toc">Contents</h2>
+  <ol>
+<li><a href="#reading-data">Reading Data</a></li>
+<li><a href="#writing-data">Writing Data</a></li>
+<li><a href="#repositories">Repositories</a></li>
+<li><a href="#relations">Relations</a></li>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#relation-mappers">Mappers</a><br></li>
+<li><a href="#changesets">Changesets</a></li>
+<li><a href="#adapters">Adapters</a><br></li>
+</ol>
+
+</div>
+
+<p>Before you start writing any data access code with ROM, it&#39;s a good idea to
+get a high level overview of what each major component is and its overall 
+purpose.</p>
+
+<p>ROM fundamentally is a series of abstractions built on one another to create
+a very flexible system for accessing and manipulating complex data in your
+applications.</p>
+
+<p>The following diagram shows an overview of the ROM architecture and provides an
+outline of how data flows within a ROM based data access layer. Further down
+is a basic explanation of each component.</p>
+
+<p><img src="/images/rom-overview.jpg" alt="ROM Design Overview" /></p>
+<h2 id="data-flow" class="hd"><a name="data-flow" class="anchor" href="#data-flow">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Data flow</h2><h3 id="reading-data" class="hd"><a name="reading-data" class="anchor" href="#reading-data">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Reading Data</h3>
+<p><strong>Step 1:</strong> Application Domain has a need for a particular entity/entities so it
+            calls into the appropriate repository and asks for an entity</p>
+
+<p><strong>Step 2.</strong> The Repository accepts the request and combines all of the
+            related associations together to create a datastore-specific query
+            for the data</p>
+
+<p><strong>Step 3.</strong> Once a relation has been composed of all needed restrictions or 
+            selections, the relations <code>#each</code> method is called which triggers
+            the <mark>dataset</mark> to fetch the data.</p>
+
+<p><strong>Step 4.</strong> Raw data in the form of tuples are collected from the datastore and
+            returned to the relation. Before proceeding each tuple is passed
+            through an <mark>output schema</mark>.</p>
+
+<p><strong>Step 5.</strong> The relation, if mappers are configured, maps the tuples into an
+            output entity/entities.</p>
+
+<p><strong>Step 6.</strong> The repository passes the entity/entities on through to the
+            Application Domain.</p>
+<h3 id="writing-data" class="hd"><a name="writing-data" class="anchor" href="#writing-data">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Writing Data</h3>
+<p>Writing data with ROM is fundamentally a process of applying commands to relations
+in order to modify the stored data. </p>
+
+<p><strong>Step 7.</strong> Application Domain has a need to update an entity.</p>
+
+<p><strong>Step 8.</strong> The repository, accepting either an entity object or a raw <code>Hash</code>
+            representing the entity, configures either a changeset or direct
+            command on relation to make changes to the datastore.</p>
+
+<p><strong>Step 8.1.</strong> Before the Changeset passes itself to the underlying command, you
+              can map the Changeset data into a structure that&#39;s more akin to what
+              your datastore looks like.</p>
+
+<p><strong>Step 9.</strong> Command processes one or more tuples through the
+            <mark>input schema</mark> then executes against the datastore which
+            updates the data.</p>
+<h2 id="repositories" class="hd"><a name="repositories" class="anchor" href="#repositories">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Repositories</h2>
+<p>Repositories provide a powerful CRUD interface built on top of relation,
+mapping and command APIs. They give you a simple way for composing data
+provided by relations, automatically mapping data to structs or custom object
+types and expose simple access to commands with support for changesets.</p>
+
+<p>An important function of repositories is to act as a boundary between the data
+access logic and Application Domain logic. This boundary helps to reduce
+the complexity of rehydrating your entities and keeps a direct dependency
+on a particular datastore out of your domain.</p>
+
+<p>To learn more about repositories, how to use them and their role in a system
+developed using ROM, check out the
+<a href="/4.0/learn/repositories">Repositories</a> section.</p>
+
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p>Repositories are completely optional and while they provide powerful features
+  for encapsulating data access logic, they may not make sense for some 
+  simple CRUD applications or one-off scripts.</p>
+
+</div>
+<h2 id="relations" class="hd"><a name="relations" class="anchor" href="#relations">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Relations</h2>
+<p>A relation is defined as a set of tuples identified by unique pairs of
+attributes and their values. In ROM it is an object that responds to <code>#each</code>
+which yields hashes. It is backed by a <a href="#datasets">dataset object</a> provided by
+the adapter.</p>
+
+<p>An example of relations are tables in a SQL server. Tables can reference
+other tables and sometimes all of the pieces for some &quot;view&quot; of the data are
+spread out among two or more tables (think Multi Table Inheritance). In
+situations like this ROM really shines because relations can be created for
+each table and composed together to pull the data into a coherent form then
+finally mapped to an output object which your application can depend on safely
+without worrying about shared state, sessions or identity mapping commonly
+used in other ORMs.</p>
+
+<p>To learn more about relations, check out the
+<a href="/4.0/learn/core/relations">Relations</a> guide.</p>
+<h2 id="commands" class="hd"><a name="commands" class="anchor" href="#commands">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Commands</h2>
+<p>Commands in ROM are intended to safely modify data. Commands can be used to
+create, update and delete. They are usually provided by the adapter, but you may
+define your own.</p>
+
+<p>To learn more about commands, check out the
+<a href="/4.0/learn/core/commands">Commands</a> guide.</p>
+<h2 id="relation-mappers" class="hd"><a name="relation-mappers" class="anchor" href="#relation-mappers">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Relation Mappers</h2>
+<p>A mapper is an object that takes a relation and maps it into a different
+representation. Mappers are generated automatically and in typical
+cases you don&#39;t have to define them; however, ROM provides a DSL to define custom
+mappings or you can register your own mapper objects for custom, non-standard
+queries, or complex cross-datastore mappings.</p>
+
+<p>To learn more about mappers, check out the
+<a href="/4.0/learn/core/mappers">Mappers</a> guide.</p>
+<h2 id="changesets" class="hd"><a name="changesets" class="anchor" href="#changesets">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Changesets</h2>
+<p>Built on-top of commands, changesets are an optional tool for making changes
+in your database. The power of changesets comes from the ability to take
+input data and optionally convert it into a representation that&#39;s more
+compatible with your database schema before it passes into a command.</p>
+
+<p>Changesets also make updating aggregate entities much easier by automatically
+handling associations between multiple relations. This makes deconstructing
+a complex entity and updating its individual pieces much easier.</p>
+
+<p>To learn more about changesets, check out the
+<a href="/4.0/learn/core/changesets">Changesets</a> guide.</p>
+<h2 id="adapters" class="hd"><a name="adapters" class="anchor" href="#adapters">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Adapters</h2>
+<p>ROM uses adapters to connect to different data sources (a database, a csv file -
+it doesn&#39;t matter) and exposes a native CRUD interface to its relations. Every
+adapter has extension points to support database-specific functionality. 
+It provides its own relation types, extensions for built-in commands, and
+potentially new command types. Furthermore, an adapter can provide extra
+features that are needed to work with a given database type. For example,
+<code>rom-sql</code> provides Migration API for managing the schema in a SQL database.</p>
+
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p><strong>Remember</strong> all of the abstractions provided by ROM are ultimately there
+  to separate any hard dependencies higher up in the application stack. So
+  when creating relations, take advantage of that separation by not leaking
+  adapter implementation details.</p>
+
+</div>
+<h3 id="gateways" class="hd"><a name="gateways" class="anchor" href="#gateways">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Gateways</h3>
+<p>An object that encapsulates access to a specific persistence backend. ROM
+supports loading multiple gateways allowing an application to pull from
+multiple data sources easily, including cross-datastore relations. </p>
+
+<p>Gateways are provided by the adapter and after ROM finishing loading they&#39;re
+generally hidden behind the scenes.</p>
+<h3 id="datasets" class="hd"><a name="datasets" class="anchor" href="#datasets">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Datasets</h3>
+<p>Only exposed as a private interface to <a href="#relations">Relations</a>, datasets
+act as the middle-man between relations and datastores.</p>
+
+<p>For example, in the SQL adapter, datasets provide the <mark>join</mark>
+functionality where columns in other tables can be joined together via
+<mark>foreign_keys</mark>. This is a prime example of relations (thru datasets)
+taking advantage of what the storage engine can offer while also hiding those
+implementation details away from the application.</p>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/4.0/learn/getting-started/core-concepts.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Core%20Concepts" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - ROM 5.1 released</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/blog/rom-5-1-released/" name="og:url" /><meta content="ROM - ROM 5.1 released" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_rom-5-1-released blog_rom-5-1-released_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link--is-active">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/rom-5-1-released/" class="sidebar__link--is-active">ROM 5.1 released</a></li><li class="sidebar__item"><a href="/blog/announcing-rom-http/" class="sidebar__link">Announcing rom-http</a></li><li class="sidebar__item"><a href="/blog/rom-5-0-and-rom-sql-3-0-released/" class="sidebar__link">rom 5.0.0 and rom-sql 3.0.0 released</a></li><li class="sidebar__item"><a href="/blog/announcing-rom-factory/" class="sidebar__link">Announcing rom-factory</a></li><li class="sidebar__item"><a href="/blog/rom-4-0-released/" class="sidebar__link">ROM 4.0.0 released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/tags/release" class="sidebar__link">release</a></li><li class="sidebar__item"><a href="/blog/tags/announcement" class="sidebar__link">announcement</a></li><li class="sidebar__item"><a href="/blog/tags/http" class="sidebar__link">http</a></li><li class="sidebar__item"><a href="/blog/tags/repository" class="sidebar__link">repository</a></li><li class="sidebar__item"><a href="/blog/tags/oss" class="sidebar__link">oss</a></li><li class="sidebar__item"><a href="/blog/tags/support" class="sidebar__link">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a href="#" class="button--secondary"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a href="/blog/rom-5-1-released/" class="article__title__link--is-active">ROM 5.1 released</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on July 30, 2019 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li></ul></div><p>We&#39;re happy to announce the release of the rom suite 5.1.0! This release includes a couple of bug fixes and mostly focuses on improvements in the <code>ROM::Transformer</code> API and adds plugin APIs to <code>ROM::Repository</code> and <code>ROM::Changeset</code>. Let&#39;s take a look at these nice additions!</p>
+<h2 id="improved-transformer-api" class="hd"><a name="improved-transformer-api" class="anchor" href="#improved-transformer-api">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Improved Transformer API</h2>
+<p>Currently <code>ROM</code> has two different APIs for defining custom mappers. One, called <code>ROM::Mapper</code>, is the old API that goes back to the very early days of the project. In version <code>4.0</code> a new API was introduced called <code>ROM::Transformer</code>, with the intention to eventually replace  <code>ROM::Mapper</code> as Transformer API is more straight-forward and powerful than the original one.</p>
+
+<p>In <code>5.1.0</code> we&#39;ve made significant improvements that make using transformer-based mappers even better than before. Here&#39;s how it looks like in rom <code>5.1.0</code> with its new <code>map</code> method:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">JSONSerializer</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Transformer</span>
+  <span class="n">map</span> <span class="k">do</span>
+    <span class="n">nest</span><span class="p">(</span><span class="ss">:address</span><span class="p">,</span> <span class="sx">%i[city street zipcode]</span><span class="p">)</span>
+    <span class="n">deep_stringify_keys</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>You can easily check out how it works by simply creating an instance and calling it with some data as input:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">json_serializer</span> <span class="o">=</span> <span class="no">JSONSerializer</span><span class="p">.</span><span class="nf">new</span>
+
+<span class="n">json_serializer</span><span class="o">.</span><span class="p">(</span>
+  <span class="p">[{</span> <span class="ss">name: </span><span class="s2">"Jane"</span><span class="p">,</span> <span class="ss">city: </span><span class="s2">"Cracow"</span><span class="p">,</span> <span class="ss">street: </span><span class="s2">"Street 1/2"</span><span class="p">,</span> <span class="ss">zipcode: </span><span class="s2">"12-345"</span> <span class="p">}]</span>
+<span class="p">)</span>
+<span class="c1"># =&gt; [{"name"=&gt;"Jane",</span>
+<span class="c1">#      "address"=&gt;{"city"=&gt;"Cracow", "street"=&gt;"Street 1/2", "zipcode"=&gt;"12-345"}</span>
+<span class="c1">#    }]</span>
+</code></pre></div>
+<p>Another big improvement is <strong>support for instance methods as mapping functions</strong>. Sometimes you need to access mapper&#39;s state in order to perform some mapping, this is where instance methods come in handy:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">JSONSerializer</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Transformer</span>
+  <span class="n">map</span> <span class="k">do</span>
+    <span class="c1"># map zipcode using the corresponding instance method</span>
+    <span class="n">map_value</span><span class="p">(</span><span class="ss">:zipcode</span><span class="p">,</span> <span class="o">&amp;</span><span class="ss">:normalize_zipcode</span><span class="p">)</span>
+    <span class="n">nest</span><span class="p">(</span><span class="ss">:address</span><span class="p">,</span> <span class="sx">%i[city street zipcode]</span><span class="p">)</span>
+    <span class="n">deep_stringify_keys</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">normalize_zipcode</span><span class="p">(</span><span class="n">zipcode</span><span class="p">)</span>
+    <span class="c1"># do whatever you need</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Transformers are typically registered within a rom container, this part has been simplified too and you can now do it in one line, which is consistent with other rom components. If we wanted to register our <code>JSONSerializer</code> to be a mapper used by the <code>users</code> relation, we could simply do this now:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">JSONSerializer</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Transformer</span>
+  <span class="n">relation</span> <span class="ss">:users</span><span class="p">,</span> <span class="ss">as: :json</span>
+
+  <span class="n">map</span> <span class="k">do</span>
+    <span class="n">nest</span><span class="p">(</span><span class="ss">:address</span><span class="p">,</span> <span class="sx">%i[city street zipcode]</span><span class="p">)</span>
+    <span class="n">deep_stringify_keys</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Then the transformer will be available under <code>:json</code> identifier:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="c1"># assuming `users` is our relation</span>
+<span class="n">users</span><span class="p">.</span><span class="nf">map_with</span><span class="p">(</span><span class="ss">:json</span><span class="p">).</span><span class="nf">to_a</span>
+</code></pre></div><h2 id="plugin-api-for-repository-and-changeset" class="hd"><a name="plugin-api-for-repository-and-changeset" class="anchor" href="#plugin-api-for-repository-and-changeset">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Plugin API for Repository and Changeset</h2>
+<p>Starting from rom <code>5.1.0</code> you can write plugins for repositories and changesets. This is a huge improvement that you should find useful whether you&#39;re integrating rom with your library or just want to DRY-up code in an application. Currently there are no built-in plugins for repositories or changesets, but it&#39;s very likely we&#39;ll be adding some in the near future.</p>
+
+<p>Here&#39;s an example of a repository plugin that sets &quot;default scope&quot; for a repository root relation:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">DefaultScope</span>
+  <span class="k">class</span> <span class="nc">ScopedRelation</span> <span class="o">&lt;</span> <span class="no">Module</span>
+    <span class="nb">attr_reader</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">:view</span>
+
+    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="nb">name</span><span class="p">,</span> <span class="n">view</span><span class="p">)</span>
+      <span class="vi">@name</span> <span class="o">=</span> <span class="nb">name</span>
+      <span class="vi">@view</span> <span class="o">=</span> <span class="n">view</span>
+      <span class="n">define_relation_reader</span>
+    <span class="k">end</span>
+
+    <span class="kp">private</span>
+
+    <span class="k">def</span> <span class="nf">define_relation_reader</span>
+      <span class="n">relation_view</span> <span class="o">=</span> <span class="n">view</span>
+
+      <span class="n">define_method</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span> <span class="k">do</span>
+        <span class="k">super</span><span class="p">().</span><span class="nf">public_send</span><span class="p">(</span><span class="n">relation_view</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">apply</span><span class="p">(</span><span class="n">repo</span><span class="p">,</span> <span class="n">view</span><span class="p">:)</span>
+    <span class="n">repo</span><span class="p">.</span><span class="nf">prepend</span><span class="p">(</span><span class="no">ScopedRelation</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">repo</span><span class="p">.</span><span class="nf">root</span><span class="p">,</span> <span class="n">view</span><span class="p">))</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="no">ROM</span><span class="p">.</span><span class="nf">plugins</span> <span class="k">do</span>
+  <span class="n">register</span> <span class="ss">:default_scope</span><span class="p">,</span> <span class="no">DefaultScope</span><span class="p">,</span> <span class="ss">type: :repository</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>Now we can enable our plugin in a root repository:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">class</span> <span class="nc">PostRepo</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Repository</span><span class="p">[</span><span class="ss">:posts</span><span class="p">]</span>
+  <span class="n">use</span> <span class="ss">:default_scope</span><span class="p">,</span> <span class="ss">view: :published</span>
+<span class="k">end</span>
+</code></pre></div>
+<p>That&#39;s it - the repository will always use posts scoped to its <code>published</code> view.</p>
+<h2 id="release-information" class="hd"><a name="release-information" class="anchor" href="#release-information">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Release information</h2>
+<p>This is a backward-compatible release, which means upgrading should not break your code. If you have any issues please <a href="https://github.com/rom-rb/rom/issues/new/choose">report them</a>. Please refer to <a href="https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#510-2019-07-30">5.1.0 CHANGELOG</a> for more information.</p>
+<hr /></article><div id="disqus_thread"></div><script src="https://rom-rb-blog.disqus.com/embed.js"></script></div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/blog/2019-07-30-rom-5-1-released.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20ROM%205.1%20released" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

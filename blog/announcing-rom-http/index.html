@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Announcing rom-http</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/blog/announcing-rom-http/" name="og:url" /><meta content="ROM - Announcing rom-http" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_announcing-rom-http blog_announcing-rom-http_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link--is-active">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/rom-5-1-released/" class="sidebar__link">ROM 5.1 released</a></li><li class="sidebar__item"><a href="/blog/announcing-rom-http/" class="sidebar__link--is-active">Announcing rom-http</a></li><li class="sidebar__item"><a href="/blog/rom-5-0-and-rom-sql-3-0-released/" class="sidebar__link">rom 5.0.0 and rom-sql 3.0.0 released</a></li><li class="sidebar__item"><a href="/blog/announcing-rom-factory/" class="sidebar__link">Announcing rom-factory</a></li><li class="sidebar__item"><a href="/blog/rom-4-0-released/" class="sidebar__link">ROM 4.0.0 released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/tags/release" class="sidebar__link">release</a></li><li class="sidebar__item"><a href="/blog/tags/announcement" class="sidebar__link">announcement</a></li><li class="sidebar__item"><a href="/blog/tags/http" class="sidebar__link">http</a></li><li class="sidebar__item"><a href="/blog/tags/repository" class="sidebar__link">repository</a></li><li class="sidebar__item"><a href="/blog/tags/oss" class="sidebar__link">oss</a></li><li class="sidebar__item"><a href="/blog/tags/support" class="sidebar__link">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a href="#" class="button--secondary"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a href="/blog/announcing-rom-http/" class="article__title__link--is-active">Announcing rom-http</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on April 29, 2019 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/release">release</a></li><li class="article__tag"><a href="/blog/tags/announcement">announcement</a></li><li class="article__tag"><a href="/blog/tags/http">http</a></li></ul></div><p>Today we have another exciting release for you - <code>rom-http 0.8.0</code>. This is the biggest release of this adapter so far, as it&#39;s been integrated fully with the core APIs. This means you can now use <code>rom-http</code> to build HTTP client libraries, and leverage powerful auto-mapping capabilities of rom-rb.</p>
+
+<p>This adapter works in the same way as any other <code>rom-rb</code> adapter. You configure a gateway, register relations with schemas and voilà - you can talk to remote HTTP APIs now. Let&#39;s see how this looks in actual code.</p>
+<h2 id="github-api-example" class="hd"><a name="github-api-example" class="anchor" href="#github-api-example">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>GitHub API Example</h2>
+<p>To connect to a remote HTTP API you simply provide the <code>uri</code> and which response/request handlers should be used, in this case we will set <code>:json</code>:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:http</span><span class="p">,</span> <span class="ss">uri: </span><span class="s2">"https://api.github.com"</span><span class="p">,</span> <span class="ss">handlers: :json</span><span class="p">)</span>
+</code></pre></div>
+<p>Now we can define a relation class. For the purpose of this example we&#39;ll use a relation that will query <code>/orgs</code> end-point:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="k">module</span> <span class="nn">GitHub</span>
+  <span class="k">module</span> <span class="nn">Resources</span>
+    <span class="k">class</span> <span class="nc">Organizations</span> <span class="o">&lt;</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Relations</span><span class="p">[</span><span class="ss">:http</span><span class="p">]</span>
+      <span class="n">schema</span><span class="p">(</span><span class="ss">:orgs</span><span class="p">)</span> <span class="k">do</span>
+        <span class="n">attribute</span> <span class="ss">:id</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">Integer</span>
+        <span class="n">attribute</span> <span class="ss">:name</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">String</span>
+        <span class="n">attribute</span> <span class="ss">:created_at</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">JSON</span><span class="o">::</span><span class="no">Time</span>
+        <span class="n">attribute</span> <span class="ss">:updated_at</span><span class="p">,</span> <span class="no">Types</span><span class="o">::</span><span class="no">JSON</span><span class="o">::</span><span class="no">Time</span>
+      <span class="k">end</span>
+
+      <span class="k">def</span> <span class="nf">by_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+        <span class="n">append_path</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">config</span><span class="p">.</span><span class="nf">register_relation</span><span class="p">(</span><span class="no">GitHub</span><span class="o">::</span><span class="no">Resources</span><span class="o">::</span><span class="no">Organizations</span><span class="p">)</span>
+
+<span class="n">rom</span> <span class="o">=</span> <span class="no">ROM</span><span class="p">.</span><span class="nf">container</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+<p>We only defined a sub-set of all the attributes, mappers will reject extra keys for us and give us back simpler data structures. Notice the <code>by_name</code> view in this class - it appends organization name to the base path. For example <code>org/rom-rb</code> is the path we want to use to find an organization named <code>rom-rb</code>.</p>
+
+<p><code>Relation#append_path</code> is just one of the many convenient methods that are available, that will help you in constructing HTTP queries. Refer to <a href="https://api.rom-rb.org/rom-http/ROM/HTTP/Dataset.html">API documentation</a> for more information.</p>
+
+<p>Let&#39;s see this in action now:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">orgs</span> <span class="o">=</span> <span class="n">rom</span><span class="p">.</span><span class="nf">relations</span><span class="p">[</span><span class="ss">:orgs</span><span class="p">]</span>
+
+<span class="c1"># Plain hashes by default unless you set `auto_struct true` globally</span>
+<span class="n">orgs</span><span class="p">.</span><span class="nf">by_name</span><span class="p">(</span><span class="s1">'rom-rb'</span><span class="p">).</span><span class="nf">one</span>
+<span class="c1"># {:id=&gt;4589832, :name=&gt;"rom-rb", :created_at=&gt;2013-06-01 22:03:54 UTC, :updated_at=&gt;2019-04-03 14:36:48 UTC}</span>
+
+<span class="c1"># Auto-structs on demand</span>
+<span class="n">orgs</span><span class="p">.</span><span class="nf">with</span><span class="p">(</span><span class="ss">auto_struct: </span><span class="kp">true</span><span class="p">).</span><span class="nf">by_name</span><span class="p">(</span><span class="s1">'rom-rb'</span><span class="p">).</span><span class="nf">one</span>
+<span class="c1"># #&lt;ROM::Struct::Org id=4589832 name="rom-rb" created_at=2013-06-01 22:03:54 UTC updated_at=2019-04-03 14:36:48 UTC&gt;</span>
+</code></pre></div>
+<p>Sweet. Data automatically converted to the exact format that we wanted to have, with unspecified keys rejected and attribute values coerced to configured types.</p>
+<h2 id="release-information" class="hd"><a name="release-information" class="anchor" href="#release-information">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Release Information</h2>
+<p>For more information refer to <a href="https://github.com/rom-rb/rom-http/blob/master/CHANGELOG.md#v080-2019-04-29">the CHANGELOG</a>.</p>
+
+<p>Give this adapter a try and tell us what you think!</p>
+<hr /></article><div id="disqus_thread"></div><script src="https://rom-rb-blog.disqus.com/embed.js"></script></div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/blog/2019-04-29-announcing-rom-http.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Announcing%20rom-http" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

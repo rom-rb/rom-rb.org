@@ -1,0 +1,74 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Sustainable Development Campaign</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/blog/sustainable-development-campaign/" name="og:url" /><meta content="ROM - Sustainable Development Campaign" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="blog blog_sustainable-development-campaign blog_sustainable-development-campaign_index"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link--is-active">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Blog</h2><h3 class="sidebar__header">Latest Posts</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/rom-5-1-released/" class="sidebar__link">ROM 5.1 released</a></li><li class="sidebar__item"><a href="/blog/announcing-rom-http/" class="sidebar__link">Announcing rom-http</a></li><li class="sidebar__item"><a href="/blog/rom-5-0-and-rom-sql-3-0-released/" class="sidebar__link">rom 5.0.0 and rom-sql 3.0.0 released</a></li><li class="sidebar__item"><a href="/blog/announcing-rom-factory/" class="sidebar__link">Announcing rom-factory</a></li><li class="sidebar__item"><a href="/blog/rom-4-0-released/" class="sidebar__link">ROM 4.0.0 released</a></li></ul><h3 class="sidebar__header">Browse Tags</h3><ul class="sidebar__items"><li class="sidebar__item"><a href="/blog/tags/release" class="sidebar__link">release</a></li><li class="sidebar__item"><a href="/blog/tags/announcement" class="sidebar__link">announcement</a></li><li class="sidebar__item"><a href="/blog/tags/http" class="sidebar__link">http</a></li><li class="sidebar__item"><a href="/blog/tags/repository" class="sidebar__link">repository</a></li><li class="sidebar__item"><a href="/blog/tags/oss" class="sidebar__link">oss</a></li><li class="sidebar__item"><a href="/blog/tags/support" class="sidebar__link">support</a></li></ul><h3 class="sidebar__header">Subscribe</h3><p><a href="#" class="button--secondary"><span class="fa fa-rss"></span> RSS</a></p></div></div><div class="page__content"><div class="content"><article class="article"><h1 class="article__title"><a href="/blog/sustainable-development-campaign/" class="article__title__link--is-active">Sustainable Development Campaign</a></h1><div class="article__metadata">Posted by <a href="https://twitter.com/_solnic_">Piotr Solnica</a> on August 04, 2015 under <ul class="article__tags"><li class="article__tag"><a href="/blog/tags/oss">oss</a></li><li class="article__tag"><a href="/blog/tags/support">support</a></li></ul></div><p>ROM has been in development for a couple of years already, in fact, its <a href="https://github.com/solnic/rom-relation/tree/pre-mapper-extraction">early prototype</a> was built in 2012, and has gone through multiple phases before the final architecture was introduced in October last year. This has been a huge effort which resulted in the creation of many smaller libraries and, of course, ROM itself.</p>
+
+<p>One of the main reasons that this project was started was to discover a better way of writing Ruby code that would result in a cleaner architecture for the systems we&#39;re building. The Ruby ecosystem has mostly been shaped by the Active Record pattern introduced in the Rails framework, but ROM tries to move away from the common approach, so that it&#39;s easier to build <strong>and grow</strong> systems built in Ruby.</p>
+
+<p>It&#39;s been an interesting journey with lots of experimentation, and we are getting there, as ROM is approaching 1.0.0.</p>
+
+<p>There are a few mind-shifting aspects of ROM which are worth consideration as general programming guidelines in Ruby:</p>
+
+<ul>
+<li>Prefer simple objects that don&#39;t change (mutate) and have a single purpose to exist</li>
+<li>Prefer interfaces that have no side-effects</li>
+<li>Embrace simple data structures rather than complicated objects that mix data and behavior</li>
+<li>Prefer objects over classes, and always treat dependencies explicitly</li>
+<li>Pay attention to boundaries and proper separation of concerns</li>
+</ul>
+
+<p>Those guideliness have led to the decision that ROM will not be a typical Object Relational Mapper which tries to hide your database behind walls of complicated and leaky abstractions and pretend that &quot;you can just use objects&quot;. This is the reason why ROM gives you a powerful interface to use your database effectively; which can be levaraged to design your systems with simpler data structures in mind and decouple your application layer from persistence concerns.</p>
+
+<p>Such an approach has a significant impact on <strong>lowering complexity</strong> of your application layer.</p>
+<h2 id="growing-the-ecosystem" class="hd"><a name="growing-the-ecosystem" class="anchor" href="#growing-the-ecosystem">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Growing The Ecosystem</h2>
+<p>ROM is already a big project; if you consider its lower level libraries, over 14 adapters and integration with 3 frameworks. But it goes beyond that - other libraries are being developed that are based the on same programming principles. It is absolutely amazing to see that happening. The ecosystem is growing.</p>
+
+<p>We have reached a point where ROM needs a sustainable pace of development, so that following things can happen:</p>
+
+<ul>
+<li>Reach 1.0.0 in September</li>
+<li>Extract re-usable APIs into separate libraries so that other projects can benefit from them</li>
+<li>Improve existing adapters to be production-ready (the more the merrier)</li>
+<li>Address all known issues in a timely fashion</li>
+<li>Support users in multiple channels</li>
+<li>Establish a solid release process with a CI setup that can help in developing adapters and extensions</li>
+</ul>
+
+<p>In order to be able to do all of that we need your support.</p>
+<h2 id="campaign-on-bountysource" class="hd"><a name="campaign-on-bountysource" class="anchor" href="#campaign-on-bountysource">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Campaign on Bountysource</h2>
+<p>Bountysource is a service that helps in raising funds for Open Source projects. Its latest feature, called Salt, allows sustainable fundraising on a monthly basis. This makes it possible to support a steady pace of development - which is crucial for a complex project like ROM.</p>
+
+<p>If you&#39;d like to see ROM grow faster, please consider supporting the project through <a href="https://salt.bountysource.com/teams/rom-rb">the campaign</a>.</p>
+
+<p>We want to take the project to the next level with this campaign and hope to expand the team so that more people can work continuously on ROM. We are happy to use the funds to sponsor work on ROM itself and also on any other library that the project could benefit from.</p>
+
+<blockquote>
+<h2 id="update" class="hd"><a name="update" class="anchor" href="#update">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>UPDATE</h2>
+<p>We moved our donation campaign to <a href="https://opencollective.com/rom">opencollective.com/rom</a></p>
+</blockquote>
+<h2 id="what-39-s-in-it-for-you" class="hd"><a name="what-39-s-in-it-for-you" class="anchor" href="#what-39-s-in-it-for-you">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>What&#39;s in it for you?</h2>
+<p>There are many ways in which you and your company can benefit from ROM <em>today</em>, but there&#39;s still a lot to be done to make ROM simpler to use for the common application use-case. This includes adding convenient, high-level abstractions as well as providing great documentation and other resources that would teach people how to use ROM.</p>
+
+<p>If you&#39;re interested in the project but it still feels &quot;weird&quot; or &quot;too complicated&quot;, this is exactly the reason that the campaign was started. ROM <em>should be accessible for everybody</em>, including less experienced developers. Not only do we want to promote ROM, but also, the general approach to writing Ruby code, which we believe results in a better and more maintainable code-base.</p>
+
+<p>For any questions or concerns, please do not hesitate to <a href="https://twitter.com/_solnic_">get in touch</a>.</p>
+<hr /></article><div id="disqus_thread"></div><script src="https://rom-rb-blog.disqus.com/embed.js"></script></div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/blog/2015-08-04-sustainable-development-campaign.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Sustainable%20Development%20Campaign" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

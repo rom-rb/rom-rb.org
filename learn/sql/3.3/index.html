@@ -1,0 +1,872 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/learn/sql/3.3/" name="og:url" /><meta content="ROM" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="learn learn_sql learn_sql_3"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link--is-active">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/introduction/installation/" class="sidebar__sub-link">Installation</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/core-concepts/" class="sidebar__sub-link">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/active-record/" class="sidebar__sub-link">Compared to ActiveRecord</a></li><li class="sidebar__sub-item"><a href="/learn/introduction/glossary/" class="sidebar__sub-link">Glossary</a></li></ul></li><li class="sidebar__item"><a href="/learn/core/5.2/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/core/5.2/quick-setup/" class="sidebar__sub-link">Quick setup</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/combines/" class="sidebar__sub-link">Combines</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/mappers/" class="sidebar__sub-link">Mappers</a></li><li class="sidebar__sub-item"><a href="/learn/core/5.2/framework-setup/" class="sidebar__sub-link">Framework setup</a></li></ul></li><li class="sidebar__item"><a href="/learn/repository/5.2/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/repository/5.2/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/learn/repository/5.2/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/learn/changeset/5.2/" class="sidebar__link">Changeset</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/changeset/5.2/mapping/" class="sidebar__sub-link">Mapping</a></li><li class="sidebar__sub-item"><a href="/learn/changeset/5.2/associations/" class="sidebar__sub-link">Associations</a></li></ul></li><li class="sidebar__item"><a href="/learn/rails/2.2/" class="sidebar__link">Rails</a></li><li class="sidebar__item"><a href="/learn/sql/3.3/" class="sidebar__link--is-active">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/learn/sql/3.3/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/learn/sql/3.3/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/learn/http/0.8/" class="sidebar__link">HTTP</a></li><li class="sidebar__item"><a href="/learn/factory/0.10/" class="sidebar__link">Factory</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><div class="current-version-banner"><p class="button">Version 3.3</p></div><h1>SQL</h1><div class="toc">
+  <h2 id="toc">Contents</h2>
+  <ol>
+<li><a href="#installing">Installing</a></li>
+<li><a href="#connecting-to-a-database">Connecting to a Database</a></li>
+<li><a href="#postgresql">PostgreSQL</a></li>
+<li><a href="#mysql">MySQL</a></li>
+<li><a href="#sqlite">SQLite</a></li>
+<li><a href="#oracle">Oracle</a></li>
+<li><a href="#others">Others</a></li>
+<li><a href="#jruby">JRuby</a></li>
+</ol>
+
+</div>
+
+<p>ROM supports SQL databases via the <mark>rom-sql</mark> adapter which augments
+and enhances <code>Relation</code>. <mark>rom-sql</mark> supports a sql-specific query DSL
+and association macros that simplify constructing joins and exposes the
+flexibility &amp; power of the RDMS to relation users.</p>
+
+<p>Direct interactions between the database and ROM happen through the use of
+the excellent <a href="http://sequel.jeremyevans.net/">Sequel</a> gem by Jeremy Evans.
+However, Sequel is an implementation detail of ROM and as such should not be
+relied upon for functionality. If <mark>rom-sql</mark> is missing functionality
+that can be accomplished in Sequel then please leave a report in our <a href="https://github.com/rom-rb/rom-rb.org/issues">issue
+tracker</a>.</p>
+
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p>The SQL Adapter documentation is still being created &amp; revised. If something
+  isn&#39;t documented or requires more information, please click the  &quot;Provide
+  Feedback&quot; buttons at the bottom of the pages and let us know. In the mean time
+  you may need to look towards
+  <a href="http://sequel.jeremyevans.net/documentation.html">Sequel&#39;s</a> Databases &amp;
+  Datasets documentation for further guidance.</p>
+
+</div>
+<h2 id="installing" class="hd"><a name="installing" class="anchor" href="#installing">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Installing</h2>
+<p><em>Depends on:</em> <code>ruby v2.4.0</code> or greater</p>
+
+<p>To install <mark>rom-sql</mark> add the following to your
+<mark>Gemfile</mark>.</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="n">gem</span> <span class="s1">'rom'</span><span class="p">,</span>     <span class="s1">'~&gt; 5.2'</span>
+<span class="n">gem</span> <span class="s1">'rom-sql'</span><span class="p">,</span> <span class="s1">'~&gt; 3.2'</span>
+</code></pre></div>
+<p>Afterwards either load <code>rom-sql</code> through your bundler setup or manually in your custom
+script like so:</p>
+<div class="highlight"><pre class="syntax ruby"><code><span class="nb">require</span> <span class="s1">'rom-sql'</span>
+</code></pre></div>
+<p>Once loaded the SQL Adapter will register itself with ROM and become available
+for immediate use via the <code>:sql</code> identifier.</p>
+
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p>Each database type requires a separate driver gem to also be installed.
+  Be sure to check out the documentation of your preferred database for
+  more information.</p>
+
+</div>
+<h2 id="connecting-to-a-database" class="hd"><a name="connecting-to-a-database" class="anchor" href="#connecting-to-a-database">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Connecting to a Database</h2>
+<p>Configuring ROM and opening a connection to a database requires three parts.</p>
+
+<ol>
+<li>The name of an adapter,</li>
+<li>a connection string, and</li>
+<li>any additional options</li>
+</ol>
+
+<p>The adapter name for the SQL Adapter is always <mark>:sql</mark> which makes
+things easy; whereas connection strings are database driver specific. Connection
+strings tell the SQL Adapter which driver to use for the connection along with
+the port and host address of the database server. Connection strings can also
+be used to set most of the available options, however it&#39;s generally better to
+keep the connection string short and focused on network routing. Additional
+options can be provided in a convenient hash structure or by named parameters
+on the configuration method signature.</p>
+
+<p>An example of this can be seen below:</p>
+<div class="highlight"><pre class="syntax ruby"><code>  <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">username: </span><span class="s1">'postgres'</span><span class="p">,</span>
+    <span class="ss">password: </span><span class="s1">'postgres'</span><span class="p">,</span>
+    <span class="ss">encoding: </span><span class="s1">'UTF8'</span>
+  <span class="p">}</span>
+
+  <span class="c1"># Options Hash</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost:5432/mydbname'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+
+  <span class="c1"># Named Parameters</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/mydbname'</span><span class="p">,</span> <span class="ss">port: </span><span class="mi">5432</span><span class="p">)</span>
+</code></pre></div><h4 id="general-connection-options" class="hd"><a name="general-connection-options" class="anchor" href="#general-connection-options">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>General Connection Options</h4>
+<p>Options below are available to all database drivers and can be used to
+configure the connection between ROM and the database.</p>
+
+<table>
+<thead>
+  <tr>
+    <th>Option</th>
+    <th>Value Type</th>
+    <th>Description</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td>:database</td>
+    <td>String</td>
+    <td>Name of the database to open after successful connection.</td>
+  </tr>
+
+  <tr>
+    <td>:user</td>
+    <td>String</td>
+    <td>Name of the user account to use when logging in.</td>
+  </tr>
+
+  <tr>
+    <td>:password</td>
+    <td>String</td>
+    <td>Password that matches the user account.</td>
+  </tr>
+
+  <tr>
+    <td>:adapter</td>
+    <td>Symbol</td>
+    <td>
+      Sets the database driver which should be used when making a connection.
+      This option is only to be used in situations where a connection string
+      is <strong>NOT</strong> provided to the ROM Configuration instance.
+
+      <h5>Available Options:</h5>
+      <ul>
+        <li>:postgres</li>
+        <li>:sqlite</li>
+        <li>:oracle</li>
+        <li>:mysql</li>
+      </ul>
+    </td>
+  </tr>
+
+  <tr>
+    <td>:host</td>
+    <td>String</td>
+    <td>
+      Internet location of the database server. This option is <strong>required</strong>
+      when the adapter option is being used.
+    </td>
+  </tr>
+
+  <tr>
+    <td>:port</td>
+    <td>Integer</td>
+    <td>Port number used during connection.</td>
+  </tr>
+
+  <tr>
+    <td>:max_connections</td>
+    <td>Integer</td>
+    <td>The maximum number of connections the connection pool will open (default 4).</td>
+  </tr>
+
+</tbody>
+</table>
+<h3 id="postgresql" class="hd"><a name="postgresql" class="anchor" href="#postgresql">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>PostgreSQL</h3>
+<p><em>Requires:</em> <code>pg</code> gem <br>
+<em>Recommends:</em> <code>sequel_pg</code> gem in addition to <code>pg</code> gem</p>
+
+<p>The only supported structure for connecting to PostgreSQL databases is the
+Connection String URI format:</p>
+<div class="highlight"><pre class="syntax plaintext"><code>'postgres://[user[:password]@][host][:port][,...][/database][?param1=value1&amp;...]'
+</code></pre></div>
+<p>For more detailed information on connections strings see the PostgreSQL
+<a href="https://www.postgresql.org/docs/current/static/libpq-connect.html#idm46046870061920">Connection URI</a>
+documentation along with the Sequel
+<a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-postgres">Opening Databases: Postgres</a>
+documentation page.</p>
+<h4 id="quick-connect" class="hd"><a name="quick-connect" class="anchor" href="#quick-connect">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Quick Connect</h4><div class="highlight"><pre class="syntax ruby"><code>  <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">username: </span><span class="s1">'postgres'</span><span class="p">,</span>
+    <span class="ss">password: </span><span class="s1">'postgres'</span><span class="p">,</span>
+    <span class="ss">encoding: </span><span class="s1">'UTF8'</span>
+  <span class="p">}</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'postgres://localhost/database_name'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</code></pre></div><h5 id="additional-options" class="hd"><a name="additional-options" class="anchor" href="#additional-options">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Additional Options</h5>
+<table>
+<thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+    <th>Value Type</th>
+    <th>Default Value</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td>:search_path</td>
+    <td>Sets the schema search path.</td>
+    <td>String, Array&lt;String&gt;</td>
+    <td>['$user', 'public']</td>
+  </tr>
+
+  <tr>
+    <td>:encoding</td>
+    <td>
+      Sets the <i>client_encoding</i> option in Postgres. Available options are
+      <mark>'auto'</mark> or any encoding in the Postgres supported
+      <a href="https://www.postgresql.org/docs/9.0/static/multibyte.html#CHARSET-TABLE">Charset Table</a>.
+      The most common option being <code>'UTF8'</code>
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:connect_timeout</td>
+    <td>Set the number of seconds to wait for a connection</td>
+    <td>Integer</td>
+    <td>20</td>
+  </tr>
+
+  <tr>
+    <td>:driver_options</td>
+    <td>Symbolized keys hash of options that are passed to the <mark>pg</mark> gem</td>
+    <td>Hash</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:sslmode</td>
+    <td>
+      Determines the priority or whether or not an SSL TCP/IP connection is to
+      be made.
+
+      <h5> Available Options:</h5>
+      <ul>
+        <li>
+          <mark>'disable'</mark>
+          - Only try non-SSL Connections
+        </li>
+
+        <li>
+          <mark>'allow'</mark>
+          - first try a non-SSL connection; if that fails, try an SSL connection
+        </li>
+
+        <li>
+          <mark>'prefer'</mark>
+          - first try an SSL connection; if that fails, try a non SSL connection
+        </li>
+
+        <li>
+          <mark>'require'</mark>
+          - only try an SSL connection. If a root CA file is present, verify the
+            certificate in the same way as if verify-ca was specified
+        </li>
+
+        <li>
+          <mark>'verify-ca'</mark>
+          - only try an SSL connection, and verify that the server certificate is
+            issued by a trusted certificate authority (CA)
+        </li>
+
+        <li>
+          <mark>'verify-full'</mark>
+          - only try an SSL connection, verify that the server certificate is
+            issued by a trusted CA and that the requested server host name matches
+            that in the certificate
+        </li>
+      </ul>
+    </td>
+    <td>String</td>
+    <td>'disable'</td>
+  </tr>
+
+  <tr>
+    <td>:sslrootcert</td>
+    <td>Path to the root SSL certificate to use.</td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:use_iso_data_format</td>
+    <td>When enabled, Sequel will ensure the ISO 8601 date format is used.</td>
+    <td>Boolean</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>:convert_infinite_timestamps</td>
+    <td>
+      Determines if infinite timestamps/dates will be converted. By default, an
+      error is raised and no conversion is done.
+
+      <h5> Available Options:</h5>
+      <ul>
+        <li>
+          <mark>:nil</mark>
+          - Converts the timestamp to nil
+        </li>
+
+        <li>
+          <mark>:string</mark>
+          - Leaves the timestamp as a string
+        </li>
+
+        <li>
+          <mark>:float</mark>
+          - Converts to an infinite float
+        </li>
+      </ul>
+    </td>
+    <td>Symbol</td>
+    <td>true</td>
+  </tr>
+
+</tbody>
+</table>
+<h3 id="mysql" class="hd"><a name="mysql" class="anchor" href="#mysql">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>MySQL</h3>
+<p><em>Requires:</em> <code>mysql</code> or <code>mysql2</code> gems <br>
+<em>Recommends:</em> using <code>mysql2</code> gem</p>
+
+<p>MySQL2 driver connection string uses the following pattern:</p>
+<div class="highlight"><pre class="syntax plaintext"><code>'mysql2://[user[:password]@][host][:port][/database][?param1=value1&amp;...]'
+</code></pre></div>
+<p>For more detailed information on connecting to a MySQL database
+see the <a href="https://github.com/brianmario/mysql2">MySQL2</a> project site</p>
+<h4 id="quick-connect_1" class="hd"><a name="quick-connect_1" class="anchor" href="#quick-connect_1">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Quick Connect</h4><div class="highlight"><pre class="syntax ruby"><code>  <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">encoding: </span><span class="s1">'UTF8'</span>
+  <span class="p">}</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'mysql2://localhost/database_name'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</code></pre></div><h5 id="additional-options_1" class="hd"><a name="additional-options_1" class="anchor" href="#additional-options_1">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Additional Options</h5>
+<table>
+<thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+    <th>Value Type</th>
+    <th>Default Value</th>
+  </tr>
+</thead>
+<tbody>
+
+  <tr>
+    <td>:encoding</td>
+    <td>
+      Specify the encoding/character set to use for the connection. Available
+      encodings can be found in the MySQL
+      <a href="https://dev.mysql.com/doc/refman/5.7/en/charset-charsets.html">Charset Table</a>.
+      The most common option being <mark>'UTF8'</mark>
+    </td>
+    <td>String</td>
+    <td>'UTF8'</td>
+  </tr>
+
+  <tr>
+    <td>:write_timeout</td>
+    <td>
+      Set the timeout in seconds when writing to the database.
+    </td>
+    <td>Integer</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:read_timeout</td>
+    <td>
+      Set the timeout in seconds when reading query results.
+    </td>
+    <td>Integer</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:connect_timeout</td>
+    <td>
+      Set the timeout in seconds before a connection attempt is abandoned.
+    </td>
+    <td>Integer</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>Boolean</td>
+    <td>
+      When enabled the server will refuse connection if the
+      account password is stored in old pre-MySQL 4.1 format.
+    </td>
+    <td>:secure_auth</td>
+    <td>true</td>
+  </tr>
+
+  <tr>
+    <td>:sql_mode</td>
+    <td>
+      Sets the sql_mode(s) for a given connection.
+      eg: <mark>[:no_zero_date, :pipes_as_concat]</mark>
+
+      <p>
+        Available sql_modes can be found in MySQL
+        <a href="https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html#sql-mode-full">Server SQL Modes</a>
+        documentation.
+      </p>
+    </td>
+    <td>Array&lt;String, Symbol&gt;, String, Symbol</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:flags</td>
+    <td>
+      Flags added to an array are added to the Default flags, while flags with a
+      <mark>-</mark> (minus) prefix are removed from the default flags.
+
+      For more information see <a href="https://github.com/brianmario/mysql2#flags-option-parsing">Flag Option Parsing</a>.
+
+      <h5> Available Options:</h5>
+      <ul>
+        <li>'REMEMBER_OPTIONS'</li>
+        <li>'LONG_PASSWORD'</li>
+        <li>'LONG_FLAG'</li>
+        <li>'TRANSACTIONS'</li>
+        <li>'PROTOCOL_41'</li>
+        <li>'SECURE_CONNECTION'</li>
+        <li>'MULTI_STATEMENTS'</li>
+      </ul>
+    </td>
+    <td>String, Array&lt;String&gt;</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:socket</td>
+    <td>
+      Used to specify a Unix socket file to connect to instead of a TCP host & port.
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:sslmode</td>
+    <td>
+      Determines the priority or whether or not a SSL TCP/IP connection is to
+      be made.
+
+      <h5> Available Options:</h5>
+      <ul>
+        <li>
+          <mark>:disabled</mark>
+          - Establish an unencrypted connection
+        </li>
+
+        <li>
+          <mark>:preferred</mark>
+          - First try a non-SSL connection; if that fails, try an SSL connection
+        </li>
+
+        <li>
+          <mark>:required</mark>
+          - Establish a secure connection if the server supports secure connections
+        </li>
+
+        <li>
+          <mark>:verify_ca</mark>
+          - Only establish an SSL connection and verify the servers TLS certificate
+            against the configured Certificate Authority (CA) certificates.
+        </li>
+
+        <li>
+          <mark>:verify_identity</mark>
+          - Like <mark>:verify_ca</mark>, but additionally verify the server
+            certificate matches the host to which the connection is attempted.
+        </li>
+      </ul>
+    </td>
+    <td>Symbol</td>
+    <td>:disabled</td>
+  </tr>
+
+  <tr>
+    <td>:sslkey</td>
+    <td>
+      Path to the client key. eg: <mark>'path/to/client-key.pem'</mark>
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:sslcert</td>
+    <td>
+      Path to the client certificate. eg: <mark>'path/to/client-cert.pem'</mark>
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:sslca</td>
+    <td>
+      Path to the CA certificate. eg: <mark>'/path/to/ca-cert.pem'</mark>
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:sslcapath</td>
+    <td>
+      Path to the CA certificates. eg. <mark>'path/to/cacerts'</mark>
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:sslcipher</td>
+    <td>
+      Supported ciphers can be found in the MySQL
+      <a href="https://dev.mysql.com/doc/refman/5.7/en/encrypted-connection-protocols-ciphers.html">Encrypted Connection Protocols</a>
+      document. eg: <mark>'DHE-RSA-AES256-SHA'</mark>
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:sslverify</td>
+    <td>
+      When set to <mark>true</mark>, the server is required to present a valid
+      certificate.
+    </td>
+    <td>Boolean</td>
+    <td>false</td>
+  </tr>
+</tbody>
+</table>
+<h3 id="sqlite" class="hd"><a name="sqlite" class="anchor" href="#sqlite">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>SQLite</h3>
+<p><em>Requires:</em> <code>sqlite3</code> gem</p>
+
+<p>SQLite is a self contained in-process database that supports loading databases
+from files located on the file system or by creating and running the database
+completely in-memory.</p>
+
+<p>Documentation on the connection string format has been skipped for this database driver as there
+are no configuration options supported through the uri. The below
+<a href="#quick-connect_2">Quick Connect</a> examples should offer enough information on how to connect
+to this type of database.</p>
+
+<div role="note" aria-label="Info" class="application-notice info-notice">
+  <div class="notice-title">
+    <i class="fa fa-info-circle"></i> Info
+  </div>
+  <p>By default a SQLite in-memory database is restricted to a single connection.
+  This is a restriction imposed by SQLite itself and for this reason,
+  Sequel sets the maximum number of connections in the connection pool to <code>1</code>.
+  Overriding the connection pool limit will result in weird behavior as new
+  connections will be to separate memory databases.</p>
+
+<p>For more information see
+<a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-sqlite">Sequel&#39;s SQLite</a>
+documentation or for URI file formats see
+<a href="https://www.sqlite.org/uri.html">URI Filenames in SQLite</a></p>
+
+</div>
+<h4 id="quick-connect_2" class="hd"><a name="quick-connect_2" class="anchor" href="#quick-connect_2">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Quick Connect</h4><div class="highlight"><pre class="syntax ruby"><code>  <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">readonly: </span><span class="kp">true</span>
+  <span class="p">}</span>
+
+  <span class="c1"># Absolute path examples</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite://path/to/db-file.db'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite://C:/databases/db-file.db'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite:///var/sqlite/db-file.db'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+
+  <span class="c1"># Relative path examples</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite://db-file.db'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite://../db-file.db'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+
+  <span class="c1"># In-memory database example</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'sqlite::memory'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</code></pre></div><h5 id="additional-options_2" class="hd"><a name="additional-options_2" class="anchor" href="#additional-options_2">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Additional Options</h5>
+<table>
+<thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+    <th>Value Type</th>
+    <th>Default Value</th>
+  </tr>
+</thead>
+
+<tbody>
+  <tr>
+    <td>:database</td>
+    <td>
+      Path to the SQLite database file.
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:host</td>
+    <td>
+      This option is ignored.
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:port</td>
+    <td>
+      This option is ignored.
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>:readonly</td>
+    <td>
+      Opens the database in read-only mode
+    </td>
+    <td>Boolean</td>
+    <td>false</td>
+  </tr>
+
+  <tr>
+    <td>:timeout</td>
+    <td>
+      Busy timeout in milliseconds
+    </td>
+    <td>Integer</td>
+    <td>5000</td>
+  </tr>
+
+</tbody>
+</table>
+<h3 id="oracle" class="hd"><a name="oracle" class="anchor" href="#oracle">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Oracle</h3>
+<p><em>Requires:</em> <code>ruby-oci8</code> gem</p>
+
+<p>OCI8 driver connection strings use the following pattern:</p>
+<div class="highlight"><pre class="syntax plaintext"><code>'oracle://[user[:password]@][host][:port][/database][?param1=value1&amp;...]'
+</code></pre></div><h4 id="quick-connect_3" class="hd"><a name="quick-connect_3" class="anchor" href="#quick-connect_3">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Quick Connect</h4><div class="highlight"><pre class="syntax ruby"><code>  <span class="n">opts</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="ss">autosequence: </span><span class="kp">true</span>
+  <span class="p">}</span>
+  <span class="n">config</span> <span class="o">=</span> <span class="no">ROM</span><span class="o">::</span><span class="no">Configuration</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="ss">:sql</span><span class="p">,</span> <span class="s1">'oracle://localhost/database_name'</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</code></pre></div><h5 id="additional-options_3" class="hd"><a name="additional-options_3" class="anchor" href="#additional-options_3">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Additional Options</h5>
+<table>
+<thead>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+    <th>Value Type</th>
+    <th>Default Value</th>
+  </tr>
+</thead>
+<tbody>
+
+  <tr>
+    <td>:autosequence</td>
+    <td>
+      When <mark>true</mark> Sequel's conventions will be used to guess the
+      sequence to use for the dataset.
+    </td>
+    <td>Boolean</td>
+    <td>false</td>
+  </tr>
+
+  <tr>
+    <td>:prefetch_rows</td>
+    <td>
+      Number of rows to prefetch. Larger numbers can be specified which
+      may improve performance when retrieving large numbers of rows.
+    </td>
+    <td>Integer</td>
+    <td>100</td>
+  </tr>
+
+  <tr>
+    <td>:privilege</td>
+    <td>
+      Oracle privilege level.
+      <h5>Available Options:</h5>
+      <ul>
+        <li>:SYSDBA</li>
+        <li>:SYSOPER</li>
+        <li>:SYSASM</li>
+        <li>:SYSBACKUP</li>
+        <li>:SYSDG</li>
+        <li>:SYSKM</li>
+      </ul>
+    </td>
+    <td>String</td>
+    <td></td>
+  </tr>
+
+</tbody>
+</table>
+<h3 id="others" class="hd"><a name="others" class="anchor" href="#others">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Others</h3>
+<p>The SQL Adapter supports other drivers and URI connection schemes outside the
+ones documented here.</p>
+
+<ul>
+<li><code>ado</code></li>
+<li><code>amalgalite</code></li>
+<li><code>cubrid</code></li>
+<li><code>db2</code></li>
+<li><code>dbi</code></li>
+<li><code>do</code></li>
+<li><code>fdbsql</code></li>
+<li><code>firebird</code></li>
+<li><code>ibmdb</code></li>
+<li><code>informix</code></li>
+<li><code>mysql</code></li>
+<li><code>odbc</code></li>
+<li><code>openbase</code></li>
+<li><code>sqlanywhere</code></li>
+<li><code>swift</code></li>
+<li><code>tinytds</code></li>
+</ul>
+
+<p>These drivers have not been documented because their use is fairly uncommon
+however they should work and documentation for connecting with each of these
+drivers can be found in Sequel&#39;s
+<a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html">Opening Databases</a>
+document.</p>
+<h3 id="jruby" class="hd"><a name="jruby" class="anchor" href="#jruby">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>JRuby</h3>
+<p><em>Requires:</em> <code>java</code>, &amp; the <code>jruby</code> runtime</p>
+
+<p>In a JRuby environment, it&#39;s best to use the <code>JDBC</code> driver available to
+you via the Java SDK. Support for databases in JRuby is handled via
+Sequel&#39;s JDBC sub adapters.</p>
+
+<p>A list of supported databases can be found below along with additional
+requirements:</p>
+
+<table><thead>
+<tr>
+<th>Database</th>
+<th>Required Gem</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Derby</td>
+<td>jdbc-derby</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>jdbc-h2</td>
+</tr>
+<tr>
+<td>HSQLDB</td>
+<td>jdbc-hsqldb</td>
+</tr>
+<tr>
+<td>JTDS</td>
+<td>jdbc-jtds</td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>jdbc-mysql</td>
+</tr>
+<tr>
+<td>PostgreSQL</td>
+<td>jdbc-postgres</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>jdbc-sqlite3</td>
+</tr>
+</tbody></table>
+
+<p>For the databases <code>DB2</code>, <code>Oracle</code> &amp; <code>SQL Server</code>, the <code>.jar</code> file will need
+to either be in your <code>CLASSPATH</code> or manually preloaded before making a
+connection.</p>
+
+<p>Connection strings are similar to their documented patterns above however all
+connection strings must start with <code>jdbc:</code> for example:</p>
+<div class="highlight"><pre class="syntax plaintext"><code># Postgres Example
+jdbc:postgresql://username@localhost/database
+
+# MySQL Example
+jdbc:mysql://localhost/database?user=root&amp;password=root
+
+# SQLite Example
+jdbc:sqlite::memory
+</code></pre></div>
+<p>For more information see
+<a href="http://sequel.jeremyevans.net/rdoc/files/doc/opening_databases_rdoc.html#label-jdbc+">Sequel&#39;s JDBC</a>
+and
+<a href="http://www.oracle.com/technetwork/java/javase/jdbc/index.html">Java SE - Database</a>
+documentation</p>
+
+<!--
+
+Future addition should include configuring sequel and extensions
+
+ ### Configuring Sequel
+
+```ruby
+Sequel.application_timezone = :utc
+```
+
+-->
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-sql/blob/release-3.3/docsite/source/index.html.md" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>

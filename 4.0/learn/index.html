@@ -1,0 +1,166 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" /><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" /><meta content="initial-scale=1" name="viewport" /><title>ROM - Introduction</title><meta content="summary" name="twitter:card" /><meta content="@rom_rb" name="twitter:site" /><meta content="/4.0/learn/" name="og:url" /><meta content="ROM - Introduction" name="og:title" /><meta content="http://rom-rb.org/images/logo--card.png" name="og:image" /><meta content="An open-source persistence and mapping toolkit for Ruby built for speed and simplicity." name="og:description" /><link href="/assets/stylesheets/all.css" rel="stylesheet" /><script src="/assets/javascripts/all.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-2573270-5', 'auto');
+ga('send', 'pageview');</script></head><body class="x4"><div class="page"><div class="grid"><header class="header"><div class="header__logo"><a href="/" class="header__logo__link">Ruby Object Mapper</a></div><div class="header__menu-toggler" id="navigation__toggler"><span class="fa fa-navicon"></span></div><div class="header__menu" id="navigation__items"><nav class="menu"><ul class="menu__items"><li class="menu__item"><a href="/learn" class="menu__item__link">Learn</a></li><li class="menu__item"><a href="/guides" class="menu__item__link">Guides</a></li><li class="menu__item"><a href="/api" class="menu__item__link">API</a></li><li class="menu__item"><a href="/blog" class="menu__item__link">Blog</a></li><li class="menu__item"><a href="/contribute" class="menu__item__link">Contribute</a></li><li class="menu__item"><a href="https://discourse.rom-rb.org" class="menu__item__link">Discuss</a></li><li class="menu__item"><a href="/status" class="menu__item__link">Status</a></li><li class="menu__item--last"><a href="https://opencollective.com/rom" class="menu__item__link">Donate</a></li></ul></nav></div></header><div class="page__sidebar"><div class="sidebar"><h2 class="sidebar__header--first">Learn</h2><ul class="sidebar__items"><li class="sidebar__item"><a href="/4.0/learn/introduction/" class="sidebar__link">Introduction</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/introduction/active-record/" class="sidebar__sub-link">Compared to ActiveRecord</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/getting-started/" class="sidebar__link">Getting Started</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/core-concepts/" class="sidebar__sub-link">Core Concepts</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/setup-dsl/" class="sidebar__sub-link">Setup DSL</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/getting-started/rails-setup/" class="sidebar__sub-link">Rails Setup</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/core/" class="sidebar__link">Core</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/core/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/combines/" class="sidebar__sub-link">Combines</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/changesets/" class="sidebar__sub-link">Changesets</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/commands/" class="sidebar__sub-link">Commands</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/structs/" class="sidebar__sub-link">Structs</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/core/mappers/" class="sidebar__sub-link">Mappers</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/repositories/" class="sidebar__link">Repositories</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/quick-start/" class="sidebar__sub-link">Quick Start</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-simple-objects/" class="sidebar__sub-link">Reading Simple Objects</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/reading-aggregates/" class="sidebar__sub-link">Reading Aggregates</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/repositories/writing-aggregates/" class="sidebar__sub-link">Writing Aggregates</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/sql/" class="sidebar__link">SQL</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/sql/relations/" class="sidebar__sub-link">Relations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/schemas/" class="sidebar__sub-link">Schemas</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/queries/" class="sidebar__sub-link">Queries</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/attributes/" class="sidebar__sub-link">Attributes</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/associations/" class="sidebar__sub-link">Associations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/joins/" class="sidebar__sub-link">Joins</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/transactions/" class="sidebar__sub-link">Transactions</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/migrations/" class="sidebar__sub-link">Migrations</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/sql/advanced-pg-support/" class="sidebar__sub-link">Advanced PostgreSQL support</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/advanced/" class="sidebar__link">Advanced</a><ul class="sidebar__sub-items"><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/explicit-setup/" class="sidebar__sub-link">Explicit Setup</a></li><li class="sidebar__sub-item"><a href="/4.0/learn/advanced/how-to-build-an-adapter/" class="sidebar__sub-link">Adapters</a></li></ul></li><li class="sidebar__item"><a href="/4.0/learn/glossary/" class="sidebar__link">Glossary</a></li></ul><h4 class="sidebar__version">Previous versions: <ul id="sidebar__old-versions-nav"><li><a href="/3.0/learn">3.0</a></li><li><a href="/4.0/learn">4.0</a></li><li><a href="/5.0/learn">5.0</a></li></ul></h4></div></div><div class="page__content"><div class="content"><h1>Introduction</h1><div class="toc">
+  <h2 id="toc">Contents</h2>
+  <ol>
+<li><a href="#what-is-rom">What is ROM</a></li>
+<li><a href="#the-problem-with-orms">The Problem with ORMs</a></li>
+<li><a href="#why-use-rom">Why use ROM</a></li>
+<li><a href="#principles-amp-design">Principles &amp; Design</a></li>
+<li><a href="#inspirations-ideas-and-friends">Our Inspiration</a></li>
+</ol>
+
+</div>
+<h2 id="what-is-rom" class="hd"><a name="what-is-rom" class="anchor" href="#what-is-rom">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>What is ROM</h2>
+<p>Ruby Object Mapper (ROM) is a <em>fast</em> ruby persistence library with
+the goal of providing powerful object mapping capabilities without limiting the
+full <em>power</em> of the underlying datastore.</p>
+
+<p>More specifically, ROM exists to:</p>
+
+<ul>
+<li>Isolate the application from persistence details</li>
+<li>Provide minimum infrastructure for mapping and persistence</li>
+<li>Provide shared abstractions for lower-level components</li>
+<li>Provide simple use of <em>power</em> features offered by the datastore</li>
+</ul>
+<h2 id="the-problem-with-orms" class="hd"><a name="the-problem-with-orms" class="anchor" href="#the-problem-with-orms">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>The Problem with ORMs</h2>
+<p>Object hierarchies are very different from relational hierarchies. Relational
+hierarchies focus on data and its relationships whereas objects not only manage
+data, but also their <em>identity</em> and the <em>behavior</em> centered around that data.
+When attempting to reconcile those difference and map one to the other, we as
+developers end up <em>splatting</em> against a concrete wall.</p>
+
+<p>We believe the cause can be attributed to a fundamental flaw behind ORMs; that
+is this idea that it&#39;s easy to:</p>
+
+<ol>
+<li><p>Map objects to database tables one-to-one (the
+<a href="https://en.wikipedia.org/wiki/Active_record_pattern">ActiveRecord</a> design
+pattern); or</p></li>
+<li><p>Introduce machinery to translate between objects and persistence structures
+(the <a href="https://en.wikipedia.org/wiki/Data_mapper_pattern">DataMapper</a> pattern)</p></li>
+</ol>
+
+<p>Both strategies tend to start out fine, but can quickly become cumbersome as an
+application transitions to a medium-to-large application.</p>
+
+<p>ActiveRecord style mapping has the benefit of aiding in rapid prototyping, which works
+great in basic CRUD scenarios but it limits application modeling to what&#39;s
+convenient for the database. Entities will tend to map one-to-one with tables,
+which leads to knowledge of the persistence structure infecting the application
+domain, leading to code that&#39;s difficult to change.</p>
+
+<p>The DataMapper pattern, while one step better than ActiveRecord style mapping,
+still has its focus trained onto creating and managing objects. The pattern
+solves the one-to-one mapping issue but in doing so creates a host of others.
+The whole apparatus needed to manage all of those objects inevitably leads to
+performance issues and object state tracking which results in developers
+bypassing the ORM entirely.</p>
+
+<p>The problems with ORMs are numerous and the above issues only begin to scratch
+the surface. If you&#39;re interested in further reading on the subject, we suggest:</p>
+
+<ul>
+<li><a href="https://martinfowler.com/bliki/OrmHate.html">ORM Hate by Martin Fowler</a></li>
+<li><a href="http://blogs.tedneward.com/post/the-vietnam-of-computer-science/">The Vietnam of Computer Science by Ted Neward</a></li>
+</ul>
+<h2 id="why-use-rom" class="hd"><a name="why-use-rom" class="anchor" href="#why-use-rom">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Why use ROM</h2>
+<p>ROM provides an alternative way of handling persistence and related concerns.
+It focuses on <em>simplicity</em> by providing enough <em>abstractions</em> to help you
+efficiently <strong>turn your raw data into meaningful information</strong>. </p>
+
+<p>While many ORMs focus on objects and state tracking, <strong>ROM focuses on data and
+transformations</strong>. Users of ROM implement <code>Relations</code>, which give access to data. 
+Then using the relations you can associate them with other relations and query
+the data using features offered by the datastore. Once raw data has been loaded,
+it gets coerced into configured data types, and from there can be mapped into
+whatever format is needed by the application domain, including plain ruby hashes,
+convenient ROM Structs or custom objects.</p>
+
+<p>The important concept above is that during the entire process there is no dirty
+tracking, no identity management and no mutable state. Just <em>pure</em> data being
+loaded and mapped as result of a <strong>direct</strong> request made from the application
+domain. Data can be persisted in ways that take advantage of the features
+provided by the datastore and the application domain can receive that data in 
+any form it needs. Furthermore, you get the added benefits of:</p>
+
+<ul>
+<li>decoupling the application from the persistence layer without sacrificing
+flexibility, and</li>
+<li>bypassing the critical problems associated with object relational mapping
+and mutable state</li>
+</ul>
+
+<p>Most likely, a decent percentage of developers will see the added abstractions
+as extraneous boilerplate. For those people we ask that you give ROM a chance,
+embrace its patterns and principles and see just how much easier it is to pull
+and transform your data. For those who have been burned by <em>simple</em> ORMs in the
+past, ROM represents a real, solid alternative. </p>
+<h2 id="principles-amp-design" class="hd"><a name="principles-amp-design" class="anchor" href="#principles-amp-design">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Principles &amp; Design</h2>
+<p>ROM leverages Ruby’s linguistic strengths with a blend of Object Oriented and
+Functional styles. Following a powerful composition pattern, every ROM object
+shares a common pipeline interface and returns data without side-effects.</p>
+
+<p>All ROM components are stand-alone; they are loosely coupled, can be used
+independently, and follow the single responsibility principle. A single object
+that handles coercion, state, persistence, validation, and all-important
+business logic rapidly becomes complex. Instead, ROM provides the infrastructure
+that allows you to easily create small, dedicated classes for handling each
+concern individually, and then ties them together in a developer-friendly ways.</p>
+
+<p>Above all else ROM favors:</p>
+
+<ul>
+<li><strong>Explicitness</strong> over &quot;magic&quot; whenever possible</li>
+<li><strong>Speed</strong>, because performance is a <em>feature</em></li>
+<li><strong>Flexibility</strong> in your domain layer&#39;s design</li>
+</ul>
+<h2 id="inspirations-ideas-and-friends" class="hd"><a name="inspirations-ideas-and-friends" class="anchor" href="#inspirations-ideas-and-friends">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>Inspirations, Ideas, and Friends</h2>
+<p>Like ROM &amp; its fundamental ideas? You should check these out, too:</p>
+
+<ul>
+<li><a href="http://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey">Rich Hickey on state, immutability, and how to leverage OO principles</a></li>
+<li><a href="https://www.youtube.com/watch?v=yTkzNHF6rMs">Gary Bernhardt on boundaries, immutability, and clean design</a></li>
+<li><a href="https://www.youtube.com/watch?v=rI8tNMsozo0">Rich Hickey on the importance of simplicity for cognition</a></li>
+<li><a href="https://www.youtube.com/watch?v=WpkDN78P884">Robert C. Martin (“Uncle Bob”) on hexagonal architecture</a></li>
+<li><a href="http://confreaks.tv/videos/railsconf2016-activerecord-vs-ecto-a-tale-of-two-orms">Brad Urani on ActiveRecord vs. Ecto: A Tale of Two ORMs</a></li>
+</ul>
+
+<!-- ## Criticisms 
+
+Should collect a number of criticisms lobbed against ROM and attempt to answer
+them here. Left for future changes. -->
+<h2 id="next" class="hd"><a name="next" class="anchor" href="#next">            <svg aria-hidden="true" height="16" width="16" version="1.1" viewBox="0 0 16 16">
+            <path d="M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z"></path>
+            </svg>
+</a>NEXT</h2>
+<p>If you&#39;re coming from Rails a good place to start is our 
+<a href="/4.0/learn/introduction/active-record"><strong>ROM Rails Comparison Guide</strong></a>
+otherwise checkout the
+<a href="/4.0/learn/getting-started/core-concepts"><strong>Core Concepts</strong></a>
+guide to get an overview of all the major parts in ROM.</p>
+</div><section class="feedback"><div class="inline-buttons"><a href="https://github.com/rom-rb/rom-rb.org/blob/master/source/4.0/learn/index.html.slim" class="button">Edit on GitHub</a><a href="https://github.com/rom-rb/rom-rb.org/issues/new?labels=feedback&amp;assignees=solnic&amp;title=Feedback%20on%20ROM%20-%20Introduction" class="button">Provide feedback!</a></div></section></div></div></div><div class="footer"><div class="grid"><div class="footer__content"><h3 class="footer__header">Sponsors</h3><p>We are looking for sustainable sponsorship. If your company is relying
+on rom-rb or simply want to see rom-rb evolve faster to meet your requirements,
+please consider backing the project through <a href="https://opencollective.com/rom">our campaign on
+opencollective.com/rom</a>.</p>
+</div><div class="footer__fine-print"><div class="footer__fine-print__copyright"><small>&copy; 2014-2021 Ruby Object Mapper. Design by <a href="https://github.com/angeloashmore">@angeloashmore</a>. Logo by <a href="https://github.com/kapowaz">@kapowaz</a>.</small></div><div class="footer__fine-print__social"><a href="https://github.com/rom-rb/rom" class="footer__fine-print__social__icon"><span class="fa fa-github-alt"></span></a><a href="https://twitter.com/rom_rb" class="footer__fine-print__social__icon--last"><span class="fa fa-twitter"></span></a></div></div></div></div></body></html>
