@@ -122,4 +122,4 @@ That's it - the repository will always use posts scoped to its `published` view.
 
 ## Release information
 
-This is a backward-compatible release, which means upgrading should not break your code. If you have any issues please [report them](https://github.com/rom-rb/rom/issues/new/choose). Please refer to [5.1.0 CHANGELOG](https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#510-2019-07-30) for more information.
+This is a backward-compatible release, which means upgrading should not break your code. If you have any issues please [report them](https://github.com/rom-rb/rom/issues/new/choose). Please refer to [5.1.0 CHANGELOG](https://github.com/rom-rb/rom/blob/main/CHANGELOG.md#510-2019-07-30) for more information.

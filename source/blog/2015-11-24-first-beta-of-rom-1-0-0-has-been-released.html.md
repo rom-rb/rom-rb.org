@@ -10,13 +10,13 @@ The core API, which also includes adapter interface, is stabilizing. This means 
 
 To ease testing we also released beta versions of minor upgrades of other rom gems so that you can install them from rubygems rather than relying on github sources. Overall the release includes following updates:
 
-- [rom](https://rubygems.org/gems/rom) 1.0.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v100-to-be-released)
-- [rom-support](https://rubygems.org/gems/rom-support) 1.0.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-support/blob/master/CHANGELOG.md#v100-to-be-released)
-- [rom-mapper](https://rubygems.org/gems/rom-mapper) 0.3.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-mapper/blob/master/CHANGELOG.md#v030-to-be-released)
-- [rom-repository](https://rubygems.org/gems/rom-repository) 0.2.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-repository/blob/master/CHANGELOG.md#v020-to-be-released)
-- [rom-sql](https://rubygems.org/gems/rom-sql) 0.7.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v070-to-be-released)
-- [rom-rails](https://rubygems.org/gems/rom-rails) 0.6.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v060-to-be-released)
-- [rom-model](https://rubygems.org/gems/rom-model) 0.2.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-model/blob/master/CHANGELOG.md#020-to-be-released)
+- [rom](https://rubygems.org/gems/rom) 1.0.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom/blob/main/CHANGELOG.md#v100-to-be-released)
+- [rom-support](https://rubygems.org/gems/rom-support) 1.0.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-support/blob/main/CHANGELOG.md#v100-to-be-released)
+- [rom-mapper](https://rubygems.org/gems/rom-mapper) 0.3.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-mapper/blob/main/CHANGELOG.md#v030-to-be-released)
+- [rom-repository](https://rubygems.org/gems/rom-repository) 0.2.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-repository/blob/main/CHANGELOG.md#v020-to-be-released)
+- [rom-sql](https://rubygems.org/gems/rom-sql) 0.7.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/main/CHANGELOG.md#v070-to-be-released)
+- [rom-rails](https://rubygems.org/gems/rom-rails) 0.6.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-rails/blob/main/CHANGELOG.md#v060-to-be-released)
+- [rom-model](https://rubygems.org/gems/rom-model) 0.2.0.beta1 [CHANGELOG](https://github.com/rom-rb/rom-model/blob/main/CHANGELOG.md#020-to-be-released)
 
 ## Changes In Setup API
 

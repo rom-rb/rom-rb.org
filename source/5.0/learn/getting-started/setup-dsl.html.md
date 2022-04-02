@@ -44,10 +44,10 @@ Sometimes you have multiple data sources. You can provide multiple
 hash.
 
 ```ruby
-# Example: an old mysql database, “tasks”, and a new database “task_master”
+# Example: an old mysql database, “tasks”, and a new database “task_main”
 # This registers two rom-sql adapters and then labels postgres with “default” and mysql with “legacy”
 ROM.container(
-  default: [:sql, 'postgres://localhost/task_master'], # gateway 1
+  default: [:sql, 'postgres://localhost/task_main'], # gateway 1
   legacy: [:sql, 'mysql2://localhost/tasks']           # gateway 2
 ) do |config|
     # setup code goes here...

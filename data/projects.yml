@@ -4,8 +4,8 @@
   slug: core
   repo: https://github.com/rom-rb/rom.git
   versions:
-    - value: 'master'
-      branch: 'master'
+    - value: 'main'
+      branch: 'main'
       component: true
     - value: '5.2'
       branch: 'release-5.2'
@@ -14,8 +14,8 @@
   slug: repository
   repo: https://github.com/rom-rb/rom.git
   versions:
-    - value: 'master'
-      branch: 'master'
+    - value: 'main'
+      branch: 'main'
       component: true
     - value: '5.2'
       branch: 'release-5.2'
@@ -24,8 +24,8 @@
   slug: changeset
   repo: https://github.com/rom-rb/rom.git
   versions:
-    - value: 'master'
-      branch: 'master'
+    - value: 'main'
+      branch: 'main'
       component: true
     - value: '5.2'
       branch: 'release-5.2'

@@ -76,4 +76,4 @@ migration.apply(gateway.connection, :up)
 ## Learn more
 
 * [api::rom-sql::SQL](Migration)
-* [Sequel migration documentation](https://github.com/jeremyevans/sequel/blob/master/doc/schema_modification.rdoc)
+* [Sequel migration documentation](https://github.com/jeremyevans/sequel/blob/main/doc/schema_modification.rdoc)

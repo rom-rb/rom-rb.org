@@ -274,10 +274,10 @@ Check out [Repository#aggregate](http://www.rubydoc.info/gems/rom-repository/ROM
 
 As part of this release following gems have been published:
 
-* rom 3.0.0 [CHANGELOG](https://github.com/rom-rb/rom/blob/master/CHANGELOG.md#v300-2017-01-29)
-* rom-sql 1.0.0 [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/master/CHANGELOG.md#v100-2017-01-29)
-* rom-repository 1.0.0 [CHANGELOG](https://github.com/rom-rb/rom-repository/blob/master/CHANGELOG.md#v100-2017-01-29)
-* rom-rails 0.9.0 [CHANGELOG](https://github.com/rom-rb/rom-rails/blob/master/CHANGELOG.md#v090--2017-01-30)
+* rom 3.0.0 [CHANGELOG](https://github.com/rom-rb/rom/blob/main/CHANGELOG.md#v300-2017-01-29)
+* rom-sql 1.0.0 [CHANGELOG](https://github.com/rom-rb/rom-sql/blob/main/CHANGELOG.md#v100-2017-01-29)
+* rom-repository 1.0.0 [CHANGELOG](https://github.com/rom-rb/rom-repository/blob/main/CHANGELOG.md#v100-2017-01-29)
+* rom-rails 0.9.0 [CHANGELOG](https://github.com/rom-rb/rom-rails/blob/main/CHANGELOG.md#v090--2017-01-30)
 
 Please check out [rom-rb.org](http://rom-rb.org) as it was updated with more documentation!
 
@@ -294,7 +294,7 @@ This is a long post, and it barely covers ~20% of what was improved or added, it
 Special thanks go to (in no particular order):
 
 * [Nikita Shilnikov](https://github.com/flash-gordon), for his fantastic work on schema inferrers, helping *a lot* with rom-support removal by putting together [dry-core](https://github.com/dry-rb/dry-core) and porting **all rom gems** to use dry-initializer
-* [Sergey Kukunin](https://github.com/Kukunin) for his help with [transproc 1.0.0](https://github.com/solnic/transproc/blob/master/CHANGELOG.md#v100-2017-01-29) (yes, we released that too!) and helping with rom-repository mapping pipeline
+* [Sergey Kukunin](https://github.com/Kukunin) for his help with [transproc 1.0.0](https://github.com/solnic/transproc/blob/main/CHANGELOG.md#v100-2017-01-29) (yes, we released that too!) and helping with rom-repository mapping pipeline
 * [Andrew Kozin](https://github.com/nepalez/) for his work on [dry-initializer](https://github.com/dry-rb/dry-initializer) which now plays major role in **many** core objects in rom projects and allowed us to get rid of rom-support
 
 ## What happens next?

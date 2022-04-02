@@ -154,7 +154,7 @@ helpers do
   end
 
   def version
-    current_path[%r{(\d+\.\d+)}] || 'master'
+    current_path[%r{(\d+\.\d+)}] || 'main'
   end
 
   def versions_match?(v1, v2)

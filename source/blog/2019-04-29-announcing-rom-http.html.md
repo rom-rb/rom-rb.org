@@ -64,6 +64,6 @@ Sweet. Data automatically converted to the exact format that we wanted to have, 
 
 ## Release Information
 
-For more information refer to [the CHANGELOG](https://github.com/rom-rb/rom-http/blob/master/CHANGELOG.md#v080-2019-04-29).
+For more information refer to [the CHANGELOG](https://github.com/rom-rb/rom-http/blob/main/CHANGELOG.md#v080-2019-04-29).
 
 Give this adapter a try and tell us what you think!

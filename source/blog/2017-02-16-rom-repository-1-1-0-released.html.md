@@ -93,7 +93,7 @@ To enable auto-mapping with custom mappers, simply pass `auto_map: true` option,
 ``` ruby
 class UserRepo < ROM::Repository[:users]
   relations :tasks
-  
+
   def custom_mapping
     aggregate(:tasks).
       map_with(:my_custom_mapper, auto_map: true)
@@ -103,4 +103,4 @@ end
 
 ## Release Details
 
-This is a backward compatible upgrade, for more information check out the [CHANGELOG](https://github.com/rom-rb/rom-repository/blob/master/CHANGELOG.md#v110-2017-02-16). If you found any issues, or have trouble upgrading, please [report it](https://github.com/rom-rb/rom-repository).
+This is a backward compatible upgrade, for more information check out the [CHANGELOG](https://github.com/rom-rb/rom-repository/blob/main/CHANGELOG.md#v110-2017-02-16). If you found any issues, or have trouble upgrading, please [report it](https://github.com/rom-rb/rom-repository).
