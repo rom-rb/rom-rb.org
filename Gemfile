@@ -8,7 +8,7 @@ gem "rake"
 gem 'middleman', '5.0.0.rc.1'
 gem 'middleman-syntax'
 gem 'middleman-blog'
-gem "middleman-docsite", git: "https://github.com/solnic/middleman-docsite", branch: "main"
+gem "middleman-docsite", git: "https://github.com/dry-rb/middleman-docsite", branch: "main"
 gem 'nokogiri'
 
 # Styling
