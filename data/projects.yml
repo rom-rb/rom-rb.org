@@ -4,60 +4,58 @@
   slug: core
   repo: https://github.com/rom-rb/rom.git
   versions:
-    - value: 'main'
-      branch: 'main'
-      component: true
-    - value: '5.2'
-      branch: 'release-5.2'
+    # - value: 'main'
+    #   branch: 'main'
+    #   component: true
+    - value: "5.2"
+      branch: "release-5.2"
       dir: core
 - name: rom-repository
   slug: repository
   repo: https://github.com/rom-rb/rom.git
   versions:
-    - value: 'main'
-      branch: 'main'
-      component: true
-    - value: '5.2'
-      branch: 'release-5.2'
+    # - value: "main"
+    #   branch: "main"
+    #   component: true
+    - value: "5.2"
+      branch: "release-5.2"
       dir: repository
 - name: rom-changeset
   slug: changeset
   repo: https://github.com/rom-rb/rom.git
   versions:
-    - value: 'main'
-      branch: 'main'
-      component: true
-    - value: '5.2'
-      branch: 'release-5.2'
+    # - value: "main"
+    #   branch: "main"
+    #   component: true
+    - value: "5.2"
+      branch: "release-5.2"
       dir: changeset
 - name: rom-rails
   slug: rails
   repo: https://github.com/rom-rb/rom-rails.git
   versions:
-    - value: '2.2'
-      branch: 'release-2.2'
+    - value: "2.2"
+      branch: "release-2.2"
 - name: rom-sql
   slug: sql
   repo: https://github.com/rom-rb/rom-sql.git
   versions:
-    -
-      value: '3.2'
-      branch: 'release-3.2'
-    -
-      value: '3.3'
-      branch: 'release-3.3'
+    - value: "3.2"
+      branch: "release-3.2"
+    - value: "3.3"
+      branch: "release-3.3"
 - name: rom-http
   slug: http
   repo: https://github.com/rom-rb/rom-http.git
   versions:
-    - value: '0.8'
-      branch: 'release-0.8'
+    - value: "0.8"
+      branch: "release-0.8"
 - name: rom-factory
   slug: factory
   repo: https://github.com/rom-rb/rom-factory.git
   versions:
-    - value: '0.10'
-      branch: 'release-0.10'
+    - value: "0.10"
+      branch: "release-0.10"
 - name: rom-elasticsearch
 - name: rom-cassandra
 - name: rom-couchdb
