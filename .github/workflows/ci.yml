@@ -31,7 +31,7 @@ jobs:
       with:
         ruby-version: "2.7"
     - name: Install latest bundler
-      run: gem install bundler --no-document
+      run: gem install bundler --no-document -v 2.4.22
     - name: Bundle install
       run: |
         bundle config set without development
