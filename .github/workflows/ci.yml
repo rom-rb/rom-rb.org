@@ -77,7 +77,7 @@ jobs:
         with:
           name: build
       - name: Extract the build
-        run: tar xvf build/docs.tar.gz
+        run: tar xvf docs.tar.gz
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
