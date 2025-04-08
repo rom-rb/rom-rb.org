@@ -1,0 +1,50 @@
+.sponsorship-banner {
+  background-color: palette(white);
+  color: palette(purple);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 24px;
+  position: relative;
+  border-bottom: 2px solid rgba(palette(purple), 0.2);
+
+  a {
+    color: palette(purple, dark);
+    @include type-weight(semi-bold);
+    text-decoration: none;
+    transition: color 150ms ease;
+    margin-left: 0.5em;
+    display: inline-block;
+
+    span {
+      border-bottom: 2px solid rgba(palette(purple, dark), 0.3);
+      padding-bottom: 3px;
+      transition: border-bottom 150ms ease;
+    }
+
+    &:hover {
+      color: palette(purple);
+
+      span {
+        border-bottom: 2px solid rgba(palette(purple), 0.3);
+      }
+
+      &::after {
+        transform: translateX(3px);
+      }
+    }
+
+    &::after {
+      content: "→";
+      display: inline-block;
+      margin-left: 0.2em;
+      position: relative;
+      top: 2px;
+      transition: transform 200ms ease;
+    }
+  }
+
+  @include to(3) {
+    font-size: 19px;
+    padding: 1.2rem 1rem;
+  }
+}
