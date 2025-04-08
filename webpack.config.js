@@ -14,7 +14,7 @@ module.exports = {
   },
 
   output: {
-    path: __dirname + '/tmp/dist',
+    path: __dirname + '/.tmp/dist',
     filename: 'assets/javascripts/all.js',
   },
 
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   plugins: [
-    new Clean(['tmp/dist']),
+    new Clean(['.tmp/dist']),
     new ExtractTextPlugin('assets/stylesheets/all.css', {
       allChunks: true,
     }),
