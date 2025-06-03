@@ -21,7 +21,9 @@
 @import '_base/**/*';
 
 // Modules
-@import '_modules/**/*';
+@import "_modules/_page";
+@import "_modules/**/*";
+@import "_modules/_banner";
 
 .feedback {
   margin-top: 1rem;
