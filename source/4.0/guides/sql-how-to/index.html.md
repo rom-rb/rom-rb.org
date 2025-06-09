@@ -1,6 +1,7 @@
 ---
 chapter: SQL How To
 sections:
+  - joins-and-complex-where
   - order-by-nested-association-attribute
 ---
 
