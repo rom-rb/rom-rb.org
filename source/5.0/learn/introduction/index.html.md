@@ -63,7 +63,7 @@ The problems with ORMs are numerous and the above issues only begin to scratch
 the surface. If you're interested in further reading on the subject, we suggest:
 
 * [ORM Hate by Martin Fowler](https://martinfowler.com/bliki/OrmHate.html)
-* [The Vietnam of Computer Science by Ted Neward](http://blogs.tedneward.com/post/the-vietnam-of-computer-science/)
+* [The Vietnam of Computer Science by Ted Neward](https://web.archive.org/web/20220823105749/https://blogs.tedneward.com/post/the-vietnam-of-computer-science/)
 
 ## Why use ROM
 
@@ -122,10 +122,10 @@ Above all else ROM favors:
 
 Like ROM & its fundamental ideas? You should check these out, too:
 
-* [Rich Hickey on state, immutability, and how to leverage OO principles](http://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey)
+* [Rich Hickey on state, immutability, and how to leverage OO principles](https://www.infoq.com/presentations/Are-We-There-Yet-Rich-Hickey)
 * [Gary Bernhardt on boundaries, immutability, and clean design](https://www.youtube.com/watch?v=yTkzNHF6rMs)
 * [Rich Hickey on the importance of simplicity for cognition](https://www.youtube.com/watch?v=rI8tNMsozo0)
-* [Brad Urani on ActiveRecord vs. Ecto: A Tale of Two ORMs](http://confreaks.tv/videos/railsconf2016-activerecord-vs-ecto-a-tale-of-two-orms)
+* [Brad Urani on ActiveRecord vs. Ecto: A Tale of Two ORMs](https://www.youtube.com/watch?v=_wD25uHx_Sw)
 
 <!-- ## Criticisms
 
