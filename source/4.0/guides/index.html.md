@@ -2,6 +2,7 @@
 title: Guides
 sections:
   - sql-quick-start
+  - testing
   - sql-how-to
 ---
 
