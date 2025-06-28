@@ -66,6 +66,39 @@ user.full_name
 # => "Jane Doe"
 ```
 
+### Loading custom entities classes
+
+When using `auto_struct` feature along with custom `Entities` classes, ROM will not detect whether constant `Entities::User` has been loaded already. If no constant is registered under provided `auto_struct` namespace, it will create custom class under that namespace automatically which may lead you to a confusion. In order to avoid it, just be sure to load all required entities constants beforehand.
+
+The actual custom entity class will be further subclassed from yours and will be extended with additional attributes, if the query result provided more than entity expected. For instance, if the entity expects only `login` attribute and query has not been restricted to such attribute, the entity will be extended with all queried attributes:
+
+``` ruby
+module Entities
+  class User < ROM::Struct
+    attribute :login, Types::String
+  end
+end
+
+class UserRepo < ROM::Repository[:users]
+  struct_namespace Entities
+
+  def by_id(id)
+    users.by_pk(id).one
+  end
+end
+
+user = rom.relations[:users]
+  .changeset(:create, login: 'jane@doe.org', email: 'jane@doe.org')
+  .commit
+
+repo = UserRepo.new(rom)
+
+repo.by_id(1)
+# => #<Entities::User login="jane@doe.org" id=1 login="jane@doe.org" email="jane@doe.org">
+```
+
+This is the intention of `struct_namespace` feature. If you don't want some attributes, don't query them. Otherwise your entity shape will be different than declared, but it will never omit the primarily declared attributes.
+
 ### How struct classes are determined
 
 Mappers will look for struct classes based on `Relation#name`, but this is not restricted
