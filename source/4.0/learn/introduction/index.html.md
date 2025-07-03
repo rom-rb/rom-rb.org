@@ -126,7 +126,7 @@ Like ROM & its fundamental ideas? You should check these out, too:
 * [Gary Bernhardt on boundaries, immutability, and clean design](https://www.youtube.com/watch?v=yTkzNHF6rMs)
 * [Rich Hickey on the importance of simplicity for cognition](https://www.youtube.com/watch?v=rI8tNMsozo0)
 * [Robert C. Martin (“Uncle Bob”) on hexagonal architecture](https://www.youtube.com/watch?v=WpkDN78P884)
-* [Brad Urani on ActiveRecord vs. Ecto: A Tale of Two ORMs](http://confreaks.tv/videos/railsconf2016-activerecord-vs-ecto-a-tale-of-two-orms)
+* [Brad Urani on ActiveRecord vs. Ecto: A Tale of Two ORMs](https://www.youtube.com/watch?v=_wD25uHx_Sw)
 
 <!-- ## Criticisms 
 
